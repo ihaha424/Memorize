@@ -8,8 +8,8 @@
 class MyClass {
     const int MY_CONST_VARIABLE;  // 상수는 대문자 + 스네이크(_)
 
-    int myPrivateVariable;  // 프라이빗 변수는 camelCase
-    void MyPrivateFunction() // 프라이빗 함수는 PascalCase
+    int privateVariable;  // 프라이빗 변수는 camelCase
+    void PrivateFunction() // 프라이빗 함수는 PascalCase
     {
         int a{ 0 };  // 로컬 변수는 본인 편한대로!
         return;
@@ -18,21 +18,21 @@ class MyClass {
 public:
     int myPublicVariable;  // 퍼블릭 변수는 camelCase
     // 포인터는 포인터라고 이름에 명시 안함
-    OtherObject* pOtherObj, otherObjPointer;
+    OtherObject* otherObj;
     // 참조(Reference)(`&`)는 참조라고 이름에 명시 안함
-    OtherObject& rOtherObj, otherObjRef;
+    OtherObject& otherObj;
 
     // 기본 변수 이니셜라이징(초기화)은 Uniform 이니셜라이져 `{}` 사용
-    MyClass() : _myPrivateVariable{ 0 }, myPublicVariable{ 0 }, pOtherObj{ nullptr } {}
+    MyClass() : privateVariable{ 0 }, publicVariable{ 0 }, otherObj{ nullptr } {}
     // 이니셜라이징 리스트가 많으면 짤라서!
-    MyClass(
-        int myPrivateVar,
-        int myPublicVar,
-        OtherObject* pObj,
-        OtherObject& rObj)
-        :   _myPrivateVariable{ myPrivateVar },
-            myPublicVariable{ myPublicVar },
-            pOtherObj{ pObj }, rOtherObj{ rObj } 
+    MyClass(                //함수 인자는 _ + camelCase
+        int _privateVar,
+        int _publicVar,
+        OtherObject* _obj,
+        OtherObject& _obj)
+        :   privateVariable{ _privateVar },
+            publicVariable{ _publicVar },
+            otherObj{ _obj }, otherObj{ _obj } 
     {}
 
     void MyPublicFunction() 
@@ -42,10 +42,10 @@ public:
     }
 
     bool MyFunctionWithLongParameterList(  // 함수 파라미터가 많은면 짤라서!
-        int a,            // a
-        double d,         // d
-        Object* pObj,     // pObj
-        void* pReserved   // pReserved
+        int _a,            // a
+        double _d,         // d
+        Object* _obj,     // obj
+        void* _reserved   // reserved
     )
     {
         int localA{ a };    // 로컬 변수는 본인 편한대로!
