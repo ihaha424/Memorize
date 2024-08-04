@@ -70,9 +70,9 @@ public:
 ## 참고 하면 좋은 사이트
 
 ### Behavior Tree
-  : https://maplestoryworlds-creators.nexon.com/ko/docs?postId=562
+  : https://maplestoryworlds-creators.nexon.com/ko/docs?postId=562<br></br>
   : https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work
   
 ### FSM
-  : https://www.aleksandrhovhannisyan.com/blog/implementing-a-finite-state-machine-in-cpp/#approach-3-finite-state-machine
+  : https://www.aleksandrhovhannisyan.com/blog/implementing-a-finite-state-machine-in-cpp/#approach-3-finite-state-machine<br></br>
   : https://gameprogrammingpatterns.com/state.html
