@@ -9,21 +9,184 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Source Files\Window">
+      <UniqueIdentifier>{8093f73d-57cb-4f1b-97ec-c8f21c4ac47e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine">
+      <UniqueIdentifier>{0a4f3651-891e-4065-ba9c-debdfc0d1724}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core">
+      <UniqueIdentifier>{5b68ebbb-61c9-437d-b568-f9d9b9077890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Window\WinBase">
+      <UniqueIdentifier>{d0d248a7-4f5f-4845-becc-42ceeb53febd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\RenderEngine">
+      <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Debug">
+      <UniqueIdentifier>{fc3cfe53-400f-46c7-aec7-80e05109c2ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Internal">
+      <UniqueIdentifier>{f430f573-4f61-40c7-92f1-789c66e11727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Debug\Console">
+      <UniqueIdentifier>{86e4e714-353f-4db5-a487-10d1212de2db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Debug\Logger">
+      <UniqueIdentifier>{ae4e39be-1f19-4ce6-8c9b-5301c55d0879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Debug\Util">
+      <UniqueIdentifier>{7d10b21d-048b-4290-8a03-6c1b2aad0e0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\ResourceManager">
+      <UniqueIdentifier>{30446aa7-513a-44da-99b9-12d068ab9ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework">
+      <UniqueIdentifier>{0a68d8d9-ad75-4b1b-a826-47868fb6dc52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\World">
+      <UniqueIdentifier>{30b28e72-895a-40df-a1e8-a0f768746303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\World\Level">
+      <UniqueIdentifier>{9e2ccf1a-7180-47f0-ba6c-5b6711350578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\GameObject">
+      <UniqueIdentifier>{4cfbaa3e-be92-43c4-aebc-2a21b84c7666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Components">
+      <UniqueIdentifier>{327dbb39-3c67-4196-a619-41b8b1c8ef3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI">
+      <UniqueIdentifier>{57f8b925-ba1a-4153-a2d5-36f505d33c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Animation">
+      <UniqueIdentifier>{518ee6d9-941d-46f0-af71-c4f5fae74d4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Camera">
+      <UniqueIdentifier>{1bf5ae90-1b15-4d95-8e9e-094a01712cff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Sound">
+      <UniqueIdentifier>{18c5e5ce-317d-441c-9373-eac1a1c90b5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Particle">
+      <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="WinApp.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Source Files\GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D2DEngine.h">
+      <Filter>Source Files\GameEngine\RenderEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Source Files\GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomGenerator.h">
+      <Filter>Source Files\GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Source Files\GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Source Files\GameEngine\Core\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeRegistryId.h">
+      <Filter>Source Files\GameEngine\Core\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectRegistryId.h">
+      <Filter>Source Files\GameEngine\Core\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptor.h">
+      <Filter>Source Files\GameEngine\Core\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugConsole.h">
+      <Filter>Source Files\GameEngine\Core\Debug\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Source Files\GameEngine\Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLogger.h">
+      <Filter>Source Files\GameEngine\Core\Debug\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugUtil.h">
+      <Filter>Source Files\GameEngine\Core\Debug\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Source Files\GameEngine\GameFramework\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Source Files\GameEngine\GameFramework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Source Files\GameEngine\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Source Files\GameEngine\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Source Files\GameEngine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraShake.h">
+      <Filter>Source Files\GameEngine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Source Files\GameEngine\Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D2DGameEngine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="WinBase.h">
+      <Filter>Source Files\Window\WinBase</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="WinApp.cpp">
+      <Filter>Source Files\Window</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D2DEngine.cpp">
+      <Filter>Source Files\GameEngine\RenderEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomGenerator.cpp">
+      <Filter>Source Files\GameEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugConsole.cpp">
+      <Filter>Source Files\GameEngine\Core\Debug\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLogger.cpp">
+      <Filter>Source Files\GameEngine\Core\Debug\Logger</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="디버그_사용법.md">
+      <Filter>Source Files\GameEngine\Core\Debug</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="placeholder.txt">
+      <Filter>Source Files\GameEngine\ResourceManager</Filter>
+    </Text>
+    <Text Include="placeholder2.txt">
+      <Filter>Source Files\GameEngine\Sound</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -108,7 +108,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -126,7 +126,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -141,17 +141,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AABB.h" />
+    <ClInclude Include="AI.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="CameraShake.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="D2DEngine.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="DebugConsole.h" />
+    <ClInclude Include="DebugLogger.h" />
+    <ClInclude Include="DebugUtil.h" />
+    <ClInclude Include="Descriptor.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="ObjectRegistryId.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="RandomGenerator.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="TypeRegistryId.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="WinApp.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D2DGameEngine.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="D2DEngine.cpp" />
+    <ClCompile Include="DebugConsole.cpp" />
+    <ClCompile Include="DebugLogger.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="RandomGenerator.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="WinApp.cpp" />
+    <ClCompile Include="WinBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="디버그_사용법.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="placeholder.txt" />
+    <Text Include="placeholder2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
