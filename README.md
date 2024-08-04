@@ -71,3 +71,8 @@ public:
 
 ### Behavior Tree
   : https://maplestoryworlds-creators.nexon.com/ko/docs?postId=562
+  : https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work
+  
+### FSM
+  : https://www.aleksandrhovhannisyan.com/blog/implementing-a-finite-state-machine-in-cpp/#approach-3-finite-state-machine
+  : https://gameprogrammingpatterns.com/state.html
