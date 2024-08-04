@@ -67,6 +67,11 @@ public:
 +) Commit시 로그 잘 쓰기!<br></br>
 +) 주석 잘 쓰기!
 ---------------------------------------------
+## 구조도
+
+![KakaoTalk_20240802_181324075](https://github.com/user-attachments/assets/7f13ff2c-08e0-4efa-ac82-436bca0be8fe)
+
+---------------------------------------------
 ## 참고 하면 좋은 사이트
 
 ### Behavior Tree
