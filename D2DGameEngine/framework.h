@@ -73,3 +73,5 @@ constexpr unsigned int MAX_CHAR_LENGTH = 256U;
 consteval std::size_t KB(std::size_t kb) { return kb * 1024; }
 consteval std::size_t MB(std::size_t mb) { return KB(mb * 1024); }
 consteval std::size_t GB(std::size_t gb) { return MB(gb * 1024); }
+
+using Flags = uint32_t;

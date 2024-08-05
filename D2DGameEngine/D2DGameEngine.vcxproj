@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AABB.h" />
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="CameraComponent.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="InputAction.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="KeyBoard.h" />
+    <ClInclude Include="IObject.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="ObjectRegistryId.h" />
@@ -177,6 +179,7 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="D2DEngine.cpp" />
     <ClCompile Include="DebugConsole.cpp" />
     <ClCompile Include="DebugLogger.cpp" />

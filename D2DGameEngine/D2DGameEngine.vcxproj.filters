@@ -90,6 +90,9 @@
     <Filter Include="Source Files\GameEngine\InputSystem\InputAction">
       <UniqueIdentifier>{61ad1dc2-c25d-4ec8-87b1-5c64188bdee1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Object">
+      <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -194,6 +197,12 @@
     <ClInclude Include="InputAction.h">
       <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
     </ClInclude>
+    <ClInclude Include="IObject.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -243,6 +252,9 @@
     </ClCompile>
     <ClCompile Include="InputAction.cpp">
       <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
