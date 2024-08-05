@@ -28,13 +28,10 @@ public:
 	 */
 	void Inactivate() { status = AS_INACTIVE; }
 
-	void SetLocation(const Math::Vector2 _location);
+	void SetLocation(const float x, const float y);
 	Math::Vector2 GetLocation() const;
-	void SetRotation(const Math::Vector2 _rotation);
-	Math::Vector2 GetRotation() const;
-	void SetScale(const float _scale);
-	Math::Vector2 GetScale() const;
-	void SetTransform(const D2D_TMat3x2F _transform);
+	void SetRotation(const float _degree);
+	void SetScale(const float x, const float y);
 	D2D_TMat3x2F GetTrasnform() const;
 
 	/**
