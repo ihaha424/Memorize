@@ -96,6 +96,12 @@
     <Filter Include="Source Files\GameEngine\Components\Animation">
       <UniqueIdentifier>{2c6addca-4509-42fe-80ab-43247d676d51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Reflection">
+      <UniqueIdentifier>{2c2b1050-65c6-4129-9f42-c87471905e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Object\Controller">
+      <UniqueIdentifier>{7c0835b0-fcd4-4a5b-97dc-f9084f511aac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -212,11 +218,23 @@
     <ClInclude Include="Actor.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Pawn.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+    <ClInclude Include="Reflection.h">
+      <Filter>Source Files\GameEngine\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BitmapComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
@@ -282,6 +300,24 @@
     </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
     </ClCompile>
     <ClCompile Include="BitmapComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>

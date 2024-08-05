@@ -19,6 +19,6 @@ private:
 	LPDIRECTINPUTDEVICE8			mouse = nullptr;
 	POINT							mousePos;
 public:
-	//static Vector3					curMousePosition;	//x: MouseX, y: MouseY, z: MouseWheel
+	static Math::Vector3					curMousePosition;	//x: MouseX, y: MouseY, z: MouseWheel
 	static bool						isMouseInClient;
 };

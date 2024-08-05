@@ -9,11 +9,9 @@ enum EActorStatus
 
 class Actor : public IObject
 {
-private:
+protected:
 	std::vector<class IComponent*> components;
 	EActorStatus status = AS_AWAKE;
-
-protected:
 	class SceneComponent* rootComponent = nullptr;
 
 public:
@@ -30,14 +28,11 @@ public:
 	 */
 	void Inactivate() { status = AS_INACTIVE; }
 
-	void SetLocation(const Math::Vector2 _location) { if(rootComponent != nullptr) rootComponent->SetWorldLocation(_location); }
-	Math::Vector2 GetLocation() const { if (rootComponent != nullptr) return rootComponent->GetWorldLocation(); }
-	void SetRotation(const Math::Vector2 _rotation) { if (rootComponent != nullptr) rootComponent->SetWorldRotation(_rotation); }
-	Math::Vector2 GetRotation() const { if (rootComponent != nullptr) return rootComponent->GetWorldRotation(); }
-	void SetScale(const float _scale) { if (rootComponent != nullptr) rootComponent->SetWorldScale(_scale); }
-	Math::Vector2 GetScale() const { if (rootComponent != nullptr) return rootComponent->GetWorldScale(); }
-	void SetTransform(const D2D_TMat3x2F _transform != nullptr) { if (rootComponent) rootComponent->SetWorldTransform(_transform); }
-	D2D_TMat3x2F GetTrasnform() const { if (rootComponent != nullptr) return rootComponent->GetWorldTransform(); }
+	void SetLocation(const float x, const float y);
+	Math::Vector2 GetLocation() const;
+	void SetRotation(const float _degree);
+	void SetScale(const float x, const float y);
+	D2D_TMat3x2F GetTrasnform() const;
 
 	/**
 	 * @brief 특정 타입의 컴포넌트를 가져옵니다.
