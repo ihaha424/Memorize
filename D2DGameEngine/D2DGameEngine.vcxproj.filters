@@ -326,6 +326,9 @@
     <ClInclude Include="EventId.h">
       <Filter>Source Files\GameEngine\Core\Event</Filter>
     </ClInclude>
+    <ClInclude Include="BitmapComponent.h">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -412,9 +415,6 @@
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Reflection.cpp">
-      <Filter>Source Files\GameEngine\Core\Reflection</Filter>
-    </ClCompile>
     <ClCompile Include="Animator.cpp">
       <Filter>Source Files\GameEngine\Components\Animation</Filter>
     </ClCompile>
@@ -453,6 +453,12 @@
     </ClCompile>
     <ClCompile Include="MoveTo.cpp">
       <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Reflection.cpp">
+      <Filter>Source Files\GameEngine\Core\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapComponent.cpp">
+      <Filter>Source Files\GameEngine\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
