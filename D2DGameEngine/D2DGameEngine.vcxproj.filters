@@ -81,6 +81,15 @@
     <Filter Include="Source Files\GameEngine\DotTween">
       <UniqueIdentifier>{41c87c29-4042-46f5-ba97-5ad4f9c3b1de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\InputSystem\KeyBoard">
+      <UniqueIdentifier>{c549733b-f3cf-414b-b909-0b4a82e70d95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\InputSystem\Mouse">
+      <UniqueIdentifier>{a4874b5d-96e8-436d-b47e-c5104b062d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\InputSystem\InputAction">
+      <UniqueIdentifier>{61ad1dc2-c25d-4ec8-87b1-5c64188bdee1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -164,6 +173,27 @@
     <ClInclude Include="SimpleMath.inl">
       <Filter>Source Files\GameEngine\Math</Filter>
     </ClInclude>
+    <ClInclude Include="EasingFunction.h">
+      <Filter>Source Files\GameEngine\DotTween</Filter>
+    </ClInclude>
+    <ClInclude Include="DotTween.h">
+      <Filter>Source Files\GameEngine\DotTween</Filter>
+    </ClInclude>
+    <ClInclude Include="IInputDevice.h">
+      <Filter>Source Files\GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>Source Files\GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBoard.h">
+      <Filter>Source Files\GameEngine\InputSystem\KeyBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Source Files\GameEngine\InputSystem\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="InputAction.h">
+      <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -192,6 +222,27 @@
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>Source Files\GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="EasingFunction.cpp">
+      <Filter>Source Files\GameEngine\DotTween</Filter>
+    </ClCompile>
+    <ClCompile Include="DotTween.cpp">
+      <Filter>Source Files\GameEngine\DotTween</Filter>
+    </ClCompile>
+    <ClCompile Include="IInputDevice.cpp">
+      <Filter>Source Files\GameEngine\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>Source Files\GameEngine\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyBoard.cpp">
+      <Filter>Source Files\GameEngine\InputSystem\KeyBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Source Files\GameEngine\InputSystem\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="InputAction.cpp">
+      <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
