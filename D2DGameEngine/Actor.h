@@ -10,11 +10,11 @@ enum EActorStatus
 class Actor : public IObject
 {
 private:
-	std::vector<class ActorComponent*> components;
+	std::vector<class IComponent*> components;
 	EActorStatus status = AS_AWAKE;
 
 protected:
-	class ActorComponent* rootComponent = nullptr;
+	class IComponent* rootComponent = nullptr;
 
 public:
 	Actor();
@@ -28,7 +28,7 @@ public:
 	/**
 	 * @brief Actor의 상태를 AS_INACTIVE로 변경합니다. 
 	 */
-	void InActivate() { status = AS_INACTIVE; }
+	void Inactivate() { status = AS_INACTIVE; }
 
 	//void SetLocation(const Math::Vector2 _location) { rootComponent->SetWorldLocation(_location); }
 	//Math::Vector2 GetLocation() const { return rootComponent->GetWorldLocation(); }
@@ -52,8 +52,8 @@ public:
 			T* t = dynamic_cast<T*>(component);
 			if (t != nullptr)
 				return t;
-			return nullptr;
 		}
+		return nullptr;
 	}
 
 	/**

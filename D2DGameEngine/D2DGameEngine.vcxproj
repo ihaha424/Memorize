@@ -147,6 +147,7 @@
     <ClInclude Include="Animator.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="d2d_types.h" />
     <ClInclude Include="FactoryManager.h" />
     <ClInclude Include="IComponent.h" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="D2DEngine.cpp" />
     <ClCompile Include="DebugConsole.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
