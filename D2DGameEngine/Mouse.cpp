@@ -59,7 +59,7 @@ void Mouse::Update()
 	//		curMousePosition.y = clamp.y;
 	//}
 	//MouseComponent::GetInstance()->SetPosition(curMousePosition);
-	SetCursorPos(-mousePos.x + curMousePosition.x, -mousePos.y + curMousePosition.y);
+	//SetCursorPos(-mousePos.x + curMousePosition.x, -mousePos.y + curMousePosition.y);
 }
 
 const BYTE* Mouse::GetPressData()

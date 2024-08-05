@@ -1,7 +1,5 @@
 #include "FactoryManager.h"
 
-#include "util.h"
-
 #include <objbase.h>
 #include <d2d1.h>
 #include <wincodec.h>

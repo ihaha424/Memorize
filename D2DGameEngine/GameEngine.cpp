@@ -12,7 +12,7 @@ void GameEngine::Initialize()
 {
 	// NOTE: 엔진 초기화 작업
 	// e.g., 리소스 매니저, 팩토리 싱글톤 등...
-	_d2d = new D2DEngine(hWindow);
+	d2d = new D2DEngine(hWindow);
 }
 
 void GameEngine::Execute() {
@@ -21,7 +21,7 @@ void GameEngine::Execute() {
 
 void GameEngine::Shutdown() 
 {
-	delete _d2d;
+	delete d2d;
 	// NOTE: 엔진 종료 작업
 	// e.g., 메모리 삭제, 싱글톤 셧다운 등...
 }
