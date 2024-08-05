@@ -93,6 +93,9 @@
     <Filter Include="Source Files\GameEngine\Render">
       <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Reflection">
+      <UniqueIdentifier>{2c2b1050-65c6-4129-9f42-c87471905e60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -209,8 +212,8 @@
     <ClInclude Include="Actor.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Pawn.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+    <ClInclude Include="Reflection.h">
+      <Filter>Source Files\GameEngine\Reflection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -271,8 +274,8 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\GameEngine\Object</Filter>
+    <ClCompile Include="Reflection.cpp">
+      <Filter>Source Files\GameEngine\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

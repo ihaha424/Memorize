@@ -171,6 +171,7 @@
     <ClInclude Include="ObjectRegistryId.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="RandomGenerator.h" />
+    <ClInclude Include="Reflection.h" />
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
+    <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
     <ClCompile Include="Timer.cpp" />

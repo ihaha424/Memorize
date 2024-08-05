@@ -2,7 +2,7 @@
 #include "Mouse.h"
 #include "InputAction.h"
 
-//Vector3 Mouse::curMousePosition = {};
+Math::Vector3 Mouse::curMousePosition = {};
 bool	Mouse::isMouseInClient = false;
 
 HRESULT Mouse::Initialize(HINSTANCE hInst, HWND hWnd, LPDIRECTINPUT8& LPDInput)
@@ -45,7 +45,7 @@ void Mouse::Update()
 		if (mouseState.rgbButtons[key] & 0x80)
 			InputAction::GetInstance()->AddInputKey(key, MouseInput);
 	}
-	//curMousePosition += Vector3(mouseState.lX, mouseState.lY, mouseState.lZ);
+	curMousePosition += Math::Vector3(mouseState.lX, mouseState.lY, mouseState.lZ);
 	//if (isMouseInClient)
 	//{
 	//	Vector2 clamp = Screen::GetInstance()->GetSize();
