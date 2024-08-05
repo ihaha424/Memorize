@@ -93,6 +93,9 @@
     <Filter Include="Source Files\GameEngine\Render">
       <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Object\Controller">
+      <UniqueIdentifier>{7c0835b0-fcd4-4a5b-97dc-f9084f511aac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -215,6 +218,15 @@
     <ClInclude Include="Character.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -279,6 +291,15 @@
     </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Source Files\GameEngine\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
