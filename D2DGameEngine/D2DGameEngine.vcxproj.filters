@@ -164,6 +164,9 @@
     <ClInclude Include="IObject.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -192,6 +195,9 @@
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>Source Files\GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
