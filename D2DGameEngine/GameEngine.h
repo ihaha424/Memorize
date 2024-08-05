@@ -8,7 +8,7 @@ public:
 	AppWindow hWindow;
 	bool stop_rendering{ false };
 
-	class D2DEngine* d2d{ nullptr };
+	class D2DRenderer* d2d{ nullptr };
 	
 	virtual void Initialize();
 	virtual void Execute();

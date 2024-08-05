@@ -1,4 +1,4 @@
-#include "D2DEngine.h"
+#include "D2DRenderer.h"
 
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dxgi.lib")
@@ -12,7 +12,7 @@
 
 #include "FactoryManager.h"
 
-D2DEngine::D2DEngine(HWND hWnd) :
+D2DRenderer::D2DRenderer(HWND hWnd) :
 	_hWnd{ hWnd }, _renderTarget{ nullptr } {
 
 	// Initialize Factory
@@ -34,7 +34,7 @@ D2DEngine::D2DEngine(HWND hWnd) :
 	_DXGIAdapter.reset(dxgiAdaptor);
 }
 
-D2DEngine::~D2DEngine() {
+D2DRenderer::~D2DRenderer() {
 	// Release the text format
 	//SafeRelease(_textFormat);
 
@@ -49,21 +49,21 @@ D2DEngine::~D2DEngine() {
 	FactoryManager::Destroy();
 }
 
-ID2D1HwndRenderTarget* D2DEngine::GetRenderTarget() {
+ID2D1HwndRenderTarget* D2DRenderer::GetRenderTarget() {
 	return _renderTarget.get();
 }
 
-void D2DEngine::BeginDraw() {
+void D2DRenderer::BeginDraw() {
 	_renderTarget->BeginDraw();
 	_renderTarget->Clear();
 	_renderTarget->SetTransform(D2D_Mat3x2F::Identity());
 }
 
-void D2DEngine::EndDraw() {
+void D2DRenderer::EndDraw() {
 	_renderTarget->EndDraw();
 }
 
-void D2DEngine::DrawCircle(
+void D2DRenderer::DrawCircle(
 	const D2D_Point2F& center, float rad,
 	D2D1::ColorF color) {
 	D2D_TColor tmp = _brush->GetColor();
@@ -74,7 +74,7 @@ void D2DEngine::DrawCircle(
 	_brush->SetColor(tmp);
 }
 
-void D2DEngine::DrawBorder(
+void D2DRenderer::DrawBorder(
 	const D2D_Point2F& ul, const D2D_Point2F& lr,
 	D2D_Color color) {
 	D2D_TColor tmp = _brush->GetColor();
@@ -85,7 +85,7 @@ void D2DEngine::DrawBorder(
 	_brush->SetColor(tmp);
 }
 
-void D2DEngine::DrawPolygon(
+void D2DRenderer::DrawPolygon(
 	const std::vector<D2D_Point2F>& points,
 	D2D_Color color) {
 	auto& d2d1Fac = FactoryManager::GetGraphicsFactory();
@@ -118,7 +118,7 @@ void D2DEngine::DrawPolygon(
  * @param str 
  * @param dst A struct of FLOAT left, top, right, bottom 
  */
-void D2DEngine::DrawString(
+void D2DRenderer::DrawString(
 	const std::wstring& str, 
 	const TextFormatInfo* textFormatInfo,
 	const D2D_Point2F& ul, 
@@ -152,7 +152,7 @@ void D2DEngine::DrawString(
 	_brush->SetColor(tmp);
 }
 
-void D2DEngine::DrawSprite(
+void D2DRenderer::DrawSprite(
 	D2D_Sprite* sprite,
 	const D2D_Point2F& ul, const D2D_Point2F& lr
 ) {
@@ -163,9 +163,10 @@ void D2DEngine::DrawSprite(
 	);
 }
 
-void D2DEngine::DrawSprite(
+void D2DRenderer::DrawSprite(
 	D2D_Sprite* sprite,
-	const D2D_RectF& dst, const D2D_RectF& srcArea
+	const D2D_RectF& dst, 
+	const D2D_RectF& srcArea
 ) {
 	if (!sprite) return;
 	_renderTarget->DrawBitmap(
@@ -177,7 +178,7 @@ void D2DEngine::DrawSprite(
 	);
 }
 
-void D2DEngine::PushTransform(const D2D_Mat3x2F& mat) {
+void D2DRenderer::PushTransform(const D2D_Mat3x2F& mat) {
 	// 글로벌 트랜스폼을 업데이트 합니다.
 	globalTransform = mat * globalTransform;
 	// 새로운 트렌스폼을 트랜스폼 스택에 넣습니다.
@@ -186,7 +187,7 @@ void D2DEngine::PushTransform(const D2D_Mat3x2F& mat) {
 	_renderTarget->SetTransform(globalTransform);
 }
 
-void D2DEngine::PopTransform() {
+void D2DRenderer::PopTransform() {
 	// 이전의 트랜스폼을 가져옵니다.
 	D2D_Mat3x2F mat = _transforms.back();
 	// 트렌스폼의 역을 계산한 후 글로벌 트랜스폼에
@@ -199,20 +200,20 @@ void D2DEngine::PopTransform() {
 	_renderTarget->SetTransform(globalTransform);
 }
 
-void D2DEngine::ClearTransform() {
+void D2DRenderer::ClearTransform() {
 	globalTransform = D2D_Mat3x2F::Identity();
 	_transforms.clear();
 }
 
-D2D_Mat3x2F D2DEngine::GetGlobalTransform() {
+D2D_Mat3x2F D2DRenderer::GetGlobalTransform() {
 	return globalTransform;
 }
 
-void D2DEngine::ResizeScreen(int w, int h) {
+void D2DRenderer::ResizeScreen(int w, int h) {
 	_renderTarget->Resize(D2D1::SizeU(w, h));
 }
 
-void D2DEngine::ShowVRAMUsage() {
+void D2DRenderer::ShowVRAMUsage() {
 	static TextFormatInfo textInfo{
 		.fontFamilyName = L"Arial",
 		.fontSize = 20
@@ -227,7 +228,7 @@ void D2DEngine::ShowVRAMUsage() {
 	DrawString(output, &textInfo, { 0.f, 0.f }, { 150.f, 24.f });
 }
 
-void D2DEngine::CreateRenderTarget() {
+void D2DRenderer::CreateRenderTarget() {
 	// Obtain the size of the drawing area.
 	RECT rc;
 	GetClientRect(_hWnd, &rc);

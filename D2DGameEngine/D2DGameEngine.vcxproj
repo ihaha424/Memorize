@@ -145,13 +145,14 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="d2d_types.h" />
     <ClInclude Include="FactoryManager.h" />
     <ClInclude Include="IComponent.h" />
-    <ClInclude Include="D2DEngine.h" />
+    <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="DebugConsole.h" />
     <ClInclude Include="DebugLogger.h" />
@@ -184,8 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="Character.cpp" />
-    <ClCompile Include="D2DEngine.cpp" />
+    <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="DebugConsole.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="DotTween.cpp" />

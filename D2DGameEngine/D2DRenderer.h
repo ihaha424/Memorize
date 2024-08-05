@@ -43,7 +43,7 @@ struct TextFormatInfo {
 /**
  * @brief D2D 렌더링 엔진
  */
-class D2DEngine {
+class D2DRenderer {
 	HWND _hWnd;
 
 	// 종료시 텍스트 포멧을 릴리즈 하기 위한 쓰레기통.
@@ -61,8 +61,8 @@ public:
 
 	struct ID2D1HwndRenderTarget* GetRenderTarget();
 
-	D2DEngine(HWND hWnd);
-	~D2DEngine();
+	D2DRenderer(HWND hWnd);
+	~D2DRenderer();
 
 	void BeginDraw();
 	void EndDraw();
@@ -95,6 +95,12 @@ public:
 		D2D_Sprite* sprite,
 		const D2D_Point2F& ul, const D2D_Point2F& lr
 	);
+	/**
+	 * @brief 스프라이트를 렌더 타겟에 그립니다.
+	 * @param sprite 스프라이트 포인터
+	 * @param dst 스프라이트가 놓일 위치
+	 * @param srcArea 스프라이트에서 클립될 범위
+	 */
 	void DrawSprite(
 		D2D_Sprite* sprite,
 		const D2D_RectF& dst, const D2D_RectF& srcArea

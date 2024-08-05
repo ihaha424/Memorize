@@ -2,7 +2,7 @@
 
 #include "D2DGameEngine/WinApp.h"
 
-#include "D2DGameEngine/D2DEngine.h"
+#include "D2DGameEngine/D2DRenderer.h"
 
 GameApp* loadedApp{ nullptr };
 

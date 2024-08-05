@@ -1,6 +1,6 @@
 ﻿#include "GameEngine.h"
 
-#include "D2DEngine.h"
+#include "D2DRenderer.h"
 
 #include "Timer.h"
 #include <chrono>
@@ -12,7 +12,7 @@ void GameEngine::Initialize()
 {
 	// NOTE: 엔진 초기화 작업
 	// e.g., 리소스 매니저, 팩토리 싱글톤 등...
-	d2d = new D2DEngine(hWindow);
+	d2d = new D2DRenderer(hWindow);
 }
 
 void GameEngine::Execute() {

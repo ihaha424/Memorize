@@ -93,6 +93,9 @@
     <Filter Include="Source Files\GameEngine\Render">
       <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Components\Animation">
+      <UniqueIdentifier>{2c6addca-4509-42fe-80ab-43247d676d51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -107,7 +110,7 @@
     <ClInclude Include="Timer.h">
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="D2DEngine.h">
+    <ClInclude Include="D2DRenderer.h">
       <Filter>Source Files\GameEngine\Render</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
@@ -215,6 +218,9 @@
     <ClInclude Include="Character.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
+    <ClInclude Include="BitmapComponent.h">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -229,7 +235,7 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="D2DEngine.cpp">
+    <ClCompile Include="D2DRenderer.cpp">
       <Filter>Source Files\GameEngine\Render</Filter>
     </ClCompile>
     <ClCompile Include="RandomGenerator.cpp">
@@ -274,11 +280,14 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\GameEngine\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapComponent.cpp">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files\GameEngine\Particle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
