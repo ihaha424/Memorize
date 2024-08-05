@@ -142,13 +142,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AABB.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
-    <ClInclude Include="Component.h" />
+    <ClInclude Include="d2d_types.h" />
+    <ClInclude Include="FactoryManager.h" />
+    <ClInclude Include="IComponent.h" />
     <ClInclude Include="D2DEngine.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="DebugConsole.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="ObjectRegistryId.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="RandomGenerator.h" />
+    <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Timer.h" />
@@ -185,6 +187,7 @@
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="DotTween.cpp" />
     <ClCompile Include="EasingFunction.cpp" />
+    <ClCompile Include="FactoryManager.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="IInputDevice.cpp" />
     <ClCompile Include="InputAction.cpp" />
@@ -192,6 +195,7 @@
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
+    <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WinApp.cpp" />

@@ -50,6 +50,12 @@ using namespace std::literals;
 
 #include <type_traits>
 
+// SimpleMath Library
+#include "SimpleMath.h"
+
+// D2D Types
+#include "d2d_types.h"
+
 /**
  * @brief Check if the type is completely defined.
  * @ref https://devblogs.microsoft.com/oldnewthing/20190708-00/?p=102664
@@ -75,3 +81,20 @@ consteval std::size_t MB(std::size_t mb) { return KB(mb * 1024); }
 consteval std::size_t GB(std::size_t gb) { return MB(gb * 1024); }
 
 using Flags = uint32_t;
+
+
+template<class Interface>
+inline void SafeRelease(Interface** ppInterface) {
+	if (*ppInterface != nullptr) {
+		(*ppInterface)->Release();
+		(*ppInterface) = nullptr;
+	}
+}
+
+template<class Interface>
+inline void SafeRelease(std::unique_ptr<Interface>& upInterface) {
+	if (upInterface) {
+		upInterface.get()->Release();
+		upInterface.release();
+	}
+}
