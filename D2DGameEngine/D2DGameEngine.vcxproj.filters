@@ -66,14 +66,8 @@
     <Filter Include="Source Files\GameEngine\Particle">
       <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Math">
-      <UniqueIdentifier>{e16b01ee-addd-4e11-97b7-bd9163af5122}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\InputSystem">
       <UniqueIdentifier>{816a7e23-17c5-40e2-bebb-0db373020597}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\DotTween">
-      <UniqueIdentifier>{41c87c29-4042-46f5-ba97-5ad4f9c3b1de}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\InputSystem\KeyBoard">
       <UniqueIdentifier>{c549733b-f3cf-414b-b909-0b4a82e70d95}</UniqueIdentifier>
@@ -93,14 +87,41 @@
     <Filter Include="Source Files\GameEngine\Components\Animation">
       <UniqueIdentifier>{2c6addca-4509-42fe-80ab-43247d676d51}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Reflection">
-      <UniqueIdentifier>{2c2b1050-65c6-4129-9f42-c87471905e60}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Object\Controller">
       <UniqueIdentifier>{7c0835b0-fcd4-4a5b-97dc-f9084f511aac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\UI">
       <UniqueIdentifier>{a81a619e-ea13-4bf6-9246-0b84c877d95d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Event">
+      <UniqueIdentifier>{c3bfff51-c90d-401c-b05d-06cdd2db3be0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Event\Events">
+      <UniqueIdentifier>{7d5a996a-504a-4205-b4fc-cd8e934ba5ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Event\Dispatchers">
+      <UniqueIdentifier>{d0629488-3a3f-46de-a15e-51447842a6b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\BehaviorTree">
+      <UniqueIdentifier>{b349f543-1f2a-4117-92c4-90f2ec717b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\BehaviorTree\Nodes">
+      <UniqueIdentifier>{562ef7e0-83a0-4456-98a1-612859a7850b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions">
+      <UniqueIdentifier>{2de1ad6d-d459-43c6-a6e5-3c5c7dbf422d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\PathFinder">
+      <UniqueIdentifier>{bc36ca35-dbc7-437c-897e-b4f45f78d56b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\DotTween">
+      <UniqueIdentifier>{41c87c29-4042-46f5-ba97-5ad4f9c3b1de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Math">
+      <UniqueIdentifier>{e16b01ee-addd-4e11-97b7-bd9163af5122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Reflection">
+      <UniqueIdentifier>{2c2b1050-65c6-4129-9f42-c87471905e60}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -161,9 +182,6 @@
     <ClInclude Include="IComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>Source Files\GameEngine\AI</Filter>
-    </ClInclude>
     <ClInclude Include="CameraComponent.h">
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClInclude>
@@ -174,16 +192,16 @@
       <Filter>Source Files\GameEngine\Particle</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
-      <Filter>Source Files\GameEngine\Math</Filter>
+      <Filter>Source Files\GameEngine\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.inl">
-      <Filter>Source Files\GameEngine\Math</Filter>
+      <Filter>Source Files\GameEngine\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="EasingFunction.h">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClInclude>
     <ClInclude Include="DotTween.h">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClInclude>
     <ClInclude Include="IInputDevice.h">
       <Filter>Source Files\GameEngine\InputSystem</Filter>
@@ -216,7 +234,7 @@
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
     <ClInclude Include="Reflection.h">
-      <Filter>Source Files\GameEngine\Reflection</Filter>
+      <Filter>Source Files\GameEngine\Core\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Source Files\GameEngine\Object</Filter>
@@ -228,9 +246,6 @@
       <Filter>Source Files\GameEngine\Object\Controller</Filter>
     </ClInclude>
     <ClInclude Include="InputComponent.h">
-      <Filter>Source Files\GameEngine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="BitmapComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Pawn.h">
@@ -256,6 +271,60 @@
     </ClInclude>
     <ClInclude Include="UIElement.h">
       <Filter>Source Files\GameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="EventBus.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventDelegate.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventDispatcher.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventDelegate.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventDispatcher.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventListener.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEvent.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEventDispatcher.h">
+      <Filter>Source Files\GameEngine\Core\Event\Dispatchers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEvent.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="INode.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveTo.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="EventId.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +353,7 @@
       <Filter>Source Files\GameEngine\Core\Debug\Logger</Filter>
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
-      <Filter>Source Files\GameEngine\Math</Filter>
+      <Filter>Source Files\GameEngine\Core\Math</Filter>
     </ClCompile>
     <ClCompile Include="SceneComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
@@ -293,10 +362,10 @@
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="EasingFunction.cpp">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClCompile>
     <ClCompile Include="DotTween.cpp">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClCompile>
     <ClCompile Include="IInputDevice.cpp">
       <Filter>Source Files\GameEngine\InputSystem</Filter>
@@ -334,9 +403,6 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
     </ClCompile>
-    <ClCompile Include="BitmapComponent.cpp">
-      <Filter>Source Files\GameEngine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\Particle</Filter>
     </ClCompile>
@@ -347,7 +413,7 @@
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
     <ClCompile Include="Reflection.cpp">
-      <Filter>Source Files\GameEngine\Reflection</Filter>
+      <Filter>Source Files\GameEngine\Core\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="Animator.cpp">
       <Filter>Source Files\GameEngine\Components\Animation</Filter>
@@ -369,6 +435,24 @@
     </ClCompile>
     <ClCompile Include="UIElement.cpp">
       <Filter>Source Files\GameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="EventBus.cpp">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="IEventListener.cpp">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="InputEventDispatcher.cpp">
+      <Filter>Source Files\GameEngine\Core\Event\Dispatchers</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviorTree.cpp">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="INode.cpp">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveTo.cpp">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

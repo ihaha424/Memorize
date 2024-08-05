@@ -143,12 +143,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="AI.h" />
     <ClInclude Include="AnimationBitmapComponent.h" />
     <ClInclude Include="AnimationState.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="BehaviorTree.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
+    <ClInclude Include="Composite.h" />
+    <ClInclude Include="Decorator.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventBus.h" />
+    <ClInclude Include="EventDelegate.h" />
+    <ClInclude Include="EventDispatcher.h" />
+    <ClInclude Include="EventId.h" />
+    <ClInclude Include="IEvent.h" />
+    <ClInclude Include="IEventDelegate.h" />
+    <ClInclude Include="IEventDispatcher.h" />
+    <ClInclude Include="IEventListener.h" />
+    <ClInclude Include="INode.h" />
+    <ClInclude Include="InputEvent.h" />
+    <ClInclude Include="InputEventDispatcher.h" />
+    <ClInclude Include="Leaf.h" />
+    <ClInclude Include="MoveTo.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Character.h" />
@@ -189,6 +205,7 @@
     <ClInclude Include="Types.h" />
     <ClInclude Include="UIImage.h" />
     <ClInclude Include="UIText.h" />
+    <ClInclude Include="Wait.h" />
     <ClInclude Include="WinApp.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
@@ -197,6 +214,12 @@
     <ClCompile Include="AnimationBitmapComponent.cpp" />
     <ClCompile Include="AnimationState.cpp" />
     <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="EventBus.cpp" />
+    <ClCompile Include="IEventListener.cpp" />
+    <ClCompile Include="INode.cpp" />
+    <ClCompile Include="InputEventDispatcher.cpp" />
+    <ClCompile Include="MoveTo.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Character.cpp" />

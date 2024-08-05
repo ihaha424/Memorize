@@ -1,6 +1,7 @@
 ﻿#include "GameEngine.h"
 
 #include "D2DRenderer.h"
+#include "EventBus.h"
 
 #include "Timer.h"
 #include <chrono>
@@ -10,9 +11,12 @@ constexpr double FIXED_RATE = 1.0 / 60.0;
 
 void GameEngine::Initialize() 
 {
+	EventBus::CreateInstance();
+	d2d = new D2DRenderer(hWindow);
 	// NOTE: 엔진 초기화 작업
 	// e.g., 리소스 매니저, 팩토리 싱글톤 등...
-	d2d = new D2DRenderer(hWindow);
+
+
 }
 
 void GameEngine::Execute() {
@@ -21,9 +25,13 @@ void GameEngine::Execute() {
 
 void GameEngine::Shutdown() 
 {
-	delete d2d;
 	// NOTE: 엔진 종료 작업
 	// e.g., 메모리 삭제, 싱글톤 셧다운 등...
+	
+	
+
+	delete d2d;
+	EventBus::DestroyInstance();
 }
 
 void GameEngine::Run() 
