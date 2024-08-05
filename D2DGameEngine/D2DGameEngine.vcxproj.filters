@@ -209,6 +209,12 @@
     <ClInclude Include="Actor.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -266,6 +272,12 @@
       <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
   </ItemGroup>
