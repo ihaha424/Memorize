@@ -21,9 +21,6 @@
     <Filter Include="Source Files\Window\WinBase">
       <UniqueIdentifier>{d0d248a7-4f5f-4845-becc-42ceeb53febd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\RenderEngine">
-      <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Core\Debug">
       <UniqueIdentifier>{fc3cfe53-400f-46c7-aec7-80e05109c2ce}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,9 @@
     <Filter Include="Source Files\GameEngine\Object">
       <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Render">
+      <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -93,15 +93,12 @@
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="D2DEngine.h">
-      <Filter>Source Files\GameEngine\RenderEngine</Filter>
+      <Filter>Source Files\GameEngine\Render</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="RandomGenerator.h">
-      <Filter>Source Files\GameEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="AABB.h">
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Types.h">
@@ -137,7 +134,7 @@
     <ClInclude Include="GameObject.h">
       <Filter>Source Files\GameEngine\GameFramework\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
+    <ClInclude Include="IComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
     <ClInclude Include="AI.h">
@@ -164,6 +161,15 @@
     <ClInclude Include="IObject.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryManager.h">
+      <Filter>Source Files\GameEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="d2d_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -179,7 +185,7 @@
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="D2DEngine.cpp">
-      <Filter>Source Files\GameEngine\RenderEngine</Filter>
+      <Filter>Source Files\GameEngine\Render</Filter>
     </ClCompile>
     <ClCompile Include="RandomGenerator.cpp">
       <Filter>Source Files\GameEngine\Core</Filter>
@@ -192,6 +198,12 @@
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>Source Files\GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryManager.cpp">
+      <Filter>Source Files\GameEngine\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

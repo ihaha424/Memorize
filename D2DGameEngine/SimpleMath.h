@@ -34,8 +34,6 @@
 #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #endif
 
-namespace Math = DirectX::SimpleMath;
-
 namespace DirectX
 {
     namespace SimpleMath
@@ -1144,3 +1142,22 @@ namespace std
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
+
+//struct Vector2;
+//struct Vector4;
+//struct Matrix;
+//struct Quaternion;
+//struct Plane;
+
+namespace Math = DirectX::SimpleMath;
+using DXRectangle = Math::Rectangle;
+using DXVec2 = Math::Vector2;
+using DXVec3 = Math::Vector3;
+using DXVec4 = Math::Vector4;
+using DXMat4x4 = Math::Matrix;
+using DXQuat4x4 = Math::Quaternion;
+
+using DXPlane = Math::Plane;
+using DXRay = Math::Ray;
+using DXViewport = Math::Viewport;
+using DXColor = Math::Color;
