@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "Level.h"
+#include "Actor.h"
 
 Level::Level(const std::wstring& name)
 {
@@ -8,50 +9,64 @@ Level::Level(const std::wstring& name)
 
 Level::~Level()
 {
-	for (auto& pGameObject : vGameObjectList)
+	for (auto& pGameObject : actorList)
 	{
 		delete pGameObject;
 	}
-	vGameObjectList.clear();
+	actorList.clear();
 }
 
-void Level::Update(const float& deltaTime)
+void Level::FixedUpdate(float _fixedRate)
 {
-	for (auto objList : vGameObjectList)
+	for (auto actor : actorList)
 	{
-		//objList->SuperUpdate(deltaTime);
+		if (actor->CheckTickProperty(TICK_PHYSICS))
+		{
+			actor->FixedUpdate(_fixedRate);
+		}
 	}
 }
 
-void Level::LateUpdate(const float& deltaTime)
+void Level::PreUpdate(float _dt)
 {
-	for (auto objList : vGameObjectList)
+	for (auto actor : actorList)
 	{
-		//objList->SuperLateUpdate(deltaTime);
+		if (actor->CheckTickProperty(TICK_PRE_UPDATE))
+		{
+			actor->PreUpdate(_dt);
+		}
 	}
-
-	////MouseUpdate...
-	//MouseComponent::GetInstance()->Update(deltaTime);
 }
 
-void Level::PhysicalUpdate()
+void Level::Update(float _dt)
 {
-	//colliderManager.Update(vGameObjectList);
+	for (auto actor : actorList)
+	{
+		if (actor->CheckTickProperty(TICK_UPDATE))
+		{
+			actor->Update(_dt);
+		}
+	}
 }
 
-void Level::Render(ID2D1HwndRenderTarget* pRenderTarget)
+void Level::PostUpdate(float _dt)
 {
-	for (auto objList : vGameObjectList)
+	for (auto actor : actorList)
 	{
-		//objList->SuperRender(pRenderTarget);
+		if (actor->CheckTickProperty(TICK_POST_UPDATE))
+		{
+			actor->PostUpdate(_dt);
+		}
 	}
+}
 
-	//
-	//	UI Update
-	//
-
-	// MainMouse -> 음 마우스가 다른애의 컴포먼트로 들어갈 경우는 어카지?
-	// Update는 또 안하나?
-	// Level에서 Mouse의 부모 오브젝트를 들고 있어야 하나?
-	//MouseComponent::GetInstance()->Render(pRenderTarget);
+void Level::Render(D2DRenderer* _renderer)
+{
+	for (auto actor : actorList)
+	{
+		if (actor->CheckTickProperty(TICK_RENDER))
+		{
+			actor->Render(_renderer);
+		}
+	}
 }

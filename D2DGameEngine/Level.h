@@ -1,6 +1,7 @@
 #pragma once
 
-class GameObject;
+class Actor;
+
 class Level
 {
 public:
@@ -9,26 +10,27 @@ public:
 
 public:
     template<typename T>
-    T* CreateGameObject()
+    T* CreateActor()
     {
-        bool b_IsBase = std::is_base_of<GameObject, T>::value;
-        T* p_GameObject = new T();
-        vGameObjectList.push_back(p_GameObject);
-        return p_GameObject;
+        static_assert(std::is_base_of<Actor, T>::value, "T must inherit from Actor");
+        T* newActor = new T();
+        actorList.push_back(newActor);
+        return newActor;
     }
 
 public:
-    virtual void    Enter() = 0;
-    virtual void    Exit() = 0;
-    virtual void    Clear() = 0;
-    virtual void    Update(const float& deltaTime);
-    virtual void    Render(ID2D1HwndRenderTarget* pRenderTarge);
-    virtual void    LateUpdate(const float& deltaTime);
-    void            PhysicalUpdate();
+    virtual void Enter() = 0;
+    virtual void Exit() = 0;
+    virtual void Clear() = 0;
+    
+    virtual void FixedUpdate(float _fixedRate);
+    virtual void PreUpdate(float _dt);
+    virtual void Update(float _dt);
+    virtual void PostUpdate(float _dt);
+    virtual void Render(class D2DRenderer* _renderer);
 
 protected:
-    std::vector<GameObject*>    vGameObjectList;
-    //ColliderManager             colliderManager;
+    std::vector<Actor*> actorList;
 
 private:
     std::wstring LevelName;

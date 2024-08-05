@@ -35,21 +35,27 @@ void World::SetNextScene(std::wstring nextLevel)
 	NextLevel = iter->second;
 }
 
-void World::Update(const float& deltaTime)
+void World::FixedUpdate(float _fixedRate)
 {
-	CurLevel->Update(deltaTime);
+	CurLevel->FixedUpdate(_fixedRate);
 }
 
-void World::Render(ID2D1HwndRenderTarget* pRenderTarget)
+void World::PreUpdate(float _dt)
 {
-	CurLevel->Render(pRenderTarget);
+	CurLevel->PreUpdate(_dt);
 }
-void World::LateUpdate(const float& deltaTime)
-{
 
-	CurLevel->LateUpdate(deltaTime);
-}
-void World::PhysicalUpdate()
+void World::Update(float _dt)
 {
-	CurLevel->PhysicalUpdate();
+	CurLevel->Update(_dt);
+}
+
+void World::PostUpdate(float _dt)
+{
+	CurLevel->PostUpdate(_dt);
+}
+
+void World::Render(D2DRenderer* _renderer)
+{
+	CurLevel->Render(_renderer);
 }

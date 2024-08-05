@@ -22,10 +22,12 @@ public:
     void ChangeScene();
     void SetNextScene(std::wstring nextLevel);
 
-    virtual void    Update(const float& deltaTime);
-    virtual void    Render(ID2D1HwndRenderTarget* pRenderTarge);
-    virtual void    LateUpdate(const float& deltaTime);
-    void            PhysicalUpdate();
+    virtual void FixedUpdate(float _fixedRate);
+    virtual void PreUpdate(float _dt);
+    virtual void Update(float _dt);
+    virtual void PostUpdate(float _dt);
+    virtual void Render(class D2DRenderer* _renderer);
+
 
 protected:
     std::map<std::wstring, Level*>  vLevelList;
