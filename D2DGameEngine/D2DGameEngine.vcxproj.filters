@@ -123,6 +123,9 @@
     <Filter Include="Source Files\GameEngine\Core\Reflection">
       <UniqueIdentifier>{2c2b1050-65c6-4129-9f42-c87471905e60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Render\Effects">
+      <UniqueIdentifier>{72eb85ef-4f3d-4827-9c12-744320849939}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -329,6 +332,9 @@
     <ClInclude Include="BitmapComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="SampleEffect.h">
+      <Filter>Source Files\GameEngine\Render\Effects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -459,6 +465,9 @@
     </ClCompile>
     <ClCompile Include="BitmapComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleEffect.cpp">
+      <Filter>Source Files\GameEngine\Render\Effects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -166,6 +166,7 @@
     <ClInclude Include="InputEventDispatcher.h" />
     <ClInclude Include="Leaf.h" />
     <ClInclude Include="MoveTo.h" />
+    <ClInclude Include="SampleEffect.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Character.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="INode.cpp" />
     <ClCompile Include="InputEventDispatcher.cpp" />
     <ClCompile Include="MoveTo.cpp" />
+    <ClCompile Include="SampleEffect.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Character.cpp" />
