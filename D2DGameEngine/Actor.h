@@ -14,7 +14,7 @@ private:
 	EActorStatus status = AS_AWAKE;
 
 protected:
-	class IComponent* rootComponent = nullptr;
+	class SceneComponent* rootComponent = nullptr;
 
 public:
 	Actor();
@@ -30,14 +30,14 @@ public:
 	 */
 	void Inactivate() { status = AS_INACTIVE; }
 
-	//void SetLocation(const Math::Vector2 _location) { rootComponent->SetWorldLocation(_location); }
-	//Math::Vector2 GetLocation() const { return rootComponent->GetWorldLocation(); }
-	//void SetRotation(const Math::Vector2 _rotation) { rootComponent->SetWorldRotation(_rotation); }
-	//Math::Vector2 GetRotation() const { return rootComponent->GetWorldRotation(); }
-	//void SetScale(const float _scale) { rootComponent->SetWorldScale(_scale); }
-	//Math::Vector2 GetScale() const { return rootComponent->GetWorldScale(); }
-	//void SetTransform(const D2D_TMat3x2F _transform) { rootComponent->SetWorldTransform(_transform); }
-	//D2D_TMat3x2F GetTrasnform() const { return rootComponent->GetWorldTransform(); }
+	void SetLocation(const Math::Vector2 _location) { if(rootComponent != nullptr) rootComponent->SetWorldLocation(_location); }
+	Math::Vector2 GetLocation() const { if (rootComponent != nullptr) return rootComponent->GetWorldLocation(); }
+	void SetRotation(const Math::Vector2 _rotation) { if (rootComponent != nullptr) rootComponent->SetWorldRotation(_rotation); }
+	Math::Vector2 GetRotation() const { if (rootComponent != nullptr) return rootComponent->GetWorldRotation(); }
+	void SetScale(const float _scale) { if (rootComponent != nullptr) rootComponent->SetWorldScale(_scale); }
+	Math::Vector2 GetScale() const { if (rootComponent != nullptr) return rootComponent->GetWorldScale(); }
+	void SetTransform(const D2D_TMat3x2F _transform != nullptr) { if (rootComponent) rootComponent->SetWorldTransform(_transform); }
+	D2D_TMat3x2F GetTrasnform() const { if (rootComponent != nullptr) return rootComponent->GetWorldTransform(); }
 
 	/**
 	 * @brief 특정 타입의 컴포넌트를 가져옵니다.
