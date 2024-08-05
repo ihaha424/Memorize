@@ -148,6 +148,8 @@
     <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
+    <ClInclude Include="UIElement.h" />
+    <ClInclude Include="Canvas.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="d2d_types.h" />
@@ -184,12 +186,16 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="UIImage.h" />
+    <ClInclude Include="UIText.h" />
     <ClInclude Include="WinApp.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="BitmapComponent.cpp" />
+    <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="D2DEngine.cpp" />
@@ -214,6 +220,8 @@
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UIImage.cpp" />
+    <ClCompile Include="UIText.cpp" />
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
     <ClCompile Include="World.cpp" />
