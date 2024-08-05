@@ -147,6 +147,7 @@
     <ClInclude Include="Animator.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="d2d_types.h" />
     <ClInclude Include="FactoryManager.h" />
     <ClInclude Include="IComponent.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="ObjectRegistryId.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="Pawn.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="SceneComponent.h" />
@@ -183,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="D2DEngine.cpp" />
     <ClCompile Include="DebugConsole.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
@@ -195,6 +198,7 @@
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="SceneComponent.cpp" />

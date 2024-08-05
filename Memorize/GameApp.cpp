@@ -2,6 +2,8 @@
 
 #include "D2DGameEngine/WinApp.h"
 
+#include "D2DGameEngine/D2DEngine.h"
+
 GameApp* loadedApp{ nullptr };
 
 void GameApp::Initialize() {
@@ -79,7 +81,17 @@ void GameApp::Render() {
 		count = 0;
 	}
 #endif
+	// 드로우 시작
+	d2d->BeginDraw();
 
+
+
+	// DEBUG: D2D 엔진 디버그 용
+	// d2d->ShowVRAMUsage();
+	// d2d->DrawCircle({ SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f }, 200.f);
+
+	// 드로우 끝
+	d2d->EndDraw();
 #ifndef NDEBUG 
 	++count;
 #endif

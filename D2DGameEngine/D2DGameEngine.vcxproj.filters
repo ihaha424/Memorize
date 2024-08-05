@@ -215,6 +215,9 @@
     <ClInclude Include="Reflection.h">
       <Filter>Source Files\GameEngine\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -276,6 +279,9 @@
     </ClCompile>
     <ClCompile Include="Reflection.cpp">
       <Filter>Source Files\GameEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

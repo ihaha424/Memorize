@@ -13,8 +13,7 @@
 #include "FactoryManager.h"
 
 D2DEngine::D2DEngine(HWND hWnd) :
-	_hWnd{ hWnd },
-	_renderTarget{ nullptr } {
+	_hWnd{ hWnd }, _renderTarget{ nullptr } {
 
 	// Initialize Factory
 	FactoryManager::Create();
@@ -26,22 +25,8 @@ D2DEngine::D2DEngine(HWND hWnd) :
 	// Create a Direct2D render target
 	CreateRenderTarget();
 
-	// Create a text format
-	HRESULT res;
-	IDWriteTextFormat* textFormat = nullptr;
-	res = FactoryManager::GetDWriteFactory().CreateTextFormat(
-		L"Arial",
-		nullptr,
-		DWRITE_FONT_WEIGHT_NORMAL,
-		DWRITE_FONT_STYLE_NORMAL,
-		DWRITE_FONT_STRETCH_NORMAL,
-		20,
-		L"",
-		&textFormat
-	);
-	_textFormat.reset(textFormat);
-
 	// Create the DXGI adapter
+	HRESULT res;
 	IDXGIAdapter3* dxgiAdaptor = nullptr;
 	res = FactoryManager::GetDXGIFactory4().EnumAdapters(
 		0, reinterpret_cast<IDXGIAdapter**>(&dxgiAdaptor)
@@ -51,7 +36,7 @@ D2DEngine::D2DEngine(HWND hWnd) :
 
 D2DEngine::~D2DEngine() {
 	// Release the text format
-	SafeRelease(_textFormat);
+	//SafeRelease(_textFormat);
 
 	// Release the DXGI adaptor
 	SafeRelease(_DXGIAdapter);
@@ -135,15 +120,36 @@ void D2DEngine::DrawPolygon(
  */
 void D2DEngine::DrawString(
 	const std::wstring& str, 
+	const TextFormatInfo* textFormatInfo,
 	const D2D_Point2F& ul, 
-	const D2D_Point2F& lr) {
+	const D2D_Point2F& lr,
+	D2D_Color color) {
+	// 텍스트 포멧 설정
+	HRESULT res;
+	IDWriteTextFormat* textFormat = nullptr;
+	res = FactoryManager::GetDWriteFactory().CreateTextFormat(
+		textFormatInfo->fontFamilyName,
+		nullptr,
+		static_cast<DWRITE_FONT_WEIGHT>(textFormatInfo->fontWeight),
+		static_cast<DWRITE_FONT_STYLE>(textFormatInfo->fontStyle),
+		static_cast<DWRITE_FONT_STRETCH>(textFormatInfo->fontStretch),
+		textFormatInfo->fontSize,
+		L"",
+		&textFormat
+	);
+	// 텍스트 컬러 설정
+	D2D_TColor tmp = _brush->GetColor();
+	_brush->SetColor(color);
+
 	_renderTarget->DrawText(
 		str.c_str(),
 		str.size(),
-		_textFormat.get(),
+		textFormat,
 		{ul.x, ul.y, lr.x, lr.y},
 		_brush
 	);
+
+	_brush->SetColor(tmp);
 }
 
 void D2DEngine::DrawSprite(
@@ -207,19 +213,18 @@ void D2DEngine::ResizeScreen(int w, int h) {
 }
 
 void D2DEngine::ShowVRAMUsage() {
+	static TextFormatInfo textInfo{
+		.fontFamilyName = L"Arial",
+		.fontSize = 20
+	};
+
 	DXGI_QUERY_VIDEO_MEMORY_INFO videoMemoryInfo;
 	_DXGIAdapter->QueryVideoMemoryInfo(0, DXGI_MEMORY_SEGMENT_GROUP_LOCAL, &videoMemoryInfo);
 	float usage = videoMemoryInfo.CurrentUsage / 1024.f / 1024.f;
 
 	std::wstring output = L"VRAM: " + std::to_wstring(usage) + L"MB";
 
-	_renderTarget->DrawText(
-		output.c_str(),
-		output.size(),
-		_textFormat.get(),
-		D2D1::RectF(0.f, 0.f, 150.f, 24.f),
-		_brush
-	);
+	DrawString(output, &textInfo, { 0.f, 0.f }, { 150.f, 24.f });
 }
 
 void D2DEngine::CreateRenderTarget() {

@@ -10,11 +10,11 @@ enum EActorStatus
 class Actor : public IObject
 {
 private:
-	std::vector<class ActorComponent*> components;
+	std::vector<class IComponent*> components;
 	EActorStatus status = AS_AWAKE;
 
 protected:
-	class ActorComponent* rootComponent = nullptr;
+	class SceneComponent* rootComponent = nullptr;
 
 public:
 	Actor();
@@ -28,8 +28,17 @@ public:
 	/**
 	 * @brief Actor의 상태를 AS_INACTIVE로 변경합니다. 
 	 */
-	void InActivate() { status = AS_INACTIVE; }
-	
+	void Inactivate() { status = AS_INACTIVE; }
+
+	void SetLocation(const Math::Vector2 _location) { if(rootComponent != nullptr) rootComponent->SetWorldLocation(_location); }
+	Math::Vector2 GetLocation() const { if (rootComponent != nullptr) return rootComponent->GetWorldLocation(); }
+	void SetRotation(const Math::Vector2 _rotation) { if (rootComponent != nullptr) rootComponent->SetWorldRotation(_rotation); }
+	Math::Vector2 GetRotation() const { if (rootComponent != nullptr) return rootComponent->GetWorldRotation(); }
+	void SetScale(const float _scale) { if (rootComponent != nullptr) rootComponent->SetWorldScale(_scale); }
+	Math::Vector2 GetScale() const { if (rootComponent != nullptr) return rootComponent->GetWorldScale(); }
+	void SetTransform(const D2D_TMat3x2F _transform != nullptr) { if (rootComponent) rootComponent->SetWorldTransform(_transform); }
+	D2D_TMat3x2F GetTrasnform() const { if (rootComponent != nullptr) return rootComponent->GetWorldTransform(); }
+
 	/**
 	 * @brief 특정 타입의 컴포넌트를 가져옵니다.
 	 * @tparam T 컴포넌트 타입
@@ -43,8 +52,8 @@ public:
 			T* t = dynamic_cast<T*>(component);
 			if (t != nullptr)
 				return t;
-			return nullptr;
 		}
+		return nullptr;
 	}
 
 	/**

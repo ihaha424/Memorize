@@ -98,7 +98,7 @@ bool _debug_callback(
 	dbg::fprint(stream, textColor, tag, ' ');
 
 	// Error info
-	if (severity == LOG_SEVERITY_ERROR) {
+	if (severity | LOG_SEVERITY_ERROR) {
 		std::string errName;
 		switch (pCallbackData->errorCode) {
 		case ERROR_UNDEFINED: {
@@ -146,7 +146,7 @@ bool _debug_callback(
 	dbg::fprint(stream, TEXT_COLOR::DEFAULT);
 
 	// Abort if the severity level is ERROR
-	if (severity == LOG_SEVERITY_ERROR) {
+	if (severity | LOG_SEVERITY_ERROR) {
 		abort();
 	}
 

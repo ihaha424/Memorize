@@ -15,12 +15,6 @@
     <Filter Include="Content">
       <UniqueIdentifier>{aa9bbbf5-f815-4e01-8a60-b3c840a662ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Demos">
-      <UniqueIdentifier>{544a1f3a-e0c7-421f-9372-5e319a3bb9be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Demos\WindowTest">
-      <UniqueIdentifier>{18ebdd8e-d9fd-4363-8c76-21336fbf9c85}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">

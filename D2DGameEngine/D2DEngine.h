@@ -2,19 +2,59 @@
 
 #include "framework.h"
 
+enum class FontWeight {
+	Thin = 100,
+	ExtraLight = 200,
+	Light = 300,
+	Normal = 400,
+	Medium = 500,
+	SemiBold = 600,
+	Bold = 700,
+	ExtraBold = 800,
+	Heavy = 900
+};
+
+enum class FontStyle {
+	Normal,
+	Italic,
+};
+
+enum class FontStretch {
+	UltraCondensed = 1,
+	ExtraCondensed = 2,
+	Condensed = 3,
+	SemiCondensed = 4,
+	Normal = 5,
+	Medium = 5,
+	SemiExpended = 6,
+	Expended = 7,
+	ExtraExpended = 8,
+	UltraExpended = 9
+};
+
+struct TextFormatInfo {
+	const wchar_t* fontFamilyName;
+	uint fontSize;
+	FontWeight fontWeight{ FontWeight::Normal };
+	FontStyle fontStyle{ FontStyle::Normal };
+	FontStretch fontStretch{ FontStretch::Normal };
+};
+
 /**
  * @brief D2D 렌더링 엔진
  */
 class D2DEngine {
 	HWND _hWnd;
 
+	// 종료시 텍스트 포멧을 릴리즈 하기 위한 쓰레기통.
+	//std::unordered_set<struct IDWriteTextFormat*> textFormatGarbageCollector;
+
 	std::unique_ptr<struct ID2D1HwndRenderTarget> _renderTarget;
-	std::unique_ptr<struct IDWriteTextFormat> _textFormat;
 	std::unique_ptr<struct IDXGIAdapter3> _DXGIAdapter;		// 비디오카드 정보에 접근 가능한 인터페이스
 
 	struct ID2D1SolidColorBrush* _brush;
 
-	D2D_Mat3x2F globalTransform;	// Identity
+	D2D_Mat3x2F globalTransform{ D2D_Mat3x2F::Identity() };	// Identity
 	std::vector<D2D_Mat3x2F> _transforms;
 
 public:
@@ -39,9 +79,17 @@ public:
 		const std::vector<D2D_Point2F>& points,
 		D2D_Color color = D2D_Color::White
 	);
+	/**
+	 * @brief 텍스트 포멧 정보를 통해 정해진 위치에 문자열을 그립니다.
+	 * @param str 화면에 표시될 문자열
+	 * @param textFormatInfo 텍스트 포멧 정보
+	 * @param ul 좌측 상단 포지션
+	 * @param lr 우측 하단 포지션
+	 */
 	void DrawString(
-		const std::wstring& str,
-		const D2D_Point2F& ul, const D2D_Point2F& lr
+		const std::wstring& str, const TextFormatInfo* textFormatInfo,
+		const D2D_Point2F& ul, const D2D_Point2F& lr,
+		D2D_Color color = D2D_Color::White
 	);
 	void DrawSprite(
 		D2D_Sprite* sprite,

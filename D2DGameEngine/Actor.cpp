@@ -61,3 +61,51 @@ bool Actor::Destroy()
 //		component->Render(_renderer);
 //	}
 //}
+//
+//void Actor::SetLocation(const Math::Vector2 _location)
+//{
+//	if (rootComponent != nullptr) 
+//		rootComponent->SetWorldLocation(_location);
+//}
+//
+//Math::Vector2 Actor::GetLocation() const
+//{
+//	if (rootComponent != nullptr) 
+//		return rootComponent->GetWorldLocation();
+//}
+//
+//void Actor::SetRotation(const Math::Vector2 _rotation)
+//{
+//	if (rootComponent != nullptr) 
+//		rootComponent->SetWorldRotation(_rotation);
+//}
+//
+//Math::Vector2 Actor::GetRotation() const
+//{
+//	if (rootComponent != nullptr) 
+//		return rootComponent->GetWorldRotation();
+//}
+//
+//void Actor::SetScale(const float _scale)
+//{
+//	if (rootComponent != nullptr) 
+//		rootComponent->SetWorldScale(_scale);
+//}
+//
+//Math::Vector2 Actor::GetScale() const
+//{
+//	if (rootComponent != nullptr) 
+//		return rootComponent->GetWorldScale();
+//}
+//
+//void Actor::SetTransform(const D2D_TMat3x2F _transform)
+//{
+//	if (rootComponent != nullptr)
+//		rootComponent->SetWorldTransform(_transform);
+//}
+//
+//D2D_TMat3x2F Actor::GetTrasnform() const
+//{
+//	if (rootComponent != nullptr)
+//		return rootComponent->GetWorldTransform();
+//}
