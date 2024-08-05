@@ -34,6 +34,7 @@
 #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #endif
 
+namespace Math = DirectX::SimpleMath;
 
 namespace DirectX
 {
