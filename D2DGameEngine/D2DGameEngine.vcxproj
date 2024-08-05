@@ -78,6 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -160,6 +161,7 @@
     <ClInclude Include="ObjectRegistryId.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="RandomGenerator.h" />
+    <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
@@ -173,11 +175,15 @@
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
+    <ClCompile Include="SimpleMath.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SimpleMath.inl">
+      <FileType>Document</FileType>
+    </ClInclude>
     <None Include="디버그_사용법.md" />
   </ItemGroup>
   <ItemGroup>

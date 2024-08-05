@@ -72,6 +72,9 @@
     <Filter Include="Source Files\GameEngine\Particle">
       <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Math">
+      <UniqueIdentifier>{e16b01ee-addd-4e11-97b7-bd9163af5122}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -149,6 +152,12 @@
     <ClInclude Include="Particle.h">
       <Filter>Source Files\GameEngine\Particle</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>Source Files\GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMath.inl">
+      <Filter>Source Files\GameEngine\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -174,6 +183,9 @@
     </ClCompile>
     <ClCompile Include="DebugLogger.cpp">
       <Filter>Source Files\GameEngine\Core\Debug\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleMath.cpp">
+      <Filter>Source Files\GameEngine\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
