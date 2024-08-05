@@ -5,7 +5,6 @@
 class BitmapComponent : public SceneComponent {
 	using Super = SceneComponent;
 
-	Extent2D extent;
 	D2D_RectF frame;
 	D2D_Sprite* sprite;
 
@@ -14,7 +13,6 @@ class BitmapComponent : public SceneComponent {
 public:
 
 	BitmapComponent() : 
-		extent{ 0.f, 0.f },
 		frame{ 0.f, 0.f, 0.f, 0.f },
 		sprite{ nullptr },
 		imageTransform{ D2D_Mat3x2F::Identity() } {
