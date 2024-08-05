@@ -178,9 +178,11 @@
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Reflection.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
@@ -211,8 +213,10 @@
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="Reflection.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
+    <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
@@ -223,10 +227,6 @@
       <FileType>Document</FileType>
     </ClInclude>
     <None Include="디버그_사용법.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="placeholder.txt" />
-    <Text Include="placeholder2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
