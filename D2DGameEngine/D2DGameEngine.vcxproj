@@ -157,6 +157,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="IObject.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="ObjectRegistryId.h" />
     <ClInclude Include="Particle.h" />

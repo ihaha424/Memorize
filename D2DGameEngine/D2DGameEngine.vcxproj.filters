@@ -75,6 +75,9 @@
     <Filter Include="Source Files\GameEngine\Math">
       <UniqueIdentifier>{e16b01ee-addd-4e11-97b7-bd9163af5122}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Object">
+      <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="SimpleMath.inl">
       <Filter>Source Files\GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="IObject.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
