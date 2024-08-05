@@ -57,9 +57,6 @@
     <Filter Include="Source Files\GameEngine\AI">
       <UniqueIdentifier>{57f8b925-ba1a-4153-a2d5-36f505d33c2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Animation">
-      <UniqueIdentifier>{518ee6d9-941d-46f0-af71-c4f5fae74d4f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Camera">
       <UniqueIdentifier>{1bf5ae90-1b15-4d95-8e9e-094a01712cff}</UniqueIdentifier>
     </Filter>
@@ -164,9 +161,6 @@
     <ClInclude Include="AI.h">
       <Filter>Source Files\GameEngine\AI</Filter>
     </ClInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>Source Files\GameEngine\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="CameraComponent.h">
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClInclude>
@@ -233,11 +227,20 @@
     <ClInclude Include="InputComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Pawn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BitmapComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationBitmapComponent.h">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationState.h">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -310,9 +313,6 @@
     <ClCompile Include="InputComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files\GameEngine\GameFramework\World</Filter>
     </ClCompile>
@@ -324,6 +324,24 @@
     </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="D2DEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationBitmapComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files\GameEngine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Reflection.cpp">
+      <Filter>Source Files\GameEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationState.cpp">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

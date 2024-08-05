@@ -144,6 +144,8 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AI.h" />
+    <ClInclude Include="AnimationBitmapComponent.h" />
+    <ClInclude Include="AnimationState.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="CameraComponent.h" />
@@ -189,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="AnimationBitmapComponent.cpp" />
+    <ClCompile Include="AnimationState.cpp" />
+    <ClCompile Include="Animator.cpp" />
     <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Controller.cpp" />
