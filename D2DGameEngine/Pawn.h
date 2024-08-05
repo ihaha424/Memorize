@@ -20,6 +20,6 @@ public:
 	 * @brief 컨트롤러를 설정합니다.
 	 * @param _controller
 	 */
-	void SetController(class Controller* _controller) { controller = _controller; }
+	void SetController(class Controller* _controller);
 };
 
