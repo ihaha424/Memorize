@@ -75,6 +75,12 @@
     <Filter Include="Source Files\GameEngine\Math">
       <UniqueIdentifier>{e16b01ee-addd-4e11-97b7-bd9163af5122}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\InputSystem">
+      <UniqueIdentifier>{816a7e23-17c5-40e2-bebb-0db373020597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\DotTween">
+      <UniqueIdentifier>{41c87c29-4042-46f5-ba97-5ad4f9c3b1de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
