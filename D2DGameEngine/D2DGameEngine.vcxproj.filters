@@ -230,6 +230,9 @@
     <ClInclude Include="InputComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -303,6 +306,15 @@
     </ClCompile>
     <ClCompile Include="InputComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

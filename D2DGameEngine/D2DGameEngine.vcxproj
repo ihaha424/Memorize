@@ -202,6 +202,7 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="PlayerController.cpp" />
@@ -212,6 +213,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleMath.inl">
