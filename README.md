@@ -81,3 +81,6 @@ public:
 ### FSM
   : https://www.aleksandrhovhannisyan.com/blog/implementing-a-finite-state-machine-in-cpp/#approach-3-finite-state-machine<br></br>
   : https://gameprogrammingpatterns.com/state.html
+
+### DirectXTK
+https://github.com/microsoft/DirectXTK
