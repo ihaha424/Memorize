@@ -31,6 +31,9 @@ using WindowStyleFlags = DWORD;
 using namespace std::literals;
 #include <format>
 
+// Math Libraries
+#include <cmath>
+
 // stl containers
 #include <vector>
 #include <list>
