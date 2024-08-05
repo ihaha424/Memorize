@@ -29,7 +29,16 @@ public:
 	 * @brief Actor의 상태를 AS_INACTIVE로 변경합니다. 
 	 */
 	void InActivate() { status = AS_INACTIVE; }
-	
+
+	//void SetLocation(const Math::Vector2 _location) { rootComponent->SetWorldLocation(_location); }
+	//Math::Vector2 GetLocation() const { return rootComponent->GetWorldLocation(); }
+	//void SetRotation(const Math::Vector2 _rotation) { rootComponent->SetWorldRotation(_rotation); }
+	//Math::Vector2 GetRotation() const { return rootComponent->GetWorldRotation(); }
+	//void SetScale(const float _scale) { rootComponent->SetWorldScale(_scale); }
+	//Math::Vector2 GetScale() const { return rootComponent->GetWorldScale(); }
+	//void SetTransform(const D2D_TMat3x2F _transform) { rootComponent->SetWorldTransform(_transform); }
+	//D2D_TMat3x2F GetTrasnform() const { return rootComponent->GetWorldTransform(); }
+
 	/**
 	 * @brief 특정 타입의 컴포넌트를 가져옵니다.
 	 * @tparam T 컴포넌트 타입

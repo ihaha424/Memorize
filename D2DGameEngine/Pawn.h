@@ -11,9 +11,15 @@ public:
 	virtual ~Pawn();
 
 	/**
-	 * @brief 컨트롤러를 설정합니다.
-	 * @param _controller 
+	 * @brief 컨트롤러를 반환합니다. 
+	 * @return controller
 	 */
-	virtual void PossessedBy(class Controller* _controller);
+	class Controller* GetController() const { return controller; };
+
+	/**
+	 * @brief 컨트롤러를 설정합니다.
+	 * @param _controller
+	 */
+	void SetController(class Controller* _controller) { controller = _controller; }
 };
 
