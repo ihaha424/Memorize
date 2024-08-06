@@ -8,19 +8,19 @@ typedef enum LogType {
 } LogType;
 
 typedef enum SeverityFlagBit {
-	LOG_SEVERITY_VERBOSE = 0x0001,
-	LOG_SEVERITY_MESSAGE = 0x0002,
-	LOG_SEVERITY_INFO = 0x0004,
-	LOG_SEVERITY_WARNING = 0x0008,
-	LOG_SEVERITY_ERROR = 0x0010,
+	LOG_SEVERITY_VERBOSE	= (1U << 0),
+	LOG_SEVERITY_MESSAGE	= (1U << 1),
+	LOG_SEVERITY_INFO			= (1U << 2),
+	LOG_SEVERITY_WARNING	= (1U << 3),
+	LOG_SEVERITY_ERROR		= (1U << 4),
 } SeverityFlagBit;
 using SeverityFlags = Flags;
 
 typedef enum MessageTypeFlagBit {
-	LOG_MESSAGE_TYPE_GENERAL = 0x0001,
-	LOG_MESSAGE_TYPE_PERFORMANCE = 0x0002,
-	LOG_MESSAGE_TYPE_DEBUG = 0x0004,
-	LOG_MESSAGE_TYPE_OTHER = 0x0008,
+	LOG_MESSAGE_TYPE_GENERAL			= (1U << 0),
+	LOG_MESSAGE_TYPE_PERFORMANCE	= (1U << 1),
+	LOG_MESSAGE_TYPE_DEBUG				= (1U << 2),
+	LOG_MESSAGE_TYPE_OTHER				= (1U << 3),
 } MessageTypeFlagBit;
 using MessageTypeFlags = Flags;
 

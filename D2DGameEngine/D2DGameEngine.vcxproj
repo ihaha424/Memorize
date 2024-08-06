@@ -149,6 +149,7 @@
     <ClInclude Include="BehaviorTree.h" />
     <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="BoxComponent.h" />
+    <ClInclude Include="CameraActor.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
     <ClInclude Include="CircleComponent.h" />
@@ -235,6 +236,8 @@
     <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
+    <ClCompile Include="CameraActor.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="EventBus.cpp" />
     <ClCompile Include="IComponent.cpp" />

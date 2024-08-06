@@ -407,6 +407,9 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="CameraActor.h">
+      <Filter>Source Files\GameEngine\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -579,6 +582,12 @@
     </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source Files\GameEngine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraActor.cpp">
+      <Filter>Source Files\GameEngine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
