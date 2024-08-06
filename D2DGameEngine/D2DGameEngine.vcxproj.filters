@@ -108,6 +108,18 @@
     <Filter Include="Source Files\GameEngine\Object\Actor\Pawn">
       <UniqueIdentifier>{fd3e873e-65b6-42b4-8e92-5519dffa717b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\ResourceManager\Resource">
+      <UniqueIdentifier>{5435b22f-662d-4d6d-9b71-5c685401693b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\ResourceManager\Resource\ReflectionData">
+      <UniqueIdentifier>{4e0c648b-f0c3-42ca-b0bb-44fb2528e02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\ResourceManager\Resource\Sprite">
+      <UniqueIdentifier>{db2b0c23-7593-4f45-8730-0dec7268a314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\ResourceManager\Resource\Sound">
+      <UniqueIdentifier>{659eca41-c55c-455a-8fa4-b07722fb29a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -251,6 +263,18 @@
     <ClInclude Include="SoundSystem.h">
       <Filter>Source Files\GameEngine\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionResource.h">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\ReflectionData</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\Sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -348,6 +372,18 @@
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
       <Filter>Source Files\GameEngine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ReflectionResource.cpp">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\ReflectionData</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\Sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
