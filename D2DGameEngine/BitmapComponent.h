@@ -26,27 +26,6 @@ public:
 	}
 
 	void SetSprite(const wchar_t* path) {
-		// TODO: 리소스 매니저 필요함
-
-		// extent 사이즈를 스프라이트 사이즈로 맞춤
-
-		// frame 사이즈를 스프라이트 사이즈로 맞춤
-
-		//_imageAsset = ResourceManager::GetImageAsset(path);
-		//if (!_imageAsset) {
-		//	throw std::exception("BitmapScene: image asset is not found!");
-		//}
-		//// The extent matches the sprite size
-		//_extent = {
-		//	_imageAsset->GetSpriteWidth(),
-		//	_imageAsset->GetSpriteHeight()
-		//};
-		//// Fit the frame with the image width and height
-		//_frame = {
-		//	_imageAsset->GetSpriteWidth(),
-		//	_imageAsset->GetSpriteHeight()
-		//};
-
 		sprite = ResourceManager::LoadResource<SpriteResource>(path);
 		if (!sprite->GetResource()) {
 			throw std::exception("BitmapScene: image asset is not found!");
