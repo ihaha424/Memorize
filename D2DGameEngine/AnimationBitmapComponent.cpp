@@ -1,4 +1,4 @@
-#include "AnimationComponent.h"
+#include "AnimationBitmapComponent.h"
 
 void AnimationBitmapComponent::SliceSpriteSheet(uint pixelSizeX, uint pixelSizeY, int offsetX, int offsetY, int paddingX, int paddingY)
 {

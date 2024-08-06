@@ -126,6 +126,21 @@
     <Filter Include="Source Files\GameEngine\Render\Effects">
       <UniqueIdentifier>{72eb85ef-4f3d-4827-9c12-744320849939}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Components\Primitive">
+      <UniqueIdentifier>{87ffc594-c9b3-4626-9e25-3ce9804b7884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Components\Primitive\Bitmap">
+      <UniqueIdentifier>{23874f8f-84c9-4337-b272-7740cfacda86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Components\Primitive\Bitmap\AnimationBitmap">
+      <UniqueIdentifier>{c84accfd-8b71-4555-b7df-5d03b4305475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Components\Primitive\Shape">
+      <UniqueIdentifier>{b899f860-2138-4e75-b646-e7669e5a67b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Physics">
+      <UniqueIdentifier>{d585a26a-d37b-49b9-8a76-dd6e0d71ab5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -254,9 +269,6 @@
     <ClInclude Include="Pawn.h">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationBitmapComponent.h">
-      <Filter>Source Files\GameEngine\Components\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Animator.h">
       <Filter>Source Files\GameEngine\Components\Animation</Filter>
     </ClInclude>
@@ -329,11 +341,44 @@
     <ClInclude Include="EventId.h">
       <Filter>Source Files\GameEngine\Core\Event</Filter>
     </ClInclude>
-    <ClInclude Include="BitmapComponent.h">
-      <Filter>Source Files\GameEngine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="SampleEffect.h">
       <Filter>Source Files\GameEngine\Render\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationBitmapComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive\Bitmap\AnimationBitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionShape.h">
+      <Filter>Source Files\GameEngine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="PolygonComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionEvent.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageEvent.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageType.h">
+      <Filter>Source Files\GameEngine\GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="HitResult.h">
+      <Filter>Source Files\GameEngine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -415,9 +460,6 @@
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationBitmapComponent.cpp">
-      <Filter>Source Files\GameEngine\Components\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
@@ -463,11 +505,29 @@
     <ClCompile Include="Reflection.cpp">
       <Filter>Source Files\GameEngine\Core\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="BitmapComponent.cpp">
-      <Filter>Source Files\GameEngine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="SampleEffect.cpp">
       <Filter>Source Files\GameEngine\Render\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimitiveComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive\Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationBitmapComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive\Bitmap\AnimationBitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="PolygonComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

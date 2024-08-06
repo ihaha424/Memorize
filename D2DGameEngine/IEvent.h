@@ -2,7 +2,7 @@
 
 #include "framework.h"
 
-#include "Event_Types.h"
+#include "EventId.h"
 
 class IEvent {
 	EventTypeID _eventTypeID;

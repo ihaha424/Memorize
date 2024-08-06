@@ -10,6 +10,7 @@ class SceneComponent : public IComponent {
 	D2D_Mat3x2F R;
 	D2D_Mat3x2F T;
 	
+	// TODO: Gizmo
 public:
 
 	SceneComponent() :

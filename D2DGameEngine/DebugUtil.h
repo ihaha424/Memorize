@@ -5,7 +5,7 @@
 typedef enum LogType {
 	LOG_TYPE_CONSOLE,
 	LOG_TYPE_FILE_IO,
-};
+} LogType;
 
 typedef enum SeverityFlagBit {
 	LOG_SEVERITY_VERBOSE = 0x0001,

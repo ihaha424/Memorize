@@ -15,6 +15,7 @@ bool MoveTo::IsRunning() {
 	// float distance = Math2D::Distance(GetOwner()->GetWorldLocation(), target);
 	
 	// return distance > _acceptableRadius;
+	return false;
 }
 
 void MoveTo::Run(float dt) {

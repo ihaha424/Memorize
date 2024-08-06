@@ -1,5 +1,7 @@
 #pragma once
 
+#include "framework.h"
+
 class AnimationBitmapComponent;
 class Animator;
 class AnimationState {
