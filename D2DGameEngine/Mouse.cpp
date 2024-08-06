@@ -23,8 +23,10 @@ HRESULT Mouse::Initialize(HINSTANCE hInst, HWND hWnd, LPDIRECTINPUT8& LPDInput)
 	if (SUCCEEDED(hr))
 		mouse->GetDeviceState(sizeof(DIMOUSESTATE), (LPVOID)&mouseState);
 
+	POINT	mousePos;
 	GetCursorPos(&mousePos);
 	ScreenToClient(GetActiveWindow(), &mousePos);
+	curMousePosition = { (float)mousePos.x, (float)mousePos.y, 0.f };
 
 	return hr;
 }
