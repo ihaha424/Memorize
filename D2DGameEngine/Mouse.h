@@ -1,5 +1,6 @@
 #pragma once
 #include "IInputDevice.h"
+#include "InputAction.h"
 
 class Mouse : public IInputDevice
 {
