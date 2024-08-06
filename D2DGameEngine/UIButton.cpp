@@ -19,17 +19,17 @@ void UIButton::Update(float _dt)
     if (left < mousePos.x && mousePos.x < right && top < mousePos.y && mousePos.y < buttom)
     {
 
-        //if ()
+        if (Mouse::clickStaus[0] == InputState::KeyDown)
         {
             _state = BS_Clicked;
             OnClicked();
         }
-        //else if (InputManager::GetInstance()->GetButtonPressed(KeyType::LeftMouse))
+        else if (Mouse::clickStaus[0] == InputState::KeyHold)
         {
             _state = BS_Pressed;
             OnPressed();
         }
-        //else
+        else
         {
             _state = BS_Hovered;
             OnHovered();
