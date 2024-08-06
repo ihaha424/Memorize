@@ -4,7 +4,8 @@
 
 CameraActor::CameraActor()
 {
-	CameraComponent* camera = CreateDefaultSubobject<CameraComponent>();
+	CameraComponent* camera = CreateComponent<CameraComponent>();
+	rootComponent = camera;
 	components.insert({ std::type_index(typeid(CameraComponent)), camera });
 }
 

@@ -2,13 +2,20 @@
 #include "Player.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/SpriteResource.h"
+#include "../D2DGameEngine/PlayerController.h"
 
-TestLevel::TestLevel(const std::wstring& name) : Level(name)
+TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
-	Player* player = CreateActor<Player>();
-
+	
 }
 
 TestLevel::~TestLevel()
 {
+}
+
+void TestLevel::Enter()
+{
+	Player* player = CreateActor<Player>();
+	PlayerController* pc = CreateActor< PlayerController>();
+	player->SetController(pc);
 }

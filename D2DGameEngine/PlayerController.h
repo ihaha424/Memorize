@@ -3,6 +3,7 @@
 
 class PlayerController : public Controller
 {
+protected:
 	class InputComponent* inputComponent;
 
 public:

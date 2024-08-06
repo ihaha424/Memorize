@@ -5,9 +5,10 @@
 #include "CameraComponent.h"
 #include "CameraActor.h"
 
-Level::Level(const std::wstring& name)
+Level::Level(class World* _world, const std::wstring& _name)
 {
-	LevelName = name;
+	world = _world;
+	LevelName = _name;
 }
 
 Level::~Level()
