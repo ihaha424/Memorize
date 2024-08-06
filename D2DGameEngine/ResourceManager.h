@@ -3,6 +3,8 @@
 #include "Singleton.h"
 #include "Debug.h"
 #include "Resource.h"
+#include "SoundResource.h"
+
 
 class ID2D1HwndRenderTarget;
 
@@ -10,6 +12,7 @@ class ResourceManager : public Singleton<ResourceManager>
 {
 	using ImageTag = std::wstring; // is equal to the path
 	using ResourceData = std::shared_ptr<IResource>;
+private:
 	static std::unordered_map<ImageTag, ResourceData> resourceStorage;
 	
 	//ResourcePath
@@ -33,18 +36,12 @@ public:
 	static void Initialize(ID2D1HwndRenderTarget* _render);
 	static ID2D1Bitmap* CreateID2D1Bitmap(std::wstring _key);
 
-
 	template<typename T>
-	static T LoadResource(const ImageTag& _tag)
+	static std::shared_ptr<T> LoadResource(const ImageTag& _tag)
 	{
-		T sprite = SearchResource(_tag);
+		std::shared_ptr<T> sprite = SearchResource<T>(_tag);
 		if (sprite != nullptr)
-		{
-			if (sprite->GetType() == T::TYPE_ID)
-				return sprite;
-			else
-				LOG_ERROR(-1, "ResourceType is Diffrent.");
-		}
+			return sprite;
 
 		std::wstring strFilePath = resourcePath;
 		strFilePath += _tag;
@@ -55,16 +52,35 @@ public:
 		return sprite;
 	}
 
+	static std::shared_ptr<SoundResource> LoadResource(const ImageTag& _tag, bool _loopCheck)
+	{
+		std::shared_ptr<SoundResource> sprite = SearchResource<SoundResource>(_tag);
+		if (sprite != nullptr)
+			return sprite;
+
+		std::wstring strFilePath = resourcePath;
+		strFilePath += _tag;
+		sprite = std::make_shared<SoundResource>();
+		sprite->LoadFileLoop(_tag, _loopCheck);
+		sprite->SetKey(_tag);
+		resourceStorage.insert({ _tag, sprite });
+		return sprite;
+	}
+
 private:
 	template<typename T>
-	static T SearchResource(const ImageTag& _tag)
+	static std::shared_ptr<T> SearchResource(const ImageTag& _tag)
 	{
 		auto iter = resourceStorage.find(_tag);
 		if (iter == resourceStorage.end())
 		{
 			return nullptr;
 		}
-		return iter->second;
+		if (iter->second->GetType() == T::TYPE_ID)
+			return std::static_pointer_cast<T>(iter->second);
+		else
+			LOG_ERROR(-1, "ResourceType is Diffrent.");
+		return nullptr;
 	}
 
 };
