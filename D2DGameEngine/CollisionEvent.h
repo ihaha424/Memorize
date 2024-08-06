@@ -2,11 +2,8 @@
 
 #include "Event.h"
 
-#
+#include "HitResult.h"
 
 struct CollisionEvent : public Event<CollisionEvent> {
-	DXVec2 normal;
-	float overlapDepth;
-
-
+	HitResult hitResult;
 };

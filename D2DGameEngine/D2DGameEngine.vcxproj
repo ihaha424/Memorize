@@ -152,6 +152,7 @@
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
     <ClInclude Include="CircleComponent.h" />
+    <ClInclude Include="CollisionChannel.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="CollisionShape.h" />
     <ClInclude Include="Composite.h" />

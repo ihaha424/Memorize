@@ -2,6 +2,8 @@
 
 #include "IComponent.h"
 
+#include "HitResult.h"
+
 class SceneComponent : public IComponent {
 	SceneComponent* parent;
 	std::list<SceneComponent*> children;
@@ -11,6 +13,9 @@ class SceneComponent : public IComponent {
 	D2D_Mat3x2F T;
 	
 	// TODO: Gizmo
+
+	// Physics setting
+	bool enablePhysics{ false };
 public:
 
 	SceneComponent() :
@@ -57,6 +62,27 @@ public:
 
 	void Translate(D2D_Vec2F dv) {
 		T = T * D2D_Mat3x2F::Translation(dv.x, dv.y);
+	}
+
+	bool MoveComponent(
+		const D2D_Vec2F& delta, 
+		bool bSweep,
+		HitResult& outHitResult) {
+		return MoveComponentImpl(delta, bSweep, outHitResult);
+	}
+
+	bool IsSimulatingPhysics() {
+		return enablePhysics;
+	}
+
+protected:
+
+	virtual bool MoveComponentImpl(
+		const D2D_Vec2F& delta,
+		bool bSweep,
+		HitResult& outHitResult) {
+		// TODO:
+		return false;
 	}
 
 };

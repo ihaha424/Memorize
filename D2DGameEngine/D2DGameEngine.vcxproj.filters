@@ -407,6 +407,9 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionChannel.h">
+      <Filter>Source Files\GameEngine\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
