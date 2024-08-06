@@ -407,6 +407,9 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="CameraActor.h">
+      <Filter>Source Files\GameEngine\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -483,9 +486,6 @@
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
     <ClCompile Include="Animator.cpp">
       <Filter>Source Files\GameEngine\Components\Animation</Filter>
@@ -579,6 +579,15 @@
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source Files\GameEngine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraActor.cpp">
+      <Filter>Source Files\GameEngine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

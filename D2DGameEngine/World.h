@@ -2,6 +2,7 @@
 
 #include "Level.h"
 
+
 class World
 {
 public:
@@ -26,6 +27,14 @@ public:
     void AddUICanvas(class Canvas* canvas);
     void RemoveUICanvas(class Canvas* canvas);
 
+    /**
+     * @brief 메인 카메라 컴포넌트를 설정합니다. 
+     * @param component 메인 카메라 컴포넌트
+     */
+    void SetMainCamera(class CameraComponent* _camera) { mainCamera = _camera; };
+    class CameraComponent* GetMainCamera() { return mainCamera; };
+
+    virtual void BeginPlay();
     virtual void FixedUpdate(float _fixedRate);
     virtual void PreUpdate(float _dt);
     virtual void Update(float _dt);
@@ -37,6 +46,8 @@ protected:
     std::map<std::wstring, Level*>  levelList;
     Level* NextLevel = nullptr;
     Level* CurLevel = nullptr;
+
+    class CameraComponent* mainCamera = nullptr;
 
     std::vector<class Canvas*> activeUICanvasList;
 };

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "Level.h"
 #include "Actor.h"
+#include "World.h"
+#include "CameraComponent.h"
 
 Level::Level(const std::wstring& name)
 {
@@ -14,6 +16,14 @@ Level::~Level()
 		delete pGameObject;
 	}
 	actorList.clear();
+}
+
+void Level::BeginPlay()
+{
+	for (auto actor : actorList)
+	{
+		actor->BeginPlay();
+	}
 }
 
 void Level::FixedUpdate(float _fixedRate)
@@ -66,7 +76,8 @@ void Level::Render(D2DRenderer* _renderer)
 	{
 		if (actor->CheckTickProperty(TICK_RENDER))
 		{
-			actor->Render(_renderer);
+			if(GetWorld()->GetMainCamera()->InCameraArea(actor))
+				actor->Render(_renderer);
 		}
 	}
 }

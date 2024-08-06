@@ -3,6 +3,8 @@
 #include "IComponent.h"
 
 class SceneComponent : public IComponent {
+	
+protected:
 	SceneComponent* parent;
 	std::list<SceneComponent*> children;
 
