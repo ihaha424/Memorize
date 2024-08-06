@@ -16,7 +16,7 @@ protected:
 	EActorStatus status = AS_AWAKE;
 	class SceneComponent* rootComponent = nullptr;
 	class World* world = nullptr;
-public:
+public: 
 	Actor();
 	virtual ~Actor();
 
