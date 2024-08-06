@@ -23,7 +23,7 @@ void BitmapComponent::Render(D2DRenderer* _renderer)
 		.bottom = GetFrameHeight() / 2.f
 	};
 
-	_renderer->DrawSprite(sprite, dest, frame);
+	_renderer->DrawSprite(sprite->GetResource(), dest, frame);
 
 #ifndef NDEBUG
 	_renderer->DrawBorder(
