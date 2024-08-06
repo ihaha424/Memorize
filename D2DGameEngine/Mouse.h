@@ -18,7 +18,8 @@ private:
 	DIMOUSESTATE					mouseState;		//rgbButtons | 0: Left, 1: Right, 2: Wheel, 3: ПЉКа
 	LPDIRECTINPUTDEVICE8			mouse = nullptr;
 	POINT							mousePos;
+
 public:
-	static Math::Vector3					curMousePosition;	//x: MouseX, y: MouseY, z: MouseWheel
+	static Math::Vector3			curMousePosition;	//x: MouseX, y: MouseY, z: MouseWheel
 	static bool						isMouseInClient;
 };

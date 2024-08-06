@@ -176,6 +176,7 @@
     <ClInclude Include="PolygonComponent.h" />
     <ClInclude Include="PrimitiveComponent.h" />
     <ClInclude Include="SampleEffect.h" />
+    <ClInclude Include="UIButton.h" />
     <ClInclude Include="ShapeComponent.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="Canvas.h" />
@@ -194,7 +195,6 @@
     <ClInclude Include="EasingFunction.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputDevice.h" />
     <ClInclude Include="InputAction.h" />
     <ClInclude Include="InputComponent.h" />
@@ -209,9 +209,15 @@
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Reflection.h" />
+    <ClInclude Include="ReflectionResource.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundSystem.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
@@ -231,6 +237,7 @@
     <ClCompile Include="BoxComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="EventBus.cpp" />
+    <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="IEventListener.cpp" />
     <ClCompile Include="INode.cpp" />
     <ClCompile Include="InputEventDispatcher.cpp" />
@@ -238,6 +245,7 @@
     <ClCompile Include="PolygonComponent.cpp" />
     <ClCompile Include="PrimitiveComponent.cpp" />
     <ClCompile Include="SampleEffect.cpp" />
+    <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="ShapeComponent.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="Canvas.cpp" />
@@ -261,8 +269,14 @@
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="Reflection.cpp" />
+    <ClCompile Include="ReflectionResource.cpp" />
+    <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundSystem.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="UIText.cpp" />
