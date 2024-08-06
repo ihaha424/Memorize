@@ -401,6 +401,12 @@
     <ClInclude Include="Sprite.h">
       <Filter>Source Files\GameEngine\ResourceManager\Resource\Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Source Files\GameEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Source Files\GameEngine\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -477,9 +483,6 @@
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\GameEngine\Particle</Filter>
     </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\Object</Filter>
@@ -568,18 +571,19 @@
     <ClCompile Include="IComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Source Files\GameEngine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\GameEngine\ResourceManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="디버그_사용법.md">
       <Filter>Source Files\GameEngine\Core\Debug</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="placeholder.txt">
-      <Filter>Source Files\GameEngine\ResourceManager</Filter>
-    </Text>
-    <Text Include="placeholder2.txt">
-      <Filter>Source Files\GameEngine\Sound</Filter>
-    </Text>
   </ItemGroup>
 </Project>
