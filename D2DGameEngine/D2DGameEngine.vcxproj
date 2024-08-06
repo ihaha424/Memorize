@@ -149,6 +149,7 @@
     <ClInclude Include="BehaviorTree.h" />
     <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="BoxComponent.h" />
+    <ClInclude Include="CameraActor.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
     <ClInclude Include="CircleComponent.h" />
@@ -216,9 +217,9 @@
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundResource.h" />
     <ClInclude Include="SoundSystem.h" />
-    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteResource.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
@@ -236,6 +237,8 @@
     <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
+    <ClCompile Include="CameraActor.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="EventBus.cpp" />
     <ClCompile Include="HitResult.cpp" />
@@ -276,9 +279,9 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
-    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundResource.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
-    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteResource.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="UIText.cpp" />

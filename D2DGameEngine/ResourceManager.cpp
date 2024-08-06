@@ -4,6 +4,10 @@
 
 #include <wincodec.h>
 
+wchar_t ResourceManager::resourcePath[255] = {};
+ID2D1HwndRenderTarget* ResourceManager::renderTarget = nullptr;
+std::unordered_map<std::wstring, std::shared_ptr<IResource>> ResourceManager::resourceStorage = {};
+
 void ResourceManager::Initialize(ID2D1HwndRenderTarget* _renderTarget)
 {
 	renderTarget = _renderTarget;

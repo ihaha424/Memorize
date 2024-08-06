@@ -20,6 +20,7 @@ public:
 	Actor();
 	virtual ~Actor();
 
+	EActorStatus GetStatus() { return status; }
 
 	void SetWorld(class World* _world) { world = _world; }
 	class World* GetWorld() { return world; }

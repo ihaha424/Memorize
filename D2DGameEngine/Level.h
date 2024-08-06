@@ -28,6 +28,7 @@ public:
     virtual void Exit() = 0;
     virtual void Clear() = 0;
     
+    virtual void BeginPlay();
     virtual void FixedUpdate(float _fixedRate);
     virtual void PreUpdate(float _dt);
     virtual void Update(float _dt);

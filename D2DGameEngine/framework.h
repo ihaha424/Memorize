@@ -22,6 +22,7 @@ using WindowStyleFlags = DWORD;
 #include <concepts>
 #include <numbers>
 #include <limits>
+#include <algorithm>
 
 #include <filesystem>
 #include <fstream>

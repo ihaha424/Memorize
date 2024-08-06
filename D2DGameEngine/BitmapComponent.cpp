@@ -1,4 +1,6 @@
 #include "BitmapComponent.h"
+#include "World.h"
+#include "CameraComponent.h"
 
 #include "D2DRenderer.h"
 
@@ -8,7 +10,11 @@ D2D_Mat3x2F BitmapComponent::GetWorldTransform() const {
 
 void BitmapComponent::Render(D2DRenderer* _renderer)
 {
-	_renderer->PushTransform(GetWorldTransform());
+
+	D2D_Mat3x2F cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
+	D2D1InvertMatrix(&cameraTF);
+
+	_renderer->PushTransform(GetWorldTransform() * cameraTF);
 
 	D2D_RectF dest{
 		.left = -GetFrameWidth() / 2.f,
@@ -17,7 +23,7 @@ void BitmapComponent::Render(D2DRenderer* _renderer)
 		.bottom = GetFrameHeight() / 2.f
 	};
 
-	_renderer->DrawSprite(sprite, dest, frame);
+	_renderer->DrawSprite(sprite->GetResource(), dest, frame);
 
 #ifndef NDEBUG
 	_renderer->DrawBorder(

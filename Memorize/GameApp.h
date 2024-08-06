@@ -28,5 +28,5 @@ private:
 	void Render() override;
 
 private:
-	// NOTE: 필요한 함수들 여기 추가.
+	class World* world;
 };

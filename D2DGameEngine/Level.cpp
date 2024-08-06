@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "Level.h"
 #include "Actor.h"
+#include "World.h"
+#include "CameraComponent.h"
+#include "CameraActor.h"
 
 Level::Level(const std::wstring& name)
 {
@@ -14,6 +17,21 @@ Level::~Level()
 		delete pGameObject;
 	}
 	actorList.clear();
+}
+
+void Level::BeginPlay()
+{
+	//메인카메라가 비어있으면 카메라액터를 생성하여 추가 
+	if (GetWorld()->GetMainCamera() == nullptr)
+	{
+		CameraActor* cameraActor = CreateActor<CameraActor>();
+		GetWorld()->SetMainCamera(cameraActor->GetComponent<CameraComponent>());
+	}
+
+	for (auto actor : actorList)
+	{
+		actor->BeginPlay();
+	}
 }
 
 void Level::FixedUpdate(float _fixedRate)
@@ -58,6 +76,16 @@ void Level::PostUpdate(float _dt)
 			actor->PostUpdate(_dt);
 		}
 	}
+	
+	auto it = std::_Erase_remove_if(actorList,
+		[=](Actor* actor) {
+			if (actor->GetStatus() == AS_DESTROY)
+			{
+				delete actor;
+				return 1;
+			}
+			return 0;
+		});
 }
 
 void Level::Render(D2DRenderer* _renderer)
@@ -66,7 +94,8 @@ void Level::Render(D2DRenderer* _renderer)
 	{
 		if (actor->CheckTickProperty(TICK_RENDER))
 		{
-			actor->Render(_renderer);
+			if(GetWorld()->GetMainCamera()->InCameraArea(actor))
+				actor->Render(_renderer);
 		}
 	}
 }

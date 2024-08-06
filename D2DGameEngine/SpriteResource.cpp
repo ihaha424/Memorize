@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "Sprite.h"
+#include "SpriteResource.h"
 #include "ResourceManager.h"
 
 
