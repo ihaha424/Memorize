@@ -30,17 +30,17 @@ public:
 
 	void AddOnClickHandler(void (*handler)())
 	{
-		_onClickHandlers.push_back(handler);
+		onClickHandlers.push_back(handler);
 	}
 
 	void AddOnHoveredHandler(void (*handler)())
 	{
-		_onHoveredHandlers.push_back(handler);
+		onHoveredHandlers.push_back(handler);
 	}
 
 	void AddOnPressedHandler(void (*handler)())
 	{
-		_onPressedHandlers.push_back(handler);
+		onPressedHandlers.push_back(handler);
 	}
 
 };

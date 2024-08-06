@@ -13,10 +13,14 @@ protected:
 	std::vector<class IComponent*> components;
 	EActorStatus status = AS_AWAKE;
 	class SceneComponent* rootComponent = nullptr;
-
+	class World* world = nullptr;
 public:
 	Actor();
 	virtual ~Actor();
+
+
+	void SetWorld(class World* _world) { world = _world; }
+	class World* GetWorld() { return world; }
 
 	/**
 	 * @brief Actor의 상태를 AS_ACTIVE로 변경합니다. 

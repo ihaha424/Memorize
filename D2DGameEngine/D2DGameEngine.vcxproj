@@ -167,6 +167,7 @@
     <ClInclude Include="Leaf.h" />
     <ClInclude Include="MoveTo.h" />
     <ClInclude Include="SampleEffect.h" />
+    <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Character.h" />
@@ -184,7 +185,6 @@
     <ClInclude Include="EasingFunction.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputDevice.h" />
     <ClInclude Include="InputAction.h" />
     <ClInclude Include="InputComponent.h" />
@@ -224,6 +224,7 @@
     <ClCompile Include="InputEventDispatcher.cpp" />
     <ClCompile Include="MoveTo.cpp" />
     <ClCompile Include="SampleEffect.cpp" />
+    <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Character.cpp" />

@@ -5,12 +5,12 @@
 World::World() {}
 World::~World()
 {
-	auto iter = vLevelList.begin();
-	for (; iter != vLevelList.end(); iter++)
+	auto iter = levelList.begin();
+	for (; iter != levelList.end(); iter++)
 	{
 		delete iter->second;
 	}
-	vLevelList.clear();
+	levelList.clear();
 }
 
 void World::ChangeScene()
@@ -27,12 +27,22 @@ void World::ChangeScene()
 
 void World::SetNextScene(std::wstring nextLevel)
 {
-	const auto iter = vLevelList.find(nextLevel);
-	if (iter != vLevelList.end())
+	const auto iter = levelList.find(nextLevel);
+	if (iter != levelList.end())
 	{
-		assert(iter != vLevelList.end());
+		assert(iter != levelList.end());
 	}
 	NextLevel = iter->second;
+}
+
+void World::AddUICanvas(Canvas* canvas)
+{
+	activeUICanvasList.push_back(canvas);
+}
+
+void World::RemoveUICanvas(Canvas* canvas)
+{
+	remove(activeUICanvasList.begin(), activeUICanvasList.end(), canvas);
 }
 
 void World::FixedUpdate(float _fixedRate)

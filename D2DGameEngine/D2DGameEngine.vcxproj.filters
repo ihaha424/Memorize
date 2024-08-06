@@ -48,9 +48,6 @@
     <Filter Include="Source Files\GameEngine\GameFramework\World\Level">
       <UniqueIdentifier>{9e2ccf1a-7180-47f0-ba6c-5b6711350578}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\GameFramework\GameObject">
-      <UniqueIdentifier>{4cfbaa3e-be92-43c4-aebc-2a21b84c7666}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Components">
       <UniqueIdentifier>{327dbb39-3c67-4196-a619-41b8b1c8ef3b}</UniqueIdentifier>
     </Filter>
@@ -78,20 +75,11 @@
     <Filter Include="Source Files\GameEngine\InputSystem\InputAction">
       <UniqueIdentifier>{61ad1dc2-c25d-4ec8-87b1-5c64188bdee1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Object">
-      <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Render">
       <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\Components\Animation">
       <UniqueIdentifier>{2c6addca-4509-42fe-80ab-43247d676d51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\Object\Controller">
-      <UniqueIdentifier>{7c0835b0-fcd4-4a5b-97dc-f9084f511aac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\UI">
-      <UniqueIdentifier>{a81a619e-ea13-4bf6-9246-0b84c877d95d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\Core\Event">
       <UniqueIdentifier>{c3bfff51-c90d-401c-b05d-06cdd2db3be0}</UniqueIdentifier>
@@ -125,6 +113,15 @@
     </Filter>
     <Filter Include="Source Files\GameEngine\Render\Effects">
       <UniqueIdentifier>{72eb85ef-4f3d-4827-9c12-744320849939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\Object">
+      <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\Object\Controller">
+      <UniqueIdentifier>{7c0835b0-fcd4-4a5b-97dc-f9084f511aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\Object\UI">
+      <UniqueIdentifier>{a81a619e-ea13-4bf6-9246-0b84c877d95d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -179,9 +176,6 @@
     <ClInclude Include="Level.h">
       <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Source Files\GameEngine\GameFramework\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="IComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
@@ -222,7 +216,7 @@
       <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
     </ClInclude>
     <ClInclude Include="IObject.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClInclude>
     <ClInclude Include="SceneComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
@@ -234,25 +228,25 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClInclude>
     <ClInclude Include="Reflection.h">
       <Filter>Source Files\GameEngine\Core\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClInclude>
     <ClInclude Include="PlayerController.h">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClInclude>
     <ClInclude Include="InputComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Pawn.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClInclude>
     <ClInclude Include="AnimationBitmapComponent.h">
       <Filter>Source Files\GameEngine\Components\Animation</Filter>
@@ -264,16 +258,16 @@
       <Filter>Source Files\GameEngine\Components\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Canvas.h">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="UIImage.h">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="UIText.h">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="UIElement.h">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="EventBus.h">
       <Filter>Source Files\GameEngine\Core\Event</Filter>
@@ -335,6 +329,9 @@
     <ClInclude Include="SampleEffect.h">
       <Filter>Source Files\GameEngine\Render\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -392,16 +389,16 @@
       <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClCompile>
     <ClCompile Include="PlayerController.cpp">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClCompile>
     <ClCompile Include="Controller.cpp">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClCompile>
     <ClCompile Include="InputComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
@@ -431,16 +428,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Canvas.cpp">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="UIImage.cpp">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="UIText.cpp">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="UIElement.cpp">
-      <Filter>Source Files\GameEngine\UI</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="EventBus.cpp">
       <Filter>Source Files\GameEngine\Core\Event</Filter>
@@ -468,6 +465,9 @@
     </ClCompile>
     <ClCompile Include="SampleEffect.cpp">
       <Filter>Source Files\GameEngine\Render\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

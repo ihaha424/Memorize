@@ -1,6 +1,6 @@
 #pragma once
 
-class Actor;
+#include "Actor.h"
 
 class Level
 {
@@ -14,11 +14,16 @@ public:
     {
         static_assert(std::is_base_of<Actor, T>::value, "T must inherit from Actor");
         T* newActor = new T();
+        dynamic_cast<Actor*>(newActor)->SetWorld(world);
         actorList.push_back(newActor);
         return newActor;
     }
 
 public:
+
+    void SetWorld(World* _world) { world = _world; }
+    class World* GetWorld() { return world; }
+
     virtual void Enter() = 0;
     virtual void Exit() = 0;
     virtual void Clear() = 0;
@@ -34,4 +39,5 @@ protected:
 
 private:
     std::wstring LevelName;
+    class World* world = nullptr;
 };
