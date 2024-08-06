@@ -2,12 +2,12 @@
 #include "Actor.h"
 class Controller : public Actor
 {
-	class Pawn* ownerPawn;
+protected:
+	class Pawn* owner;
 public:
 	Controller();
 	virtual ~Controller();
-
-	void SetPawn(Pawn* _pawn) { ownerPawn = _pawn; }
+	void SetPawn(Pawn* _pawn) { owner = _pawn; }
 
 };
 

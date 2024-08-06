@@ -16,7 +16,7 @@ protected:
 	EActorStatus status = AS_AWAKE;
 	class SceneComponent* rootComponent = nullptr;
 	class World* world = nullptr;
-public:
+public: 
 	Actor();
 	virtual ~Actor();
 
@@ -40,6 +40,15 @@ public:
 	void SetRotation(const float _degree);
 	void SetScale(const float x, const float y);
 	D2D_TMat3x2F GetTrasnform() const;
+
+	template<ComponentType T>
+	T* CreateComponent()
+	{
+		T* component = new T;
+		component->SetOwner(this);
+		components.insert({ std::type_index(typeid(T)), component });
+		return component;
+	}
 
 	/**
 	 * @brief 특정 타입의 컴포넌트를 가져옵니다.
@@ -70,4 +79,7 @@ public:
 	virtual void Render(class D2DRenderer* _renderer) override;
 
 };
+
+template<class T>
+concept ActorType = std::is_base_of<Actor, T>::value;
 

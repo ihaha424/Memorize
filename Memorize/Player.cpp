@@ -4,10 +4,11 @@
 
 Player::Player()
 {
-	BitmapComponent* bm = CreateDefaultSubobject<BitmapComponent>();
-	bm->SetOwner(this);
+	SetTickProperties(TICK_UPDATE | TICK_RENDER);
+
+	BitmapComponent* bm = CreateComponent<BitmapComponent>();
 	rootComponent = bm;
-	CameraComponent* cm = CreateDefaultSubobject<CameraComponent>();
+	CameraComponent* cm = CreateComponent<CameraComponent>();
 	bm->AddChild(cm);
 
 	bm->Translate({ 100, 100 });

@@ -19,7 +19,7 @@ void UIButton::Update(float _dt)
     if (left < mousePos.x && mousePos.x < right && top < mousePos.y && mousePos.y < buttom)
     {
 
-        //if (InputManager::GetInstance()->GetButtonDown(KeyType::LeftMouse))
+        //if ()
         {
             _state = BS_Clicked;
             OnClicked();

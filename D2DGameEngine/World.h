@@ -15,8 +15,7 @@ public:
     {
         bool IsBase = std::is_base_of<Level, T>::value;
         assert(IsBase == true);
-        T* pLevel = new T(LevelName);
-        dynamic_cast<Level*>(pLevel)->SetWorld(this);
+        T* pLevel = new T(this, LevelName);
         levelList.insert({ LevelName, pLevel });
         return pLevel;
     }

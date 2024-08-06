@@ -26,6 +26,6 @@ void CameraComponent::Update(const float& deltaTime)
 bool CameraComponent::InCameraArea(Actor* actor)
 {
 	//TODO 충돌 체크 
-	return false;
+	return true;
 }
 

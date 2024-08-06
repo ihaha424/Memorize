@@ -5,16 +5,15 @@
 class Level
 {
 public:
-    Level(const std::wstring& name);
+    Level(class World* _world, const std::wstring& _name);
     virtual ~Level();
 
 public:
-    template<typename T>
+    template<ActorType T>
     T* CreateActor()
     {
-        static_assert(std::is_base_of<Actor, T>::value, "T must inherit from Actor");
         T* newActor = new T();
-        dynamic_cast<Actor*>(newActor)->SetWorld(world);
+        newActor->SetWorld(world);
         actorList.push_back(newActor);
         return newActor;
     }

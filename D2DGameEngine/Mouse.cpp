@@ -22,10 +22,8 @@ HRESULT Mouse::Initialize(HINSTANCE hInst, HWND hWnd, LPDIRECTINPUT8& LPDInput)
 	if (SUCCEEDED(hr))
 		mouse->GetDeviceState(sizeof(DIMOUSESTATE), (LPVOID)&mouseState);
 
-	SetCursorPos(0, 0);
 	GetCursorPos(&mousePos);
-	ScreenToClient(hWnd, &mousePos);
-	SetCursorPos(-mousePos.x, -mousePos.y);
+	ScreenToClient(GetActiveWindow(), &mousePos);
 
 	return hr;
 }
@@ -46,20 +44,7 @@ void Mouse::Update()
 			InputAction::GetInstance()->AddInputKey(key, MouseInput);
 	}
 	curMousePosition += Math::Vector3(mouseState.lX, mouseState.lY, mouseState.lZ);
-	//if (isMouseInClient)
-	//{
-	//	Vector2 clamp = Screen::GetInstance()->GetSize();
-	//	if (0 > curMousePosition.x)
-	//		curMousePosition.x = 0;
-	//	else if (clamp.x < curMousePosition.x)
-	//		curMousePosition.x = clamp.x;
-	//	else if (0 > curMousePosition.y)
-	//		curMousePosition.y = 0;
-	//	else if (clamp.y < curMousePosition.y)
-	//		curMousePosition.y = clamp.y;
-	//}
-	//MouseComponent::GetInstance()->SetPosition(curMousePosition);
-	//SetCursorPos(-mousePos.x + curMousePosition.x, -mousePos.y + curMousePosition.y);
+	
 }
 
 const BYTE* Mouse::GetPressData()
