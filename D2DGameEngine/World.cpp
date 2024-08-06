@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "World.h"
 #include "Level.h"
+#include "Canvas.h"
 
 World::World() {}
 World::~World()
@@ -58,6 +59,11 @@ void World::PreUpdate(float _dt)
 void World::Update(float _dt)
 {
 	CurLevel->Update(_dt);
+
+	for (auto canvas : activeUICanvasList)
+	{
+		canvas->Update(_dt);
+	}
 }
 
 void World::PostUpdate(float _dt)
@@ -68,4 +74,9 @@ void World::PostUpdate(float _dt)
 void World::Render(D2DRenderer* _renderer)
 {
 	CurLevel->Render(_renderer);
+
+	for (auto canvas : activeUICanvasList)
+	{
+		canvas->Render(_renderer);
+	}
 }
