@@ -24,6 +24,8 @@ void TestPlayerController::BeginPlay()
 void TestPlayerController::MovePlayer()
 {
 	Math::Vector2 mousePos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
-	owner->GetComponent<MovementComponent>()->SetDirection(mousePos);
-	owner->GetComponent<MovementComponent>()->SetSpeed(1.0f);
+	Math::Vector2 direction = mousePos - owner->GetLocation();
+	direction.Normalize();
+	owner->GetComponent<MovementComponent>()->SetDirection(direction);
+	owner->GetComponent<MovementComponent>()->SetSpeed(500.0f);
 }
