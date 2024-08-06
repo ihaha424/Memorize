@@ -380,7 +380,7 @@
     <ClInclude Include="DamageEvent.h">
       <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
-    <ClInclude Include="DamageType.h">
+    <ClInclude Include="DamageTypes.h">
       <Filter>Source Files\GameEngine\GameFramework</Filter>
     </ClInclude>
     <ClInclude Include="HitResult.h">
@@ -412,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="CameraActor.h">
       <Filter>Source Files\GameEngine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionTypes.h">
+      <Filter>Source Files\GameEngine\GameFramework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -583,14 +586,12 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClCompile>
-
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClCompile>
     <ClCompile Include="CameraActor.cpp">
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClCompile>
-
     <ClCompile Include="HitResult.cpp">
       <Filter>Source Files\GameEngine\Physics</Filter>
     </ClCompile>
