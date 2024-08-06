@@ -7,6 +7,6 @@ public:
     GCameraComponent();
     virtual ~GCameraComponent();
 
-    virtual void Update(float _dt) override;
+    virtual void PostUpdate(float _dt) override;
 };
 

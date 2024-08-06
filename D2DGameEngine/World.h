@@ -26,6 +26,8 @@ public:
     void AddUICanvas(class Canvas* canvas);
     void RemoveUICanvas(class Canvas* canvas);
 
+    Math::Vector2 ScreenToWorldPoint(Math::Vector2 position);
+
     /**
      * @brief 메인 카메라 컴포넌트를 설정합니다. 
      * @param component 메인 카메라 컴포넌트

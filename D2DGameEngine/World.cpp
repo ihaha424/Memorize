@@ -2,6 +2,7 @@
 #include "World.h"
 #include "Level.h"
 #include "Canvas.h"
+#include "CameraComponent.h"
 
 World::World() {}
 World::~World()
@@ -44,6 +45,14 @@ void World::AddUICanvas(Canvas* canvas)
 void World::RemoveUICanvas(Canvas* canvas)
 {
 	remove(activeUICanvasList.begin(), activeUICanvasList.end(), canvas);
+}
+
+Math::Vector2 World::ScreenToWorldPoint(Math::Vector2 position)
+{
+	Math::Vector2 center = {CameraComponent::screenSize.x/2, CameraComponent::screenSize.y / 2 };
+	Math::Vector2 temp = position - center + Math::Vector2{mainCamera->GetWorldPosition().x, mainCamera->GetWorldPosition().y};
+
+	return temp;
 }
 
 void World::BeginPlay()
