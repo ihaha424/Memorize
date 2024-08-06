@@ -215,7 +215,7 @@
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundResource.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timer.h" />
@@ -274,7 +274,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
-    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundResource.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
