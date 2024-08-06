@@ -36,6 +36,7 @@ public:
 
 	virtual CollisionShape GetCollisionShape() const {
 		// TODO:
+		return CollisionShape();
 	}
 
 	/**
@@ -55,6 +56,7 @@ public:
 		const DXVec2 start,
 		const DXVec2 end) {
 		// TODO:
+		return true;
 	}
 
 	void DispatchBlockingHit() {

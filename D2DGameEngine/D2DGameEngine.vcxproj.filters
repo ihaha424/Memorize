@@ -487,9 +487,6 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\GameEngine\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Animator.cpp">
       <Filter>Source Files\GameEngine\Components\Animation</Filter>
     </ClCompile>
@@ -582,6 +579,12 @@
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HitResult.cpp">
+      <Filter>Source Files\GameEngine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

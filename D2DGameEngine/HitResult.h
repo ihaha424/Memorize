@@ -2,8 +2,7 @@
 
 #include "framework.h"
 
-#include "PrimitiveComponent.h"
-
+class PrimitiveComponent;
 struct HitResult {
 	bool isBlocking : 1;	// 블락킹 충돌의 결과인지 표시
 	bool bStartPenetrating : 1; // 충돌이 방금 시작 되었는지
@@ -22,9 +21,7 @@ struct HitResult {
 	DXVec2 traceStart;	// 트레이싱의 시작점
 	DXVec2 traceEnd;		// 트레이싱의 가장 먼 종료점
 
-	class Actor* GetActor() {
-		return hitComponent->GetOwner();
-	}
+	class Actor* GetActor();
 
 	PrimitiveComponent* GetComponent() {
 		return hitComponent;

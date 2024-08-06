@@ -238,6 +238,7 @@
     <ClCompile Include="BoxComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="EventBus.cpp" />
+    <ClCompile Include="HitResult.cpp" />
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="IEventListener.cpp" />
     <ClCompile Include="INode.cpp" />
