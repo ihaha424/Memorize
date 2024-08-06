@@ -1,6 +1,8 @@
 ﻿#include "GameEngine.h"
 
 #include "D2DRenderer.h"
+#include "InputSystem.h"
+#include "InputAction.h"
 #include "EventBus.h"
 #include "ResourceManager.h"
 
@@ -14,6 +16,8 @@ void GameEngine::Initialize()
 {
 	EventBus::CreateInstance();
 	d2d = new D2DRenderer(hWindow);
+	inputSystem = new InputSystem();
+	inputSystem->Initialize(GetModuleHandle(NULL), hWindow);
 	// NOTE: 엔진 초기화 작업
 	// e.g., 리소스 매니저, 팩토리 싱글톤 등...
 	ResourceManager::Initialize(d2d->GetRenderTarget());
@@ -76,6 +80,10 @@ void GameEngine::Run()
 		frameTime = currTime - prevTime;	// 델타 타임
 		frameTime *= Timer::GetTimeScale();	// 스케일 된 델타 타임
 		prevTime = currTime;
+
+		// Input Update
+		inputSystem->Update();
+		InputAction::GetInstance()->Update(frameTime);
 
 		// 게임 루프 소용돌이를 방어하기 위해 델타타임이 일정시간 이상 넘어가면 
 		// 픽스 합니다.
