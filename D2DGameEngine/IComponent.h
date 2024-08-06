@@ -1,20 +1,16 @@
 #pragma once
-
-#include "framework.h"
-
 #include "IObject.h"
-#include "Actor.h"
 
 class IComponent : public IObject {
-	Actor* owner{ nullptr };
+	class Actor* owner{ nullptr };
 
 public:
 	IComponent() {}
 	virtual ~IComponent() {}
 
-	void SetOwner(Actor* _owner) { owner = _owner; }
-	Actor* GetOwner() const { return owner; }
-	class World* GetWorld() { return owner->GetWorld(); }
+	void SetOwner(class Actor* _owner) { owner = _owner; }
+	class Actor* GetOwner() const { return owner; }
+	class World* GetWorld() const;
 };
 
 template<class T>

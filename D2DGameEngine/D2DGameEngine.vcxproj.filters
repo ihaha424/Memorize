@@ -505,6 +505,9 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\GameEngine\ResourceManager\Resource\Sprite</Filter>
     </ClCompile>
+    <ClCompile Include="IComponent.cpp">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="디버그_사용법.md">
