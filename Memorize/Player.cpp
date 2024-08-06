@@ -11,7 +11,7 @@ Player::Player()
 	bm->AddChild(cm);
 
 	bm->Translate({ 100, 100 });
-	bm->SetSprite(L"testPlayer");
+	bm->SetSprite(L"testPlayer.png");
 }
 
 Player::~Player()
