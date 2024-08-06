@@ -48,17 +48,11 @@
     <Filter Include="Source Files\GameEngine\GameFramework\World\Level">
       <UniqueIdentifier>{9e2ccf1a-7180-47f0-ba6c-5b6711350578}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\GameFramework\GameObject">
-      <UniqueIdentifier>{4cfbaa3e-be92-43c4-aebc-2a21b84c7666}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Components">
       <UniqueIdentifier>{327dbb39-3c67-4196-a619-41b8b1c8ef3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\AI">
       <UniqueIdentifier>{57f8b925-ba1a-4153-a2d5-36f505d33c2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\Animation">
-      <UniqueIdentifier>{518ee6d9-941d-46f0-af71-c4f5fae74d4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\Camera">
       <UniqueIdentifier>{1bf5ae90-1b15-4d95-8e9e-094a01712cff}</UniqueIdentifier>
@@ -69,14 +63,8 @@
     <Filter Include="Source Files\GameEngine\Particle">
       <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Math">
-      <UniqueIdentifier>{e16b01ee-addd-4e11-97b7-bd9163af5122}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\InputSystem">
       <UniqueIdentifier>{816a7e23-17c5-40e2-bebb-0db373020597}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\DotTween">
-      <UniqueIdentifier>{41c87c29-4042-46f5-ba97-5ad4f9c3b1de}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\InputSystem\KeyBoard">
       <UniqueIdentifier>{c549733b-f3cf-414b-b909-0b4a82e70d95}</UniqueIdentifier>
@@ -87,26 +75,53 @@
     <Filter Include="Source Files\GameEngine\InputSystem\InputAction">
       <UniqueIdentifier>{61ad1dc2-c25d-4ec8-87b1-5c64188bdee1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Object">
-      <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Render">
       <UniqueIdentifier>{ddf27272-7399-4b86-b383-d35e5bcb4275}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\Components\Animation">
       <UniqueIdentifier>{2c6addca-4509-42fe-80ab-43247d676d51}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Reflection">
+    <Filter Include="Source Files\GameEngine\Core\Event">
+      <UniqueIdentifier>{c3bfff51-c90d-401c-b05d-06cdd2db3be0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Event\Events">
+      <UniqueIdentifier>{7d5a996a-504a-4205-b4fc-cd8e934ba5ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Event\Dispatchers">
+      <UniqueIdentifier>{d0629488-3a3f-46de-a15e-51447842a6b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\BehaviorTree">
+      <UniqueIdentifier>{b349f543-1f2a-4117-92c4-90f2ec717b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\BehaviorTree\Nodes">
+      <UniqueIdentifier>{562ef7e0-83a0-4456-98a1-612859a7850b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions">
+      <UniqueIdentifier>{2de1ad6d-d459-43c6-a6e5-3c5c7dbf422d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\PathFinder">
+      <UniqueIdentifier>{bc36ca35-dbc7-437c-897e-b4f45f78d56b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\DotTween">
+      <UniqueIdentifier>{41c87c29-4042-46f5-ba97-5ad4f9c3b1de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Math">
+      <UniqueIdentifier>{e16b01ee-addd-4e11-97b7-bd9163af5122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Reflection">
       <UniqueIdentifier>{2c2b1050-65c6-4129-9f42-c87471905e60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Object\Controller">
+    <Filter Include="Source Files\GameEngine\Render\Effects">
+      <UniqueIdentifier>{72eb85ef-4f3d-4827-9c12-744320849939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\Object">
+      <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\GameFramework\Object\Controller">
       <UniqueIdentifier>{7c0835b0-fcd4-4a5b-97dc-f9084f511aac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Object\Actor">
-      <UniqueIdentifier>{882f47cb-b6d8-4ce1-a722-767ca2bb7226}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\Object\Actor\Pawn">
-      <UniqueIdentifier>{fd3e873e-65b6-42b4-8e92-5519dffa717b}</UniqueIdentifier>
+    <Filter Include="Source Files\GameEngine\GameFramework\Object\UI">
+      <UniqueIdentifier>{a81a619e-ea13-4bf6-9246-0b84c877d95d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameEngine\ResourceManager\Resource">
       <UniqueIdentifier>{5435b22f-662d-4d6d-9b71-5c685401693b}</UniqueIdentifier>
@@ -173,17 +188,8 @@
     <ClInclude Include="Level.h">
       <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Source Files\GameEngine\GameFramework\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="IComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>Source Files\GameEngine\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>Source Files\GameEngine\Animation</Filter>
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
       <Filter>Source Files\GameEngine\Camera</Filter>
@@ -195,16 +201,16 @@
       <Filter>Source Files\GameEngine\Particle</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
-      <Filter>Source Files\GameEngine\Math</Filter>
+      <Filter>Source Files\GameEngine\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.inl">
-      <Filter>Source Files\GameEngine\Math</Filter>
+      <Filter>Source Files\GameEngine\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="EasingFunction.h">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClInclude>
     <ClInclude Include="DotTween.h">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClInclude>
     <ClInclude Include="IInputDevice.h">
       <Filter>Source Files\GameEngine\InputSystem</Filter>
@@ -222,7 +228,7 @@
       <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
     </ClInclude>
     <ClInclude Include="IObject.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClInclude>
     <ClInclude Include="SceneComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
@@ -233,35 +239,110 @@
     <ClInclude Include="d2d_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
+    </ClInclude>
     <ClInclude Include="Reflection.h">
-      <Filter>Source Files\GameEngine\Reflection</Filter>
+      <Filter>Source Files\GameEngine\Core\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClInclude>
     <ClInclude Include="PlayerController.h">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClInclude>
     <ClInclude Include="InputComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationBitmapComponent.h">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationState.h">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIImage.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIText.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="EventBus.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventDelegate.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventDispatcher.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventDelegate.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventDispatcher.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventListener.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="IEvent.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEventDispatcher.h">
+      <Filter>Source Files\GameEngine\Core\Event\Dispatchers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEvent.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="INode.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveTo.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait.h">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="EventId.h">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClInclude>
     <ClInclude Include="BitmapComponent.h">
       <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Source Files\GameEngine\ResourceManager</Filter>
+    <ClInclude Include="SampleEffect.h">
+      <Filter>Source Files\GameEngine\Render\Effects</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Source Files\GameEngine\Object\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Pawn.h">
-      <Filter>Source Files\GameEngine\Object\Actor\Pawn</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundSystem.h">
-      <Filter>Source Files\GameEngine\Sound</Filter>
+    <ClInclude Include="UIButton.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Source Files\GameEngine\ResourceManager\Resource</Filter>
@@ -302,7 +383,7 @@
       <Filter>Source Files\GameEngine\Core\Debug\Logger</Filter>
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
-      <Filter>Source Files\GameEngine\Math</Filter>
+      <Filter>Source Files\GameEngine\Core\Math</Filter>
     </ClCompile>
     <ClCompile Include="SceneComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
@@ -311,10 +392,10 @@
       <Filter>Source Files\GameEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="EasingFunction.cpp">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClCompile>
     <ClCompile Include="DotTween.cpp">
-      <Filter>Source Files\GameEngine\DotTween</Filter>
+      <Filter>Source Files\GameEngine\Core\DotTween</Filter>
     </ClCompile>
     <ClCompile Include="IInputDevice.cpp">
       <Filter>Source Files\GameEngine\InputSystem</Filter>
@@ -331,14 +412,17 @@
     <ClCompile Include="InputAction.cpp">
       <Filter>Source Files\GameEngine\InputSystem\InputAction</Filter>
     </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
+    </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Source Files\GameEngine\Object</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClCompile>
     <ClCompile Include="PlayerController.cpp">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClCompile>
     <ClCompile Include="Controller.cpp">
-      <Filter>Source Files\GameEngine\Object\Controller</Filter>
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClCompile>
     <ClCompile Include="InputComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
@@ -349,29 +433,65 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\GameEngine\GameFramework\World\Level</Filter>
     </ClCompile>
-    <ClCompile Include="BitmapComponent.cpp">
-      <Filter>Source Files\GameEngine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="D2DEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files\GameEngine\ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Reflection.cpp">
-      <Filter>Source Files\GameEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\GameEngine\Object\Actor</Filter>
+    <ClCompile Include="AnimationBitmapComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\GameEngine\Object\Actor\Pawn</Filter>
+      <Filter>Source Files\GameEngine\Object</Filter>
     </ClCompile>
-    <ClCompile Include="SoundSystem.cpp">
-      <Filter>Source Files\GameEngine\Sound</Filter>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationState.cpp">
+      <Filter>Source Files\GameEngine\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Reflection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Canvas.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIImage.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIText.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="EventBus.cpp">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="IEventListener.cpp">
+      <Filter>Source Files\GameEngine\Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="InputEventDispatcher.cpp">
+      <Filter>Source Files\GameEngine\Core\Event\Dispatchers</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviorTree.cpp">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="INode.cpp">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveTo.cpp">
+      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Reflection.cpp">
+      <Filter>Source Files\GameEngine\Core\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapComponent.cpp">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleEffect.cpp">
+      <Filter>Source Files\GameEngine\Render\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="Resource.cpp">
       <Filter>Source Files\GameEngine\ResourceManager\Resource</Filter>
@@ -390,5 +510,13 @@
     <None Include="디버그_사용법.md">
       <Filter>Source Files\GameEngine\Core\Debug</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="placeholder.txt">
+      <Filter>Source Files\GameEngine\ResourceManager</Filter>
+    </Text>
+    <Text Include="placeholder2.txt">
+      <Filter>Source Files\GameEngine\Sound</Filter>
+    </Text>
   </ItemGroup>
 </Project>

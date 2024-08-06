@@ -143,11 +143,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="AI.h" />
+    <ClInclude Include="AnimationBitmapComponent.h" />
+    <ClInclude Include="AnimationState.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="BehaviorTree.h" />
     <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
+    <ClInclude Include="Composite.h" />
+    <ClInclude Include="Decorator.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventBus.h" />
+    <ClInclude Include="EventDelegate.h" />
+    <ClInclude Include="EventDispatcher.h" />
+    <ClInclude Include="EventId.h" />
+    <ClInclude Include="IEvent.h" />
+    <ClInclude Include="IEventDelegate.h" />
+    <ClInclude Include="IEventDispatcher.h" />
+    <ClInclude Include="IEventListener.h" />
+    <ClInclude Include="INode.h" />
+    <ClInclude Include="InputEvent.h" />
+    <ClInclude Include="InputEventDispatcher.h" />
+    <ClInclude Include="Leaf.h" />
+    <ClInclude Include="MoveTo.h" />
+    <ClInclude Include="SampleEffect.h" />
+    <ClInclude Include="UIButton.h" />
+    <ClInclude Include="UIElement.h" />
+    <ClInclude Include="Canvas.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="d2d_types.h" />
@@ -163,7 +185,6 @@
     <ClInclude Include="EasingFunction.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputDevice.h" />
     <ClInclude Include="InputAction.h" />
     <ClInclude Include="InputComponent.h" />
@@ -190,15 +211,30 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="UIImage.h" />
+    <ClInclude Include="UIText.h" />
+    <ClInclude Include="Wait.h" />
     <ClInclude Include="WinApp.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="AnimationBitmapComponent.cpp" />
+    <ClCompile Include="AnimationState.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="BitmapComponent.cpp" />
+    <ClCompile Include="EventBus.cpp" />
+    <ClCompile Include="IEventListener.cpp" />
+    <ClCompile Include="INode.cpp" />
+    <ClCompile Include="InputEventDispatcher.cpp" />
+    <ClCompile Include="MoveTo.cpp" />
+    <ClCompile Include="SampleEffect.cpp" />
+    <ClCompile Include="UIButton.cpp" />
+    <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Controller.cpp" />
-    <ClCompile Include="D2DEngine.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="DebugConsole.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
@@ -226,6 +262,8 @@
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UIImage.cpp" />
+    <ClCompile Include="UIText.cpp" />
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
     <ClCompile Include="World.cpp" />
@@ -235,6 +273,10 @@
       <FileType>Document</FileType>
     </ClInclude>
     <None Include="디버그_사용법.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="placeholder.txt" />
+    <Text Include="placeholder2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

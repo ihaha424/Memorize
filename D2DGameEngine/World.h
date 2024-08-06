@@ -1,6 +1,6 @@
 #pragma once
 
-class Level;
+#include "Level.h"
 
 class World
 {
@@ -15,12 +15,16 @@ public:
         bool IsBase = std::is_base_of<Level, T>::value;
         assert(IsBase == true);
         T* pLevel = new T(LevelName);
-        vLevelList.insert({ LevelName, pLevel });
+        dynamic_cast<Level*>(pLevel)->SetWorld(this);
+        levelList.insert({ LevelName, pLevel });
         return pLevel;
     }
 
     void ChangeScene();
     void SetNextScene(std::wstring nextLevel);
+
+    void AddUICanvas(class Canvas* canvas);
+    void RemoveUICanvas(class Canvas* canvas);
 
     virtual void FixedUpdate(float _fixedRate);
     virtual void PreUpdate(float _dt);
@@ -30,7 +34,9 @@ public:
 
 
 protected:
-    std::map<std::wstring, Level*>  vLevelList;
+    std::map<std::wstring, Level*>  levelList;
     Level* NextLevel = nullptr;
     Level* CurLevel = nullptr;
+
+    std::vector<class Canvas*> activeUICanvasList;
 };

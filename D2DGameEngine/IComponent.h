@@ -3,8 +3,8 @@
 #include "framework.h"
 
 #include "IObject.h"
+#include "Actor.h"
 
-class Actor;
 class IComponent : public IObject {
 	Actor* owner{ nullptr };
 
@@ -14,6 +14,7 @@ public:
 
 	void SetOwner(Actor* _owner) { owner = _owner; }
 	Actor* GetOwner() const { return owner; }
+	class World* GetWorld() { return owner->GetWorld(); }
 };
 
 template<class T>

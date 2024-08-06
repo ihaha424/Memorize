@@ -1,16 +1,17 @@
 #include "framework.h"
 #include "World.h"
 #include "Level.h"
+#include "Canvas.h"
 
 World::World() {}
 World::~World()
 {
-	auto iter = vLevelList.begin();
-	for (; iter != vLevelList.end(); iter++)
+	auto iter = levelList.begin();
+	for (; iter != levelList.end(); iter++)
 	{
 		delete iter->second;
 	}
-	vLevelList.clear();
+	levelList.clear();
 }
 
 void World::ChangeScene()
@@ -27,12 +28,22 @@ void World::ChangeScene()
 
 void World::SetNextScene(std::wstring nextLevel)
 {
-	const auto iter = vLevelList.find(nextLevel);
-	if (iter != vLevelList.end())
+	const auto iter = levelList.find(nextLevel);
+	if (iter != levelList.end())
 	{
-		assert(iter != vLevelList.end());
+		assert(iter != levelList.end());
 	}
 	NextLevel = iter->second;
+}
+
+void World::AddUICanvas(Canvas* canvas)
+{
+	activeUICanvasList.push_back(canvas);
+}
+
+void World::RemoveUICanvas(Canvas* canvas)
+{
+	remove(activeUICanvasList.begin(), activeUICanvasList.end(), canvas);
 }
 
 void World::FixedUpdate(float _fixedRate)
@@ -48,6 +59,11 @@ void World::PreUpdate(float _dt)
 void World::Update(float _dt)
 {
 	CurLevel->Update(_dt);
+
+	for (auto canvas : activeUICanvasList)
+	{
+		canvas->Update(_dt);
+	}
 }
 
 void World::PostUpdate(float _dt)
@@ -58,4 +74,9 @@ void World::PostUpdate(float _dt)
 void World::Render(D2DRenderer* _renderer)
 {
 	CurLevel->Render(_renderer);
+
+	for (auto canvas : activeUICanvasList)
+	{
+		canvas->Render(_renderer);
+	}
 }
