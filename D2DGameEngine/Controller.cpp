@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-Controller::Controller()
+Controller::Controller(class World* _world) : Actor(_world)
 {
 	
 }

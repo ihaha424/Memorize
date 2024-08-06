@@ -18,7 +18,7 @@ class UIButton : public UIElement
 	std::vector<std::function<void()>> onPressedHandlers;
 
 public:
-	UIButton() {};
+	UIButton(class World* _world) : UIElement(_world) {};
 	virtual ~UIButton() {};
 
 	virtual void Init();

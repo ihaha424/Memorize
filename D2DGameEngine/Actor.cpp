@@ -1,7 +1,7 @@
 #include "Actor.h"
 #include "SceneComponent.h"
 
-Actor::Actor()
+Actor::Actor(class World* _world) : world(_world)
 {
 }
 

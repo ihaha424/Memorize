@@ -1,7 +1,7 @@
 #include "UIImage.h"
 #include "D2DRenderer.h"
 
-UIImage::UIImage()
+UIImage::UIImage(class World* _world) : UIElement(_world)
 {
 }
 

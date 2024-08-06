@@ -3,7 +3,7 @@
 class CameraActor : public Actor
 {
 public:
-	CameraActor();
+	CameraActor(class World* _world);
 	virtual ~CameraActor();
 
 

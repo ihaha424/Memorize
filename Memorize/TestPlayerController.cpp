@@ -2,6 +2,10 @@
 #include "../D2DGameEngine/InputComponent.h"
 #include "../D2DGameEngine/Pawn.h"
 
+TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
+{
+}
+
 void TestPlayerController::SetupInputComponent()
 {
 	inputComponent->ActionBinding(this, 0x00, &TestPlayerController::MovePlayer, InputState::KeyDown, MouseInput);

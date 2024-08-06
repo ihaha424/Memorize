@@ -5,7 +5,7 @@ class UIImage : public UIElement
 {
 	D2D_Sprite* sprite;
 public:
-	UIImage();
+	UIImage(class World* _world);
 	virtual ~UIImage();
 
 	void SetSprite(D2D_Sprite* _sprite) { sprite = _sprite; }

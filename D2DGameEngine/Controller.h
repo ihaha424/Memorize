@@ -5,7 +5,7 @@ class Controller : public Actor
 protected:
 	class Pawn* owner;
 public:
-	Controller();
+	Controller(class World* _world);
 	virtual ~Controller();
 	void SetPawn(Pawn* _pawn) { owner = _pawn; }
 

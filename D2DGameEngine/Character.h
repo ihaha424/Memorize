@@ -3,7 +3,7 @@
 class Character : public Pawn
 {
 public:
-	Character();
+	Character(class World* _world);
 	virtual ~Character();
 };
 

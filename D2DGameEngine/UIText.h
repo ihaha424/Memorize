@@ -8,7 +8,7 @@ class UIText : public UIElement
 	TextFormatInfo textFormatInfo;
 	D2D_Color color = D2D_Color::Black;
 public:
-	UIText();
+	UIText(class World* _world);
 	virtual ~UIText() {};
 
 	void SetText(std::wstring _text) { text = _text; }

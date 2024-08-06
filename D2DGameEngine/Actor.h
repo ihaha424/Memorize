@@ -17,7 +17,7 @@ protected:
 	class SceneComponent* rootComponent = nullptr;
 	class World* world = nullptr;
 public: 
-	Actor();
+	Actor(class World* _world);
 	virtual ~Actor();
 
 	EActorStatus GetStatus() { return status; }

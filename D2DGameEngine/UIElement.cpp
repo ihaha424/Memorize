@@ -1,6 +1,6 @@
 #include "UIElement.h"
 
-UIElement::UIElement()
+UIElement::UIElement(class World* _world) : Actor(_world)
 {
 }
 

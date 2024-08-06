@@ -2,7 +2,7 @@
 #include "UIElement.h"
 #include "World.h"
 
-Canvas::Canvas()
+Canvas::Canvas(class World* _world) : Actor(_world)
 {
 }
 

@@ -9,11 +9,10 @@ public:
     CameraComponent();
     virtual ~CameraComponent();
 
-    virtual void Update(const float& deltaTime);
+    virtual void Update(float _dt) override;
 
     bool InCameraArea(Actor* actor);
 
-private:
     static const Math::Vector2 screenSize;
     static const Math::Vector2 mapSize;
 };

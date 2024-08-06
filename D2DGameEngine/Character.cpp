@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character()
+Character::Character(class World* _world) : Pawn(_world)
 {
 }
 

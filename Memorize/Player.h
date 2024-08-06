@@ -5,7 +5,7 @@ class Player : public Character
 {
 
 public:
-	Player();
+	Player(class World* _world);
 	virtual ~Player();
 
 };

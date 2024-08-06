@@ -8,7 +8,7 @@ class Canvas : public Actor
 	std::list<class UIElement*> uiList;
 
 public:
-	Canvas();
+	Canvas(class World* _world);
 	virtual ~Canvas();
 
 	template<typename T>

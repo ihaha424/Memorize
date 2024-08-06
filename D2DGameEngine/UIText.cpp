@@ -1,7 +1,7 @@
 #include "UIText.h"
 #include "D2DRenderer.h"
 
-UIText::UIText()
+UIText::UIText(class World* _world) : UIElement(_world)
 {
 	textFormatInfo.fontFamilyName = L"Arial";
 	textFormatInfo.fontSize = 10.f;

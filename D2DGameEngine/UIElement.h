@@ -11,7 +11,7 @@ protected:
 	bool bIsActive = true;
 	int zOrder = 0;
 public:
-	UIElement();
+	UIElement(class World* _world);
 	virtual ~UIElement();
 
 	void SetPosition(int _x, int _y) { position.x = _x; position.y = _y; }

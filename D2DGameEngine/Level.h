@@ -12,8 +12,7 @@ public:
     template<ActorType T>
     T* CreateActor()
     {
-        T* newActor = new T();
-        newActor->SetWorld(world);
+        T* newActor = new T(world);
         actorList.push_back(newActor);
         return newActor;
     }

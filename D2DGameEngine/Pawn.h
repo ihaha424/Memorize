@@ -7,7 +7,7 @@ class Pawn : public Actor
 	class Controller* controller = nullptr;
 
 public:
-	Pawn();
+	Pawn(class World* _world);
 	virtual ~Pawn();
 
 	/**
