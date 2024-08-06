@@ -57,9 +57,6 @@
     <Filter Include="Source Files\GameEngine\Camera">
       <UniqueIdentifier>{1bf5ae90-1b15-4d95-8e9e-094a01712cff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Sound">
-      <UniqueIdentifier>{18c5e5ce-317d-441c-9373-eac1a1c90b5a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\Particle">
       <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
     </Filter>
@@ -149,6 +146,9 @@
     </Filter>
     <Filter Include="Source Files\GameEngine\ResourceManager\Resource\ReflectionResource">
       <UniqueIdentifier>{4e0c648b-f0c3-42ca-b0bb-44fb2528e02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\SoundSystem">
+      <UniqueIdentifier>{18c5e5ce-317d-441c-9373-eac1a1c90b5a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -402,7 +402,7 @@
       <Filter>Source Files\GameEngine\ResourceManager\Resource\SpriteResource</Filter>
     </ClInclude>
     <ClInclude Include="SoundSystem.h">
-      <Filter>Source Files\GameEngine\Sound</Filter>
+      <Filter>Source Files\GameEngine\SoundSystem</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
@@ -581,7 +581,7 @@
       <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
-      <Filter>Source Files\GameEngine\Sound</Filter>
+      <Filter>Source Files\GameEngine\SoundSystem</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>

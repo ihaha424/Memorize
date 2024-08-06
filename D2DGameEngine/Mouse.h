@@ -22,4 +22,5 @@ private:
 public:
 	static Math::Vector3			curMousePosition;	//x: MouseX, y: MouseY, z: MouseWheel
 	static bool						isMouseInClient;
+	static InputState				clickStaus[4];	//0: Left, 1: Right, 2: Wheel, 3: ПЉКа
 };

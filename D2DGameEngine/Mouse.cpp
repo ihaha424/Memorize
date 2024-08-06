@@ -1,9 +1,10 @@
 #include "framework.h"
-#include "Mouse.h"
 #include "InputAction.h"
+#include "Mouse.h"
 
-Math::Vector3 Mouse::curMousePosition = {};
-bool	Mouse::isMouseInClient = false;
+Math::Vector3	Mouse::curMousePosition = {};
+bool			Mouse::isMouseInClient = false;
+InputState		Mouse::clickStaus[4] = { None };
 
 HRESULT Mouse::Initialize(HINSTANCE hInst, HWND hWnd, LPDIRECTINPUT8& LPDInput)
 {
@@ -41,10 +42,24 @@ void Mouse::Update()
 	for (unsigned char key = 0; key < mouseSize; key++)
 	{
 		if (mouseState.rgbButtons[key] & 0x80)
+		{
 			InputAction::GetInstance()->AddInputKey(key, MouseInput);
+
+			if (clickStaus[key] != None)
+				clickStaus[key] = KeyHold;
+			else
+				clickStaus[key] = KeyDown;
+		}
+		else
+		{
+			if (clickStaus[key] == KeyHold)
+				clickStaus[key] = KeyUp;
+			else
+				clickStaus[key] = None;
+		}
+
 	}
 	curMousePosition += Math::Vector3(mouseState.lX, mouseState.lY, mouseState.lZ);
-	
 }
 
 const BYTE* Mouse::GetPressData()

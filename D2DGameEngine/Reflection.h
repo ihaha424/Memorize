@@ -15,8 +15,9 @@ public:
 	{
 		ReflectValue(value, _valueName);
 	}
+	//Default int
 	template<typename T>
-	static void ReflectInValue(T& _value, std::wstring& Filevalue) {}
+	static void ReflectInValue(T& _value, std::wstring& Filevalue) { _value = _wtoi(Filevalue.c_str()); }
 	template<>
 	static void ReflectInValue(std::wstring& _value, std::wstring& Filevalue) { _value = Filevalue; }
 	template<>
