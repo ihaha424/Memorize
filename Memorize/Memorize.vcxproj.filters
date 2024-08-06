@@ -32,6 +32,9 @@
     <ClCompile Include="TestPlayerController.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
+    <ClCompile Include="GCameraComponent.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -50,6 +53,9 @@
       <Filter>Source Files\App</Filter>
     </ClInclude>
     <ClInclude Include="TestPlayerController.h">
+      <Filter>Source Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="GCameraComponent.h">
       <Filter>Source Files\App</Filter>
     </ClInclude>
   </ItemGroup>

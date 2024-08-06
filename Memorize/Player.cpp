@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "../D2DGameEngine/BitmapComponent.h"
-#include "../D2DGameEngine/CameraComponent.h"
+#include "GCameraComponent.h"
 #include "../D2DGameEngine/World.h"
 
 Player::Player(class World* _world) : Character(_world)
@@ -9,7 +9,7 @@ Player::Player(class World* _world) : Character(_world)
 
 	BitmapComponent* bm = CreateComponent<BitmapComponent>();
 	rootComponent = bm;
-	CameraComponent* cm = CreateComponent<CameraComponent>();
+	GCameraComponent* cm = CreateComponent<GCameraComponent>();
 	GetWorld()->SetMainCamera(cm);
 	bm->AddChild(cm);
 

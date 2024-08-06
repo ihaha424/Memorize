@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp" />
+    <ClCompile Include="GCameraComponent.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="TestPlayerController.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="GCameraComponent.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TestLevel.h" />
     <ClInclude Include="TestPlayerController.h" />
