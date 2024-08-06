@@ -16,15 +16,19 @@ protected:
 	
 	// TODO: Gizmo
 
-	// Physics setting
-	bool enablePhysics{ false };
+	// TODO: Bounds BoxSphereBounds
+
+	// Component Velocity
+	DXVec2 velocity{ 0.f, 0.f };
 public:
 
 	SceneComponent() :
 		parent{ nullptr },
 		S{ D2D_Mat3x2F::Identity() },
 		R{ D2D_Mat3x2F::Identity() },
-		T{ D2D_Mat3x2F::Identity() } {}
+		T{ D2D_Mat3x2F::Identity() } {
+		SetTickProperties(TICK_UPDATE);
+	}
 
 	void AddChild(SceneComponent* child);
 
@@ -62,28 +66,49 @@ public:
 		T = T * D2D_Mat3x2F::Translation(dx, dy);
 	}
 
-	void Translate(D2D_Vec2F dv) {
+	void Translate(DXVec2 dv) {
 		T = T * D2D_Mat3x2F::Translation(dv.x, dv.y);
 	}
 
+	void SetComponentVelocity(DXVec2 _velocity) {
+		velocity = velocity;
+	}
+
+	void AddComponentVelocity(DXVec2 _velocity) {
+		velocity += _velocity;
+	}
+
+	DXVec2 GetComponentVelocity() const {
+		return velocity;
+	}
+
 	bool MoveComponent(
-		const D2D_Vec2F& delta, 
+		const DXVec2& delta,
 		bool bSweep,
-		HitResult& outHitResult) {
+		HitResult* outHitResult = nullptr) {
 		return MoveComponentImpl(delta, bSweep, outHitResult);
 	}
 
-	bool IsSimulatingPhysics() {
-		return enablePhysics;
+	// Collision
+	// vitual CollisionEnabled::Type GetCollisionEnabled() {}
+
+	virtual bool IsSimulatingPhysics() {
+		return false;
+	}
+
+	// Tick
+	virtual void Update(float _dt) override {
+		MoveComponent(velocity * _dt, false);
 	}
 
 protected:
 
 	virtual bool MoveComponentImpl(
-		const D2D_Vec2F& delta,
+		const DXVec2& delta,
 		bool bSweep,
-		HitResult& outHitResult) {
-		// TODO:
+		HitResult* outHitResult) {
+		Translate(delta);
+		outHitResult = {};
 		return false;
 	}
 

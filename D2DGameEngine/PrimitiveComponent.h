@@ -4,7 +4,11 @@
 
 #include "CollisionShape.h"
 
+#include "HitResult.h"
+
 class PrimitiveComponent : public SceneComponent {
+	using Super = SceneComponent;
+
 	bool isVisible{ true };
 	bool isCollision{ false };
 	bool isPhysicsCollision{ false };
@@ -12,13 +16,18 @@ class PrimitiveComponent : public SceneComponent {
 
 	// Physics
 	float mass{ 1.0f };
-	float	dragForce;
-	float minAcceleration;
-	float maxAccelaration;
-	float minSpeed;
-	float maxSpeed;
-	DXVec2 accelaration;
-	DXVec2 velocity;
+	float frictionCoefficient{ 0.9f };
+	float	dragForce{ 0.f };
+	float minAcceleration{ 0.f };
+	float maxAccelaration{ 10000.f };
+	float minSpeed{ 0.f };
+	float maxSpeed{ 1000.f };
+	DXVec2 accelaration{};
+
+	// Collision
+	using OverlappingComponentSet = std::map<PrimitiveComponent*, HitResult>;
+	OverlappingComponentSet previouslyOverlappingComponents;
+	OverlappingComponentSet currentlyOverlappingComponents;
 
 	// Health
 	bool bTakeDamage{ false };
@@ -95,7 +104,14 @@ public:
 
 
 	// Damage System
-	
+
+	/**
+	 * @brief 
+	 * @param _damageAmount 
+	 * @param damageEvent 
+	 * @param instigator 
+	 * @param damageCauser 
+	 */
 	virtual void ReceiveComponentDamage(
 		float _damageAmount,
 		const struct DamageType& damageEvent,
@@ -116,8 +132,8 @@ public:
 	virtual void OnComponentHit() {}
 
 	// Tick
-	virtual void Update(float _dt) override {
-		// TODO:
+	virtual void FixedUpdate(float _dt) override {
+		Super::Update(_dt);
 	}
 
 protected:

@@ -156,9 +156,10 @@
     <ClInclude Include="CollisionChannel.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="CollisionShape.h" />
+    <ClInclude Include="CollisionTypes.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="DamageEvent.h" />
-    <ClInclude Include="DamageType.h" />
+    <ClInclude Include="DamageTypes.h" />
     <ClInclude Include="Decorator.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventBus.h" />
