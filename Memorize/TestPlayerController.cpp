@@ -8,6 +8,8 @@
 
 TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
 {
+	SetTickProperties(TICK_UPDATE);
+
 }
 
 void TestPlayerController::SetupInputComponent()
@@ -21,11 +23,25 @@ void TestPlayerController::BeginPlay()
 	SetupInputComponent();
 }
 
+void TestPlayerController::Update(float _dt)
+{
+	PlayerController::Update(_dt);
+	if (Math::Vector2::Distance(destPos, owner->GetLocation()) < 2.f)
+	{
+		owner->GetComponent<MovementComponent>()->SetSpeed(0.f);
+	}
+}
+
 void TestPlayerController::MovePlayer()
 {
-	Math::Vector2 mousePos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
-	Math::Vector2 direction = mousePos - owner->GetLocation();
+	destPos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
+	Math::Vector2 direction = destPos - owner->GetLocation();
 	direction.Normalize();
 	owner->GetComponent<MovementComponent>()->SetDirection(direction);
 	owner->GetComponent<MovementComponent>()->SetSpeed(500.0f);
+
+	std::string tmp = {};
+	tmp += std::to_string(destPos.x) + ", " + std::to_string(destPos.y);
+	OBJ_INFO(tmp);
+	//OBJ_INFO(msg);
 }
