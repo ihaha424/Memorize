@@ -219,6 +219,7 @@
     <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="EventBus.cpp" />
+    <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="IEventListener.cpp" />
     <ClCompile Include="INode.cpp" />
     <ClCompile Include="InputEventDispatcher.cpp" />

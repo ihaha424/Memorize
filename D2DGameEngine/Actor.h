@@ -1,5 +1,5 @@
 #pragma once
-#include "IObject.h"
+#include "IComponent.h"
 
 enum EActorStatus
 {
@@ -10,7 +10,9 @@ enum EActorStatus
 class Actor : public IObject
 {
 protected:
-	std::vector<class IComponent*> components;
+	using ComponentRegistry = std::unordered_multimap<std::type_index, class IComponent*>;
+	ComponentRegistry components;
+
 	EActorStatus status = AS_AWAKE;
 	class SceneComponent* rootComponent = nullptr;
 	class World* world = nullptr;
@@ -44,15 +46,9 @@ public:
 	 * @return 컴포넌트 포인터. 찾을 수 없으면 nullptr
 	 */
 	template <typename T>
-	T* GetComponent()
-	{
-		for (auto component : components)
-		{
-			T* t = dynamic_cast<T*>(component);
-			if (t != nullptr)
-				return t;
-		}
-		return nullptr;
+	T* GetComponent() {
+		auto it = components.find(std::type_index(typeid(T)));
+		return (it == components.end()) ? nullptr : (T*)it->second;
 	}
 
 	/**

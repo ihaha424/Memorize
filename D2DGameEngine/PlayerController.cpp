@@ -4,5 +4,5 @@
 void PlayerController::SetupInputComponent()
 {
 	inputComponent = CreateDefaultSubobject<InputComponent>();
-	components.push_back(inputComponent);
+	components.insert({ std::type_index(typeid(InputComponent)), inputComponent });
 }
