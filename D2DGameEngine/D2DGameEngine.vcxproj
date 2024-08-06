@@ -218,7 +218,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundResource.h" />
     <ClInclude Include="SoundSystem.h" />
-    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteResource.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
@@ -279,7 +279,7 @@
     <ClCompile Include="SimpleMath.cpp" />
     <ClCompile Include="SoundResource.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
-    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteResource.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="UIText.cpp" />

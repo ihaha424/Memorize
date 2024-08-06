@@ -1,12 +1,14 @@
 #pragma once
 
 #include "SceneComponent.h"
+#include "SpriteResource.h"
+#include "ResourceManager.h"
 
 class BitmapComponent : public SceneComponent {
 	using Super = SceneComponent;
 
 	D2D_RectF frame;
-	D2D_Sprite* sprite;
+	std::shared_ptr<SpriteResource> sprite;
 
 	D2D_Mat3x2F imageTransform;
 
@@ -44,16 +46,28 @@ public:
 		//	_imageAsset->GetSpriteWidth(),
 		//	_imageAsset->GetSpriteHeight()
 		//};
+
+		sprite = ResourceManager::LoadResource<SpriteResource>(path);
+		if (!sprite->GetResource()) {
+			throw std::exception("BitmapScene: image asset is not found!");
+		}
+		// Fit the frame with the image width and height
+		frame = {
+			0,0,
+			GetSpriteWidth(),
+			GetSpriteHeight()
+		};
+
 	}
 
-	D2D_Sprite* GetSprite() { return sprite; }
+	std::shared_ptr<SpriteResource> GetSprite() { return sprite; }
 
 	float GetSpriteWidth() const {
-		return sprite->GetSize().width;
+		return sprite->GetResource()->GetSize().width;
 	}
 
 	float GetSpriteHeight() const {
-		return sprite->GetSize().height;
+		return sprite->GetResource()->GetSize().height;
 	}
 
 	float GetFrameWidth() const {

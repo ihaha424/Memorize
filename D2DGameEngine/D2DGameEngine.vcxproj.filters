@@ -141,14 +141,14 @@
     <Filter Include="Source Files\GameEngine\ResourceManager\Resource">
       <UniqueIdentifier>{5435b22f-662d-4d6d-9b71-5c685401693b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\ResourceManager\Resource\ReflectionData">
-      <UniqueIdentifier>{4e0c648b-f0c3-42ca-b0bb-44fb2528e02c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\ResourceManager\Resource\Sprite">
-      <UniqueIdentifier>{db2b0c23-7593-4f45-8730-0dec7268a314}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\ResourceManager\Resource\SoundResource">
       <UniqueIdentifier>{659eca41-c55c-455a-8fa4-b07722fb29a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\ResourceManager\Resource\SpriteResource">
+      <UniqueIdentifier>{db2b0c23-7593-4f45-8730-0dec7268a314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\ResourceManager\Resource\ReflectionResource">
+      <UniqueIdentifier>{4e0c648b-f0c3-42ca-b0bb-44fb2528e02c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -393,13 +393,13 @@
       <Filter>Source Files\GameEngine\ResourceManager\Resource</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionResource.h">
-      <Filter>Source Files\GameEngine\ResourceManager\Resource\ReflectionData</Filter>
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\ReflectionResource</Filter>
     </ClInclude>
     <ClInclude Include="SoundResource.h">
       <Filter>Source Files\GameEngine\ResourceManager\Resource\SoundResource</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Source Files\GameEngine\ResourceManager\Resource\Sprite</Filter>
+    <ClInclude Include="SpriteResource.h">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\SpriteResource</Filter>
     </ClInclude>
     <ClInclude Include="SoundSystem.h">
       <Filter>Source Files\GameEngine\Sound</Filter>
@@ -560,13 +560,13 @@
       <Filter>Source Files\GameEngine\ResourceManager\Resource</Filter>
     </ClCompile>
     <ClCompile Include="ReflectionResource.cpp">
-      <Filter>Source Files\GameEngine\ResourceManager\Resource\ReflectionData</Filter>
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\ReflectionResource</Filter>
     </ClCompile>
     <ClCompile Include="SoundResource.cpp">
       <Filter>Source Files\GameEngine\ResourceManager\Resource\SoundResource</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files\GameEngine\ResourceManager\Resource\Sprite</Filter>
+    <ClCompile Include="SpriteResource.cpp">
+      <Filter>Source Files\GameEngine\ResourceManager\Resource\SpriteResource</Filter>
     </ClCompile>
     <ClCompile Include="IComponent.cpp">
       <Filter>Source Files\GameEngine\Components</Filter>
