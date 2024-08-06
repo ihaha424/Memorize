@@ -4,6 +4,7 @@
 
 #include "D2DGameEngine/D2DRenderer.h"
 #include "D2DGameEngine/World.h"
+#include "TestLevel.h"
 
 GameApp* loadedApp{ nullptr };
 
@@ -22,6 +23,9 @@ void GameApp::Initialize() {
 	loadedApp = this;
 
 	world = new World;
+	world->CreateLevel<TestLevel>(L"TestLevel");
+	world->SetNextScene(L"TestLevel");
+	world->ChangeScene();
 	world->BeginPlay();
 
 	// 그 외 이니셜라이제이션 스테이지..

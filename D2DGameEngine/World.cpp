@@ -18,8 +18,11 @@ void World::ChangeScene()
 {
 	if (NextLevel)
 	{
-		CurLevel->Exit();
-		CurLevel->Clear();
+		if (CurLevel)
+		{
+			CurLevel->Exit();
+			CurLevel->Clear();
+		}
 		CurLevel = NextLevel;
 		NextLevel = nullptr;
 		CurLevel->Enter();
@@ -29,10 +32,7 @@ void World::ChangeScene()
 void World::SetNextScene(std::wstring nextLevel)
 {
 	const auto iter = levelList.find(nextLevel);
-	if (iter != levelList.end())
-	{
-		assert(iter != levelList.end());
-	}
+	assert(iter != levelList.end());
 	NextLevel = iter->second;
 }
 
