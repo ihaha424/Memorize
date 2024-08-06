@@ -7,7 +7,6 @@ protected:
 public:
 	Controller();
 	virtual ~Controller();
-
 	void SetPawn(Pawn* _pawn) { owner = _pawn; }
 
 };
