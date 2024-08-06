@@ -6,7 +6,7 @@ class TestPlayerController : public PlayerController
 public:
 	virtual void SetupInputComponent() override;
 
-	void BeginPlay();
+	virtual void BeginPlay() override;
 	void MovePlayer();
 };
 
