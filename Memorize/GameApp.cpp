@@ -3,6 +3,7 @@
 #include "D2DGameEngine/WinApp.h"
 
 #include "D2DGameEngine/D2DRenderer.h"
+#include "D2DGameEngine/World.h"
 
 GameApp* loadedApp{ nullptr };
 
@@ -20,7 +21,8 @@ void GameApp::Initialize() {
 
 	loadedApp = this;
 
-	
+	world = new World;
+	world->BeginPlay();
 
 	// 그 외 이니셜라이제이션 스테이지..
 	//
@@ -58,7 +60,7 @@ void GameApp::Shutdown() {
 void GameApp::FixedUpdate(float dt) {
 	static float elapsedTime{ 0.f };
 	elapsedTime += dt;
-
+	world->FixedUpdate(dt);
 }
 
 void GameApp::Update(float dt) {
@@ -68,7 +70,9 @@ void GameApp::Update(float dt) {
 #ifndef NDEBUG 
 	frameTime += dt;
 #endif
-
+	world->PreUpdate(dt);
+	world->Update(dt);
+	world->PostUpdate(dt);
 
 }
 
@@ -85,7 +89,7 @@ void GameApp::Render() {
 	d2d->BeginDraw();
 
 
-
+	world->Render(d2d);
 	// DEBUG: D2D 엔진 디버그 용
 	// d2d->ShowVRAMUsage();
 	// d2d->DrawCircle({ SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f }, 200.f);

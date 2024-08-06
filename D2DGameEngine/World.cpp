@@ -2,8 +2,6 @@
 #include "World.h"
 #include "Level.h"
 #include "Canvas.h"
-#include "CameraActor.h"
-#include "CameraComponent.h"
 
 World::World() {}
 World::~World()
@@ -50,13 +48,6 @@ void World::RemoveUICanvas(Canvas* canvas)
 
 void World::BeginPlay()
 {
-	//메인카메라가 비어있으면 카메라액터를 생성하여 추가 
-	if (mainCamera == nullptr)
-	{
-		CameraActor* cameraActor = CurLevel->CreateActor<CameraActor>();
-		SetMainCamera(cameraActor->GetComponent<CameraComponent>());
-	}
-
 	CurLevel->BeginPlay();
 }
 

@@ -3,6 +3,7 @@
 #include "Actor.h"
 #include "World.h"
 #include "CameraComponent.h"
+#include "CameraActor.h"
 
 Level::Level(const std::wstring& name)
 {
@@ -20,6 +21,13 @@ Level::~Level()
 
 void Level::BeginPlay()
 {
+	//메인카메라가 비어있으면 카메라액터를 생성하여 추가 
+	if (GetWorld()->GetMainCamera() == nullptr)
+	{
+		CameraActor* cameraActor = CreateActor<CameraActor>();
+		GetWorld()->SetMainCamera(cameraActor->GetComponent<CameraComponent>());
+	}
+
 	for (auto actor : actorList)
 	{
 		actor->BeginPlay();
