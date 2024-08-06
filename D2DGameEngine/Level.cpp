@@ -68,6 +68,16 @@ void Level::PostUpdate(float _dt)
 			actor->PostUpdate(_dt);
 		}
 	}
+	
+	auto it = std::_Erase_remove_if(actorList,
+		[=](Actor* actor) {
+			if (actor->GetStatus() == AS_DESTROY)
+			{
+				delete actor;
+				return 1;
+			}
+			return 0;
+		});
 }
 
 void Level::Render(D2DRenderer* _renderer)
