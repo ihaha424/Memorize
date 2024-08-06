@@ -46,7 +46,7 @@ public:
 		std::wstring strFilePath = resourcePath;
 		strFilePath += _tag;
 		sprite = std::make_shared<T>();
-		sprite->LoadFile(_tag);
+		sprite->LoadFile(strFilePath);
 		sprite->SetKey(_tag);
 		resourceStorage.insert({ _tag, sprite });
 		return sprite;
@@ -61,7 +61,7 @@ public:
 		std::wstring strFilePath = resourcePath;
 		strFilePath += _tag;
 		sprite = std::make_shared<SoundResource>();
-		sprite->LoadFileLoop(_tag, _loopCheck);
+		sprite->LoadFileLoop(strFilePath, _loopCheck);
 		sprite->SetKey(_tag);
 		resourceStorage.insert({ _tag, sprite });
 		return sprite;
