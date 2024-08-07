@@ -4,6 +4,9 @@
 AIController::AIController(World* _world) : Controller(_world)
 {
 	SetTickProperties(TICK_UPDATE);
+
+	bt = new BehaviorTree;
+	bt->_controller = this;
 }
 
 AIController::~AIController()

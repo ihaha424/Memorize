@@ -15,6 +15,12 @@
     <Filter Include="Content">
       <UniqueIdentifier>{aa9bbbf5-f815-4e01-8a60-b3c840a662ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Player">
+      <UniqueIdentifier>{542d6a41-b6ff-4b7e-99da-ed1e25132dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss">
+      <UniqueIdentifier>{4a134288-b7d1-43e4-b1ef-15ab459df1e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -26,17 +32,23 @@
     <ClCompile Include="TestLevel.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
+    <ClCompile Include="BossAIController.cpp">
+      <Filter>Source Files\App\Boss</Filter>
+    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="TestPlayerController.cpp">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="GCameraComponent.cpp">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
       <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Source Files\App\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,17 +64,23 @@
     <ClInclude Include="TestLevel.h">
       <Filter>Source Files\App</Filter>
     </ClInclude>
+    <ClInclude Include="BossAIController.h">
+      <Filter>Source Files\App\Boss</Filter>
+    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestPlayerController.h">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="GCameraComponent.h">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Source Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Source Files\App\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

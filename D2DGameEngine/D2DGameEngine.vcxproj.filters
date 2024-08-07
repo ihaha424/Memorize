@@ -431,6 +431,9 @@
     <ClInclude Include="CollisionEnabled.h">
       <Filter>Source Files\GameEngine\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="AIController.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -612,6 +615,9 @@
     </ClCompile>
     <ClCompile Include="BoxCircleBounds.h">
       <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AIController.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
