@@ -10,13 +10,7 @@ D2D_Mat3x2F BitmapComponent::GetWorldTransform() const {
 
 void BitmapComponent::Render(D2DRenderer* _renderer)
 {
-
-	D2D_Mat3x2F cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
-	cameraTF._31 -= CameraComponent::screenSize.x / 2;
-	cameraTF._32 -= CameraComponent::screenSize.y / 2;
-	D2D1InvertMatrix(&cameraTF);
-	
-	_renderer->PushTransform(GetWorldTransform() * cameraTF);
+	_renderer->PushTransform(GetWorldTransform());
 
 	D2D_RectF dest{
 		.left = -GetFrameWidth() / 2.f,

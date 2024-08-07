@@ -7,7 +7,7 @@ protected:
 public:
 	Controller(class World* _world);
 	virtual ~Controller();
-	void SetPawn(Pawn* _pawn) { owner = _pawn; }
+	void SetPawn(class Pawn* _pawn) { owner = _pawn; }
 
 };
 
