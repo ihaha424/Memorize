@@ -21,3 +21,15 @@ Player::Player(class World* _world) : Character(_world)
 Player::~Player()
 {
 }
+
+void Player::LevelUp()
+{
+	if (level < maxLevel)
+	{
+		level++;
+		exp = 0;
+	}
+
+	//TODO
+	//level에 따라 Stat 조정
+}

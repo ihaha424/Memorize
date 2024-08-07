@@ -4,6 +4,7 @@
 #include "World.h"
 #include "CameraComponent.h"
 #include "CameraActor.h"
+#include "D2DRenderer.h"
 
 Level::Level(class World* _world, const std::wstring& _name)
 {
@@ -91,6 +92,12 @@ void Level::PostUpdate(float _dt)
 
 void Level::Render(D2DRenderer* _renderer)
 {
+	D2D_Mat3x2F cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
+	cameraTF._31 -= CameraComponent::screenSize.x / 2;
+	cameraTF._32 -= CameraComponent::screenSize.y / 2;
+	D2D1InvertMatrix(&cameraTF);
+	_renderer->PushTransform(cameraTF);
+
 	for (auto actor : actorList)
 	{
 		if (actor->CheckTickProperty(TICK_RENDER))
@@ -99,4 +106,5 @@ void Level::Render(D2DRenderer* _renderer)
 				actor->Render(_renderer);
 		}
 	}
+	_renderer->PopTransform();
 }
