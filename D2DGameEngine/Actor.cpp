@@ -14,6 +14,14 @@ Actor::~Actor()
 }
 
 
+void Actor::BeginPlay()
+{
+	for (auto [_, component] : components) {
+		component->BeginPlay();
+	}
+	status = AS_ACTIVE;
+}
+
 bool Actor::Destroy()
 {
 	if (status == AS_DESTROY)

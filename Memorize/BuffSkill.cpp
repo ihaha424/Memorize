@@ -1,8 +1,8 @@
 #include "BuffSkill.h"
 
-BuffSkill::BuffSkill(World* _world, std::wstring _id)
-	: Skill(_world, ST_BUFF, _id)
+BuffSkill::BuffSkill()
 {
+	type = ST_BUFF;
 }
 
 BuffSkill::~BuffSkill()

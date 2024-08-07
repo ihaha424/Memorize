@@ -4,17 +4,15 @@
 
 int Skill::wholeSkillLevel = 0;
 
-Skill::Skill(World* _world, ESkillType _type, std::wstring _id) : Actor(_world)
+Skill::Skill()
 {
-	type = _type;
-	id = _id;
 }
 
 Skill::~Skill()
 {
 }
 
-void Skill::SetOwner(PlayerController* _pc)
+void Skill::SetPlayer(PlayerController* _pc)
 {
 	controller = _pc;
 	player = controller->GetPlayer();

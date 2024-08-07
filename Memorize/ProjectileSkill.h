@@ -11,7 +11,7 @@ protected:
 	float projectileSpeed = 150.f;
 
 public:
-	ProjectileSkill(class World* _world, std::wstring _id);
+	ProjectileSkill();
 	virtual ~ProjectileSkill();
 };
 

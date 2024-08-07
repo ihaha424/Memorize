@@ -7,7 +7,7 @@
 #include "../D2DGameEngine/World.h"
 
 
-Fireball::Fireball(World* _world) : ProjectileSkill(_world, L"S11000")
+Fireball::Fireball()
 {
 	SetTickProperties(TICK_UPDATE);
 
@@ -37,7 +37,7 @@ void Fireball::UseSkill()
 	//마우스 위치로 이동시킴
 	Math::Vector2 mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	mousePos = GetWorld()->ScreenToWorldPoint(mousePos);
-	Math::Vector2 direction = mousePos - Math::Vector2( GetLocation().x ,GetLocation().y  ) ;
+	Math::Vector2 direction = mousePos - Math::Vector2( GetOwner()->GetLocation().x , GetOwner()->GetLocation().y  ) ;
 	direction.Normalize();
 	fireball->SetVelocity(direction, projectileSpeed);
 	

@@ -7,7 +7,7 @@ class Fireball : public ProjectileSkill
 	int nowCount = 1;
 	float speed = 2.f;
 public:
-	Fireball(class World* _world);
+	Fireball();
 	virtual ~Fireball();
 
 	virtual void BeginPlay() override;

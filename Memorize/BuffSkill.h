@@ -7,7 +7,7 @@ class BuffSkill : public Skill
 	Stat buffStat;
 
 public:
-	BuffSkill(class World* _world, std::wstring _id);
+	BuffSkill();
 	virtual ~BuffSkill();
 
 	virtual void UseSkill() override;
