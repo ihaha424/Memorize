@@ -24,6 +24,9 @@
     <Filter Include="Source Files\App\Player">
       <UniqueIdentifier>{542d6a41-b6ff-4b7e-99da-ed1e25132dbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\PlayerSkill">
+      <UniqueIdentifier>{22481350-baeb-466f-b214-0e4c592cefdd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -63,6 +66,12 @@
       <Filter>Source Files\App\Skill</Filter>
     </ClCompile>
     <ClCompile Include="BuffSkill.cpp">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Fireball.cpp">
+      <Filter>Source Files\App\Skill\PlayerSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
       <Filter>Source Files\App\Skill</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,6 +116,12 @@
       <Filter>Source Files\App\Skill</Filter>
     </ClInclude>
     <ClInclude Include="BuffSkill.h">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Fireball.h">
+      <Filter>Source Files\App\Skill\PlayerSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
       <Filter>Source Files\App\Skill</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,6 +11,7 @@ public:
 	ProjectileSkill(class World* _world, std::wstring _id);
 	virtual ~ProjectileSkill();
 
+	virtual void SpawnProjectiles() = 0;
 
 };
 

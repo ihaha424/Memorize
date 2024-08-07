@@ -145,10 +145,12 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
+    <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GCameraComponent.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="Skill.cpp" />
@@ -161,11 +163,13 @@
     <ClInclude Include="BossAIController.h" />
     <ClInclude Include="BuffSkill.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="Fireball.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="GCameraComponent.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileSkill.h" />
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="Skill.h" />
