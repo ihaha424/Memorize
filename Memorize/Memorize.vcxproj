@@ -145,6 +145,8 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
+    <ClCompile Include="ChasingWaterBall.cpp" />
+    <ClCompile Include="ChasingWaterBallProjectile.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -163,6 +165,8 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossAIController.h" />
     <ClInclude Include="BuffSkill.h" />
+    <ClInclude Include="ChasingWaterBall.h" />
+    <ClInclude Include="ChasingWaterBallProjectile.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />

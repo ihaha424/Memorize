@@ -3,6 +3,8 @@
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/SpriteResource.h"
 #include "TestPlayerController.h"
+#include "TestPlayerController.h"
+#include "ChasingWaterBall.h"
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
@@ -18,4 +20,8 @@ void TestLevel::Enter()
 	Player* player = CreateActor<Player>();
 	TestPlayerController* pc = CreateActor<TestPlayerController>();
 	player->SetController(pc);
+
+	ChasingWaterBallProjectile* Water = CreateActor<cc>();
+
+
 }

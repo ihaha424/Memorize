@@ -3,6 +3,7 @@
 
 class Projectile : public Actor
 {
+protected:
 	class Character* owner = nullptr;
 	int damage = 0;
 
@@ -11,5 +12,6 @@ public:
 	virtual ~Projectile();
 
 	void SetVelocity(Math::Vector2 _direction, float _speed);
+	virtual void Initialize() = 0;
 };
 

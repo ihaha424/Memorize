@@ -24,9 +24,6 @@
     <Filter Include="Source Files\App\Player">
       <UniqueIdentifier>{542d6a41-b6ff-4b7e-99da-ed1e25132dbe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\App\Skill\PlayerSkill">
-      <UniqueIdentifier>{22481350-baeb-466f-b214-0e4c592cefdd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\App\Skill\Projectile">
       <UniqueIdentifier>{1144d321-bafe-4ace-8b41-1c447403593e}</UniqueIdentifier>
     </Filter>
@@ -44,6 +41,9 @@
     </Filter>
     <Filter Include="Source Files\App\Skill\Range\Meteor">
       <UniqueIdentifier>{1c34eec6-3df5-4dff-9429-b98375c9ffb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile\ChasingWaterBall">
+      <UniqueIdentifier>{db273a00-a2c4-4eb4-ac21-4a6dadeecd12}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +94,12 @@
     </ClCompile>
     <ClCompile Include="ProjectileSkill.cpp">
       <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="ChasingWaterBall.cpp">
+      <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
+    </ClCompile>
+    <ClCompile Include="ChasingWaterBallProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +153,12 @@
     </ClInclude>
     <ClInclude Include="ProjectileSkill.h">
       <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="ChasingWaterBall.h">
+      <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
+    </ClInclude>
+    <ClInclude Include="ChasingWaterBallProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

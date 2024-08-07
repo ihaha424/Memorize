@@ -36,6 +36,9 @@
     <ClInclude Include="TestPlayerController.h">
       <Filter>헤더 파일\App</Filter>
     </ClInclude>
+    <ClInclude Include="ChasingWaterBall.h">
+      <Filter>헤더 파일\App</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -51,6 +54,9 @@
       <Filter>헤더 파일\App</Filter>
     </ClCompile>
     <ClCompile Include="TestPlayerController.cpp">
+      <Filter>헤더 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="ChasingWaterBall.cpp">
       <Filter>헤더 파일\App</Filter>
     </ClCompile>
   </ItemGroup>
