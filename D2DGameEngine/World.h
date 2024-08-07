@@ -22,6 +22,7 @@ public:
 
     void ChangeScene();
     void SetNextScene(std::wstring nextLevel);
+    class Level* GetCurLevel() { return CurLevel; }
 
     void AddUICanvas(class Canvas* canvas);
     void RemoveUICanvas(class Canvas* canvas);

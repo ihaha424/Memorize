@@ -146,6 +146,7 @@
     <ClCompile Include="BossAIController.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
     <ClCompile Include="Fireball.cpp" />
+    <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GCameraComponent.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="BuffSkill.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="Fireball.h" />
+    <ClInclude Include="FireballProjectile.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="GCameraComponent.h" />

@@ -6,12 +6,13 @@ protected:
 	std::vector<class Projectile*> projectiles;
 
 	int projectileCount = 1;
+	int projectileMaxCount = 1;
+	int nowUsingCount = 0;
+	float projectileSpeed = 10.f;
 
 public:
 	ProjectileSkill(class World* _world, std::wstring _id);
 	virtual ~ProjectileSkill();
-
-	virtual void SpawnProjectiles() = 0;
 
 };
 

@@ -3,9 +3,13 @@
 
 class Projectile : public Actor
 {
-	float speed = 10.f;
+	class Character* owner = nullptr;
+	int damage = 0;
+
 public:
-	Projectile(class World* _world);
+	Projectile(class World* _world, class Character* _owner);
 	virtual ~Projectile();
+
+	void SetVelocity(Math::Vector2 _direction, float _speed);
 };
 

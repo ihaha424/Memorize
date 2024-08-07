@@ -27,6 +27,12 @@
     <Filter Include="Source Files\App\Skill\PlayerSkill">
       <UniqueIdentifier>{22481350-baeb-466f-b214-0e4c592cefdd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\PlayerSkill\Fireball">
+      <UniqueIdentifier>{ae9f92b8-1bb6-42c9-b0cf-eb75ae111fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\PlayerSkill\Meteor">
+      <UniqueIdentifier>{1c34eec6-3df5-4dff-9429-b98375c9ffb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -68,11 +74,14 @@
     <ClCompile Include="BuffSkill.cpp">
       <Filter>Source Files\App\Skill</Filter>
     </ClCompile>
-    <ClCompile Include="Fireball.cpp">
-      <Filter>Source Files\App\Skill\PlayerSkill</Filter>
-    </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Fireball.cpp">
+      <Filter>Source Files\App\Skill\PlayerSkill\Fireball</Filter>
+    </ClCompile>
+    <ClCompile Include="FireballProjectile.cpp">
+      <Filter>Source Files\App\Skill\PlayerSkill\Fireball</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,11 +127,14 @@
     <ClInclude Include="BuffSkill.h">
       <Filter>Source Files\App\Skill</Filter>
     </ClInclude>
-    <ClInclude Include="Fireball.h">
-      <Filter>Source Files\App\Skill\PlayerSkill</Filter>
-    </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Fireball.h">
+      <Filter>Source Files\App\Skill\PlayerSkill\Fireball</Filter>
+    </ClInclude>
+    <ClInclude Include="FireballProjectile.h">
+      <Filter>Source Files\App\Skill\PlayerSkill\Fireball</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
