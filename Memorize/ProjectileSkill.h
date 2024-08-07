@@ -8,11 +8,10 @@ protected:
 	int projectileCount = 1;
 	int projectileMaxCount = 1;
 	int nowUsingCount = 0;
-	float projectileSpeed = 10.f;
+	float projectileSpeed = 150.f;
 
 public:
 	ProjectileSkill(class World* _world, std::wstring _id);
 	virtual ~ProjectileSkill();
-
 };
 

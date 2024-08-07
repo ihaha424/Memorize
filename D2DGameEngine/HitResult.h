@@ -4,7 +4,7 @@
 
 class PrimitiveComponent;
 struct HitResult {
-	bool isBlocking : 1;	// 블락킹 충돌의 결과인지 표시
+	bool bBlockingHit : 1;	// 블락킹 충돌의 결과인지 표시
 	bool bStartPenetrating : 1; // 충돌이 방금 시작 되었는지
 	PrimitiveComponent* hitComponent;	// 충돌 당한 컴포넌트
 

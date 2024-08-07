@@ -13,6 +13,7 @@ TestPlayerController::TestPlayerController(World* _world) : PlayerController(_wo
 void TestPlayerController::SetupInputComponent()
 {
 	inputComponent->ActionBinding(this, 0x00, &TestPlayerController::MovePlayer, InputState::KeyDown, MouseInput);
+	inputComponent->ActionBinding(this, DIK_Q, &TestPlayerController::MovePlayer, InputState::KeyDown, KeyBoardInput);
 }
 
 void TestPlayerController::BeginPlay()

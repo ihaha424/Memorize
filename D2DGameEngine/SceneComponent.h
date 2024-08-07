@@ -36,7 +36,7 @@ public:
 		S{ D2D_Mat3x2F::Identity() },
 		R{ D2D_Mat3x2F::Identity() },
 		T{ D2D_Mat3x2F::Identity() } {
-		SetTickProperties(TICK_UPDATE);
+		SetTickProperties(TICK_PHYSICS);
 	}
 
 	void AddChild(SceneComponent* child);
@@ -107,6 +107,10 @@ public:
 	}
 
 	// Collision
+	virtual bool IsCollisionEnabled() const {
+		return false;
+	}
+
 	virtual CollisionEnabled::Type GetCollisionEnabled() const {
 		return CollisionEnabled::NoCollision;
 	}
@@ -115,15 +119,24 @@ public:
 		return ECollisionChannel::WorldStatic;
 	}
 
-	virtual BoxCircleBounds CalculateBounds(const D2D_Mat3x2F& _worldTransform) {
+	// Bounds
+	virtual BoxCircleBounds CalculateBounds(const D2D_Mat3x2F& _worldTransform) const {
+		return BoxCircleBounds{};
+	}
+
+	virtual BoxCircleBounds CalculateLocalBounds() const {
 		return BoxCircleBounds{};
 	}
 
 	virtual void UpdateBounds() {}
 
-	virtual void UpdateOverlaps() {
-		// Update overlap states
-	}
+
+	// Overlap states
+	
+	/**
+	 * @brief 이 함수 사용시 GetCollisionEnabled 체크가 필요합니다.
+	 */
+	virtual void UpdateOverlaps() {}
 
 	virtual bool IsSimulatingPhysics() {
 		return false;
@@ -136,7 +149,7 @@ public:
 	// TODO: Destroy Component
 
 	// Tick
-	virtual void Update(float _dt) override {
+	virtual void FixedUpdate(float _dt) override {
 		MoveComponent(velocity * _dt, false);
 	}
 

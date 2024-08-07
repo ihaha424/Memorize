@@ -17,6 +17,7 @@ class Skill : public Actor
 	static int wholeSkillLevel;
 
 protected:
+	class PlayerController* controller;
 	class Player* player;
 	std::wstring id;
 	ESkillType type;
@@ -29,6 +30,8 @@ public:
 	virtual ~Skill();
 
 	static int GetWholeSkillLevel() { return wholeSkillLevel; }
+
+	void SetOwner(PlayerController* _pc);
 
 	/**
 	 * @brief 스킬을 사용합니다. 스킬 사용 카운트가 증가합니다. 

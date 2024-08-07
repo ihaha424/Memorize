@@ -1,10 +1,43 @@
 #include "PrimitiveComponent.h"
 
-PrimitiveComponent::PrimitiveComponent()
-{
-	SetTickProperties(TICK_PRE_UPDATE | TICK_UPDATE | TICK_POST_UPDATE);
-}
+#include "World.h"
 
-PrimitiveComponent::~PrimitiveComponent()
-{
+PrimitiveComponent::PrimitiveComponent() {}
+
+PrimitiveComponent::~PrimitiveComponent() {}
+
+void PrimitiveComponent::UpdateOverlaps() {
+	OverlappingComponentSet newOverlappingComponents;
+
+	// Get nearby components
+	
+
+
+	// Swap the overlapping components.
+	previouslyOverlappingComponents = currentlyOverlappingComponents;
+	currentlyOverlappingComponents.clear();
+
+	// TODO:
+
+
+	// Check begin overlap
+	for (auto& [otherComponent, hitResult] : currentlyOverlappingComponents) {
+		auto it = previouslyOverlappingComponents.find(otherComponent);
+		if (it == previouslyOverlappingComponents.end()) {
+			if (bGenerateOverlapEvent) {
+				// TODO: Notify overlap event
+			}
+			//if (_notify) _notify->OnBeginOverlap(this, otherComponent, hitResult);
+		}
+	}
+	// Check end overlap
+	for (auto& [otherComponent, hitResult] : previouslyOverlappingComponents) {
+		auto it = currentlyOverlappingComponents.find(otherComponent);
+		if (it == currentlyOverlappingComponents.end()) {
+			if (bGenerateOverlapEvent) {
+				// TODO: Notify overlap event
+			}
+			//if (_notify) _notify->OnEndOverlap(this, otherComponent, hitResult);
+		}
+	}
 }

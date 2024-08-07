@@ -31,11 +31,12 @@ void TestLevel::Enter()
 		Player* player = CreateActor<Player>();
 		TestPlayerController* pc = CreateActor<TestPlayerController>();
 		player->SetController(pc);
+		pc->SetPlayer(player);
 	}
 
 	{
-		Boss* boss = CreateActor<Boss>();
-		BossAIController* bc = CreateActor<BossAIController>();
-		boss->SetController(bc);
+		//Boss* boss = CreateActor<Boss>();
+		//BossAIController* bc = CreateActor<BossAIController>();
+		//boss->SetController(bc);
 	}
 }

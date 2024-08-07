@@ -8,9 +8,10 @@ protected:
 	int damage = 0;
 
 public:
-	Projectile(class World* _world, class Character* _owner);
+	Projectile(class World* _world);
 	virtual ~Projectile();
 
+	void SetOwner(class Character* _owner) { owner = _owner; }
 	void SetVelocity(Math::Vector2 _direction, float _speed);
 	virtual void Initialize() = 0;
 };

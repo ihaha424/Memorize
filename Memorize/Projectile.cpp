@@ -4,10 +4,9 @@
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/Character.h"
 
-Projectile::Projectile(World* _world, class Character* _owner) : Actor(_world)
+Projectile::Projectile(World* _world) : Actor(_world)
 {
-	owner = _owner;
-	CreateComponent<BitmapComponent>();
+	rootComponent = CreateComponent<BitmapComponent>();
 	CreateComponent<MovementComponent>();
 }
 

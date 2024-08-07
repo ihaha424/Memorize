@@ -3,10 +3,10 @@
 #include "framework.h"
 
 enum class ECollisionShape {
+	Line,
+	Box,
 	Circle,
 	Capsule,
-	Box,
-	Line
 };
 
 struct CollisionShape {
@@ -120,6 +120,10 @@ struct CollisionShape {
 
 	bool IsCircle() const {
 		return shapeType == ECollisionShape::Circle;
+	}
+
+	bool IsNearlyZero() const {
+		return abs(Line.halfExtentX) < 0.0005 && abs(Line.halfExtentY) < 0.0005;
 	}
 
 	// Factory methods to create specific shapes
