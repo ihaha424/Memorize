@@ -455,6 +455,9 @@
     <ClInclude Include="Ray.h">
       <Filter>Source Files\GameEngine\Core\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="AIController.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -648,6 +651,9 @@
     </ClCompile>
     <ClCompile Include="IntersectionUtil.cpp">
       <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="AIController.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

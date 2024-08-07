@@ -15,6 +15,33 @@
     <Filter Include="Content">
       <UniqueIdentifier>{aa9bbbf5-f815-4e01-8a60-b3c840a662ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss">
+      <UniqueIdentifier>{4a134288-b7d1-43e4-b1ef-15ab459df1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill">
+      <UniqueIdentifier>{7dff0eef-f890-480a-bf43-5e6fa81db9dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Player">
+      <UniqueIdentifier>{542d6a41-b6ff-4b7e-99da-ed1e25132dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile">
+      <UniqueIdentifier>{1144d321-bafe-4ace-8b41-1c447403593e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Buff">
+      <UniqueIdentifier>{3c2821da-66c9-438f-9c64-9ded5e95a9c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Range">
+      <UniqueIdentifier>{5c3b6508-da8e-443f-8384-f98e63f02375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Special">
+      <UniqueIdentifier>{ce752c3f-f996-46b6-9860-bdae3bdd7427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile\Fireball">
+      <UniqueIdentifier>{ae9f92b8-1bb6-42c9-b0cf-eb75ae111fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Range\Meteor">
+      <UniqueIdentifier>{1c34eec6-3df5-4dff-9429-b98375c9ffb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -26,17 +53,44 @@
     <ClCompile Include="TestLevel.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
+    <ClCompile Include="BossAIController.cpp">
+      <Filter>Source Files\App\Boss</Filter>
+    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClCompile>
     <ClCompile Include="TestPlayerController.cpp">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClCompile>
     <ClCompile Include="GCameraComponent.cpp">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
       <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Source Files\App\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Fireball.cpp">
+      <Filter>Source Files\App\Skill\Projectile\Fireball</Filter>
+    </ClCompile>
+    <ClCompile Include="FireballProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile\Fireball</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffSkill.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeSkill.cpp">
+      <Filter>Source Files\App\Skill\Range</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileSkill.cpp">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,17 +106,44 @@
     <ClInclude Include="TestLevel.h">
       <Filter>Source Files\App</Filter>
     </ClInclude>
+    <ClInclude Include="BossAIController.h">
+      <Filter>Source Files\App\Boss</Filter>
+    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestPlayerController.h">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="GCameraComponent.h">
-      <Filter>Source Files\App</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Source Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Source Files\App\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Fireball.h">
+      <Filter>Source Files\App\Skill\Projectile\Fireball</Filter>
+    </ClInclude>
+    <ClInclude Include="FireballProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile\Fireball</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffSkill.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeSkill.h">
+      <Filter>Source Files\App\Skill\Range</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileSkill.h">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

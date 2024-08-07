@@ -16,11 +16,31 @@ using ReflectionValue = std::vector<ReflectionData>;
  */
 class ReflectionResource : public Resource<ReflectionResource, ReflectionValue>
 {
+	LOG_REGISTER_OBJ(ReflectionResource)
 public:
-	ReflectionResource() {};
+	ReflectionResource();
 	~ReflectionResource();
 
 	void LoadFile(std::wstring _key);
+	
+	template<typename T>
+	void ParsingFile(int _i, T& _value)
+	{
+		if ((*resource).size() <= _i)
+			OBJ_ERROR(-1, "Reflection Data is Too Many Data.");
+		std::wstring tmep((*resource)[_i].second);
+		ReflectionIn()(_value, tmep);
+	}
+
+	template<typename T, typename... ARGS>
+	void ParsingFile(int _i, T& _value, ARGS&... _values)
+	{
+		if ((*resource).size() <= _i)
+			OBJ_ERROR(-1, "Reflection Data is Too Many Data.");
+		std::wstring tmep((*resource)[_i].second);
+		ReflectionIn()(_value, tmep);
+		ParsingFile(++_i, _values...);
+	}
 
 	static const std::type_index TYPE_ID;
 };

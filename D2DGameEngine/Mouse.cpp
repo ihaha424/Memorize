@@ -61,7 +61,11 @@ void Mouse::Update()
 		}
 
 	}
-	curMousePosition += Math::Vector3(mouseState.lX, mouseState.lY, mouseState.lZ);
+	POINT	mousePos;
+	GetCursorPos(&mousePos);
+	ScreenToClient(GetActiveWindow(), &mousePos);
+	curMousePosition = { (float)mousePos.x, (float)mousePos.y, 0.f };
+
 }
 
 const BYTE* Mouse::GetPressData()

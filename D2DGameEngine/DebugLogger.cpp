@@ -143,15 +143,15 @@ bool Logger::Log(
 	// Default Mode
 	if ((Super::_instance->_severities & severity) &&
 		(Super::_instance->_messageTypes & messageType))
-		return false;
-
-	return Super::_instance->_callback(
+		return Super::_instance->_callback(
 		_instance->_stream,
 		severity,
 		messageType,
 		pData,
 		pUser
 	);
+	return false;
+
 }
 
 bool Logger::Log(

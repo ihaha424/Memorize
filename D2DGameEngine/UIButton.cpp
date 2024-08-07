@@ -1,11 +1,6 @@
 #include "UIButton.h"
 #include "Mouse.h"
 
-void UIButton::Init()
-{
-    
-}
-
 void UIButton::Update(float _dt)
 {
     UIElement::Update(_dt);
