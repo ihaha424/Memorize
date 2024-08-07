@@ -4,6 +4,7 @@
 
 Canvas::Canvas(class World* _world) : Actor(_world)
 {
+	SetTickProperties(TICK_UPDATE | TICK_RENDER);
 }
 
 Canvas::~Canvas()

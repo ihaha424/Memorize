@@ -18,10 +18,12 @@ class UIButton : public UIElement
 	std::vector<std::function<void()>> onPressedHandlers;
 
 public:
-	UIButton(class World* _world) : UIElement(_world) {};
+	UIButton(class World* _world) : UIElement(_world) 
+	{
+		SetTickProperties(TICK_UPDATE);
+	};
 	virtual ~UIButton() {};
 
-	virtual void Init();
 	virtual void Update(float _dt);
 
 	void OnHovered();

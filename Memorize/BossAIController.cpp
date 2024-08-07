@@ -6,6 +6,7 @@
 
 BossAIController::BossAIController(class World* _world) : AIController(_world)
 {
+	SetTickProperties(TICK_UPDATE);
 }
 
 BossAIController::~BossAIController()

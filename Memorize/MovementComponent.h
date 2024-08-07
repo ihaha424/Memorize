@@ -4,7 +4,7 @@
 class MovementComponent : public SceneComponent
 {
 public:
-	MovementComponent() {}
+	MovementComponent() { SetTickProperties(TICK_UPDATE); }
 	virtual ~MovementComponent() {}
 
 	void Update(float _dt);

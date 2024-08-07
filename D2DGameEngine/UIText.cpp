@@ -3,6 +3,7 @@
 
 UIText::UIText(class World* _world) : UIElement(_world)
 {
+	SetTickProperties(TICK_RENDER);
 	textFormatInfo.fontFamilyName = L"Arial";
 	textFormatInfo.fontSize = 10.f;
 	textFormatInfo.fontStretch = FontStretch::Normal;

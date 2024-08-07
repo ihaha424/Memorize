@@ -25,35 +25,40 @@ bool Actor::Destroy()
 void Actor::FixedUpdate(float _fixedRate)
 {
 	for (auto [_, component] : components) {
-		component->FixedUpdate(_fixedRate);
+		if(component->CheckTickProperty(TICK_PHYSICS))
+			component->FixedUpdate(_fixedRate);
 	}
 }
 
 void Actor::PreUpdate(float _dt)
 {
 	for (auto [_, component] : components) {
-		component->PreUpdate(_dt);
+		if (component->CheckTickProperty(TICK_PRE_UPDATE))
+			component->PreUpdate(_dt);
 	}
 }
 
 void Actor::Update(float _dt)
 {
 	for (auto [_, component] : components) {
-		component->Update(_dt);
+		if (component->CheckTickProperty(TICK_UPDATE))
+			component->Update(_dt);
 	}
 }
 
 void Actor::PostUpdate(float _dt)
 {
 	for (auto [_, component] : components) {
-		component->PostUpdate(_dt);
+		if (component->CheckTickProperty(TICK_POST_UPDATE))
+			component->PostUpdate(_dt);
 	}
 }
 
 void Actor::Render(D2DRenderer* _renderer)
 {
 	for (auto [_, component] : components) {
-		component->Render(_renderer);
+		if (component->CheckTickProperty(TICK_RENDER))
+			component->Render(_renderer);
 	}
 }
 

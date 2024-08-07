@@ -2,6 +2,7 @@
 
 GCameraComponent::GCameraComponent()
 {
+	SetTickProperties(TICK_POST_UPDATE);
 }
 
 GCameraComponent::~GCameraComponent()

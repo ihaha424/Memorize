@@ -16,11 +16,15 @@ struct Stat
 
 class Player : public Character
 {
+	const int maxLevel = 50;
 	int level = 1;
+	int exp = 0;
 	Stat stat;
 public:
 	Player(class World* _world);
 	virtual ~Player();
+
+	void LevelUp();
 
 };
 
