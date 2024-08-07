@@ -4,7 +4,7 @@
 #include "../D2DGameEngine/Pawn.h"
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
-#include "MovementComponent.h"
+#include "../Memorize/MovementComponent.h"
 
 TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
 {
