@@ -123,9 +123,6 @@
     <Filter Include="Source Files\GameEngine\Components\Primitive\Shape">
       <UniqueIdentifier>{b899f860-2138-4e75-b646-e7669e5a67b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Physics">
-      <UniqueIdentifier>{d585a26a-d37b-49b9-8a76-dd6e0d71ab5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\GameFramework\Object">
       <UniqueIdentifier>{53f4200c-d692-46f5-98f6-f1c1ed5d0fa4}</UniqueIdentifier>
     </Filter>
@@ -150,7 +147,10 @@
     <Filter Include="Source Files\GameEngine\SoundSystem">
       <UniqueIdentifier>{18c5e5ce-317d-441c-9373-eac1a1c90b5a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Core\EngineTypes">
+    <Filter Include="Source Files\GameEngine\Collision">
+      <UniqueIdentifier>{d585a26a-d37b-49b9-8a76-dd6e0d71ab5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\Core\Engine">
       <UniqueIdentifier>{eac93f1c-de19-4c23-922f-1a413668140e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -366,7 +366,7 @@
       <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
     </ClInclude>
     <ClInclude Include="CollisionShape.h">
-      <Filter>Source Files\GameEngine\Physics</Filter>
+      <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
     <ClInclude Include="CircleComponent.h">
       <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
@@ -384,7 +384,7 @@
       <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
     <ClInclude Include="HitResult.h">
-      <Filter>Source Files\GameEngine\Physics</Filter>
+      <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
     <ClInclude Include="UIButton.h">
       <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
@@ -408,28 +408,52 @@
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="ObjectType.h">
-      <Filter>Source Files\GameEngine\Physics</Filter>
+      <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
     <ClInclude Include="CameraActor.h">
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClInclude>
     <ClInclude Include="CollisionResponse.h">
-      <Filter>Source Files\GameEngine\Physics</Filter>
+      <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
-      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Circle.h">
-      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
     </ClInclude>
     <ClInclude Include="DamageTypes.h">
-      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
     </ClInclude>
     <ClInclude Include="CollisionProperty.h">
-      <Filter>Source Files\GameEngine\Physics</Filter>
+      <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
     <ClInclude Include="CollisionEnabled.h">
-      <Filter>Source Files\GameEngine\Physics</Filter>
+      <Filter>Source Files\GameEngine\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CapsuleComponent.h">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlapResult.h">
+      <Filter>Source Files\GameEngine\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionSystem.h">
+      <Filter>Source Files\GameEngine\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Capsule.h">
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersectionUtil.h">
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -608,10 +632,22 @@
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClCompile>
     <ClCompile Include="HitResult.cpp">
-      <Filter>Source Files\GameEngine\Physics</Filter>
+      <Filter>Source Files\GameEngine\Collision</Filter>
     </ClCompile>
     <ClCompile Include="BoxCircleBounds.h">
-      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CapsuleComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\Primitive\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlapResult.cpp">
+      <Filter>Source Files\GameEngine\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionSystem.cpp">
+      <Filter>Source Files\GameEngine\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectionUtil.cpp">
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

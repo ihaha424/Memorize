@@ -55,6 +55,15 @@ Math::Vector2 World::ScreenToWorldPoint(Math::Vector2 position)
 	return temp;
 }
 
+bool World::CheckComponentOverlapMulti(
+	std::vector<OverlapResult>& outOverlapResults,
+	class PrimitiveComponent* primComp,
+	const Math::Vector2& pos) const {
+	// TODO
+	return false;
+}
+
+
 void World::BeginPlay()
 {
 	CurLevel->BeginPlay();

@@ -17,102 +17,104 @@ enum class CollsionPropertyPreset {
 	Trigger
 };
 
-struct CollisionProperty {
-	CollisionEnabled::Type collisionEnabled{ CollisionEnabled::NoCollision };
-	ECollisionChannel objectType{ ECollisionChannel::WorldStatic };
+using CollisionResponseMap = std::unordered_map<ECollisionChannel, CollisionResponse>;
 
-	CollisionProperty() {
+struct CollisionResponseContainer {
+
+	CollisionResponseContainer() {
 		for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
 			collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Ignore;
 		}
 	}
 
+	CollisionResponse GetCollisionResponseToChannel(ECollisionChannel channel) {
+		return collisionChannelResponseMap[channel];
+	}
+
+	void SetCollsionResponseToChannel(ECollisionChannel channel, CollisionResponse response) {
+		collisionChannelResponseMap[channel] = response;
+	}
+
+	void SetAllChannels(CollisionResponse response) {
+		for (auto& [_, ref] : collisionChannelResponseMap) {
+			ref = response;
+		}
+	}
+
+private:
+	CollisionResponseMap collisionChannelResponseMap{ GetNumCollisionChannels() };
+};
+
+struct CollisionProperty {
+	CollisionEnabled::Type collisionEnabled{ CollisionEnabled::NoCollision };
+	ECollisionChannel objectType{ ECollisionChannel::WorldStatic };
+	CollisionResponseContainer responseContainer;
+
+	CollisionProperty() {}
+
 	CollisionProperty(CollsionPropertyPreset preset) {
 		switch (preset)
 		{
 		case CollsionPropertyPreset::NoCollision:
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Ignore;
-			}
 			break;
 		case CollsionPropertyPreset::BlockAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Block;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Block);
 			break;
 		case CollsionPropertyPreset::OverlapAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Overlap;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			break;
 		case CollsionPropertyPreset::DynamicBlockAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Block;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Block);
 			break;
 		case CollsionPropertyPreset::DynamicOverlapAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Overlap;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			break;
 		case CollsionPropertyPreset::IgnorePawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Block;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Ignore);
 			break;
 		case CollsionPropertyPreset::OverlapPawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Block;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
 			break;
 		case CollsionPropertyPreset::Pawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::Pawn;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Block;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
 			SetCollsionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
 			break;
 		case CollsionPropertyPreset::Character:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::Character;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Block;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
 			SetCollsionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
 			break;
 		case CollsionPropertyPreset::Trigger:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
-			for (uint i = 0; i < GetNumCollisionChannels(); ++i) {
-				collisionChannelResponseMap[GetCollisionChannelByIndex(i)] = CollisionResponse::Overlap;
-			}
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			break;
 		}
 	}
 
 	CollisionResponse GetCollisionResponse(ECollisionChannel channel) {
-		return collisionChannelResponseMap[channel];
+		return responseContainer.GetCollisionResponseToChannel(channel);
 	}
 
 	void SetCollsionResponse(ECollisionChannel channel, CollisionResponse response) {
-		collisionChannelResponseMap[channel] = response;
+		responseContainer.SetCollsionResponseToChannel(channel, response);
 	}
 
-private:
-	std::unordered_map<ECollisionChannel, CollisionResponse> collisionChannelResponseMap{GetNumCollisionChannels()};
 };

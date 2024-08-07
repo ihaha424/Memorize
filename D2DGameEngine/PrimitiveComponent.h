@@ -3,8 +3,10 @@
 #include "SceneComponent.h"
 
 #include "CollisionShape.h"
+#include "CollisionProperty.h"
 
 #include "HitResult.h"
+#include "OverlapResult.h"
 
 /**
  * @brief geometry to be rendered or used as collision.
@@ -14,7 +16,7 @@ class PrimitiveComponent : public SceneComponent {
 
 public:
 	bool isVisible{ true };
-	bool bCanCollide{ false };
+	
 	bool bSimulatePhysics{ false };
 	bool bApplyImpulseOnDamage{ false };
 
@@ -29,6 +31,10 @@ public:
 	DXVec2 acceleration{};
 
 	// Collision
+	bool bCanCollide{ false };
+	bool bGenerateHitEvent{ false };
+	bool bGenerateOverlapEvent{ false };
+	CollisionProperty collisionProperty;	// Default NoCollision
 	using OverlappingComponentSet = std::map<PrimitiveComponent*, HitResult>;
 	OverlappingComponentSet previouslyOverlappingComponents;
 	OverlappingComponentSet currentlyOverlappingComponents;
@@ -46,33 +52,6 @@ public:
 	}
 
 	virtual float GetMass() const { return mass; }
-
-	virtual CollisionShape GetCollisionShape() const {
-		// TODO:
-		return CollisionShape();
-	}
-
-	/**
-	 * @brief 컴포넌트가 특정 위치에서 다른 컴포넌트와 겹치는지 확인합니다.
-	 * @param component 오버랩 테스트할 컴포넌트
-	 * @param pos 이 컨포넌트의 위치
-	 * @return 겹치면
-	 */
-	bool CheckComponentOverlapComponent(PrimitiveComponent* component, const DXVec2& pos) {
-		return CheckComponentOverlapComponentImpl(component, pos);
-	}
-
-	virtual bool CheckLineTraceComponent(
-		HitResult& outHit,
-		const DXVec2 start,
-		const DXVec2 end) {
-		// TODO:
-		return true;
-	}
-
-	void DispatchBlockingHit() {
-		// TODO:
-	}
 
 	// Physics System
 
@@ -133,7 +112,31 @@ public:
 	virtual void OnComponentEndOverlap() {}
 	virtual void OnComponentHit() {}
 
+	void SetCollisionEnabled(CollisionEnabled::Type type) {
+		collisionProperty.collisionEnabled = type;
+		if (type == CollisionEnabled::NoCollision) {
+			bCanCollide = false;
+			// Unregister collision
+		}
+		else {
+			bCanCollide = true;
+			// Register collision
+		}
+	}
+
+	void SetCollisionObjectType(ECollisionChannel objectType) {
+		collisionProperty.objectType = objectType;
+	}
+
+	void SetCollisionResponseToChannels(CollisionResponseContainer responseContainer) {
+		collisionProperty.responseContainer = responseContainer;
+	}
+
 	// Collision
+	virtual bool IsCollisionEnabled() const {
+		return collisionProperty.collisionEnabled == CollisionEnabled::EnableCollision;
+	}
+
 	virtual CollisionEnabled::Type GetCollisionEnabled() const override {
 		return CollisionEnabled::NoCollision;
 	}
@@ -142,42 +145,81 @@ public:
 		return ECollisionChannel::WorldStatic;
 	}
 
-	virtual BoxCircleBounds CalculateBounds(const D2D_Mat3x2F& _worldTransform) override {
+	virtual BoxCircleBounds CalculateBounds(const D2D_Mat3x2F& _worldTransform) const override {
+		D2D_Point2F c = { bounds.center.x, bounds.center.y };
+		c = c * _worldTransform;
+
+		D2D_Point2F e = { bounds.boxExtent.width, bounds.boxExtent.height };
+		e = e * _worldTransform;
+		
+		return BoxCircleBounds(Box{ {c.x, c.y}, {e.x, e.y} });
+	}
+
+	virtual BoxCircleBounds CalculateLocalBounds() const {
 		return BoxCircleBounds{};
 	}
 
-	virtual void UpdateBounds() override {}
+	virtual void UpdateBounds() override {
+		bounds = CalculateLocalBounds();
+	}
 
-	virtual void UpdateOverlaps() override {
-		// Check begin overlap
-		for (auto& [otherCollider, collsionInfo] : currentlyOverlappingComponents) {
-			auto it = previouslyOverlappingComponents.find(otherCollider);
-			if (it == previouslyOverlappingComponents.end()) {
-				//if (_notify) _notify->OnBeginOverlap(this, otherCollider, collsionInfo);
-			}
-		}
-		// Check end overlap
-		for (auto& [otherCollider, collsionInfo] : previouslyOverlappingComponents) {
-			auto it = currentlyOverlappingComponents.find(otherCollider);
-			if (it == currentlyOverlappingComponents.end()) {
-				//if (_notify) _notify->OnEndOverlap(this, otherCollider, collsionInfo);
-			}
-		}
+	virtual CollisionShape GetCollisionShape() const {
+		// TODO:
+		return CollisionShape{};
+	}
+
+	/**
+	 * @brief 컴포넌트가 특정 위치에서 다른 컴포넌트와 겹치는지 확인합니다.
+	 * @param component 오버랩 테스트할 컴포넌트
+	 * @param pos 이 컨포넌트를 테스트할 위치
+	 * @return True 이면 오버랩 합니다.
+	 */
+	bool CheckComponentOverlapComponent(PrimitiveComponent* component, const DXVec2& pos) {
+		return CheckComponentOverlapComponentImpl(component, pos);
+	}
+
+	bool CheckComponentOverlapComponentWithResult(
+		PrimitiveComponent* component, const DXVec2& pos,
+		std::vector<OverlapResult>& outOverlap) {
+		return CheckComponentOverlapComponentWithResultImpl(component, pos, outOverlap);
+	}
+
+	virtual bool CheckLineTraceComponent(
+		HitResult& outHit,
+		const DXVec2 start,
+		const DXVec2 end) {
+		// TODO:
+		return true;
+	}
+
+	void DispatchBlockingHit() {
+		// TODO:
+	}
+
+	bool IsOverlappingComponent(const PrimitiveComponent* otherComp) const {
+		// TODO:
+	}
+
+	// TODO: Place it in the UpdateOverlaps()
+	void PushOverlappingComponent(PrimitiveComponent* otherComponent, const HitResult& hitResult) {
+		currentlyOverlappingComponents.insert({ otherComponent, hitResult });
+	}
+
+	/**
+	 * @brief 오버랩 스테이트를 업데이트 합니다.
+	 */
+	virtual void UpdateOverlaps() override;
+
+	bool IsSimulatingPhysics() override {
+		return bSimulatePhysics;
 	}
 
 	virtual DXVec2 GetComponentVelocity() const override {
 		return Super::GetComponentVelocity();
 	}
 
-	bool IsSimulatingPhysics() override {
-		return bSimulatePhysics;
-	}
-
 	// Physics update
-	virtual void PreUpdate(float _dt) override {
-	}
-
-	virtual void Update(float _dt) override {
+	virtual void FixedUpdate(float _dt) override {
 		if (bSimulatePhysics) {
 			// Simple semi-implicit Euler integration
 			acceleration -= velocity * dragForce; // Damping effect
@@ -192,28 +234,42 @@ public:
 			velocity = unitVel * speed;
 
 			// Apply the movement
-			MoveComponent(velocity * _dt, true, nullptr);
+			HitResult hitResult;
+			MoveComponent(velocity * _dt, true, &hitResult);
 		}
 		else {
-			Super::Update(_dt);
+			Super::FixedUpdate(_dt);
 		}
-	}
-
-	virtual void PostUpdate(float _dt) override {
 	}
 
 protected:
 
 	virtual bool CheckComponentOverlapComponentImpl(
-		PrimitiveComponent* component, 
+		PrimitiveComponent* primComp, 
 		const DXVec2& pos) {
+		if (!bCanCollide || !primComp->bCanCollide) return false;
+
+		CollisionShape myCollisionShape = GetCollisionShape();
+		CollisionShape otherCollisionShape = primComp->GetCollisionShape();
+
+		if (myCollisionShape.IsNearlyZero() || otherCollisionShape.IsNearlyZero())
+			return false;
+
+
+
+		return false;
+	}
+
+	virtual bool CheckComponentOverlapComponentWithResultImpl(
+		PrimitiveComponent* component, const DXVec2& pos,
+		std::vector<OverlapResult>& outOverlap) {
 		return false;
 	}
 
 	virtual bool MoveComponentImpl(
-		const D2D_Vec2F& delta,
+		const DXVec2& delta,
 		bool bSweep,
-		HitResult& outHitResult) {
+		HitResult* outHitResult) override {
 		// TODO:
 		return false;
 	}

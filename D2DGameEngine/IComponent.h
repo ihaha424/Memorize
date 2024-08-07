@@ -5,6 +5,9 @@ class IComponent : public IObject {
 	class Actor* owner{ nullptr };
 
 public:
+	using ComponentTagRegistry = std::unordered_set<std::string>;
+	ComponentTagRegistry componentTags;
+
 	IComponent() {
 		EnableTickEverySecond(false);
 	}
