@@ -2,8 +2,8 @@
 #include "../D2DGameEngine/BitmapComponent.h"
 #include "../D2DGameEngine/Character.h"
 
-ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world, class Character* _owner)
-	: Projectile(_world, _owner)
+ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
+	: Projectile(_world)
 {
 	SetTickProperties(TICK_UPDATE | TICK_RENDER);
 

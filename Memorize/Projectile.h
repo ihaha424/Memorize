@@ -13,6 +13,6 @@ public:
 
 	void SetOwner(class Character* _owner) { owner = _owner; }
 	void SetVelocity(Math::Vector2 _direction, float _speed);
-	virtual void Initialize() = 0;
+	virtual void Initialize() {}
 };
 

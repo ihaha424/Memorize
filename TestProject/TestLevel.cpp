@@ -21,7 +21,7 @@ void TestLevel::Enter()
 	TestPlayerController* pc = CreateActor<TestPlayerController>();
 	player->SetController(pc);
 
-	ChasingWaterBallProjectile* Water = CreateActor<cc>();
+	ChasingWaterBallProjectile* Water = CreateActor<ChasingWaterBallProjectile>();
 
 
 }

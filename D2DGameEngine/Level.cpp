@@ -62,7 +62,7 @@ void Level::Update(float _dt)
 {
 	for (auto actor : actorList)
 	{
-		if (actor->CheckTickProperty(TICK_UPDATE))
+		if (actor->CheckTickProperty(TICK_UPDATE) && actor->GetStatus() == EActorStatus::AS_ACTIVE)
 		{
 			actor->Update(_dt);
 		}

@@ -12,7 +12,7 @@ class ChasingWaterBallProjectile : public Projectile
 	DotTween<float> xValue;
 	DotTween<float> yValue;
 public:
-	ChasingWaterBallProjectile(class World* _world, class Character* _owner);
+	ChasingWaterBallProjectile(class World* _world);
 	virtual ~ChasingWaterBallProjectile();
 
 	virtual void Update(float _dt) override;
