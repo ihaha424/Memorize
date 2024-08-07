@@ -7,7 +7,7 @@
 #include "../D2DGameEngine/World.h"
 
 
-ChasingWaterBall::ChasingWaterBall(World* _world) : ProjectileSkill(_world, L"S11000")
+ChasingWaterBall::ChasingWaterBall()
 {
 	SetTickProperties(TICK_UPDATE);
 
@@ -21,6 +21,16 @@ ChasingWaterBall::ChasingWaterBall(World* _world) : ProjectileSkill(_world, L"S1
 ChasingWaterBall::~ChasingWaterBall()
 {
 }
+
+void ChasingWaterBall::BeginPlay()
+{
+	for (int i = 0; i < projectileMaxCount; i++)
+	{
+		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
+		projectiles[i]->Inactivate();
+	}
+}
+
 
 void ChasingWaterBall::UseSkill()
 {

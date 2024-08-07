@@ -32,6 +32,7 @@ void TestPlayerController::BeginPlay()
 	//각 스킬의 인스턴스를 미리 생성
 	skills = {
 		{ std::type_index(typeid(Fireball)), CreateComponent<Fireball>()},
+		{ std::type_index(typeid(ChasingWaterBall)), CreateComponent<ChasingWaterBall>()},
 	};
 
 	//스킬의 오너 설정

@@ -8,9 +8,10 @@ class ChasingWaterBall : public ProjectileSkill
 	int onceClickCount = 3;
 	float speed = 10.f;
 public:
-	ChasingWaterBall(class World* _world);
+	ChasingWaterBall();
 	virtual ~ChasingWaterBall();
 
+	virtual void BeginPlay() override;
 	virtual void UseSkill() override;
 
 };
