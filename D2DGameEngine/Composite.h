@@ -1,6 +1,7 @@
 #pragma once
 
 #include "INode.h"
+#include "RandomGenerator.h"
 
 struct Composite : public INode {
 	std::vector<INode*> children;
@@ -73,3 +74,69 @@ struct Selector : public Composite {
 	}
 };
 
+struct RandomSelector : public Composite {
+	std::size_t i;
+
+	virtual void Init() override {
+		status = NodeStatus::Ready;
+		std::shuffle(children.begin(), children.end(), Random());
+	}
+
+	virtual void Traverse(float dt) override {
+		for (; i < children.size(); ++i) {
+			INode* child = children[i];
+			child->Traverse(dt);
+			switch (child->status) {
+			case NodeStatus::Success: {
+				status = NodeStatus::Success;
+				return;
+			}
+			case NodeStatus::Running: {
+				status = NodeStatus::Running;
+				return;
+			}
+			case NodeStatus::Failure:
+				break;
+			}
+		}
+		status = NodeStatus::Failure;
+	}
+};
+
+struct Parallel : public Composite {
+	std::size_t i;
+
+	virtual void Init() override {
+		status = NodeStatus::Ready;
+		i = 0;
+	}
+
+	virtual void Traverse(float dt) override {
+		bool anyRunning = false;
+		bool allSuccess = true;
+		for (; i < children.size(); ++i) {
+			INode* child = children[i];
+			child->Traverse(dt);
+			switch (child->status) {
+			case NodeStatus::Running:
+				anyRunning = true;
+				allSuccess = false;
+				break;
+			case NodeStatus::Failure:
+				allSuccess = false;
+				break;
+			case NodeStatus::Success:
+				break;
+			}
+		}
+		if (allSuccess) {
+			status = NodeStatus::Success;
+		}
+		else if (anyRunning) {
+			status = NodeStatus::Running;
+		}
+		else {
+			status = NodeStatus::Failure;
+		}
+	}
+};

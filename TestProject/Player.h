@@ -8,5 +8,6 @@ public:
 	Player(class World* _world);
 	virtual ~Player();
 
+	
 };
 

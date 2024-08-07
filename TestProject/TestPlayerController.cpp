@@ -1,6 +1,10 @@
 #include "TestPlayerController.h"
 #include "../D2DGameEngine/InputComponent.h"
+#include "../D2DGameEngine/CameraComponent.h"
 #include "../D2DGameEngine/Pawn.h"
+#include "../D2DGameEngine/Mouse.h"
+#include "../D2DGameEngine/World.h"
+#include "MovementComponent.h"
 
 TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
 {
@@ -19,6 +23,9 @@ void TestPlayerController::BeginPlay()
 
 void TestPlayerController::MovePlayer()
 {
-	Math::Vector2 nowPos = owner->GetLocation();
-	owner->SetLocation(nowPos.x + 100, nowPos.y);
+	Math::Vector2 mousePos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
+	Math::Vector2 direction = mousePos - owner->GetLocation();
+	direction.Normalize();
+	owner->GetComponent<MovementComponent>()->SetDirection(direction);
+	owner->GetComponent<MovementComponent>()->SetSpeed(500.0f);
 }
