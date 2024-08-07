@@ -153,6 +153,9 @@
     <Filter Include="Source Files\GameEngine\Core\Engine">
       <UniqueIdentifier>{eac93f1c-de19-4c23-922f-1a413668140e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Components\FSMComponent">
+      <UniqueIdentifier>{5bd03e39-5259-4f0d-a70d-21aa236f4ad8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -247,9 +250,6 @@
     </ClInclude>
     <ClInclude Include="IObject.h">
       <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneComponent.h">
-      <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
     <ClInclude Include="FactoryManager.h">
       <Filter>Source Files\GameEngine\Core</Filter>
@@ -458,6 +458,15 @@
     <ClInclude Include="AIController.h">
       <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
     </ClInclude>
+    <ClInclude Include="FSMComponent.h">
+      <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Source Files\GameEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMState.h">
+      <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -654,6 +663,12 @@
     </ClCompile>
     <ClCompile Include="AIController.cpp">
       <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="FSMComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="FSMState.cpp">
+      <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

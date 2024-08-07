@@ -157,6 +157,8 @@
     <ClInclude Include="Capsule.h" />
     <ClInclude Include="CapsuleComponent.h" />
     <ClInclude Include="CircleComponent.h" />
+    <ClInclude Include="FSMComponent.h" />
+    <ClInclude Include="FSMState.h" />
     <ClInclude Include="IntersectionUtil.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="ObjectType.h" />
@@ -258,6 +260,8 @@
     <ClCompile Include="CapsuleComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="EventBus.cpp" />
+    <ClCompile Include="FSMComponent.cpp" />
+    <ClCompile Include="FSMState.cpp" />
     <ClCompile Include="HitResult.cpp" />
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="IEventListener.cpp" />

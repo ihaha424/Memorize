@@ -10,12 +10,7 @@
 ChasingWaterBall::ChasingWaterBall()
 {
 	SetTickProperties(TICK_UPDATE);
-
-	for (int i = 0; i < projectileMaxCount; i++)
-	{
-		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
-		projectiles[i]->Inactivate();
-	}
+	projectileMaxCount = 3;
 }
 
 ChasingWaterBall::~ChasingWaterBall()
@@ -50,6 +45,7 @@ void ChasingWaterBall::UseSkill()
 	{
 		projectiles[i]->Activate();
 		projectiles[i]->SetVelocity({0.f, 0.f}, 0.f);
+		projectiles[i]->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		projectiles[i]->Initialize();
 	}
 }
