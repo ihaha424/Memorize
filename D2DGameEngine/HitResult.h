@@ -8,10 +8,10 @@ struct HitResult {
 	bool bStartPenetrating : 1; // 충돌이 방금 시작 되었는지
 	PrimitiveComponent* hitComponent;	// 충돌 당한 컴포넌트
 
-	float distance;		// 트레이싱 시작점부터 로케이션까지의 거리
 	DXVec2 impactNormal;	// 충돌당한 오브젝트의 히트 접점에서의 노말 벡터
 	DXVec2 impactPoint;		// 트레이싱 도형의 히트 접점
 
+	float distance;		// 트레이싱 시작점부터 로케이션까지의 거리
 	DXVec2 location;	// 임펙팅 오브젝트의 충돌시 위치
 
 	DXVec2 normal;	// 충돌당한 오브젝트의 중심점에서 임펙팅 오브젝트 중심점까지의 방향

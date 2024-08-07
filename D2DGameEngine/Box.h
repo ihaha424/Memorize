@@ -34,7 +34,7 @@ struct Box {
 		return ul.y - lr.y;
 	}
 
-	std::vector<DXVec2> GetVerticies() const {
+	std::vector<DXVec2> GetVertices() const {
 		return { ul, {lr.x, ul.y}, lr, {ul.x, lr.y} };
 	}
 

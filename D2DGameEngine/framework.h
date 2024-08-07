@@ -99,3 +99,12 @@ inline void SafeRelease(std::unique_ptr<Interface>& upInterface) {
 		upInterface.release();
 	}
 }
+
+inline constexpr 
+float Clamp(float value, float min, float max) {
+	if (value < min) return min;
+	if (value > max) return max;
+	return value;
+}
+
+constexpr float EPSILON = 1e-8;

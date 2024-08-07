@@ -2,6 +2,8 @@
 
 #include "framework.h"
 
+#include "Box.h"
+
 struct TPolygon {
 	uint numPoints;
 	std::vector<Math::Vector2> points;
@@ -9,12 +11,12 @@ struct TPolygon {
 	TPolygon() : numPoints{ 0U } {}
 
 	TPolygon(std::initializer_list<Math::Vector2> _points) :
-		numPoints{ _points.size() } {
-		// TODO: convex hull sorting
-
+		numPoints{ _points.size() },
+		points(_points) {
+		// TODO: may sort the points clockwise, and find convex hull.
 	}
 
-	DXVec2 GetCenter() const {
+	Math::Vector2 GetCenter() const {
 		Math::Vector2 res{};
 		for (const Math::Vector2& p : points) {
 			res += p;
@@ -38,6 +40,28 @@ struct TPolygon {
 		}
 
 		return n;
+	}
+
+	Box GetAABB() {
+		// NOTE: ChatGPT 4 Generated Code
+		if (points.empty()) return { {0, 0}, {0, 0} };
+
+		float minX = points[0].x;
+		float maxX = points[0].x;
+		float minY = points[0].y;
+		float maxY = points[0].y;
+
+		for (const auto& p : points) {
+			if (p.x < minX) minX = p.x;
+			if (p.x > maxX) maxX = p.x;
+			if (p.y < minY) minY = p.y;
+			if (p.y > maxY) maxY = p.y;
+		}
+
+		return {
+			{minX, maxY},
+			{maxX, minY}
+		};
 	}
 
 };
