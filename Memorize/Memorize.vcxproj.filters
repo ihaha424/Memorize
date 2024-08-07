@@ -15,11 +15,14 @@
     <Filter Include="Content">
       <UniqueIdentifier>{aa9bbbf5-f815-4e01-8a60-b3c840a662ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Player">
-      <UniqueIdentifier>{542d6a41-b6ff-4b7e-99da-ed1e25132dbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\App\Boss">
       <UniqueIdentifier>{4a134288-b7d1-43e4-b1ef-15ab459df1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill">
+      <UniqueIdentifier>{7dff0eef-f890-480a-bf43-5e6fa81db9dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Player">
+      <UniqueIdentifier>{542d6a41-b6ff-4b7e-99da-ed1e25132dbe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,19 +39,31 @@
       <Filter>Source Files\App\Boss</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClCompile>
     <ClCompile Include="TestPlayerController.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClCompile>
     <ClCompile Include="GCameraComponent.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>Source Files\App\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileSkill.cpp">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeSkill.cpp">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffSkill.cpp">
+      <Filter>Source Files\App\Skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,19 +83,31 @@
       <Filter>Source Files\App\Boss</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestPlayerController.h">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="GCameraComponent.h">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Source Files\App</Filter>
     </ClInclude>
     <ClInclude Include="Boss.h">
       <Filter>Source Files\App\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileSkill.h">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeSkill.h">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffSkill.h">
+      <Filter>Source Files\App\Skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
