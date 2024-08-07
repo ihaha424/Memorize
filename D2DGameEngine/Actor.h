@@ -66,7 +66,7 @@ public:
 	 * @brief Actor의 상태를 AS_AWAKE에서 AS_ACTIVE로 변경합니다.
 	 *		  레벨이 시작될 때 호출됩니다. 
 	 */
-	virtual void BeginPlay() { status = AS_ACTIVE; };
+	virtual void BeginPlay();
 
 	/**
 	 * @brief Actor의 상태를 AS_DESTROY로 변경합니다. 

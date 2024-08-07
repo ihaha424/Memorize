@@ -10,6 +10,7 @@
 TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
 {
 	SetTickProperties(TICK_UPDATE);
+
 }
 
 void TestPlayerController::SetupInputComponent()
@@ -26,8 +27,6 @@ void TestPlayerController::EndSkill()
 
 void TestPlayerController::BeginPlay()
 {
-	__super::BeginPlay();
-
 	//각 스킬의 인스턴스를 미리 생성
 	skills = {
 		{ std::type_index(typeid(Fireball)), CreateComponent<Fireball>()},
@@ -36,10 +35,11 @@ void TestPlayerController::BeginPlay()
 	//스킬의 오너 설정
 	for (auto skill : skills)
 	{
-		skill.second->SetOwner(this);
-		skill.second->BeginPlay();
+		skill.second->SetPlayer(this);
 	}
 
+
+	__super::BeginPlay();
 	SetupInputComponent();
 }
 
