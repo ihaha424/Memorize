@@ -1,17 +1,50 @@
 #pragma once
 #include "../D2DGameEngine/PlayerController.h"
 #include "../D2DGameEngine/Debug.h"
+#include "Skill.h"
 
 class TestPlayerController : public PlayerController
 {
 	LOG_REGISTER_OBJ(TestPlayerController)
 	Math::Vector2 destPos;
+
+	//현재 발동중인 스킬
+	class Skill* nowSkill = nullptr;
+
+	//스킬 인스턴스 맵 
+	using SkillRegistry = std::unordered_multimap<std::type_index, class Skill*>;
+	SkillRegistry skills;
+
+
 public:
 	TestPlayerController(class World* _world);
 	virtual void SetupInputComponent() override;
 
+	/**
+	 * @brief 지정한 스킬을 사용
+	 * @tparam T : Skill 상속받은 클래스
+	 */
+	template <typename T>
+	void StartSkill();
+
+	/**
+	 * @brief 현재 발동중인 스킬을 끝냅니다. 
+	 */
+	void EndSkill();
+
 	virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;
+
 	void MovePlayer();
 };
 
+template<typename T>
+inline void TestPlayerController::StartSkill()
+{
+	if (nowSkill) return;
+	auto range = skills.equal_range(std::type_index(typeid(T)));
+	if (range.first != skills.end()) {
+		nowSkill = range.first->second;
+		nowSkill->UseSkill();
+	}
+}

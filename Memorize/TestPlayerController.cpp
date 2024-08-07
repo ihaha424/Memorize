@@ -5,21 +5,44 @@
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
 #include "MovementComponent.h"
+#include "Fireball.h"
 
 TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
 {
 	SetTickProperties(TICK_UPDATE);
-
 }
 
 void TestPlayerController::SetupInputComponent()
 {
 	inputComponent->ActionBinding(this, 0x00, &TestPlayerController::MovePlayer, InputState::KeyDown, MouseInput);
+	inputComponent->ActionBinding(this, DIK_Q, &TestPlayerController::StartSkill<Fireball>, InputState::KeyDown, KeyBoardInput);
+
+}
+
+void TestPlayerController::EndSkill()
+{
+	nowSkill = nullptr;
 }
 
 void TestPlayerController::BeginPlay()
 {
 	__super::BeginPlay();
+
+	//각 스킬의 인스턴스를 미리 생성
+	skills = {
+		{ std::type_index(typeid(Fireball)), GetWorld()->GetCurLevel()->CreateActor<Fireball>()},
+	};
+
+	//스킬의 오너 설정
+	for (auto skill : skills)
+	{
+		skill.second->SetOwner(this);
+		skill.second->BeginPlay();
+	}
+		
+
+
+
 	SetupInputComponent();
 }
 

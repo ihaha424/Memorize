@@ -24,9 +24,6 @@
     <Filter Include="Source Files\App\Player">
       <UniqueIdentifier>{542d6a41-b6ff-4b7e-99da-ed1e25132dbe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\App\Skill\PlayerSkill">
-      <UniqueIdentifier>{22481350-baeb-466f-b214-0e4c592cefdd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\App\Skill\Projectile">
       <UniqueIdentifier>{1144d321-bafe-4ace-8b41-1c447403593e}</UniqueIdentifier>
     </Filter>

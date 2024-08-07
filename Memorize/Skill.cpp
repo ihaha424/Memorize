@@ -1,5 +1,6 @@
 #include "Skill.h"
 #include "Player.h"
+#include "../D2DGameEngine/PlayerController.h"
 
 int Skill::wholeSkillLevel = 0;
 
@@ -11,6 +12,12 @@ Skill::Skill(World* _world, ESkillType _type, std::wstring _id) : Actor(_world)
 
 Skill::~Skill()
 {
+}
+
+void Skill::SetOwner(PlayerController* _pc)
+{
+	controller = _pc;
+	player = controller->GetPlayer();
 }
 
 void Skill::UseSkill()
