@@ -150,6 +150,9 @@
     <Filter Include="Source Files\GameEngine\SoundSystem">
       <UniqueIdentifier>{18c5e5ce-317d-441c-9373-eac1a1c90b5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Core\EngineTypes">
+      <UniqueIdentifier>{eac93f1c-de19-4c23-922f-1a413668140e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -380,9 +383,6 @@
     <ClInclude Include="DamageEvent.h">
       <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
-    <ClInclude Include="DamageTypes.h">
-      <Filter>Source Files\GameEngine\GameFramework</Filter>
-    </ClInclude>
     <ClInclude Include="HitResult.h">
       <Filter>Source Files\GameEngine\Physics</Filter>
     </ClInclude>
@@ -407,14 +407,29 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionChannel.h">
+    <ClInclude Include="ObjectType.h">
       <Filter>Source Files\GameEngine\Physics</Filter>
     </ClInclude>
     <ClInclude Include="CameraActor.h">
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionTypes.h">
-      <Filter>Source Files\GameEngine\GameFramework</Filter>
+    <ClInclude Include="CollisionResponse.h">
+      <Filter>Source Files\GameEngine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageTypes.h">
+      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionProperty.h">
+      <Filter>Source Files\GameEngine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionEnabled.h">
+      <Filter>Source Files\GameEngine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -594,6 +609,9 @@
     </ClCompile>
     <ClCompile Include="HitResult.cpp">
       <Filter>Source Files\GameEngine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCircleBounds.h">
+      <Filter>Source Files\GameEngine\Core\EngineTypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

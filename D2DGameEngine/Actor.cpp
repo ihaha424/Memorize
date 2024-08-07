@@ -67,7 +67,7 @@ Math::Vector2 Actor::GetLocation() const
 {
 	if (rootComponent != nullptr)
 	{
-		D2D_Point2F pos = rootComponent->GetWorldPosition();
+		D2D_Point2F pos = rootComponent->GetComponentLocation();
 		return { pos.x, pos.y };
 	}
 }

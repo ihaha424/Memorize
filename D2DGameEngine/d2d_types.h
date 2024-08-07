@@ -21,4 +21,3 @@ struct Extent2D {
 };
 
 using uint = unsigned int;
-

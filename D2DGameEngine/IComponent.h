@@ -5,7 +5,9 @@ class IComponent : public IObject {
 	class Actor* owner{ nullptr };
 
 public:
-	IComponent() {}
+	IComponent() {
+		EnableTickEverySecond(false);
+	}
 	virtual ~IComponent() {}
 
 	void SetOwner(class Actor* _owner) { owner = _owner; }

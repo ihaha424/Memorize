@@ -1,10 +1,10 @@
 #pragma once
 
-#include "SceneComponent.h"
+#include "PrimitiveComponent.h"
 #include "SpriteResource.h"
 #include "ResourceManager.h"
 
-class BitmapComponent : public SceneComponent {
+class BitmapComponent : public PrimitiveComponent {
 	using Super = SceneComponent;
 
 	D2D_RectF frame;

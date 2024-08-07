@@ -2,21 +2,30 @@
 
 #include "IComponent.h"
 
+#include "CollisionEnabled.h"
+#include "ObjectType.h"
+#include "BoxCircleBounds.h"
 #include "HitResult.h"
 
+/**
+ * @brief Has transform and hierarchy but no rendering and collision
+ */
 class SceneComponent : public IComponent {
 	
-protected:
+public:
+
 	SceneComponent* parent;
 	std::list<SceneComponent*> children;
+
+	// Bounds
+	bool bShouldUpdateBounds{ false };
+	BoxCircleBounds bounds;
+
+protected:
 
 	D2D_Mat3x2F S;
 	D2D_Mat3x2F R;
 	D2D_Mat3x2F T;
-	
-	// TODO: Gizmo
-
-	// TODO: Bounds BoxSphereBounds
 
 	// Component Velocity
 	DXVec2 velocity{ 0.f, 0.f };
@@ -36,10 +45,22 @@ public:
 
 	virtual D2D_Mat3x2F GetWorldTransform() const;
 
-	D2D_Point2F GetWorldPosition() const {
+	D2D_Point2F GetComponentLocation() const {
 		D2D_Point2F p{};
 		p = p * GetWorldTransform();
 		return p;
+	}
+
+	D2D_Vec2F GetRightVector() const {
+		D2D_Point2F p{ 1.f, 0.f };
+		p = p * GetWorldTransform();
+		return { p.x, p.y };
+	}
+
+	D2D_Vec2F GetUpVector() const {
+		D2D_Point2F p{ 0.f, 1.f };
+		p = p * GetWorldTransform();
+		return { p.x, p.y };
 	}
 
 	void SetScale(float x, float y) {
@@ -78,10 +99,6 @@ public:
 		velocity += _velocity;
 	}
 
-	DXVec2 GetComponentVelocity() const {
-		return velocity;
-	}
-
 	bool MoveComponent(
 		const DXVec2& delta,
 		bool bSweep,
@@ -90,11 +107,33 @@ public:
 	}
 
 	// Collision
-	// vitual CollisionEnabled::Type GetCollisionEnabled() {}
+	virtual CollisionEnabled::Type GetCollisionEnabled() const {
+		return CollisionEnabled::NoCollision;
+	}
+
+	virtual ECollisionChannel GetCollisionObjectType() const {
+		return ECollisionChannel::WorldStatic;
+	}
+
+	virtual BoxCircleBounds CalculateBounds(const D2D_Mat3x2F& _worldTransform) {
+		return BoxCircleBounds{};
+	}
+
+	virtual void UpdateBounds() {}
+
+	virtual void UpdateOverlaps() {
+		// Update overlap states
+	}
 
 	virtual bool IsSimulatingPhysics() {
 		return false;
 	}
+
+	virtual DXVec2 GetComponentVelocity() const {
+		return velocity;
+	}
+
+	// TODO: Destroy Component
 
 	// Tick
 	virtual void Update(float _dt) override {

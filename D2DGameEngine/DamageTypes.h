@@ -8,7 +8,9 @@ struct DamageType {
 	float damageImpulse; // 데미지가 엑터에 입히는 충격량
 };
 
-struct DamageType_Fire : public DamageType {
+//struct DamageType_Fire : public DamageType {
+//
+//};
 
-};
 
+// Actor TakeDamage;

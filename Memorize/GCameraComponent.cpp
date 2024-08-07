@@ -12,7 +12,7 @@ void GCameraComponent::PostUpdate(float _dt)
 {
 	CameraComponent::PostUpdate(_dt);
 
-	D2D_POINT_2F parentPos = parent->GetWorldPosition();
+	D2D_POINT_2F parentPos = parent->GetComponentLocation();
 	if (parentPos.x < screenSize.x / 2)
 	{
 		T.dx = screenSize.x / 2 - parentPos.x;

@@ -50,7 +50,7 @@ void World::RemoveUICanvas(Canvas* canvas)
 Math::Vector2 World::ScreenToWorldPoint(Math::Vector2 position)
 {
 	Math::Vector2 center = {CameraComponent::screenSize.x/2, CameraComponent::screenSize.y / 2 };
-	Math::Vector2 temp = position - center + Math::Vector2{mainCamera->GetWorldPosition().x, mainCamera->GetWorldPosition().y};
+	Math::Vector2 temp = position - center + Math::Vector2{mainCamera->GetComponentLocation().x, mainCamera->GetComponentLocation().y};
 
 	return temp;
 }
