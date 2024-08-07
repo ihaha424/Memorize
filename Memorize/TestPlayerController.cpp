@@ -31,8 +31,7 @@ void TestPlayerController::BeginPlay()
 
 	//각 스킬의 인스턴스를 미리 생성
 	skills = {
-		{ std::type_index(typeid(Fireball)), GetWorld()->GetCurLevel()->CreateActor<Fireball>()},
-		{ std::type_index(typeid(ChasingWaterBall)), GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBall>()},
+		{ std::type_index(typeid(Fireball)), CreateComponent<Fireball>()},
 	};
 
 	//스킬의 오너 설정
@@ -41,9 +40,6 @@ void TestPlayerController::BeginPlay()
 		skill.second->SetOwner(this);
 		skill.second->BeginPlay();
 	}
-		
-
-
 
 	SetupInputComponent();
 }

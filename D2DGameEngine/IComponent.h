@@ -13,6 +13,7 @@ public:
 	}
 	virtual ~IComponent() {}
 
+	virtual void BeginPlay() {} ;
 	void SetOwner(class Actor* _owner) { owner = _owner; }
 	class Actor* GetOwner() const { return owner; }
 	class World* GetWorld() const;

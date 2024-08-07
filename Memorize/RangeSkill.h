@@ -6,7 +6,7 @@ protected:
 	float range;
 
 public:
-	RangeSkill(class World* _world, std::wstring _id);
+	RangeSkill();
 	virtual ~RangeSkill();
 
 	float GetRange() { return range; }

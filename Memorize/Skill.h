@@ -1,5 +1,5 @@
 #pragma once
-#include "../D2DGameEngine/Actor.h"
+#include "../D2DGameEngine/IComponent.h"
 
 enum ESkillType
 {
@@ -12,7 +12,7 @@ enum ESkillElement
 };
 
 
-class Skill : public Actor
+class Skill : public IComponent
 {
 	static int wholeSkillLevel;
 
@@ -26,12 +26,12 @@ protected:
 	int mana = 0;
 	
 public:
-	Skill(class World* _world, ESkillType _type, std::wstring _id);
+	Skill();
 	virtual ~Skill();
 
 	static int GetWholeSkillLevel() { return wholeSkillLevel; }
 
-	void SetOwner(PlayerController* _pc);
+	void SetPlayer(PlayerController* _pc);
 
 	/**
 	 * @brief 스킬을 사용합니다. 스킬 사용 카운트가 증가합니다. 
