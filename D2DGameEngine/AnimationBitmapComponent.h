@@ -22,10 +22,11 @@ class AnimationBitmapComponent : public BitmapComponent {
 	float currentFrameTime{ 0.f };
 
 public:
-	AnimationBitmapComponent() :
-		AnimationBitmapComponent(false) {}
+	AnimationBitmapComponent(Actor* _owner) :
+		AnimationBitmapComponent(false, _owner) {}
 
-	AnimationBitmapComponent(bool isLoop) :
+	AnimationBitmapComponent(bool isLoop, Actor* _owner) :
+		BitmapComponent(_owner),
 		isLoop{ isLoop } {
 		SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	}

@@ -6,7 +6,7 @@ class Pawn;
 class CameraComponent : public SceneComponent
 {
 public:
-    CameraComponent();
+    CameraComponent(Actor* _owner);
     virtual ~CameraComponent();
 
     virtual void Update(float _dt) override;

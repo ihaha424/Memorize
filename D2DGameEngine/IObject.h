@@ -80,6 +80,7 @@ public:
 	 * @brief 오브젝트의 현재 상태를 반환합니다. 
 	 */
 	EObjectStatus GetStatus() { return status; }
+	void SetStatus(EObjectStatus _status) { status = _status; }
 
 
 	virtual void FixedUpdate(float _fixedRate) {}

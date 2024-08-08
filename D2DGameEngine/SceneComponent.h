@@ -31,7 +31,8 @@ protected:
 	DXVec2 velocity{ 0.f, 0.f };
 public:
 
-	SceneComponent() :
+	SceneComponent(Actor* _owner) :
+		IComponent(_owner),
 		parent{ nullptr },
 		S{ D2D_Mat3x2F::Identity() },
 		R{ D2D_Mat3x2F::Identity() },

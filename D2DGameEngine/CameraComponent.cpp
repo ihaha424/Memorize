@@ -5,7 +5,7 @@
 const Math::Vector2 CameraComponent::screenSize = { 1920, 1080 };
 const Math::Vector2 CameraComponent::mapSize = { 2880, 1920 };
 
-CameraComponent::CameraComponent()
+CameraComponent::CameraComponent(Actor* _owner) : SceneComponent(_owner)
 {
 }
 

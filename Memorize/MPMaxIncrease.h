@@ -4,7 +4,7 @@ class MPMaxIncrease : public BuffSkill
 {
 	float additionalMP = 0;
 public:
-	MPMaxIncrease();
+	MPMaxIncrease(Actor* _owner);
 	virtual ~MPMaxIncrease();
 
 	virtual void UseSkill() override;

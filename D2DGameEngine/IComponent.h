@@ -8,7 +8,8 @@ public:
 	using ComponentTagRegistry = std::unordered_set<std::string>;
 	ComponentTagRegistry componentTags;
 
-	IComponent() {
+	IComponent(Actor* _owner) {
+		owner = _owner;
 		EnableTickEverySecond(false);
 	}
 	virtual ~IComponent() {}

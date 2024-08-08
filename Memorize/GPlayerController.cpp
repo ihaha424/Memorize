@@ -8,15 +8,20 @@
 #include "MovementComponent.h"
 #include "Fireball.h"
 #include "ChasingWaterBall.h"
+#include "Meteor.h"
+#include "Player.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
 	SetTickProperties(TICK_UPDATE);
 
+	rootComponent = CreateComponent<SceneComponent>();
+
 	//각 스킬의 인스턴스를 미리 생성
 	skills = {
 		{ std::type_index(typeid(Fireball)), CreateComponent<Fireball>()},
 		{ std::type_index(typeid(ChasingWaterBall)), CreateComponent<ChasingWaterBall>()},
+		{ std::type_index(typeid(Meteor)), CreateComponent<Meteor>()},
 	};
 
 	playerFSMComponent = CreateComponent<PlayerFSMComponent>();
@@ -41,6 +46,9 @@ void GPlayerController::EndSkill()
 void GPlayerController::BeginPlay()
 {
 	__super::BeginPlay();
+	
+	//컨트롤러의 루트 컴포넌트를 플레이어 루트의 자식으로 설정
+	GetPlayer()->rootComponent->AddChild(rootComponent);
 
 	//스킬의 오너 설정
 	for (auto skill : skills)

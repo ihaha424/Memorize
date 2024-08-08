@@ -1,7 +1,7 @@
 #include "BuffSkill.h"
 #include "GPlayerController.h"
 
-BuffSkill::BuffSkill()
+BuffSkill::BuffSkill(Actor* _owner) : Skill(_owner)
 {
 	type = ST_BUFF;
 }

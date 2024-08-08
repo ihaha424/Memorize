@@ -14,7 +14,8 @@ class BitmapComponent : public PrimitiveComponent {
 
 public:
 
-	BitmapComponent() : 
+	BitmapComponent(Actor* _owner) :
+		PrimitiveComponent(_owner),
 		frame{ 0.f, 0.f, 0.f, 0.f },
 		sprite{ nullptr },
 		imageTransform{ D2D_Mat3x2F::Identity() } {
