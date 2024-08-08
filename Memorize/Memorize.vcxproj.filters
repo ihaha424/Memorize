@@ -47,9 +47,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameApp.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
@@ -100,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="ChasingWaterBallProjectile.cpp">
       <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Heal.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="MPMaxIncrease.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +165,12 @@
     </ClInclude>
     <ClInclude Include="ChasingWaterBallProjectile.h">
       <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
+    </ClInclude>
+    <ClInclude Include="Heal.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="MPMaxIncrease.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
