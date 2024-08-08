@@ -4,7 +4,7 @@
 
 int Skill::wholeSkillLevel = 0;
 
-Skill::Skill()
+Skill::Skill(Actor* _owner) : IComponent(_owner)
 {
 }
 

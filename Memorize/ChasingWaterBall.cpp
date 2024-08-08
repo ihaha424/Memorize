@@ -7,7 +7,7 @@
 #include "../D2DGameEngine/World.h"
 
 
-ChasingWaterBall::ChasingWaterBall()
+ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
 	projectileMaxCount = 3;

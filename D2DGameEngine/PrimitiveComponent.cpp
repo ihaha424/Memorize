@@ -2,7 +2,7 @@
 
 #include "World.h"
 
-PrimitiveComponent::PrimitiveComponent() {}
+PrimitiveComponent::PrimitiveComponent(Actor* _owner) : SceneComponent(_owner) {}
 
 PrimitiveComponent::~PrimitiveComponent() {}
 

@@ -6,7 +6,7 @@ class FSMComponent :
     public IComponent
 {
 public:
-	FSMComponent(){}
+	FSMComponent(Actor* _owner) : IComponent(_owner){}
 	virtual ~FSMComponent();
 
 	template<typename FSMStateType>

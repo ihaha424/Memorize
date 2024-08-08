@@ -1,6 +1,6 @@
 #include "RangeSkill.h"
 
-RangeSkill::RangeSkill()
+RangeSkill::RangeSkill(Actor* _owner) : Skill(_owner)
 {
 	type = ST_RANGE;
 }

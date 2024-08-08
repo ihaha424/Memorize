@@ -9,7 +9,7 @@ protected:
 	float buffDuration;
 	float elapsedTime = 0.f;
 public:
-	BuffSkill();
+	BuffSkill(Actor* _owner);
 	virtual ~BuffSkill();
 
 	virtual void Update(float _dt) override;

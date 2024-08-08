@@ -37,8 +37,7 @@ public:
 	template<ComponentType T>
 	T* CreateComponent()
 	{
-		T* component = new T;
-		component->SetOwner(this);
+		T* component = new T(this);
 		components.insert({ std::type_index(typeid(T)), component });
 		return component;
 	}

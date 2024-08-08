@@ -1,7 +1,7 @@
 #include "ProjectileSkill.h"
 #include "Projectile.h"
 
-ProjectileSkill::ProjectileSkill()
+ProjectileSkill::ProjectileSkill(Actor* _owner) : Skill(_owner)
 {
 	type = ST_PROJECTILE;
 }

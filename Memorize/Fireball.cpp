@@ -7,7 +7,7 @@
 #include "../D2DGameEngine/World.h"
 
 
-Fireball::Fireball()
+Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
 

@@ -7,7 +7,7 @@ class PlayerFSMComponent :
     public FSMComponent
 {
 public:
-    PlayerFSMComponent() {};
+    PlayerFSMComponent(Actor* _owner) :FSMComponent(_owner){};
     virtual ~PlayerFSMComponent() {};
 
 

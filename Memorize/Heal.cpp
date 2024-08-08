@@ -1,6 +1,6 @@
 #include "Heal.h"
 
-Heal::Heal()
+Heal::Heal(Actor* _owner) : Skill(_owner)
 {
 }
 

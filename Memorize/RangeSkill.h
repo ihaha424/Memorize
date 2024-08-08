@@ -6,7 +6,7 @@ protected:
 	float range;
 
 public:
-	RangeSkill();
+	RangeSkill(Actor* _owner);
 	virtual ~RangeSkill();
 
 	float GetRange() { return range; }

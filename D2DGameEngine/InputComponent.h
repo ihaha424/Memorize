@@ -12,7 +12,7 @@ public:
 class InputComponent : public IComponent
 {
 public:
-	InputComponent() {};
+	InputComponent(Actor* _owner) : IComponent(_owner) {};
 	virtual ~InputComponent() {};
 
 	template <typename Class, typename Function>

@@ -8,7 +8,7 @@ class ChasingWaterBall : public ProjectileSkill
 	int onceClickCount = 3;
 	float speed = 10.f;
 public:
-	ChasingWaterBall();
+	ChasingWaterBall(Actor* _owner);
 	virtual ~ChasingWaterBall();
 
 	virtual void BeginPlay() override;

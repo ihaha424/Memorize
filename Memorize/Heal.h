@@ -4,7 +4,7 @@ class Heal : public Skill
 {
 	float healHP = 0;
 public:
-	Heal();
+	Heal(Actor* _owner);
 	virtual ~Heal();
 
 	virtual void UseSkill() override;

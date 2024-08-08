@@ -23,6 +23,7 @@ Player::Player(class World* _world) : Character(_world)
 	PlayerFSMComponent* playerFSMComponent = CreateComponent<PlayerFSMComponent>();
 
 	MovementComponent* mv = CreateComponent< MovementComponent>();
+	bm->AddChild(mv);
 }
 
 Player::~Player()

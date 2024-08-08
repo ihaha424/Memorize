@@ -26,7 +26,7 @@ protected:
 	int mana = 0;
 	
 public:
-	Skill();
+	Skill(Actor* _owner);
 	virtual ~Skill();
 
 	static int GetWholeSkillLevel() { return wholeSkillLevel; }
