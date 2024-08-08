@@ -83,6 +83,7 @@ Math::Vector2 Actor::GetLocation() const
 		D2D_Point2F pos = rootComponent->GetComponentLocation();
 		return { pos.x, pos.y };
 	}
+	return { 0, 0 };
 }
 
 void Actor::SetRotation(const float _degree)

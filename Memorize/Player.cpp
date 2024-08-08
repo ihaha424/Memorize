@@ -41,6 +41,11 @@ void Player::LevelUp()
 	//level에 따라 Stat 조정
 }
 
+void Player::AddToStat(Stat _addStat)
+{
+	stat = stat + _addStat;
+}
+
 void Player::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");

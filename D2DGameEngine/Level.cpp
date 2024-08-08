@@ -32,7 +32,8 @@ void Level::BeginPlay()
 
 	for (auto actor : actorList)
 	{
-		actor->BeginPlay();
+		if(actor->GetStatus() == EActorStatus::AS_AWAKE)
+			actor->BeginPlay();
 	}
 }
 
