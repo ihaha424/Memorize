@@ -33,7 +33,7 @@ bool Actor::Destroy()
 void Actor::FixedUpdate(float _fixedRate)
 {
 	for (auto [_, component] : components) {
-		if(component->CheckTickProperty(TICK_PHYSICS))
+		if(component->CheckTickProperty(TICK_PHYSICS) && component->GetStatus() == OS_ACTIVE)
 			component->FixedUpdate(_fixedRate);
 	}
 }
@@ -41,7 +41,7 @@ void Actor::FixedUpdate(float _fixedRate)
 void Actor::PreUpdate(float _dt)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_PRE_UPDATE))
+		if (component->CheckTickProperty(TICK_PRE_UPDATE) && component->GetStatus() == OS_ACTIVE)
 			component->PreUpdate(_dt);
 	}
 }
@@ -49,7 +49,7 @@ void Actor::PreUpdate(float _dt)
 void Actor::Update(float _dt)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_UPDATE))
+		if (component->CheckTickProperty(TICK_UPDATE) && component->GetStatus() == OS_ACTIVE)
 			component->Update(_dt);
 	}
 }
@@ -57,7 +57,7 @@ void Actor::Update(float _dt)
 void Actor::PostUpdate(float _dt)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_POST_UPDATE))
+		if (component->CheckTickProperty(TICK_POST_UPDATE) && component->GetStatus() == OS_ACTIVE)
 			component->PostUpdate(_dt);
 	}
 }
@@ -65,7 +65,7 @@ void Actor::PostUpdate(float _dt)
 void Actor::Render(D2DRenderer* _renderer)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_RENDER))
+		if (component->CheckTickProperty(TICK_RENDER) && component->GetStatus() == OS_ACTIVE)
 			component->Render(_renderer);
 	}
 }
