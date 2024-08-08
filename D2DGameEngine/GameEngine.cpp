@@ -43,8 +43,6 @@ void GameEngine::Run()
 {
 	// 타이머 셋업
 	Timer::InitTimer();
-	double prevTime = Timer::GetTick();	// 이전 프레임 타임
-	double currTime = 0.0;	// 현재 프레임 타임
 	double frameTime = 0.0;	// 델타 타임
 	double frameTimeThreshole = 0.25;	// 최대 델타 타임
 	double fixedRate = FIXED_RATE;	// 픽스 타임
@@ -76,10 +74,8 @@ void GameEngine::Run()
 		}
 
 		// 프레임 델타 타임 업데이트
-		currTime = Timer::GetTick();
-		frameTime = currTime - prevTime;	// 델타 타임
-		frameTime *= Timer::GetTimeScale();	// 스케일 된 델타 타임
-		prevTime = currTime;
+		Timer::UpdateTime();
+		frameTime = Timer::GetTick();
 
 		// Input Update
 		inputSystem->Update();

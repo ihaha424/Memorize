@@ -1,5 +1,7 @@
 #pragma once
 
+#include "framework.h"
+
 class FSMComponent;
 
 class FSMState

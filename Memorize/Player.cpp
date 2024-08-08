@@ -5,6 +5,7 @@
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/ReflectionResource.h"
 #include "../D2DGameEngine/ResourceManager.h"
+#include "PlayerFSMComponent.h"
 
 Player::Player(class World* _world) : Character(_world)
 {
@@ -18,6 +19,8 @@ Player::Player(class World* _world) : Character(_world)
 	GetWorld()->SetMainCamera(cm);
 	bm->AddChild(cm);
 	bm->SetSprite(L"Memorize/testPlayer.png");
+
+	PlayerFSMComponent* playerFSMComponent = CreateComponent<PlayerFSMComponent>();
 
 	MovementComponent* mv = CreateComponent< MovementComponent>();
 }

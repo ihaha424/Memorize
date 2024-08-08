@@ -1,8 +1,11 @@
 ﻿// Timer.cc
 #include "Timer.h"
 
-double Timer::_timeScale = 1.0;
-double Timer::_precision = 0.0;
+double Timer::timeScale = 1.0;
+double Timer::precision = 0.0;
+double Timer::prevTime = 0.0;
+double Timer::currTime = 0.0;
+double Timer::frameTime = 0.0;
 
 void Timer::InitTimer() {
 	LARGE_INTEGER freq;
@@ -10,20 +13,32 @@ void Timer::InitTimer() {
 		// TODO: Need a logger!
 		throw std::runtime_error("Timer: Performance counter is not supported!");
 	}
-	_precision = 1.0 / static_cast<double>(freq.QuadPart);
+	precision = 1.0 / static_cast<double>(freq.QuadPart);
+}
+
+void Timer::UpdateTime()
+{
+	LARGE_INTEGER counter;
+	QueryPerformanceCounter(&counter);
+	currTime = static_cast<double>(counter.QuadPart) * precision;
+	frameTime = currTime - prevTime;	// 델타 타임
+	prevTime = currTime;
+}
+
+double Timer::GetRealTick()
+{
+	return frameTime;
 }
 
 double Timer::GetTick() {
-	LARGE_INTEGER counter;
-	QueryPerformanceCounter(&counter);
-	return static_cast<double>(counter.QuadPart) * _precision;
+	return frameTime * timeScale;
 }
 
 void Timer::SetTimeScale(double timeScale) {
-	_timeScale = timeScale;
+	timeScale = timeScale;
 }
 
 double Timer::GetTimeScale()
 {
-	return _timeScale;
+	return timeScale;
 }
