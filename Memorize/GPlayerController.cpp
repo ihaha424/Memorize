@@ -1,4 +1,4 @@
-#include "TestPlayerController.h"
+#include "GPlayerController.h"
 #include "../D2DGameEngine/InputComponent.h"
 #include "../D2DGameEngine/CameraComponent.h"
 #include "../D2DGameEngine/Pawn.h"
@@ -8,7 +8,7 @@
 #include "Fireball.h"
 #include "ChasingWaterBall.h"
 
-TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
+GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
 	SetTickProperties(TICK_UPDATE);
 
@@ -20,19 +20,19 @@ TestPlayerController::TestPlayerController(World* _world) : PlayerController(_wo
 
 }
 
-void TestPlayerController::SetupInputComponent()
+void GPlayerController::SetupInputComponent()
 {
-	inputComponent->ActionBinding(this, 0x00, &TestPlayerController::MovePlayer, InputState::KeyDown, MouseInput);
-	inputComponent->ActionBinding(this, DIK_Q, &TestPlayerController::StartSkill<Fireball>, InputState::KeyDown, KeyBoardInput);
-	inputComponent->ActionBinding(this, DIK_W, &TestPlayerController::StartSkill<ChasingWaterBall>, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, 0x00, &GPlayerController::MovePlayer, InputState::KeyDown, MouseInput);
+	inputComponent->ActionBinding(this, DIK_Q, &GPlayerController::StartSkill<Fireball>, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_W, &GPlayerController::StartSkill<ChasingWaterBall>, InputState::KeyDown, KeyBoardInput);
 }
 
-void TestPlayerController::EndSkill()
+void GPlayerController::EndSkill()
 {
 	nowSkill = nullptr;
 }
 
-void TestPlayerController::BeginPlay()
+void GPlayerController::BeginPlay()
 {
 	__super::BeginPlay();
 
@@ -45,7 +45,7 @@ void TestPlayerController::BeginPlay()
 	SetupInputComponent();
 }
 
-void TestPlayerController::Update(float _dt)
+void GPlayerController::Update(float _dt)
 {
 	PlayerController::Update(_dt);
 	if (Math::Vector2::Distance(destPos, owner->GetLocation()) < 2.f)
@@ -54,7 +54,7 @@ void TestPlayerController::Update(float _dt)
 	}
 }
 
-void TestPlayerController::MovePlayer()
+void GPlayerController::MovePlayer()
 {
 	destPos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
 	Math::Vector2 direction = destPos - owner->GetLocation();

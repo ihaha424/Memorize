@@ -151,6 +151,7 @@
     <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GCameraComponent.cpp" />
+    <ClCompile Include="GPlayerController.cpp" />
     <ClCompile Include="Heal.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
@@ -166,7 +167,6 @@
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="TestLevel.cpp" />
-    <ClCompile Include="TestPlayerController.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +181,7 @@
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="GCameraComponent.h" />
+    <ClInclude Include="GPlayerController.h" />
     <ClInclude Include="Heal.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
@@ -197,7 +198,6 @@
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="TestLevel.h" />
-    <ClInclude Include="TestPlayerController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
