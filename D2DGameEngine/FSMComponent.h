@@ -12,7 +12,7 @@ public:
 	template<typename FSMStateType>
 	FSMStateType* CreateState(const std::wstring _stateName)
 	{
-		FSMStateType* pState = new T(pMyPointer, _stateName);
+		FSMStateType* pState = new FSMStateType(this, _stateName);
 		statesMap.insert(std::make_pair(pState->GetName(), pState));
 		return pState;
 	}

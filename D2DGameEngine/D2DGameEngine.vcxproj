@@ -271,6 +271,7 @@
     <ClCompile Include="MoveTo.cpp" />
     <ClCompile Include="OverlapResult.cpp" />
     <ClCompile Include="CollisionSystem.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PolygonComponent.cpp" />
     <ClCompile Include="PrimitiveComponent.cpp" />
     <ClCompile Include="SampleEffect.cpp" />
