@@ -163,9 +163,12 @@ public:
 		bounds = CalculateLocalBounds();
 	}
 
-	virtual CollisionShape GetCollisionShape() const {
-		// TODO:
-		return CollisionShape{};
+	virtual bool GetCollisionShape(float Inflation, CollisionShape& CollisionShape) const {
+		return false;
+	}
+
+	virtual bool IsZeroExtent() const {
+		return true;
 	}
 
 	/**
@@ -245,26 +248,12 @@ public:
 protected:
 
 	virtual bool CheckComponentOverlapComponentImpl(
-		PrimitiveComponent* primComp, 
-		const DXVec2& pos) {
-		if (!bCanCollide || !primComp->bCanCollide) return false;
-
-		CollisionShape myCollisionShape = GetCollisionShape();
-		CollisionShape otherCollisionShape = primComp->GetCollisionShape();
-
-		if (myCollisionShape.IsNearlyZero() || otherCollisionShape.IsNearlyZero())
-			return false;
-
-
-
-		return false;
-	}
+		PrimitiveComponent* primComp,
+		const DXVec2& pos);
 
 	virtual bool CheckComponentOverlapComponentWithResultImpl(
 		PrimitiveComponent* component, const DXVec2& pos,
-		std::vector<OverlapResult>& outOverlap) {
-		return false;
-	}
+		std::vector<OverlapResult>& outOverlap);
 
 	virtual bool MoveComponentImpl(
 		const DXVec2& delta,

@@ -4,6 +4,11 @@
 #include "SpriteResource.h"
 #include "ResourceManager.h"
 
+// NOTE: 만약에 비트맵 컴포넌트에서 콜리션 체크하고 싶으면.
+// bCanCollide = true
+// CollisionProperty 세팅
+// bool GetCollisionShape(float, CollisionShape&) const 오버로드해서 콜리션 기하 세팅
+
 class BitmapComponent : public PrimitiveComponent {
 	using Super = SceneComponent;
 

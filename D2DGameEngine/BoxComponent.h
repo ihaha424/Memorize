@@ -8,13 +8,13 @@ protected:
 
 public:
 
-	D2D_Vec2F GetScaledBoxExtent() {
+	D2D_Vec2F GetScaledBoxExtent() const {
 		D2D_Point2F p{ boxExtent.width, boxExtent.height };
 		p = p * S;
 		return { p.x, p.y };
 	}
 
-	D2D_Vec2F GetBoxExtent() {
+	D2D_Vec2F GetBoxExtent() const {
 		return { boxExtent.width, boxExtent.height };
 	}
 
@@ -31,11 +31,18 @@ public:
 		// TODO: 콜리션 체크
 	}
 
-	BoxCircleBounds CalculateLocalBounds() const override {
+	virtual BoxCircleBounds CalculateLocalBounds() const override {
 		return BoxCircleBounds(Box::BuildAABB({ 0, 0 }, boxExtent));
 	}
 
-	CollisionShape GetCollisionShape() const override {
-		return CollisionShape::CreateBox({ boxExtent.width / 2.f, boxExtent.height / 2.f });
+	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
+		collisionShape.SetBox({ boxExtent.width * inflation, boxExtent.height * inflation });
+		return true;
+	}
+
+	virtual bool IsZeroExtent() const {
+		CollisionShape collisionShape;
+		collisionShape.SetBox({ boxExtent.width, boxExtent.height });
+		return collisionShape.IsNearlyZero();
 	}
 };

@@ -11,137 +11,137 @@
 
 namespace intersectionUtil {
 	inline
-	bool RayRayIntersect(const Ray& ray1, const Ray& ray2) {
+		bool RayRayIntersect(const Ray& ray1, const Ray& ray2) {
 		Math::Vector2 intersection;
 		return ray1.IntersectionPoint(ray2, intersection);
 	}
 
 	inline
-		bool RayLineIntersect(const Ray& ray1, const Line& line) {
-		// TODO
-		return false;
+		bool RayLineIntersect(const Ray& ray, const Line& line) {
+		HitResult inHitResult;
+		return RayLineIntersectWithResult(ray, line, inHitResult);
 	}
 
 	inline
-		bool RayBoxIntersect(const Ray& ray1, const Box& box) {
-		// TODO
-		return false;
+		bool RayBoxIntersect(const Ray& ray, const Box& box) {
+		HitResult inHitResult;
+		return RayBoxIntersectWithResult(ray, box, inHitResult);
 	}
 
 	inline
-		bool RayCircleIntersect(const Ray& ray1, const Circle& circle) {
-		// TODO
-		return false;
-
+		bool RayCircleIntersect(const Ray& ray, const Circle& circle) {
+		HitResult inHitResult;
+		return RayCircleIntersectWithResult(ray, circle, inHitResult);
 	}
 
 	inline
 		bool RayCapsuleIntersect(const Ray& ray, const Capsule& capsule) {
-		// TODO
-		return false;
+		HitResult inHitResult;
+		return RayCapsuleIntersectWithResult(ray, capsule, inHitResult);
 	}
 
 	inline
-	bool RayPolygonIntersect(const Ray& ray, const TPolygon& capsule) {
-		// TODO
-		return false;
+		bool RayPolygonIntersect(const Ray& ray, const TPolygon& capsule) {
+		HitResult inHitResult;
+		return RayPolygonIntersectWithResult(ray, capsule, inHitResult);
 	}
 
 
 	inline
-	bool LineLineIntersect(const Line& l1, const Line& l2) {
-		// TODO
-		return false;
+		bool LineLineIntersect(const Line& l1, const Line& l2) {
+		HitResult inHitResult;
+		return LineLineIntersectWithResult(l1, l2, inHitResult);
 	}
 
 	inline
-	bool LineBoxIntersect(const Line& line, const Box& box) {
-		// TODO
-		return false;
+		bool LineBoxIntersect(const Line& line, const Box& box) {
+		HitResult inHitResult;
+		return LineBoxIntersectWithResult(line, box, inHitResult);
 	}
 
 	inline
-	bool LineCircleIntersect(const Line& line, const Circle& circle) {
-		// TODO
-		return false;
+		bool LineCircleIntersect(const Line& line, const Circle& circle) {
+		HitResult inHitResult;
+		return LineCircleIntersectWithResult(line, circle, inHitResult);
 	}
 
 	inline
-	bool LineCapsuleIntersect(const Line& line, const Capsule& capsule) {
-		// TODO
-		return false;
+		bool LineCapsuleIntersect(const Line& line, const Capsule& capsule) {
+		HitResult inHitResult;
+		return LineCapsuleIntersectWithResult(line, capsule, inHitResult);
 	}
 
 	inline
-	bool LinePolygonIntersect(const Line& line, const TPolygon& polygon) {
-		// TODO
-		return false;
+		bool LinePolygonIntersect(const Line& line, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return LinePolygonIntersectWithResult(line, polygon, inHitResult);
 	}
 
 	inline
-	bool BoxBoxIntersect(const Box& box1, const Box& box2) {
-		// TODO
-		return false;
+		bool BoxBoxIntersect(const Box& box1, const Box& box2) {
+		HitResult inHitResult;
+		return BoxBoxIntersectWithResult(box1, box2, inHitResult);
 	}
 
 	inline
-	bool BoxCircleIntersect(const Box& box, const Circle& circle) {
-		// TODO
-		return false;
+		bool BoxCircleIntersect(const Box& box, const Circle& circle) {
+		HitResult inHitResult;
+		return BoxCircleIntersectWithResult(box, circle, inHitResult);
 	}
 
 	inline
-	bool BoxCapsuleIntersect(const Box& box, const Capsule& capsule) {
-		// TODO
-		return false;
+		bool BoxCapsuleIntersect(const Box& box, const Capsule& capsule) {
+		HitResult inHitResult;
+		return BoxCapsuleIntersectWithResult(box, capsule, inHitResult);
 	}
 
 	inline
-	bool BoxPolygonIntersect(const Box& box, const TPolygon& polygon) {
-		// TODO
-		return false;
+		bool BoxPolygonIntersect(const Box& box, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return BoxPolygonIntersectWithResult(box, polygon, inHitResult);
 	}
 
 	inline
-	bool CircleCircleIntersect(const Circle& circle1, const Circle& circle2) {
-		// TODO
-		return false;
+		bool CircleCircleIntersect(const Circle& circle1, const Circle& circle2) {
+		HitResult inHitResult;
+		return CircleCircleIntersectWithResult(circle1, circle2, inHitResult);
 	}
 
 	inline
-	bool CircleCapsuleIntersect(const Circle& circle, const Capsule& capsule) {
-		// TODO
-		return false;
+		bool CircleCapsuleIntersect(const Circle& circle, const Capsule& capsule) {
+		HitResult inHitResult;
+		return CircleCapsuleIntersectWithResult(circle, capsule, inHitResult);
 	}
 
 	inline
-	bool CirclePolygonIntersect(const Circle& circle, const TPolygon& polygon) {
-		// TODO
-		return false;
+		bool CirclePolygonIntersect(const Circle& circle, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return CirclePolygonIntersectWithResult(circle, polygon, inHitResult);
 	}
 
 	inline
-	bool CapsuleCapsuleIntersect(const Capsule& capsule1, const Capsule& capsule2) {
-		// TODO
-		return false;
+		bool CapsuleCapsuleIntersect(const Capsule& capsule1, const Capsule& capsule2) {
+		HitResult inHitResult;
+		return CapsuleCapsuleIntersectWithResult(capsule1, capsule2, inHitResult);
 	}
 
 	inline
-	bool CapsulePolygonIntersect(const Capsule& capsule, const TPolygon& polygon) {
-		// TODO
-		return false;
+		bool CapsulePolygonIntersect(const Capsule& capsule, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return CapsulePolygonIntersectWithResult(capsule, polygon, inHitResult);
 	}
 
 	inline
-	bool PolygonPolygonIntersect(const TPolygon polygon1, const TPolygon polygon2) {
-		// TODO
-		return false;
+		bool PolygonPolygonIntersect(const TPolygon polygon1, const TPolygon polygon2) {
+		HitResult inHitResult;
+		return PolygonPolygonIntersectWithResult(polygon1, polygon2, inHitResult);
 	}
 
 
 	// With Result
 	inline
 		bool RayRayIntersectWithResult(const Ray& ray1, const Ray& ray2, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
 		Math::Vector2 intersection;
 		if (ray1.IntersectionPoint(ray2, intersection)) {
 			// Find the impact normal
@@ -229,7 +229,7 @@ namespace intersectionUtil {
 
 			outHitResult.impactNormal = impactNormal;
 			outHitResult.impactPoint = intersection;
-			
+
 			return true;
 		}
 
@@ -237,7 +237,7 @@ namespace intersectionUtil {
 	}
 
 	inline
-	bool RayBoxIntersectWithResult(const Ray& ray, const Box& box, HitResult& outHitResult) {
+		bool RayBoxIntersectWithResult(const Ray& ray, const Box& box, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
 		Math::Vector2 invDir = { 1.0f / ray.direction.x, 1.0f / ray.direction.y };
@@ -558,6 +558,8 @@ namespace intersectionUtil {
 
 	inline
 		bool LineCircleIntersectWithResult(const Line& line, const Circle& circle, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 ab = line.end - line.start;
 		Math::Vector2 ac = circle.center - line.start;
 
@@ -584,6 +586,8 @@ namespace intersectionUtil {
 
 	inline
 		bool LineCapsuleIntersectWithResult(const Line& line, const Capsule& capsule, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 lineDir = line.end - line.start; // Direction vector of the line segment
 		lineDir.Normalize();
 
@@ -624,6 +628,8 @@ namespace intersectionUtil {
 
 	inline
 		bool LinePolygonIntersectWithResult(const Line& line, const TPolygon& polygon, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 lineVec = line.end - line.start;
 		float minDist = (std::numeric_limits<float>::max)();
 		bool hasIntersection = false;
@@ -667,6 +673,8 @@ namespace intersectionUtil {
 
 	inline
 		bool BoxLineIntersectWithResult(const Box& box, const Line& line, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 p = line.start;
 		Math::Vector2 d = line.end - line.start; // Direction vector of the line
 
@@ -726,6 +734,8 @@ namespace intersectionUtil {
 
 	inline
 		bool BoxBoxIntersectWithResult(const Box& box1, const Box& box2, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		// Extract dimensions and positions from both boxes
 		Math::Vector2 box1Min = box1.ul;
 		Math::Vector2 box1Max = box1.lr;
@@ -772,6 +782,8 @@ namespace intersectionUtil {
 
 	inline
 		bool BoxCircleIntersectWithResult(const Box& box, const Circle& circle, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 closestPoint = {
 				(std::max)(box.ul.x, (std::min)(circle.center.x, box.lr.x)),
 				(std::max)(box.lr.y, (std::min)(circle.center.y, box.ul.y))
@@ -805,6 +817,8 @@ namespace intersectionUtil {
 
 	inline
 		bool BoxCapsuleIntersectWithResult(const Box& box, const Capsule& capsule, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		// Capsule endpoints
 		Math::Vector2 capsuleDirectionNormalized = capsule.direction;
 		capsuleDirectionNormalized.Normalize();
@@ -845,6 +859,8 @@ namespace intersectionUtil {
 
 	inline
 		bool BoxPolygonIntersectWithResult(const Box& box, const TPolygon& polygon, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		// Collect all relevant axes for the SAT (Separating Axis Theorem)
 		std::vector<Math::Vector2> axes = {
 				{1, 0}, // Horizontal normal
@@ -901,7 +917,7 @@ namespace intersectionUtil {
 		if (overlapFound) {
 			// Intersection detected, fill in the HitResult
 			outHitResult.impactNormal = smallestAxis;
-			outHitResult.normal = smallestAxis; 
+			outHitResult.normal = smallestAxis;
 			outHitResult.penetrationDepth = minOverlap;
 
 			// Calculate an approximate impact point as the midpoint of overlap
@@ -915,6 +931,8 @@ namespace intersectionUtil {
 
 	inline
 		bool CircleLineIntersectWithResult(const Circle& circle, const Line& line, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 ab = line.end - line.start;
 		Math::Vector2 ac = circle.center - line.start;
 		Math::Vector2 ab_normalized = ab; ab_normalized.Normalize();
@@ -940,6 +958,8 @@ namespace intersectionUtil {
 
 	inline
 		bool CircleBoxIntersectWithResult(const Circle& circle, const Box& box, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		// Clamping the circle center to the box bounds to find the closest point
 		float clampedX = (std::max)(box.ul.x, (std::min)(circle.center.x, box.lr.x));
 		float clampedY = (std::max)(box.lr.y, (std::min)(circle.center.y, box.ul.y));
@@ -953,7 +973,7 @@ namespace intersectionUtil {
 			// There's an intersection
 			outHitResult.impactPoint = closestPoint;
 			outHitResult.impactNormal = -circleToClosest;
-			outHitResult.normal = -circleToClosest;  
+			outHitResult.normal = -circleToClosest;
 			outHitResult.penetrationDepth = circle.radius - sqrt(distanceSquared);  // Compute how deep the circle penetrates into the box
 
 			return true;
@@ -964,6 +984,8 @@ namespace intersectionUtil {
 
 	inline
 		bool CircleCircleIntersectWithResult(const Circle& circle1, const Circle& circle2, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 distVector = circle1.center - circle2.center;
 		float distance = distVector.Length();
 		float radiusSum = circle1.radius + circle2.radius;
@@ -992,6 +1014,8 @@ namespace intersectionUtil {
 
 	inline
 		bool CircleCapsuleIntersectWithResult(const Circle& circle, const Capsule& capsule, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+
 		Math::Vector2 p1 = capsule.center - capsule.direction * capsule.extent;  // One end of the capsule
 		Math::Vector2 p2 = capsule.center + capsule.direction * capsule.extent;  // Other end of the capsule
 
@@ -1023,6 +1047,7 @@ namespace intersectionUtil {
 
 	inline
 		bool CirclePolygonIntersectWithResult(const Circle& circle, const TPolygon& polygon, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
 		float minDist = (std::numeric_limits<float>::max)();
 		Math::Vector2 closestPoint;
 		Math::Vector2 closestNormal;
@@ -1060,7 +1085,8 @@ namespace intersectionUtil {
 
 	inline
 		bool CapsuleLineIntersectWithResult(const Capsule& capsule, const Line& line, HitResult& outHitResult) {
-		// Define capsule endpoints
+		// NOTE: ChatGPT 4 Generated Code
+// Define capsule endpoints
 		Math::Vector2 capsuleDirection = capsule.Direction();
 		capsuleDirection.Normalize();
 		Math::Vector2 A = capsule.Center() - capsuleDirection * capsule.Extent(); // Start of the capsule
@@ -1128,56 +1154,586 @@ namespace intersectionUtil {
 
 	inline
 		bool CapsuleBoxIntersectWithResult(const Capsule& capsule, const Box& box, HitResult& outHitResult) {
-		// TODO
+		// NOTE: ChatGPT 4 Generated Code
+// Normalize the capsule direction and calculate endpoints
+		Math::Vector2 normalizedDirection = capsule.Direction();
+		normalizedDirection.Normalize();
+		Math::Vector2 capsuleStart = capsule.Center() - normalizedDirection * capsule.Extent();
+		Math::Vector2 capsuleEnd = capsule.Center() + normalizedDirection * capsule.Extent();
+
+		// Calculate the closest points between capsule segment and box edges
+		float minDistance = std::numeric_limits<float>::infinity();
+		Math::Vector2 closestPointOnCapsule, closestPointOnBox;
+
+		// Check against each edge of the box
+		std::vector<Math::Vector2> boxCorners = box.GetVertices();
+		int numCorners = static_cast<int>(boxCorners.size());
+		for (int i = 0; i < numCorners; ++i) {
+			Math::Vector2 boxEdgeStart = boxCorners[i];
+			Math::Vector2 boxEdgeEnd = boxCorners[(i + 1) % numCorners];
+
+			// Use line to line segment closest point calculation
+			for (const auto& point : { capsuleStart, capsuleEnd }) {
+				float d = (point - boxEdgeStart).Dot(boxEdgeEnd - boxEdgeStart);
+				float l = (boxEdgeEnd - boxEdgeStart).LengthSquared();
+				float u = Clamp(d / l, 0.0f, 1.0f);
+				Math::Vector2 closest = boxEdgeStart + u * (boxEdgeEnd - boxEdgeStart);
+
+				float distance = (closest - point).Length();
+				if (distance < minDistance) {
+					minDistance = distance;
+					closestPointOnCapsule = point;
+					closestPointOnBox = closest;
+				}
+			}
+		}
+
+		// Check if the minimum distance is within the capsule's radius
+		if (minDistance <= capsule.radius) {
+			Math::Vector2 impactNormal = (closestPointOnCapsule - closestPointOnBox);
+			impactNormal.Normalize();
+			outHitResult.impactPoint = closestPointOnBox;
+			outHitResult.impactNormal = impactNormal; // Normal from capsule to box
+			outHitResult.normal = impactNormal; // Normal from capsule's surface to the box
+			outHitResult.penetrationDepth = capsule.radius - minDistance; // Penetration depth
+
+			return true;
+		}
+
 		return false;
 	}
 
 	inline
-		bool CapsuleCircleIntersectWithResult(const Capsule& capsule, const Circle& circle2, HitResult& outHitResult) {
-		// TODO
+		bool CapsuleCircleIntersectWithResult(const Capsule& capsule, const Circle& circle, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+// Calculate normalized direction of the capsule
+		Math::Vector2 capsuleDir = capsule.Direction();
+		capsuleDir.Normalize();
+
+		// Get the start and end points of the capsule
+		Math::Vector2 capsuleStart = capsule.Center() - capsuleDir * capsule.Extent();
+		Math::Vector2 capsuleEnd = capsule.Center() + capsuleDir * capsule.Extent();
+
+		// Find the closest point on the capsule line segment to the circle's center
+		Math::Vector2 ac = circle.center - capsuleStart;
+		Math::Vector2 ab = capsuleEnd - capsuleStart;
+		float ab_magnitude = ab.Length();
+		float ac_dot_ab = ac.Dot(ab);
+		float t = ac_dot_ab / (ab_magnitude * ab_magnitude);
+		t = (std::max)(0.0f, (std::min)(1.0f, t));  // Clamp t to the segment
+		Math::Vector2 closestPoint = capsuleStart + ab * t;
+
+		// Calculate the distance from the closest point to the circle's center
+		Math::Vector2 difference = closestPoint - circle.center;
+		float distance = difference.Length();
+		difference.Normalize();
+
+		// Check for intersection
+		if (distance <= (capsule.radius + circle.radius)) {
+			// There is an intersection
+			outHitResult.impactPoint = closestPoint;
+			outHitResult.impactNormal = difference;  // Normal points from the circle to the capsule
+
+			// Compute the penetration depth
+			if (distance != 0) {
+				outHitResult.penetrationDepth = (capsule.radius + circle.radius) - distance;
+			}
+			else {
+				outHitResult.penetrationDepth = capsule.radius + circle.radius;  // Fully embedded
+			}
+
+			// Set the normal from the impacted circle's center to the impact point
+			outHitResult.normal = difference;
+
+			return true;
+		}
+
 		return false;
 	}
 
 	inline
 		bool CapsuleCapsuleIntersectWithResult(const Capsule& capsule1, const Capsule& capsule2, HitResult& outHitResult) {
-		// TODO
+		// NOTE: ChatGPT 4 Generated Code
+// Extracting key components and normalizing direction vectors
+		Math::Vector2 center1 = capsule1.Center();
+		Math::Vector2 center2 = capsule2.Center();
+		Math::Vector2 direction1 = capsule1.Direction();
+		direction1.Normalize();
+		Math::Vector2 direction2 = capsule2.Direction();
+		direction2.Normalize();
+
+		// Calculating start and end points of capsules
+		Math::Vector2 start1 = center1 - direction1 * capsule1.Extent();
+		Math::Vector2 end1 = center1 + direction1 * capsule1.Extent();
+		Math::Vector2 start2 = center2 - direction2 * capsule2.Extent();
+		Math::Vector2 end2 = center2 + direction2 * capsule2.Extent();
+
+		// Line segment parameters
+		Math::Vector2 d1 = end1 - start1; // Direction vector for capsule 1
+		Math::Vector2 d2 = end2 - start2; // Direction vector for capsule 2
+		Math::Vector2 r = start1 - start2;
+		float a = d1.Dot(d1); // Squared length of d1
+		float e = d2.Dot(d2); // Squared length of d2
+		float f = d2.Dot(r);
+
+		// Check if lines are nearly parallel
+		float c = d1.Dot(r);
+		float b = d1.Dot(d2);
+		float denom = a * e - b * b;
+
+		float s, t;
+		if (denom != 0) {
+			s = Clamp((b * f - c * e) / denom, 0.0f, 1.0f);
+			t = Clamp((a * f - b * c) / denom, 0.0f, 1.0f);
+		}
+		else {
+			// Choose arbitrary s and t if lines are parallel
+			s = 0.0f;
+			t = f / e;
+		}
+
+		// Closest points on both line segments
+		Math::Vector2 closestPoint1 = start1 + d1 * s;
+		Math::Vector2 closestPoint2 = start2 + d2 * t;
+		Math::Vector2 closestVector = closestPoint2 - closestPoint1;
+		float distance = closestVector.Length();
+
+		// Check if the distance is less than the sum of their radii
+		if (distance <= (capsule1.radius + capsule2.radius)) {
+			outHitResult.impactPoint = closestPoint1 + closestVector * 0.5f; // Midpoint of the closest points as impact point
+			closestVector.Normalize();
+			outHitResult.impactNormal = -closestVector; // Normal from capsule1 to capsule2 at the impact point
+			outHitResult.penetrationDepth = (capsule1.radius + capsule2.radius) - distance; // Penetration depth
+			outHitResult.normal = -closestVector; // Normal from the impacted capsule to the collider
+			return true;
+		}
+
 		return false;
 	}
 
 	inline
 		bool CapsulePolygonIntersectWithResult(const Capsule& capsule, const TPolygon& polygon, HitResult& outHitResult) {
-		// TODO
-		return false;
+		// NOTE: ChatGPT 4 Generated Code
+// First, get capsule's line segment
+		Math::Vector2 capsuleDir = capsule.Direction();
+		capsuleDir.Normalize();
+		Math::Vector2 capsuleStart = capsule.Center() - capsuleDir * capsule.Extent();
+		Math::Vector2 capsuleEnd = capsule.Center() + capsuleDir * capsule.Extent();
+		float minDistance = (std::numeric_limits<float>::max)();
+		bool intersected = false;
+
+		// Check intersection with each edge of the polygon
+		for (size_t i = 0; i < polygon.points.size(); ++i) {
+			Math::Vector2 point1 = polygon.points[i];
+			Math::Vector2 point2 = polygon.points[(i + 1) % polygon.points.size()];
+
+			// Line equation from point1 to point2
+			Math::Vector2 lineDir = point2 - point1;
+			Math::Vector2 lineStart = point1;
+			Math::Vector2 lineEnd = point2;
+
+			// Closest point calculation on both the capsule segment and polygon edge
+			Math::Vector2 d1 = capsuleEnd - capsuleStart;
+			Math::Vector2 d2 = lineEnd - lineStart;
+			Math::Vector2 r = capsuleStart - lineStart;
+			float a = d1.Dot(d1);
+			float e = d2.Dot(d2);
+			float f = d2.Dot(r);
+
+			// Check if the lines are nearly parallel
+			float c = d1.Dot(r);
+			float b = d1.Dot(d2);
+			float denom = a * e - b * b;
+
+			float s, t;
+			if (std::fabs(denom) < EPSILON) {
+				s = 0.0;
+				t = (b > c ? 0.0f : 1.0f); // Use extreme points if parallel
+			}
+			else {
+				s = std::clamp((b * f - c * e) / denom, 0.0f, 1.0f);
+				t = std::clamp((a * f - b * c) / denom, 0.0f, 1.0f);
+			}
+
+			// Closest points on both segments
+			Math::Vector2 closestOnCapsule = capsuleStart + d1 * s;
+			Math::Vector2 closestOnLine = lineStart + d2 * t;
+			Math::Vector2 closestVector = closestOnLine - closestOnCapsule;
+			float distance = closestVector.Length();
+
+			// Check if the minimum distance is less than the radius of the capsule
+			if (distance <= capsule.radius && distance < minDistance) {
+				minDistance = distance;
+				intersected = true;
+				outHitResult.impactPoint = closestOnLine;
+				closestVector.Normalize();
+				outHitResult.impactNormal = closestVector; // Normal points from polygon edge to capsule
+				outHitResult.normal = closestVector;
+				outHitResult.penetrationDepth = capsule.radius - distance;
+			}
+		}
+
+		return intersected;
 	}
 
 	inline
 		bool PolygonLineIntersectWithResult(const TPolygon& polygon, const Line& line, HitResult& outHitResult) {
-		// TODO
-		return false;
+		// NOTE: ChatGPT 4 Generated Code
+		Math::Vector2 lineDir = line.end - line.start;
+		lineDir.Normalize();
+		float closestDist = (std::numeric_limits<float>::max)();
+		bool hasIntersection = false;
+
+		// Iterate through each edge of the polygon
+		for (size_t i = 0; i < polygon.numPoints; ++i) {
+			Math::Vector2 point1 = polygon.points[i];
+			Math::Vector2 point2 = polygon.points[(i + 1) % polygon.numPoints];
+
+			// Calculate parameters for the line intersection formula
+			Math::Vector2 edgeDir = point2 - point1;
+			Math::Vector2 edgeNormal(-edgeDir.y, edgeDir.x); // Perpendicular to the edge
+			edgeNormal.Normalize();
+			Math::Vector2 edgeStart = point1;
+			Math::Vector2 r = line.start - edgeStart;
+			float a = edgeDir.Dot(edgeDir);  // Dot product of edge direction
+			float b = edgeDir.Dot(lineDir);  // Cross direction dot product
+			float e = lineDir.Dot(lineDir);  // Dot product of line direction
+			float d = r.Dot(edgeDir);        // r dot edge direction
+			float c = r.Dot(lineDir);        // r dot line direction
+			float denominator = a * e - b * b;
+
+			if (fabs(denominator) < EPSILON) {
+				continue;  // Lines are parallel
+			}
+
+			// Calculate the intersection t for the line
+			float t = (b * d - a * c) / denominator;
+			float u = (e * d - b * c) / denominator;
+
+			if (t >= 0.0 && t <= 1.0 && u >= 0.0 && u <= 1.0) {
+				// Calculate the intersection point
+				Math::Vector2 intersection = line.start + t * lineDir;
+				float dist = (intersection - line.start).Length();
+
+				if (dist < closestDist) {
+					closestDist = dist;
+					hasIntersection = true;
+
+					// Update HitResult
+					outHitResult.impactPoint = intersection;
+					outHitResult.impactNormal = -edgeNormal;  // Normal from the edge of the polygon
+					outHitResult.normal = -edgeNormal;  // Normal should be towards the center of the polygon from the line
+
+					// Calculate penetration depth
+					// Penetration depth is the distance the line's end penetrates past the intersection along the line's direction
+					Math::Vector2 lineEndRelativeToIntersection = line.end - intersection;
+					float penetrationAlongNormal = lineEndRelativeToIntersection.Dot(-edgeNormal);
+					outHitResult.penetrationDepth = (penetrationAlongNormal > 0) ? penetrationAlongNormal : 0;
+				}
+			}
+		}
+
+		return hasIntersection;
 	}
 
 	inline
 		bool PolygonBoxIntersectWithResult(const TPolygon& polygon, const Box& box, HitResult& outHitResult) {
-		// TODO
+		// NOTE: ChatGPT 4 Generated Code
+		bool hasIntersection = false;
+		float minPenetrationDepth = (std::numeric_limits<float>::max)();
+		Math::Vector2 minPenetrationNormal;
+		Math::Vector2 contactPoint;
+
+		// Iterate through each edge of the box
+		std::vector<Math::Vector2> boxVertices = box.GetVertices();
+		std::vector<Math::Vector2> normals = {
+				{0, 1},  // Normal for top and bottom
+				{1, 0}   // Normal for left and right
+		};
+
+		for (int i = 0; i < 4; ++i) {
+			Math::Vector2 edgeStart = boxVertices[i];
+			Math::Vector2 edgeEnd = boxVertices[(i + 1) % 4];
+			Math::Vector2 edgeDir = edgeEnd - edgeStart;
+			Math::Vector2 edgeNormal(-edgeDir.y, edgeDir.x);
+			edgeNormal.Normalize();
+
+			float polygonMin = (std::numeric_limits<float>::max)();
+			float polygonMax = -(std::numeric_limits<float>::max)();
+			Math::Vector2 closestPoint;
+
+			for (const auto& vertex : polygon.points) {
+				float projection = vertex.Dot(edgeNormal);
+				polygonMin = (std::min)(polygonMin, projection);
+				polygonMax = (std::max)(polygonMax, projection);
+
+				// Checking for closest point along the normal
+				if (fabs(projection - polygonMin) < EPSILON) {
+					closestPoint = vertex;
+				}
+			}
+
+			float boxMin = (std::numeric_limits<float>::max)(), boxMax = -(std::numeric_limits<float>::max)();
+			for (const auto& vertex : boxVertices) {
+				float projection = vertex.Dot(edgeNormal);
+				boxMin = (std::min)(boxMin, projection);
+				boxMax = (std::max)(boxMax, projection);
+			}
+
+			// Check for overlap
+			if (polygonMax < boxMin || polygonMin > boxMax) {
+				return false;  // No overlap, thus no intersection
+			}
+
+			float overlapMin = (std::max)(polygonMin, boxMin);
+			float overlapMax = (std::min)(polygonMax, boxMax);
+			float overlap = overlapMax - overlapMin;
+
+			if (overlap < minPenetrationDepth) {
+				minPenetrationDepth = overlap;
+				minPenetrationNormal = (polygonMax > boxMax) ? edgeNormal : -edgeNormal;
+				contactPoint = closestPoint; // Set contact point to the closest polygon vertex along current normal
+				hasIntersection = true;
+			}
+		}
+
+		if (hasIntersection) {
+			outHitResult.impactNormal = -minPenetrationNormal;
+			outHitResult.normal = -minPenetrationNormal; // Normal points from box to polygon
+			outHitResult.impactPoint = contactPoint;
+			outHitResult.penetrationDepth = minPenetrationDepth;
+			return true;
+		}
+
 		return false;
 	}
 
 	inline
-		bool PolygonCircleIntersectWithResult(const TPolygon& polygon, const Circle& circle2, HitResult& outHitResult) {
-		// TODO
+		bool PolygonCircleIntersectWithResult(const TPolygon& polygon, const Circle& circle, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+		bool collisionDetected = false;
+		float minPenetrationDepth = (std::numeric_limits<float>::max)();
+		Math::Vector2 minAxis;
+
+		// Check for separation and find minimal penetration depth along polygon axes
+		std::vector<Math::Vector2> normals = polygon.GetAxisNormals();
+		for (const auto& normal : normals) {
+			float circleProjection = circle.center.Dot(normal) - circle.radius;
+			float polygonMin = (std::numeric_limits<float>::max)();
+			float polygonMax = -(std::numeric_limits<float>::max)();
+
+			for (const auto& vertex : polygon.points) {
+				float projection = vertex.Dot(normal);
+				polygonMin = (std::min)(polygonMin, projection);
+				polygonMax = (std::max)(polygonMax, projection);
+			}
+
+			// No overlap if circle's projection is outside the polygon's projection
+			if (circleProjection > polygonMax) {
+				return false; // Separation found
+			}
+
+			float overlap = polygonMax - circleProjection;
+			if (overlap < minPenetrationDepth) {
+				minPenetrationDepth = overlap;
+				minAxis = normal;
+				collisionDetected = true;
+			}
+		}
+
+		// Check for separation and find minimal penetration depth along circle's normal towards each vertex
+		for (const auto& vertex : polygon.points) {
+			Math::Vector2 toVertex = vertex - circle.center;
+			toVertex.Normalize();
+			float vertexProjection = vertex.Dot(toVertex);
+			float circleProjection = circle.center.Dot(toVertex) + circle.radius;
+
+			float polygonMin = (std::numeric_limits<float>::max)();
+			float polygonMax = -(std::numeric_limits<float>::max)();
+
+			for (const auto& p : polygon.points) {
+				float projection = p.Dot(toVertex);
+				polygonMin = (std::min)(polygonMin, projection);
+				polygonMax = (std::max)(polygonMax, projection);
+			}
+
+			if (circleProjection < polygonMin) {
+				return false; // Separation found
+			}
+
+			float overlap = circleProjection - polygonMin;
+			if (overlap < minPenetrationDepth) {
+				minPenetrationDepth = overlap;
+				minAxis = -toVertex; // Normal should point from circle to polygon
+				collisionDetected = true;
+			}
+		}
+
+		if (collisionDetected) {
+			// Calculate impact point as the closest point on the polygon to the circle's center
+			float minDistance = (std::numeric_limits<float>::max)();
+			Math::Vector2 closestPoint;
+			for (const auto& vertex : polygon.points) {
+				float distance = (vertex - circle.center).Length();
+				if (distance < minDistance) {
+					minDistance = distance;
+					closestPoint = vertex;
+				}
+			}
+
+			outHitResult.impactNormal = -minAxis; // Direction to resolve the penetration, polygon to circle
+			outHitResult.impactPoint = closestPoint; // Closest point on polygon to circle center
+			outHitResult.penetrationDepth = minPenetrationDepth; // Depth to move the circle out of collision
+			outHitResult.normal = -minAxis; // Normal direction from circle to polygon
+			return true;
+		}
+
 		return false;
 	}
 
 	inline
-		bool PolygonCapsuleIntersectWithResult(const TPolygon& polygon, const Capsule& capsule2, HitResult& outHitResult) {
-		// TODO
+		bool PolygonCapsuleIntersectWithResult(const TPolygon& polygon, const Capsule& capsule, HitResult& outHitResult) {
+		// NOTE: ChatGPT 4 Generated Code
+		float minPenetrationDepth = (std::numeric_limits<float>::max)();
+		Math::Vector2 minAxis;
+		bool collisionDetected = false;
+
+		// Capsule properties
+		Math::Vector2 capsuleDirection = capsule.direction;
+		capsuleDirection.Normalize();
+		Math::Vector2 capsuleStart = capsule.center - capsuleDirection * capsule.extent;
+		Math::Vector2 capsuleEnd = capsule.center + capsuleDirection * capsule.extent;
+
+		// Test polygon edges against capsule
+		for (int i = 0; i < polygon.numPoints; ++i) {
+			Math::Vector2 currentVertex = polygon.points[i];
+			Math::Vector2 nextVertex = polygon.points[(i + 1) % polygon.numPoints];
+			Math::Vector2 edge = nextVertex - currentVertex;
+			Math::Vector2 edgeNormal = Math::Vector2(-edge.y, edge.x);
+			edgeNormal.Normalize();
+
+			// Project capsule onto the edge normal
+			float capsuleMin, capsuleMax;
+			float dotStart = capsuleStart.Dot(edgeNormal);
+			float dotEnd = capsuleEnd.Dot(edgeNormal);
+			capsuleMin = (std::min)(dotStart, dotEnd) - capsule.radius;
+			capsuleMax = (std::max)(dotStart, dotEnd) + capsule.radius;
+
+			// Project polygon onto the edge normal
+			float polygonMin = (std::numeric_limits<float>::max)();
+			float polygonMax = -(std::numeric_limits<float>::max)();
+			for (const auto& point : polygon.points) {
+				float dot = point.Dot(edgeNormal);
+				polygonMin = (std::min)(polygonMin, dot);
+				polygonMax = (std::max)(polygonMax, dot);
+			}
+
+			if (capsuleMax < polygonMin || capsuleMin > polygonMax) {
+				return false;  // No overlap, no collision
+			}
+
+			// Calculate overlap
+			float overlap = (std::min)(capsuleMax - polygonMin, polygonMax - capsuleMin);
+			if (overlap < minPenetrationDepth) {
+				minPenetrationDepth = overlap;
+				minAxis = (capsuleMax - polygonMin < polygonMax - capsuleMin) ? edgeNormal : -edgeNormal;
+				collisionDetected = true;
+			}
+		}
+
+		// Finally, if a collision is detected
+		if (collisionDetected) {
+			outHitResult.impactNormal = -minAxis;
+			outHitResult.penetrationDepth = minPenetrationDepth;
+			outHitResult.normal = -minAxis;  // Direction from polygon to capsule
+			// Compute impact point: the closest point on capsule to polygon center
+			Math::Vector2 polygonCenter = polygon.GetCenter();
+			Math::Vector2 closestPoint = capsuleStart + capsuleDirection * ((polygonCenter - capsuleStart).Dot(capsuleDirection));
+			outHitResult.impactPoint = closestPoint;
+			return true;
+		}
+
 		return false;
 	}
 
 	inline
 		bool PolygonPolygonIntersectWithResult(const TPolygon& polygon1, const TPolygon& polygon2, HitResult& outHitResult) {
-		// TODO
-		return false;
+		// NOTE: ChatGPT 4 Generated Code
+		float minPenetrationDepth = (std::numeric_limits<float>::max)();
+		Math::Vector2 collisionNormal;
+		bool collisionDetected = false;
+		Math::Vector2 approximateImpactPoint;
+		int countContacts = 0;
+
+		// Combine the edges of both polygons for the potential separating axes
+		std::vector<Math::Vector2> axes;
+		for (int i = 0; i < polygon1.numPoints; i++) {
+			Math::Vector2 edge = polygon1.points[(i + 1) % polygon1.numPoints] - polygon1.points[i];
+			Math::Vector2 edgeRotated{ -edge.y, edge.x };
+			edgeRotated.Normalize();
+			axes.push_back(edgeRotated); // Normal of the edge
+		}
+		for (int i = 0; i < polygon2.numPoints; i++) {
+			Math::Vector2 edge = polygon2.points[(i + 1) % polygon2.numPoints] - polygon2.points[i];
+			Math::Vector2 edgeRotated{ -edge.y, edge.x };
+			edgeRotated.Normalize();
+			axes.push_back(edgeRotated); // Normal of the edge
+		}
+
+		// Test all potential separating axes for overlap
+		for (const auto& axis : axes) {
+			// Project both polygons onto the axis
+			float min1, max1;
+			float min2, max2;
+
+			// Project polygon1
+			min1 = max1 = polygon1.points[0].Dot(axis);
+			for (const auto& point : polygon1.points) {
+				float projection = point.Dot(axis);
+				min1 = (std::min)(min1, projection);
+				max1 = (std::max)(max1, projection);
+			}
+
+			// Project polygon2
+			min2 = max2 = polygon2.points[0].Dot(axis);
+			for (const auto& point : polygon2.points) {
+				float projection = point.Dot(axis);
+				min2 = (std::min)(min2, projection);
+				max2 = (std::max)(max2, projection);
+			}
+
+			// Determine overlap
+			float overlap = (std::min)(max1, max2) - (std::max)(min1, min2);
+			if (overlap < 0) {
+				return false;  // Separating axis found, no intersection
+			}
+
+			// Check for minimal penetration depth and calculate contact points
+			if (overlap < minPenetrationDepth) {
+				minPenetrationDepth = overlap;
+				collisionNormal = axis;
+
+				// Ensure the normal points from polygon1 to polygon2
+				Math::Vector2 direction = polygon2.GetCenter() - polygon1.GetCenter();
+				if (collisionNormal.Dot(direction) < 0) {
+					collisionNormal = -collisionNormal;
+				}
+
+				// Estimate impact point by averaging edge vertices contributing to overlap
+				approximateImpactPoint = (polygon1.GetCenter() + polygon2.GetCenter()) * 0.5f;
+			}
+		}
+
+		// Collision detected, populate HitResult
+		if (minPenetrationDepth < (std::numeric_limits<float>::max)()) {
+			outHitResult.impactNormal = -collisionNormal;
+			outHitResult.normal = -collisionNormal;  // Normal is used for moving polygon1 out of collision
+			outHitResult.penetrationDepth = minPenetrationDepth;
+			outHitResult.impactPoint = approximateImpactPoint; // Approximate point of impact
+			collisionDetected = true;
+		}
+
+		return collisionDetected;
 	}
 
 }

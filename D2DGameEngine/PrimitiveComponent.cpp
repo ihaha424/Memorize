@@ -2,6 +2,8 @@
 
 #include "World.h"
 
+#include "IntersectionUtil.h"
+
 PrimitiveComponent::PrimitiveComponent() {}
 
 PrimitiveComponent::~PrimitiveComponent() {}
@@ -40,4 +42,56 @@ void PrimitiveComponent::UpdateOverlaps() {
 			//if (_notify) _notify->OnEndOverlap(this, otherComponent, hitResult);
 		}
 	}
+}
+
+bool PrimitiveComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos)
+{
+	if (!bCanCollide || !primComp->bCanCollide) return false;
+
+	CollisionShape myCollisionShape;
+	this->GetCollisionShape(1.f, myCollisionShape);
+	CollisionShape otherCollisionShape;
+	primComp->GetCollisionShape(1.f, otherCollisionShape);
+
+	if (myCollisionShape.IsNearlyZero() || otherCollisionShape.IsNearlyZero())
+		return false;
+
+	if (myCollisionShape.shapeType == ECollisionShape::Box) {
+		// Box myBox = Box::BuildAABB(GetComponentLocation(), myCollisionShape.GetExtent())
+
+		switch (otherCollisionShape.shapeType)
+		{
+		case ECollisionShape::Box: {
+
+		}	break;
+		case ECollisionShape::Capsule: {
+
+		}	break;
+		case ECollisionShape::Circle: {
+
+		}	break;
+		case ECollisionShape::Polygon: {
+
+		}	break;
+		}
+	}
+	else if (myCollisionShape.shapeType == ECollisionShape::Capsule) {
+
+	}
+	else if (myCollisionShape.shapeType == ECollisionShape::Circle) {
+
+	}
+	else if (myCollisionShape.shapeType == ECollisionShape::Polygon) {
+
+	}
+
+	return false;
+}
+
+bool PrimitiveComponent::CheckComponentOverlapComponentWithResultImpl(
+	PrimitiveComponent* component, const DXVec2& pos, 
+	std::vector<OverlapResult>& outOverlap) {
+
+
+
 }

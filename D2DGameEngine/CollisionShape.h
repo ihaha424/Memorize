@@ -2,107 +2,142 @@
 
 #include "framework.h"
 
+#include <variant>
+
+#include "Polygon.h"
+
 enum class ECollisionShape {
 	Line,
 	Box,
 	Circle,
 	Capsule,
+	Polygon
 };
+
+struct Circle_t {
+	float radius;
+};
+
+struct Capsule_t {
+	float radius;
+	float halfHeight;
+};
+
+struct Box_t {
+	float halfWidth;
+	float halfHeight;
+};
+
+struct Line_t {
+	float halfExtentX;
+	float halfExtentY;
+};
+
+struct Polygon_t {
+	std::vector<Math::Vector2> vertices;
+};
+
+using ShapeVariant = std::variant<Circle_t, Capsule_t, Box_t, Line_t, Polygon_t>;
 
 struct CollisionShape {
 	ECollisionShape shapeType;
-
-	union {
-		struct {  // Circle with a center at local origin
-			float radius;
-		} Circle;
-
-		struct {  // Capsule along the Y-axis from -halfHeight to +halfHeight with the given radius
-			float radius;
-			float halfHeight;
-		} Capsule;
-
-		struct {  // Axis-aligned box with the given width and height centered at the local origin
-			float halfWidth;
-			float halfHeight;
-		} Box;
-
-		struct {  // Line segment from Start to End (Not commonly used for stationary collision shapes)
-			float halfExtentX;
-			float halfExtentY;
-		} Line;
-	};
+	ShapeVariant shape;
 
 	// Getters
-	float GetSphereRadius() const {
+	float GetCircleRadius() const {
 		if (shapeType != ECollisionShape::Circle) {
 			throw std::runtime_error("Not a circle.");
 		}
-		return Circle.radius;
+		return std::get<Circle_t>(shape).radius;
 	}
 
 	float GetCapsuleRadius() const {
 		if (shapeType != ECollisionShape::Capsule) {
 			throw std::runtime_error("Not a capsule.");
 		}
-		return Capsule.radius;
+		return std::get<Capsule_t>(shape).radius;
 	}
 
 	float GetCapsuleHalfHeight() const {
 		if (shapeType != ECollisionShape::Capsule) {
 			throw std::runtime_error("Not a capsule.");
 		}
-		return Capsule.halfHeight;
+		return std::get<Capsule_t>(shape).halfHeight;
 	}
 
 	float GetCapsuleAxisHalfLength() const {
 		return GetCapsuleHalfHeight();
 	}
 
-	DXVec2 GetBox() const {
+	Math::Vector2 GetBox() const {
 		if (shapeType != ECollisionShape::Box) {
 			throw std::runtime_error("Not a box.");
 		}
-		return { Box.halfWidth, Box.halfHeight };
+		return { std::get<Box_t>(shape).halfWidth, std::get<Box_t>(shape).halfHeight };
 	}
 
 	Extent2D GetExtent() const {
 		if (shapeType == ECollisionShape::Box) {
-			return { Box.halfWidth * 2.f, Box.halfHeight * 2.f };
+			return { std::get<Box_t>(shape).halfWidth * 2.f, std::get<Box_t>(shape).halfHeight * 2.f };
 		}
 		else if (shapeType == ECollisionShape::Capsule) {
-			return { Capsule.radius * 2.f, Capsule.halfHeight * 2.f };
+			return { std::get<Capsule_t>(shape).radius * 2.f, std::get<Capsule_t>(shape).halfHeight * 2.f };
 		}
 		else if (shapeType == ECollisionShape::Circle) {
-			return { Circle.radius * 2.f, Circle.radius * 2.f };
+			return { std::get<Circle_t>(shape).radius * 2.f, std::get<Circle_t>(shape).radius * 2.f };
+		}
+		else if (shapeType == ECollisionShape::Polygon) {
+			const auto& polygon = std::get<Polygon_t>(shape);
+			TPolygon p{ polygon.vertices };
+			return p.GetAABB().GetExtent();
 		}
 		else {
-			return { Line.halfExtentX * 2.f, Line.halfExtentY * 2.f };
+			return { std::get<Line_t>(shape).halfExtentX * 2.f, std::get<Line_t>(shape).halfExtentY * 2.f };
 		}
 	}
 
+	std::vector<Math::Vector2> GetPolygonVertices() const {
+		if (shapeType != ECollisionShape::Polygon) {
+			throw std::runtime_error("Not a polygon.");
+		}
+		return std::get<Polygon_t>(shape).vertices;
+	}
+
 	// Setters
-	void SetSphere(float _radius) {
+	void SetCircle(float _radius) {
 		shapeType = ECollisionShape::Circle;
-		Circle.radius = _radius;
+		shape = Circle_t{ _radius };
 	}
 
 	void SetCapsule(float _radius, float _halfExtent) {
 		shapeType = ECollisionShape::Capsule;
-		Capsule.radius = _radius;
-		Capsule.halfHeight = _halfExtent;
+		shape = Capsule_t{ 
+			.radius = _radius, 
+			.halfHeight = _halfExtent 
+		};
 	}
 
 	void SetBox(const Extent2D& _halfExtent) {
 		shapeType = ECollisionShape::Box;
-		Box.halfWidth = _halfExtent.width;
-		Box.halfHeight = _halfExtent.height;
+		shape = Box_t{
+			.halfWidth = _halfExtent.width,
+			.halfHeight = _halfExtent.height
+		};
 	}
 
 	void SetCapsule(const Extent2D& _extent) {
 		shapeType = ECollisionShape::Capsule;
-		Capsule.radius = _extent.width / 2.f;
-		Capsule.halfHeight = _extent.height / 2.f;
+		shape = Capsule_t{
+			.radius = _extent.width / 2.f,
+			.halfHeight = _extent.height / 2.f
+		};
+	}
+
+	void SetPolygon(const std::vector<Math::Vector2>& _vertices) {
+		shapeType = ECollisionShape::Polygon;
+		shape = Polygon_t{
+			.vertices = _vertices,
+		};
 	}
 
 	// Type checkers
@@ -122,31 +157,59 @@ struct CollisionShape {
 		return shapeType == ECollisionShape::Circle;
 	}
 
+	bool IsPolygon() const {
+		return shapeType == ECollisionShape::Polygon;
+	}
+
 	bool IsNearlyZero() const {
-		return abs(Line.halfExtentX) < 0.0005 && abs(Line.halfExtentY) < 0.0005;
+		if (std::holds_alternative<Line_t>(shape)) {
+			const auto& line = std::get<Line_t>(shape);
+			return abs(line.halfExtentX) < EPSILON && abs(line.halfExtentY) < EPSILON;
+		}
+		else if (std::holds_alternative<Box_t>(shape)) {
+			const auto& box = std::get<Box_t>(shape);
+			return abs(box.halfHeight) < EPSILON && abs(box.halfWidth) < EPSILON;
+		}
+		else if (std::holds_alternative<Circle_t>(shape)) {
+			const auto& circle = std::get<Circle_t>(shape);
+			return abs(circle.radius) < EPSILON;
+		}
+		else if (std::holds_alternative<Capsule_t>(shape)) {
+			const auto& capsule = std::get<Capsule_t>(shape);
+			return abs(capsule.halfHeight) < EPSILON && abs(capsule.radius) < EPSILON;
+		}
+		else if (std::holds_alternative<Polygon_t>(shape)) {
+			const auto& polygon = std::get<Polygon_t>(shape);
+			TPolygon p{ polygon.vertices };
+			Extent2D extent = p.GetAABB().GetExtent();
+			return abs(extent.width / 2.f) < EPSILON && abs(extent.height / 2.f) < EPSILON;
+		}
+
+		return false;
 	}
 
 	// Factory methods to create specific shapes
-	static CollisionShape CreateCircle(float radius) {
+	static CollisionShape CreateCircle(float _radius) {
 		CollisionShape shape;
-		shape.shapeType = ECollisionShape::Circle;
-		shape.Circle.radius = radius;
+		shape.SetCircle(_radius);
 		return shape;
 	}
 
-	static CollisionShape CreateCapsule(float radius, float halfHeight) {
+	static CollisionShape CreateCapsule(float _radius, float _halfHeight) {
 		CollisionShape shape;
-		shape.shapeType = ECollisionShape::Capsule;
-		shape.Capsule.radius = radius;
-		shape.Capsule.halfHeight = halfHeight;
+		shape.SetCapsule(_radius, _halfHeight);
 		return shape;
 	}
 
 	static CollisionShape CreateBox(const Extent2D& _halfExtent) {
 		CollisionShape shape;
-		shape.shapeType = ECollisionShape::Box;
-		shape.Box.halfWidth = _halfExtent.width;
-		shape.Box.halfHeight = _halfExtent.height;
+		shape.SetBox(_halfExtent);
+		return shape;
+	}
+
+	static CollisionShape CreatePolygon(const std::vector<Math::Vector2>& _vertices) {
+		CollisionShape shape;
+		shape.SetPolygon(_vertices);
 		return shape;
 	}
 

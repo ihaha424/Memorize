@@ -8,5 +8,6 @@ public:
 	ShapeComponent() {
 		isVisible = false;
 		bCanCollide = true;
+		SetTickProperties(TICK_PHYSICS | TICK_RENDER);
 	}
 };
