@@ -1,11 +1,6 @@
 #pragma once
 #include "IComponent.h"
 
-enum EActorStatus
-{
-	AS_AWAKE, AS_INACTIVE, AS_ACTIVE, AS_DESTROY
-};
-
 
 class Actor : public IObject
 {
@@ -13,7 +8,6 @@ protected:
 	using ComponentRegistry = std::unordered_multimap<std::type_index, class IComponent*>;
 	ComponentRegistry components;
 
-	EActorStatus status = AS_AWAKE;
 	class World* world = nullptr;
 
 public: 
@@ -21,20 +15,18 @@ public:
 	Actor(class World* _world);
 	virtual ~Actor();
 
-	EActorStatus GetStatus() { return status; }
-
 	void SetWorld(class World* _world) { world = _world; }
 	class World* GetWorld() { return world; }
 
 	/**
 	 * @brief Actor의 상태를 AS_ACTIVE로 변경합니다. 
 	 */
-	void Activate() { status = AS_ACTIVE; }
+	void Activate() { status = OS_ACTIVE; }
 
 	/**
 	 * @brief Actor의 상태를 AS_INACTIVE로 변경합니다. 
 	 */
-	void Inactivate() { status = AS_INACTIVE; }
+	void Inactivate() { status = OS_INACTIVE; }
 
 	void SetLocation(const float x, const float y);
 	Math::Vector2 GetLocation() const;

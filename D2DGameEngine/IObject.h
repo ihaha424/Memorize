@@ -12,11 +12,19 @@ typedef enum TickPropertyBit {
 } TickPropertyBit;
 using TickPropertyFlags = Flags;
 
+enum EObjectStatus
+{
+	OS_AWAKE, OS_INACTIVE, OS_ACTIVE, OS_DESTROY
+};
+
+
 class IObject {
 	bool tickEveryFrame{ true };
 	float tickInterval{ 0.0 };
 	TickPropertyFlags tickPropertyFlags{ TICK_NONE };
 
+protected:
+	EObjectStatus status = OS_AWAKE;
 public:
 
 	/**
@@ -67,6 +75,12 @@ public:
 	{
 		return (tickPropertyFlags & propertyBit) != 0;
 	}
+
+	/**
+	 * @brief 오브젝트의 현재 상태를 반환합니다. 
+	 */
+	EObjectStatus GetStatus() { return status; }
+
 
 	virtual void FixedUpdate(float _fixedRate) {}
 	virtual void PreUpdate(float _dt) {}

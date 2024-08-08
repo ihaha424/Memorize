@@ -153,6 +153,7 @@
     <ClCompile Include="GCameraComponent.cpp" />
     <ClCompile Include="GPlayerController.cpp" />
     <ClCompile Include="Heal.cpp" />
+    <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="GCameraComponent.h" />
     <ClInclude Include="GPlayerController.h" />
     <ClInclude Include="Heal.h" />
+    <ClInclude Include="Meteor.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="Player.h" />
