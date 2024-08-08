@@ -1,10 +1,8 @@
 #include "PrimitiveComponent.h"
 
 #include "World.h"
-
 #include "IntersectionUtil.h"
-
-PrimitiveComponent::PrimitiveComponent() {}
+PrimitiveComponent::PrimitiveComponent(Actor* _owner) : SceneComponent(_owner) {}
 
 PrimitiveComponent::~PrimitiveComponent() {}
 

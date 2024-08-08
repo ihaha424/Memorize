@@ -7,7 +7,7 @@
 Projectile::Projectile(World* _world) : Actor(_world)
 {
 	rootComponent = CreateComponent<BitmapComponent>();
-	CreateComponent<MovementComponent>();
+	rootComponent->AddChild(CreateComponent<MovementComponent>());
 }
 
 Projectile::~Projectile()

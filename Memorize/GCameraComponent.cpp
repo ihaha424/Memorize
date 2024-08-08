@@ -1,6 +1,6 @@
 #include "GCameraComponent.h"
 
-GCameraComponent::GCameraComponent()
+GCameraComponent::GCameraComponent(Actor* _owner) : CameraComponent(_owner)
 {
 	SetTickProperties(TICK_POST_UPDATE);
 }

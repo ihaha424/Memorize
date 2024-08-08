@@ -20,6 +20,7 @@ Player::Player(class World* _world) : Character(_world)
 	bm->SetSprite(L"Memorize/testPlayer.png");
 
 	MovementComponent* mv = CreateComponent< MovementComponent>();
+	bm->AddChild(mv);
 }
 
 Player::~Player()
@@ -36,6 +37,11 @@ void Player::LevelUp()
 
 	//TODO
 	//level에 따라 Stat 조정
+}
+
+void Player::AddToStat(Stat _addStat)
+{
+	stat = stat + _addStat;
 }
 
 void Player::ReflectionIn()

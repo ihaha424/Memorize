@@ -6,13 +6,13 @@ class FSMComponent :
     public IComponent
 {
 public:
-	FSMComponent(){}
+	FSMComponent(Actor* _owner) : IComponent(_owner){}
 	virtual ~FSMComponent();
 
 	template<typename FSMStateType>
 	FSMStateType* CreateState(const std::wstring _stateName)
 	{
-		FSMStateType* pState = new FSMStateType(pMyPointer, _stateName);
+		FSMStateType* pState = new FSMStateType(this, _stateName);
 		statesMap.insert(std::make_pair(pState->GetName(), pState));
 		return pState;
 	}

@@ -43,7 +43,7 @@ public:
 	bool bTakeDamage{ false };
 
 public:
-	PrimitiveComponent();
+	PrimitiveComponent(Actor* _owner);
 	~PrimitiveComponent();
 
 	DXVec2 GetCenterOfMass() const {

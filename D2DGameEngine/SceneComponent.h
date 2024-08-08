@@ -31,7 +31,8 @@ protected:
 	DXVec2 velocity{ 0.f, 0.f };
 public:
 
-	SceneComponent() : parent{ nullptr }, S{}, R{}, T{} {
+	SceneComponent(Actor* _owner) :
+		IComponent(_owner), parent{ nullptr }, S{}, R{}, T{} {
 		SetTickProperties(TICK_PHYSICS);
 	}
 

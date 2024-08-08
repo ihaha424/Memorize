@@ -3,9 +3,8 @@
 #include "../D2DGameEngine/Debug.h"
 #include "Skill.h"
 
-class TestPlayerController : public PlayerController
+class GPlayerController : public PlayerController
 {
-	LOG_REGISTER_OBJ(TestPlayerController)
 	Math::Vector2 destPos;
 
 	//현재 발동중인 스킬
@@ -15,9 +14,11 @@ class TestPlayerController : public PlayerController
 	using SkillRegistry = std::unordered_multimap<std::type_index, class Skill*>;
 	SkillRegistry skills;
 
+	//FSMPlayer
+	class PlayerFSMComponent* playerFSMComponent;
 
 public:
-	TestPlayerController(class World* _world);
+	GPlayerController(class World* _world);
 	virtual void SetupInputComponent() override;
 
 	/**
@@ -36,10 +37,18 @@ public:
 	virtual void Update(float _dt) override;
 
 	void MovePlayer();
+
+
+	void Fire();
+	void Water();
+	void Light();
+	void Dark(); 
+	void Attack();
+	void Move(); 
 };
 
 template<typename T>
-inline void TestPlayerController::StartSkill()
+inline void GPlayerController::StartSkill()
 {
 	if (nowSkill) return;
 	auto range = skills.equal_range(std::type_index(typeid(T)));

@@ -4,7 +4,7 @@
 class GCameraComponent : public CameraComponent
 {
 public:
-    GCameraComponent();
+    GCameraComponent(Actor* _owner);
     virtual ~GCameraComponent();
 
     virtual void PostUpdate(float _dt) override;

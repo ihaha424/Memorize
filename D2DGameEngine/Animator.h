@@ -16,7 +16,7 @@ class Animator : public IComponent {
 	StateRegistry _animationStates;
 	AnimationState* _currState;
 public:
-	Animator(AnimationState* state) : _currState(state) {
+	Animator(AnimationState* state, Actor* _owner) : IComponent(_owner), _currState(state) {
 		SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	}
 

@@ -19,21 +19,21 @@ void Actor::BeginPlay()
 	for (auto [_, component] : components) {
 		component->BeginPlay();
 	}
-	status = AS_ACTIVE;
+	status = OS_ACTIVE;
 }
 
 bool Actor::Destroy()
 {
-	if (status == AS_DESTROY)
+	if (status == OS_DESTROY)
 		return false;
-	status = AS_DESTROY;
+	status = OS_DESTROY;
 	return true;
 }
 
 void Actor::FixedUpdate(float _fixedRate)
 {
 	for (auto [_, component] : components) {
-		if(component->CheckTickProperty(TICK_PHYSICS))
+		if(component->CheckTickProperty(TICK_PHYSICS) && component->GetStatus() == OS_ACTIVE)
 			component->FixedUpdate(_fixedRate);
 	}
 }
@@ -41,7 +41,7 @@ void Actor::FixedUpdate(float _fixedRate)
 void Actor::PreUpdate(float _dt)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_PRE_UPDATE))
+		if (component->CheckTickProperty(TICK_PRE_UPDATE) && component->GetStatus() == OS_ACTIVE)
 			component->PreUpdate(_dt);
 	}
 }
@@ -49,7 +49,7 @@ void Actor::PreUpdate(float _dt)
 void Actor::Update(float _dt)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_UPDATE))
+		if (component->CheckTickProperty(TICK_UPDATE) && component->GetStatus() == OS_ACTIVE)
 			component->Update(_dt);
 	}
 }
@@ -57,7 +57,7 @@ void Actor::Update(float _dt)
 void Actor::PostUpdate(float _dt)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_POST_UPDATE))
+		if (component->CheckTickProperty(TICK_POST_UPDATE) && component->GetStatus() == OS_ACTIVE)
 			component->PostUpdate(_dt);
 	}
 }
@@ -65,7 +65,7 @@ void Actor::PostUpdate(float _dt)
 void Actor::Render(D2DRenderer* _renderer)
 {
 	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_RENDER))
+		if (component->CheckTickProperty(TICK_RENDER) && component->GetStatus() == OS_ACTIVE)
 			component->Render(_renderer);
 	}
 }
@@ -82,6 +82,7 @@ Math::Vector2 Actor::GetLocation() const
 	{
 		return rootComponent->GetComponentLocation();
 	}
+	return { 0, 0 };
 }
 
 void Actor::SetRotation(const float _degree)

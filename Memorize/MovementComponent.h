@@ -4,7 +4,8 @@
 class MovementComponent : public SceneComponent
 {
 public:
-	MovementComponent() { SetTickProperties(TICK_UPDATE); }
+	MovementComponent(Actor* _owner) : SceneComponent(_owner)
+	{ SetTickProperties(TICK_UPDATE); }
 	virtual ~MovementComponent() {}
 
 	void Update(float _dt);

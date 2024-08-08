@@ -1,10 +1,10 @@
 #include "Skill.h"
 #include "Player.h"
-#include "../D2DGameEngine/PlayerController.h"
+#include "GPlayerController.h"
 
 int Skill::wholeSkillLevel = 0;
 
-Skill::Skill()
+Skill::Skill(Actor* _owner) : IComponent(_owner)
 {
 }
 
@@ -12,7 +12,7 @@ Skill::~Skill()
 {
 }
 
-void Skill::SetPlayer(PlayerController* _pc)
+void Skill::SetPlayer(GPlayerController* _pc)
 {
 	controller = _pc;
 	player = controller->GetPlayer();

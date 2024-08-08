@@ -670,6 +670,9 @@
     <ClCompile Include="FSMState.cpp">
       <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
     </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files\GameEngine\Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="디버그_사용법.md">

@@ -37,16 +37,16 @@ void ChasingWaterBallProjectile::Update(float _dt)
 void ChasingWaterBallProjectile::Initialize()
 {
 	xValue.SetData(&x);
-	xValue.SetDuration(2.f);
-	xValue.SetStartPoint(GetLocation().x + 50);
-	xValue.SetEndPoint(GetLocation().x - 50);
+	xValue.SetDuration(1.f);
+	xValue.SetStartPoint(GetLocation().x + 100);
+	xValue.SetEndPoint(GetLocation().x - 100);
 	xValue.SetEasingEffect(EasingEffect::Linear);
 	xValue.SetStepAnimation(StepAnimation::StepLoopPingPong);
 
 	yValue.SetData(&y);
-	yValue.SetDuration(2.f);
-	yValue.SetStartPoint(GetLocation().y - 50);
-	yValue.SetEndPoint(GetLocation().x + 50);
+	yValue.SetDuration(0.5f);
+	yValue.SetStartPoint(GetLocation().y - 5);
+	yValue.SetEndPoint(GetLocation().y + 5);
 	yValue.SetEasingEffect(EasingEffect::InOutBounce);
 	yValue.SetStepAnimation(StepAnimation::StepLoopPingPong);
 

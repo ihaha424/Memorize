@@ -74,6 +74,7 @@ void GameApp::Update(float dt) {
 #ifndef NDEBUG 
 	frameTime += dt;
 #endif
+	world->BeginPlay();
 	world->PreUpdate(dt);
 	world->Update(dt);
 	world->PostUpdate(dt);

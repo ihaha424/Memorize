@@ -11,7 +11,7 @@ protected:
 	float projectileSpeed = 150.f;
 
 public:
-	ProjectileSkill();
+	ProjectileSkill(Actor* _owner);
 	virtual ~ProjectileSkill();
 };
 

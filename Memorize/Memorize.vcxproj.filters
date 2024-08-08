@@ -45,11 +45,14 @@
     <Filter Include="Source Files\App\Skill\Projectile\ChasingWaterBall">
       <UniqueIdentifier>{db273a00-a2c4-4eb4-ac21-4a6dadeecd12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Player\PlayerFSM">
+      <UniqueIdentifier>{6fd1e582-d46a-45d7-8b2a-cdba8a926266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Player\PlayerFSM\PlayerStates">
+      <UniqueIdentifier>{ce17e71b-eecc-438b-acc0-e783078254de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameApp.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
@@ -60,9 +63,6 @@
       <Filter>Source Files\App\Boss</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\App\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="TestPlayerController.cpp">
       <Filter>Source Files\App\Player</Filter>
     </ClCompile>
     <ClCompile Include="GCameraComponent.cpp">
@@ -101,6 +101,42 @@
     <ClCompile Include="ChasingWaterBallProjectile.cpp">
       <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAttack.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBlinking.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCasting.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerIdle.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFSMComponent.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Heal.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="MPMaxIncrease.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="GPlayerController.cpp">
+      <Filter>Source Files\App\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Meteor.cpp">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMove.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -119,9 +155,6 @@
       <Filter>Source Files\App\Boss</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\App\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="TestPlayerController.h">
       <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="GCameraComponent.h">
@@ -159,6 +192,42 @@
     </ClInclude>
     <ClInclude Include="ChasingWaterBallProjectile.h">
       <Filter>Source Files\App\Skill\Projectile\ChasingWaterBall</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStates.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttack.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBlinking.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCasting.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIdle.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFSMComponent.h">
+      <Filter>Source Files\App\Player\PlayerFSM</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Heal.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="MPMaxIncrease.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="GPlayerController.h">
+      <Filter>Source Files\App\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Meteor.h">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMove.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
