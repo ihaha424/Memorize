@@ -4,7 +4,6 @@
 
 #include "CollisionProperty.h"
 
-
 class CollisionSystem {
 
 public:
@@ -27,6 +26,16 @@ public:
 	bool CheckComponentOverlapsByChannel(
 		std::vector<struct OverlapResult>& outOverlapResults,
 		class PrimitiveComponent* primComp,
-		const Math::Vector2& pos);
+		const Math::Vector2& pos,
+		const Math::Matrix& rotation,
+		ECollisionChannel channel);
+
+	bool CheckComponentSweepMultiByChannel(
+		std::vector<HitResult>& outHitResults,
+		class PrimitiveComponent* primComp,
+		const Math::Vector2& start,
+		const Math::Vector2& end,
+		const Math::Matrix& rotation,
+		ECollisionChannel channel);
 
 };

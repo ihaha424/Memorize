@@ -467,6 +467,9 @@
     <ClInclude Include="FSMState.h">
       <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
     </ClInclude>
+    <ClInclude Include="OverlapInfo.h">
+      <Filter>Source Files\GameEngine\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">

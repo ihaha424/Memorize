@@ -4,6 +4,8 @@
 #include "Canvas.h"
 #include "CameraComponent.h"
 
+#include "PrimitiveComponent.h"
+
 World::World() {}
 World::~World()
 {
@@ -58,8 +60,45 @@ Math::Vector2 World::ScreenToWorldPoint(Math::Vector2 position)
 bool World::CheckComponentOverlapMulti(
 	std::vector<OverlapResult>& outOverlapResults,
 	class PrimitiveComponent* primComp,
-	const Math::Vector2& pos) const {
+	const Math::Vector2& pos,
+	const Math::Matrix& rotation) const {
+	CheckComponentOverlapMultiByChannel(outOverlapResults, primComp, pos, rotation, primComp->GetCollisionObjectType());
+	return (outOverlapResults.size() > 0);
+}
+
+bool World::CheckComponentOverlapMultiByChannel(
+	std::vector<OverlapResult>& outOverlapResults, 
+	PrimitiveComponent* primComp, 
+	const Math::Vector2& pos, 
+	const Math::Matrix& rotation, 
+	ECollisionChannel channel) const
+{
 	// TODO
+	return false;
+}
+
+bool World::CheckComponentSweepMulti(std::vector<HitResult>& outHitResults, PrimitiveComponent* primComp, const Math::Vector2& start, const Math::Vector2& end, const Math::Matrix& rotation) const
+{
+	CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, primComp->GetCollisionObjectType());
+	return (outHitResults.size() > 0);
+}
+
+bool World::CheckComponentSweepMultiByChannel(std::vector<HitResult>& outHitResults, PrimitiveComponent* primComp, const Math::Vector2& start, const Math::Vector2& end, const Math::Matrix& rotation, ECollisionChannel channel) const
+{
+	outHitResults.clear();
+
+	if (!primComp) return false;
+
+	if (primComp->IsZeroExtent()) {
+		// do raycast instead.
+		return false;
+	}
+
+	if (!primComp->IsCollisionEnabled()) return false;
+
+	// TODO
+
+
 	return false;
 }
 

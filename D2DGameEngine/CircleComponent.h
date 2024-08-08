@@ -10,7 +10,11 @@ protected:
 public:
 
 	float GetShapeScale() const {
-		return sqrtf(S._11 * S._11 + S._22 * S._22);
+		// Extract the world scale.
+		Math::Matrix worldMatrix = GetWorldTransform();
+		Math::Vector3 scale = Math::ExtractScale(worldMatrix);
+
+		return (std::min)({ scale.x, scale.y });
 	}
 
 	float GetScaledSphereRadius() const {
@@ -40,6 +44,23 @@ public:
 		collisionShape.SetCircle(GetScaledSphereRadius());
 		return collisionShape.IsNearlyZero();
 	}
+
+	virtual bool CheckLineTraceComponent(
+		HitResult& outHit,
+		const DXVec2 start,
+		const DXVec2 end) {
+		// TODO:
+		return false;
+	}
+
+	virtual bool CheckSweepComponent(
+		HitResult& outHit,
+		const DXVec2& start,
+		const DXVec2& end,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty) override;
 
 protected:
 	bool CheckComponentOverlapComponentImpl(

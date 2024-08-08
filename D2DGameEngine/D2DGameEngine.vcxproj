@@ -186,6 +186,7 @@
     <ClInclude Include="InputEventDispatcher.h" />
     <ClInclude Include="Leaf.h" />
     <ClInclude Include="MoveTo.h" />
+    <ClInclude Include="OverlapInfo.h" />
     <ClInclude Include="OverlapResult.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Polygon.h" />

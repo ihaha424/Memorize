@@ -2,11 +2,14 @@
 
 #include "SceneComponent.h"
 
+#include "Actor.h"
+
 #include "CollisionShape.h"
 #include "CollisionProperty.h"
 
 #include "HitResult.h"
 #include "OverlapResult.h"
+#include "OverlapInfo.h"
 
 /**
  * @brief geometry to be rendered or used as collision.
@@ -35,8 +38,7 @@ public:
 	bool bGenerateHitEvent{ false };
 	bool bGenerateOverlapEvent{ false };
 	CollisionProperty collisionProperty;	// Default NoCollision
-	using OverlappingComponentSet = std::map<PrimitiveComponent*, HitResult>;
-	OverlappingComponentSet previouslyOverlappingComponents;
+	using OverlappingComponentSet = std::map<PrimitiveComponent*, OverlapInfo>;
 	OverlappingComponentSet currentlyOverlappingComponents;
 
 	// Damage
@@ -99,6 +101,30 @@ public:
 		class Actor* damageCauser	// 데미지를 준 오브젝트. 예시, 총알, 수류탄 등.
 	) {
 		// TODO:
+		/*if (bApplyImpulseOnDamage)
+		{
+			UDamageType const* const DamageTypeCDO = DamageEvent.DamageTypeClass ? DamageEvent.DamageTypeClass->GetDefaultObject<UDamageType>() : GetDefault<UDamageType>();
+			if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
+			{
+				FPointDamageEvent* const PointDamageEvent = (FPointDamageEvent*)&DamageEvent;
+				if ((DamageTypeCDO->DamageImpulse > 0.f) && !PointDamageEvent->ShotDirection.IsNearlyZero())
+				{
+					if (IsSimulatingPhysics(PointDamageEvent->HitInfo.BoneName))
+					{
+						FVector const ImpulseToApply = PointDamageEvent->ShotDirection.GetSafeNormal() * DamageTypeCDO->DamageImpulse;
+						AddImpulseAtLocation(ImpulseToApply, PointDamageEvent->HitInfo.ImpactPoint, PointDamageEvent->HitInfo.BoneName);
+					}
+				}
+			}
+			else if (DamageEvent.IsOfType(FRadialDamageEvent::ClassID))
+			{
+				FRadialDamageEvent* const RadialDamageEvent = (FRadialDamageEvent*)&DamageEvent;
+				if (DamageTypeCDO->DamageImpulse > 0.f)
+				{
+					AddRadialImpulse(RadialDamageEvent->Origin, RadialDamageEvent->Params.OuterRadius, DamageTypeCDO->DamageImpulse, RIF_Linear, DamageTypeCDO->bRadialDamageVelChange);
+				}
+			}
+		}*/
 	}
 
 	// Collision Callbacks
@@ -123,6 +149,11 @@ public:
 		}
 	}
 
+	bool IsRegisterd() {
+		// GetWorld()->CheckRegistration();
+		return false;
+	}
+
 	void SetCollisionObjectType(ECollisionChannel objectType) {
 		collisionProperty.objectType = objectType;
 	}
@@ -142,24 +173,6 @@ public:
 
 	virtual ECollisionChannel GetCollisionObjectType() const override {
 		return ECollisionChannel::WorldStatic;
-	}
-
-	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
-		DXVec2 c { bounds.center.x, bounds.center.y };
-		c = DXVec2::Transform(c, _worldTransform);
-
-		DXVec2 e { bounds.boxExtent.width, bounds.boxExtent.height };
-		e = DXVec2::Transform(e, _worldTransform);
-		
-		return BoxCircleBounds(Box{ c, e });
-	}
-
-	virtual BoxCircleBounds CalculateLocalBounds() const {
-		return BoxCircleBounds{};
-	}
-
-	virtual void UpdateBounds() override {
-		bounds = CalculateLocalBounds();
 	}
 
 	/**
@@ -201,23 +214,59 @@ public:
 		return true;
 	}
 
-	void DispatchBlockingHit() {
-		// TODO:
+	virtual bool CheckSweepComponent(
+		HitResult& outHit,
+		const DXVec2& start,
+		const DXVec2& end,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty);
+
+	void DispatchBlockingHit(Actor& owner, HitResult& blockingHit) {
+		PrimitiveComponent* blockingHitComponent = blockingHit.hitComponent;
+		if (blockingHitComponent) {
+			//owner.DispatchBlockingHit(this, blockingHitComponent, true, blockingHit);
+
+			Actor* blockingHitActor = blockingHitComponent->GetOwner();
+			if (blockingHitActor) {
+				//blockingHitActor->(blockingHitComponent, this, false, blockingHit);
+			}
+		}
 	}
 
 	bool IsOverlappingComponent(const PrimitiveComponent* otherComp) const {
 		// TODO:
 	}
 
+	/**
+	 * @brief Begin tracking an overlap interaction with the component specified.
+	 * @param otherOverlap 
+	 * @param bDoNotifies 
+	 */
+	void BeginComponentOverlap(const OverlapInfo& otherOverlap, bool bDoNotifies);
+
+	/**
+	 * @brief End tracking an overlap interaction
+	 * @param otherOverlap 
+	 * @param bDoNotifies 
+	 * @param bSkipNotifySelf 
+	 */
+	void EndComponentOverlap(const OverlapInfo& otherOverlap, bool bDoNotifies, bool bSkipNotifySelf=false);
+
 	// TODO: Place it in the UpdateOverlaps()
-	void PushOverlappingComponent(PrimitiveComponent* otherComponent, const HitResult& hitResult) {
-		currentlyOverlappingComponents.insert({ otherComponent, hitResult });
+	void PushOverlappingComponent(PrimitiveComponent* otherComponent, const OverlapInfo& overlapInfo) {
+		currentlyOverlappingComponents.insert({ otherComponent, overlapInfo });
+	}
+
+	void PopOverlappingComponent(PrimitiveComponent* otherComponent) {
+		currentlyOverlappingComponents.erase(otherComponent);
 	}
 
 	/**
 	 * @brief 오버랩 스테이트를 업데이트 합니다.
 	 */
-	virtual void UpdateOverlaps() override;
+	virtual void UpdateOverlaps(const std::vector<OverlapInfo>& overlaps, bool bDoNotifies = true);
 
 	bool IsSimulatingPhysics() override {
 		return bSimulatePhysics;
@@ -225,6 +274,26 @@ public:
 
 	virtual DXVec2 GetComponentVelocity() const override {
 		return Super::GetComponentVelocity();
+	}
+
+	// Bounds
+
+	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
+		DXVec2 c{ bounds.center.x, bounds.center.y };
+		c = DXVec2::Transform(c, _worldTransform);
+
+		DXVec2 e{ bounds.boxExtent.width, bounds.boxExtent.height };
+		e = DXVec2::Transform(e, _worldTransform);
+
+		return BoxCircleBounds(Box{ c, e });
+	}
+
+	virtual BoxCircleBounds CalculateLocalBounds() const {
+		return BoxCircleBounds{};
+	}
+
+	virtual void UpdateBounds() override {
+		bounds = CalculateLocalBounds();
 	}
 
 	// Physics update
@@ -254,6 +323,12 @@ public:
 		}
 	}
 
+	static void PullBackHit(HitResult& Hit, const DXVec2& Start, const DXVec2& End, const float Dist)
+	{
+		const float DesiredTimeBack = Clamp(0.1f, 0.1f / Dist, 1.f / Dist) + 0.001f;
+		Hit.time = Clamp(Hit.time - DesiredTimeBack, 0.f, 1.f);
+	}
+
 protected:
 
 	virtual bool CheckComponentOverlapComponentImpl(
@@ -269,11 +344,7 @@ protected:
 	virtual bool MoveComponentImpl(
 		const DXVec2& delta,
 		bool bSweep,
-		HitResult* outHitResult) override {
-		// TODO:
-		Super::MoveComponentImpl(delta, bSweep, outHitResult);
-		return true;
-	}
+		HitResult* outHitResult) override;
 
 };
 

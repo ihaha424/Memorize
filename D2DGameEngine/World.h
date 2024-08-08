@@ -36,35 +36,30 @@ public:
 		bool CheckComponentOverlapMulti(
 			std::vector<OverlapResult>& outOverlapResults,
 			class PrimitiveComponent* primComp,
-			const Math::Vector2& pos) const;
+			const Math::Vector2& pos,
+			const Math::Matrix& rotation) const;
 
 		bool CheckComponentOverlapMultiByChannel(
 			std::vector<OverlapResult>& outOverlapResults,
 			class PrimitiveComponent* primComp,
 			const Math::Vector2& pos,
-			ECollisionChannel channel) const {
-			// TODO
-			return false;
-		}
+			const Math::Matrix& rotation,
+			ECollisionChannel channel) const;
 
 		bool CheckComponentSweepMulti(
 			std::vector<HitResult>& outHitResults,
-			class PrimitiveComponet* primComp,
+			class PrimitiveComponent* primComp,
 			const Math::Vector2& start,
-			const Math::Vector2& end) const {
-			// TODO
-			return false;
-		}
+			const Math::Vector2& end,
+			const Math::Matrix& rotation) const;
 
 		bool CheckComponentSweepMultiByChannel(
 			std::vector<HitResult>& outHitResults,
-			class PrimitiveComponet* primComp,
+			class PrimitiveComponent* primComp,
 			const Math::Vector2& start,
 			const Math::Vector2& end,
-			ECollisionChannel channel) const {
-			// TODO
-			return false;
-		}
+			const Math::Matrix& rotation,
+			ECollisionChannel channel) const;
 
 		bool LineTraceMultiByChannel(
 			std::vector<HitResult>& outHitResults,

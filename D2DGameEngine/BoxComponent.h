@@ -8,10 +8,13 @@ protected:
 
 public:
 
-	Extent2D GetScaledCapsuleHalfHeight() const {
-		DXVec3 p{ boxExtent.width, boxExtent.height, 0.f };
-		p = DXVec3::Transform(p, S);
-		return { p.x, p.y };
+	Extent2D GetScaledBoxExtent() const {
+		// Extract the world scale.
+		Math::Matrix worldMatrix = GetWorldTransform();
+		Math::Vector3 scale = Math::ExtractScale(worldMatrix);
+
+		// Scale the height;
+		return { boxExtent.width * scale.x, boxExtent.height * scale.y };
 	}
 
 	Extent2D GetBoxExtent() const {
@@ -37,7 +40,7 @@ public:
 	}
 
 	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
-		Extent2D scaledExtent = GetScaledCapsuleHalfHeight();
+		Extent2D scaledExtent = GetScaledBoxExtent();
 		collisionShape.SetBox({ scaledExtent.width * inflation, scaledExtent.height * inflation });
 		return true;
 	}
@@ -47,6 +50,23 @@ public:
 		collisionShape.SetBox({ boxExtent.width, boxExtent.height });
 		return collisionShape.IsNearlyZero();
 	}
+
+	virtual bool CheckLineTraceComponent(
+		HitResult& outHit,
+		const DXVec2 start,
+		const DXVec2 end) {
+		// TODO:
+		return false;
+	}
+
+	virtual bool CheckSweepComponent(
+		HitResult& outHit,
+		const DXVec2& start,
+		const DXVec2& end,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty) override;
 
 protected:
 	bool CheckComponentOverlapComponentImpl(

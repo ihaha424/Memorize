@@ -155,7 +155,7 @@ protected:
 		HitResult* outHitResult) {
 		Translate(delta);
 		outHitResult = {};
-		return false;
+		return true;
 	}
 
 };

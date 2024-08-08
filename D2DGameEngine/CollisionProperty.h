@@ -109,7 +109,7 @@ struct CollisionProperty {
 		}
 	}
 
-	CollisionResponse GetCollisionResponse(ECollisionChannel channel) {
+	CollisionResponse GetCollisionResponse(ECollisionChannel channel) const {
 		return responseContainer.GetCollisionResponseToChannel(channel);
 	}
 

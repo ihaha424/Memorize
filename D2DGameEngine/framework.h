@@ -122,6 +122,31 @@ namespace DirectX::SimpleMath {
 		return radian * 180.f * PI_F;
 	}
 
+	inline
+		Math::Vector3 ExtractTranslation(const Math::Matrix& transform) {
+		return { transform._14, transform._24, transform._34 };
+	}
+
+	inline
+		Math::Vector3 ExtractScale(const Math::Matrix& transform) {
+		float sx = Math::Vector3(transform._11, transform._12, transform._13).Length();
+		float sy = Math::Vector3(transform._21, transform._22, transform._23).Length();
+		float sz = Math::Vector3(transform._31, transform._32, transform._33).Length();
+		return { sx, sy, sz };
+	}
+
+	inline
+		Math::Matrix ExtractRotation(const Math::Matrix& transform) {
+		Math::Vector3 scale = ExtractScale(transform);
+
+		Math::Matrix rotation = transform;
+		rotation._11 /= scale.x; rotation._12 /= scale.x; rotation._13 /= scale.x;
+		rotation._21 /= scale.y; rotation._22 /= scale.y; rotation._23 /= scale.y;
+		rotation._31 /= scale.z; rotation._32 /= scale.z; rotation._33 /= scale.z;
+
+		return rotation;
+	}
+
 }
 
 inline constexpr
