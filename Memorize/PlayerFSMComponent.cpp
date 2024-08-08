@@ -6,10 +6,7 @@ void PlayerFSMComponent::BeginPlay()
 //	CreateState<PlayerCasting>(L"PlayerCasting");
 //	CreateState<PlayerAttack>(L"PlayerAttack");
 //	CreateState<PlayerBlinking>(L"PlayerBlinking");
-}
-
-void PlayerFSMComponent::BeginPlay()
-{
+	SetNextState(L"PlayerIdle");
 }
 
 void PlayerFSMComponent::InputKey(int _key)
@@ -17,18 +14,18 @@ void PlayerFSMComponent::InputKey(int _key)
 	PlayerState* ActionState = static_cast<PlayerState*>(currState);
 	switch (_key)
 	{
-	case 'Q':
-		ActionState->Q();
-	case 'W':
-		ActionState->W();
-	case 'E':
-		ActionState->E();
-	case 'R':
-		ActionState->R();
-	case 1:
-		ActionState->Left();
-	case 0:
-		ActionState->Right();
+	case InputEvent::Fire:
+		ActionState->Fire();
+	case InputEvent::Water:
+		ActionState->Water();
+	case InputEvent::Light:
+		ActionState->Light();
+	case InputEvent::Dark:
+		ActionState->Dark();
+	case InputEvent::Attack:
+		ActionState->Attack();
+	case InputEvent::Move:
+		ActionState->Move();
 	default:
 		break;
 	}

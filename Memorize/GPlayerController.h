@@ -5,7 +5,6 @@
 
 class GPlayerController : public PlayerController
 {
-	LOG_REGISTER_OBJ(GPlayerController)
 	Math::Vector2 destPos;
 
 	//현재 발동중인 스킬
@@ -15,6 +14,8 @@ class GPlayerController : public PlayerController
 	using SkillRegistry = std::unordered_multimap<std::type_index, class Skill*>;
 	SkillRegistry skills;
 
+	//FSMPlayer
+	class PlayerFSMComponent* playerFSMComponent;
 
 public:
 	GPlayerController(class World* _world);
@@ -36,6 +37,14 @@ public:
 	virtual void Update(float _dt) override;
 
 	void MovePlayer();
+
+
+	void Fire();
+	void Water();
+	void Light();
+	void Dark(); 
+	void Attack();
+	void Move(); 
 };
 
 template<typename T>

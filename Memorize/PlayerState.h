@@ -12,12 +12,12 @@ public:
 	~PlayerState() {}
 
 
-	virtual void Q();
-	virtual void W();
-	virtual void E();
-	virtual void R();
-	virtual void Left();
-	virtual void Right();
+	virtual void Fire();
+	virtual void Water();
+	virtual void Light();
+	virtual void Dark();
+	virtual void Attack();
+	virtual void Move();
 
 	// FSMState을(를) 통해 상속됨
 	virtual void Enter() = 0;

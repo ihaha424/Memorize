@@ -67,7 +67,6 @@ public:
 
 	void LevelUp();
 	void AddToStat(Stat _addStat);
-	void InputKey(int _key);
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;

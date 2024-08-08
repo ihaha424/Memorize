@@ -8,7 +8,9 @@ class PlayerFSMComponent :
     public FSMComponent
 {
 public:
-    PlayerFSMComponent() {};
+    enum InputEvent { Fire, Water, Light, Dark, Attack, Move };
+public:
+    PlayerFSMComponent() { SetTickProperties(TICK_UPDATE); };
     virtual ~PlayerFSMComponent() {};
 
 

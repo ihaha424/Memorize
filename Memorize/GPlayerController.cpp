@@ -4,6 +4,7 @@
 #include "../D2DGameEngine/Pawn.h"
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
+#include "PlayerFSMComponent.h"
 #include "MovementComponent.h"
 #include "Fireball.h"
 #include "ChasingWaterBall.h"
@@ -18,13 +19,18 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 		{ std::type_index(typeid(ChasingWaterBall)), CreateComponent<ChasingWaterBall>()},
 	};
 
+	playerFSMComponent = CreateComponent<PlayerFSMComponent>();
+
 }
 
 void GPlayerController::SetupInputComponent()
 {
-	inputComponent->ActionBinding(this, 0x00, &GPlayerController::MovePlayer, InputState::KeyDown, MouseInput);
-	inputComponent->ActionBinding(this, DIK_Q, &GPlayerController::StartSkill<Fireball>, InputState::KeyDown, KeyBoardInput);
-	inputComponent->ActionBinding(this, DIK_W, &GPlayerController::StartSkill<ChasingWaterBall>, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_Q, &GPlayerController::Fire, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_W, &GPlayerController::Water, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_E, &GPlayerController::Light, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_R, &GPlayerController::Dark, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, 0, &GPlayerController::Attack, InputState::KeyDown, MouseInput);
+	inputComponent->ActionBinding(this, 1, &GPlayerController::Move, InputState::KeyDown, MouseInput);
 }
 
 void GPlayerController::EndSkill()
@@ -54,16 +60,9 @@ void GPlayerController::Update(float _dt)
 	}
 }
 
-void GPlayerController::MovePlayer()
-{
-	destPos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
-	Math::Vector2 direction = destPos - owner->GetLocation();
-	direction.Normalize();
-	owner->GetComponent<MovementComponent>()->SetDirection(direction);
-	owner->GetComponent<MovementComponent>()->SetSpeed(500.0f);
-
-	std::string tmp = {};
-	tmp += std::to_string(destPos.x) + ", " + std::to_string(destPos.y);
-	OBJ_INFO(tmp);
-	//OBJ_INFO(msg);
-}
+void GPlayerController::Fire()		{ playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Fire); }
+void GPlayerController::Water() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Water); }
+void GPlayerController::Light() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Light); }
+void GPlayerController::Dark() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Dark); }
+void GPlayerController::Attack() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Attack); }
+void GPlayerController::Move() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Move); }
