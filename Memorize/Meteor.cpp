@@ -8,13 +8,16 @@
 Meteor::Meteor(Actor* _owner) : RangeSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
-	//메테오 효과 컴포넌트 - 루트 씬에 연결
-	metorEffectComponent = GetOwner()->CreateComponent<BitmapComponent>();
-	metorEffectComponent->SetSprite(L"TestResource/Skill/Range/Meteor.png");
 
-	GetOwner()->rootComponent->AddChild(metorEffectComponent);
-	movementComponent = GetOwner()->CreateComponent<MovementComponent>();
-	metorEffectComponent->AddChild(movementComponent);
+	//메테오 효과 액터 생성
+	meteorEffect = GetWorld()->GetCurLevel()->CreateActor<Actor>();
+	meteorEffect->SetTickProperties(TICK_UPDATE | TICK_RENDER);
+	BitmapComponent* bm = meteorEffect->CreateComponent<BitmapComponent>();
+	meteorEffect->rootComponent = bm;
+	bm->SetSprite(L"TestResource/Skill/Range/Meteor.png");
+
+	movementComponent = meteorEffect->CreateComponent<MovementComponent>();
+	bm->AddChild(movementComponent);
 }
 
 Meteor::~Meteor()
@@ -25,18 +28,17 @@ void Meteor::BeginPlay()
 {
 	__super::BeginPlay();
 
-	metorEffectComponent->SetStatus(OS_INACTIVE);
+	meteorEffect->SetStatus(OS_INACTIVE);
 
 }
 
 void Meteor::Update(float _dt)
 {
-	if (metorEffectComponent->GetStatus() == OS_ACTIVE)
+	if (meteorEffect->GetStatus() == OS_ACTIVE)
 	{
-		Math::Vector2 effectPos = { metorEffectComponent->GetWorldTransform().dx, metorEffectComponent->GetWorldTransform().dy };
-		if (Math::Vector2::Distance(effectPos, attackPos) < 0.1)
+		if (Math::Vector2::Distance(meteorEffect->GetLocation(), attackPos) < 10)
 		{
-			metorEffectComponent->SetStatus(OS_INACTIVE);
+			meteorEffect->SetStatus(OS_INACTIVE);
 
 			//TODO
 			//대미지 입히기 
@@ -46,12 +48,12 @@ void Meteor::Update(float _dt)
 
 void Meteor::UseSkill()
 {
-	metorEffectComponent->SetStatus(OS_ACTIVE);
+	meteorEffect->SetStatus(OS_ACTIVE);
 	Math::Vector2 mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	mousePos = GetWorld()->ScreenToWorldPoint(mousePos);
 	attackPos = mousePos;
-	metorEffectComponent->SetTranslation(mousePos.x + initialHeight, mousePos.y - initialHeight);
-	Math::Vector2 direction = mousePos - Math::Vector2(metorEffectComponent->GetWorldTransform().dx, metorEffectComponent->GetWorldTransform().dy);
+	meteorEffect->SetLocation(mousePos.x + initialHeight, mousePos.y - initialHeight);
+	Math::Vector2 direction = attackPos - meteorEffect->GetLocation();
 	direction.Normalize();
 	movementComponent->SetDirection(direction);
 	movementComponent->SetSpeed(fallSpeed);
