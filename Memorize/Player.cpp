@@ -46,6 +46,12 @@ void Player::AddToStat(Stat _addStat)
 	stat = stat + _addStat;
 }
 
+void Player::InputKey(int _key)
+{
+	PlayerFSMComponent* playerFSMComponent = GetComponent<PlayerFSMComponent>();
+	playerFSMComponent->InputKey(_key);
+}
+
 void Player::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");

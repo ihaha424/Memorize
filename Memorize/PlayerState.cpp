@@ -1,13 +1,26 @@
 #include "PlayerState.h"
 
-void PlayerState::Enter()
+void PlayerState::Q()
 {
 }
 
-void PlayerState::Update(float _dt)
+void PlayerState::W()
 {
 }
 
-void PlayerState::Exit()
+void PlayerState::E()
+{
+}
+
+void PlayerState::R()
+{
+}
+
+void PlayerState::Left()
+{
+
+}
+
+void PlayerState::Right()
 {
 }
