@@ -59,7 +59,7 @@ bool PrimitiveComponent::CheckComponentOverlapComponentImpl(
 
 	if (myCollisionShape.shapeType == ECollisionShape::Box) {
 		// Build my Box
-		Box myBox = Box::BuildAABB({ 0.f, 0.f }, boxExtent);
+		Box myBox = Box::BuildAABB({ 0.f, 0.f }, myCollisionShape.GetExtent());
 		myBox.ul = DXVec2::Transform(myBox.ul, GetWorldTransform());
 		myBox.lr = DXVec2::Transform(myBox.lr, GetWorldTransform());
 
