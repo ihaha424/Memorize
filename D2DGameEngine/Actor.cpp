@@ -19,14 +19,14 @@ void Actor::BeginPlay()
 	for (auto [_, component] : components) {
 		component->BeginPlay();
 	}
-	status = AS_ACTIVE;
+	status = OS_ACTIVE;
 }
 
 bool Actor::Destroy()
 {
-	if (status == AS_DESTROY)
+	if (status == OS_DESTROY)
 		return false;
-	status = AS_DESTROY;
+	status = OS_DESTROY;
 	return true;
 }
 

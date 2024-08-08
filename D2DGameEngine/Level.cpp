@@ -32,7 +32,7 @@ void Level::BeginPlay()
 
 	for (auto actor : actorList)
 	{
-		if(actor->GetStatus() == EActorStatus::AS_AWAKE)
+		if(actor->GetStatus() == OS_AWAKE)
 			actor->BeginPlay();
 	}
 }
@@ -63,7 +63,7 @@ void Level::Update(float _dt)
 {
 	for (auto actor : actorList)
 	{
-		if (actor->CheckTickProperty(TICK_UPDATE) && actor->GetStatus() == EActorStatus::AS_ACTIVE)
+		if (actor->CheckTickProperty(TICK_UPDATE) && actor->GetStatus() == OS_ACTIVE)
 		{
 			actor->Update(_dt);
 		}
@@ -82,7 +82,7 @@ void Level::PostUpdate(float _dt)
 	
 	auto it = std::_Erase_remove_if(actorList,
 		[=](Actor* actor) {
-			if (actor->GetStatus() == AS_DESTROY)
+			if (actor->GetStatus() == OS_DESTROY)
 			{
 				delete actor;
 				return 1;

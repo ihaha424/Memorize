@@ -131,6 +131,9 @@
     <ClCompile Include="GPlayerController.cpp">
       <Filter>Source Files\App\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Meteor.cpp">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -216,6 +219,9 @@
     </ClInclude>
     <ClInclude Include="GPlayerController.h">
       <Filter>Source Files\App\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Meteor.h">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
