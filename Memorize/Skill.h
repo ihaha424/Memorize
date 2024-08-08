@@ -17,7 +17,7 @@ class Skill : public IComponent
 	static int wholeSkillLevel;
 
 protected:
-	class TestPlayerController* controller;
+	class GPlayerController* controller;
 	class Player* player;
 	std::wstring id;
 	ESkillType type;
@@ -31,7 +31,7 @@ public:
 
 	static int GetWholeSkillLevel() { return wholeSkillLevel; }
 
-	void SetPlayer(TestPlayerController* _pc);
+	void SetPlayer(GPlayerController* _pc);
 
 	/**
 	 * @brief 스킬을 사용합니다. 스킬 사용 카운트가 증가합니다. 

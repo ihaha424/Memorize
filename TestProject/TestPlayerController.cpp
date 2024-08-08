@@ -6,23 +6,23 @@
 #include "../D2DGameEngine/World.h"
 #include "../Memorize/MovementComponent.h"
 
-TestPlayerController::TestPlayerController(World* _world) : PlayerController(_world)
+GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
 }
 
-void TestPlayerController::SetupInputComponent()
+void GPlayerController::SetupInputComponent()
 {
-	inputComponent->ActionBinding(this, 0x00, &TestPlayerController::MovePlayer, InputState::KeyDown, MouseInput);
-	inputComponent->ActionBinding(this, DIK_Q, &TestPlayerController::MovePlayer, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, 0x00, &GPlayerController::MovePlayer, InputState::KeyDown, MouseInput);
+	inputComponent->ActionBinding(this, DIK_Q, &GPlayerController::MovePlayer, InputState::KeyDown, KeyBoardInput);
 }
 
-void TestPlayerController::BeginPlay()
+void GPlayerController::BeginPlay()
 {
 	__super::BeginPlay();
 	SetupInputComponent();
 }
 
-void TestPlayerController::MovePlayer()
+void GPlayerController::MovePlayer()
 {
 	Math::Vector2 mousePos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
 	Math::Vector2 direction = mousePos - owner->GetLocation();

@@ -6,7 +6,7 @@ class BuffSkill : public Skill
 {
 protected:
 	Stat buffStat;
-	float duration;
+	float buffDuration;
 	float elapsedTime = 0.f;
 public:
 	BuffSkill();

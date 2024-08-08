@@ -3,7 +3,7 @@
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/SpriteResource.h"
 #include "../D2DGameEngine/BitmapComponent.h"
-#include "TestPlayerController.h"
+#include "GPlayerController.h"
 #include "BossAIController.h"
 #include "Boss.h"
 
@@ -29,7 +29,7 @@ void TestLevel::Enter()
 
 	{
 		Player* player = CreateActor<Player>();
-		TestPlayerController* pc = CreateActor<TestPlayerController>();
+		GPlayerController* pc = CreateActor<GPlayerController>();
 		player->SetController(pc);
 		pc->SetPlayer(player);
 	}

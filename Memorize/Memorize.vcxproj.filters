@@ -65,9 +65,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\App\Player</Filter>
     </ClCompile>
-    <ClCompile Include="TestPlayerController.cpp">
-      <Filter>Source Files\App\Player</Filter>
-    </ClCompile>
     <ClCompile Include="GCameraComponent.cpp">
       <Filter>Source Files\App\Player</Filter>
     </ClCompile>
@@ -131,6 +128,9 @@
     <ClCompile Include="MPMaxIncrease.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClCompile>
+    <ClCompile Include="GPlayerController.cpp">
+      <Filter>Source Files\App\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -149,9 +149,6 @@
       <Filter>Source Files\App\Boss</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\App\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="TestPlayerController.h">
       <Filter>Source Files\App\Player</Filter>
     </ClInclude>
     <ClInclude Include="GCameraComponent.h">
@@ -216,6 +213,9 @@
     </ClInclude>
     <ClInclude Include="MPMaxIncrease.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="GPlayerController.h">
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,5 +6,8 @@ class MPMaxIncrease : public BuffSkill
 public:
 	MPMaxIncrease();
 	virtual ~MPMaxIncrease();
+
+	virtual void UseSkill() override;
+
 };
 

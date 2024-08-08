@@ -19,17 +19,19 @@ struct Stat
 
 	Stat operator+(Stat stat)
 	{
-		hp += stat.hp;
-		maxHp += stat.maxHp;
-		mp += stat.mp;
-		maxMp += stat.maxMp;
-		hpRegenPerSecond += stat.hpRegenPerSecond;
-		mpRegenPerSecond += stat.mpRegenPerSecond;
-		skillRange += stat.skillRange;
-		castingSpeed += stat.castingSpeed;
-		numProjectiles += stat.numProjectiles;
-		defaultDamage += stat.defaultDamage;
-		defaultAttackSpeed += stat.defaultAttackSpeed;
+		Stat ret;
+		ret.hp += stat.hp;
+		ret.maxHp += stat.maxHp;
+		ret.mp += stat.mp;
+		ret.maxMp += stat.maxMp;
+		ret.hpRegenPerSecond += stat.hpRegenPerSecond;
+		ret.mpRegenPerSecond += stat.mpRegenPerSecond;
+		ret.skillRange += stat.skillRange;
+		ret.castingSpeed += stat.castingSpeed;
+		ret.numProjectiles += stat.numProjectiles;
+		ret.defaultDamage += stat.defaultDamage;
+		ret.defaultAttackSpeed += stat.defaultAttackSpeed;
+		return ret;
 	}
 	Stat operator-()
 	{
@@ -44,6 +46,7 @@ struct Stat
 		numProjectiles *= -1;
 		defaultDamage *= -1;
 		defaultAttackSpeed *= -1;
+		return *this;
 	}
 };
 
