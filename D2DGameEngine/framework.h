@@ -107,4 +107,55 @@ float Clamp(float value, float min, float max) {
 	return value;
 }
 
+constexpr float PI_F = std::numbers::pi_v<float>;
+constexpr float PI = std::numbers::pi_v<double>;
+
+namespace DirectX::SimpleMath {
+
+	inline constexpr
+	float DegreeToRadian(float degree) {
+		return degree * PI_F / 180.f;
+	}
+
+	inline constexpr
+	float RadianToDegree(float radian) {
+		return radian * 180.f * PI_F;
+	}
+
+}
+
+inline constexpr
+D2D_Vec2F ToD2DVec2F(const Math::Vector2& vec) {
+	return { vec.x, vec.y };
+}
+
+inline constexpr
+D2D_Vec2F ToD2DVec2F(const Math::Vector3& vec) {
+	return { vec.x, vec.y };
+}
+
+inline constexpr
+D2D_Point2F ToD2DP2F(const Math::Vector2& vec) {
+	return { vec.x, vec.y };
+}
+
+inline constexpr
+D2D_Point2F ToD2DP2F(const Math::Vector3& vec) {
+	return { vec.x, vec.y };
+}
+
+inline
+D2D_Mat3x2F ToD2DMat(const Math::Matrix& mat) {
+	D2D_Mat3x2F m;
+	m._11 = mat._11;
+	m._12 = mat._12;
+	m._21 = mat._21;
+	m._22 = mat._22;
+	m._31 = mat._31;
+	m._32 = mat._32;
+	return m;
+}
+
 constexpr float EPSILON = 1e-8;
+
+

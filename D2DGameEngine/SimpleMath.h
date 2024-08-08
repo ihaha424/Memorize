@@ -1143,12 +1143,6 @@ namespace std
 #pragma clang diagnostic pop
 #endif
 
-//struct Vector2;
-//struct Vector4;
-//struct Matrix;
-//struct Quaternion;
-//struct Plane;
-
 namespace Math = DirectX::SimpleMath;
 using DXRectangle = Math::Rectangle;
 using DXVec2 = Math::Vector2;

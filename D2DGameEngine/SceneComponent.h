@@ -23,19 +23,15 @@ public:
 
 protected:
 
-	D2D_Mat3x2F S;
-	D2D_Mat3x2F R;
-	D2D_Mat3x2F T;
+	Math::Matrix S;
+	Math::Matrix R;
+	Math::Matrix T;
 
 	// Component Velocity
 	DXVec2 velocity{ 0.f, 0.f };
 public:
 
-	SceneComponent() :
-		parent{ nullptr },
-		S{ D2D_Mat3x2F::Identity() },
-		R{ D2D_Mat3x2F::Identity() },
-		T{ D2D_Mat3x2F::Identity() } {
+	SceneComponent() : parent{ nullptr }, S{}, R{}, T{} {
 		SetTickProperties(TICK_PHYSICS);
 	}
 
@@ -43,64 +39,61 @@ public:
 
 	void RemoveChild(SceneComponent* child);
 
-	virtual D2D_Mat3x2F GetWorldTransform() const;
+	virtual Math::Matrix GetWorldTransform() const;
 
-	D2D_Point2F GetComponentLocation() const {
-		D2D_Point2F p{};
-		p = p * GetWorldTransform();
-		return p;
+	Math::Vector2 GetComponentLocation() const {
+		DXVec3 p = DXVec3::Transform(DXVec3::Zero, GetWorldTransform());
+		return DXVec2(p);
 	}
 
-	D2D_Vec2F GetRightVector() const {
-		D2D_Point2F p{ 1.f, 0.f };
-		p = p * GetWorldTransform();
-		return { p.x, p.y };
+	Math::Vector2 GetRightVector() const {
+		DXVec3 p = DXVec3::Transform(DXVec3::Right, GetWorldTransform());
+		return DXVec2(p);
 	}
 
-	D2D_Vec2F GetUpVector() const {
-		D2D_Point2F p{ 0.f, 1.f };
-		p = p * GetWorldTransform();
-		return { p.x, p.y };
+	Math::Vector2 GetUpVector() const {
+		DXVec3 p = DXVec3::Transform(DXVec3::Up, GetWorldTransform());
+		return DXVec2(p);
 	}
 
 	void SetScale(float x, float y) {
-		S = D2D_Mat3x2F::Scale(x, y);
+		S = DXMat4x4::CreateScale(x, y, 1.0);
 	}
 
 	void SetRotation(float degree) {
-		R = D2D_Mat3x2F::Rotation(degree);
+		R = DXMat4x4::CreateRotationZ(Math::DegreeToRadian(degree));
 	}
 
 	void SetTranslation(float x, float y) {
-		T = D2D_Mat3x2F::Translation(x, y);
+		T = DXMat4x4::CreateTranslation(x, y, 0.f);
 	}
 
 	void Scale(float dx, float dy) {
-		S = S * D2D_Mat3x2F::Scale(dx, dy);
+		S = S * DXMat4x4::CreateScale(dx, dy, 1.0);
 	}
 
 	void Rotate(float degree) {
-		R = R * D2D_Mat3x2F::Rotation(degree);
+		R = R * DXMat4x4::CreateRotationZ(Math::DegreeToRadian(degree));
 	}
 
 	void Translate(float dx, float dy) {
-		T = T * D2D_Mat3x2F::Translation(dx, dy);
+		T = T * DXMat4x4::CreateTranslation(dx, dy, 0.f);
 	}
 
-	void Translate(DXVec2 dv) {
-		T = T * D2D_Mat3x2F::Translation(dv.x, dv.y);
+	void Translate(const DXVec2& dv) {
+		T = T * DXMat4x4::CreateTranslation(dv.x, dv.y, 0.f);
 	}
 
-	void SetComponentVelocity(DXVec2 _velocity) {
+	void SetComponentVelocity(Math::Vector2 _velocity) {
 		velocity = velocity;
 	}
 
-	void AddComponentVelocity(DXVec2 _velocity) {
+	void AddComponentVelocity(Math::Vector2 _velocity) {
 		velocity += _velocity;
 	}
 
 	bool MoveComponent(
-		const DXVec2& delta,
+		const Math::Vector2& delta,
 		bool bSweep,
 		HitResult* outHitResult = nullptr) {
 		return MoveComponentImpl(delta, bSweep, outHitResult);
@@ -120,7 +113,7 @@ public:
 	}
 
 	// Bounds
-	virtual BoxCircleBounds CalculateBounds(const D2D_Mat3x2F& _worldTransform) const {
+	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const {
 		return BoxCircleBounds{};
 	}
 
@@ -142,7 +135,7 @@ public:
 		return false;
 	}
 
-	virtual DXVec2 GetComponentVelocity() const {
+	virtual Math::Vector2 GetComponentVelocity() const {
 		return velocity;
 	}
 
@@ -156,7 +149,7 @@ public:
 protected:
 
 	virtual bool MoveComponentImpl(
-		const DXVec2& delta,
+		const Math::Vector2& delta,
 		bool bSweep,
 		HitResult* outHitResult) {
 		Translate(delta);

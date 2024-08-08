@@ -47,8 +47,7 @@ public:
 	~PrimitiveComponent();
 
 	DXVec2 GetCenterOfMass() const {
-		D2D_Point2F loc = GetComponentLocation();
-		return { loc.x, loc.y };
+		return GetComponentLocation();
 	}
 
 	virtual float GetMass() const { return mass; }
@@ -145,14 +144,14 @@ public:
 		return ECollisionChannel::WorldStatic;
 	}
 
-	virtual BoxCircleBounds CalculateBounds(const D2D_Mat3x2F& _worldTransform) const override {
-		D2D_Point2F c = { bounds.center.x, bounds.center.y };
-		c = c * _worldTransform;
+	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
+		DXVec2 c { bounds.center.x, bounds.center.y };
+		c = DXVec2::Transform(c, _worldTransform);
 
-		D2D_Point2F e = { bounds.boxExtent.width, bounds.boxExtent.height };
-		e = e * _worldTransform;
+		DXVec2 e { bounds.boxExtent.width, bounds.boxExtent.height };
+		e = DXVec2::Transform(e, _worldTransform);
 		
-		return BoxCircleBounds(Box{ {c.x, c.y}, {e.x, e.y} });
+		return BoxCircleBounds(Box{ c, e });
 	}
 
 	virtual BoxCircleBounds CalculateLocalBounds() const {
@@ -163,6 +162,12 @@ public:
 		bounds = CalculateLocalBounds();
 	}
 
+	/**
+	 * @brief 콜리션 도형을 리턴합니다. 콜리션 도형은 컴포넌트의 스케일 값을 반영해야 합니다.
+	 * @param Inflation 
+	 * @param CollisionShape 
+	 * @return 
+	 */
 	virtual bool GetCollisionShape(float Inflation, CollisionShape& CollisionShape) const {
 		return false;
 	}
@@ -172,19 +177,20 @@ public:
 	}
 
 	/**
-	 * @brief 컴포넌트가 특정 위치에서 다른 컴포넌트와 겹치는지 확인합니다.
+	 * @brief 다른 컴포넌트가 특정 위치에서 컴포넌트와 겹치는지 확인합니다.
 	 * @param component 오버랩 테스트할 컴포넌트
-	 * @param pos 이 컨포넌트를 테스트할 위치
+	 * @param pos 다른 컨포넌트를 테스트할 위치
+	 * @param rotation 다른 컴포넌트의 로테이션 매트릭스
 	 * @return True 이면 오버랩 합니다.
 	 */
-	bool CheckComponentOverlapComponent(PrimitiveComponent* component, const DXVec2& pos) {
-		return CheckComponentOverlapComponentImpl(component, pos);
+	bool CheckComponentOverlapComponent(PrimitiveComponent* component, const DXVec2& pos, const DXMat4x4& rotation) {
+		return CheckComponentOverlapComponentImpl(component, pos, rotation);
 	}
 
 	bool CheckComponentOverlapComponentWithResult(
-		PrimitiveComponent* component, const DXVec2& pos,
+		PrimitiveComponent* component, const DXVec2& pos, const DXMat4x4& rotation,
 		std::vector<OverlapResult>& outOverlap) {
-		return CheckComponentOverlapComponentWithResultImpl(component, pos, outOverlap);
+		return CheckComponentOverlapComponentWithResultImpl(component, pos, rotation, outOverlap);
 	}
 
 	virtual bool CheckLineTraceComponent(
@@ -226,14 +232,17 @@ public:
 		if (bSimulatePhysics) {
 			// Simple semi-implicit Euler integration
 			acceleration -= velocity * dragForce; // Damping effect
+			// Clamp acceleration
+			DXVec2 accDir = acceleration; accDir.Normalize();
+			acceleration.Clamp(accDir * minAcceleration, accDir * maxAccelaration);
+			// Update velocity
 			velocity += acceleration * _dt;
 			acceleration = { 0, 0 }; // Reset acceleration each frame
 
 			// Clamp velocities
 			float speed = velocity.Length();
-			DXVec2 unitVel = velocity;
-			unitVel.Normalize();
-			speed = speed < minSpeed ? minSpeed : maxSpeed < speed ? maxSpeed : speed;
+			DXVec2 unitVel = velocity; unitVel.Normalize();
+			speed = Clamp(speed, minSpeed, maxSpeed);
 			velocity = unitVel * speed;
 
 			// Apply the movement
@@ -249,10 +258,12 @@ protected:
 
 	virtual bool CheckComponentOverlapComponentImpl(
 		PrimitiveComponent* primComp,
-		const DXVec2& pos);
+		const DXVec2& pos, 
+		const DXMat4x4& rotation);
 
 	virtual bool CheckComponentOverlapComponentWithResultImpl(
-		PrimitiveComponent* component, const DXVec2& pos,
+		PrimitiveComponent* component, 
+		const DXVec2& pos, const DXMat4x4& rotation,
 		std::vector<OverlapResult>& outOverlap);
 
 	virtual bool MoveComponentImpl(
@@ -260,7 +271,8 @@ protected:
 		bool bSweep,
 		HitResult* outHitResult) override {
 		// TODO:
-		return false;
+		Super::MoveComponentImpl(delta, bSweep, outHitResult);
+		return true;
 	}
 
 };

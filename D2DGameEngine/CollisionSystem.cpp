@@ -58,13 +58,13 @@ bool CollisionSystem::CheckComponentOverlapsByChannel(
 
 	for (PrimitiveComponent* other : set) {
 		if (other->bCanCollide) {
-			CollisionShape otherShape = other->GetCollisionShape();
+			/*CollisionShape otherShape = other->GetCollisionShape();
 			if (otherShape.IsNearlyZero()) continue;
 
 			std::vector<OverlapResult> overlapResults;
 			if (other->CheckComponentOverlapComponentWithResult(primComp, pos, overlapResults)) {
 
-			}
+			}*/
 		}
 		
 	}

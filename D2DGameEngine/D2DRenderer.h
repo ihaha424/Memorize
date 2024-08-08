@@ -54,8 +54,8 @@ class D2DRenderer {
 
 	struct ID2D1SolidColorBrush* _brush;
 
-	D2D_Mat3x2F globalTransform{ D2D_Mat3x2F::Identity() };	// Identity
-	std::vector<D2D_Mat3x2F> _transforms;
+	Math::Matrix globalTransform{ Math::Matrix::Identity };	// Identity
+	std::vector<Math::Matrix> _transforms;
 
 public:
 
@@ -68,15 +68,15 @@ public:
 	void EndDraw();
 
 	void DrawCircle(
-		const D2D_Point2F& center, float rad,
+		const Math::Vector2& center, float rad,
 		D2D1::ColorF color = D2D1::ColorF::White
 	);
 	void DrawBorder(
-		const D2D_Point2F& ul, const D2D_Point2F& lr,
+		const Math::Vector2& ul, const Math::Vector2& lr,
 		D2D_Color color = D2D_Color::White
 	);
 	void DrawPolygon(
-		const std::vector<D2D_Point2F>& points,
+		const std::vector<Math::Vector2>& points,
 		D2D_Color color = D2D_Color::White
 	);
 	/**
@@ -88,12 +88,12 @@ public:
 	 */
 	void DrawString(
 		const std::wstring& str, const TextFormatInfo* textFormatInfo,
-		const D2D_Point2F& ul, const D2D_Point2F& lr,
+		const Math::Vector2& ul, const Math::Vector2& lr,
 		D2D_Color color = D2D_Color::White
 	);
 	void DrawSprite(
 		D2D_Sprite* sprite,
-		const D2D_Point2F& ul, const D2D_Point2F& lr
+		const Math::Vector2& ul, const Math::Vector2& lr
 	);
 	/**
 	 * @brief 스프라이트를 렌더 타겟에 그립니다.
@@ -120,7 +120,7 @@ public:
 	 * ```
 	 * @param mat 트랜스폼 스텍에 넣을 매트릭스
 	 */
-	void PushTransform(const D2D_Mat3x2F& mat);
+	void PushTransform(const Math::Matrix& mat);
 	/**
 	 * @brief 글로벌 트랜스폼 스택에서 이전의 트랜스폼 메트릭스를 팝합니다.
 	 */
@@ -133,7 +133,7 @@ public:
 	 * @brief 현재 글로벌 트랜스폼 스택에 들어있는 모든 메트릭스의 곱을 반환합니다.
 	 * @return 현재 글로벌 트랜스폼 메트릭스
 	 */
-	D2D_Mat3x2F GetGlobalTransform();
+	Math::Matrix GetGlobalTransform();
 
 	void ResizeScreen(int w, int h);
 

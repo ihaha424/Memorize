@@ -13,7 +13,7 @@ protected:
 public:
 
 	float GetShapeScale()  const {
-		return (std::min)(S.m11, S.m22);
+		return sqrtf(S._11 * S._11 + S._22 * S._22);
 	}
 
 	float GetScaledCapsuleHalfHeight()  const {
@@ -56,6 +56,7 @@ public:
 	}
 
 	virtual BoxCircleBounds CalculateLocalBounds() const override {
+		// TODO: ¿ùµå Æ®·»½ºÆû Àû¿ë
 		Capsule capsule{
 			.center = { 0.f, 0.f },
 			.direction = { 0.f, 1.f },
@@ -66,7 +67,7 @@ public:
 	}
 
 	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
-		collisionShape.SetCapsule({ capsuleRadius * inflation, capsuleHalfHeight * inflation });
+		collisionShape.SetCapsule({ GetScaledCapsuleRadius() * inflation, GetScaledCapsuleHalfHeight() * inflation });
 		return true;
 	}
 
@@ -75,4 +76,14 @@ public:
 		collisionShape.SetCapsule({ capsuleRadius, capsuleHalfHeight });
 		return collisionShape.IsNearlyZero();
 	}
+
+protected:
+	bool CheckComponentOverlapComponentImpl(
+		PrimitiveComponent* primComp,
+		const DXVec2& pos,
+		const DXMat4x4& rotation) override;
+	bool CheckComponentOverlapComponentWithResultImpl(
+		PrimitiveComponent* primComp,
+		const DXVec2& pos, const DXMat4x4& rotation,
+		std::vector<OverlapResult>& outOverlap) override;
 };

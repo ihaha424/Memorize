@@ -14,6 +14,10 @@ struct TPolygon {
 		numPoints{ _points.size() },
 		points{ _points } {}
 
+	TPolygon(std::vector<Math::Vector2>&& _points) noexcept :
+		numPoints{ _points.size() },
+		points{ std::move(_points) } {}
+
 	TPolygon(std::initializer_list<Math::Vector2> _points) :
 		numPoints{ _points.size() },
 		points(_points) {

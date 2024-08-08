@@ -12,8 +12,8 @@ void SceneComponent::RemoveChild(SceneComponent* child)
 	children.remove(child);
 }
 
-D2D_Mat3x2F SceneComponent::GetWorldTransform() const
+Math::Matrix SceneComponent::GetWorldTransform() const
 {
-	D2D_Mat3x2F localTransform = S * R * T;
+	Math::Matrix localTransform = S * R * T;
 	return parent ? localTransform * parent->GetWorldTransform() : localTransform;
 }

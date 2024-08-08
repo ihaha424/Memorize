@@ -13,7 +13,7 @@ void UIImage::Render(D2DRenderer* _renderer)
 {
 	__super::Render(_renderer);
 
-	D2D_Mat3x2F transform = D2D_Mat3x2F::Identity();
+	Math::Matrix transform = Math::Matrix::Identity;
 	transform._31 = position.x;
 	transform._32 = position.y;
 	_renderer->PushTransform(transform);

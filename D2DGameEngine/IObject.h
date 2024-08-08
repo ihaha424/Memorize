@@ -55,6 +55,11 @@ public:
 	void SetTickProperties(TickPropertyFlags _tickPropertyFlags) {
 		tickPropertyFlags = _tickPropertyFlags;
 	}
+
+	void AddTickProperties(TickPropertyFlags _tickPropertyFlags) {
+		tickPropertyFlags |= _tickPropertyFlags;
+	}
+
 	/**
 	 * @brief 업데이트 프로퍼티를 반환합니다.
 	 * @return 업데이트 프로퍼티 플레그

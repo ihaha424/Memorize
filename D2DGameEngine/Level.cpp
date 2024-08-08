@@ -92,10 +92,10 @@ void Level::PostUpdate(float _dt)
 
 void Level::Render(D2DRenderer* _renderer)
 {
-	D2D_Mat3x2F cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
+	Math::Matrix cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
 	cameraTF._31 -= CameraComponent::screenSize.x / 2;
 	cameraTF._32 -= CameraComponent::screenSize.y / 2;
-	D2D1InvertMatrix(&cameraTF);
+	cameraTF.Invert();
 	_renderer->PushTransform(cameraTF);
 
 	for (auto actor : actorList)

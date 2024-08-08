@@ -10,134 +10,6 @@
 #include "HitResult.h"
 
 namespace intersectionUtil {
-	inline
-		bool RayRayIntersect(const Ray& ray1, const Ray& ray2) {
-		Math::Vector2 intersection;
-		return ray1.IntersectionPoint(ray2, intersection);
-	}
-
-	inline
-		bool RayLineIntersect(const Ray& ray, const Line& line) {
-		HitResult inHitResult;
-		return RayLineIntersectWithResult(ray, line, inHitResult);
-	}
-
-	inline
-		bool RayBoxIntersect(const Ray& ray, const Box& box) {
-		HitResult inHitResult;
-		return RayBoxIntersectWithResult(ray, box, inHitResult);
-	}
-
-	inline
-		bool RayCircleIntersect(const Ray& ray, const Circle& circle) {
-		HitResult inHitResult;
-		return RayCircleIntersectWithResult(ray, circle, inHitResult);
-	}
-
-	inline
-		bool RayCapsuleIntersect(const Ray& ray, const Capsule& capsule) {
-		HitResult inHitResult;
-		return RayCapsuleIntersectWithResult(ray, capsule, inHitResult);
-	}
-
-	inline
-		bool RayPolygonIntersect(const Ray& ray, const TPolygon& capsule) {
-		HitResult inHitResult;
-		return RayPolygonIntersectWithResult(ray, capsule, inHitResult);
-	}
-
-
-	inline
-		bool LineLineIntersect(const Line& l1, const Line& l2) {
-		HitResult inHitResult;
-		return LineLineIntersectWithResult(l1, l2, inHitResult);
-	}
-
-	inline
-		bool LineBoxIntersect(const Line& line, const Box& box) {
-		HitResult inHitResult;
-		return LineBoxIntersectWithResult(line, box, inHitResult);
-	}
-
-	inline
-		bool LineCircleIntersect(const Line& line, const Circle& circle) {
-		HitResult inHitResult;
-		return LineCircleIntersectWithResult(line, circle, inHitResult);
-	}
-
-	inline
-		bool LineCapsuleIntersect(const Line& line, const Capsule& capsule) {
-		HitResult inHitResult;
-		return LineCapsuleIntersectWithResult(line, capsule, inHitResult);
-	}
-
-	inline
-		bool LinePolygonIntersect(const Line& line, const TPolygon& polygon) {
-		HitResult inHitResult;
-		return LinePolygonIntersectWithResult(line, polygon, inHitResult);
-	}
-
-	inline
-		bool BoxBoxIntersect(const Box& box1, const Box& box2) {
-		HitResult inHitResult;
-		return BoxBoxIntersectWithResult(box1, box2, inHitResult);
-	}
-
-	inline
-		bool BoxCircleIntersect(const Box& box, const Circle& circle) {
-		HitResult inHitResult;
-		return BoxCircleIntersectWithResult(box, circle, inHitResult);
-	}
-
-	inline
-		bool BoxCapsuleIntersect(const Box& box, const Capsule& capsule) {
-		HitResult inHitResult;
-		return BoxCapsuleIntersectWithResult(box, capsule, inHitResult);
-	}
-
-	inline
-		bool BoxPolygonIntersect(const Box& box, const TPolygon& polygon) {
-		HitResult inHitResult;
-		return BoxPolygonIntersectWithResult(box, polygon, inHitResult);
-	}
-
-	inline
-		bool CircleCircleIntersect(const Circle& circle1, const Circle& circle2) {
-		HitResult inHitResult;
-		return CircleCircleIntersectWithResult(circle1, circle2, inHitResult);
-	}
-
-	inline
-		bool CircleCapsuleIntersect(const Circle& circle, const Capsule& capsule) {
-		HitResult inHitResult;
-		return CircleCapsuleIntersectWithResult(circle, capsule, inHitResult);
-	}
-
-	inline
-		bool CirclePolygonIntersect(const Circle& circle, const TPolygon& polygon) {
-		HitResult inHitResult;
-		return CirclePolygonIntersectWithResult(circle, polygon, inHitResult);
-	}
-
-	inline
-		bool CapsuleCapsuleIntersect(const Capsule& capsule1, const Capsule& capsule2) {
-		HitResult inHitResult;
-		return CapsuleCapsuleIntersectWithResult(capsule1, capsule2, inHitResult);
-	}
-
-	inline
-		bool CapsulePolygonIntersect(const Capsule& capsule, const TPolygon& polygon) {
-		HitResult inHitResult;
-		return CapsulePolygonIntersectWithResult(capsule, polygon, inHitResult);
-	}
-
-	inline
-		bool PolygonPolygonIntersect(const TPolygon polygon1, const TPolygon polygon2) {
-		HitResult inHitResult;
-		return PolygonPolygonIntersectWithResult(polygon1, polygon2, inHitResult);
-	}
-
-
 	// With Result
 	inline
 		bool RayRayIntersectWithResult(const Ray& ray1, const Ray& ray2, HitResult& outHitResult) {
@@ -1736,6 +1608,134 @@ namespace intersectionUtil {
 		return collisionDetected;
 	}
 
+
+	// No result
+	inline
+		bool RayRayIntersect(const Ray& ray1, const Ray& ray2) {
+		Math::Vector2 intersection;
+		return ray1.IntersectionPoint(ray2, intersection);
+	}
+
+	inline
+		bool RayLineIntersect(const Ray& ray, const Line& line) {
+		HitResult inHitResult;
+		return RayLineIntersectWithResult(ray, line, inHitResult);
+	}
+
+	inline
+		bool RayBoxIntersect(const Ray& ray, const Box& box) {
+		HitResult inHitResult;
+		return RayBoxIntersectWithResult(ray, box, inHitResult);
+	}
+
+	inline
+		bool RayCircleIntersect(const Ray& ray, const Circle& circle) {
+		HitResult inHitResult;
+		return RayCircleIntersectWithResult(ray, circle, inHitResult);
+	}
+
+	inline
+		bool RayCapsuleIntersect(const Ray& ray, const Capsule& capsule) {
+		HitResult inHitResult;
+		return RayCapsuleIntersectWithResult(ray, capsule, inHitResult);
+	}
+
+	inline
+		bool RayPolygonIntersect(const Ray& ray, const TPolygon& capsule) {
+		HitResult inHitResult;
+		return RayPolygonIntersectWithResult(ray, capsule, inHitResult);
+	}
+
+
+	inline
+		bool LineLineIntersect(const Line& l1, const Line& l2) {
+		HitResult inHitResult;
+		return LineLineIntersectWithResult(l1, l2, inHitResult);
+	}
+
+	inline
+		bool LineBoxIntersect(const Line& line, const Box& box) {
+		HitResult inHitResult;
+		return LineBoxIntersectWithResult(line, box, inHitResult);
+	}
+
+	inline
+		bool LineCircleIntersect(const Line& line, const Circle& circle) {
+		HitResult inHitResult;
+		return LineCircleIntersectWithResult(line, circle, inHitResult);
+	}
+
+	inline
+		bool LineCapsuleIntersect(const Line& line, const Capsule& capsule) {
+		HitResult inHitResult;
+		return LineCapsuleIntersectWithResult(line, capsule, inHitResult);
+	}
+
+	inline
+		bool LinePolygonIntersect(const Line& line, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return LinePolygonIntersectWithResult(line, polygon, inHitResult);
+	}
+
+	inline
+		bool BoxBoxIntersect(const Box& box1, const Box& box2) {
+		HitResult inHitResult;
+		return BoxBoxIntersectWithResult(box1, box2, inHitResult);
+	}
+
+	inline
+		bool BoxCircleIntersect(const Box& box, const Circle& circle) {
+		HitResult inHitResult;
+		return BoxCircleIntersectWithResult(box, circle, inHitResult);
+	}
+
+	inline
+		bool BoxCapsuleIntersect(const Box& box, const Capsule& capsule) {
+		HitResult inHitResult;
+		return BoxCapsuleIntersectWithResult(box, capsule, inHitResult);
+	}
+
+	inline
+		bool BoxPolygonIntersect(const Box& box, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return BoxPolygonIntersectWithResult(box, polygon, inHitResult);
+	}
+
+	inline
+		bool CircleCircleIntersect(const Circle& circle1, const Circle& circle2) {
+		HitResult inHitResult;
+		return CircleCircleIntersectWithResult(circle1, circle2, inHitResult);
+	}
+
+	inline
+		bool CircleCapsuleIntersect(const Circle& circle, const Capsule& capsule) {
+		HitResult inHitResult;
+		return CircleCapsuleIntersectWithResult(circle, capsule, inHitResult);
+	}
+
+	inline
+		bool CirclePolygonIntersect(const Circle& circle, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return CirclePolygonIntersectWithResult(circle, polygon, inHitResult);
+	}
+
+	inline
+		bool CapsuleCapsuleIntersect(const Capsule& capsule1, const Capsule& capsule2) {
+		HitResult inHitResult;
+		return CapsuleCapsuleIntersectWithResult(capsule1, capsule2, inHitResult);
+	}
+
+	inline
+		bool CapsulePolygonIntersect(const Capsule& capsule, const TPolygon& polygon) {
+		HitResult inHitResult;
+		return CapsulePolygonIntersectWithResult(capsule, polygon, inHitResult);
+	}
+
+	inline
+		bool PolygonPolygonIntersect(const TPolygon polygon1, const TPolygon polygon2) {
+		HitResult inHitResult;
+		return PolygonPolygonIntersectWithResult(polygon1, polygon2, inHitResult);
+	}
 }
 
 

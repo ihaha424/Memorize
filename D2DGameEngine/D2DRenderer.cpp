@@ -64,7 +64,7 @@ void D2DRenderer::EndDraw() {
 }
 
 void D2DRenderer::DrawCircle(
-	const D2D_Point2F& center, float rad,
+	const Math::Vector2& center, float rad,
 	D2D1::ColorF color) {
 	D2D_TColor tmp = _brush->GetColor();
 	_brush->SetColor(color);
@@ -75,7 +75,7 @@ void D2DRenderer::DrawCircle(
 }
 
 void D2DRenderer::DrawBorder(
-	const D2D_Point2F& ul, const D2D_Point2F& lr,
+	const Math::Vector2& ul, const Math::Vector2& lr,
 	D2D_Color color) {
 	D2D_TColor tmp = _brush->GetColor();
 	_brush->SetColor(color);
@@ -86,7 +86,7 @@ void D2DRenderer::DrawBorder(
 }
 
 void D2DRenderer::DrawPolygon(
-	const std::vector<D2D_Point2F>& points,
+	const std::vector<Math::Vector2>& points,
 	D2D_Color color) {
 	auto& d2d1Fac = FactoryManager::GetGraphicsFactory();
 
@@ -98,9 +98,14 @@ void D2DRenderer::DrawPolygon(
 	res = path->Open(&sink);
 	if (!SUCCEEDED(res)) return;
 
-	sink->BeginFigure(points[0],
+	std::vector<D2D_Point2F> d2dPoints(points.size());
+	for (int i = 0; i < points.size(); ++i) {
+		d2dPoints[i] = ToD2DP2F(points[i]);
+	}
+
+	sink->BeginFigure(d2dPoints[0],
 		D2D1_FIGURE_BEGIN_HOLLOW);
-	sink->AddLines(points.data(), points.size());
+	sink->AddLines(d2dPoints.data(), points.size());
 	sink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	res = sink->Close();
 	SafeRelease(&sink);
@@ -121,8 +126,8 @@ void D2DRenderer::DrawPolygon(
 void D2DRenderer::DrawString(
 	const std::wstring& str, 
 	const TextFormatInfo* textFormatInfo,
-	const D2D_Point2F& ul, 
-	const D2D_Point2F& lr,
+	const Math::Vector2& ul,
+	const Math::Vector2& lr,
 	D2D_Color color) {
 	// 텍스트 포멧 설정
 	HRESULT res;
@@ -154,7 +159,7 @@ void D2DRenderer::DrawString(
 
 void D2DRenderer::DrawSprite(
 	D2D_Sprite* sprite,
-	const D2D_Point2F& ul, const D2D_Point2F& lr
+	const Math::Vector2& ul, const Math::Vector2& lr
 ) {
 	if (!sprite) return;
 	_renderTarget->DrawBitmap(
@@ -178,18 +183,18 @@ void D2DRenderer::DrawSprite(
 	);
 }
 
-void D2DRenderer::PushTransform(const D2D_Mat3x2F& mat) {
+void D2DRenderer::PushTransform(const Math::Matrix& mat) {
 	// 글로벌 트랜스폼을 업데이트 합니다.
 	globalTransform = mat * globalTransform;
 	// 새로운 트렌스폼을 트랜스폼 스택에 넣습니다.
 	_transforms.push_back(mat);
 	// 렌더 타겟 트랜스폼을 세팅합니다.
-	_renderTarget->SetTransform(globalTransform);
+	_renderTarget->SetTransform(ToD2DMat(globalTransform));
 }
 
 void D2DRenderer::PopTransform() {
 	// 이전의 트랜스폼을 가져옵니다.
-	D2D_Mat3x2F mat = _transforms.back();
+	Math::Matrix mat = _transforms.back();
 	// 트렌스폼의 역을 계산한 후 글로벌 트랜스폼에
 	// 곱해서 이전 트랜스폼을 캔슬 합니다.
 	mat.Invert();
@@ -197,15 +202,15 @@ void D2DRenderer::PopTransform() {
 	// 이전 트렌스폼을 스택에서 팝합니다.
 	_transforms.pop_back();
 	// 렌더 타겟 트랜스폼을 세팅합니다.
-	_renderTarget->SetTransform(globalTransform);
+	_renderTarget->SetTransform(ToD2DMat(globalTransform));
 }
 
 void D2DRenderer::ClearTransform() {
-	globalTransform = D2D_Mat3x2F::Identity();
+	globalTransform = Math::Matrix::Identity;
 	_transforms.clear();
 }
 
-D2D_Mat3x2F D2DRenderer::GetGlobalTransform() {
+Math::Matrix D2DRenderer::GetGlobalTransform() {
 	return globalTransform;
 }
 

@@ -15,14 +15,14 @@ class BitmapComponent : public PrimitiveComponent {
 	D2D_RectF frame;
 	std::shared_ptr<SpriteResource> sprite;
 
-	D2D_Mat3x2F imageTransform;
+	Math::Matrix imageTransform;
 
 public:
 
 	BitmapComponent() : 
 		frame{ 0.f, 0.f, 0.f, 0.f },
 		sprite{ nullptr },
-		imageTransform{ D2D_Mat3x2F::Identity() } {
+		imageTransform{ Math::Matrix::Identity } {
 		SetTickProperties(TICK_RENDER);
 	}
 
@@ -75,7 +75,7 @@ public:
 	}
 
 	virtual D2D_RectF GetCurrFrame() { return frame; }
-	virtual D2D_Mat3x2F GetWorldTransform() const override;
+	virtual Math::Matrix GetWorldTransform() const override;
 	virtual void Render(class D2DRenderer* _renderer);
 };
 

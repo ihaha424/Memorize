@@ -80,8 +80,7 @@ Math::Vector2 Actor::GetLocation() const
 {
 	if (rootComponent != nullptr)
 	{
-		D2D_Point2F pos = rootComponent->GetComponentLocation();
-		return { pos.x, pos.y };
+		return rootComponent->GetComponentLocation();
 	}
 }
 
@@ -97,8 +96,10 @@ void Actor::SetScale(const float x, const float y)
 		rootComponent->SetScale(x, y);
 }
 
-D2D_TMat3x2F Actor::GetTrasnform() const
+Math::Matrix Actor::GetTrasnform() const
 {
 	if (rootComponent != nullptr)
 		return rootComponent->GetWorldTransform();
+	else
+		return Math::Matrix::Identity;
 }

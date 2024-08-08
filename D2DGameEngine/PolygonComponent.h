@@ -14,9 +14,9 @@ public:
 	std::vector<Math::Vector2> GetScaledVertices() const {
 		std::vector<Math::Vector2> scaledVertices;
 		for (const Math::Vector2& v : vertices) {
-			D2D_Point2F p{ v.x, v.y };
-			p = p * S;
-			scaledVertices.push_back({ p.x, p.y });
+			DXVec2 p{ v.x, v.y };
+			p = DXVec2::Transform(p, S);
+			scaledVertices.emplace_back(p.x, p.y);
 		}
 		return scaledVertices;
 	}
@@ -34,6 +34,7 @@ public:
 	}
 
 	virtual BoxCircleBounds CalculateLocalBounds() const override {
+		// TODO: ¿ùµå Æ®·»½ºÆû Àû¿ë
 		TPolygon polygon{ vertices };
 		return BoxCircleBounds(polygon.GetAABB());
 	}
@@ -41,9 +42,11 @@ public:
 	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
 		std::vector<Math::Vector2> inflatedVertices;
 		for (const Math::Vector2& v : vertices) {
-			inflatedVertices.emplace_back(v.x * inflation, v.y * inflation);
+			DXVec2 p{ v.x, v.y };
+			p = DXVec2::Transform(p, S);
+			inflatedVertices.emplace_back(p.x * inflation, p.y * inflation);
 		}
-		collisionShape.SetPolygon(inflatedVertices);
+		collisionShape.SetPolygon(std::move(inflatedVertices));
 		return true;
 	}
 
@@ -53,7 +56,17 @@ public:
 		for (const Math::Vector2& v : vertices) {
 			inflatedVertices.emplace_back(v.x, v.y);
 		}
-		collisionShape.SetPolygon(inflatedVertices);
+		collisionShape.SetPolygon(std::move(inflatedVertices));
 		return collisionShape.IsNearlyZero();
 	}
+
+protected:
+	bool CheckComponentOverlapComponentImpl(
+		PrimitiveComponent* primComp,
+		const DXVec2& pos,
+		const DXMat4x4& rotation) override;
+	bool CheckComponentOverlapComponentWithResultImpl(
+		PrimitiveComponent* primComp,
+		const DXVec2& pos, const DXMat4x4& rotation,
+		std::vector<OverlapResult>& outOverlap) override;
 };

@@ -4,7 +4,7 @@
 
 #include "D2DRenderer.h"
 
-D2D_Mat3x2F BitmapComponent::GetWorldTransform() const {
+Math::Matrix BitmapComponent::GetWorldTransform() const {
 	return imageTransform * Super::GetWorldTransform();
 }
 

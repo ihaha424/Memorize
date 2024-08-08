@@ -65,10 +65,6 @@ struct CollisionShape {
 		return std::get<Capsule_t>(shape).halfHeight;
 	}
 
-	float GetCapsuleAxisHalfLength() const {
-		return GetCapsuleHalfHeight();
-	}
-
 	Math::Vector2 GetBox() const {
 		if (shapeType != ECollisionShape::Box) {
 			throw std::runtime_error("Not a box.");
@@ -137,6 +133,13 @@ struct CollisionShape {
 		shapeType = ECollisionShape::Polygon;
 		shape = Polygon_t{
 			.vertices = _vertices,
+		};
+	}
+
+	void SetPolygon(std::vector<Math::Vector2>&& _vertices) noexcept {
+		shapeType = ECollisionShape::Polygon;
+		shape = Polygon_t{
+			.vertices = std::move(_vertices),
 		};
 	}
 

@@ -40,7 +40,7 @@ public:
 	Math::Vector2 GetLocation() const;
 	void SetRotation(const float _degree);
 	void SetScale(const float x, const float y);
-	D2D_TMat3x2F GetTrasnform() const;
+	Math::Matrix GetTrasnform() const;
 
 	template<ComponentType T>
 	T* CreateComponent()
