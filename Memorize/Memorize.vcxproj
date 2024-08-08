@@ -162,6 +162,7 @@
     <ClCompile Include="PlayerCasting.cpp" />
     <ClCompile Include="PlayerFSMComponent.cpp" />
     <ClCompile Include="PlayerIdle.cpp" />
+    <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="PlayerCasting.h" />
     <ClInclude Include="PlayerFSMComponent.h" />
     <ClInclude Include="PlayerIdle.h" />
+    <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayerStates.h" />
     <ClInclude Include="Projectile.h" />
