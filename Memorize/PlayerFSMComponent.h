@@ -8,7 +8,7 @@ class PlayerFSMComponent :
     public FSMComponent
 {
     enum PlayerSkillType {Projectile, Range, Buff, Special};
-    enum PlayerSkillProperty { Projectile, Range, Buff, Special };
+    enum PlayerSkillProperty { Fire, Water, Dark, Light };
 protected:
 
 public:

@@ -58,7 +58,7 @@ void D2DRenderer::BeginDraw() {
 	renderTarget->Clear();
 	
 	// y 축 플립해서 월드 좌표계에서 위쪽이 +y, 아래가 -y가 되게 함
-	globalTransform = globalTransform.CreateScale(1.f, -1.f, 1.f);
+	globalTransform = globalTransform.CreateScale(1.f, 1.f, 1.f);
 	renderTarget->SetTransform(ToD2DMat(globalTransform));
 }
 
