@@ -56,10 +56,6 @@ class Player : public Character, IReflection
 	int level = 1;
 	int exp = 0;
 	float moveSpeed = 100;
-	int	ReflectionData = 100;
-	int	ReflectionData1 = 100;
-	int	ReflectionData2 = 100;
-	std::vector<float> ReflectionData3 = {};
 	Stat stat;
 public:
 	Player(class World* _world);
