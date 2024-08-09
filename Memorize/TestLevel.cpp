@@ -24,7 +24,7 @@ void TestLevel::Enter()
 		BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
 		bm->SetSprite(L"Memorize/preview.png");
 		actor->rootComponent = bm;
-		bm->SetTranslation(960, 540);
+		//bm->SetTranslation(960, -540);
 	}
 
 	{

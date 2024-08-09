@@ -23,11 +23,15 @@ Player::Player(class World* _world) : Character(_world)
 		PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
 		PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
 		PlayerAnimationState->SliceSpriteSheet(120, 216, 0,0,20,0);
+		PlayerAnimationState->SetFrameDurations({ 0.05f });
+		PlayerAnimationState->Trigger(true);
 		abm->Initialize(PlayerAnimationState);
 
 		PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
 		PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
 		PlayerAnimationState->SliceSpriteSheet(180, 216, 0,0,20,0);
+				PlayerAnimationState->SetFrameDurations({ 0.05f });
+		PlayerAnimationState->Trigger(true);
 
 		//??abm->DeclareVariable<bool>("isMoving");
 	}
@@ -73,7 +77,7 @@ void Player::AddToStat(Stat _addStat)
 void Player::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");
-	reflectionResource->ParsingFile(0, moveSpeed, ReflectionData, ReflectionData1, ReflectionData2, ReflectionData3);
+	reflectionResource->ParsingFile(0, moveSpeed);
 }
 
 void Player::ReflectionOut()

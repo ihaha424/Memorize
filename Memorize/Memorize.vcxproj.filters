@@ -54,6 +54,9 @@
     <Filter Include="Source Files\App\Player\PlayerAnimations">
       <UniqueIdentifier>{63e6e373-f72b-4584-9142-5d69b45c7de6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile\PrismReflection">
+      <UniqueIdentifier>{b8208af1-409e-48f2-9a49-427058549d2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -145,6 +148,12 @@
     </ClCompile>
     <ClCompile Include="PlayerIdleAnimation.cpp">
       <Filter>Source Files\App\Player\PlayerAnimations</Filter>
+    </ClCompile>
+    <ClCompile Include="PrismReflection.cpp">
+      <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
+    </ClCompile>
+    <ClCompile Include="PrismReflectionProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +255,12 @@
     </ClInclude>
     <ClInclude Include="PlayerAnimationStates.h">
       <Filter>Source Files\App\Player\PlayerAnimations</Filter>
+    </ClInclude>
+    <ClInclude Include="PrismReflectionProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="PrismReflection.h">
+      <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

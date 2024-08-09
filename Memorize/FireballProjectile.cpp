@@ -11,5 +11,4 @@ FireballProjectile::FireballProjectile(World* _world) : Projectile(_world)
 
 FireballProjectile::~FireballProjectile()
 {
-
 }

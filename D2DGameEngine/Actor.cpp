@@ -70,7 +70,8 @@ float Actor::TakeDamage(float damageAmount, DamageEvent const& damageEvent, Cont
 void Actor::BeginPlay()
 {
 	for (auto [_, component] : components) {
-		component->BeginPlay();
+		if(component->GetStatus() == OS_AWAKE)
+			component->BeginPlay();
 	}
 	status = OS_ACTIVE;
 }

@@ -69,12 +69,19 @@ void GPlayerController::Update(float _dt)
 		owner->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
 }
-
+#include "D2DGameEngine/Debug.h"
+#include "GCameraComponent.h"
 void GPlayerController::Fire()		{ playerFSMComponent->InputKey(InputEvent::Fire); }
 void GPlayerController::Water() { playerFSMComponent->InputKey(InputEvent::Water); }
 void GPlayerController::Light() { playerFSMComponent->InputKey(InputEvent::Light); }
 void GPlayerController::Dark() { playerFSMComponent->InputKey(InputEvent::Dark); }
 void GPlayerController::Attack() { 
+	Math::Vector2 destPos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
+	LOG_WARNING(dbg::text(GetPlayer()->GetLocation().x, ", ", GetPlayer()->GetLocation().y));
+	LOG_INFO(dbg::text(destPos.x, ", ", destPos.y));
+
+	destPos = GetPlayer()->GetComponent<GCameraComponent>()->GetComponentLocation();
+	LOG_MESSAGE(dbg::text(destPos.x, ", ", destPos.y));
 	GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	playerFSMComponent->InputKey(InputEvent::Attack); }
 void GPlayerController::Move() { playerFSMComponent->InputKey(InputEvent::Move); }

@@ -41,7 +41,7 @@ void Level::FixedUpdate(float _fixedRate)
 {
 	for (auto actor : actorList)
 	{
-		if (actor->CheckTickProperty(TICK_PHYSICS))
+		if (actor->CheckTickProperty(TICK_PHYSICS) && actor->GetStatus() == OS_ACTIVE)
 		{
 			actor->FixedUpdate(_fixedRate);
 		}
@@ -52,7 +52,7 @@ void Level::PreUpdate(float _dt)
 {
 	for (auto actor : actorList)
 	{
-		if (actor->CheckTickProperty(TICK_PRE_UPDATE))
+		if (actor->CheckTickProperty(TICK_PRE_UPDATE) && actor->GetStatus() == OS_ACTIVE)
 		{
 			actor->PreUpdate(_dt);
 		}
@@ -74,7 +74,7 @@ void Level::PostUpdate(float _dt)
 {
 	for (auto actor : actorList)
 	{
-		if (actor->CheckTickProperty(TICK_POST_UPDATE))
+		if (actor->CheckTickProperty(TICK_POST_UPDATE) && actor->GetStatus() == OS_ACTIVE)
 		{
 			actor->PostUpdate(_dt);
 		}
@@ -94,19 +94,19 @@ void Level::PostUpdate(float _dt)
 void Level::Render(D2DRenderer* _renderer)
 {
 	Math::Matrix cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
-	//cameraTF = cameraTF * Math::Matrix::CreateTranslation(-CameraComponent::screenSize.x / 2, CameraComponent::screenSize.y / 2, 0.f);
+	cameraTF = cameraTF * Math::Matrix::CreateTranslation(-CameraComponent::screenSize.x / 2, -CameraComponent::screenSize.y / 2, 0.f);
 	/*cameraTF._41 -= CameraComponent::screenSize.x / 2;
 	cameraTF._42 -= CameraComponent::screenSize.y / 2;*/
-	cameraTF.Invert();
-	//_renderer->PushTransform(cameraTF);
+	//cameraTF.Invert(cameraTF);
+	_renderer->PushTransform(cameraTF.Invert());
 
 	for (auto actor : actorList)
 	{
-		if (actor->CheckTickProperty(TICK_RENDER))
+		if (actor->CheckTickProperty(TICK_RENDER) && actor->GetStatus() == OS_ACTIVE)
 		{
 			if(GetWorld()->GetMainCamera()->InCameraArea(actor))
 				actor->Render(_renderer);
 		}
 	}
-	//_renderer->PopTransform();
+	_renderer->PopTransform();
 }
