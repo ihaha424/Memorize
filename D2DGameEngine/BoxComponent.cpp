@@ -120,6 +120,7 @@ void BoxComponent::Render(D2DRenderer* _renderer)
 {
 	_renderer->PushTransform(GetWorldTransform());
 
+#ifndef NDEBUG
 	D2D_RectF dest{
 		.left = -boxExtent.width / 2.f,
 		.top = boxExtent.height / 2.f,
@@ -127,7 +128,6 @@ void BoxComponent::Render(D2DRenderer* _renderer)
 		.bottom = -boxExtent.height / 2.f
 	};
 
-#ifndef NDEBUG
 	_renderer->DrawBorder(
 		{ dest.left, dest.top },
 		{ dest.right, dest.bottom },

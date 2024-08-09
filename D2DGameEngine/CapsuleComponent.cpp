@@ -115,16 +115,13 @@ bool CapsuleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 
 void CapsuleComponent::Render(D2DRenderer* _renderer)
 {
-	// TODO
 	_renderer->PushTransform(GetWorldTransform());
 
-
 #ifndef NDEBUG
-	/*_renderer->DrawBorder(
-		{ dest.left, dest.top },
-		{ dest.right, dest.bottom },
+	_renderer->DrawCapsule(
+		{ 0, 0 }, capsuleHalfHeight, capsuleRadius,
 		D2D_Color::Red
-	);*/
+	);
 #endif
 
 	_renderer->PopTransform();
