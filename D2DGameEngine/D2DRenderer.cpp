@@ -106,16 +106,52 @@ void D2DRenderer::DrawCapsule(
 	if (!SUCCEEDED(res)) return;
 
 	// TODO
+	D2D_Point2F ul{ center.x - radius, center.y - halfHeight };
+	D2D_Point2F ur{ center.x + radius, center.y - halfHeight };
+	D2D_Point2F lr{ center.x + radius, center.y + halfHeight };
+	D2D_Point2F ll{ center.x - radius, center.y + halfHeight };
 
+	sink->BeginFigure(ul, D2D1_FIGURE_BEGIN_HOLLOW);
+	sink->AddArc(
+		D2D1::ArcSegment(
+			ur,	// end point 
+			{ radius, radius },
+			180.0f,	// rotation angle
+			D2D1_SWEEP_DIRECTION_CLOCKWISE,
+			D2D1_ARC_SIZE_SMALL	// sweep 180 degrees or less
+		)
+	);
+	sink->EndFigure(D2D1_FIGURE_END_CLOSED);
 
+	sink->BeginFigure(ur, D2D1_FIGURE_BEGIN_HOLLOW);
+	sink->AddLine(lr);
+	sink->EndFigure(D2D1_FIGURE_END_OPEN);
 
+	sink->BeginFigure(lr, D2D1_FIGURE_BEGIN_HOLLOW);
+	sink->AddArc(
+		D2D1::ArcSegment(
+			ll,	// end point 
+			{ radius, radius },
+			180.0f,	// rotation angle
+			D2D1_SWEEP_DIRECTION_CLOCKWISE,
+			D2D1_ARC_SIZE_SMALL	// sweep 180 degrees or less
+		)
+	);
+	sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+
+	sink->BeginFigure(ll, D2D1_FIGURE_BEGIN_HOLLOW);
+	sink->AddLine(ul);
+	sink->EndFigure(D2D1_FIGURE_END_OPEN);
+
+	res = sink->Close();
+	SafeRelease(&sink);
 
 	D2D_TColor tmp = brush->GetColor();
 	brush->SetColor(color);
 
+	renderTarget->DrawGeometry(path, brush, 1.f);
 
 	brush->SetColor(tmp);
-
 }
 
 void D2DRenderer::DrawBorder(
