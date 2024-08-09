@@ -5,6 +5,7 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/RandomGenerator.h"
 #include "Player.h"
+#include "MovementComponent.h"
 
 PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 {
@@ -22,7 +23,7 @@ void PrismReflection::BeginPlay()
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<PrismReflectionProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
-		projectiles[i]->SetStatus(OS_INACTIVE);
+		projectiles[i]->Inactivate();
 	}
 }
 
@@ -53,5 +54,8 @@ void PrismReflection::UseSkill()
 	for (int i = 0; i < projectileCount; i++)
 	{
 		int n = Random::Get<int>(9);
+		projectiles[nowUsingCount]->SetVelocity(directions[n], projectileSpeed);
+		projectiles[nowUsingCount]->Activate();
+		nowUsingCount++;
 	}
 }
