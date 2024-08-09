@@ -95,9 +95,6 @@ void Level::Render(D2DRenderer* _renderer)
 {
 	Math::Matrix cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
 	cameraTF = cameraTF * Math::Matrix::CreateTranslation(-CameraComponent::screenSize.x / 2, -CameraComponent::screenSize.y / 2, 0.f);
-	/*cameraTF._41 -= CameraComponent::screenSize.x / 2;
-	cameraTF._42 -= CameraComponent::screenSize.y / 2;*/
-	//cameraTF.Invert(cameraTF);
 	_renderer->PushTransform(cameraTF.Invert());
 
 	for (auto actor : actorList)

@@ -40,7 +40,7 @@ void Fireball::UseSkill()
 	Math::Vector2 direction = mousePos - Math::Vector2( player->GetLocation().x , player->GetLocation().y  ) ;
 	direction.Normalize();
 	fireball->SetVelocity(direction, projectileSpeed);
-	
+	fireball->Activate();
 	nowUsingCount++;
 }
 

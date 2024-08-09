@@ -241,8 +241,7 @@ void D2DRenderer::PopTransform() {
 	Math::Matrix mat = transforms.back();
 	// 트렌스폼의 역을 계산한 후 글로벌 트랜스폼에
 	// 곱해서 이전 트랜스폼을 캔슬 합니다.
-	mat.Invert();
-	globalTransform = mat * globalTransform;
+	globalTransform = mat.Invert() * globalTransform;
 	// 이전 트렌스폼을 스택에서 팝합니다.
 	transforms.pop_back();
 	// 렌더 타겟 트랜스폼을 세팅합니다.

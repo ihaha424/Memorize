@@ -8,7 +8,8 @@ public:
 	virtual ~FireballProjectile();
 
 	// Projectile을(를) 통해 상속됨
-	void Initialize() override {}
-	void Update() {}
+	void Initialize() override { Inactivate(); }
+	virtual void BeginPlay() { __super::BeginPlay(); Inactivate(); }
+	virtual void Update(float _dt) {__super::Update(_dt);}
 };
 

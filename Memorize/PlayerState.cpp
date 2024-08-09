@@ -32,8 +32,6 @@ void PlayerState::Attack()
 	//기본공격
 }
 
-#include "D2DGameEngine/Debug.h"
-
 void PlayerState::Move()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
@@ -42,8 +40,6 @@ void PlayerState::Move()
 	direction.Normalize();
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetDirection(direction);
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(500.0f);
-
-	LOG_INFO(dbg::text(destPos.x, ", ", destPos.y));
 }
 
 void PlayerState::Memorize()
