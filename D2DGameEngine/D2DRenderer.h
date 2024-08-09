@@ -44,18 +44,18 @@ struct TextFormatInfo {
  * @brief D2D 렌더링 엔진
  */
 class D2DRenderer {
-	HWND _hWnd;
+	HWND hWnd;
 
 	// 종료시 텍스트 포멧을 릴리즈 하기 위한 쓰레기통.
 	//std::unordered_set<struct IDWriteTextFormat*> textFormatGarbageCollector;
 
-	std::unique_ptr<struct ID2D1HwndRenderTarget> _renderTarget;
+	std::unique_ptr<struct ID2D1HwndRenderTarget> renderTarget;
 	std::unique_ptr<struct IDXGIAdapter3> _DXGIAdapter;		// 비디오카드 정보에 접근 가능한 인터페이스
 
-	struct ID2D1SolidColorBrush* _brush;
+	struct ID2D1SolidColorBrush* brush;
 
 	Math::Matrix globalTransform{ Math::Matrix::Identity };	// Identity
-	std::vector<Math::Matrix> _transforms;
+	std::vector<Math::Matrix> transforms;
 
 public:
 
@@ -69,6 +69,16 @@ public:
 
 	void DrawCircle(
 		const Math::Vector2& center, float rad,
+		D2D1::ColorF color = D2D1::ColorF::White
+	);
+	void DrawBox(
+		const Math::Vector2& ul,
+		const Math::Vector2& lr,
+		D2D1::ColorF color = D2D1::ColorF::White
+	);
+	void DrawCapsule(
+		const Math::Vector2& center,
+		float halfHeight, float radius,
 		D2D1::ColorF color = D2D1::ColorF::White
 	);
 	void DrawBorder(

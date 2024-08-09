@@ -422,9 +422,6 @@
     <ClInclude Include="Circle.h">
       <Filter>Source Files\GameEngine\Core\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="DamageTypes.h">
-      <Filter>Source Files\GameEngine\Core\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionProperty.h">
       <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
@@ -466,6 +463,12 @@
     </ClInclude>
     <ClInclude Include="FSMState.h">
       <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlapInfo.h">
+      <Filter>Source Files\GameEngine\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageTypes.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #include "SoundSystem.h"
 #include "ResourceManager.h"
-#include <atlconv.h>
+//#include <atlconv.h>
 
 FMOD::System*	SoundSystem::system = {};
 FMOD::Channel* SoundSystem::channel[SoundChnalList] = {};
@@ -53,10 +53,10 @@ bool SoundSystem::IsPlay(SoundChannel _channel)
 void SoundSystem::CreateSound(std::wstring _key, bool loopcheck, FMOD::Sound*& _sound)
 {
 	std::string tempPath;
-	USES_CONVERSION;
-	tempPath = std::string(W2A(_key.c_str()));
-	if (loopcheck)
+	//USES_CONVERSION;
+	//tempPath = std::string(W2A(_key.c_str()));
+	/*if (loopcheck)
 		system->createSound(tempPath.c_str(), FMOD_LOOP_NORMAL, 0, &_sound);
 	else
-		system->createSound(tempPath.c_str(), FMOD_LOOP_OFF, 0, &_sound);
+		system->createSound(tempPath.c_str(), FMOD_LOOP_OFF, 0, &_sound);*/
 }

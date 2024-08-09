@@ -13,14 +13,14 @@
 #include "FactoryManager.h"
 
 D2DRenderer::D2DRenderer(HWND hWnd) :
-	_hWnd{ hWnd }, _renderTarget{ nullptr } {
+	hWnd{ hWnd }, renderTarget{ nullptr } {
 
 	// Initialize Factory
 	FactoryManager::Create();
 	// Initialize the render target
 	// Obtain the size of the drawing area.
 	RECT rc;
-	GetClientRect(_hWnd, &rc);
+	GetClientRect(hWnd, &rc);
 
 	// Create a Direct2D render target
 	CreateRenderTarget();
@@ -42,47 +42,91 @@ D2DRenderer::~D2DRenderer() {
 	SafeRelease(_DXGIAdapter);
 
 	// Free D2D Objects and render target.
-	SafeRelease(&_brush);
-	SafeRelease(_renderTarget);
+	SafeRelease(&brush);
+	SafeRelease(renderTarget);
 
 	// CoUninitialize
 	FactoryManager::Destroy();
 }
 
 ID2D1HwndRenderTarget* D2DRenderer::GetRenderTarget() {
-	return _renderTarget.get();
+	return renderTarget.get();
 }
 
 void D2DRenderer::BeginDraw() {
-	_renderTarget->BeginDraw();
-	_renderTarget->Clear();
-	_renderTarget->SetTransform(D2D_Mat3x2F::Identity());
+	renderTarget->BeginDraw();
+	renderTarget->Clear();
+	
+	// y 축 플립해서 월드 좌표계에서 위쪽이 +y, 아래가 -y가 되게 함
+	globalTransform = globalTransform.CreateScale(1.f, -1.f, 1.f);
+	renderTarget->SetTransform(ToD2DMat(globalTransform));
 }
 
 void D2DRenderer::EndDraw() {
-	_renderTarget->EndDraw();
+	renderTarget->EndDraw();
 }
 
 void D2DRenderer::DrawCircle(
 	const Math::Vector2& center, float rad,
 	D2D1::ColorF color) {
-	D2D_TColor tmp = _brush->GetColor();
-	_brush->SetColor(color);
-	_renderTarget->DrawEllipse(
-		{ {center.x, center.y}, rad, rad }, _brush
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
+	renderTarget->DrawEllipse(
+		{ {center.x, center.y}, rad, rad }, brush
 	);
-	_brush->SetColor(tmp);
+	brush->SetColor(tmp);
+}
+
+void D2DRenderer::DrawBox(
+	const Math::Vector2& ul, 
+	const Math::Vector2& lr,
+	D2D1::ColorF color)
+{
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
+	renderTarget->DrawRectangle(
+		{ ul.x, ul.y, lr.x, lr.y }, brush
+	);
+	brush->SetColor(tmp);
+}
+
+void D2DRenderer::DrawCapsule(
+	const Math::Vector2& center, 
+	float halfHeight, float radius,
+	D2D1::ColorF color)
+{
+	auto& d2d1Fac = FactoryManager::GetGraphicsFactory();
+
+	ID2D1PathGeometry* path{ nullptr };
+	auto res = d2d1Fac.CreatePathGeometry(&path);
+	if (!SUCCEEDED(res)) return;
+
+	ID2D1GeometrySink* sink{ nullptr };
+	res = path->Open(&sink);
+	if (!SUCCEEDED(res)) return;
+
+	// TODO
+
+
+
+
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
+
+
+	brush->SetColor(tmp);
+
 }
 
 void D2DRenderer::DrawBorder(
 	const Math::Vector2& ul, const Math::Vector2& lr,
 	D2D_Color color) {
-	D2D_TColor tmp = _brush->GetColor();
-	_brush->SetColor(color);
-	_renderTarget->DrawRectangle(
-		{ ul.x, ul.y, lr.x, lr.y }, _brush
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
+	renderTarget->DrawRectangle(
+		{ ul.x, ul.y, lr.x, lr.y }, brush
 	);
-	_brush->SetColor(tmp);
+	brush->SetColor(tmp);
 }
 
 void D2DRenderer::DrawPolygon(
@@ -110,12 +154,12 @@ void D2DRenderer::DrawPolygon(
 	res = sink->Close();
 	SafeRelease(&sink);
 
-	D2D_TColor tmp = _brush->GetColor();
-	_brush->SetColor(color);
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
 
-	_renderTarget->DrawGeometry(path, _brush, 1.f);
+	renderTarget->DrawGeometry(path, brush, 1.f);
 
-	_brush->SetColor(tmp);
+	brush->SetColor(tmp);
 }
 
 /**
@@ -143,18 +187,18 @@ void D2DRenderer::DrawString(
 		&textFormat
 	);
 	// 텍스트 컬러 설정
-	D2D_TColor tmp = _brush->GetColor();
-	_brush->SetColor(color);
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
 
-	_renderTarget->DrawText(
+	renderTarget->DrawText(
 		str.c_str(),
 		str.size(),
 		textFormat,
 		{ul.x, ul.y, lr.x, lr.y},
-		_brush
+		brush
 	);
 
-	_brush->SetColor(tmp);
+	brush->SetColor(tmp);
 }
 
 void D2DRenderer::DrawSprite(
@@ -162,7 +206,7 @@ void D2DRenderer::DrawSprite(
 	const Math::Vector2& ul, const Math::Vector2& lr
 ) {
 	if (!sprite) return;
-	_renderTarget->DrawBitmap(
+	renderTarget->DrawBitmap(
 		sprite,
 		D2D1::RectF(ul.x, ul.y, lr.x, lr.y)
 	);
@@ -174,7 +218,7 @@ void D2DRenderer::DrawSprite(
 	const D2D_RectF& srcArea
 ) {
 	if (!sprite) return;
-	_renderTarget->DrawBitmap(
+	renderTarget->DrawBitmap(
 		sprite,
 		&dst,
 		1.0f,
@@ -187,27 +231,27 @@ void D2DRenderer::PushTransform(const Math::Matrix& mat) {
 	// 글로벌 트랜스폼을 업데이트 합니다.
 	globalTransform = mat * globalTransform;
 	// 새로운 트렌스폼을 트랜스폼 스택에 넣습니다.
-	_transforms.push_back(mat);
+	transforms.push_back(mat);
 	// 렌더 타겟 트랜스폼을 세팅합니다.
-	_renderTarget->SetTransform(ToD2DMat(globalTransform));
+	renderTarget->SetTransform(ToD2DMat(globalTransform));
 }
 
 void D2DRenderer::PopTransform() {
 	// 이전의 트랜스폼을 가져옵니다.
-	Math::Matrix mat = _transforms.back();
+	Math::Matrix mat = transforms.back();
 	// 트렌스폼의 역을 계산한 후 글로벌 트랜스폼에
 	// 곱해서 이전 트랜스폼을 캔슬 합니다.
 	mat.Invert();
 	globalTransform = mat * globalTransform;
 	// 이전 트렌스폼을 스택에서 팝합니다.
-	_transforms.pop_back();
+	transforms.pop_back();
 	// 렌더 타겟 트랜스폼을 세팅합니다.
-	_renderTarget->SetTransform(ToD2DMat(globalTransform));
+	renderTarget->SetTransform(ToD2DMat(globalTransform));
 }
 
 void D2DRenderer::ClearTransform() {
 	globalTransform = Math::Matrix::Identity;
-	_transforms.clear();
+	transforms.clear();
 }
 
 Math::Matrix D2DRenderer::GetGlobalTransform() {
@@ -215,7 +259,7 @@ Math::Matrix D2DRenderer::GetGlobalTransform() {
 }
 
 void D2DRenderer::ResizeScreen(int w, int h) {
-	_renderTarget->Resize(D2D1::SizeU(w, h));
+	renderTarget->Resize(D2D1::SizeU(w, h));
 }
 
 void D2DRenderer::ShowVRAMUsage() {
@@ -236,7 +280,7 @@ void D2DRenderer::ShowVRAMUsage() {
 void D2DRenderer::CreateRenderTarget() {
 	// Obtain the size of the drawing area.
 	RECT rc;
-	GetClientRect(_hWnd, &rc);
+	GetClientRect(hWnd, &rc);
 
 	// Create a Direct2D render target
 	ID2D1HwndRenderTarget* renderTarget = nullptr;
@@ -244,21 +288,21 @@ void D2DRenderer::CreateRenderTarget() {
 		.CreateHwndRenderTarget(
 			D2D1::RenderTargetProperties(),
 			D2D1::HwndRenderTargetProperties(
-				_hWnd,
+				hWnd,
 				D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top)
 			),
 			&renderTarget
 		);
 
 	// Reset the unique pointer
-	_renderTarget.reset(renderTarget);
+	this->renderTarget.reset(renderTarget);
 
 	// Create a brush
 	if (SUCCEEDED(hr)) {
 		// Create a brush.
-		_renderTarget->CreateSolidColorBrush(
+		renderTarget->CreateSolidColorBrush(
 			D2D1::ColorF(D2D1::ColorF::White),
-			&_brush
+			&brush
 		);
 	}
 }

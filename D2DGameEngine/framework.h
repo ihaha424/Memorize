@@ -122,6 +122,31 @@ namespace DirectX::SimpleMath {
 		return radian * 180.f * PI_F;
 	}
 
+	inline
+		Math::Vector3 ExtractTranslation(const Math::Matrix& transform) {
+		return { transform._41, transform._42, transform._43 };
+	}
+
+	inline
+		Math::Vector3 ExtractScale(const Math::Matrix& transform) {
+		float sx = Math::Vector3(transform._11, transform._21, transform._31).Length();
+		float sy = Math::Vector3(transform._12, transform._22, transform._32).Length();
+		float sz = Math::Vector3(transform._13, transform._23, transform._33).Length();
+		return { sx, sy, sz };
+	}
+
+	inline
+		Math::Matrix ExtractRotation(const Math::Matrix& transform, Math::Vector3* outScale = nullptr) {
+		Math::Vector3 scale = ExtractScale(transform);
+		*outScale = scale;
+		Math::Matrix rotation = transform;
+		rotation._11 /= scale.x; rotation._12 /= scale.y; rotation._13 /= scale.z; rotation._14 = 0.f;
+		rotation._21 /= scale.x; rotation._22 /= scale.y; rotation._23 /= scale.z; rotation._24 = 0.f;
+		rotation._31 /= scale.x; rotation._32 /= scale.y; rotation._33 /= scale.z; rotation._34 = 0.f;
+		rotation._41  =		  0.f; rotation._42  =		 0.f;	rotation._43  =			0.f; rotation._44 = 1.f;
+
+		return rotation;
+	}
 }
 
 inline constexpr
@@ -146,13 +171,13 @@ D2D_Point2F ToD2DP2F(const Math::Vector3& vec) {
 
 inline
 D2D_Mat3x2F ToD2DMat(const Math::Matrix& mat) {
-	D2D_Mat3x2F m;
+	D2D_Mat3x2F m{};
 	m._11 = mat._11;
-	m._12 = mat._12;
-	m._21 = mat._21;
+	m._12 = mat._21;
+	m._21 = mat._12;
 	m._22 = mat._22;
-	m._31 = mat._31;
-	m._32 = mat._32;
+	m._31 = mat._14;
+	m._32 = mat._24;
 	return m;
 }
 

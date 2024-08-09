@@ -1,6 +1,11 @@
 #include "Actor.h"
 #include "SceneComponent.h"
 
+#include "PrimitiveComponent.h"
+#include "Controller.h"
+
+#include "DamageEvent.h"
+
 Actor::Actor(class World* _world) : world(_world)
 {
 }
@@ -13,6 +18,54 @@ Actor::~Actor()
 	}
 }
 
+
+float Actor::TakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller* eventInstigator, Actor* damageCauser)
+{
+	float actualDamage = InternalTakeDamage(damageAmount, damageEvent, eventInstigator, damageCauser);
+
+	if (damageEvent.damageEventType == DamageEventType::PointDamage)
+	{
+		const PointDamageEvent& pointDamageEvent = static_cast<const PointDamageEvent&>(damageEvent);
+
+		if (abs(actualDamage) > EPSILON) 
+		{
+			PrimitiveComponent* const primComp = pointDamageEvent.hitInfo.hitComponent;
+
+			if (primComp)
+			{
+				primComp->ReceiveComponentDamage(damageAmount, damageEvent, eventInstigator, damageCauser);
+			}
+		}
+	}
+	else if (damageEvent.damageEventType == DamageEventType::RadialDamage)
+	{
+		const RadialDamageEvent& radialDamageEvent = static_cast<const RadialDamageEvent&>(damageEvent);
+
+		if (abs(actualDamage) > EPSILON) 
+		{
+			for (int hitIndex = 0; hitIndex < radialDamageEvent.componentHits.size(); ++hitIndex)
+			{
+				const HitResult& compHitResult = radialDamageEvent.componentHits[hitIndex];
+				PrimitiveComponent* const primComp = compHitResult.hitComponent;
+				if (primComp && primComp->GetOwner() == this)
+				{
+					primComp->ReceiveComponentDamage(damageAmount, damageEvent, eventInstigator, damageCauser);
+				}
+			}
+		}
+	}
+
+	if (abs(actualDamage) > EPSILON) {
+		OnTakeDamage(damageAmount, damageEvent, eventInstigator, damageCauser);
+
+		/*if (eventInstigator != nullptr)
+		{
+			eventInstigator->InstigatedAnyDamage(actualDamage, damageEvent.damageEventType, this, damageCauser);
+		}*/
+	}
+
+	return actualDamage;
+}
 
 void Actor::BeginPlay()
 {
