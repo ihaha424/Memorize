@@ -111,17 +111,7 @@ public:
 	virtual void OnComponentEndOverlap() {}
 	virtual void OnComponentHit() {}
 
-	void SetCollisionEnabled(CollisionEnabled::Type type) {
-		collisionProperty.collisionEnabled = type;
-		if (type == CollisionEnabled::NoCollision) {
-			bCanCollide = false;
-			// Unregister collision
-		}
-		else {
-			bCanCollide = true;
-			// Register collision
-		}
-	}
+	void SetCollisionEnabled(CollisionEnabled::Type type);
 
 	bool IsRegisterd() {
 		// GetWorld()->CheckRegistration();

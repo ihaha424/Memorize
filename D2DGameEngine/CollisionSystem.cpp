@@ -35,6 +35,14 @@ void CollisionSystem::UpdateComponent(PrimitiveComponent* component)
 	RegisterComponent(component);
 }
 
+bool CollisionSystem::IsComponentRegistered(PrimitiveComponent* component)
+{
+	CollisionProperty& collisionProperty = component->collisionProperty;
+	PrimitiveComponentSet& set = collisionMap[collisionProperty.objectType];
+	auto it = set.find(component);
+	return it != set.end();
+}
+
 bool CollisionSystem::CheckComponentOverlapsByChannel(
 	std::vector<OverlapResult>& outOverlapResults, 
 	PrimitiveComponent* primComp, 

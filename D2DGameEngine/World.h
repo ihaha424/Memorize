@@ -125,6 +125,10 @@ public:
 			collisionSystem.UpdateComponent(primComp);
 		}
 
+		bool IsComponentCollisionRegistered(PrimitiveComponent* primComp) {
+			return collisionSystem.IsComponentRegistered(primComp);
+		}
+
     /**
      * @brief 메인 카메라 컴포넌트를 설정합니다. 
      * @param component 메인 카메라 컴포넌트
