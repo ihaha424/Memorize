@@ -12,6 +12,12 @@ Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 	SetTickProperties(TICK_UPDATE);
 
 	projectileMaxCount = 5;
+
+	for (int i = 0; i < projectileMaxCount; i++)
+	{
+		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<FireballProjectile>());
+		projectiles[i]->SetVelocity({ 0,0 }, 0);
+	}
 }
 
 Fireball::~Fireball()
@@ -20,19 +26,23 @@ Fireball::~Fireball()
 
 void Fireball::BeginPlay()
 {
+	__super::BeginPlay();
+	
 	for (int i = 0; i < projectileMaxCount; i++)
 	{
-		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<FireballProjectile>());
-		projectiles[i]->SetVelocity({ 0,0 }, 0);
+		projectiles[i]->SetStatus(OS_INACTIVE);
 	}
 }
 
 void Fireball::UseSkill()
 {
+	__super::UseSkill();
+
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];
 	fireball->SetOwner(player);
 	fireball->SetLocation(player->GetLocation().x, player->GetLocation().y);
+	fireball->SetStatus(OS_ACTIVE);
 
 	//마우스 위치로 이동시킴
 	Math::Vector2 mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };

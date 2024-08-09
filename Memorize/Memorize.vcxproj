@@ -170,6 +170,8 @@
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="PlayerMoveAnimation.cpp" />
     <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="PrismReflection.cpp" />
+    <ClCompile Include="PrismReflectionProjectile.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
@@ -206,6 +208,8 @@
     <ClInclude Include="PlayerMoveAnimation.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayerStates.h" />
+    <ClInclude Include="PrismReflection.h" />
+    <ClInclude Include="PrismReflectionProjectile.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileSkill.h" />
     <ClInclude Include="RangeSkill.h" />

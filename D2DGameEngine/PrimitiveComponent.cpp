@@ -37,6 +37,21 @@ void PrimitiveComponent::ReceiveComponentDamage(float _damageAmount, const Damag
 	}
 }
 
+void PrimitiveComponent::SetCollisionEnabled(CollisionEnabled::Type type)
+{
+	collisionProperty.collisionEnabled = type;
+	if (type == CollisionEnabled::NoCollision) {
+		bCanCollide = false;
+		// Unregister collision
+		GetWorld()->UnregisterComponentCollision(this);
+	}
+	else {
+		bCanCollide = true;
+		// Register collision
+		GetWorld()->RegisterComponentCollision(this);
+	}
+}
+
 bool PrimitiveComponent::CheckSweepComponent(
 	HitResult& outHit, 
 	const DXVec2& start, 

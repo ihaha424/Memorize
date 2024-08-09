@@ -24,6 +24,7 @@ public:
 	void UnregisterComponent(PrimitiveComponent* component);
 	void ClearComponents();
 	void UpdateComponent(PrimitiveComponent* component);
+	bool IsComponentRegistered(PrimitiveComponent* component);
 
 	bool CheckComponentOverlapsByChannel(
 		std::vector<struct OverlapResult>& outOverlapResults,
