@@ -13,16 +13,16 @@ void Animator::SetState(AnimationState* state) {
 	_currState->Enter(this);
 }
 
-AnimationBitmapComponent* Animator::GetCurrentAnimationScene() {
-	return _currState->_animation;
+AnimationState* Animator::GetCurrentAnimationScene() {
+	return _currState;
 }
 
 void Animator::Update(float _dt)
 {
-	GetCurrentAnimationScene()->Update(_dt);
+	_currState->Update(_dt);
 }
 
 void Animator::Render(D2DRenderer* _renderer)
 {
-	GetCurrentAnimationScene()->Render(_renderer);
+	_currState->Render(_renderer);
 }

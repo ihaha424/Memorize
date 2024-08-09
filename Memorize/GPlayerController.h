@@ -44,7 +44,8 @@ public:
 	void Light();
 	void Dark(); 
 	void Attack();
-	void Move(); 
+	void Move();
+	void Memorize();
 };
 
 template<typename T>

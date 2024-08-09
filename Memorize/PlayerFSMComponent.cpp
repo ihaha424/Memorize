@@ -2,9 +2,11 @@
 
 void PlayerFSMComponent::BeginPlay()
 {
+	__super::BeginPlay();
 	CreateState<PlayerIdle>(L"PlayerIdle");
-//	CreateState<PlayerCasting>(L"PlayerCasting");
-//	CreateState<PlayerAttack>(L"PlayerAttack");
+	CreateState<PlayerMove>(L"PlayerMove");
+	CreateState<PlayerCasting>(L"PlayerCasting");
+	CreateState<PlayerAttack>(L"PlayerAttack");
 //	CreateState<PlayerBlinking>(L"PlayerBlinking");
 	SetNextState(L"PlayerIdle");
 }
@@ -16,17 +18,26 @@ void PlayerFSMComponent::InputKey(int _key)
 	{
 	case InputEvent::Fire:
 		ActionState->Fire();
+		break;
 	case InputEvent::Water:
 		ActionState->Water();
+		break;
 	case InputEvent::Light:
 		ActionState->Light();
+		break;
 	case InputEvent::Dark:
 		ActionState->Dark();
+		break;
 	case InputEvent::Attack:
 		ActionState->Attack();
+		break;
 	case InputEvent::Move:
 		ActionState->Move();
-	default:
+		break;
+	case InputEvent::Memorize:
+		ActionState->Memorize();
+		break;
+default:
 		break;
 	}
 }

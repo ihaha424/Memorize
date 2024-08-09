@@ -6,8 +6,13 @@
 #include "GPlayerController.h"
 #include "Player.h"
 
+
+#include "Fireball.h"
+
 void PlayerState::Fire()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	playerController->StartSkill<Fireball>();
 }
 
 void PlayerState::Water()
@@ -35,4 +40,11 @@ void PlayerState::Move()
 	direction.Normalize();
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetDirection(direction);
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(500.0f);
+}
+
+void PlayerState::Memorize()
+{
+	// if()// 플레이어가 저장한 마법이 있으면...)
+	//owner->SetNextState(L"PlayerAttack");
+	//마법에 대한 정보는  Player 가 들고 있다.
 }

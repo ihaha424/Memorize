@@ -1,10 +1,14 @@
 #include "Player.h"
-#include "../D2DGameEngine/BitmapComponent.h"
+#include "D2DGameEngine/Animator.h"
+//#include "D2DGameEngine/AnimationBitmapComponent.h"
+#include "PlayerAnimationStates.h"
+
+
 #include "GCameraComponent.h"
 #include "MovementComponent.h"
-#include "../D2DGameEngine/World.h"
-#include "../D2DGameEngine/ReflectionResource.h"
-#include "../D2DGameEngine/ResourceManager.h"
+#include "D2DGameEngine/World.h"
+#include "D2DGameEngine/ReflectionResource.h"
+#include "D2DGameEngine/ResourceManager.h"
 
 Player::Player(class World* _world) : Character(_world)
 {
@@ -12,15 +16,37 @@ Player::Player(class World* _world) : Character(_world)
 
 	SetTickProperties(TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 
-	BitmapComponent* bm = CreateComponent<BitmapComponent>();
-	rootComponent = bm;
+	Animator* abm = CreateComponent<Animator>();
+	rootComponent = abm;
+	AnimationState* PlayerAnimationState;
+	{
+		PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
+		PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
+		PlayerAnimationState->SliceSpriteSheet(120, 216, 0,0,20,0);
+		abm->Initialize(PlayerAnimationState);
+
+		PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
+		PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
+		PlayerAnimationState->SliceSpriteSheet(180, 216, 0,0,20,0);
+
+		//??abm->DeclareVariable<bool>("isMoving");
+	}
+
+	//AnimationBitmapComponent* abm = CreateComponent<AnimationBitmapComponent>();
+	//rootComponent = abm;
+	//{
+	//	abm->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
+	//	abm->SliceSpriteSheet(180, 216, 0,0,20,0);
+	//}
+	//abm->SetFrameDurations({0.05f});
+	//abm->Trigger(true);
+
 	GCameraComponent* cm = CreateComponent<GCameraComponent>();
 	GetWorld()->SetMainCamera(cm);
-	bm->AddChild(cm);
-	bm->SetSprite(L"Memorize/testPlayer.png");
+	abm->AddChild(cm);
 
 	MovementComponent* mv = CreateComponent< MovementComponent>();
-	bm->AddChild(mv);
+	abm->AddChild(mv);
 }
 
 Player::~Player()

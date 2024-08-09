@@ -51,6 +51,9 @@
     <Filter Include="Source Files\App\Player\PlayerFSM\PlayerStates">
       <UniqueIdentifier>{ce17e71b-eecc-438b-acc0-e783078254de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Player\PlayerAnimations">
+      <UniqueIdentifier>{63e6e373-f72b-4584-9142-5d69b45c7de6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -136,6 +139,12 @@
     </ClCompile>
     <ClCompile Include="PlayerMove.cpp">
       <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMoveAnimation.cpp">
+      <Filter>Source Files\App\Player\PlayerAnimations</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerIdleAnimation.cpp">
+      <Filter>Source Files\App\Player\PlayerAnimations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +237,15 @@
     </ClInclude>
     <ClInclude Include="PlayerMove.h">
       <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMoveAnimation.h">
+      <Filter>Source Files\App\Player\PlayerAnimations</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIdleAnimation.h">
+      <Filter>Source Files\App\Player\PlayerAnimations</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAnimationStates.h">
+      <Filter>Source Files\App\Player\PlayerAnimations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

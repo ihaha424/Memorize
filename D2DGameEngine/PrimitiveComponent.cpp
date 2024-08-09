@@ -122,6 +122,6 @@ bool PrimitiveComponent::CheckComponentOverlapComponentWithResultImpl(
 	const DXVec2& pos, const DXMat4x4& rotation,
 	std::vector<OverlapResult>& outOverlap) {
 
-
+	return false;
 
 }

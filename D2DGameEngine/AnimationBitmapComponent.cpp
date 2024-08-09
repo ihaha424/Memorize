@@ -17,11 +17,15 @@ void AnimationBitmapComponent::SliceSpriteSheet(uint pixelSizeX, uint pixelSizeY
 
 	for (int i = 0; i < nrows; ++i) {
 		for (int j = 0; j < ncols; ++j) {
+			float left = (float)offsetX + (pixelSizeX + paddingX) * j;
+			float top = (float)offsetY + (pixelSizeY + paddingY) * i;
+			float right = left + (float)pixelSizeX;
+			float bottom = top + (float)pixelSizeY;
 			frames[idx(i, j)] = D2D_RectF{
-				(float)offsetX + (pixelSizeX + paddingX) * j, // X
-				(float)offsetY + (pixelSizeY + paddingY) * i, // Y
-				// Width					 // Height
-				(float)pixelSizeX, (float)pixelSizeY
+				left,
+				top,
+				right,
+				bottom
 			};
 		}
 	}

@@ -2,6 +2,9 @@
 
 #include "../D2DGameEngine/FSMState.h"
 
+enum InputEvent { Fire, Water, Light, Dark, Attack, Move, Memorize
+};
+
 class PlayerState
 	:public FSMState
 {
@@ -18,6 +21,7 @@ public:
 	virtual void Dark();
 	virtual void Attack();
 	virtual void Move();
+	virtual void Memorize();
 
 	// FSMState을(를) 통해 상속됨
 	virtual void Enter() = 0;

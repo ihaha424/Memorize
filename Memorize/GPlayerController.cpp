@@ -34,6 +34,8 @@ void GPlayerController::SetupInputComponent()
 	inputComponent->ActionBinding(this, DIK_W, &GPlayerController::Water, InputState::KeyDown, KeyBoardInput);
 	inputComponent->ActionBinding(this, DIK_E, &GPlayerController::Light, InputState::KeyDown, KeyBoardInput);
 	inputComponent->ActionBinding(this, DIK_R, &GPlayerController::Dark, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_TAB, &GPlayerController::Memorize, InputState::KeyDown, KeyBoardInput);
+	
 	inputComponent->ActionBinding(this, 0, &GPlayerController::Attack, InputState::KeyDown, MouseInput);
 	inputComponent->ActionBinding(this, 1, &GPlayerController::Move, InputState::KeyDown, MouseInput);
 }
@@ -68,9 +70,13 @@ void GPlayerController::Update(float _dt)
 	}
 }
 
-void GPlayerController::Fire()		{ playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Fire); }
-void GPlayerController::Water() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Water); }
-void GPlayerController::Light() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Light); }
-void GPlayerController::Dark() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Dark); }
-void GPlayerController::Attack() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Attack); }
-void GPlayerController::Move() { playerFSMComponent->InputKey(PlayerFSMComponent::InputEvent::Move); }
+void GPlayerController::Fire()		{ playerFSMComponent->InputKey(InputEvent::Fire); }
+void GPlayerController::Water() { playerFSMComponent->InputKey(InputEvent::Water); }
+void GPlayerController::Light() { playerFSMComponent->InputKey(InputEvent::Light); }
+void GPlayerController::Dark() { playerFSMComponent->InputKey(InputEvent::Dark); }
+void GPlayerController::Attack() { 
+	GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(0.f);
+	playerFSMComponent->InputKey(InputEvent::Attack); }
+void GPlayerController::Move() { playerFSMComponent->InputKey(InputEvent::Move); }
+
+void GPlayerController::Memorize() {playerFSMComponent->InputKey(InputEvent::Memorize);}

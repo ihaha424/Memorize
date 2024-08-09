@@ -2,11 +2,10 @@
 
 #include "framework.h"
 
-#include "IComponent.h"
+#include "SceneComponent.h"
 
-class AnimationBitmapComponent;
 class AnimationState;
-class Animator : public IComponent {
+class Animator : public SceneComponent {
 	using VariableName = std::string;
 	using VariableValue = std::any;
 	using AnimationVariables = std::unordered_map<VariableName, std::any>;
@@ -14,11 +13,31 @@ class Animator : public IComponent {
 
 	AnimationVariables _variables;
 	StateRegistry _animationStates;
-	AnimationState* _currState;
+	AnimationState* _currState = nullptr;
 public:
-	Animator(AnimationState* state, Actor* _owner) : IComponent(_owner), _currState(state) {
+	Animator(Actor* _owner) : SceneComponent(_owner){
 		SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	}
+	virtual ~Animator()
+	{
+		for (auto iter = _animationStates.begin(); iter != _animationStates.end();iter++)
+		{
+			delete (*iter);
+		}
+		_animationStates.clear();
+	}
+
+	void Initialize(AnimationState* initAnimiationState) { _currState = initAnimiationState; }
+	
+	template<typename AnimationStateType>
+	AnimationStateType* CreateState()
+	{
+		AnimationStateType* pState = new AnimationStateType(this);
+		_animationStates.push_back(pState);
+		return pState;
+	}
+
+
 
 	/**
 	 * @brief 현재 애니메이션을 토글합니다.
@@ -80,7 +99,7 @@ public:
 	}
 
 	// Getters
-	AnimationBitmapComponent* GetCurrentAnimationScene();
+	AnimationState* GetCurrentAnimationScene();
 
 	void Update(float _dt) override;
 	void Render(class D2DRenderer* _renderer) override;
