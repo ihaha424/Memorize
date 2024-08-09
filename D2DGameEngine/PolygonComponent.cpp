@@ -10,6 +10,12 @@ bool PolygonComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 
 	if (GetCollisionObjectType() != collisionChannel) return false;
 
+	CollisionShape myCollisionShape;
+	this->GetCollisionShape(1.f, myCollisionShape);
+
+	if (myCollisionShape.IsNearlyZero() || collisionShape.IsNearlyZero())
+		return false;
+
 	// Build my Capsule
 	TPolygon myPolygon{ vertices };
 	for (Math::Vector2& point : myPolygon.points) {
@@ -98,7 +104,7 @@ bool PolygonComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 		outHit.time = outHit.distance / deltaSize;
 	}
 
-	return false;
+	return hasHit;
 }
 
 bool PolygonComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation)
@@ -175,7 +181,7 @@ bool PolygonComponent::CheckComponentOverlapComponentWithResultImpl(PrimitiveCom
 	if (myCollisionShape.IsNearlyZero() || otherCollisionShape.IsNearlyZero())
 		return false;
 
-	// Build my Capsule
+	// Build my Polygon
 	TPolygon myPolygon{ vertices };
 	for (Math::Vector2& point : myPolygon.points) {
 		point = DXVec2::Transform(point, GetWorldTransform());

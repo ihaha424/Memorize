@@ -27,8 +27,9 @@ struct CollisionResponseContainer {
 		}
 	}
 
-	CollisionResponse GetCollisionResponseToChannel(ECollisionChannel channel) {
-		return collisionChannelResponseMap[channel];
+	CollisionResponse GetCollisionResponseToChannel(ECollisionChannel channel) const {
+		auto it = collisionChannelResponseMap.find(channel);
+		return it->second;
 	}
 
 	void SetCollsionResponseToChannel(ECollisionChannel channel, CollisionResponse response) {

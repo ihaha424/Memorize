@@ -96,36 +96,10 @@ public:
 	 */
 	virtual void ReceiveComponentDamage(
 		float _damageAmount,
-		const struct DamageType& damageEvent,
+		const struct DamageEvent& damageEvent,
 		class Controller* instigator,	// 데미지를 준 Player Controller 아니면 AIController
 		class Actor* damageCauser	// 데미지를 준 오브젝트. 예시, 총알, 수류탄 등.
-	) {
-		// TODO:
-		/*if (bApplyImpulseOnDamage)
-		{
-			UDamageType const* const DamageTypeCDO = DamageEvent.DamageTypeClass ? DamageEvent.DamageTypeClass->GetDefaultObject<UDamageType>() : GetDefault<UDamageType>();
-			if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
-			{
-				FPointDamageEvent* const PointDamageEvent = (FPointDamageEvent*)&DamageEvent;
-				if ((DamageTypeCDO->DamageImpulse > 0.f) && !PointDamageEvent->ShotDirection.IsNearlyZero())
-				{
-					if (IsSimulatingPhysics(PointDamageEvent->HitInfo.BoneName))
-					{
-						FVector const ImpulseToApply = PointDamageEvent->ShotDirection.GetSafeNormal() * DamageTypeCDO->DamageImpulse;
-						AddImpulseAtLocation(ImpulseToApply, PointDamageEvent->HitInfo.ImpactPoint, PointDamageEvent->HitInfo.BoneName);
-					}
-				}
-			}
-			else if (DamageEvent.IsOfType(FRadialDamageEvent::ClassID))
-			{
-				FRadialDamageEvent* const RadialDamageEvent = (FRadialDamageEvent*)&DamageEvent;
-				if (DamageTypeCDO->DamageImpulse > 0.f)
-				{
-					AddRadialImpulse(RadialDamageEvent->Origin, RadialDamageEvent->Params.OuterRadius, DamageTypeCDO->DamageImpulse, RIF_Linear, DamageTypeCDO->bRadialDamageVelChange);
-				}
-			}
-		}*/
-	}
+	);
 
 	// Collision Callbacks
 	// TODO: Cursor Events
@@ -223,20 +197,11 @@ public:
 		const ECollisionChannel collisionChannel,
 		const CollisionProperty& collisionProperty);
 
-	void DispatchBlockingHit(Actor& owner, HitResult& blockingHit) {
-		PrimitiveComponent* blockingHitComponent = blockingHit.hitComponent;
-		if (blockingHitComponent) {
-			//owner.DispatchBlockingHit(this, blockingHitComponent, true, blockingHit);
+	void DispatchBlockingHit(Actor& owner, HitResult& blockingHit);
 
-			Actor* blockingHitActor = blockingHitComponent->GetOwner();
-			if (blockingHitActor) {
-				//blockingHitActor->(blockingHitComponent, this, false, blockingHit);
-			}
-		}
-	}
-
-	bool IsOverlappingComponent(const PrimitiveComponent* otherComp) const {
-		// TODO:
+	bool IsOverlappingComponent(PrimitiveComponent* otherComp) const {
+		auto it = currentlyOverlappingComponents.find(otherComp);
+		return it != currentlyOverlappingComponents.end();
 	}
 
 	/**

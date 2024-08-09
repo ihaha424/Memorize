@@ -1,7 +1,9 @@
 #pragma once
 #include "IComponent.h"
 
+#include "HitResult.h"
 
+class PrimitiveComponent;
 class Actor : public IObject
 {
 protected:
@@ -52,6 +54,50 @@ public:
 		auto it = components.find(std::type_index(typeid(T)));
 		return (it == components.end()) ? nullptr : (T*)it->second;
 	}
+
+
+	// Collision Event
+	void NotifyActorBeginOverlap(Actor* other) {
+		OnBeginOverlap(other);
+	}
+	void NotifyActorEndOverlap(Actor* other) {
+		OnEndOverlap(other);
+	}
+	void NotifyBlockingHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) {
+		OnHit(myComp, otherComp, bSelfMoved, hitResult);
+	}
+
+	virtual void OnBeginOverlap(Actor* other) {}
+	virtual void OnEndOverlap(Actor* other) {}
+	virtual void OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) {}
+
+	/**
+	 * @brief 데미지 받기. 예를 들어, 총알의 OnHit 이벤트에서 otherComp의 오너를 가져온 뒤 TakeDamage를 호출 할 수 있습니다.
+	 * @param damageAmount 
+	 * @param damageEvent 
+	 * @param eventInstigator 
+	 * @param damageCauser 
+	 * @return 
+	 */
+	float TakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser);
+	/**
+	 * @brief 데미지를 사실상 얼마나 받았는지 계산. TakeDamage의 헬퍼
+	 * @param damageAmount 
+	 * @param damageEvent 
+	 * @param eventInstigator 
+	 * @param damageCauser 
+	 * @return 
+	 */
+	virtual float InternalTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) { return 0.f; }
+	/**
+	 * @brief 데미지 받았을 때 이벤트. TakeDamage 안에서 호출됨.
+	 * @param damageAmount 
+	 * @param damageEvent 
+	 * @param eventInstigator 
+	 * @param damageCauser 
+	 * @param hitResult 
+	 */
+	virtual void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) {}
 
 	/**
 	 * @brief Actor의 상태를 AS_AWAKE에서 AS_ACTIVE로 변경합니다.

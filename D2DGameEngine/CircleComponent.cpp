@@ -10,6 +10,12 @@ bool CircleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& start
 
 	if (GetCollisionObjectType() != collisionChannel) return false;
 
+	CollisionShape myCollisionShape;
+	this->GetCollisionShape(1.f, myCollisionShape);
+
+	if (myCollisionShape.IsNearlyZero() || collisionShape.IsNearlyZero())
+		return false;
+
 	// Build my Circle
 	Circle myCircle{
 		.center = GetComponentLocation(),
@@ -98,7 +104,7 @@ bool CircleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& start
 		outHit.time = outHit.distance / deltaSize;
 	}
 
-	return false;
+	return hasHit;
 }
 
 bool CircleComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation)

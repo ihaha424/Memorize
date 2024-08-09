@@ -17,6 +17,12 @@ bool BoxComponent::CheckSweepComponent(
 
 	if (GetCollisionObjectType() != collisionChannel) return false;
 
+	CollisionShape myCollisionShape;
+	this->GetCollisionShape(1.f, myCollisionShape);
+
+	if (myCollisionShape.IsNearlyZero() || collisionShape.IsNearlyZero())
+		return false;
+
 	// Build my Box
 	Box myBox = Box::BuildAABB({ 0.f, 0.f }, boxExtent);
 	myBox.ul = DXVec2::Transform(myBox.ul, GetWorldTransform());
@@ -104,7 +110,7 @@ bool BoxComponent::CheckSweepComponent(
 		outHit.time = outHit.distance / deltaSize;
 	}
 
-	return false;
+	return hasHit;
 }
 
 bool BoxComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation)

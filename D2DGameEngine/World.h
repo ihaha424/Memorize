@@ -37,21 +37,21 @@ public:
 			std::vector<OverlapResult>& outOverlapResults,
 			class PrimitiveComponent* primComp,
 			const Math::Vector2& pos,
-			const Math::Matrix& rotation) const;
+			const Math::Matrix& rotation);
 
 		bool CheckComponentOverlapMultiByChannel(
 			std::vector<OverlapResult>& outOverlapResults,
 			class PrimitiveComponent* primComp,
 			const Math::Vector2& pos,
 			const Math::Matrix& rotation,
-			ECollisionChannel channel) const;
+			ECollisionChannel channel);
 
 		bool CheckComponentSweepMulti(
 			std::vector<HitResult>& outHitResults,
 			class PrimitiveComponent* primComp,
 			const Math::Vector2& start,
 			const Math::Vector2& end,
-			const Math::Matrix& rotation) const;
+			const Math::Matrix& rotation);
 
 		bool CheckComponentSweepMultiByChannel(
 			std::vector<HitResult>& outHitResults,
@@ -59,7 +59,7 @@ public:
 			const Math::Vector2& start,
 			const Math::Vector2& end,
 			const Math::Matrix& rotation,
-			ECollisionChannel channel) const;
+			ECollisionChannel channel);
 
 		bool LineTraceMultiByChannel(
 			std::vector<HitResult>& outHitResults,
@@ -111,6 +111,18 @@ public:
 			const CollisionProperty& collisionProperty) const {
 			// TODO
 			return false;
+		}
+
+		void RegisterComponentCollision(PrimitiveComponent* primComp) {
+			collisionSystem.RegisterComponent(primComp);
+		}
+
+		void UnregisterComponentCollision(PrimitiveComponent* primComp) {
+			collisionSystem.UnregisterComponent(primComp);
+		}
+
+		void UpdateComponentCollision(PrimitiveComponent* primComp) {
+			collisionSystem.UpdateComponent(primComp);
 		}
 
     /**

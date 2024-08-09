@@ -10,12 +10,18 @@ bool CapsuleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 
 	if (GetCollisionObjectType() != collisionChannel) return false;
 
+	CollisionShape myCollisionShape;
+	this->GetCollisionShape(1.f, myCollisionShape);
+
+	if (myCollisionShape.IsNearlyZero() || collisionShape.IsNearlyZero())
+		return false;
+
 	// Build my Capsule
-	Math::Matrix world = GetWorldTransform();
-	Math::Matrix rotation = Math::ExtractRotation(world);
+	Math::Matrix myWorldTransform = GetWorldTransform();
+	Math::Matrix myRotation = Math::ExtractRotation(myWorldTransform);
 	Capsule myCapsule{
 		.center = GetComponentLocation(),
-		.direction = DXVec2::Transform(DXVec2::UnitY, rotation),
+		.direction = DXVec2::Transform(DXVec2::UnitY, myRotation),
 		.extent = GetScaledCapsuleHalfHeight(),
 		.radius = GetScaledCapsuleRadius()
 	};
@@ -102,7 +108,7 @@ bool CapsuleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 		outHit.time = outHit.distance / deltaSize;
 	}
 
-	return false;
+	return hasHit;
 }
 
 bool CapsuleComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation)
@@ -119,11 +125,11 @@ bool CapsuleComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* pr
 		return false;
 
 	// Build my Capsule
-	Math::Matrix world = GetWorldTransform();
-	Math::Matrix rotation = Math::ExtractRotation(world);
+	Math::Matrix myWorldTransform = GetWorldTransform();
+	Math::Matrix myRotation = Math::ExtractRotation(myWorldTransform);
 	Capsule myCapsule {
 		.center = GetComponentLocation(),
-		.direction = DXVec2::Transform(DXVec2::UnitY, rotation),
+		.direction = DXVec2::Transform(DXVec2::UnitY, myRotation),
 		.extent = GetScaledCapsuleHalfHeight(),
 		.radius = GetScaledCapsuleRadius()
 	};
@@ -184,11 +190,11 @@ bool CapsuleComponent::CheckComponentOverlapComponentWithResultImpl(PrimitiveCom
 		return false;
 
 	// Build my Capsule
-	Math::Matrix world = GetWorldTransform();
-	Math::Matrix rotation = Math::ExtractRotation(world);
+	Math::Matrix myWorldTransform = GetWorldTransform();
+	Math::Matrix myRotation = Math::ExtractRotation(myWorldTransform);
 	Capsule myCapsule{
 		.center = GetComponentLocation(),
-		.direction = DXVec2::Transform(DXVec2::UnitY, rotation),
+		.direction = DXVec2::Transform(DXVec2::UnitY, myRotation),
 		.extent = GetScaledCapsuleHalfHeight(),
 		.radius = GetScaledCapsuleRadius()
 	};

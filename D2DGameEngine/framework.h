@@ -171,7 +171,7 @@ D2D_Point2F ToD2DP2F(const Math::Vector3& vec) {
 
 inline
 D2D_Mat3x2F ToD2DMat(const Math::Matrix& mat) {
-	D2D_Mat3x2F m;
+	D2D_Mat3x2F m{};
 	m._11 = mat._11;
 	m._12 = mat._12;
 	m._21 = mat._21;

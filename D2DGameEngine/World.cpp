@@ -61,7 +61,7 @@ bool World::CheckComponentOverlapMulti(
 	std::vector<OverlapResult>& outOverlapResults,
 	class PrimitiveComponent* primComp,
 	const Math::Vector2& pos,
-	const Math::Matrix& rotation) const {
+	const Math::Matrix& rotation) {
 	CheckComponentOverlapMultiByChannel(outOverlapResults, primComp, pos, rotation, primComp->GetCollisionObjectType());
 	return (outOverlapResults.size() > 0);
 }
@@ -71,37 +71,43 @@ bool World::CheckComponentOverlapMultiByChannel(
 	PrimitiveComponent* primComp, 
 	const Math::Vector2& pos, 
 	const Math::Matrix& rotation, 
-	ECollisionChannel channel) const
+	ECollisionChannel channel)
 {
 	// TODO
 	return false;
 }
 
-bool World::CheckComponentSweepMulti(std::vector<HitResult>& outHitResults, PrimitiveComponent* primComp, const Math::Vector2& start, const Math::Vector2& end, const Math::Matrix& rotation) const
+bool World::CheckComponentSweepMulti(std::vector<HitResult>& outHitResults, PrimitiveComponent* primComp, const Math::Vector2& start, const Math::Vector2& end, const Math::Matrix& rotation)
 {
 	CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, primComp->GetCollisionObjectType());
 	return (outHitResults.size() > 0);
 }
 
-bool World::CheckComponentSweepMultiByChannel(std::vector<HitResult>& outHitResults, PrimitiveComponent* primComp, const Math::Vector2& start, const Math::Vector2& end, const Math::Matrix& rotation, ECollisionChannel channel) const
+bool World::CheckComponentSweepMultiByChannel(
+	std::vector<HitResult>& outHitResults, 
+	PrimitiveComponent* primComp, 
+	const Math::Vector2& start, 
+	const Math::Vector2& end, 
+	const Math::Matrix& rotation, 
+	ECollisionChannel channel)
 {
 	outHitResults.clear();
 
 	if (!primComp) return false;
 
 	if (primComp->IsZeroExtent()) {
-		// do raycast instead.
+		// TODO: do raycast instead.
 		return false;
 	}
 
 	if (!primComp->IsCollisionEnabled()) return false;
 
-	// TODO
-
+	if (collisionSystem.CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, channel)) {
+		return true;
+	}
 
 	return false;
 }
-
 
 void World::BeginPlay()
 {

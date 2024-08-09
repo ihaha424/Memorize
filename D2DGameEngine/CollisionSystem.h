@@ -4,6 +4,8 @@
 
 #include "CollisionProperty.h"
 
+#include "HitResult.h"
+
 class CollisionSystem {
 
 public:
