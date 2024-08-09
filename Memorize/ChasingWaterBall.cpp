@@ -10,6 +10,9 @@
 ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
+
+	SetID(ST_PROJECTILE, SE_WATER);
+
 	projectileMaxCount = 3;
 }
 

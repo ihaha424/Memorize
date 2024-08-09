@@ -1,4 +1,5 @@
 #include "PlayerIdle.h"
+#include "PlayerFSMComponent.h"
 
 void PlayerIdle::Enter()
 {

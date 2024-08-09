@@ -7,6 +7,7 @@
 PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 {
 	projectileMaxCount = 9;
+	SetID(ST_PROJECTILE, SE_LIGHT);
 }
 
 PrismReflection::~PrismReflection()

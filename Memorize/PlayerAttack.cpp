@@ -1,30 +1,32 @@
 #include "PlayerAttack.h"
 #include "GPlayerController.h"
+#include "Skill.h"
 
 void PlayerAttack::Enter()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	playerController->FindCurSkiil()->UseSkill();
 }
 
 void PlayerAttack::Update(float _dt)
 {
+	//스킬 정보에 따라 애니메이션이 끝나면 Idle로
+	// if(finish Animi)
+	//	owner->SetNextState(L"Idle");
+	//  or
+	// coolTimeFunction->Animiation-end??
+
+	static float temptime = 0.f;
+	temptime += _dt;
+	if (temptime > 3.f)
+	{
+		owner->SetNextState(L"PlayerIdle");
+	}
 }
 
 void PlayerAttack::Exit()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	playerController->InitializeSkillInfo();
 }
 
-void PlayerAttack::Attack()
-{
-	//GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	
-	// 이런 느낌으로 발동 후 idle상태로 진입
-	// playerController->StartSkill(SKillList[Player->GetCurSkill]);
-}
-
-void PlayerAttack::Memorize()
-{
-	// if (Memorize 가 비어 있으면)
-	//addMagic()
-	//else
-	//	??
-}
