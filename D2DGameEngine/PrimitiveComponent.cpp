@@ -1031,6 +1031,19 @@ bool PrimitiveComponent::MoveComponentImpl(
 {
 	const Math::Vector2 traceStart = GetComponentLocation();
 	const Math::Vector2 traceEnd = traceStart + delta;
+	const float deltaSizeSquared = delta.LengthSquared();
+
+	// 만약 움직이는 정도가 너무 적으면 리턴합니다.
+	const float minMovementDistSq = (bSweep ? (4.f * EPSILON) * (4.f * EPSILON) : 0.f);
+	if (deltaSizeSquared <= minMovementDistSq)
+	{
+		if (outHitResult)
+		{
+			outHitResult->traceStart = traceStart;
+			outHitResult->traceEnd = traceEnd;
+		}
+		return true;
+	}
 
 	const bool bSkipPhysicsMove = !bSimulatePhysics;
 

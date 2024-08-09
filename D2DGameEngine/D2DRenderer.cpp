@@ -56,8 +56,10 @@ ID2D1HwndRenderTarget* D2DRenderer::GetRenderTarget() {
 void D2DRenderer::BeginDraw() {
 	renderTarget->BeginDraw();
 	renderTarget->Clear();
-	renderTarget->SetTransform(D2D_Mat3x2F::Identity());
-	globalTransform = Math::Matrix::Identity;
+	
+	// y 축 플립해서 월드 좌표계에서 위쪽이 +y, 아래가 -y가 되게 함
+	globalTransform = globalTransform.CreateScale(1.f, -1.f, 1.f);
+	renderTarget->SetTransform(ToD2DMat(globalTransform));
 }
 
 void D2DRenderer::EndDraw() {
@@ -73,6 +75,47 @@ void D2DRenderer::DrawCircle(
 		{ {center.x, center.y}, rad, rad }, brush
 	);
 	brush->SetColor(tmp);
+}
+
+void D2DRenderer::DrawBox(
+	const Math::Vector2& ul, 
+	const Math::Vector2& lr,
+	D2D1::ColorF color)
+{
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
+	renderTarget->DrawRectangle(
+		{ ul.x, ul.y, lr.x, lr.y }, brush
+	);
+	brush->SetColor(tmp);
+}
+
+void D2DRenderer::DrawCapsule(
+	const Math::Vector2& center, 
+	float halfHeight, float radius,
+	D2D1::ColorF color)
+{
+	auto& d2d1Fac = FactoryManager::GetGraphicsFactory();
+
+	ID2D1PathGeometry* path{ nullptr };
+	auto res = d2d1Fac.CreatePathGeometry(&path);
+	if (!SUCCEEDED(res)) return;
+
+	ID2D1GeometrySink* sink{ nullptr };
+	res = path->Open(&sink);
+	if (!SUCCEEDED(res)) return;
+
+	// TODO
+
+
+
+
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
+
+
+	brush->SetColor(tmp);
+
 }
 
 void D2DRenderer::DrawBorder(

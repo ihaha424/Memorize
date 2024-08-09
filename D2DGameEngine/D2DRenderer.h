@@ -71,6 +71,16 @@ public:
 		const Math::Vector2& center, float rad,
 		D2D1::ColorF color = D2D1::ColorF::White
 	);
+	void DrawBox(
+		const Math::Vector2& ul,
+		const Math::Vector2& lr,
+		D2D1::ColorF color = D2D1::ColorF::White
+	);
+	void DrawCapsule(
+		const Math::Vector2& center,
+		float halfHeight, float radius,
+		D2D1::ColorF color = D2D1::ColorF::White
+	);
 	void DrawBorder(
 		const Math::Vector2& ul, const Math::Vector2& lr,
 		D2D_Color color = D2D_Color::White

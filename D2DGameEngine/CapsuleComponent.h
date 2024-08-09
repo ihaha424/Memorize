@@ -106,6 +106,8 @@ public:
 		const ECollisionChannel collisionChannel,
 		const CollisionProperty& collisionProperty) override;
 
+	virtual void Render(class D2DRenderer* _renderer) override;
+
 protected:
 	bool CheckComponentOverlapComponentImpl(
 		PrimitiveComponent* primComp,

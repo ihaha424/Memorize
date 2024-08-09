@@ -1,6 +1,9 @@
 #include "BoxComponent.h"
 
+#include "D2DRenderer.h"
+
 #include "IntersectionUtil.h"
+
 
 bool BoxComponent::CheckSweepComponent(
 	HitResult& outHit, 
@@ -111,6 +114,28 @@ bool BoxComponent::CheckSweepComponent(
 	}
 
 	return hasHit;
+}
+
+void BoxComponent::Render(D2DRenderer* _renderer)
+{
+	_renderer->PushTransform(GetWorldTransform());
+
+	D2D_RectF dest{
+		.left = -boxExtent.width / 2.f,
+		.top = boxExtent.height / 2.f,
+		.right = boxExtent.width / 2.f,
+		.bottom = -boxExtent.height / 2.f
+	};
+
+#ifndef NDEBUG
+	_renderer->DrawBorder(
+		{ dest.left, dest.top },
+		{ dest.right, dest.bottom },
+		D2D_Color::Red
+	);
+#endif
+
+	_renderer->PopTransform();
 }
 
 bool BoxComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation)

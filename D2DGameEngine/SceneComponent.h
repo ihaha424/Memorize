@@ -23,16 +23,16 @@ public:
 
 protected:
 
-	Math::Matrix S;
-	Math::Matrix R;
-	Math::Matrix T;
+	Math::Matrix S{ Math::Matrix::Identity };
+	Math::Matrix R{ Math::Matrix::Identity };
+	Math::Matrix T{ Math::Matrix::Identity };
 
 	// Component Velocity
 	DXVec2 velocity{ 0.f, 0.f };
 public:
 
 	SceneComponent(Actor* _owner) :
-		IComponent(_owner), parent{ nullptr }, S{}, R{}, T{} {
+		IComponent(_owner), parent{ nullptr } {
 		SetTickProperties(TICK_PHYSICS);
 	}
 

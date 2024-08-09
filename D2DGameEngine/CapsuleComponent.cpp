@@ -1,5 +1,7 @@
 #include "CapsuleComponent.h"
 
+#include "D2DRenderer.h"
+
 #include "IntersectionUtil.h"
 
 bool CapsuleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& start, const DXVec2& end, const DXMat4x4& rotation, const CollisionShape& collisionShape, const ECollisionChannel collisionChannel, const CollisionProperty& collisionProperty)
@@ -109,6 +111,23 @@ bool CapsuleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 	}
 
 	return hasHit;
+}
+
+void CapsuleComponent::Render(D2DRenderer* _renderer)
+{
+	// TODO
+	_renderer->PushTransform(GetWorldTransform());
+
+
+#ifndef NDEBUG
+	/*_renderer->DrawBorder(
+		{ dest.left, dest.top },
+		{ dest.right, dest.bottom },
+		D2D_Color::Red
+	);*/
+#endif
+
+	_renderer->PopTransform();
 }
 
 bool CapsuleComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation)

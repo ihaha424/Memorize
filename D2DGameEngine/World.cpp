@@ -93,7 +93,7 @@ bool World::CheckComponentSweepMultiByChannel(
 {
 	outHitResults.clear();
 
-	if (!primComp) return false;
+	if (!primComp || ((start - end).LengthSquared() <= (4.f * EPSILON) * (4.f * EPSILON))) return false;
 
 	if (primComp->IsZeroExtent()) {
 		// TODO: do raycast instead.
