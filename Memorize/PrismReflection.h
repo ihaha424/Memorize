@@ -2,7 +2,7 @@
 #include "ProjectileSkill.h"
 class PrismReflection : public ProjectileSkill
 {
-	Math::Vector2 attackDir;
+
 public:
 	PrismReflection(Actor* _owner);
 	virtual ~PrismReflection();

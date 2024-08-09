@@ -1,10 +1,7 @@
 #include "PrismReflection.h"
 #include "PrismReflectionProjectile.h"
 #include "../D2DGameEngine/World.h"
-#include "D2DGameEngine/Mouse.h"
-#include "D2DGameEngine/World.h"
 #include "D2DGameEngine/RandomGenerator.h"
-#include "Player.h"
 #include "MovementComponent.h"
 
 PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
@@ -31,11 +28,6 @@ void PrismReflection::UseSkill()
 {
 	__super::UseSkill();
 
-	//시전 방향 
-	Math::Vector2 mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
-	mousePos = GetWorld()->ScreenToWorldPoint(mousePos);
-	attackDir = mousePos - Math::Vector2(player->GetLocation().x, player->GetLocation().y);
-	attackDir.Normalize();
 
 	//시전 방향 기준 5도 간격 9방향 체크 
 	std::vector<Math::Vector2> directions;
@@ -54,8 +46,14 @@ void PrismReflection::UseSkill()
 	for (int i = 0; i < projectileCount; i++)
 	{
 		int n = Random::Get<int>(9);
-		projectiles[nowUsingCount]->SetVelocity(directions[n], projectileSpeed);
-		projectiles[nowUsingCount]->Activate();
+		Projectile* nowPj = projectiles[nowUsingCount];
+		nowPj->SetVelocity(directions[n], projectileSpeed);
+
+		//방향에 맞게 회전
+		double rotateRad = std::acos(directions[n].Dot(Math::Vector2(1.f, 0.f)));
+		nowPj->rootComponent->SetRotation(rotateRad * 180.f / PI);
+
+		nowPj->Activate();
 		nowUsingCount++;
 	}
 }
