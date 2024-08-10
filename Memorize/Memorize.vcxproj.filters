@@ -164,6 +164,9 @@
     <ClCompile Include="CoolTime.cpp">
       <Filter>Source Files\App\Utils\CoolTime</Filter>
     </ClCompile>
+    <ClCompile Include="TighteningCircle.cpp">
+      <Filter>Source Files\App\Skill\Range</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -276,6 +279,9 @@
     </ClInclude>
     <ClInclude Include="CoolTime.h">
       <Filter>Source Files\App\Utils\CoolTime</Filter>
+    </ClInclude>
+    <ClInclude Include="TighteningCircle.h">
+      <Filter>Source Files\App\Skill\Range</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

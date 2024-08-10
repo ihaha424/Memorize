@@ -178,6 +178,7 @@
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="TestLevel.cpp" />
+    <ClCompile Include="TighteningCircle.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +219,7 @@
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />
     <ClInclude Include="TestLevel.h" />
+    <ClInclude Include="TighteningCircle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
