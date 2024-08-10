@@ -19,13 +19,6 @@ PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 PrismReflection::~PrismReflection()
 {
 }
-
-void PrismReflection::BeginPlay()
-{
-	__super::BeginPlay();
-
-}
-
 void PrismReflection::UseSkill()
 {
 	__super::UseSkill();

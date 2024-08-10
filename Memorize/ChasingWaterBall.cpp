@@ -14,19 +14,15 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 	SetID(ST_PROJECTILE, SE_WATER);
 
 	projectileMaxCount = 3;
+
+	for (int i = 0; i < projectileMaxCount; i++)
+	{
+		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
+	}
 }
 
 ChasingWaterBall::~ChasingWaterBall()
 {
-}
-
-void ChasingWaterBall::BeginPlay()
-{
-	for (int i = 0; i < projectileMaxCount; i++)
-	{
-		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
-		projectiles[i]->Inactivate();
-	}
 }
 
 
