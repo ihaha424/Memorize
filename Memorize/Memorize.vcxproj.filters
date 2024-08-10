@@ -63,6 +63,12 @@
     <Filter Include="Source Files\App\Utils\CoolTime">
       <UniqueIdentifier>{1ab8281f-3c7f-402b-a33e-44abde7ca315}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile\DarkSphere">
+      <UniqueIdentifier>{2dc59eff-c943-4fb2-b076-cdbfe2e97b36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Range\TighteningCircle">
+      <UniqueIdentifier>{d2bd4736-fd6f-42d7-bc42-e74f34142804}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -164,8 +170,17 @@
     <ClCompile Include="CoolTime.cpp">
       <Filter>Source Files\App\Utils\CoolTime</Filter>
     </ClCompile>
+    <ClCompile Include="DarkSphere.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
     <ClCompile Include="TighteningCircle.cpp">
-      <Filter>Source Files\App\Skill\Range</Filter>
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="TighteningCircleEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="MeteorEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,8 +295,17 @@
     <ClInclude Include="CoolTime.h">
       <Filter>Source Files\App\Utils\CoolTime</Filter>
     </ClInclude>
+    <ClInclude Include="DarkSphere.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClInclude>
     <ClInclude Include="TighteningCircle.h">
-      <Filter>Source Files\App\Skill\Range</Filter>
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="TighteningCircleEffect.h">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteorEffect.h">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

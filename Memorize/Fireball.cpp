@@ -27,15 +27,6 @@ Fireball::~Fireball()
 {
 }
 
-void Fireball::BeginPlay()
-{
-	__super::BeginPlay();
-	
-	for (int i = 0; i < projectileMaxCount; i++)
-	{
-		projectiles[i]->SetStatus(OS_INACTIVE);
-	}
-}
 
 void Fireball::UseSkill()
 {

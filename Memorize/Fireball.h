@@ -10,7 +10,6 @@ public:
 	Fireball(Actor* _owner);
 	virtual ~Fireball();
 
-	virtual void BeginPlay() override;
 	virtual void UseSkill() override;
 
 };
