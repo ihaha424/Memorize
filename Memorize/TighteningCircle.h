@@ -4,9 +4,9 @@ class TighteningCircle : public RangeSkill
 {
 	float tighteningTime = 2.f;
 	float elapsedTime = 0.f;
-	Actor* circle = nullptr;
-	BitmapComponent* circleBitmap = nullptr;
-	CapsuleComponent* circleShape = nullptr;
+	class Actor* circle = nullptr;
+	class BitmapComponent* circleBitmap = nullptr;
+	class CapsuleComponent* circleShape = nullptr;
 public:
 	TighteningCircle(Actor* _owner);
 	virtual ~TighteningCircle();
