@@ -70,7 +70,8 @@ public:
 	 * @brief 메모라이즈 스킬이 있으면 true 없으면 넣어주고 false
 	 * @return 
 	 */
-	bool InputMemorize();
+	bool CheckMemorize();
+	void SwapMemorize() { std::swap(curSkillInfo, MemorizeSkill);}
 	void InitializeMemorize() { MemorizeSkill.element = ESkillElement::SE_END; MemorizeSkill.type = ESkillType::ST_END; }
 
 	/**

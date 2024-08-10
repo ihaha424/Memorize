@@ -81,6 +81,7 @@ void GPlayerController::Update(float _dt)
 	{
 		owner->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
+	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 }
 
 bool GPlayerController::AddSkillInfo(int index)
@@ -111,7 +112,7 @@ void GPlayerController::InitializeSkillInfo()
 	curSkillInfo.type = ESkillType::ST_END;
 }
 
-bool GPlayerController::InputMemorize()
+bool GPlayerController::CheckMemorize()
 {
 	if (MemorizeSkill.element != ESkillElement::SE_END &&
 		MemorizeSkill.type != ESkillType::ST_END)
@@ -121,10 +122,10 @@ bool GPlayerController::InputMemorize()
 
 #include "D2DGameEngine/Debug.h"
 #include "GCameraComponent.h"
-void GPlayerController::Fire()		{ playerFSMComponent->InputKey(InputEvent::Fire); }
+void GPlayerController::Fire()	{ playerFSMComponent->InputKey(InputEvent::Fire); }
 void GPlayerController::Water() { playerFSMComponent->InputKey(InputEvent::Water); }
 void GPlayerController::Light() { playerFSMComponent->InputKey(InputEvent::Light); }
-void GPlayerController::Dark() { playerFSMComponent->InputKey(InputEvent::Dark); }
+void GPlayerController::Dark()	{ playerFSMComponent->InputKey(InputEvent::Dark); }
 void GPlayerController::Attack() { 
 	//Math::Vector2 destPos = GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
 	//LOG_WARNING(dbg::text(GetPlayer()->GetLocation().x, ", ", GetPlayer()->GetLocation().y));
@@ -135,7 +136,7 @@ void GPlayerController::Attack() {
 	GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(0.f);
 
 
-	//playerFSMComponent->InputKey(InputEvent::Attack); 
+	playerFSMComponent->InputKey(InputEvent::Attack); 
 }
 void GPlayerController::Move() { playerFSMComponent->InputKey(InputEvent::Move); }
 

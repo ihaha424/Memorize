@@ -13,13 +13,8 @@ void PlayerCasting::Update(float _dt)
 {
 	if (commandList.size() == index)
 	{
-		if (commandList.size() == index)
-		{
-			// Success
-
-			//owner->SetNextState(L"PlayerAttackReady");
-			owner->SetNextState(L"PlayerAttack");
-		}
+		// Success
+		owner->SetNextState(L"PlayerAttackReady");
 	}
 }
 

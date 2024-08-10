@@ -4,8 +4,9 @@ void PlayerFSMComponent::BeginPlay()
 {
 	__super::BeginPlay();
 	CreateState<PlayerIdle>(L"PlayerIdle");
-	CreateState<PlayerMove>(L"PlayerMove");
+	//CreateState<PlayerMove>(L"PlayerMove");
 	CreateState<PlayerCasting>(L"PlayerCasting");
+	CreateState<PlayerAttackReady>(L"PlayerAttackReady");
 	CreateState<PlayerAttack>(L"PlayerAttack");
 //	CreateState<PlayerBlinking>(L"PlayerBlinking");
 	SetNextState(L"PlayerIdle");

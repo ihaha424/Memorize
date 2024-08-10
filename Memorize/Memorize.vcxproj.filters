@@ -63,6 +63,9 @@
     <Filter Include="Source Files\App\Utils\CoolTime">
       <UniqueIdentifier>{1ab8281f-3c7f-402b-a33e-44abde7ca315}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossBehaviorTree">
+      <UniqueIdentifier>{e3a175a0-99a4-4538-9ed2-2e1ca29c56bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="CoolTime.cpp">
       <Filter>Source Files\App\Utils\CoolTime</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttackReady.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +282,9 @@
     </ClInclude>
     <ClInclude Include="CoolTime.h">
       <Filter>Source Files\App\Utils\CoolTime</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttackReady.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

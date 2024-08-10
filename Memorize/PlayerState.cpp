@@ -16,6 +16,7 @@ void PlayerState::Fire()
 	bool CheckStates = playerController->AddSkillInfo(ESkillElement::SE_FIRE);
 	if (CheckStates)
 	{
+		//if(마나 없음 -> return)
 		owner->SetNextState(L"PlayerCasting");
 	}
 }
@@ -52,6 +53,7 @@ void PlayerState::Dark()
 
 void PlayerState::Attack()
 {
+	return;
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	//기본 공격은 바로 나감으로 속성과 타입은 NONE(Default와는 다름, (Default == END))
 	bool CheckStates = playerController->AddSkillInfo(ESkillElement::SE_NONE);
@@ -75,7 +77,11 @@ void PlayerState::Move()
 
 void PlayerState::Memorize()
 {
-	// if()// 플레이어가 저장한 마법이 있으면...)
-	//owner->SetNextState(L"PlayerAttack");
-	// 없으면 등록안함
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (playerController->CheckMemorize())
+	{
+		playerController->InitializeSkillInfo();
+		playerController->SwapMemorize();
+		owner->SetNextState(L"PlayerAttackReady");
+	}
 }

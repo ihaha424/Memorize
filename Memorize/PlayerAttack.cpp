@@ -6,6 +6,7 @@ void PlayerAttack::Enter()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->FindCurSkiil()->UseSkill();
+	//¿Ãµø ∏ÿ√„
 }
 
 void PlayerAttack::Update(float _dt)
@@ -26,7 +27,5 @@ void PlayerAttack::Update(float _dt)
 
 void PlayerAttack::Exit()
 {
-	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	playerController->InitializeSkillInfo();
 }
 
