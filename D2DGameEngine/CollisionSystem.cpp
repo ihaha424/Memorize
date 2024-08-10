@@ -43,24 +43,61 @@ bool CollisionSystem::IsComponentRegistered(PrimitiveComponent* component)
 	return it != set.end();
 }
 
-bool CollisionSystem::CheckComponentOverlapsByChannel(
+bool CollisionSystem::CheckCollisionShapeOverlapsMulti(
 	std::vector<OverlapResult>& outOverlapResults, 
-	PrimitiveComponent* primComp, 
+	const PrimitiveComponent* const self, 
+	CollisionShape& collisionShape, 
+	const Math::Vector2& pos, 
+	const Math::Matrix& rotation, 
+	const ECollisionChannel traceChannel, 
+	const CollisionProperty& collisionProperty)
+{
+	bool hasOverlap = false;
+	for (auto& [channel, set] : collisionMap)
+	{
+		if (collisionProperty.GetCollisionResponse(channel) == CollisionResponse::Ignore)
+			continue;
+
+		for (PrimitiveComponent* other : set)
+		{
+			if (other == self || !other->IsCollisionEnabled())
+			{
+				continue;
+			}
+
+			OverlapResult overlapResult;
+			if (other->CheckOverlapComponent(overlapResult, pos, rotation, collisionShape, traceChannel, collisionProperty)) {
+				outOverlapResults.push_back(overlapResult);
+				hasOverlap = true;
+			}
+		}
+	}
+
+	return hasOverlap;
+}
+
+bool CollisionSystem::CheckCollisionShapeOverlapsMultiOnChannel(
+	std::vector<struct OverlapResult>& outOverlapResults,
+	const class PrimitiveComponent* const self,
+	struct CollisionShape& collisionShape,
 	const Math::Vector2& pos,
 	const Math::Matrix& rotation,
-	ECollisionChannel channel) {
-	if (!primComp->bCanCollide) return false;
-
-	const CollisionProperty& collisionProperty = primComp->collisionProperty;
-	PrimitiveComponentSet& set = collisionMap[channel];
+	ECollisionChannel traceChannel,
+	const CollisionProperty& collisionProperty,
+	ECollisionChannel collisionChannel) 
+{
+	PrimitiveComponentSet& set = collisionMap[collisionChannel];
 
 	bool hasOverlap = false;
 	for (PrimitiveComponent* other : set) {
-		if (other == primComp || !other->IsCollisionEnabled()) {
+		if (other == self || !other->IsCollisionEnabled())
+		{
 			continue;
 		}
 
-		if (other->CheckComponentOverlapComponentWithResult(primComp, pos, rotation, outOverlapResults)) {
+		OverlapResult overlapResult;
+		if (other->CheckOverlapComponent(overlapResult, pos, rotation, collisionShape, traceChannel, collisionProperty)) {
+			outOverlapResults.push_back(overlapResult);
 			hasOverlap = true;
 		}
 	}
@@ -68,29 +105,76 @@ bool CollisionSystem::CheckComponentOverlapsByChannel(
 	return hasOverlap;
 }
 
-bool CollisionSystem::CheckComponentSweepMultiByChannel(
+bool CollisionSystem::CheckCollsionShapeSweepMulti(
 	std::vector<HitResult>& outHitResults, 
-	PrimitiveComponent* primComp, 
+	const class PrimitiveComponent* const self,
+	CollisionShape& collisionShape, 
 	const Math::Vector2& start, 
 	const Math::Vector2& end, 
-	const Math::Matrix& rotation,
-	ECollisionChannel channel)
-{
-	if (!primComp->bCanCollide) return false;
+	const Math::Matrix& rotation, 
+	ECollisionChannel traceChannel,
+	const CollisionProperty& collisionProperty
+) {
 
-	const CollisionProperty& collisionProperty = primComp->collisionProperty;
-	PrimitiveComponentSet& set = collisionMap[channel];
-	CollisionShape collisionShape;
-	if (!primComp->GetCollisionShape(1.f, collisionShape)) return false;
+	bool hasBlockingHit = false;
+	bool hasHit = false;
+	for (auto& [channel, set] : collisionMap) 
+	{
+		if (collisionProperty.GetCollisionResponse(channel) == CollisionResponse::Ignore)
+			continue;
+
+		for (PrimitiveComponent* other : set) 
+		{
+			if (other == self || !other->IsCollisionEnabled()) 
+			{
+				continue;
+			}
+
+			HitResult hitResult;
+			if (other->CheckSweepComponent(hitResult, start, end, rotation, collisionShape, traceChannel, collisionProperty)) {
+				outHitResults.push_back(hitResult);
+				hasHit = true;
+				hasBlockingHit |= hitResult.bBlockingHit;
+			}
+		}
+	}
+
+	if (hasHit) 
+	{
+		std::sort(
+			std::begin(outHitResults),
+			std::end(outHitResults),
+			[](const HitResult& lhs, const HitResult& rhs) {
+				return lhs.time < rhs.time;
+			}
+		);
+	}
+
+	return hasBlockingHit;
+}
+
+bool CollisionSystem::CheckCollisionSweepMultiOnChannel(
+	std::vector<HitResult>& outHitResults,
+	const class PrimitiveComponent* const self,
+	CollisionShape& collisionShape,
+	const Math::Vector2& start,
+	const Math::Vector2& end,
+	const Math::Matrix& rotation,
+	ECollisionChannel traceChannel,
+	const CollisionProperty& collisionProperty,
+	ECollisionChannel collisionChannel
+) {
+
+	PrimitiveComponentSet& set = collisionMap[collisionChannel];
 
 	bool hasHit = false;
 	for (PrimitiveComponent* other : set) {
-		if (other == primComp || !other->IsCollisionEnabled()) {
+		if (other == self || !other->IsCollisionEnabled()) {
 			continue;
 		}
 
 		HitResult hitResult;
-		if (other->CheckSweepComponent(hitResult, start, end, rotation, collisionShape, channel, collisionProperty)) {
+		if (other->CheckSweepComponent(hitResult, start, end, rotation, collisionShape, traceChannel, collisionProperty)) {
 			outHitResults.push_back(hitResult);
 			hasHit = true;
 		}

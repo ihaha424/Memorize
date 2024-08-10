@@ -29,6 +29,7 @@ protected:
 
 	// Component Velocity
 	DXVec2 velocity{ 0.f, 0.f };
+	float angularVelocity{ 0.f };
 public:
 
 	SceneComponent(Actor* _owner) :
@@ -93,11 +94,20 @@ public:
 		velocity += _velocity;
 	}
 
+	void SetComponentAngularVelocity(float _angularVelocity) {
+		angularVelocity = _angularVelocity;
+	}
+
+	void AddComponentAngularVelocity(float _angularVelocity) {
+		angularVelocity = _angularVelocity;
+	}
+
 	bool MoveComponent(
 		const Math::Vector2& delta,
+		const float angleDelta,
 		bool bSweep,
 		HitResult* outHitResult = nullptr) {
-		return MoveComponentImpl(delta, bSweep, outHitResult);
+		return MoveComponentImpl(delta, angleDelta, bSweep, outHitResult);
 	}
 
 	// Collision
@@ -144,16 +154,18 @@ public:
 
 	// Tick
 	virtual void FixedUpdate(float _dt) override {
-		MoveComponent(velocity * _dt, false);
+		MoveComponent(velocity * _dt, angularVelocity * _dt, false);
 	}
 
 protected:
 
 	virtual bool MoveComponentImpl(
 		const Math::Vector2& delta,
+		const float angleDelta,
 		bool bSweep,
 		HitResult* outHitResult) {
 		Translate(delta);
+		Rotate(angleDelta);
 		outHitResult = {};
 		return true;
 	}

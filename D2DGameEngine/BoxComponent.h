@@ -8,6 +8,8 @@ protected:
 
 public:
 
+	BoxComponent(class Actor* _owner) : ShapeComponent(_owner) {}
+
 	Extent2D GetScaledBoxExtent() const {
 		// Extract the world scale.
 		Math::Matrix worldMatrix = GetWorldTransform();
@@ -41,7 +43,7 @@ public:
 
 	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
 		Extent2D scaledExtent = GetScaledBoxExtent();
-		collisionShape.SetBox({ scaledExtent.width * inflation, scaledExtent.height * inflation });
+		collisionShape.SetBox({ 0.5f * scaledExtent.width * inflation, 0.5f * scaledExtent.height * inflation });
 		return true;
 	}
 
@@ -66,7 +68,17 @@ public:
 		const DXMat4x4& rotation,
 		const CollisionShape& collisionShape,
 		const ECollisionChannel collisionChannel,
-		const CollisionProperty& collisionProperty) override;
+		const CollisionProperty& collisionProperty
+	) override;
+
+	virtual bool CheckOverlapComponent(
+		OverlapResult& outOverlap,
+		const DXVec2& pos,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty
+	) override;
 
 	virtual void Render(class D2DRenderer* _renderer) override;
 

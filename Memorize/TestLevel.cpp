@@ -1,4 +1,5 @@
 #include "TestLevel.h"
+#include "TestWall.h"
 #include "Player.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/SpriteResource.h"
@@ -29,6 +30,8 @@ void TestLevel::Enter()
 
 	{
 		Player* player = CreateActor<Player>();
+		
+
 		GPlayerController* pc = CreateActor<GPlayerController>();
 		player->SetController(pc);
 		pc->SetPlayer(player);
@@ -38,5 +41,10 @@ void TestLevel::Enter()
 		//Boss* boss = CreateActor<Boss>();
 		//BossAIController* bc = CreateActor<BossAIController>();
 		//boss->SetController(bc);
+	}
+
+	{
+		TestWall* testWall = CreateActor<TestWall>();
+		testWall->SetLocation(960, -300);
 	}
 }

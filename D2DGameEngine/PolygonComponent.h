@@ -11,6 +11,8 @@ protected:
 
 public:
 
+	PolygonComponent(class Actor* _owner) : ShapeComponent(_owner) {}
+
 	std::vector<Math::Vector2> GetScaledVertices() const {
 		// Extract the world scale.
 		Math::Matrix worldMatrix = GetWorldTransform();

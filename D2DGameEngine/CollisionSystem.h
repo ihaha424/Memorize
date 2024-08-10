@@ -26,19 +26,48 @@ public:
 	void UpdateComponent(PrimitiveComponent* component);
 	bool IsComponentRegistered(PrimitiveComponent* component);
 
-	bool CheckComponentOverlapsByChannel(
+	bool CheckCollisionShapeOverlapsMulti(
 		std::vector<struct OverlapResult>& outOverlapResults,
-		class PrimitiveComponent* primComp,
+		const class PrimitiveComponent* const self,
+		struct CollisionShape& collisionShape,
 		const Math::Vector2& pos,
 		const Math::Matrix& rotation,
-		ECollisionChannel channel);
+		const ECollisionChannel traceChannel,
+		const CollisionProperty& collisionProperty
+	);
 
-	bool CheckComponentSweepMultiByChannel(
+	bool CheckCollisionShapeOverlapsMultiOnChannel(
+		std::vector<struct OverlapResult>& outOverlapResults,
+		const class PrimitiveComponent* const self,
+		struct CollisionShape& collisionShape,
+		const Math::Vector2& pos,
+		const Math::Matrix& rotation,
+		ECollisionChannel traceChannel,
+		const CollisionProperty& collisionProperty,
+		ECollisionChannel collisionChannel
+	);
+
+	bool CheckCollsionShapeSweepMulti(
 		std::vector<HitResult>& outHitResults,
-		class PrimitiveComponent* primComp,
+		const class PrimitiveComponent* const self,
+		struct CollisionShape& collisionShape,
 		const Math::Vector2& start,
 		const Math::Vector2& end,
 		const Math::Matrix& rotation,
-		ECollisionChannel channel);
+		const ECollisionChannel traceChannel,
+		const CollisionProperty& collisionProperty
+	);
+
+	bool CheckCollisionSweepMultiOnChannel(
+		std::vector<HitResult>& outHitResults,
+		const class PrimitiveComponent* const self,
+		struct CollisionShape& collisionShape,
+		const Math::Vector2& start,
+		const Math::Vector2& end,
+		const Math::Matrix& rotation,
+		ECollisionChannel traceChannel,
+		const CollisionProperty& collisionProperty,
+		ECollisionChannel collisionChannel
+	);
 
 };

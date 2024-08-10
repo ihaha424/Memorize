@@ -176,6 +176,8 @@
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="TestWall.cpp" />
+    <ClCompile Include="TestActor2.cpp" />
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -214,6 +216,8 @@
     <ClInclude Include="ProjectileSkill.h" />
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="Skill.h" />
+    <ClInclude Include="TestWall.h" />
+    <ClInclude Include="TestActor2.h" />
     <ClInclude Include="TestLevel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

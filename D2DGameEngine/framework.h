@@ -138,7 +138,9 @@ namespace DirectX::SimpleMath {
 	inline
 		Math::Matrix ExtractRotation(const Math::Matrix& transform, Math::Vector3* outScale = nullptr) {
 		Math::Vector3 scale = ExtractScale(transform);
-		*outScale = scale;
+		if (outScale) {
+			*outScale = scale;
+		}
 		Math::Matrix rotation = transform;
 		rotation._11 /= scale.x; rotation._12 /= scale.x; rotation._13 /= scale.x; rotation._14 = 0.f;
 		rotation._21 /= scale.y; rotation._22 /= scale.y; rotation._23 /= scale.y; rotation._24 = 0.f;

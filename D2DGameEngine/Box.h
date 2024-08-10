@@ -9,21 +9,22 @@ struct Box {
 	DXVec2 lr;
 
 	static Box BuildAABB(const DXVec2& origin, const Extent2D& extent) {
-		return {
-			{ origin.x - extent.width / 2.f, origin.y + extent.height / 2.f },
-			{ origin.x + extent.width / 2.f, origin.y - extent.height / 2.f }
+		return {	// y-axis points downward
+			{ origin.x - extent.width / 2.f, origin.y - extent.height / 2.f },
+			{ origin.x + extent.width / 2.f, origin.y + extent.height / 2.f }
 		};
 	}
 
 	DXVec2 GetCenter() const {
-		return { 
+		return { // y-axis points downward
 			ul.x + (lr.x - ul.x) / 2.f, 
-			lr.y + (ul.y - lr.y) / 2.f
+			lr.y + (lr.y - ul.y) / 2.f
 		};
 	}
 
 	Extent2D GetExtent() const {
-		return { lr.x - ul.x, ul.y - lr.y };
+		// y-axis points downward
+		return { lr.x - ul.x, lr.y - ul.y };
 	}
 
 	float GetWidth() const {

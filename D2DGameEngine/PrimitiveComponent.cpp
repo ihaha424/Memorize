@@ -52,6 +52,12 @@ void PrimitiveComponent::SetCollisionEnabled(CollisionEnabled::Type type)
 	}
 }
 
+bool PrimitiveComponent::IsCollisionRegistered()
+{
+	GetWorld()->IsComponentCollisionRegistered(this);
+	return false;
+}
+
 bool PrimitiveComponent::CheckSweepComponent(
 	HitResult& outHit, 
 	const DXVec2& start, 
@@ -149,7 +155,7 @@ bool PrimitiveComponent::CheckSweepComponent(
 			}
 
 			outHit.bBlockingHit = bBlockingHit;
-			outHit.bStartPenetrating = true;
+			// outHit.bStartPenetrating = true;	// TODO: Can't check here.
 			outHit.hitComponent = this;
 
 			outHit.location = pos;
@@ -244,7 +250,7 @@ bool PrimitiveComponent::CheckSweepComponent(
 			}
 
 			outHit.bBlockingHit = bBlockingHit;
-			outHit.bStartPenetrating = true;
+			// outHit.bStartPenetrating = true;
 			outHit.hitComponent = this;
 
 			outHit.location = pos;
@@ -335,7 +341,7 @@ bool PrimitiveComponent::CheckSweepComponent(
 			}
 
 			outHit.bBlockingHit = bBlockingHit;
-			outHit.bStartPenetrating = true;
+			// outHit.bStartPenetrating = true;
 			outHit.hitComponent = this;
 
 			outHit.location = pos;
@@ -426,7 +432,7 @@ bool PrimitiveComponent::CheckSweepComponent(
 			}
 
 			outHit.bBlockingHit = bBlockingHit;
-			outHit.bStartPenetrating = true;
+			// outHit.bStartPenetrating = true;
 			outHit.hitComponent = this;
 
 			outHit.location = pos;
@@ -441,6 +447,17 @@ bool PrimitiveComponent::CheckSweepComponent(
 		return hasHit;
 	}
 
+	return false;
+}
+
+bool PrimitiveComponent::CheckOverlapComponent(
+	OverlapResult& outHit, 
+	const DXVec2& pos, 
+	const DXMat4x4& rotation, 
+	const CollisionShape& collisionShape, 
+	const ECollisionChannel collisionChannel, 
+	const CollisionProperty& collisionProperty
+) {
 	return false;
 }
 
@@ -468,8 +485,8 @@ void PrimitiveComponent::BeginComponentOverlap(const OverlapInfo& otherOverlap, 
 
 	PushOverlappingComponent(otherComp, otherOverlap);
 
-	if (bDoNotifies) {
-
+	if (bDoNotifies) 
+	{
 		OnComponentBeginOverlap();
 		otherComp->OnComponentBeginOverlap();
 
@@ -495,40 +512,74 @@ void PrimitiveComponent::EndComponentOverlap(const OverlapInfo& otherOverlap, bo
 		if (!bSkipNotifySelf) {
 			OnComponentEndOverlap();
 		}
-
 		otherComp->OnComponentEndOverlap();
 
-		// TODO:
 		myActor->NotifyActorEndOverlap(otherActor);
 		otherActor->NotifyActorEndOverlap(myActor);
 	}
-
 }
 
-void PrimitiveComponent::UpdateOverlaps(const std::vector<OverlapInfo>& overlaps, bool bDoNotifies) {
-	
-	OverlappingComponentSet previouslyOverlappingComponents{ std::move(currentlyOverlappingComponents) };
-	currentlyOverlappingComponents.clear();
+void PrimitiveComponent::UpdateOverlaps(
+	const std::vector<OverlapInfo>* newOverlaps, 
+	bool bDoNotifies
+) {
 
-	// Check begin overlap
-	for (const OverlapInfo& overlapInfo : overlaps) {
-		PrimitiveComponent* other = overlapInfo.overlapInfo.hitComponent;
-		if (this == other) continue;
+	if (bGenerateOverlapEvent && IsCollisionEnabled()) {
 
-		auto it = previouslyOverlappingComponents.find(other);
-		if (it == previouslyOverlappingComponents.end()) {
-			BeginComponentOverlap(overlapInfo, bDoNotifies);
-		}
-	}
-
-	// Check end overlap
-	for (auto& [otherComponent, overlapInfo] : previouslyOverlappingComponents) {
-		auto it = currentlyOverlappingComponents.find(otherComponent);
-		if (it == currentlyOverlappingComponents.end()) {
-			if (bGenerateOverlapEvent) {
-				EndComponentOverlap(overlapInfo, bDoNotifies);
+		if (newOverlaps) {
+			for (const OverlapInfo& overlapInfo : *newOverlaps) {
+				BeginComponentOverlap(overlapInfo, bDoNotifies);
 			}
 		}
+
+		OverlappingComponentSet newOverlappingComponents;
+		if (bGenerateOverlapEvent) {
+			World* myWorld = GetWorld();
+			std::vector<OverlapResult> overlaps;
+			myWorld->CheckComponentOverlapMulti(overlaps, this, GetComponentLocation(), R);
+
+			for (OverlapResult& overlapResult : overlaps)
+			{
+				PrimitiveComponent* hitComp = overlapResult.component;
+				if (hitComp && (hitComp != this) && hitComp->bGenerateOverlapEvent)
+				{
+					newOverlappingComponents.insert({
+						hitComp,
+						OverlapInfo{
+							false,
+							HitResult{
+								.bBlockingHit = overlapResult.bBlockingHit,
+								.hitComponent = hitComp
+							}
+						}
+					});
+				}
+			}
+		}
+
+		OverlappingComponentSet oldOverlappingComponents{ std::move(currentlyOverlappingComponents) };
+		currentlyOverlappingComponents.clear();
+
+		// Check begin overlap
+		for (auto& [otherComponent, overlapInfo] : newOverlappingComponents) {
+			if (this == otherComponent) continue;
+			auto it = oldOverlappingComponents.find(otherComponent);
+			if (it == oldOverlappingComponents.end()) {
+				BeginComponentOverlap(overlapInfo, bDoNotifies);
+			}
+		}
+
+		// Check end overlap
+		for (auto& [otherComponent, overlapInfo] : oldOverlappingComponents) {
+			auto it = newOverlappingComponents.find(otherComponent);
+			if (it == newOverlappingComponents.end()) {
+				EndComponentOverlap(overlapInfo, bDoNotifies);
+			}
+			else {
+				PushOverlappingComponent(otherComponent, overlapInfo);
+			}
+		}
+
 	}
 }
 
@@ -1041,23 +1092,30 @@ bool PrimitiveComponent::CheckComponentOverlapComponentWithResultImpl(
 
 bool PrimitiveComponent::MoveComponentImpl(
 	const DXVec2& delta, 
+	const float angleDelta,
 	bool bSweep, 
 	HitResult* outHitResult)
 {
+	const Math::Matrix initialRotation = R;
+	const Math::Matrix newRotation = R * Math::Matrix::CreateRotationZ(angleDelta);
 	const Math::Vector2 traceStart = GetComponentLocation();
 	const Math::Vector2 traceEnd = traceStart + delta;
-	const float deltaSizeSquared = delta.LengthSquared();
+	float deltaSizeSquared = delta.LengthSquared();
 
 	// 만약 움직이는 정도가 너무 적으면 리턴합니다.
 	const float minMovementDistSq = (bSweep ? (4.f * EPSILON) * (4.f * EPSILON) : 0.f);
 	if (deltaSizeSquared <= minMovementDistSq)
 	{
-		if (outHitResult)
-		{
-			outHitResult->traceStart = traceStart;
-			outHitResult->traceEnd = traceEnd;
+		// no rotation at all
+		if (newRotation == initialRotation) {
+			if (outHitResult)
+			{
+				outHitResult->traceStart = traceStart;
+				outHitResult->traceEnd = traceEnd;
+			}
+			return true;
 		}
-		return true;
+		deltaSizeSquared = 0.f;
 	}
 
 	const bool bSkipPhysicsMove = !bSimulatePhysics;
@@ -1065,35 +1123,42 @@ bool PrimitiveComponent::MoveComponentImpl(
 	HitResult blockingHit{};
 	blockingHit.bBlockingHit = false;
 	blockingHit.time = 1.f;
-	bool bMoved = false;
 	bool bFilledHitResult = false;
+	bool bMoved = false;
+	bool bRotationOnly = false;
 
 	std::vector<OverlapInfo> pendingOverlaps;
 
 	Actor* actor = GetOwner();
 
-	if (!bSweep) {
+	if (!bSweep) 
+	{	// No sweeping
 		SetTranslation(traceEnd.x, traceEnd.y);
+		Rotate(angleDelta);
+		bMoved = true;
+		bRotationOnly = (deltaSizeSquared == 0);
 	}
-	else {
+	else 
+	{	// Sweeping
 		std::vector<HitResult> hits;
-
 		DXVec2 newLocation = traceStart;
 
 		const bool bCollisionEnabled = IsCollisionEnabled();
 		World* myWorld = GetWorld();
-
-		if (myWorld && bCollisionEnabled) {
+		if (myWorld && bCollisionEnabled) 
+		{
 			if (actor) {
-				// Debug Message
+				// TODO: Debug Message
 			}
 			else {
-				// Debug Message
+				// TODO: Debug Message
 			}
 
+			// Sweep check
 			Math::Matrix rotation = Math::ExtractRotation(GetWorldTransform());
-			bool const bHadBlockingHit = myWorld->CheckComponentSweepMulti(hits, this, traceStart, traceEnd, rotation);
+			const bool bHadBlockingHit = myWorld->CheckComponentSweepMulti(hits, this, traceStart, traceEnd, rotation);
 
+			// Pullback hit time info
 			if (hits.size() > 0) {
 				const float deltaSize = delta.Length();
 				for (uint i = 0; i < hits.size(); ++i) {
@@ -1101,69 +1166,123 @@ bool PrimitiveComponent::MoveComponentImpl(
 				}
 			}
 
+			// Collision Event check.
 			int firstNonInitialOverlapIndex = -1;
-			if (bHadBlockingHit || bGenerateOverlapEvent) {
-				int blockingHitIndex = -1;
+			if (bHadBlockingHit || bGenerateOverlapEvent) 
+			{
+				int blockingHitIndex = -1;	// Find the first blocking hit.
 				float blockingHitNormalDotDelta = (std::numeric_limits<float>::max)();
 
-				for (int hitIndex = 0; hitIndex < hits.size(); hitIndex++) {
+				// Query overlapping infomation
+				for (int hitIndex = 0; hitIndex < hits.size(); hitIndex++) 
+				{
 					const HitResult& testHit = hits[hitIndex];
 
-					if (testHit.bBlockingHit) {
-						if (testHit.bStartPenetrating) {
-							const float normalDotDelta = testHit.impactNormal.Dot(delta);
-							if (normalDotDelta < blockingHitNormalDotDelta) {
-								blockingHitNormalDotDelta = normalDotDelta;
-								blockingHitIndex = hitIndex;
+					// 1. Blocking Hit!
+					if (testHit.bBlockingHit) 
+					{
+						// Prevent overlapping with components in the same actor.
+						if (testHit.hitComponent->GetOwner() != GetOwner()) 
+						{
+							if (testHit.bStartPenetrating) 
+							{
+								// There could be multiple initial hits.
+								const float normalDotDelta = testHit.impactNormal.Dot(delta);
+								if (normalDotDelta < blockingHitNormalDotDelta) 
+								{
+									blockingHitNormalDotDelta = normalDotDelta;
+									blockingHitIndex = hitIndex;
+								}
 							}
-						}
-						else if (blockingHitIndex == -1) {
-							blockingHitIndex = hitIndex;
-						}
-					}
-					else if (bGenerateHitEvent) {
-						PrimitiveComponent* overlapComponent = testHit.hitComponent;
-
-						if (overlapComponent && overlapComponent->bGenerateOverlapEvent) {
-							if (blockingHitIndex >= 0 && testHit.time > hits[blockingHitIndex].time) {
+							else if (blockingHitIndex == -1)
+							{
+								// First non-overlapping blocking hit detected.
+								// Break out from the loop and stop querying overlap info.
+								blockingHitIndex = hitIndex;
 								break;
 							}
+						}
+					}
+					// 2. Overlapping!
+					else if (bGenerateOverlapEvent) 
+					{
+						PrimitiveComponent* overlapComponent = testHit.hitComponent;
 
-							if (firstNonInitialOverlapIndex == -1 && testHit.time > 0.f) {
-								firstNonInitialOverlapIndex = pendingOverlaps.size();
+						if (overlapComponent && overlapComponent->bGenerateOverlapEvent)
+						{
+							// Prevent overlapping with components in the same actor.
+							if (overlapComponent->GetOwner() != GetOwner())
+							{
+								// Don't process overlap events happens after blocking hit.
+								if (blockingHitIndex >= 0 && // Blocking hit exists
+									testHit.time > hits[blockingHitIndex].time	// Occurs after blocking hit
+								) {
+									// Exit the loop.
+									break;
+								}
+
+								// First overlap.
+								if (firstNonInitialOverlapIndex == -1 && testHit.time > 0.f) {
+									firstNonInitialOverlapIndex = pendingOverlaps.size();
+								}
+
+								// Add an overlap event.
+								pendingOverlaps.push_back(
+									OverlapInfo{ 
+										.bFromSweep = bSweep, 
+										.overlapInfo = testHit 
+									}
+								);
 							}
 						}
 					}
-				}
+				}	// END for (int hitIndex = 0; hitIndex < hits.size(); hitIndex++) 
 
+				// Update blocking hit if there is a one.
 				if (blockingHitIndex >= 0) {
 					blockingHit = hits[blockingHitIndex];
 					bFilledHitResult = true;
 				}
-			}
+			}	// END if (bHadBlockingHit || bGenerateOverlapEvent) 
 
-			if (!blockingHit.bBlockingHit) {
+			if (!blockingHit.bBlockingHit) 
+			{
 				newLocation = traceEnd;
 			}
-			else {
-				// Check if bFilledHitResult
+			else 
+			{
+				// Check if bFilledHitResult == true
 				newLocation = traceStart + (blockingHit.time * (traceEnd - traceStart));
-			}
+			
+				// Check if the new location is ignorable
+				const DXVec2 toNewLocation = (newLocation - traceStart);
+				if (toNewLocation.LengthSquared() <= minMovementDistSq)
+				{
+					newLocation = traceStart;
+					blockingHit.time = 0.f;
+
+					pendingOverlaps.resize(firstNonInitialOverlapIndex+1);
+				}
+			}	// END if (!blockingHit.bBlockingHit)
+
 		}
-		else if (delta.LengthSquared() > 0.f) {
+		else if (deltaSizeSquared > 0.f) {
 			newLocation += delta;
 		}
+		else if (deltaSizeSquared == 0.f && bCollisionEnabled) {
+			bRotationOnly = true;
+		}	// END if (myWorld && bCollisionEnabled) 
 		
+		// Move the component
 		SetTranslation(newLocation.x, newLocation.y);
 		bMoved = true;
-	}
+	}	// END if (!bSweep) 
 
 	if (bMoved) {
-		UpdateOverlaps(pendingOverlaps, true);
+		UpdateOverlaps(&pendingOverlaps, true);
 	}
 
-	const bool bAllowHitDispatch = !blockingHit.bStartPenetrating;
-	if (blockingHit.bBlockingHit && bAllowHitDispatch) {
+	if (blockingHit.bBlockingHit && !blockingHit.bStartPenetrating) {
 		if (bFilledHitResult) {
 			DispatchBlockingHit(*actor, blockingHit);
 		}

@@ -9,6 +9,8 @@ protected:
 
 public:
 
+	CircleComponent(class Actor* _owner) : ShapeComponent(_owner) {}
+
 	float GetShapeScale() const {
 		// Extract the world scale.
 		Math::Matrix worldMatrix = GetWorldTransform();

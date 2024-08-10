@@ -92,7 +92,7 @@ bool CircleComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& start
 		}
 
 		outHit.bBlockingHit = bBlockingHit;
-		outHit.bStartPenetrating = true;
+		// outHit.bStartPenetrating = true;
 		outHit.hitComponent = this;
 
 		outHit.location = pos;

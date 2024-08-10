@@ -155,6 +155,12 @@
     <ClCompile Include="PrismReflectionProjectile.cpp">
       <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
     </ClCompile>
+    <ClCompile Include="TestWall.cpp">
+      <Filter>Content</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor2.cpp">
+      <Filter>Content</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -261,6 +267,12 @@
     </ClInclude>
     <ClInclude Include="PrismReflection.h">
       <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="TestWall.h">
+      <Filter>Content</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor2.h">
+      <Filter>Content</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
