@@ -42,9 +42,6 @@
     <Filter Include="Source Files\App\Skill\Range\Meteor">
       <UniqueIdentifier>{1c34eec6-3df5-4dff-9429-b98375c9ffb5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\App\Skill\Projectile\ChasingWaterBall">
-      <UniqueIdentifier>{db273a00-a2c4-4eb4-ac21-4a6dadeecd12}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\App\Player\PlayerFSM">
       <UniqueIdentifier>{6fd1e582-d46a-45d7-8b2a-cdba8a926266}</UniqueIdentifier>
     </Filter>
@@ -56,6 +53,21 @@
     </Filter>
     <Filter Include="Source Files\App\Skill\Projectile\PrismReflection">
       <UniqueIdentifier>{b8208af1-409e-48f2-9a49-427058549d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile\ChasingWaterBall">
+      <UniqueIdentifier>{db273a00-a2c4-4eb4-ac21-4a6dadeecd12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Utils">
+      <UniqueIdentifier>{416ee61c-65ab-4c89-8c14-a329a50c6fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Utils\CoolTime">
+      <UniqueIdentifier>{1ab8281f-3c7f-402b-a33e-44abde7ca315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile\DarkSphere">
+      <UniqueIdentifier>{2dc59eff-c943-4fb2-b076-cdbfe2e97b36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Range\TighteningCircle">
+      <UniqueIdentifier>{d2bd4736-fd6f-42d7-bc42-e74f34142804}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -155,11 +167,26 @@
     <ClCompile Include="PrismReflectionProjectile.cpp">
       <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
     </ClCompile>
-    <ClCompile Include="TestWall.cpp">
-      <Filter>Content</Filter>
+    <ClCompile Include="CoolTime.cpp">
+      <Filter>Source Files\App\Utils\CoolTime</Filter>
     </ClCompile>
-    <ClCompile Include="TestActor2.cpp">
-      <Filter>Content</Filter>
+    <ClCompile Include="DarkSphere.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="TighteningCircle.cpp">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="TighteningCircleEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="MeteorEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkSphereProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkSphereSpawner.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -268,11 +295,29 @@
     <ClInclude Include="PrismReflection.h">
       <Filter>Source Files\App\Skill\Projectile\PrismReflection</Filter>
     </ClInclude>
-    <ClInclude Include="TestWall.h">
-      <Filter>Content</Filter>
+    <ClInclude Include="SkillList.h">
+      <Filter>Source Files\App\Skill</Filter>
     </ClInclude>
-    <ClInclude Include="TestActor2.h">
-      <Filter>Content</Filter>
+    <ClInclude Include="CoolTime.h">
+      <Filter>Source Files\App\Utils\CoolTime</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphere.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="TighteningCircle.h">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="TighteningCircleEffect.h">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteorEffect.h">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphereProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphereSpawner.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,9 +11,7 @@ protected:
 	float capsuleRadius{ 0.f };
 	
 public:
-
 	CapsuleComponent(class Actor* _owner) : ShapeComponent(_owner) {}
-
 	float GetShapeScale()  const {
 		// Extract the world scale.
 		Math::Matrix worldMatrix = GetWorldTransform();

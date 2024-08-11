@@ -7,23 +7,18 @@
 PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 {
 	projectileMaxCount = 9;
+	SetID(ST_PROJECTILE, SE_LIGHT);
+
+	for (int i = 0; i < projectileMaxCount; i++)
+	{
+		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<PrismReflectionProjectile>());
+		projectiles[i]->SetVelocity({ 0,0 }, 0);
+	}
 }
 
 PrismReflection::~PrismReflection()
 {
 }
-
-void PrismReflection::BeginPlay()
-{
-	__super::BeginPlay();
-	for (int i = 0; i < projectileMaxCount; i++)
-	{
-		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<PrismReflectionProjectile>());
-		projectiles[i]->SetVelocity({ 0,0 }, 0);
-		projectiles[i]->Inactivate();
-	}
-}
-
 void PrismReflection::UseSkill()
 {
 	__super::UseSkill();

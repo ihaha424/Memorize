@@ -17,12 +17,7 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 
 	rootComponent = CreateComponent<SceneComponent>();
 
-	//각 스킬의 인스턴스를 미리 생성
-	skills = {
-		{ std::type_index(typeid(Fireball)), CreateComponent<Fireball>()},
-		{ std::type_index(typeid(ChasingWaterBall)), CreateComponent<ChasingWaterBall>()},
-		{ std::type_index(typeid(Meteor)), CreateComponent<Meteor>()},
-	};
+	InitializeSkill();
 
 	playerFSMComponent = CreateComponent<PlayerFSMComponent>();
 
@@ -38,6 +33,19 @@ void GPlayerController::SetupInputComponent()
 	
 	inputComponent->ActionBinding(this, 0, &GPlayerController::Attack, InputState::KeyDown, MouseInput);
 	inputComponent->ActionBinding(this, 1, &GPlayerController::Move, InputState::KeyDown, MouseInput);
+}
+
+void GPlayerController::InitializeSkill()
+{
+	//각 스킬의 인스턴스를 미리 생성
+	/*skills = {
+		{ std::type_index(typeid(Fireball)), CreateComponent<Fireball>()},
+		{ std::type_index(typeid(ChasingWaterBall)), CreateComponent<ChasingWaterBall>()},
+		{ std::type_index(typeid(Meteor)), CreateComponent<Meteor>()},
+	};*/
+	CreateSkill<Fireball>();
+	CreateSkill<ChasingWaterBall>();
+	CreateSkill<Meteor>();
 }
 
 void GPlayerController::EndSkill()
@@ -59,6 +67,11 @@ void GPlayerController::BeginPlay()
 	}
 
 	SetupInputComponent();
+
+
+	//Skill Initialize
+	InitializeSkillInfo();
+	InitializeMemorize();
 }
 
 void GPlayerController::Update(float _dt)
@@ -69,6 +82,43 @@ void GPlayerController::Update(float _dt)
 		owner->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
 }
+
+bool GPlayerController::AddSkillInfo(int index)
+{
+	if (curSkillInfo.element == ESkillElement::SE_END)
+	{
+		curSkillInfo.element = (ESkillElement)index;
+		return false;
+	}
+	else if (curSkillInfo.type == ESkillType::ST_END)
+	{
+		curSkillInfo.type = (ESkillType)index;
+		return true;
+	}
+	return true;
+}
+bool GPlayerController::CheckSkillInfo()
+{
+	if (curSkillInfo.element != ESkillElement::SE_END &&
+		curSkillInfo.type != ESkillType::ST_END)
+		return true;
+	return false;
+}
+
+void GPlayerController::InitializeSkillInfo()
+{
+	curSkillInfo.element = ESkillElement::SE_END;
+	curSkillInfo.type = ESkillType::ST_END;
+}
+
+bool GPlayerController::InputMemorize()
+{
+	if (MemorizeSkill.element != ESkillElement::SE_END &&
+		MemorizeSkill.type != ESkillType::ST_END)
+		return true;
+	return false;
+}
+
 #include "D2DGameEngine/Debug.h"
 #include "GCameraComponent.h"
 void GPlayerController::Fire()		{ playerFSMComponent->InputKey(InputEvent::Fire); }
@@ -83,7 +133,10 @@ void GPlayerController::Attack() {
 	//destPos = GetPlayer()->GetComponent<GCameraComponent>()->GetComponentLocation();
 	//LOG_MESSAGE(dbg::text(destPos.x, ", ", destPos.y));
 	GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(0.f);
-	playerFSMComponent->InputKey(InputEvent::Attack); }
+
+
+	//playerFSMComponent->InputKey(InputEvent::Attack); 
+}
 void GPlayerController::Move() { playerFSMComponent->InputKey(InputEvent::Move); }
 
 void GPlayerController::Memorize() {playerFSMComponent->InputKey(InputEvent::Memorize);}

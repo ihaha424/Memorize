@@ -10,6 +10,9 @@
 Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
+	SetID(ST_PROJECTILE, SE_FIRE);
+	commandList.push_back(0);
+	commandList.push_back(0);
 
 	projectileMaxCount = 5;
 
@@ -24,20 +27,12 @@ Fireball::~Fireball()
 {
 }
 
-void Fireball::BeginPlay()
-{
-	__super::BeginPlay();
-	
-	for (int i = 0; i < projectileMaxCount; i++)
-	{
-		projectiles[i]->SetStatus(OS_INACTIVE);
-	}
-}
 
 void Fireball::UseSkill()
 {
 	__super::UseSkill();
 
+	if (nowUsingCount > projectileCount) return;
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];
 	fireball->SetOwner(player);

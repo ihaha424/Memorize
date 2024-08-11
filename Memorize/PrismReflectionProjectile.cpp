@@ -7,6 +7,7 @@ PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile
 
 	BitmapComponent* bm = GetComponent<BitmapComponent>();
 	bm->SetSprite(L"TestResource/Skill/Projectile/PrismReflection.png");
+	Inactivate();
 }
 
 PrismReflectionProjectile::~PrismReflectionProjectile()

@@ -16,8 +16,13 @@ public:
 	void Update(float _dt) override;
 	void Exit() override;
 
-	virtual void Attack();
-	virtual void Memorize();
+	virtual void Fire() {};
+	virtual void Water(){};
+	virtual void Light(){};
+	virtual void Dark(){};
+	virtual void Attack(){};
+	virtual void Move(){};
+	virtual void Memorize(){};
 
 };
 

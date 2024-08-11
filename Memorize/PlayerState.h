@@ -1,9 +1,10 @@
 #pragma once
 
-#include "../D2DGameEngine/FSMState.h"
+#include "D2DGameEngine/FSMState.h"
+#include "D2DGameEngine/FSMComponent.h"
 
-enum InputEvent { Fire, Water, Light, Dark, Attack, Move, Memorize
-};
+
+enum InputEvent { Fire, Water, Light, Dark, Attack, Move, Memorize};
 
 class PlayerState
 	:public FSMState

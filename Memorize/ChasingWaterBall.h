@@ -11,7 +11,6 @@ public:
 	ChasingWaterBall(Actor* _owner);
 	virtual ~ChasingWaterBall();
 
-	virtual void BeginPlay() override;
 	virtual void UseSkill() override;
 
 };

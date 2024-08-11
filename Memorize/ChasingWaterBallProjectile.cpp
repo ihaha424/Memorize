@@ -9,6 +9,7 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 
 	BitmapComponent* bm = GetComponent<BitmapComponent>();
 	bm->SetSprite(L"TestResource/Skill/Projectile/ChasingWaterBall/Ready.png");
+	Inactivate();
 }
 
 ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
