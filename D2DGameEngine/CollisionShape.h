@@ -124,8 +124,8 @@ struct CollisionShape {
 	void SetCapsule(const Extent2D& _extent) {
 		shapeType = ECollisionShape::Capsule;
 		shape = Capsule_t{
-			.radius = _extent.width / 2.f,
-			.halfHeight = _extent.height / 2.f
+			.radius = _extent.width,
+			.halfHeight = _extent.height
 		};
 	}
 

@@ -24,7 +24,7 @@ public:
 	// that has bSimulationPhysics true.
 	// It is because sweeping can be done only when physics is on.
 	bool bSimulatePhysics{ false };
-	bool bApplyImpulseOnDamage{ false };
+	bool bApplyImpulseOnDamage{ false };	// TODO: damage system
 
 	// Physics
 	float mass{ 1.0f };
@@ -38,7 +38,6 @@ public:
 
 	// Collision
 	bool bCanCollide{ false };
-	bool bGenerateHitEvent{ false };
 	bool bGenerateOverlapEvent{ false };
 	CollisionProperty collisionProperty;	// Default NoCollision
 	using OverlappingComponentSet = std::map<PrimitiveComponent*, OverlapInfo>;
@@ -112,7 +111,6 @@ public:
 	// Collision
 	virtual void OnComponentBeginOverlap() {}
 	virtual void OnComponentEndOverlap() {}
-	virtual void OnComponentHit() {}
 
 	void SetCollisionEnabled(CollisionEnabled::Type type);
 
@@ -210,7 +208,12 @@ public:
 	 * @param otherOverlap 
 	 * @param bDoNotifies 
 	 */
-	void BeginComponentOverlap(const OverlapInfo& otherOverlap, bool bDoNotifies);
+	void BeginComponentOverlap(const OverlapInfo& overlap, bool bDoNotifies);
+
+	/**
+	 * @brief Receive begin component overlap event and do all the converting stuff.
+	 */
+	void ReceiveBeginComponentOverlap(PrimitiveComponent* otherComp, const bool bFromSweep, const HitResult& overlapInfo);
 
 	/**
 	 * @brief End tracking an overlap interaction
@@ -218,7 +221,12 @@ public:
 	 * @param bDoNotifies 
 	 * @param bSkipNotifySelf 
 	 */
-	void EndComponentOverlap(const OverlapInfo& otherOverlap, bool bDoNotifies, bool bSkipNotifySelf=false);
+	void EndComponentOverlap(const OverlapInfo& overlap, bool bDoNotifies, bool bSkipNotifySelf=false);
+
+	/**
+	 * @brief Receive end component overlap event and do all the converting stuff.
+	 */
+	void ReceiveEndComponentOverlap(PrimitiveComponent* otherComp);
 
 	// TODO: Place it in the UpdateOverlaps()
 	void PushOverlappingComponent(PrimitiveComponent* otherComponent, const OverlapInfo& overlapInfo) {
@@ -243,7 +251,12 @@ public:
 	}
 
 	// Bounds
-
+	
+	/**
+	 * @brief Calculate the bounds on the world coordinate system.
+	 * @param _worldTransform 
+	 * @return 
+	 */
 	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
 		DXVec2 c{ bounds.center.x, bounds.center.y };
 		c = DXVec2::Transform(c, _worldTransform);
@@ -254,6 +267,10 @@ public:
 		return BoxCircleBounds(Box{ c, e });
 	}
 
+	/**
+	 * @brief Calculate the bounds without world transformation.
+	 * @return 
+	 */
 	virtual BoxCircleBounds CalculateLocalBounds() const {
 		return BoxCircleBounds{};
 	}
@@ -289,7 +306,7 @@ public:
 			MoveComponent(velocity * _dt, angularVelocity * _dt, true, &hitResult);
 
 			if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
-				Translate(DXVec2{ hitResult.normal.x, -hitResult.normal.y } * hitResult.penetrationDepth * 1.1);
+				Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
 			}
 		}
 		else 
@@ -299,7 +316,7 @@ public:
 			MoveComponent(velocity * _dt, angularVelocity * _dt, false, &hitResult);
 
 			if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
-				Translate(DXVec2{ hitResult.normal.x, -hitResult.normal.y } * hitResult.penetrationDepth * 1.1);
+				Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
 			}
 		}
 	}

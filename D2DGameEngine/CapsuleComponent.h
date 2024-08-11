@@ -73,7 +73,7 @@ public:
 		// TODO: ¿ùµå Æ®·»½ºÆû Àû¿ë
 		Capsule capsule{
 			.center = { 0.f, 0.f },
-			.direction = { 0.f, 1.f },
+			.direction = -DXVec2::UnitY,
 			.extent = capsuleHalfHeight,
 			.radius = capsuleRadius
 		};
@@ -106,7 +106,17 @@ public:
 		const DXMat4x4& rotation,
 		const CollisionShape& collisionShape,
 		const ECollisionChannel collisionChannel,
-		const CollisionProperty& collisionProperty) override;
+		const CollisionProperty& collisionProperty
+	) override;
+
+	virtual bool CheckOverlapComponent(
+		OverlapResult& outOverlap,
+		const DXVec2& pos,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty
+	) override;
 
 	virtual void Render(class D2DRenderer* _renderer) override;
 

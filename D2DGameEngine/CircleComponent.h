@@ -62,7 +62,19 @@ public:
 		const DXMat4x4& rotation,
 		const CollisionShape& collisionShape,
 		const ECollisionChannel collisionChannel,
-		const CollisionProperty& collisionProperty) override;
+		const CollisionProperty& collisionProperty
+	) override;
+
+	virtual bool CheckOverlapComponent(
+		OverlapResult& outOverlap,
+		const DXVec2& pos,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty
+	) override;
+
+	virtual void Render(class D2DRenderer* _renderer) override;
 
 protected:
 	bool CheckComponentOverlapComponentImpl(

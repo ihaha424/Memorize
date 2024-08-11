@@ -324,6 +324,10 @@
       <FileType>Document</FileType>
     </ClInclude>
     <None Include="디버그_사용법.md" />
+    <None Include="콜리션_사용법.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="CollisionFigure.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

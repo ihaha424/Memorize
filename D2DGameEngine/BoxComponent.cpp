@@ -52,14 +52,14 @@ bool BoxComponent::CheckSweepComponent(
 		bool res{ false };
 		switch (collisionShape.shapeType)
 		{
-		case ECollisionShape::Box: {
+		case ECollisionShape::Box: {	// NOTE: Checked it works!
 			// Build box from the collision shape and rotation
 			Box otherBox = Box::BuildAABB(pos, collisionShape.GetExtent());
 			otherBox.ul = DXVec2::Transform(otherBox.ul, rotation);
 			otherBox.lr = DXVec2::Transform(otherBox.lr, rotation);
 			res = intersectionUtil::BoxBoxIntersectWithResult(otherBox, myBox, outHit);
 		}	break;
-		case ECollisionShape::Capsule: {
+		case ECollisionShape::Capsule: {	// NOTE: Checked it works!
 			// Build Capsule from the collision shape and rotation
 			Capsule otherCapsule{
 				.center = pos,
@@ -69,7 +69,7 @@ bool BoxComponent::CheckSweepComponent(
 			};
 			res = intersectionUtil::CapsuleBoxIntersectWithResult(otherCapsule, myBox, outHit);
 		}	break;
-		case ECollisionShape::Circle: {
+		case ECollisionShape::Circle: {	// NOTE: Checked it works!
 			// Build Circle from the collision shape and rotation
 			Circle otherCircle{
 				.center = pos,
@@ -77,7 +77,7 @@ bool BoxComponent::CheckSweepComponent(
 			};
 			res = intersectionUtil::CircleBoxIntersectWithResult(otherCircle, myBox, outHit);
 		}	break;
-		case ECollisionShape::Polygon: {
+		case ECollisionShape::Polygon: {	// TODO: Test required.
 			// Build Polygon from the collision shape and rotation
 			TPolygon otherPolygon{ std::move(collisionShape.GetPolygonVertices()) };
 			for (Math::Vector2& point : otherPolygon.points) {
@@ -160,7 +160,7 @@ bool BoxComponent::CheckOverlapComponent(
 		// Build Capsule from the collision shape and rotation
 		Capsule otherCapsule{
 			.center = pos,
-			.direction = DXVec2::Transform(DXVec2::UnitY, rotation),
+			.direction = DXVec2::Transform(-DXVec2::UnitY, rotation),
 			.extent = collisionShape.GetCapsuleHalfHeight(),
 			.radius = collisionShape.GetCapsuleRadius()
 		};
@@ -203,14 +203,14 @@ bool BoxComponent::CheckOverlapComponent(
 
 void BoxComponent::Render(D2DRenderer* _renderer)
 {
+#ifndef NDEBUG
 	_renderer->PushTransform(GetWorldTransform());
 
-#ifndef NDEBUG
 	D2D_RectF dest{
 		.left = -boxExtent.width / 2.f,
-		.top = boxExtent.height / 2.f,
+		.top = -boxExtent.height / 2.f,
 		.right = boxExtent.width / 2.f,
-		.bottom = -boxExtent.height / 2.f
+		.bottom = boxExtent.height / 2.f
 	};
 
 	_renderer->DrawBorder(
@@ -218,9 +218,9 @@ void BoxComponent::Render(D2DRenderer* _renderer)
 		{ dest.right, dest.bottom },
 		D2D_Color::Red
 	);
-#endif
 
 	_renderer->PopTransform();
+#endif
 }
 
 bool BoxComponent::CheckComponentOverlapComponentImpl(

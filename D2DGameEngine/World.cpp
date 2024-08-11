@@ -97,8 +97,8 @@ bool World::CheckComponentOverlapMultiByChannel(
 
 bool World::CheckComponentSweepMulti(std::vector<HitResult>& outHitResults, PrimitiveComponent* primComp, const Math::Vector2& start, const Math::Vector2& end, const Math::Matrix& rotation)
 {
-	CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, primComp->GetCollisionObjectType());
-	return (outHitResults.size() > 0);
+	bool bBlockingHit = CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, primComp->GetCollisionObjectType());
+	return bBlockingHit;
 }
 
 bool World::CheckComponentSweepMultiByChannel(
