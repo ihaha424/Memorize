@@ -182,6 +182,12 @@
     <ClCompile Include="MeteorEffect.cpp">
       <Filter>Source Files\App\Skill\Range\Meteor</Filter>
     </ClCompile>
+    <ClCompile Include="DarkSphereProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkSphereSpawner.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -306,6 +312,12 @@
     </ClInclude>
     <ClInclude Include="MeteorEffect.h">
       <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphereProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphereSpawner.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,8 +3,6 @@
 
 class Fireball : public ProjectileSkill
 {
-	int maxCount = 1;
-	int nowCount = 1;
 	float speed = 2.f;
 public:
 	Fireball(Actor* _owner);

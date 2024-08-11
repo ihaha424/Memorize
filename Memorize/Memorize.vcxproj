@@ -153,6 +153,8 @@
     <ClCompile Include="ChasingWaterBallProjectile.cpp" />
     <ClCompile Include="CoolTime.cpp" />
     <ClCompile Include="DarkSphere.cpp" />
+    <ClCompile Include="DarkSphereProjectile.cpp" />
+    <ClCompile Include="DarkSphereSpawner.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -193,6 +195,8 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="CoolTime.h" />
     <ClInclude Include="DarkSphere.h" />
+    <ClInclude Include="DarkSphereProjectile.h" />
+    <ClInclude Include="DarkSphereSpawner.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />
     <ClInclude Include="GameApp.h" />
