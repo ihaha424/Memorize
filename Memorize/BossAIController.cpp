@@ -18,3 +18,18 @@ void BossAIController::Update(float _dt)
 	__super::Update(_dt);
 
 }
+
+void BossAIController::InitializeBoss()
+{
+	//// Create the behavior tree
+	//BehaviorTree* bt = new BehaviorTree();
+
+	////Keu Declarations가 뭔지 모르겠음??
+	//Root* root = bt->GetRoot();
+
+	//Selector* rootSelector = bt->CreateNode<Selector>();
+	//Condition* StateDie = bt->CreateNode<Condition>();
+	//StateDie->_successCondition = [bt]()bool
+	//{
+	//}
+}

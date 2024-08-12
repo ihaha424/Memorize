@@ -8,5 +8,7 @@ public:
 
 	virtual void Update(float  _dt) override;
 
+	void InitializeBoss();
+
 };
 
