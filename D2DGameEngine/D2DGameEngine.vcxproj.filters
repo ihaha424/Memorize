@@ -383,9 +383,6 @@
     <ClInclude Include="CollisionEvent.h">
       <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
-    <ClInclude Include="DamageEvent.h">
-      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
-    </ClInclude>
     <ClInclude Include="HitResult.h">
       <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
@@ -470,7 +467,13 @@
     <ClInclude Include="OverlapInfo.h">
       <Filter>Source Files\GameEngine\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="CSpace.h">
+      <Filter>Source Files\GameEngine\AI\PathFinder</Filter>
+    </ClInclude>
     <ClInclude Include="DamageTypes.h">
+      <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageEvent.h">
       <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
   </ItemGroup>

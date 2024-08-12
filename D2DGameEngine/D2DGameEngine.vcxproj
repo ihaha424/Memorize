@@ -161,6 +161,7 @@
     <ClInclude Include="Capsule.h" />
     <ClInclude Include="CapsuleComponent.h" />
     <ClInclude Include="CircleComponent.h" />
+    <ClInclude Include="CSpace.h" />
     <ClInclude Include="FSMComponent.h" />
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="IntersectionUtil.h" />

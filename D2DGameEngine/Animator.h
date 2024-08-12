@@ -2,10 +2,10 @@
 
 #include "framework.h"
 
-#include "SceneComponent.h"
+#include "PrimitiveComponent.h"
 
 class AnimationState;
-class Animator : public SceneComponent {
+class Animator : public PrimitiveComponent {
 	using VariableName = std::string;
 	using VariableValue = std::any;
 	using AnimationVariables = std::unordered_map<VariableName, std::any>;
@@ -15,7 +15,7 @@ class Animator : public SceneComponent {
 	StateRegistry _animationStates;
 	AnimationState* _currState = nullptr;
 public:
-	Animator(Actor* _owner) : SceneComponent(_owner){
+	Animator(Actor* _owner) : PrimitiveComponent(_owner){
 		SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	}
 	virtual ~Animator()
