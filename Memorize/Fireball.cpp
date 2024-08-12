@@ -11,9 +11,7 @@
 Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetID(ST_PROJECTILE, SE_FIRE);
-	commandList.push_back(0);
-	commandList.push_back(0);
-
+	ReflectionIn();
 	projectileCount = 5;
 
 	for (int i = 0; i < projectileCount; i++)
@@ -32,7 +30,6 @@ void Fireball::UseSkill()
 {
 	__super::UseSkill();
 
-	ReflectionIn();
 	if (nowUsingCount > projectileCount) return;
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];

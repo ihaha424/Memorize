@@ -10,10 +10,6 @@ DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 	ReflectionIn();
 	
 	SetID(ST_PROJECTILE, SE_DARKNESS);
-	commandList.push_back(0);
-	commandList.push_back(3);
-	commandList.push_back(3);
-	commandList.push_back(3);
 
 	spawner = GetWorld()->GetCurLevel()->CreateActor<DarkSphereSpawner>();
 	spawner->SetPlayer(player);

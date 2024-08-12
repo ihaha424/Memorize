@@ -1,7 +1,7 @@
 Skill_Damage : 10
 Skill_Mana : 50
 Command : 0, 2
-Skill_LimitLevel : 90
+Skill_LimitLevel : 900
 Skill_Duration : 1
 Skill_Condition : 0
 Castring Time : 1.4

@@ -7,7 +7,7 @@ TighteningCircleEffect::TighteningCircleEffect(World* _world) : Actor(_world)
 	SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	bitmap = CreateComponent<BitmapComponent>();
 	rootComponent = bitmap;
-	//bm->SetSprite(L"TestResource/Skill/Range/TighteningCircle.png");
+	bitmap->SetSprite(L"TestResource/Skill/Range/TighteningCircle.png");
 
 	//충돌 범위 
 	capsule = CreateComponent<CapsuleComponent>();

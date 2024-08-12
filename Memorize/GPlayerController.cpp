@@ -47,6 +47,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<ChasingWaterBall>();
 	CreateSkill<Meteor>();
 	CreateSkill<PrismReflection>();
+	CreateSkill<TighteningCircle>();
 }
 
 void GPlayerController::EndSkill()

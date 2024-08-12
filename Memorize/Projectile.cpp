@@ -23,9 +23,6 @@ Projectile::~Projectile()
 
 void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
 { 
-	mv = GetComponent<MovementComponent>();
-	bm = GetComponent<BitmapComponent>();
-
 	mv->SetDirection(_direction);
 	mv->SetSpeed(_speed);
 }

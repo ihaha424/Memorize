@@ -5,18 +5,12 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Mouse.h"
 #include "D2DGameEngine/Reflection.h"
+#include "Player.h"
 
 Meteor::Meteor(Actor* _owner) : RangeSkill(_owner)
 {
-	SetTickProperties(TICK_UPDATE);
 	SetID(ST_RANGE, SE_FIRE);
-	//ReflectionIn();
-	commandList.push_back(1);
-	commandList.push_back(0);
-	commandList.push_back(0);
-	commandList.push_back(2);
-
-	commandList.push_back(1);
+	ReflectionIn();
 
 	//메테오 효과 액터 생성
 	meteorEffect = GetWorld()->GetCurLevel()->CreateActor<MeteorEffect>();
@@ -34,14 +28,13 @@ void Meteor::UseSkill()
 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	attackPos = GetWorld()->ScreenToWorldPoint(attackPos);
 	meteorEffect->SetAttackPos(attackPos);
+	meteorEffect->SetOwner(player);
 
 	meteorEffect->SetLocation(attackPos.x + initialHeight, attackPos.y - initialHeight);
 	Math::Vector2 direction = attackPos - meteorEffect->GetLocation();
 	direction.Normalize();
 
-	MovementComponent* movement = meteorEffect->GetComponent<MovementComponent>();
-	movement->SetDirection(direction);
-	movement->SetSpeed(fallSpeed);
+	meteorEffect->SetVelocity(direction, fallSpeed);
 
 }
 

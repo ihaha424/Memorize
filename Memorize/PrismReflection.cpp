@@ -10,8 +10,7 @@ PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 {
 	projectileCount = 10;
 	SetID(ST_PROJECTILE, SE_LIGHT);
-	commandList.push_back(0);
-	commandList.push_back(2);
+	ReflectionIn();
 
 	for (int i = 0; i < projectileCount; i++)
 	{
