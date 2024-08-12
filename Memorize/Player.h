@@ -17,6 +17,7 @@ struct Stat
 	int numProjectiles; //투사체 개수
 	int defaultDamage; //기본 대미지
 	int defaultAttackSpeed; //기본 공격 속도
+	bool manaOverLoad = false;
 
 	Stat operator+(Stat stat)
 	{
@@ -32,6 +33,7 @@ struct Stat
 		ret.numProjectiles += stat.numProjectiles;
 		ret.defaultDamage += stat.defaultDamage;
 		ret.defaultAttackSpeed += stat.defaultAttackSpeed;
+		ret.manaOverLoad = stat.manaOverLoad;
 		return ret;
 	}
 	Stat operator-()
@@ -59,12 +61,16 @@ class Player : public Character, IReflection
 	int exp = 0;
 	float moveSpeed = 100;
 	Stat stat;
+
 public:
 	Player(class World* _world);
 	virtual ~Player();
 
 	void LevelUp();
 	void AddToStat(Stat _addStat);
+	Stat& GetStat() { return stat; }
+
+
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;

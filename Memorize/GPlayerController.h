@@ -106,6 +106,8 @@ public:
 	void Attack();
 	void Move();
 	void Memorize();
+	void Teleport();
+	void Cancellation();
 };
 
 template<typename T>

@@ -16,7 +16,6 @@ void PlayerState::Fire()
 	bool CheckStates = playerController->AddSkillInfo(ESkillElement::SE_FIRE);
 	if (CheckStates)
 	{
-		//if(마나 없음 -> return)
 		owner->SetNextState(L"PlayerCasting");
 	}
 }
@@ -84,4 +83,15 @@ void PlayerState::Memorize()
 		playerController->SwapMemorize();
 		owner->SetNextState(L"PlayerAttackReady");
 	}
+}
+
+void PlayerState::Teleport()
+{
+	owner->SetNextState(L"PlayerBlinking");
+}
+
+void PlayerState::Cancellation()
+{
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	playerController->InitializeSkillInfo();
 }
