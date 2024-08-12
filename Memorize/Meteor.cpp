@@ -9,6 +9,10 @@ Meteor::Meteor(Actor* _owner) : RangeSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
 	SetID(ST_RANGE, SE_FIRE);
+	commandList.push_back(1);
+	commandList.push_back(0);
+	commandList.push_back(0);
+	commandList.push_back(2);
 
 	//메테오 효과 액터 생성
 	meteorEffect = GetWorld()->GetCurLevel()->CreateActor<MeteorEffect>();

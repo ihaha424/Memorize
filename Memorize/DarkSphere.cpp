@@ -6,7 +6,7 @@
 DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 {
 	projectileMaxCount = 8;
-	SetID(ST_PROJECTILE, SE_LIGHT);
+	SetID(ST_PROJECTILE, SE_DARKNESS);
 
 	spawner = GetWorld()->GetCurLevel()->CreateActor<DarkSphereSpawner>();
 	spawner->SetPlayer(player);

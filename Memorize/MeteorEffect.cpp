@@ -19,13 +19,16 @@ MeteorEffect::~MeteorEffect()
 
 void MeteorEffect::BeginPlay()
 {
+	__super::BeginPlay();
 	Inactivate();
 }
 
 void MeteorEffect::Update(float _dt)
 {
+	__super::Update(_dt);
 	if (GetStatus() == OS_ACTIVE)
 	{
+		std::cout << GetLocation().x << "," << GetLocation().y << std::endl;
 		if (Math::Vector2::Distance(GetLocation(), attackPos) < 10)
 		{
 			Inactivate();

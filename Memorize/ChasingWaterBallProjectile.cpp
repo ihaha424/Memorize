@@ -19,6 +19,8 @@ ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
 
 void ChasingWaterBallProjectile::Update(float _dt)
 {
+	__super::Update(_dt);
+
 	if (state == State::Idle)
 	{
 		xValue.Update(_dt);
