@@ -61,7 +61,7 @@ public:
 	}
 
 	virtual void ReflectionIn() = 0;
-	virtual void ReflectionOut() = 0;
+	virtual void ReflectionOut() {}
 
 };
 

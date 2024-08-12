@@ -3,13 +3,17 @@
 #include "../D2DGameEngine/World.h"
 #include "D2DGameEngine/RandomGenerator.h"
 #include "MovementComponent.h"
+#include "Player.h"
+#include "D2dGameEngine/ResourceManager.h"
 
 PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 {
-	projectileMaxCount = 9;
+	projectileCount = 10;
 	SetID(ST_PROJECTILE, SE_LIGHT);
+	commandList.push_back(0);
+	commandList.push_back(2);
 
-	for (int i = 0; i < projectileMaxCount; i++)
+	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<PrismReflectionProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
@@ -40,15 +44,23 @@ void PrismReflection::UseSkill()
 	//랜덤으로 N 방향에 투사체 발사 
 	for (int i = 0; i < projectileCount; i++)
 	{
-		int n = Random::Get<int>(9);
-		Projectile* nowPj = projectiles[nowUsingCount];
+		int n = Random::Get<int>(8);
+		Projectile* nowPj = projectiles[i];
+		nowPj->SetDelay(0.1f * i);
+		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		nowPj->SetVelocity(directions[n], projectileSpeed);
+		nowPj->Activate();
 
 		//방향에 맞게 회전
 		double rotateRad = std::acos(directions[n].Dot(Math::Vector2(1.f, 0.f)));
+		if (directions[n].y < 0)
+			rotateRad *= -1;
 		nowPj->rootComponent->SetRotation(rotateRad * 180.f / PI);
-
-		nowPj->Activate();
-		nowUsingCount++;
 	}
+}
+
+void PrismReflection::ReflectionIn()
+{
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/PrismReflection.txt");
+	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, projectileCount, projectileSpeed, commandList);
 }

@@ -3,13 +3,15 @@
 
 PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile(_world)
 {
-	SetTickProperties(TICK_UPDATE | TICK_RENDER);
-
 	BitmapComponent* bm = GetComponent<BitmapComponent>();
 	bm->SetSprite(L"TestResource/Skill/Projectile/PrismReflection.png");
-	Inactivate();
 }
 
 PrismReflectionProjectile::~PrismReflectionProjectile()
 {
+}
+
+void PrismReflectionProjectile::Update(float _dt)
+{
+	__super::Update(_dt);
 }

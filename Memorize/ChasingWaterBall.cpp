@@ -16,9 +16,9 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 	commandList.push_back(1);
 	commandList.push_back(1);
 
-	projectileMaxCount = 3;
+	projectileCount = 3;
 
-	for (int i = 0; i < projectileMaxCount; i++)
+	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
 	}
@@ -50,5 +50,11 @@ void ChasingWaterBall::UseSkill()
 		projectiles[i]->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		projectiles[i]->Initialize();
 	}
+}
+
+void ChasingWaterBall::ReflectionIn()
+{
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/ChasingWaterBall.txt");
+	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, projectileCount, projectileSpeed, commandList);
 }
 

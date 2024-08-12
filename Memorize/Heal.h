@@ -8,5 +8,6 @@ public:
 	virtual ~Heal();
 
 	virtual void UseSkill() override;
+	virtual void ReflectionIn() override;
 };
 

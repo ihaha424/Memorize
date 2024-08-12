@@ -30,6 +30,14 @@ private:
 	template<>
 	static void ReflectInValue(char& _value, const std::wstring& Filevalue) { _value = Filevalue[0]; }
 	template<>
+	static void ReflectInValue(std::vector<BYTE>& _value, const std::wstring& Filevalue)
+	{
+		std::wstringstream wss(Filevalue);
+		std::wstring value;
+		while (getline(wss, value, L','))
+			_value.push_back((BYTE)_wtoi(value.c_str()));
+	}
+	template<>
 	static void ReflectInValue(std::vector<int>& _value, const std::wstring& Filevalue)
 	{
 		std::wstringstream wss(Filevalue);

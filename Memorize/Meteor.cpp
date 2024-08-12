@@ -10,6 +10,7 @@ Meteor::Meteor(Actor* _owner) : RangeSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
 	SetID(ST_RANGE, SE_FIRE);
+	//ReflectionIn();
 	commandList.push_back(1);
 	commandList.push_back(0);
 	commandList.push_back(0);
@@ -45,5 +46,5 @@ void Meteor::UseSkill()
 void Meteor::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Meteor.txt");
-	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, commandList );
+	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, commandList);
 }

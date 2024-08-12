@@ -9,6 +9,7 @@ public:
 	virtual ~Fireball();
 
 	virtual void UseSkill() override;
+	virtual void ReflectionIn() override;
 
 };
 
