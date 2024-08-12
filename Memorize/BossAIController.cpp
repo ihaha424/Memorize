@@ -28,14 +28,40 @@ void BossAIController::InitializeBoss()
 
 	//Keu Declarations가 뭔지 모르겠음??
 	Root* root = bt->GetRoot();
+	bt->DeclareKey<Boss*>("Boss");
+	bt->SetKey<Boss*>("Boss", GetBoss());
 
-	Selector* rootSelector = bt->CreateNode<Selector>();
-	Condition* StateDie = bt->CreateNode<Condition>();
-	bt->DeclareKey<int>("DissFellCount");
-	bt->SetKey<int>("DissFellCount", GetBoss()->DissfellCount);
-	StateDie->_successCondition = [bt]()->bool
+	{
+		Selector* rootSelector = bt->CreateNode<Selector>();
+
 		{
-			return (bt->GetKey<int>("DissFellCount") >= 10);
-		};
-	//Groggy* groggy = bt->CreateNode<Groggy>();
+			Condition* StateDie = bt->CreateNode<Condition>();
+			rootSelector->PushBackChild(StateDie);
+
+			bt->DeclareKey<int>("DissFellCount");
+			bt->SetKey<int>("DissFellCount", GetBoss()->DissfellCount);
+			StateDie->_successCondition = [bt]()->bool
+				{
+					return (bt->GetKey<int>("DissFellCount") >= 10);
+				};
+			//Groggy* groggy = bt->CreateNode<Groggy>();
+			//StateDie->Wrap(groggy);
+		}
+		{
+			Selector* PatternSelector = bt->CreateNode<Selector>();
+			rootSelector->PushBackChild(PatternSelector);
+			{
+				Condition* periodic_Pattern_Cool_Time = bt->CreateNode<Condition>();
+				PatternSelector->PushBackChild(periodic_Pattern_Cool_Time);
+
+				bt->DeclareKey<float>("Periodic_Pattern_Cool_Time");
+				bt->SetKey<float>("Periodic_Pattern_Cool_Time", GetBoss()->Periodic_Pattern_Cool_Time);
+				periodic_Pattern_Cool_Time->_successCondition = [bt]()->bool
+					{
+						return (bt->GetKey<int>("Periodic_Pattern_Cool_Time") < 0.f);
+					};
+				RandomSelector* PatternSelector = bt->CreateNode<RandomSelector>();
+			}
+		}
+	}
 }
