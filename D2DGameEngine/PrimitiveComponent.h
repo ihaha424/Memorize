@@ -198,8 +198,18 @@ public:
 		const CollisionProperty& collisionProperty
 	);
 
+	/**
+	 * @brief Dispatch a blocking hit event to the owner.
+	 * @param owner 
+	 * @param blockingHit 
+	 */
 	void DispatchBlockingHit(Actor& owner, HitResult& blockingHit);
 
+	/**
+	 * @brief Checks if another component is currently overlapping with this component
+	 * @param otherComp 
+	 * @return True when overlapping. False, otherwise.
+	 */
 	bool IsOverlappingComponent(PrimitiveComponent* otherComp) const {
 		auto it = currentlyOverlappingComponents.find(otherComp);
 		return it != currentlyOverlappingComponents.end();
@@ -260,10 +270,12 @@ public:
 	 * @return 
 	 */
 	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
-		DXVec2 c{ bounds.center.x, bounds.center.y };
+		BoxCircleBounds localBounds = CalculateLocalBounds();
+
+		DXVec2 c{ localBounds.center.x, localBounds.center.y };
 		c = DXVec2::Transform(c, _worldTransform);
 
-		DXVec2 e{ bounds.boxExtent.width, bounds.boxExtent.height };
+		DXVec2 e{ localBounds.boxExtent.width, localBounds.boxExtent.height };
 		e = DXVec2::Transform(e, _worldTransform);
 
 		return BoxCircleBounds(Box{ c, e });
@@ -277,50 +289,77 @@ public:
 		return BoxCircleBounds{};
 	}
 
+	/**
+	 * @brief Update the size of the bounds.
+	 */
 	virtual void UpdateBounds() override {
-		bounds = CalculateLocalBounds();
+		bounds = CalculateBounds(GetWorldTransform());
 	}
 
 	// Physics update
 	virtual void FixedUpdate(float _dt) override {
+		
+		if (bShouldOverlapTest)
+		{
+			UpdateOverlaps(nullptr, true);
+			bShouldOverlapTest = false;
+		}
+
 		if (bSimulatePhysics) 
 		{
-			// Simple semi-implicit Euler integration
-			dragForce = velocity.LengthSquared() * frictionCoefficient;
-			DXVec2 velDir = velocity; velDir.Normalize();
-			acceleration += velDir * -dragForce; // Damping effect
-			// Clamp acceleration
-			DXVec2 accDir = acceleration; accDir.Normalize();
-			float accClamped = Clamp(acceleration.Length(), minAcceleration, maxAccelaration);
-			acceleration = accDir * accClamped;
-			// Update velocity
-			velocity += acceleration * _dt;
-			acceleration = { 0, 0 }; // Reset acceleration each frame
+			if (bTeleported)
+			{
+				MoveComponent(teleportDelta, angularVelocity * _dt, true, nullptr, true);
+				bTeleported = false;
+			} 
+			else 
+			{
+				// Calculate drag force
+				dragForce = velocity.LengthSquared() * frictionCoefficient;
+				DXVec2 velDir = velocity; velDir.Normalize();
+				acceleration += velDir * -dragForce; // Damping effect
+				// Clamp acceleration
+				DXVec2 accDir = acceleration; accDir.Normalize();
+				float accClamped = Clamp(acceleration.Length(), minAcceleration, maxAccelaration);
+				acceleration = accDir * accClamped;
+				// Update velocity
+				velocity += acceleration * _dt;
+				acceleration = { 0, 0 }; // Reset acceleration each frame
 
-			// Clamp velocities
-			float speed = velocity.Length();
-			DXVec2 unitVel = velocity; unitVel.Normalize();
-			speed = Clamp(speed, minSpeed, maxSpeed);
-			velocity = unitVel * speed;
+				// Clamp velocities
+				float speed = velocity.Length();
+				DXVec2 unitVel = velocity; unitVel.Normalize();
+				speed = Clamp(speed, minSpeed, maxSpeed);
+				velocity = unitVel * speed;
 
-			// Sweep to move
-			HitResult hitResult;
-			MoveComponent(velocity * _dt, angularVelocity * _dt, true, &hitResult);
+				// Sweep to move
+				HitResult hitResult;
+				MoveComponent(velocity * _dt, angularVelocity * _dt, true, &hitResult);
 
-			if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
-				Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
+				if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
+					Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
+				}
 			}
 		}
 		else 
 		{
-			// Apply the movement
-			HitResult hitResult;
-			MoveComponent(velocity * _dt, angularVelocity * _dt, false, &hitResult);
+			if (bTeleported)
+			{
+				MoveComponent(teleportDelta, angularVelocity * _dt, true, nullptr, true);
+				bTeleported = false;
+			}
+			else
+			{
+				// Apply the movement
+				HitResult hitResult;
+				MoveComponent(velocity * _dt, angularVelocity * _dt, false, &hitResult);
 
-			if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
-				Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
+				if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
+					Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
+				}
 			}
 		}
+		
 	}
 
 	static void PullBackHit(HitResult& Hit, const DXVec2& Start, const DXVec2& End, const float Dist)
@@ -345,7 +384,8 @@ protected:
 		const DXVec2& delta,
 		const float angleDelta,
 		bool bSweep,
-		HitResult* outHitResult) override;
+		HitResult* outHitResult,
+		bool teleport) override;
 
 };
 

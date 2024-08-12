@@ -155,6 +155,7 @@
     <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="BoxComponent.h" />
+    <ClInclude Include="BrainComponent.h" />
     <ClInclude Include="CameraActor.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CameraShake.h" />
@@ -194,6 +195,7 @@
     <ClInclude Include="OverlapInfo.h" />
     <ClInclude Include="OverlapResult.h" />
     <ClInclude Include="CollisionSystem.h" />
+    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="PolygonComponent.h" />
     <ClInclude Include="PrimitiveComponent.h" />
@@ -261,6 +263,7 @@
     <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
     <ClCompile Include="BoxCircleBounds.h" />
+    <ClCompile Include="BrainComponent.cpp" />
     <ClCompile Include="CameraActor.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CapsuleComponent.cpp" />

@@ -1,48 +1,28 @@
-#include "BossAIController.h"
+#include "BossBehaviorTree.h"
+
+#include "D2DGameEngine/AIController.h"
 #include "Boss.h"
-#include "../D2DGameEngine/BehaviorTree.h"
-#include "../D2DGameEngine/Decorator.h"
-#include "../D2DGameEngine/Timer.h"
-#include "../D2DGameEngine/Debug.h"
 
-
-BossAIController::BossAIController(class World* _world) : AIController(_world)
+BossBehaviorTree::BossBehaviorTree(Actor* _aiOwner) : BehaviorTree(_aiOwner)
 {
-	SetTickProperties(TICK_UPDATE);
-}
-
-BossAIController::~BossAIController()
-{
-}
-
-void BossAIController::Update(float _dt)
-{
-	__super::Update(_dt);
-
-}
-
-void BossAIController::InitializeBoss()
-{
-	// Create the behavior tree
-	BehaviorTree* bt = CreateComponent<BehaviorTree>();
-
+	boss = static_cast<Boss*>(GetAIOwner()->GetPawn());
 	//Keu Declarations가 뭔지 모르겠음??
-	Root* root = bt->GetRoot();
-	bt->DeclareKey<Boss*>("Boss");
-	bt->SetKey<Boss*>("Boss", GetBoss());
+	Root* root = GetRoot();
+	DeclareKey<Boss*>("Boss");
+	SetKey<Boss*>("Boss", boss);
 	{
-		Selector* rootSelector = bt->CreateNode<Selector>();
+		Selector* rootSelector = CreateNode<Selector>();
 
 		{
 			//	Groggy
-			Condition* StateDie = bt->CreateNode<Condition>();
+			Condition* StateDie = CreateNode<Condition>();
 			rootSelector->PushBackChild(StateDie);
 
-			bt->DeclareKey<int>("DissFellCount");
-			bt->SetKey<int>("DissFellCount", GetBoss()->DissfellCount);
-			StateDie->_successCondition = [bt]()->bool
+			DeclareKey<int>("DissFellCount");
+			SetKey<int>("DissFellCount", boss->DissfellCount);
+			StateDie->_successCondition = [this]()->bool
 				{
-					return (bt->GetKey<int>("DissFellCount") >= 10);
+					return (GetKey<int>("DissFellCount") >= 10);
 				};
 			{
 				//Groggy
@@ -50,26 +30,26 @@ void BossAIController::InitializeBoss()
 		}
 		{
 			// BehaviorSelector
-			Selector* BehaviorSelector = bt->CreateNode<Selector>();
+			Selector* BehaviorSelector = CreateNode<Selector>();
 			rootSelector->PushBackChild(BehaviorSelector);
-			bt->DeclareKey<float>("Detection_Range");
-			bt->SetKey<float>("Detection_Range", GetBoss()->Detection_Range);
-			bt->DeclareKey<float>("Avoidance_Range");
-			bt->SetKey<float>("Avoidance_Range", GetBoss()->Avoidance_Range);
+			DeclareKey<float>("Detection_Range");
+			SetKey<float>("Detection_Range", boss->Detection_Range);
+			DeclareKey<float>("Avoidance_Range");
+			SetKey<float>("Avoidance_Range", boss->Avoidance_Range);
 
 			{
 				//	Periodic_Pattern
-				Condition* periodic_Pattern_Cool_Time = bt->CreateNode<Condition>();
+				Condition* periodic_Pattern_Cool_Time = CreateNode<Condition>();
 				BehaviorSelector->PushBackChild(periodic_Pattern_Cool_Time);
 
-				bt->DeclareKey<float>("Periodic_Pattern_Cool_Time");
-				bt->SetKey<float>("Periodic_Pattern_Cool_Time", GetBoss()->Periodic_Pattern_Cool_Time);
-				periodic_Pattern_Cool_Time->_successCondition = [bt]()->bool
+				DeclareKey<float>("Periodic_Pattern_Cool_Time");
+				SetKey<float>("Periodic_Pattern_Cool_Time", boss->Periodic_Pattern_Cool_Time);
+				periodic_Pattern_Cool_Time->_successCondition = [this]()->bool
 					{
-						return (bt->GetKey<int>("Periodic_Pattern_Cool_Time") < 0.f);
+						return (GetKey<int>("Periodic_Pattern_Cool_Time") < 0.f);
 					};
 				{
-					RandomSelector* BehaviorSelector = bt->CreateNode<RandomSelector>();
+					RandomSelector* BehaviorSelector = CreateNode<RandomSelector>();
 					periodic_Pattern_Cool_Time->Wrap(BehaviorSelector);
 					{
 						{
@@ -88,42 +68,42 @@ void BossAIController::InitializeBoss()
 				}
 
 				//	MoveAction
-				Condition* moveActionCondition = bt->CreateNode<Condition>();
+				Condition* moveActionCondition = CreateNode<Condition>();
 				BehaviorSelector->PushBackChild(moveActionCondition);
-				moveActionCondition->_successCondition = [bt]()->bool
+				moveActionCondition->_successCondition = [this]()->bool
 					{
-						return (bt->GetKey<float>("Detection_Range") < bt->GetKey<float>("Palyer_Distance"));
+						return (GetKey<float>("Detection_Range") < GetKey<float>("Palyer_Distance"));
 					};
 				{
 					//MoveACtion
 				}
 
 				//	Telproting
-				Condition* telprotingCondition = bt->CreateNode<Condition>();
+				Condition* telprotingCondition = CreateNode<Condition>();
 				BehaviorSelector->PushBackChild(telprotingCondition);
-				telprotingCondition->_successCondition = [bt]()->bool
+				telprotingCondition->_successCondition = [this]()->bool
 					{
-						return (bt->GetKey<float>("Palyer_Distance") < bt->GetKey<float>("Avoidance_Range"));
+						return (GetKey<float>("Palyer_Distance") < GetKey<float>("Avoidance_Range"));
 					};
 				{
 					//Telproting
 				}
 
 				//	BossPhase
-				Selector* BossPhase = bt->CreateNode<Selector>();
+				Selector* BossPhase = CreateNode<Selector>();
 				BehaviorSelector->PushBackChild(BossPhase);
-				bt->DeclareKey<float>("Boss_HP");
-				bt->SetKey<float>("Boss_HP", GetBoss()->hp);
+				DeclareKey<float>("Boss_HP");
+				SetKey<float>("Boss_HP", boss->hp);
 				{
-					Condition* BossPhase_One = bt->CreateNode<Condition>();
+					Condition* BossPhase_One = CreateNode<Condition>();
 					BossPhase->PushBackChild(BossPhase_One);
-					BossPhase_One->_successCondition = [bt]()->bool
+					BossPhase_One->_successCondition = [this]()->bool
 						{
-							return (75 < bt->GetKey<float>("Boss_HP") && bt->GetKey<float>("Boss_HP") <= 100);
+							return (75 < GetKey<float>("Boss_HP") && GetKey<float>("Boss_HP") <= 100);
 						};
 					{
 						// Boss Phase One
-						RandomSelector* Phase_One_Selector = bt->CreateNode<RandomSelector>();
+						RandomSelector* Phase_One_Selector = CreateNode<RandomSelector>();
 						BossPhase_One->Wrap(Phase_One_Selector);
 						{
 							//Pattern02
@@ -132,7 +112,7 @@ void BossAIController::InitializeBoss()
 						}
 						{
 							//	Phase_One_2
-							Sequence* Phase_One_2 = bt->CreateNode<Sequence>();
+							Sequence* Phase_One_2 = CreateNode<Sequence>();
 							Phase_One_Selector->PushBackChild(Phase_One_2);
 							{
 								//Pattern05
@@ -143,7 +123,7 @@ void BossAIController::InitializeBoss()
 						}
 						{
 							//	Phase_One_3
-							Sequence* Phase_One_3 = bt->CreateNode<Sequence>();
+							Sequence* Phase_One_3 = CreateNode<Sequence>();
 							Phase_One_Selector->PushBackChild(Phase_One_3);
 							{
 								//Pattern05
@@ -157,26 +137,26 @@ void BossAIController::InitializeBoss()
 						}
 					}
 				}
-				
+
 				{
-					Condition* BossPhase_Two = bt->CreateNode<Condition>();
+					Condition* BossPhase_Two = CreateNode<Condition>();
 					BossPhase->PushBackChild(BossPhase_Two);
-					BossPhase_Two->_successCondition = [bt]()->bool
+					BossPhase_Two->_successCondition = [this]()->bool
 						{
-							return (25 < bt->GetKey<float>("Boss_HP") && bt->GetKey<float>("Boss_HP") <= 75);
+							return (25 < GetKey<float>("Boss_HP") && GetKey<float>("Boss_HP") <= 75);
 						};
 					{
-						Selector* Phase_Pattern_Select = bt->CreateNode<Selector>();
+						Selector* Phase_Pattern_Select = CreateNode<Selector>();
 						BossPhase_Two->Wrap(Phase_Pattern_Select);
-						bt->DeclareKey<float>("Phase_Pattern_Cool_Time");
-						bt->SetKey<float>("Phase_Pattern_Cool_Time", GetBoss()->Phase_Pattern_Cool_Time);
+						DeclareKey<float>("Phase_Pattern_Cool_Time");
+						SetKey<float>("Phase_Pattern_Cool_Time", boss->Phase_Pattern_Cool_Time);
 						{
 							// 2 Phase Periodic Pattern
-							Condition* Phase_Two_Periodic = bt->CreateNode<Condition>();
+							Condition* Phase_Two_Periodic = CreateNode<Condition>();
 							Phase_Pattern_Select->PushBackChild(Phase_Two_Periodic);
-							Phase_Two_Periodic->_successCondition = [bt]()->bool
+							Phase_Two_Periodic->_successCondition = [this]()->bool
 								{
-									return (bt->GetKey<float>("Phase_Pattern_Cool_Time") < 0.f);
+									return (GetKey<float>("Phase_Pattern_Cool_Time") < 0.f);
 								};
 							{
 								//Pattern09
@@ -185,11 +165,11 @@ void BossAIController::InitializeBoss()
 						}
 						{
 							// Boss Phase Two
-							RandomSelector* Phase_Two_Selector = bt->CreateNode<RandomSelector>();
+							RandomSelector* Phase_Two_Selector = CreateNode<RandomSelector>();
 							Phase_Pattern_Select->PushBackChild(Phase_Two_Selector);
 							{
 								//	Phase_Two_1
-								Sequence* Phase_Two_1 = bt->CreateNode<Sequence>();
+								Sequence* Phase_Two_1 = CreateNode<Sequence>();
 								Phase_Two_Selector->PushBackChild(Phase_Two_1);
 								{
 									//Pattern02
@@ -199,7 +179,7 @@ void BossAIController::InitializeBoss()
 							}
 							{
 								//	Phase_Two_2
-								Sequence* Phase_Two_2 = bt->CreateNode<Sequence>();
+								Sequence* Phase_Two_2 = CreateNode<Sequence>();
 								Phase_Two_Selector->PushBackChild(Phase_Two_2);
 								{
 									//Pattern03
@@ -209,7 +189,7 @@ void BossAIController::InitializeBoss()
 							}
 							{
 								//	Phase_Two_3
-								Sequence* Phase_Two_3 = bt->CreateNode<Sequence>();
+								Sequence* Phase_Two_3 = CreateNode<Sequence>();
 								Phase_Two_Selector->PushBackChild(Phase_Two_3);
 								{
 									//Pattern05
@@ -220,7 +200,7 @@ void BossAIController::InitializeBoss()
 							}
 							{
 								//	Phase_Two_4
-								Sequence* Phase_Two_4 = bt->CreateNode<Sequence>();
+								Sequence* Phase_Two_4 = CreateNode<Sequence>();
 								Phase_Two_Selector->PushBackChild(Phase_Two_4);
 								{
 									//Pattern05
@@ -234,36 +214,36 @@ void BossAIController::InitializeBoss()
 				}
 
 				{
-					Condition* BossPhase_Three = bt->CreateNode<Condition>();
+					Condition* BossPhase_Three = CreateNode<Condition>();
 					BossPhase->PushBackChild(BossPhase_Three);
-					BossPhase_Three->_successCondition = [bt]()->bool
+					BossPhase_Three->_successCondition = [this]()->bool
 						{
-							return (bt->GetKey<float>("Boss_HP") <= 25);
+							return (GetKey<float>("Boss_HP") <= 25);
 						};
 					{
-						Selector* Phase_Pattern_Select = bt->CreateNode<Selector>();
+						Selector* Phase_Pattern_Select = CreateNode<Selector>();
 						BossPhase_Three->Wrap(Phase_Pattern_Select);
 						{
 							// 3 Phase Periodic Pattern 1
-							Condition* Phase_Three_Periodic = bt->CreateNode<Condition>();
+							Condition* Phase_Three_Periodic = CreateNode<Condition>();
 							Phase_Pattern_Select->PushBackChild(Phase_Three_Periodic);
-							Phase_Three_Periodic->_successCondition = [bt]()->bool
+							Phase_Three_Periodic->_successCondition = [this]()->bool
 								{
-									return (bt->GetKey<float>("Phase_Pattern_Cool_Time") < 0.f);
+									return (GetKey<float>("Phase_Pattern_Cool_Time") < 0.f);
 								};
 							{
 								// Phase_Three_Periodic_Selector
-								RandomSelector* Phase_Three_Periodic_Selector = bt->CreateNode<RandomSelector>();
+								RandomSelector* Phase_Three_Periodic_Selector = CreateNode<RandomSelector>();
 								Phase_Pattern_Select->PushBackChild(Phase_Three_Periodic_Selector);
 								{
 									// 3 Phase Periodic Pattern 1
-									Sequence* Phase_Three_1 = bt->CreateNode<Sequence>();
+									Sequence* Phase_Three_1 = CreateNode<Sequence>();
 									Phase_Three_Periodic_Selector->PushBackChild(Phase_Three_1);
 									{
 										//Pattern12
 										{
 											// Phase_Three_Periodic_1_RandomSelecor
-											RandomSelector* Phase_Three_Periodic_1_RandomSelecor = bt->CreateNode<RandomSelector>();
+											RandomSelector* Phase_Three_Periodic_1_RandomSelecor = CreateNode<RandomSelector>();
 											Phase_Three_1->PushBackChild(Phase_Three_Periodic_1_RandomSelecor);
 											{
 												//Pattern08
@@ -278,7 +258,7 @@ void BossAIController::InitializeBoss()
 								}
 								{
 									// 3 Phase Periodic Pattern 2
-									Sequence* Phase_Three_2 = bt->CreateNode<Sequence>();
+									Sequence* Phase_Three_2 = CreateNode<Sequence>();
 									Phase_Three_Periodic_Selector->PushBackChild(Phase_Three_2);
 									{
 										//Pattern13
@@ -290,15 +270,15 @@ void BossAIController::InitializeBoss()
 								}
 							}
 
-							
+
 						}
 						{
 							// Boss Phase Three
-							RandomSelector* Phase_Three_Selector = bt->CreateNode<RandomSelector>();
+							RandomSelector* Phase_Three_Selector = CreateNode<RandomSelector>();
 							Phase_Pattern_Select->PushBackChild(Phase_Three_Selector);
 							{
 								//	Phase_Three_1
-								Sequence* Phase_Three_1 = bt->CreateNode<Sequence>();
+								Sequence* Phase_Three_1 = CreateNode<Sequence>();
 								Phase_Three_Selector->PushBackChild(Phase_Three_1);
 								{
 									//Pattern09
@@ -309,7 +289,7 @@ void BossAIController::InitializeBoss()
 							}
 							{
 								//	Phase_Three_2
-								Sequence* Phase_Three_2 = bt->CreateNode<Sequence>();
+								Sequence* Phase_Three_2 = CreateNode<Sequence>();
 								Phase_Three_Selector->PushBackChild(Phase_Three_2);
 								{
 									//Pattern02
@@ -319,7 +299,7 @@ void BossAIController::InitializeBoss()
 							}
 							{
 								//	Phase_Three_3
-								Sequence* Phase_Three_3 = bt->CreateNode<Sequence>();
+								Sequence* Phase_Three_3 = CreateNode<Sequence>();
 								Phase_Three_Selector->PushBackChild(Phase_Three_3);
 								{
 									//Pattern11

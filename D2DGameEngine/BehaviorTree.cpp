@@ -1,5 +1,11 @@
 #include "BehaviorTree.h"
 
+BehaviorTree::BehaviorTree(Actor* _aiOwner) :
+	BrainComponent{ _aiOwner },
+	_lastStatus{ NodeStatus::Ready } {
+	_root = CreateNode<Root>();
+}
+
 void BehaviorTree::UpdateBehaviorTree(float dt) {
 	_lastStatus = TraverseFromRoot(dt);
 }

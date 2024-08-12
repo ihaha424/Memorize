@@ -1,38 +1,42 @@
 #include "MoveTo.h"
 
-#include "GameObject.h"
+#include "Pawn.h"
 #include "BehaviorTree.h"
+#include "AIController.h"
 
 #include "Debug.h"
 
 bool MoveTo::IsRunning() {
-	// TODO: Run only when key is set.
-	// if (!myBT->IsKeySet<Vec2f>(_key)) return false;
+	// Run only when key is set.
+	if (!bt->IsKeySet<Math::Vector2>(key)) return false;
 
-	// TODO: Get the target
-	// Vec2f target = myBT->GetKey<Vec2f>(_key);
-	// TODO: Get distance to the target
-	// float distance = Math2D::Distance(GetOwner()->GetWorldLocation(), target);
+	// Get the target
+	Math::Vector2 target = bt->GetKey<Math::Vector2>(key);
+	// Get distance to the target
+	float distanceSquared = Math::Vector2::DistanceSquared(GetPawn()->GetLocation(), target);
 	
-	// return distance > _acceptableRadius;
-	return false;
+	return distanceSquared > acceptableRadius * acceptableRadius;
 }
 
 void MoveTo::Run(float dt) {
-	/*if (!myBT->IsKeySet<Vec2f>(_key)) {
+	if (!bt->IsKeySet<Math::Vector2>(key)) {
 		failed = true;
 		return;
 	};
 
-	Vec2f target = myBT->GetKey<Vec2f>(_key);
-	float distance = Math2D::Distance(GetOwner()->GetWorldLocation(), target);
+	Math::Vector2 currLocation = GetPawn()->GetLocation();
+	Math::Vector2 target = bt->GetKey<Math::Vector2>(key);
+	float distance = Math::Vector2::Distance(currLocation, target);
 
 	LOG_VERBOSE(dbg::text("AI: Move To (", target.x, ", ", target.y, "), Range=", distance));
-	if (distance <= _acceptableRadius) return;
+	if (distance <= acceptableRadius) return;
 
-	Vec2f toTarget = target - GetOwner()->GetWorldLocation();
-	Vec2f dir = Math2D::Normalize(toTarget);*/
+	Math::Vector2 toTarget = target - currLocation;
+	toTarget.Normalize();
 
-	/*Movement* movement = GetOwner()->GetMovementComponent();
-	movement->AddInput(dir);*/
+	// Move to 
+	GetPawn()->SetVelocity(toTarget * /*TODO: How can I get movement speed*/ 500.f);
+	
+	// NOTE: Consider using Pathfinder instead
+	// GetAIController()->MoveToLocation(target);
 }

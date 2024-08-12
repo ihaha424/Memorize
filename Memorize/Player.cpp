@@ -17,15 +17,7 @@ Player::Player(class World* _world) : Character(_world)
 
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 
-	// NOTE: Test collision
-
-	BoxComponent* box = CreateComponent<BoxComponent>();
-	box->collisionProperty = CollisionProperty(CollsionPropertyPreset::BlockAll);
-	box->bSimulatePhysics = true;
-	box->bApplyImpulseOnDamage = false;
-	box->bGenerateOverlapEvent = true;
-	box->InitBoxExtent({ 124, 220 });
-	rootComponent = box;
+	
 
 	// 애니메이션
 	{

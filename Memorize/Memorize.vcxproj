@@ -150,6 +150,7 @@
     <ClCompile Include="AggressiveWavesEffect.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
+    <ClCompile Include="BossBehaviorTree.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
     <ClCompile Include="ChasingWaterBall.cpp" />
     <ClCompile Include="ChasingWaterBallProjectile.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GCameraComponent.cpp" />
     <ClCompile Include="GPlayerController.cpp" />
+    <ClCompile Include="GroggyAction.cpp" />
     <ClCompile Include="Heal.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
@@ -185,6 +187,7 @@
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="TestWall.cpp" />
     <ClCompile Include="TestActor2.cpp" />
     <ClCompile Include="TestLevel.cpp" />
@@ -197,6 +200,7 @@
     <ClInclude Include="AggressiveWavesEffect.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossAIController.h" />
+    <ClInclude Include="BossBehaviorTree.h" />
     <ClInclude Include="BuffSkill.h" />
     <ClInclude Include="ChasingWaterBall.h" />
     <ClInclude Include="ChasingWaterBallProjectile.h" />
@@ -211,12 +215,21 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="GCameraComponent.h" />
     <ClInclude Include="GPlayerController.h" />
+    <ClInclude Include="GroggyAction.h" />
     <ClInclude Include="Heal.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="MPRecovery.h" />
+    <ClInclude Include="Pattern1Action.h" />
+    <ClInclude Include="Pattern2Action.h" />
+    <ClInclude Include="Pattern3Action.h" />
+    <ClInclude Include="Pattern4Action.h" />
+    <ClInclude Include="Pattern5Action.h" />
+    <ClInclude Include="Pattern6Action.h" />
+    <ClInclude Include="Pattern7Action.h" />
+    <ClInclude Include="Pattern8Action.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAnimationStates.h" />
     <ClInclude Include="PlayerAttack.h" />
@@ -237,6 +250,7 @@
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />
+    <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="TestLevel.h" />
     <ClInclude Include="TighteningCircle.h" />
     <ClInclude Include="TighteningCircleEffect.h" />

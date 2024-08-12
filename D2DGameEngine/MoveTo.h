@@ -5,9 +5,9 @@
 struct MoveTo final : public Action {
 	using KeyName = std::string;
 
-	void SetObserveKey(const KeyName& key) { _key = key; }
-	void SetAcceptableRadius(float rad) { _acceptableRadius = rad; }
-	float GetAcceptableRadius() { return _acceptableRadius; }
+	void SetObserveLocationKey(const KeyName& _key) { key = _key; }
+	void SetAcceptableRadius(float rad) { acceptableRadius = rad; }
+	float GetAcceptableRadius() { return acceptableRadius; }
 
 	void Init() override { status = NodeStatus::Ready; }
 
@@ -16,6 +16,6 @@ struct MoveTo final : public Action {
 	void Run(float dt) override;
 
 private:
-	KeyName _key;
-	float _acceptableRadius{ 1.f };
+	KeyName key;
+	float acceptableRadius{ 1.f };
 };
