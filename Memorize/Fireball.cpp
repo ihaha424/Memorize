@@ -32,6 +32,7 @@ void Fireball::UseSkill()
 {
 	__super::UseSkill();
 
+	ReflectionIn();
 	if (nowUsingCount > projectileCount) return;
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];
@@ -46,7 +47,8 @@ void Fireball::UseSkill()
 
 void Fireball::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Fireball.txt");
-	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, projectileCount, projectileSpeed, commandList);
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/Fireball.txt");
+	reflectionResource->ParsingFile(0, damage, mana, commandList, projectileSpeed,
+		projectileDuration, conditionCount, castingTime, bCrash, text);
 }
 

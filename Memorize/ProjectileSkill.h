@@ -8,6 +8,7 @@ protected:
 	int projectileCount = 1;
 	int nowUsingCount = 0;
 	float projectileSpeed = 150.f;
+	float projectileDuration = 0.f;
 
 	Math::Vector2 attackDir;
 public:

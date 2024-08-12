@@ -7,6 +7,8 @@
 DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 {
 	projectileCount = 8;
+	ReflectionIn();
+	
 	SetID(ST_PROJECTILE, SE_DARKNESS);
 	commandList.push_back(0);
 	commandList.push_back(3);
@@ -31,6 +33,7 @@ void DarkSphere::UseSkill()
 
 void DarkSphere::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/DarkSphere.txt");
-	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, projectileCount, projectileSpeed, commandList);
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/DarkSphere.txt");
+	reflectionResource->ParsingFile(0, damage, mana, commandList, projectileSpeed,
+		projectileDuration, conditionCount, castingTime, bCrash, text);
 }

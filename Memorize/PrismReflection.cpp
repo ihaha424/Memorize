@@ -61,6 +61,6 @@ void PrismReflection::UseSkill()
 
 void PrismReflection::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/PrismReflection.txt");
-	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, projectileCount, projectileSpeed, commandList);
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PrismReflection.txt");
+	reflectionResource->ParsingFile(0, damage, mana, commandList, speed, conditionCount, castingTime, bCrash, text);
 }

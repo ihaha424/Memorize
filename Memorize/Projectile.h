@@ -8,7 +8,6 @@ protected:
 	int damage = 0;
 	float speed;
 	float duration;
-	bool bCrash; 
 
 	float delay = 0.f;
 

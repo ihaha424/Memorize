@@ -35,10 +35,12 @@ protected:
 	std::wstring strId;
 	ESkillType type;
 	int conditionCount = 0;
+	float damage = 0.f;
 	int mana = 0;
 	float castingTime = 0.f;
+	bool bCrash;
 	std::vector<BYTE>	commandList{};
-	
+	std::wstring text;
 public:
 	Skill(Actor* _owner);
 	virtual ~Skill();

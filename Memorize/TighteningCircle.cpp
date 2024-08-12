@@ -8,6 +8,7 @@
 TighteningCircle::TighteningCircle(Actor* _owner) : RangeSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
+	ReflectionIn();
 	SetID(ST_RANGE, SE_DARKNESS);
 	commandList.push_back(1);
 	commandList.push_back(3);
@@ -33,6 +34,6 @@ void TighteningCircle::UseSkill()
 
 void TighteningCircle::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/TighteningCircle.txt");
-	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, commandList);
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/TighteningCircle.txt");
+	reflectionResource->ParsingFile(0, damage, mana, commandList, conditionCount, castingTime, bCrash, text);
 }

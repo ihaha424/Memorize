@@ -54,7 +54,8 @@ void ChasingWaterBall::UseSkill()
 
 void ChasingWaterBall::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/ChasingWaterBall.txt");
-	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, projectileCount, projectileSpeed, commandList);
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/ChasingWaterBall.txt");
+	reflectionResource->ParsingFile(0, damage, mana, commandList, projectileSpeed,
+		projectileDuration, conditionCount, castingTime, bCrash, text);
 }
 
