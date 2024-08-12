@@ -1,12 +1,9 @@
 #pragma once
-#include "D2DGameEngine/Actor.h"
+#include "Projectile.h"
 
-class MeteorEffect : public Actor
+class MeteorEffect : public Projectile
 {
-	class BitmapComponent* bitmap;
-	class MovementComponent* movement;
-	float tighteningTime = 2.f;
-	float elapsedTime = 0.f;
+
 	Math::Vector2 attackPos;
 public:
 	MeteorEffect(World* _world);

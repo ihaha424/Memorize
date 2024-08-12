@@ -10,11 +10,9 @@
 ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
+	ReflectionIn();
 
 	SetID(ST_PROJECTILE, SE_WATER);
-	commandList.push_back(0);
-	commandList.push_back(1);
-	commandList.push_back(1);
 
 	projectileCount = 3;
 

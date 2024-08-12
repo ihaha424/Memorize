@@ -3,7 +3,6 @@
 
 FireballProjectile::FireballProjectile(World* _world) : Projectile(_world)
 {
-	BitmapComponent* bm = GetComponent<BitmapComponent>();
 	bm->SetSprite(L"TestResource/fireball.png");
 }
 

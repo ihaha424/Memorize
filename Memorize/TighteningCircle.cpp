@@ -10,8 +10,7 @@ TighteningCircle::TighteningCircle(Actor* _owner) : RangeSkill(_owner)
 	SetTickProperties(TICK_UPDATE);
 	ReflectionIn();
 	SetID(ST_RANGE, SE_DARKNESS);
-	commandList.push_back(1);
-	commandList.push_back(3);
+
 	//원 효과 액터 생성
 	circleEffect = GetWorld()->GetCurLevel()->CreateActor<TighteningCircleEffect>();
 	
