@@ -51,7 +51,8 @@ public:
 	}
 
 	template<PrimitiveComponentType T>
-	T* CreateComponent() {
+	T* CreateComponent() 
+	{
 		T* component = new T(this);
 		renderSequence.insert({ component->GetComponentLocation().y, component });
 		components.insert({ std::type_index(typeid(T)), component });

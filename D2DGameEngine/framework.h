@@ -185,7 +185,7 @@ D2D_Mat3x2F ToD2DMat(const Math::Matrix& mat) {
 
 constexpr float EPSILON = 1e-8;
 
-inline constexpr
+inline
 bool EpsilonEquals(float a, float b) {
 	return std::abs(a - b) < EPSILON;
 }

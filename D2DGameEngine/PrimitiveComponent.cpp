@@ -1,5 +1,6 @@
 #include "PrimitiveComponent.h"
 
+#include "Actor.h"
 #include "World.h"
 #include "IntersectionUtil.h"
 

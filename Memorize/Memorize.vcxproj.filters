@@ -72,6 +72,12 @@
     <Filter Include="Source Files\App\Skill\Range\TighteningCircle">
       <UniqueIdentifier>{d2bd4736-fd6f-42d7-bc42-e74f34142804}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\AI">
+      <UniqueIdentifier>{100ea550-d4fb-4968-afd8-80532f347689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\AI\ActionNodes">
+      <UniqueIdentifier>{8206af25-decc-48c2-9a90-d17338c1466f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -193,6 +199,12 @@
     </ClCompile>
     <ClCompile Include="DarkSphereSpawner.cpp">
       <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="TestWall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor2.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

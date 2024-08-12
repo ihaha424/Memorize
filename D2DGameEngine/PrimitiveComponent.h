@@ -2,8 +2,6 @@
 
 #include "SceneComponent.h"
 
-#include "Actor.h"
-
 #include "CollisionShape.h"
 #include "CollisionProperty.h"
 
@@ -13,6 +11,7 @@
 
 #include "Debug.h"
 
+class Actor;
 /**
  * @brief geometry to be rendered or used as collision.
  */
@@ -352,5 +351,5 @@ protected:
 
 // TODO: Line trace, sphere trace, sphere overlap
 
-template<typename T>
+template<class T>
 concept PrimitiveComponentType = std::is_base_of<PrimitiveComponent, T>::value;
