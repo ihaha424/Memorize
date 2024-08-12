@@ -156,6 +156,7 @@
     <ClCompile Include="CoolTime.cpp" />
     <ClCompile Include="DarkSphere.cpp" />
     <ClCompile Include="DarkSphereProjectile.cpp" />
+    <ClCompile Include="Enchant.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
+    <ClCompile Include="MPRecovery.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="PlayerAttackReady.cpp" />
@@ -202,6 +204,7 @@
     <ClInclude Include="CoolTime.h" />
     <ClInclude Include="DarkSphere.h" />
     <ClInclude Include="DarkSphereProjectile.h" />
+    <ClInclude Include="Enchant.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />
     <ClInclude Include="GameApp.h" />
@@ -213,6 +216,7 @@
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
+    <ClInclude Include="MPRecovery.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAnimationStates.h" />
     <ClInclude Include="PlayerAttack.h" />

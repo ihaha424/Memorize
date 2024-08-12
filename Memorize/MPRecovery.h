@@ -4,7 +4,7 @@ class MPRecovery : public BuffSkill
 {
 	float mpRecovery = 0.f;
 public:
-	MPRecovery();
+	MPRecovery(Actor* _owner);
 	virtual ~MPRecovery();
 };
 

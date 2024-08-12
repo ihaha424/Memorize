@@ -146,9 +146,6 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
-    <ClCompile Include="Heal.cpp">
-      <Filter>Source Files\App\Skill\Buff</Filter>
-    </ClCompile>
     <ClCompile Include="MPMaxIncrease.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClCompile>
@@ -205,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="AggressiveWavesEffect.cpp">
       <Filter>Source Files\App\Skill\Range\AggressiveWaves</Filter>
+    </ClCompile>
+    <ClCompile Include="MPRecovery.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="Enchant.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="Heal.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,9 +289,6 @@
     <ClInclude Include="PlayerState.h">
       <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
     </ClInclude>
-    <ClInclude Include="Heal.h">
-      <Filter>Source Files\App\Skill\Buff</Filter>
-    </ClInclude>
     <ClInclude Include="MPMaxIncrease.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
@@ -342,6 +345,15 @@
     </ClInclude>
     <ClInclude Include="AggressiveWavesEffect.h">
       <Filter>Source Files\App\Skill\Range\AggressiveWaves</Filter>
+    </ClInclude>
+    <ClInclude Include="MPRecovery.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Enchant.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Heal.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
