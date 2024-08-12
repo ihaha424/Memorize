@@ -7,6 +7,8 @@
 
 Projectile::Projectile(World* _world) : Actor(_world)
 {
+	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
+
 	rootComponent = CreateComponent<BitmapComponent>();
 	rootComponent->AddChild(CreateComponent<MovementComponent>());
 }

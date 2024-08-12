@@ -44,7 +44,7 @@ void TestLevel::Enter()
 	}
 
 	{
-		TestWall* testWall = CreateActor<TestWall>();
-		testWall->SetLocation(960, -300);
+		/*TestWall* testWall = CreateActor<TestWall>();
+		testWall->SetLocation(960, -300);*/
 	}
 }

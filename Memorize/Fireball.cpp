@@ -9,7 +9,6 @@
 
 Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 {
-	SetTickProperties(TICK_UPDATE);
 	SetID(ST_PROJECTILE, SE_FIRE);
 	commandList.push_back(0);
 	commandList.push_back(0);

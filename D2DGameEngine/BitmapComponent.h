@@ -24,7 +24,7 @@ public:
 		frame{ 0.f, 0.f, 0.f, 0.f },
 		sprite{ nullptr },
 		imageTransform{ Math::Matrix::Identity } {
-		SetTickProperties(TICK_RENDER);
+		SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 	}
 
 	virtual ~BitmapComponent() {

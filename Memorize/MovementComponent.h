@@ -1,4 +1,6 @@
 #pragma once
+
+#include "common.h"
 #include "../D2DGameEngine/SceneComponent.h"
 
 class MovementComponent : public SceneComponent

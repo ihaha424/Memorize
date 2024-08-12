@@ -21,9 +21,8 @@ Player::Player(class World* _world) : Character(_world)
 
 	BoxComponent* box = CreateComponent<BoxComponent>();
 	box->collisionProperty = CollisionProperty(CollsionPropertyPreset::BlockAll);
-	box->bSimulatePhysics = false;
+	box->bSimulatePhysics = true;
 	box->bApplyImpulseOnDamage = false;
-	//box->bGenerateHitEvent = true;
 	box->bGenerateOverlapEvent = true;
 	box->InitBoxExtent({ 124, 220 });
 	rootComponent = box;

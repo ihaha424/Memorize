@@ -11,6 +11,8 @@
 #include "OverlapResult.h"
 #include "OverlapInfo.h"
 
+#include "Debug.h"
+
 /**
  * @brief geometry to be rendered or used as collision.
  */
@@ -283,6 +285,7 @@ public:
 	virtual void FixedUpdate(float _dt) override {
 		if (bSimulatePhysics) 
 		{
+			LOG_MESSAGE(dbg::text(velocity.Length()));
 			// Simple semi-implicit Euler integration
 			dragForce = velocity.LengthSquared() * frictionCoefficient;
 			DXVec2 velDir = velocity; velDir.Normalize();

@@ -87,7 +87,7 @@ public:
 	}
 
 	void SetComponentVelocity(Math::Vector2 _velocity) {
-		velocity = velocity;
+		velocity = _velocity;
 	}
 
 	void AddComponentVelocity(Math::Vector2 _velocity) {
