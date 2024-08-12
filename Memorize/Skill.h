@@ -53,6 +53,7 @@ public:
 	 * @brief 스킬을 사용합니다. 스킬 사용 카운트가 증가합니다. 
 	 */
 	virtual void UseSkill();
+	const float GetMana() const { return 0.0f; }
 
 	void SetID(ESkillType _type, ESkillElement _element) { id.type = _type; id.element = _element; }
 	ULONGLONG GetID() { return id.id; };

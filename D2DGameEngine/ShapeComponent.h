@@ -6,7 +6,11 @@ class ShapeComponent : public PrimitiveComponent {
 
 public:
 	ShapeComponent(Actor* _owner)  : PrimitiveComponent(_owner){
+#ifndef NDEBUG
+		isVisible = true;
+#else 
 		isVisible = false;
+#endif
 		SetCollisionEnabled(CollisionEnabled::EnableCollision);
 		SetTickProperties(TICK_PHYSICS | TICK_RENDER);
 	}

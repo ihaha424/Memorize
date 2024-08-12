@@ -30,6 +30,7 @@ protected:
 	// Component Velocity
 	DXVec2 velocity{ 0.f, 0.f };
 	float angularVelocity{ 0.f };
+
 public:
 
 	SceneComponent(Actor* _owner) :

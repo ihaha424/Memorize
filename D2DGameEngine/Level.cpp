@@ -91,13 +91,38 @@ void Level::PostUpdate(float _dt)
 		});
 }
 
+void Level::PrepareRender()
+{
+	std::vector<Actor*> renderDirtyActorSet;
+
+	// Render dirty flag set
+	for (auto it = actorRenderSequence.begin(); it != actorRenderSequence.end();)
+	{
+		auto [prevY, actor] = *it;
+
+		if (EpsilonEquals(prevY, actor->GetLocation().y)) {
+			++it;
+			continue;
+		};
+
+		actor->bRenderDirty = true;
+		renderDirtyActorSet.push_back(actor);
+		it = actorRenderSequence.erase(it);
+	}
+
+	for (Actor* actor : renderDirtyActorSet)
+	{
+		actorRenderSequence.insert({ actor->GetLocation().y, actor });
+	}
+}
+
 void Level::Render(D2DRenderer* _renderer)
 {
 	Math::Matrix cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
 	cameraTF = cameraTF * Math::Matrix::CreateTranslation(-CameraComponent::screenSize.x / 2, -CameraComponent::screenSize.y / 2, 0.f);
 	_renderer->PushTransform(cameraTF.Invert());
 
-	for (auto actor : actorList)
+	for (auto [_, actor] : actorRenderSequence)
 	{
 		if (actor->CheckTickProperty(TICK_RENDER) && actor->GetStatus() == OS_ACTIVE)
 		{

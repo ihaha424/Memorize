@@ -4,7 +4,7 @@
 #include "D2DGameEngine/FSMComponent.h"
 
 
-enum InputEvent { Fire, Water, Light, Dark, Attack, Move, Memorize};
+enum InputEvent { Fire, Water, Light, Dark, Attack, Move, Memorize, Teleport, Cancellation};
 
 class PlayerState
 	:public FSMState
@@ -23,6 +23,8 @@ public:
 	virtual void Attack();
 	virtual void Move();
 	virtual void Memorize();
+	virtual void Teleport();
+	virtual void Cancellation();
 
 	// FSMState을(를) 통해 상속됨
 	virtual void Enter() = 0;

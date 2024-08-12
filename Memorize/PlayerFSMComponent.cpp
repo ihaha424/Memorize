@@ -8,7 +8,7 @@ void PlayerFSMComponent::BeginPlay()
 	CreateState<PlayerCasting>(L"PlayerCasting");
 	CreateState<PlayerAttackReady>(L"PlayerAttackReady");
 	CreateState<PlayerAttack>(L"PlayerAttack");
-//	CreateState<PlayerBlinking>(L"PlayerBlinking");
+	CreateState<PlayerBlinking>(L"PlayerBlinking");
 	SetNextState(L"PlayerIdle");
 }
 
@@ -37,6 +37,10 @@ void PlayerFSMComponent::InputKey(int _key)
 		break;
 	case InputEvent::Memorize:
 		ActionState->Memorize();
+	case InputEvent::Teleport:
+		ActionState->Teleport();
+	case InputEvent::Cancellation:
+		ActionState->Cancellation();
 		break;
 default:
 		break;

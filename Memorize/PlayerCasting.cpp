@@ -1,12 +1,35 @@
 #include "PlayerCasting.h"
 #include "GPlayerController.h"
+#include "Player.h"
 
 void PlayerCasting::Enter()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	playerController->FindCurSkiil()->SetCommandList(commandList);
 
-	//마나 소모, 실패시 바로 이전 상태로
+	//if(마나 없음 -> return)
+	float skillMana = playerController->FindCurSkiil()->GetMana();
+	Stat& playerStat = playerController->GetPlayer()->GetStat();
+
+	//심판의 빛 -1은 마나 전체 소모 -> 마나 오버라이즈면 어케해?
+	if (skillMana == -1)
+	{
+		//playerController->FindCurSkiil()->Castring Time = playerStat.mp * 0.02f;
+		playerStat.mp = 0.f;
+	}
+
+	if (playerStat.mp >= skillMana)
+	{
+		playerStat.mp -= skillMana;
+		owner->SetNextState(L"PlayerCasting");
+	}
+	else
+	{
+		playerController->InitializeSkillInfo();
+		owner->SetNextState(L"PlayerIdle");
+		return;
+	}
+
+	playerController->FindCurSkiil()->SetCommandList(commandList);
 }
 
 void PlayerCasting::Update(float _dt)

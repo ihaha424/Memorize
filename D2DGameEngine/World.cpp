@@ -165,8 +165,13 @@ void World::PostUpdate(float _dt)
 
 void World::Render(D2DRenderer* _renderer)
 {
+	// ·»´õ ¼ø¼­ Á¤·Ä
+	CurLevel->PrepareRender();
+
+	// ÇöÀç ·¹º§ ·»´õ
 	CurLevel->Render(_renderer);
 
+	// UI ·»´õ
 	for (auto canvas : activeUICanvasList)
 	{
 		canvas->Render(_renderer);

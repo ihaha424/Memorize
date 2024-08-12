@@ -116,11 +116,40 @@ void Actor::PostUpdate(float _dt)
 	}
 }
 
+void Actor::PrepareRender()
+{
+	// Render dirty set
+	std::vector<class PrimitiveComponent*> renderDirtyComponentSet;
+
+	// Render dirty flag set
+	for (auto it = renderSequence.begin(); it != renderSequence.end();)
+	{
+		auto [prevY, primComp] = *it;
+
+		if (EpsilonEquals(prevY, primComp->GetComponentLocation().y)) {
+			++it;
+			continue;
+		};
+
+		primComp->bRenderDirty = true;
+		renderDirtyComponentSet.push_back(primComp);
+		it = renderSequence.erase(it);
+	}
+
+	for (PrimitiveComponent* primComp : renderDirtyComponentSet) 
+	{
+		renderSequence.insert({ primComp->GetComponentLocation().y, primComp });
+	}
+}
+
 void Actor::Render(D2DRenderer* _renderer)
 {
-	for (auto [_, component] : components) {
-		if (component->CheckTickProperty(TICK_RENDER) && component->GetStatus() == OS_ACTIVE)
-			component->Render(_renderer);
+	for (auto [_, primComp] : renderSequence)
+	{
+		if (primComp->isVisible &&
+			primComp->CheckTickProperty(TICK_RENDER) &&
+			primComp->GetStatus() == OS_ACTIVE)
+			primComp->Render(_renderer);
 	}
 }
 

@@ -20,8 +20,9 @@ class PrimitiveComponent : public SceneComponent {
 	using Super = SceneComponent;
 
 public:
-	bool isVisible{ true };
-	
+	bool isVisible{ true };			// false 면 렌더 안함
+	bool bRenderDirty{ false };	// Y 값이 변하면 렌더 더티
+
 	// A hit event generated only for one of the components 
 	// that has bSimulationPhysics true.
 	// It is because sweeping can be done only when physics is on.
@@ -285,7 +286,6 @@ public:
 	virtual void FixedUpdate(float _dt) override {
 		if (bSimulatePhysics) 
 		{
-			LOG_MESSAGE(dbg::text(velocity.Length()));
 			// Simple semi-implicit Euler integration
 			dragForce = velocity.LengthSquared() * frictionCoefficient;
 			DXVec2 velDir = velocity; velDir.Normalize();
@@ -351,3 +351,6 @@ protected:
 };
 
 // TODO: Line trace, sphere trace, sphere overlap
+
+template<typename T>
+concept PrimitiveComponentType = std::is_base_of<PrimitiveComponent, T>::value;
