@@ -12,16 +12,17 @@ bool BoxComponent::CheckSweepComponent(
 	const DXMat4x4& rotation, 
 	const CollisionShape& collisionShape, 
 	const ECollisionChannel collisionChannel,
-	const CollisionProperty& collisionProperty)
-{
+	const CollisionProperty& collisionProperty
+) {
 	outHit = {};
 	// Early out if collision is not enabled
 	if (!bCanCollide) return false;
 
-	if (GetCollisionObjectType() != collisionChannel) return false;
+	if (this->collisionProperty.GetCollisionResponse(collisionChannel) == CollisionResponse::Ignore ||
+		collisionProperty.GetCollisionResponse(GetCollisionObjectType()) == CollisionResponse::Ignore) return false;
 
 	CollisionShape myCollisionShape;
-	this->GetCollisionShape(1.f, myCollisionShape);
+	if (!this->GetCollisionShape(1.f, myCollisionShape)) return false;
 
 	if (myCollisionShape.IsNearlyZero() || collisionShape.IsNearlyZero())
 		return false;
@@ -46,18 +47,19 @@ bool BoxComponent::CheckSweepComponent(
 
 	bool hasHit{ false };
 	DXVec2 pos{ start };
+	bool bStartPenetrating{ true };
 	for (uint step = 0; step <= numSteps; ++step) {
 		bool res{ false };
 		switch (collisionShape.shapeType)
 		{
-		case ECollisionShape::Box: {
+		case ECollisionShape::Box: {	// NOTE: Checked it works!
 			// Build box from the collision shape and rotation
 			Box otherBox = Box::BuildAABB(pos, collisionShape.GetExtent());
 			otherBox.ul = DXVec2::Transform(otherBox.ul, rotation);
 			otherBox.lr = DXVec2::Transform(otherBox.lr, rotation);
 			res = intersectionUtil::BoxBoxIntersectWithResult(otherBox, myBox, outHit);
 		}	break;
-		case ECollisionShape::Capsule: {
+		case ECollisionShape::Capsule: {	// NOTE: Checked it works!
 			// Build Capsule from the collision shape and rotation
 			Capsule otherCapsule{
 				.center = pos,
@@ -67,7 +69,7 @@ bool BoxComponent::CheckSweepComponent(
 			};
 			res = intersectionUtil::CapsuleBoxIntersectWithResult(otherCapsule, myBox, outHit);
 		}	break;
-		case ECollisionShape::Circle: {
+		case ECollisionShape::Circle: {	// NOTE: Checked it works!
 			// Build Circle from the collision shape and rotation
 			Circle otherCircle{
 				.center = pos,
@@ -75,7 +77,7 @@ bool BoxComponent::CheckSweepComponent(
 			};
 			res = intersectionUtil::CircleBoxIntersectWithResult(otherCircle, myBox, outHit);
 		}	break;
-		case ECollisionShape::Polygon: {
+		case ECollisionShape::Polygon: {	// TODO: Test required.
 			// Build Polygon from the collision shape and rotation
 			TPolygon otherPolygon{ std::move(collisionShape.GetPolygonVertices()) };
 			for (Math::Vector2& point : otherPolygon.points) {
@@ -86,9 +88,11 @@ bool BoxComponent::CheckSweepComponent(
 		}	break;
 		}
 
-		pos += deltaDir * stepSize;
 		hasHit = res;
 		if (hasHit) break;
+
+		pos += deltaDir * stepSize;
+		bStartPenetrating = false;
 	}
 
 	if (hasHit) {
@@ -101,7 +105,7 @@ bool BoxComponent::CheckSweepComponent(
 		}
 
 		outHit.bBlockingHit = bBlockingHit;
-		outHit.bStartPenetrating = true;
+		outHit.bStartPenetrating = bStartPenetrating;
 		outHit.hitComponent = this;
 
 		outHit.location = pos;
@@ -116,99 +120,24 @@ bool BoxComponent::CheckSweepComponent(
 	return hasHit;
 }
 
-void BoxComponent::Render(D2DRenderer* _renderer)
-{
-	_renderer->PushTransform(GetWorldTransform());
+bool BoxComponent::CheckOverlapComponent(
+	OverlapResult& outOverlap, 
+	const DXVec2& pos, 
+	const DXMat4x4& rotation, 
+	const CollisionShape& collisionShape, 
+	const ECollisionChannel collisionChannel, 
+	const CollisionProperty& collisionProperty
+) {
+	if (!bCanCollide) return false;
 
-#ifndef NDEBUG
-	D2D_RectF dest{
-		.left = -boxExtent.width / 2.f,
-		.top = boxExtent.height / 2.f,
-		.right = boxExtent.width / 2.f,
-		.bottom = -boxExtent.height / 2.f
-	};
-
-	_renderer->DrawBorder(
-		{ dest.left, dest.top },
-		{ dest.right, dest.bottom },
-		D2D_Color::Red
-	);
-#endif
-
-	_renderer->PopTransform();
-}
-
-bool BoxComponent::CheckComponentOverlapComponentImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation)
-{
-	if (!bCanCollide || !primComp->bCanCollide) return false;
-	if (collisionProperty.GetCollisionResponse(primComp->GetCollisionObjectType()) == CollisionResponse::Ignore) return false;
-
-	CollisionShape myCollisionShape;
-	this->GetCollisionShape(1.f, myCollisionShape);
-	CollisionShape otherCollisionShape;
-	primComp->GetCollisionShape(1.f, otherCollisionShape);
-
-	if (myCollisionShape.IsNearlyZero() || otherCollisionShape.IsNearlyZero())
+	if (this->collisionProperty.GetCollisionResponse(collisionChannel) == CollisionResponse::Ignore) 
 		return false;
 
-	// Build my Box
-	Box myBox = Box::BuildAABB({0.f, 0.f}, boxExtent);
-	myBox.ul = DXVec2::Transform(myBox.ul, GetWorldTransform());
-	myBox.lr = DXVec2::Transform(myBox.lr, GetWorldTransform());
-
-	bool res{ false };
-	switch (otherCollisionShape.shapeType)
-	{
-	case ECollisionShape::Box: {
-		// Build box from the collision shape and rotation
-		Box otherBox = Box::BuildAABB(pos, otherCollisionShape.GetExtent());
-		otherBox.ul = DXVec2::Transform(otherBox.ul, rotation);
-		otherBox.lr = DXVec2::Transform(otherBox.lr, rotation);
-		res = intersectionUtil::BoxBoxIntersect(myBox, otherBox);
-	}	break;
-	case ECollisionShape::Capsule: {
-		// Build Capsule from the collision shape and rotation
-		Capsule otherCapsule{
-			.center = pos,
-			.direction = DXVec2::Transform(DXVec2::UnitY, rotation),
-			.extent = otherCollisionShape.GetCapsuleHalfHeight(),
-			.radius = otherCollisionShape.GetCapsuleRadius()
-		};
-		res = intersectionUtil::BoxCapsuleIntersect(myBox, otherCapsule);
-	}	break;
-	case ECollisionShape::Circle: {
-		// Build Circle from the collision shape and rotation
-		Circle otherCircle{
-			.center = pos,
-			.radius = otherCollisionShape.GetCircleRadius()
-		};
-		res = intersectionUtil::BoxCircleIntersect(myBox, otherCircle);
-	}	break;
-	case ECollisionShape::Polygon: {
-		// Build Polygon from the collision shape and rotation
-		TPolygon otherPolygon{ std::move(otherCollisionShape.GetPolygonVertices()) };
-		for (Math::Vector2& point : otherPolygon.points) {
-			point += pos;
-			point = DXVec2::Transform(point, rotation);
-		}
-		res = intersectionUtil::BoxPolygonIntersect(myBox, otherPolygon);
-	}	break;
-	}
-
-	return res;
-}
-
-bool BoxComponent::CheckComponentOverlapComponentWithResultImpl(PrimitiveComponent* primComp, const DXVec2& pos, const DXMat4x4& rotation, std::vector<OverlapResult>& outOverlap)
-{
-	if (!bCanCollide || !primComp->bCanCollide) return false;
-	if (collisionProperty.GetCollisionResponse(primComp->GetCollisionObjectType()) == CollisionResponse::Ignore) return false;
-
 	CollisionShape myCollisionShape;
-	this->GetCollisionShape(1.f, myCollisionShape);
-	CollisionShape otherCollisionShape;
-	primComp->GetCollisionShape(1.f, otherCollisionShape);
+	if (!this->GetCollisionShape(1.f, myCollisionShape)) 
+		return false;
 
-	if (myCollisionShape.IsNearlyZero() || otherCollisionShape.IsNearlyZero())
+	if (myCollisionShape.IsNearlyZero() || collisionShape.IsNearlyZero())
 		return false;
 
 	// Build my Box
@@ -218,11 +147,11 @@ bool BoxComponent::CheckComponentOverlapComponentWithResultImpl(PrimitiveCompone
 
 	bool res{ false };
 	HitResult hitResult;
-	switch (otherCollisionShape.shapeType)
+	switch (collisionShape.shapeType)
 	{
 	case ECollisionShape::Box: {
 		// Build box from the collision shape and rotation
-		Box otherBox = Box::BuildAABB(pos, otherCollisionShape.GetExtent());
+		Box otherBox = Box::BuildAABB(pos, collisionShape.GetExtent());
 		otherBox.ul = DXVec2::Transform(otherBox.ul, rotation);
 		otherBox.lr = DXVec2::Transform(otherBox.lr, rotation);
 		res = intersectionUtil::BoxBoxIntersectWithResult(otherBox, myBox, hitResult);
@@ -231,9 +160,9 @@ bool BoxComponent::CheckComponentOverlapComponentWithResultImpl(PrimitiveCompone
 		// Build Capsule from the collision shape and rotation
 		Capsule otherCapsule{
 			.center = pos,
-			.direction = DXVec2::Transform(DXVec2::UnitY, rotation),
-			.extent = otherCollisionShape.GetCapsuleHalfHeight(),
-			.radius = otherCollisionShape.GetCapsuleRadius()
+			.direction = DXVec2::Transform(-DXVec2::UnitY, rotation),
+			.extent = collisionShape.GetCapsuleHalfHeight(),
+			.radius = collisionShape.GetCapsuleRadius()
 		};
 		res = intersectionUtil::CapsuleBoxIntersectWithResult(otherCapsule, myBox, hitResult);
 	}	break;
@@ -241,13 +170,13 @@ bool BoxComponent::CheckComponentOverlapComponentWithResultImpl(PrimitiveCompone
 		// Build Circle from the collision shape and rotation
 		Circle otherCircle{
 			.center = pos,
-			.radius = otherCollisionShape.GetCircleRadius()
+			.radius = collisionShape.GetCircleRadius()
 		};
 		res = intersectionUtil::CircleBoxIntersectWithResult(otherCircle, myBox, hitResult);
 	}	break;
 	case ECollisionShape::Polygon: {
 		// Build Polygon from the collision shape and rotation
-		TPolygon otherPolygon{ std::move(otherCollisionShape.GetPolygonVertices()) };
+		TPolygon otherPolygon{ std::move(collisionShape.GetPolygonVertices()) };
 		for (Math::Vector2& point : otherPolygon.points) {
 			point += pos;
 			point = DXVec2::Transform(point, rotation);
@@ -259,16 +188,88 @@ bool BoxComponent::CheckComponentOverlapComponentWithResultImpl(PrimitiveCompone
 	if (res) {
 		// Check collision type 
 		bool bBlockingHit{ false };
-		if (collisionProperty.GetCollisionResponse(primComp->GetCollisionObjectType()) == CollisionResponse::Block &&
-			primComp->collisionProperty.GetCollisionResponse(GetCollisionObjectType()) == CollisionResponse::Block)
+		if (collisionProperty.GetCollisionResponse(this->GetCollisionObjectType()) == CollisionResponse::Block &&
+			this->collisionProperty.GetCollisionResponse(collisionProperty.objectType) == CollisionResponse::Block)
 		{
 			bBlockingHit = true;
 		}
 
-		OverlapResult overlapResult{
-			.bBlockingHit = bBlockingHit,
-			.component = primComp
-		};
+		outOverlap.bBlockingHit = bBlockingHit;
+		outOverlap.component = this;
+	}
+
+	return res;
+}
+
+void BoxComponent::Render(D2DRenderer* _renderer)
+{
+#ifndef NDEBUG
+	_renderer->PushTransform(GetWorldTransform());
+
+	D2D_RectF dest{
+		.left = -boxExtent.width / 2.f,
+		.top = -boxExtent.height / 2.f,
+		.right = boxExtent.width / 2.f,
+		.bottom = boxExtent.height / 2.f
+	};
+
+	_renderer->DrawBorder(
+		{ dest.left, dest.top },
+		{ dest.right, dest.bottom },
+		D2D_Color::Red
+	);
+
+	_renderer->PopTransform();
+#endif
+}
+
+bool BoxComponent::CheckComponentOverlapComponentImpl(
+	PrimitiveComponent* primComp, 
+	const DXVec2& pos, 
+	const DXMat4x4& rotation
+) {
+	if (!bCanCollide || !primComp->bCanCollide) return false;
+	if (collisionProperty.GetCollisionResponse(primComp->GetCollisionObjectType()) == CollisionResponse::Ignore)
+		return false;
+
+	CollisionShape otherCollisionShape;
+	primComp->GetCollisionShape(1.f, otherCollisionShape);
+
+	OverlapResult overlapResult;
+	bool res = CheckOverlapComponent(
+		overlapResult,
+		pos, rotation,
+		otherCollisionShape,
+		primComp->GetCollisionObjectType(),
+		primComp->collisionProperty
+	);
+
+	return res;
+}
+
+bool BoxComponent::CheckComponentOverlapComponentWithResultImpl(
+	PrimitiveComponent* primComp, 
+	const DXVec2& pos, 
+	const DXMat4x4& rotation, 
+	std::vector<OverlapResult>& outOverlap
+) {
+	if (!bCanCollide || !primComp->bCanCollide) return false;
+	if (collisionProperty.GetCollisionResponse(primComp->GetCollisionObjectType()) == CollisionResponse::Ignore) 
+		return false;
+	
+	CollisionShape otherCollisionShape;
+	primComp->GetCollisionShape(1.f, otherCollisionShape);
+
+	OverlapResult overlapResult;
+	bool res = CheckOverlapComponent(
+		overlapResult,
+		pos, rotation,
+		otherCollisionShape,
+		primComp->GetCollisionObjectType(),
+		primComp->collisionProperty
+	);
+
+	if (res) {
 		outOverlap.push_back(overlapResult);
 	}
 

@@ -78,5 +78,84 @@ public:
 	virtual D2D_RectF GetCurrFrame() { return frame; }
 	virtual Math::Matrix GetWorldTransform() const override;
 	virtual void Render(class D2DRenderer* _renderer);
+
+	// From Primitive Component
+	virtual bool IsCollisionEnabled() const {
+		return collisionProperty.collisionEnabled == CollisionEnabled::EnableCollision;
+	}
+
+	virtual CollisionEnabled::Type GetCollisionEnabled() const override {
+		return collisionProperty.collisionEnabled;
+	}
+
+	virtual ECollisionChannel GetCollisionObjectType() const override {
+		return collisionProperty.objectType;
+	}
+
+	/**
+	 * @brief 콜리션 도형을 리턴합니다. 콜리션 도형은 컴포넌트의 스케일 값을 반영해야 합니다.
+	 * @param Inflation
+	 * @param CollisionShape
+	 * @return
+	 */
+	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
+		// Extract the world scale.
+		Math::Matrix worldMatrix = GetWorldTransform();
+		Math::Vector3 scale = Math::ExtractScale(worldMatrix);
+		Math::Matrix scaleMatrix = Math::Matrix::CreateScale(scale);
+
+		std::initializer_list<Math::Vector2> vertices{
+			{	frame.left, frame.top	},
+			{ frame.right, frame.top },
+			{ frame.right, frame.bottom },
+			{	frame.left, frame.bottom	}
+		};
+
+		std::vector<Math::Vector2> inflatedVertices;
+		for (const Math::Vector2& v : vertices) {
+			DXVec2 p{ v.x, v.y };
+			p = DXVec2::Transform(p, scaleMatrix);
+			inflatedVertices.emplace_back(p.x * inflation, p.y * inflation);
+		}
+		collisionShape.SetPolygon(std::move(inflatedVertices));
+		return true;
+	}
+
+	virtual bool IsZeroExtent() const {
+		CollisionShape collisionShape;
+		std::initializer_list<Math::Vector2> vertices{
+			{	frame.left, frame.top	},
+			{ frame.right, frame.top },
+			{ frame.right, frame.bottom },
+			{	frame.left, frame.bottom	}
+		};
+		collisionShape.SetPolygon(vertices);
+		return collisionShape.IsNearlyZero();
+	}
+
+	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
+		DXVec2 c{ bounds.center.x, bounds.center.y };
+		c = DXVec2::Transform(c, _worldTransform);
+
+		DXVec2 e{ bounds.boxExtent.width, bounds.boxExtent.height };
+		e = DXVec2::Transform(e, _worldTransform);
+
+		return BoxCircleBounds(Box{ c, e });
+	}
+
+	virtual BoxCircleBounds CalculateLocalBounds() const {
+		std::initializer_list<Math::Vector2> vertices{
+			{	frame.left, frame.top	},
+			{ frame.right, frame.top },
+			{ frame.right, frame.bottom },
+			{	frame.left, frame.bottom	}
+		};
+		TPolygon polygon{ vertices };
+		return BoxCircleBounds(polygon.GetAABB());
+	}
+
+	virtual void UpdateBounds() override {
+		bounds = CalculateLocalBounds();
+	}
 };
 

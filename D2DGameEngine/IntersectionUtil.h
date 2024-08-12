@@ -11,7 +11,7 @@
 
 namespace intersectionUtil {
 	// With Result
-	inline
+	inline	// TODO: Test required.
 		bool RayRayIntersectWithResult(const Ray& ray1, const Ray& ray2, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		Math::Vector2 intersection;
@@ -45,7 +45,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool RayLineIntersectWithResult(const Ray& ray, const Line& line, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		const Math::Vector2& p = ray.origin;          // Ray origin
@@ -108,7 +108,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool RayBoxIntersectWithResult(const Ray& ray, const Box& box, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -150,7 +150,7 @@ namespace intersectionUtil {
 		return true;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool RayCircleIntersectWithResult(const Ray& ray, const Circle& circle, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		Math::Vector2 m = ray.origin - circle.center;
@@ -187,7 +187,7 @@ namespace intersectionUtil {
 		return true;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool RayCapsuleIntersectWithResult(const Ray& ray, const Capsule& capsule, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		// Decompose the capsule into its mathematical representation
@@ -240,7 +240,7 @@ namespace intersectionUtil {
 		return true;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool RayPolygonIntersectWithResult(const Ray& ray, const TPolygon& polygon, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		bool hit = false;
@@ -294,7 +294,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool LineRayIntersectWithResult(const Line& line, const Ray& ray, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		Math::Vector2 r = ray.direction;       // Ray direction
@@ -330,7 +330,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool LineLineIntersectWithResult(const Line& l1, const Line& l2, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		Math::Vector2 p1 = l1.start;
@@ -372,7 +372,7 @@ namespace intersectionUtil {
 		return false;  // No intersection within the bounds of the line segments
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool LineBoxIntersectWithResult(const Line& line, const Box& box, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		Math::Vector2 delta = line.end - line.start; // Direction vector of the line
@@ -428,7 +428,7 @@ namespace intersectionUtil {
 		return true; // There was an intersection, and the hit result has been updated
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool LineCircleIntersectWithResult(const Line& line, const Circle& circle, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -456,7 +456,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool LineCapsuleIntersectWithResult(const Line& line, const Capsule& capsule, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -498,7 +498,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool LinePolygonIntersectWithResult(const Line& line, const TPolygon& polygon, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -543,7 +543,7 @@ namespace intersectionUtil {
 		return hasIntersection;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool BoxLineIntersectWithResult(const Box& box, const Line& line, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -604,7 +604,7 @@ namespace intersectionUtil {
 		return true;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool BoxBoxIntersectWithResult(const Box& box1, const Box& box2, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -627,14 +627,14 @@ namespace intersectionUtil {
 			Math::Vector2 normal;
 			if (xOverlap < yOverlap) {
 				// Penetration is less in the x direction
-				normal = box2Min.x > box1Min.x ? Math::Vector2(1, 0) : Math::Vector2(-1, 0);
+				normal = box2Min.x > box1Min.x ? Math::Vector2(-1, 0) : Math::Vector2(1, 0);
 			}
 			else {
 				// Penetration is less in the y direction
-				normal = box2Min.y > box1Min.y ? Math::Vector2(0, 1) : Math::Vector2(0, -1);
+				normal = box2Min.y > box1Min.y ? Math::Vector2(0, -1) : Math::Vector2(0, 1);
 			}
 
-			// Set impact point as the middle point of the overlapping area
+			// Set impact point
 			Math::Vector2 impactPoint = {
 					(std::max)(box1Min.x, box2Min.x) + xOverlap / 2.0f,
 					(std::max)(box1Min.y, box2Min.y) + yOverlap / 2.0f
@@ -652,13 +652,13 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool BoxCircleIntersectWithResult(const Box& box, const Circle& circle, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
 		Math::Vector2 closestPoint = {
 				(std::max)(box.ul.x, (std::min)(circle.center.x, box.lr.x)),
-				(std::max)(box.lr.y, (std::min)(circle.center.y, box.ul.y))
+				(std::max)(box.ul.y, (std::min)(circle.center.y, box.lr.y))
 		};
 
 		// Calculate the distance from the closest point on the box to the center of the circle
@@ -678,7 +678,7 @@ namespace intersectionUtil {
 			// Fill outHitResult
 			outHitResult.impactPoint = closestPoint;
 			outHitResult.impactNormal = normal; // This is the normal pointing from the circle to the box
-			outHitResult.normal = -normal; // This is the direction from the center of the circle to the impact point
+			outHitResult.normal = normal; // This is the direction from the center of the circle to the impact point
 			outHitResult.penetrationDepth = penetrationDepth;
 
 			return true;
@@ -687,7 +687,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool BoxCapsuleIntersectWithResult(const Box& box, const Capsule& capsule, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -700,7 +700,7 @@ namespace intersectionUtil {
 		// Find the closest point on the capsule line segment to the nearest point on the box
 		Math::Vector2 nearestBoxPoint = {
 				(std::max)(box.ul.x, (std::min)((A.x + B.x) / 2, box.lr.x)),
-				(std::max)(box.lr.y, (std::min)((A.y + B.y) / 2, box.ul.y))
+				(std::max)(box.ul.y, (std::min)((A.y + B.y) / 2, box.lr.y))
 		};
 
 		// Closest point on capsule segment to nearestBoxPoint
@@ -719,8 +719,8 @@ namespace intersectionUtil {
 		if (distance <= capsule.radius) {
 			Math::Vector2 normal = distanceVec / distance;
 			outHitResult.impactPoint = closest;
-			outHitResult.impactNormal = -normal; // Normalize distance vector
-			outHitResult.normal = -normal;     // Normal pointing from the capsule to the box
+			outHitResult.impactNormal = normal; // Normalize distance vector
+			outHitResult.normal = normal;     // Normal pointing from the capsule to the box
 			outHitResult.penetrationDepth = capsule.radius - distance;
 
 			return true;
@@ -729,7 +729,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool BoxPolygonIntersectWithResult(const Box& box, const TPolygon& polygon, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -801,7 +801,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool CircleLineIntersectWithResult(const Circle& circle, const Line& line, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -828,24 +828,24 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool CircleBoxIntersectWithResult(const Circle& circle, const Box& box, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
 		// Clamping the circle center to the box bounds to find the closest point
 		float clampedX = (std::max)(box.ul.x, (std::min)(circle.center.x, box.lr.x));
-		float clampedY = (std::max)(box.lr.y, (std::min)(circle.center.y, box.ul.y));
+		float clampedY = (std::max)(box.ul.y, (std::min)(circle.center.y, box.lr.y));
 
 		Math::Vector2 closestPoint(clampedX, clampedY);
-		Math::Vector2 circleToClosest = closestPoint - circle.center;
+		Math::Vector2 circleToClosest = circle.center - closestPoint;
 		float distanceSquared = circleToClosest.LengthSquared();
 		circleToClosest.Normalize();
 
 		if (distanceSquared <= (circle.radius * circle.radius)) {
 			// There's an intersection
 			outHitResult.impactPoint = closestPoint;
-			outHitResult.impactNormal = -circleToClosest;
-			outHitResult.normal = -circleToClosest;
+			outHitResult.impactNormal = circleToClosest;
+			outHitResult.normal = circleToClosest;
 			outHitResult.penetrationDepth = circle.radius - sqrt(distanceSquared);  // Compute how deep the circle penetrates into the box
 
 			return true;
@@ -854,7 +854,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool CircleCircleIntersectWithResult(const Circle& circle1, const Circle& circle2, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 
@@ -884,32 +884,33 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool CircleCapsuleIntersectWithResult(const Circle& circle, const Capsule& capsule, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
+		// Normalize direction vector of the capsule
+		Math::Vector2 capsuleDir = capsule.Direction();
+		capsuleDir.Normalize();
 
-		Math::Vector2 p1 = capsule.center - capsule.direction * capsule.extent;  // One end of the capsule
-		Math::Vector2 p2 = capsule.center + capsule.direction * capsule.extent;  // Other end of the capsule
+		// Calculate the endpoints of the capsule segment
+		Math::Vector2 capsuleStart = capsule.Center() - capsuleDir * capsule.Extent();
+		Math::Vector2 capsuleEnd = capsule.Center() + capsuleDir * capsule.Extent();
 
-		// Find the nearest point on the capsule's segment to the circle's center
-		Math::Vector2 direction = p2 - p1;
-		float lengthSquared = direction.LengthSquared();
-		float t = ((circle.center - p1).Dot(direction)) / lengthSquared;
-		t = (std::max)(0.0f, (std::min)(1.0f, t));  // Clamp t to the segment
-		Math::Vector2 nearest = p1 + t * direction;
+		// Calculate the closest point on the capsule segment to the circle center
+		Math::Vector2 circleCenter = circle.center;
+		Math::Vector2 closestPointOnCapsule = Line{ capsuleStart, capsuleEnd }.NearestPoint(circleCenter);
 
-		// Distance from the nearest point on the capsule to the circle's center
-		Math::Vector2 distVector = circle.center - nearest;
-		float distance = distVector.Length();
+		// Calculate the vector from the closest point on the capsule to the circle center
+		Math::Vector2 closestVector = circleCenter - closestPointOnCapsule;
+		float distance = closestVector.Length();
+		closestVector.Normalize();
 
-		// Check intersection
-		if (distance < circle.radius + capsule.radius) {
-			// Intersection occurs
-			outHitResult.impactNormal = distVector / distance;  // Normalize the distance vector
-			outHitResult.impactPoint = nearest + outHitResult.impactNormal * capsule.radius;
-			outHitResult.normal = -outHitResult.impactNormal;  // Point from capsule to circle
-			outHitResult.penetrationDepth = circle.radius + capsule.radius - distance;
-
+		// Check if the distance is less than the sum of their radii
+		float combinedRadii = circle.radius + capsule.radius;
+		if (distance <= combinedRadii) {
+			outHitResult.impactPoint = closestPointOnCapsule;
+			outHitResult.impactNormal = closestVector;
+			outHitResult.normal = closestVector;
+			outHitResult.penetrationDepth = combinedRadii - distance;
 			return true;
 		}
 
@@ -917,7 +918,7 @@ namespace intersectionUtil {
 	}
 
 
-	inline
+	inline	// TODO: Test required.
 		bool CirclePolygonIntersectWithResult(const Circle& circle, const TPolygon& polygon, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		float minDist = (std::numeric_limits<float>::max)();
@@ -955,7 +956,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool CapsuleLineIntersectWithResult(const Capsule& capsule, const Line& line, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 // Define capsule endpoints
@@ -1024,50 +1025,41 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool CapsuleBoxIntersectWithResult(const Capsule& capsule, const Box& box, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
-// Normalize the capsule direction and calculate endpoints
-		Math::Vector2 normalizedDirection = capsule.Direction();
-		normalizedDirection.Normalize();
-		Math::Vector2 capsuleStart = capsule.Center() - normalizedDirection * capsule.Extent();
-		Math::Vector2 capsuleEnd = capsule.Center() + normalizedDirection * capsule.Extent();
+		// 
+		// Capsule endpoints
+		Math::Vector2 capsuleDirectionNormalized = capsule.direction;
+		capsuleDirectionNormalized.Normalize();
+		Math::Vector2 A = capsule.center - capsuleDirectionNormalized * capsule.extent;
+		Math::Vector2 B = capsule.center + capsuleDirectionNormalized * capsule.extent;
 
-		// Calculate the closest points between capsule segment and box edges
-		float minDistance = std::numeric_limits<float>::infinity();
-		Math::Vector2 closestPointOnCapsule, closestPointOnBox;
+		// Find the closest point on the capsule line segment to the nearest point on the box
+		Math::Vector2 nearestBoxPoint = {
+				(std::max)(box.ul.x, (std::min)((A.x + B.x) / 2, box.lr.x)),
+				(std::max)(box.ul.y, (std::min)((A.y + B.y) / 2, box.lr.y))
+		};
 
-		// Check against each edge of the box
-		std::vector<Math::Vector2> boxCorners = box.GetVertices();
-		int numCorners = static_cast<int>(boxCorners.size());
-		for (int i = 0; i < numCorners; ++i) {
-			Math::Vector2 boxEdgeStart = boxCorners[i];
-			Math::Vector2 boxEdgeEnd = boxCorners[(i + 1) % numCorners];
+		// Closest point on capsule segment to nearestBoxPoint
+		Math::Vector2 AP = nearestBoxPoint - A;
+		Math::Vector2 AB = B - A;
+		float AB_mag_squared = AB.Dot(AB);
+		float AP_dot_AB = AP.Dot(AB);
+		float t = std::clamp(AP_dot_AB / AB_mag_squared, 0.0f, 1.0f);
+		Math::Vector2 closest = A + AB * t;
 
-			// Use line to line segment closest point calculation
-			for (const auto& point : { capsuleStart, capsuleEnd }) {
-				float d = (point - boxEdgeStart).Dot(boxEdgeEnd - boxEdgeStart);
-				float l = (boxEdgeEnd - boxEdgeStart).LengthSquared();
-				float u = Clamp(d / l, 0.0f, 1.0f);
-				Math::Vector2 closest = boxEdgeStart + u * (boxEdgeEnd - boxEdgeStart);
+		// Distance from closest point on capsule to box point
+		Math::Vector2 distanceVec = closest  - nearestBoxPoint;
+		float distance = distanceVec.Length();
 
-				float distance = (closest - point).Length();
-				if (distance < minDistance) {
-					minDistance = distance;
-					closestPointOnCapsule = point;
-					closestPointOnBox = closest;
-				}
-			}
-		}
-
-		// Check if the minimum distance is within the capsule's radius
-		if (minDistance <= capsule.radius) {
-			Math::Vector2 impactNormal = (closestPointOnCapsule - closestPointOnBox);
-			impactNormal.Normalize();
-			outHitResult.impactPoint = closestPointOnBox;
-			outHitResult.impactNormal = impactNormal; // Normal from capsule to box
-			outHitResult.normal = impactNormal; // Normal from capsule's surface to the box
-			outHitResult.penetrationDepth = capsule.radius - minDistance; // Penetration depth
+		// Check if the closest point is within the capsule's radius
+		if (distance <= capsule.radius) {
+			Math::Vector2 normal = distanceVec / distance;
+			outHitResult.impactPoint = closest;
+			outHitResult.impactNormal = normal; // Normalize distance vector
+			outHitResult.normal = normal;     // Normal pointing from the capsule to the box
+			outHitResult.penetrationDepth = capsule.radius - distance;
 
 			return true;
 		}
@@ -1075,7 +1067,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// NOTE: VERIFIED
 		bool CapsuleCircleIntersectWithResult(const Capsule& capsule, const Circle& circle, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 // Calculate normalized direction of the capsule
@@ -1123,67 +1115,80 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	/**
+	 * @brief Capsule and capsule intersection with result.
+	 * @param capsule1 Impacting capsule
+	 * @param capsule2 Impacted capsule
+	 * @param outHitResult Normal should poing from capsule 2 to capsule 1.
+	 * @return
+	 */
+	inline	// NOTE: VERIFIED
 		bool CapsuleCapsuleIntersectWithResult(const Capsule& capsule1, const Capsule& capsule2, HitResult& outHitResult) {
-		// NOTE: ChatGPT 4 Generated Code
-// Extracting key components and normalizing direction vectors
-		Math::Vector2 center1 = capsule1.Center();
-		Math::Vector2 center2 = capsule2.Center();
-		Math::Vector2 direction1 = capsule1.Direction();
-		direction1.Normalize();
-		Math::Vector2 direction2 = capsule2.Direction();
-		direction2.Normalize();
+		// https://wickedengine.net/2020/04/capsule-collision-detection/
+		// Normalize direction vectors considering the coordinate system
+		
+		Math::Vector2 normal1 = capsule1.Direction();
+		float radius1 = capsule1.Radius();
+		Math::Vector2 normal2 = capsule2.direction;
+		float radius2 = capsule2.Radius();
 
-		// Calculating start and end points of capsules
-		Math::Vector2 start1 = center1 - direction1 * capsule1.Extent();
-		Math::Vector2 end1 = center1 + direction1 * capsule1.Extent();
-		Math::Vector2 start2 = center2 - direction2 * capsule2.Extent();
-		Math::Vector2 end2 = center2 + direction2 * capsule2.Extent();
+		Math::Vector2 start1 = capsule1.Center() + normal1 * capsule1.HalfLength();
+		Math::Vector2 end1 = capsule1.Center() - normal1 * capsule1.HalfLength();
+		Math::Vector2 start2 = capsule2.Center() + normal2 * capsule2.HalfLength();
+		Math::Vector2 end2 = capsule2.Center() - normal2 * capsule2.HalfLength();
 
-		// Line segment parameters
-		Math::Vector2 d1 = end1 - start1; // Direction vector for capsule 1
-		Math::Vector2 d2 = end2 - start2; // Direction vector for capsule 2
-		Math::Vector2 r = start1 - start2;
-		float a = d1.Dot(d1); // Squared length of d1
-		float e = d2.Dot(d2); // Squared length of d2
-		float f = d2.Dot(r);
+		Math::Vector2 lineEndOffset1 = normal1 * radius1;
+		Math::Vector2 a1 = end1 + lineEndOffset1;
+		Math::Vector2 b1 = start1 - lineEndOffset1;
 
-		// Check if lines are nearly parallel
-		float c = d1.Dot(r);
-		float b = d1.Dot(d2);
-		float denom = a * e - b * b;
+		Math::Vector2 lineEndOffset2 = normal2 * radius2;
+		Math::Vector2 a2 = end2 + lineEndOffset2;
+		Math::Vector2 b2 = start2 - lineEndOffset2;
 
-		float s, t;
-		if (denom != 0) {
-			s = Clamp((b * f - c * e) / denom, 0.0f, 1.0f);
-			t = Clamp((a * f - b * c) / denom, 0.0f, 1.0f);
+		// Vectors between line endpoints;
+		Math::Vector2 v0 = a2 - a1;
+		Math::Vector2 v1 = b2 - a1;
+		Math::Vector2 v2 = a2 - b1;
+		Math::Vector2 v3 = b2 - b1;
+
+		// Squared distances;
+		float d0 = v0.Dot(v0);
+		float d1 = v1.Dot(v1);
+		float d2 = v2.Dot(v2);
+		float d3 = v3.Dot(v3);
+
+		// Select best potential endpoint on capsule 1
+		Math::Vector2 best1;
+		if (d2 < d0 || d2 < d1 || d3 < d0 || d3 < d1) {
+			best1 = b1;
 		}
 		else {
-			// Choose arbitrary s and t if lines are parallel
-			s = 0.0f;
-			t = f / e;
+			best1 = a1;
 		}
 
-		// Closest points on both line segments
-		Math::Vector2 closestPoint1 = start1 + d1 * s;
-		Math::Vector2 closestPoint2 = start2 + d2 * t;
-		Math::Vector2 closestVector = closestPoint2 - closestPoint1;
-		float distance = closestVector.Length();
+		// Select point on capsule 2 line segment nearest to best potential endpoint on capsule 1
+		Math::Vector2 best2 = Line{ a2, b2 }.NearestPoint(best1);
+		// Do the same thing for capsule 1
+		best1 = Line{ a1, b1 }.NearestPoint(best2);
 
+		// Penetration normal
+		Math::Vector2 penetrationNormal = best1 - best2;
+		float penetrationDepth = (radius1 + radius2) - penetrationNormal.Length();
+		penetrationNormal.Normalize();
+		
 		// Check if the distance is less than the sum of their radii
-		if (distance <= (capsule1.radius + capsule2.radius)) {
-			outHitResult.impactPoint = closestPoint1 + closestVector * 0.5f; // Midpoint of the closest points as impact point
-			closestVector.Normalize();
-			outHitResult.impactNormal = -closestVector; // Normal from capsule1 to capsule2 at the impact point
-			outHitResult.penetrationDepth = (capsule1.radius + capsule2.radius) - distance; // Penetration depth
-			outHitResult.normal = -closestVector; // Normal from the impacted capsule to the collider
+		if (penetrationDepth > 0) {
+			outHitResult.impactPoint = best2; // Midpoint of the closest points as impact point
+			outHitResult.impactNormal = penetrationNormal; // Normal from capsule1 to capsule2 at the impact point
+			outHitResult.normal = penetrationNormal; // Normal from the impacted capsule to the collider
+			outHitResult.penetrationDepth = penetrationDepth; // Penetration depth
 			return true;
 		}
 
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool CapsulePolygonIntersectWithResult(const Capsule& capsule, const TPolygon& polygon, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 // First, get capsule's line segment
@@ -1248,7 +1253,7 @@ namespace intersectionUtil {
 		return intersected;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool PolygonLineIntersectWithResult(const TPolygon& polygon, const Line& line, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		Math::Vector2 lineDir = line.end - line.start;
@@ -1308,7 +1313,7 @@ namespace intersectionUtil {
 		return hasIntersection;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool PolygonBoxIntersectWithResult(const TPolygon& polygon, const Box& box, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		bool hasIntersection = false;
@@ -1380,7 +1385,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool PolygonCircleIntersectWithResult(const TPolygon& polygon, const Circle& circle, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		bool collisionDetected = false;
@@ -1463,7 +1468,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool PolygonCapsuleIntersectWithResult(const TPolygon& polygon, const Capsule& capsule, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		float minPenetrationDepth = (std::numeric_limits<float>::max)();
@@ -1528,7 +1533,7 @@ namespace intersectionUtil {
 		return false;
 	}
 
-	inline
+	inline	// TODO: Test required.
 		bool PolygonPolygonIntersectWithResult(const TPolygon& polygon1, const TPolygon& polygon2, HitResult& outHitResult) {
 		// NOTE: ChatGPT 4 Generated Code
 		float minPenetrationDepth = (std::numeric_limits<float>::max)();

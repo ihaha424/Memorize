@@ -66,6 +66,12 @@
     <Filter Include="Source Files\App\Boss\BossBehaviorTree">
       <UniqueIdentifier>{e3a175a0-99a4-4538-9ed2-2e1ca29c56bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\Projectile\DarkSphere">
+      <UniqueIdentifier>{2dc59eff-c943-4fb2-b076-cdbfe2e97b36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Range\TighteningCircle">
+      <UniqueIdentifier>{d2bd4736-fd6f-42d7-bc42-e74f34142804}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -169,6 +175,24 @@
     </ClCompile>
     <ClCompile Include="PlayerAttackReady.cpp">
       <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkSphere.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="TighteningCircle.cpp">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="TighteningCircleEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="MeteorEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkSphereProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkSphereSpawner.cpp">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +309,24 @@
     </ClInclude>
     <ClInclude Include="PlayerAttackReady.h">
       <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphere.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="TighteningCircle.h">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="TighteningCircleEffect.h">
+      <Filter>Source Files\App\Skill\Range\TighteningCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteorEffect.h">
+      <Filter>Source Files\App\Skill\Range\Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphereProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkSphereSpawner.h">
+      <Filter>Source Files\App\Skill\Projectile\DarkSphere</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

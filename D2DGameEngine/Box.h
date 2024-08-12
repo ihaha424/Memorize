@@ -9,21 +9,22 @@ struct Box {
 	DXVec2 lr;
 
 	static Box BuildAABB(const DXVec2& origin, const Extent2D& extent) {
-		return {
-			{ origin.x - extent.width / 2.f, origin.y + extent.height / 2.f },
-			{ origin.x + extent.width / 2.f, origin.y - extent.height / 2.f }
+		return {	// y-axis points downward
+			{ origin.x - extent.width / 2.f, origin.y - extent.height / 2.f },
+			{ origin.x + extent.width / 2.f, origin.y + extent.height / 2.f }
 		};
 	}
 
 	DXVec2 GetCenter() const {
-		return { 
+		return { // y-axis points downward
 			ul.x + (lr.x - ul.x) / 2.f, 
-			lr.y + (ul.y - lr.y) / 2.f
+			ul.y + (lr.y - ul.y) / 2.f
 		};
 	}
 
 	Extent2D GetExtent() const {
-		return { lr.x - ul.x, ul.y - lr.y };
+		// y-axis points downward
+		return { lr.x - ul.x, lr.y - ul.y };
 	}
 
 	float GetWidth() const {
@@ -31,7 +32,7 @@ struct Box {
 	}
 
 	float GetHeight() const {
-		return ul.y - lr.y;
+		return lr.y - ul.y;
 	}
 
 	std::vector<DXVec2> GetVertices() const {
@@ -41,20 +42,20 @@ struct Box {
 	bool CheckIntersect(const Box& other) const {
 		float a_xmin = ul.x;
 		float a_xmax = lr.x;
-		float a_ymin = lr.y;
-		float a_ymax = ul.y;
+		float a_ymin = ul.y;
+		float a_ymax = lr.y;
 
 		float b_xmin = other.ul.x;
 		float b_xmax = other.lr.x;
-		float b_ymin = other.lr.y;
-		float b_ymax = other.ul.y;
+		float b_ymin = other.ul.y;
+		float b_ymax = other.lr.y;
 
 		return !(a_xmax < b_xmin || a_xmin > b_xmax || a_ymax < b_ymin || a_ymin > b_ymax);
 	}
 
 	bool IsInside(const DXVec2& point) const {
 		return ul.x <= point.x && lr.x <= point.x && 
-			lr.y <= point.y && point.y <= ul.y;
+			ul.y <= point.y && point.y <= lr.y;
 	}
 };
 

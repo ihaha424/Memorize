@@ -14,7 +14,7 @@ enum class CollsionPropertyPreset {
 	OverlapPawn,
 	Pawn,
 	Character,
-	Trigger
+	Trigger,
 };
 
 using CollisionResponseMap = std::unordered_map<ECollisionChannel, CollisionResponse>;

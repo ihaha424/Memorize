@@ -67,8 +67,23 @@ public:
 		OnHit(myComp, otherComp, bSelfMoved, hitResult);
 	}
 
+	/**
+	 * @brief TODO;
+	 * @param other 
+	 */
 	virtual void OnBeginOverlap(Actor* other) {}
+	/**
+	 * @brief TODO;
+	 * @param other 
+	 */
 	virtual void OnEndOverlap(Actor* other) {}
+	/**
+	 * @brief TODO;
+	 * @param myComp 
+	 * @param otherComp 
+	 * @param bSelfMoved 
+	 * @param hitResult 
+	 */
 	virtual void OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) {}
 
 	/**

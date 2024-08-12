@@ -20,14 +20,17 @@ class PrimitiveComponent : public SceneComponent {
 public:
 	bool isVisible{ true };
 	
+	// A hit event generated only for one of the components 
+	// that has bSimulationPhysics true.
+	// It is because sweeping can be done only when physics is on.
 	bool bSimulatePhysics{ false };
-	bool bApplyImpulseOnDamage{ false };
+	bool bApplyImpulseOnDamage{ false };	// TODO: damage system
 
 	// Physics
 	float mass{ 1.0f };
-	float frictionCoefficient{ 0.9f };
+	float frictionCoefficient{ 0.2f };
 	float	dragForce{ 0.f };
-	float minAcceleration{ 0.f };
+	float minAcceleration{ -1000.f };
 	float maxAccelaration{ 10000.f };
 	float minSpeed{ 0.f };
 	float maxSpeed{ 1000.f };
@@ -35,7 +38,6 @@ public:
 
 	// Collision
 	bool bCanCollide{ false };
-	bool bGenerateHitEvent{ false };
 	bool bGenerateOverlapEvent{ false };
 	CollisionProperty collisionProperty;	// Default NoCollision
 	using OverlappingComponentSet = std::map<PrimitiveComponent*, OverlapInfo>;
@@ -109,14 +111,10 @@ public:
 	// Collision
 	virtual void OnComponentBeginOverlap() {}
 	virtual void OnComponentEndOverlap() {}
-	virtual void OnComponentHit() {}
 
 	void SetCollisionEnabled(CollisionEnabled::Type type);
 
-	bool IsRegisterd() {
-		// GetWorld()->CheckRegistration();
-		return false;
-	}
+	bool IsCollisionRegistered();
 
 	void SetCollisionObjectType(ECollisionChannel objectType) {
 		collisionProperty.objectType = objectType;
@@ -173,7 +171,8 @@ public:
 	virtual bool CheckLineTraceComponent(
 		HitResult& outHit,
 		const DXVec2 start,
-		const DXVec2 end) {
+		const DXVec2 end,
+		float width) {
 		// TODO:
 		return true;
 	}
@@ -185,7 +184,17 @@ public:
 		const DXMat4x4& rotation,
 		const CollisionShape& collisionShape,
 		const ECollisionChannel collisionChannel,
-		const CollisionProperty& collisionProperty);
+		const CollisionProperty& collisionProperty
+	);
+
+	virtual bool CheckOverlapComponent(
+		OverlapResult& outOverlap,
+		const DXVec2& pos,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty
+	);
 
 	void DispatchBlockingHit(Actor& owner, HitResult& blockingHit);
 
@@ -199,7 +208,12 @@ public:
 	 * @param otherOverlap 
 	 * @param bDoNotifies 
 	 */
-	void BeginComponentOverlap(const OverlapInfo& otherOverlap, bool bDoNotifies);
+	void BeginComponentOverlap(const OverlapInfo& overlap, bool bDoNotifies);
+
+	/**
+	 * @brief Receive begin component overlap event and do all the converting stuff.
+	 */
+	void ReceiveBeginComponentOverlap(PrimitiveComponent* otherComp, const bool bFromSweep, const HitResult& overlapInfo);
 
 	/**
 	 * @brief End tracking an overlap interaction
@@ -207,7 +221,12 @@ public:
 	 * @param bDoNotifies 
 	 * @param bSkipNotifySelf 
 	 */
-	void EndComponentOverlap(const OverlapInfo& otherOverlap, bool bDoNotifies, bool bSkipNotifySelf=false);
+	void EndComponentOverlap(const OverlapInfo& overlap, bool bDoNotifies, bool bSkipNotifySelf=false);
+
+	/**
+	 * @brief Receive end component overlap event and do all the converting stuff.
+	 */
+	void ReceiveEndComponentOverlap(PrimitiveComponent* otherComp);
 
 	// TODO: Place it in the UpdateOverlaps()
 	void PushOverlappingComponent(PrimitiveComponent* otherComponent, const OverlapInfo& overlapInfo) {
@@ -221,7 +240,7 @@ public:
 	/**
 	 * @brief 오버랩 스테이트를 업데이트 합니다.
 	 */
-	virtual void UpdateOverlaps(const std::vector<OverlapInfo>& overlaps, bool bDoNotifies = true);
+	virtual void UpdateOverlaps(const std::vector<OverlapInfo>* overlaps, bool bDoNotifies = true);
 
 	bool IsSimulatingPhysics() override {
 		return bSimulatePhysics;
@@ -232,7 +251,12 @@ public:
 	}
 
 	// Bounds
-
+	
+	/**
+	 * @brief Calculate the bounds on the world coordinate system.
+	 * @param _worldTransform 
+	 * @return 
+	 */
 	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
 		DXVec2 c{ bounds.center.x, bounds.center.y };
 		c = DXVec2::Transform(c, _worldTransform);
@@ -243,6 +267,10 @@ public:
 		return BoxCircleBounds(Box{ c, e });
 	}
 
+	/**
+	 * @brief Calculate the bounds without world transformation.
+	 * @return 
+	 */
 	virtual BoxCircleBounds CalculateLocalBounds() const {
 		return BoxCircleBounds{};
 	}
@@ -253,12 +281,16 @@ public:
 
 	// Physics update
 	virtual void FixedUpdate(float _dt) override {
-		if (bSimulatePhysics) {
+		if (bSimulatePhysics) 
+		{
 			// Simple semi-implicit Euler integration
-			acceleration -= velocity * dragForce; // Damping effect
+			dragForce = velocity.LengthSquared() * frictionCoefficient;
+			DXVec2 velDir = velocity; velDir.Normalize();
+			acceleration += velDir * -dragForce; // Damping effect
 			// Clamp acceleration
 			DXVec2 accDir = acceleration; accDir.Normalize();
-			acceleration.Clamp(accDir * minAcceleration, accDir * maxAccelaration);
+			float accClamped = Clamp(acceleration.Length(), minAcceleration, maxAccelaration);
+			acceleration = accDir * accClamped;
 			// Update velocity
 			velocity += acceleration * _dt;
 			acceleration = { 0, 0 }; // Reset acceleration each frame
@@ -269,12 +301,23 @@ public:
 			speed = Clamp(speed, minSpeed, maxSpeed);
 			velocity = unitVel * speed;
 
+			// Sweep to move
+			HitResult hitResult;
+			MoveComponent(velocity * _dt, angularVelocity * _dt, true, &hitResult);
+
+			if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
+				Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
+			}
+		}
+		else 
+		{
 			// Apply the movement
 			HitResult hitResult;
-			MoveComponent(velocity * _dt, true, &hitResult);
-		}
-		else {
-			Super::FixedUpdate(_dt);
+			MoveComponent(velocity * _dt, angularVelocity * _dt, false, &hitResult);
+
+			if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
+				Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
+			}
 		}
 	}
 
@@ -298,6 +341,7 @@ protected:
 
 	virtual bool MoveComponentImpl(
 		const DXVec2& delta,
+		const float angleDelta,
 		bool bSweep,
 		HitResult* outHitResult) override;
 

@@ -11,6 +11,8 @@ protected:
 
 public:
 
+	PolygonComponent(class Actor* _owner) : ShapeComponent(_owner) {}
+
 	std::vector<Math::Vector2> GetScaledVertices() const {
 		// Extract the world scale.
 		Math::Matrix worldMatrix = GetWorldTransform();
@@ -62,11 +64,7 @@ public:
 
 	virtual bool IsZeroExtent() const {
 		CollisionShape collisionShape;
-		std::vector<Math::Vector2> inflatedVertices;
-		for (const Math::Vector2& v : vertices) {
-			inflatedVertices.emplace_back(v.x, v.y);
-		}
-		collisionShape.SetPolygon(std::move(inflatedVertices));
+		collisionShape.SetPolygon(vertices);
 		return collisionShape.IsNearlyZero();
 	}
 
@@ -86,6 +84,17 @@ public:
 		const CollisionShape& collisionShape,
 		const ECollisionChannel collisionChannel,
 		const CollisionProperty& collisionProperty) override;
+
+	virtual bool CheckOverlapComponent(
+		OverlapResult& outOverlap,
+		const DXVec2& pos,
+		const DXMat4x4& rotation,
+		const CollisionShape& collisionShape,
+		const ECollisionChannel collisionChannel,
+		const CollisionProperty& collisionProperty
+	) override;
+
+	virtual void Render(class D2DRenderer* _renderer) override;
 
 protected:
 	bool CheckComponentOverlapComponentImpl(

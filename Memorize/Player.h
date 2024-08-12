@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/Character.h"
 #include "../D2DGameEngine/Reflection.h"
 
+#include "D2DGameEngine/Debug.h"
 
 struct Stat
 {
@@ -52,6 +53,7 @@ struct Stat
 
 class Player : public Character, IReflection
 {
+	LOG_REGISTER_OBJ(Player)
 	const int maxLevel = 50;
 	int level = 1;
 	int exp = 0;
@@ -68,5 +70,16 @@ public:
 	void ReflectionIn() override;
 	void ReflectionOut() override;
 
+	virtual void OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) override {
+		OBJ_MESSAGE("Hit!");
+	}
+
+	virtual void OnBeginOverlap(Actor* other) {
+		OBJ_MESSAGE("Overlap began!");
+	}
+
+	virtual void OnEndOverlap(Actor* other) {
+		OBJ_MESSAGE("Overlap ended!");
+	}
 };
 

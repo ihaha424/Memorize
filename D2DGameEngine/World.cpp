@@ -73,14 +73,32 @@ bool World::CheckComponentOverlapMultiByChannel(
 	const Math::Matrix& rotation, 
 	ECollisionChannel channel)
 {
-	// TODO
+	if (!primComp) {
+		return false;
+	}
+
+	if (primComp->IsZeroExtent()) {
+		// TODO: do raycast instead.
+		return false;
+	}
+
+	CollisionShape collisionShape;
+	if (!primComp->GetCollisionShape(1.0, collisionShape)) {
+		return false;
+	}
+
+	if (collisionSystem.CheckCollisionShapeOverlapsMulti(outOverlapResults, primComp, collisionShape, pos, rotation, channel, primComp->collisionProperty))
+	{
+		return true;
+	}
+
 	return false;
 }
 
 bool World::CheckComponentSweepMulti(std::vector<HitResult>& outHitResults, PrimitiveComponent* primComp, const Math::Vector2& start, const Math::Vector2& end, const Math::Matrix& rotation)
 {
-	CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, primComp->GetCollisionObjectType());
-	return (outHitResults.size() > 0);
+	bool bBlockingHit = CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, primComp->GetCollisionObjectType());
+	return bBlockingHit;
 }
 
 bool World::CheckComponentSweepMultiByChannel(
@@ -91,9 +109,9 @@ bool World::CheckComponentSweepMultiByChannel(
 	const Math::Matrix& rotation, 
 	ECollisionChannel channel)
 {
-	outHitResults.clear();
-
-	if (!primComp || ((start - end).LengthSquared() <= (4.f * EPSILON) * (4.f * EPSILON))) return false;
+	if (!primComp || ((start - end).LengthSquared() <= (4.f * EPSILON) * (4.f * EPSILON))) {
+		return false;
+	}
 
 	if (primComp->IsZeroExtent()) {
 		// TODO: do raycast instead.
@@ -102,7 +120,13 @@ bool World::CheckComponentSweepMultiByChannel(
 
 	if (!primComp->IsCollisionEnabled()) return false;
 
-	if (collisionSystem.CheckComponentSweepMultiByChannel(outHitResults, primComp, start, end, rotation, channel)) {
+	CollisionShape collisionShape;
+	if (!primComp->GetCollisionShape(1.0, collisionShape)) {
+		return false;
+	}
+
+	if (collisionSystem.CheckCollsionShapeSweepMulti(outHitResults, primComp, collisionShape, start, end, rotation, channel, primComp->collisionProperty))
+	{
 		return true;
 	}
 

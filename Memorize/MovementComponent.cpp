@@ -3,5 +3,5 @@
 
 void MovementComponent::Update(float _dt)
 {
-	parent->Translate(direction.x * speed * _dt, direction.y * speed * _dt);
+	parent->AddComponentVelocity({ direction.x * speed * _dt, direction.y * speed * _dt });
 }

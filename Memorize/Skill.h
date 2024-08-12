@@ -59,9 +59,6 @@ public:
 		std::copy(commandList.begin(), commandList.end(), _commandList.begin());
 	}
 
-	virtual void Update(float _dt) override;
-
-
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override {};
 	void ReflectionOut() override {};

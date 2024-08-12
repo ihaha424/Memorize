@@ -19,10 +19,15 @@ struct Capsule {
 	}
 
 	float Extent() const { return extent; }
+	float Radius() const { return radius; }
 
 	float Length() const {
 		// NOTE: ChatGPT 4 Generated Code
 		return 2.f * (extent + radius);
+	}
+
+	float HalfLength() const {
+		return extent + radius;
 	}
 	
 	/**

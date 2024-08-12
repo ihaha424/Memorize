@@ -9,15 +9,26 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/ReflectionResource.h"
 #include "D2DGameEngine/ResourceManager.h"
+#include "D2DGameEngine/BoxComponent.h"
 
 Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
 
-	SetTickProperties(TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
+	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
+
+	// NOTE: Test collision
+	BoxComponent* box = CreateComponent<BoxComponent>();
+	box->collisionProperty = CollisionProperty(CollsionPropertyPreset::BlockAll);
+	box->bSimulatePhysics = false;
+	box->bApplyImpulseOnDamage = false;
+	box->bGenerateHitEvent = true;
+	box->bGenerateOverlapEvent = true;
+	box->InitBoxExtent({ 124, 220 });
+	rootComponent = box;
 
 	Animator* abm = CreateComponent<Animator>();
-	rootComponent = abm;
+	rootComponent->AddChild(abm);
 	AnimationState* PlayerAnimationState;
 	{
 		PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
@@ -47,10 +58,10 @@ Player::Player(class World* _world) : Character(_world)
 
 	GCameraComponent* cm = CreateComponent<GCameraComponent>();
 	GetWorld()->SetMainCamera(cm);
-	abm->AddChild(cm);
+	rootComponent->AddChild(cm);
 
 	MovementComponent* mv = CreateComponent< MovementComponent>();
-	abm->AddChild(mv);
+	rootComponent->AddChild(mv);
 }
 
 Player::~Player()

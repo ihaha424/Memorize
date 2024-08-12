@@ -152,6 +152,9 @@
     <ClCompile Include="ChasingWaterBall.cpp" />
     <ClCompile Include="ChasingWaterBallProjectile.cpp" />
     <ClCompile Include="CoolTime.cpp" />
+    <ClCompile Include="DarkSphere.cpp" />
+    <ClCompile Include="DarkSphereProjectile.cpp" />
+    <ClCompile Include="DarkSphereSpawner.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -159,6 +162,7 @@
     <ClCompile Include="GPlayerController.cpp" />
     <ClCompile Include="Heal.cpp" />
     <ClCompile Include="Meteor.cpp" />
+    <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -178,7 +182,11 @@
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="TestWall.cpp" />
+    <ClCompile Include="TestActor2.cpp" />
     <ClCompile Include="TestLevel.cpp" />
+    <ClCompile Include="TighteningCircle.cpp" />
+    <ClCompile Include="TighteningCircleEffect.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +197,9 @@
     <ClInclude Include="ChasingWaterBallProjectile.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="CoolTime.h" />
+    <ClInclude Include="DarkSphere.h" />
+    <ClInclude Include="DarkSphereProjectile.h" />
+    <ClInclude Include="DarkSphereSpawner.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />
     <ClInclude Include="GameApp.h" />
@@ -197,6 +208,7 @@
     <ClInclude Include="GPlayerController.h" />
     <ClInclude Include="Heal.h" />
     <ClInclude Include="Meteor.h" />
+    <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="Player.h" />
@@ -220,6 +232,8 @@
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />
     <ClInclude Include="TestLevel.h" />
+    <ClInclude Include="TighteningCircle.h" />
+    <ClInclude Include="TighteningCircleEffect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

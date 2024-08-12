@@ -27,20 +27,12 @@ Fireball::~Fireball()
 {
 }
 
-void Fireball::BeginPlay()
-{
-	__super::BeginPlay();
-	
-	for (int i = 0; i < projectileMaxCount; i++)
-	{
-		projectiles[i]->SetStatus(OS_INACTIVE);
-	}
-}
 
 void Fireball::UseSkill()
 {
 	__super::UseSkill();
 
+	if (nowUsingCount > projectileCount) return;
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];
 	fireball->SetOwner(player);

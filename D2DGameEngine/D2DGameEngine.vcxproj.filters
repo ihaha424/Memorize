@@ -156,6 +156,9 @@
     <Filter Include="Source Files\GameEngine\Components\FSMComponent">
       <UniqueIdentifier>{5bd03e39-5259-4f0d-a70d-21aa236f4ad8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{ff9d721e-1861-4d10-9421-f7c95a4ebe0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -681,5 +684,13 @@
     <None Include="디버그_사용법.md">
       <Filter>Source Files\GameEngine\Core\Debug</Filter>
     </None>
+    <None Include="콜리션_사용법.md">
+      <Filter>Resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="CollisionFigure.png">
+      <Filter>Resource</Filter>
+    </Image>
   </ItemGroup>
 </Project>
