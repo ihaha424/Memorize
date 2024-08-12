@@ -25,7 +25,7 @@ void MeteorEffect::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	if (Math::Vector2::Distance(GetLocation(), attackPos) < 10)
+	if (Math::Vector2::Distance(GetLocation(), attackPos) < 30)
 	{
 		Inactivate();
 

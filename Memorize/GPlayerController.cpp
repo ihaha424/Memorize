@@ -49,6 +49,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<PrismReflection>();
 	CreateSkill<TighteningCircle>();
 	CreateSkill<DarkSphere>();
+	CreateSkill<AggressiveWaves>();
 }
 
 void GPlayerController::EndSkill()

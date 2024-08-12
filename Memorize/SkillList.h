@@ -5,7 +5,7 @@
 #include "Enchant.h"
 //#include "ElementalExplosion.h"
 #include "ChasingWaterBall.h"
-//#include "AggressiveWaves.h"
+#include "AggressiveWaves.h"
 //#include "ManaOverload.h"
 #include "Heal.h"
 #include "PrismReflection.h"

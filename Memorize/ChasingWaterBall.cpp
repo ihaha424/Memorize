@@ -14,7 +14,7 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 
 	SetID(ST_PROJECTILE, SE_WATER);
 
-	projectileCount = 3;
+	projectileCount = 5;
 
 	for (int i = 0; i < projectileCount; i++)
 	{
