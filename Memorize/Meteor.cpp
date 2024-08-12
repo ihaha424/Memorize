@@ -30,7 +30,7 @@ void Meteor::UseSkill()
 	meteorEffect->SetAttackPos(attackPos);
 	meteorEffect->SetOwner(player);
 
-	meteorEffect->SetLocation(attackPos.x + initialHeight, attackPos.y - initialHeight);
+	meteorEffect->SetLocation(player->GetLocation().x, attackPos.y - initialHeight);
 	Math::Vector2 direction = attackPos - meteorEffect->GetLocation();
 	direction.Normalize();
 
