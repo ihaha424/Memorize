@@ -4,6 +4,13 @@
 
 class Level
 {
+	using ActorMap = std::unordered_multimap<std::type_index, Actor*>;
+	
+protected:
+	using ComponentRenderSequence = std::multimap<float, Actor*>;
+	ComponentRenderSequence actorRenderSequence;
+	
+
 public:
     Level(class World* _world, const std::wstring& _name);
     virtual ~Level();
@@ -14,6 +21,7 @@ public:
     {
         T* newActor = new T(world);
         actorList.push_back(newActor);
+				actorRenderSequence.insert({ 0.f, newActor });
         return newActor;
     }
 
@@ -31,6 +39,7 @@ public:
     virtual void PreUpdate(float _dt);
     virtual void Update(float _dt);
     virtual void PostUpdate(float _dt);
+		virtual void PrepareRender();
     virtual void Render(class D2DRenderer* _renderer);
 
 protected:

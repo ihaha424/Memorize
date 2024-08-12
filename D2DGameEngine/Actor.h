@@ -1,18 +1,23 @@
 #pragma once
 #include "IComponent.h"
+#include "PrimitiveComponent.h"
 
 #include "HitResult.h"
 
-class PrimitiveComponent;
 class Actor : public IObject
 {
 protected:
 	using ComponentRegistry = std::unordered_multimap<std::type_index, class IComponent*>;
 	ComponentRegistry components;
 
+	using ComponentRenderSequence = std::multimap<float, class PrimitiveComponent*>;
+	ComponentRenderSequence renderSequence;
+
 	class World* world = nullptr;
 
 public: 
+	bool bRenderDirty{ false };
+
 	class SceneComponent* rootComponent = nullptr;
 	Actor(class World* _world);
 	virtual ~Actor();
@@ -37,9 +42,18 @@ public:
 	Math::Matrix GetTrasnform() const;
 
 	template<ComponentType T>
+	requires (!PrimitiveComponentType<T>)
 	T* CreateComponent()
 	{
 		T* component = new T(this);
+		components.insert({ std::type_index(typeid(T)), component });
+		return component;
+	}
+
+	template<PrimitiveComponentType T>
+	T* CreateComponent() {
+		T* component = new T(this);
+		renderSequence.insert({ component->GetComponentLocation().y, component });
 		components.insert({ std::type_index(typeid(T)), component });
 		return component;
 	}
@@ -49,7 +63,7 @@ public:
 	 * @tparam T 컴포넌트 타입
 	 * @return 컴포넌트 포인터. 찾을 수 없으면 nullptr
 	 */
-	template <typename T>
+	template <ComponentType T>
 	T* GetComponent() {
 		auto it = components.find(std::type_index(typeid(T)));
 		return (it == components.end()) ? nullptr : (T*)it->second;
@@ -129,6 +143,7 @@ public:
 	virtual void PreUpdate(float _dt) override;
 	virtual void Update(float _dt) override;
 	virtual void PostUpdate(float _dt) override;
+	virtual void PrepareRender();
 	virtual void Render(class D2DRenderer* _renderer) override;
 
 };
