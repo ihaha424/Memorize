@@ -77,9 +77,16 @@ struct Selector : public Composite {
 struct RandomSelector : public Composite {
 	std::size_t i;
 
+	std::vector<INode*> randomOrder;
+	std::vector<double> randomWeights;
+	virtual void SetRandomWeights(std::initializer_list<double> weights)
+	{
+		randomWeights.assign(weights);
+	}
+
 	virtual void Init() override {
 		status = NodeStatus::Ready;
-		//std::shuffle(children.begin(), children.end(), Random());
+		std::shuffle(children.begin(), children.end(), Random::Engine());
 	}
 
 	virtual void Traverse(float dt) override {
@@ -87,16 +94,17 @@ struct RandomSelector : public Composite {
 			INode* child = children[i];
 			child->Traverse(dt);
 			switch (child->status) {
-			case NodeStatus::Success: {
-				status = NodeStatus::Success;
-				return;
+			case NodeStatus::Failure: {
+				break;
 			}
 			case NodeStatus::Running: {
 				status = NodeStatus::Running;
 				return;
 			}
-			case NodeStatus::Failure:
-				break;
+			case NodeStatus::Success: {
+				status = NodeStatus::Success;
+				return;
+			}
 			}
 		}
 		status = NodeStatus::Failure;

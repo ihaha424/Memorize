@@ -55,6 +55,13 @@ public:
 		return _instance->operator() < _T > (from, to);
 	}
 
+	static std::mt19937 Engine() {
+		if (!_instance)
+			throw std::runtime_error("Access of uninitialized Random detected!");
+
+		return _instance->gen;
+	}
+
 private:
 
 	template<typename Integer>
