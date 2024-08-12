@@ -1,6 +1,7 @@
 #pragma once
 #include "../D2DGameEngine/IComponent.h"
 #include "../D2DGameEngine/Reflection.h"
+#include "../D2DGameEngine/ReflectionResource.h"
 
 enum ESkillType
 {
@@ -33,9 +34,9 @@ protected:
 	SkilID	id;
 	std::wstring strId;
 	ESkillType type;
-	int level = 0;
-	int count = 0;
+	int conditionCount = 0;
 	int mana = 0;
+	float castingTime = 0.f;
 	std::vector<BYTE>	commandList{};
 	
 public:
@@ -50,6 +51,7 @@ public:
 	 * @brief 스킬을 사용합니다. 스킬 사용 카운트가 증가합니다. 
 	 */
 	virtual void UseSkill();
+	const float GetMana() const { return 0.0f; }
 
 	void SetID(ESkillType _type, ESkillElement _element) { id.type = _type; id.element = _element; }
 	ULONGLONG GetID() { return id.id; };
@@ -59,12 +61,8 @@ public:
 		std::copy(commandList.begin(), commandList.end(), _commandList.begin());
 	}
 
-	// IReflection을(를) 통해 상속됨
-	void ReflectionIn() override {};
-	void ReflectionOut() override {};
-
-	//virtual void ReflectionIn() = 0;
-	//virtual void ReflectionOut() = 0;
+	virtual void ReflectionIn() = 0;
+	virtual void ReflectionOut() {}
 
 };
 

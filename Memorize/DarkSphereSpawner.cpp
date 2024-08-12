@@ -21,6 +21,8 @@ DarkSphereSpawner::~DarkSphereSpawner()
 
 void DarkSphereSpawner::Update(float _dt)
 {
+	__super::Update(_dt);
+
 	elapsedTime += _dt;
 
 	if (elapsedTime > period)

@@ -22,6 +22,5 @@ public:
 	virtual void Dark() {};
 	virtual void Attack();
 	virtual void Memorize();
-
 };
 

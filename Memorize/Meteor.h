@@ -10,5 +10,6 @@ public:
 	virtual ~Meteor();
 
 	virtual void UseSkill() override;
+	virtual void ReflectionIn() override;
 };
 

@@ -6,9 +6,7 @@
 #include "../D2DGameEngine/World.h"
 #include "PlayerFSMComponent.h"
 #include "MovementComponent.h"
-#include "Fireball.h"
-#include "ChasingWaterBall.h"
-#include "Meteor.h"
+#include "SkillList.h"
 #include "Player.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
@@ -30,6 +28,8 @@ void GPlayerController::SetupInputComponent()
 	inputComponent->ActionBinding(this, DIK_E, &GPlayerController::Light, InputState::KeyDown, KeyBoardInput);
 	inputComponent->ActionBinding(this, DIK_R, &GPlayerController::Dark, InputState::KeyDown, KeyBoardInput);
 	inputComponent->ActionBinding(this, DIK_TAB, &GPlayerController::Memorize, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_SPACE, &GPlayerController::Teleport, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(this, DIK_ESCAPE, &GPlayerController::Cancellation, InputState::KeyDown, KeyBoardInput);
 	
 	inputComponent->ActionBinding(this, 0, &GPlayerController::Attack, InputState::KeyDown, MouseInput);
 	inputComponent->ActionBinding(this, 1, &GPlayerController::Move, InputState::KeyDown, MouseInput);
@@ -46,6 +46,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<Fireball>();
 	CreateSkill<ChasingWaterBall>();
 	CreateSkill<Meteor>();
+	CreateSkill<PrismReflection>();
 }
 
 void GPlayerController::EndSkill()
@@ -141,3 +142,7 @@ void GPlayerController::Attack() {
 void GPlayerController::Move() { playerFSMComponent->InputKey(InputEvent::Move); }
 
 void GPlayerController::Memorize() {playerFSMComponent->InputKey(InputEvent::Memorize);}
+
+void GPlayerController::Teleport() { playerFSMComponent->InputKey(InputEvent::Teleport); }
+
+void GPlayerController::Cancellation() { playerFSMComponent->InputKey(InputEvent::Cancellation); }

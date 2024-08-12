@@ -27,24 +27,27 @@ Player::Player(class World* _world) : Character(_world)
 	box->InitBoxExtent({ 124, 220 });
 	rootComponent = box;
 
-	Animator* abm = CreateComponent<Animator>();
-	rootComponent->AddChild(abm);
-	AnimationState* PlayerAnimationState;
+	// 애니메이션
 	{
-		PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-		PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
-		PlayerAnimationState->SliceSpriteSheet(120, 216, 0,0,20,0);
-		PlayerAnimationState->SetFrameDurations({ 0.05f });
-		PlayerAnimationState->Trigger(true);
-		abm->Initialize(PlayerAnimationState);
+		Animator* abm = CreateComponent<Animator>();
+		rootComponent->AddChild(abm);
+		AnimationState* PlayerAnimationState;
+		{
+			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
+			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
+			PlayerAnimationState->SliceSpriteSheet(120, 216, 0, 0, 20, 0);
+			PlayerAnimationState->SetFrameDurations({ 0.05f });
+			PlayerAnimationState->Trigger(true);
+			abm->Initialize(PlayerAnimationState);
 
-		PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
-		PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
-		PlayerAnimationState->SliceSpriteSheet(180, 216, 0,0,20,0);
-				PlayerAnimationState->SetFrameDurations({ 0.05f });
-		PlayerAnimationState->Trigger(true);
+			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
+			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
+			PlayerAnimationState->SliceSpriteSheet(180, 216, 0, 0, 20, 0);
+			PlayerAnimationState->SetFrameDurations({ 0.05f });
+			PlayerAnimationState->Trigger(true);
 
-		//??abm->DeclareVariable<bool>("isMoving");
+			//??abm->DeclareVariable<bool>("isMoving");
+		}
 	}
 
 	//AnimationBitmapComponent* abm = CreateComponent<AnimationBitmapComponent>();

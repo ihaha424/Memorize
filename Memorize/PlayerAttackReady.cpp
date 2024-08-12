@@ -4,7 +4,7 @@
 
 void PlayerAttackReady::Enter()
 {
-	
+	std::cout << "AttackReady" << std::endl;
 }
 
 void PlayerAttackReady::Update(float _dt)

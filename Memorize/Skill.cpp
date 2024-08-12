@@ -20,7 +20,6 @@ void Skill::SetPlayer(GPlayerController* _pc)
 
 void Skill::UseSkill()
 {
-	count++;
 
 	//TODO
 	//플레이어 마나 사용

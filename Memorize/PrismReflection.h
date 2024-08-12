@@ -7,5 +7,6 @@ public:
 	PrismReflection(Actor* _owner);
 	virtual ~PrismReflection();
 	virtual void UseSkill() override;
+	virtual void ReflectionIn() override;
 };
 
