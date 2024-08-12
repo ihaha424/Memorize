@@ -6,7 +6,10 @@ class Projectile : public Actor
 protected:
 	class Character* owner = nullptr;
 	int damage = 0;
-
+	float speed;
+	float duration;
+	bool bCrash; 
+	
 public:
 	Projectile(class World* _world);
 	virtual ~Projectile();

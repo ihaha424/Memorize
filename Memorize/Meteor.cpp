@@ -4,6 +4,7 @@
 #include "MeteorEffect.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Mouse.h"
+#include "D2DGameEngine/Reflection.h"
 
 Meteor::Meteor(Actor* _owner) : RangeSkill(_owner)
 {
@@ -39,4 +40,10 @@ void Meteor::UseSkill()
 	movement->SetDirection(direction);
 	movement->SetSpeed(fallSpeed);
 
+}
+
+void Meteor::ReflectionIn()
+{
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Meteor.txt");
+	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, commandList );
 }
