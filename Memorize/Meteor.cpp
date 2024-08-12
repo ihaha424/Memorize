@@ -4,11 +4,17 @@
 #include "MeteorEffect.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Mouse.h"
+#include "D2DGameEngine/Reflection.h"
 
 Meteor::Meteor(Actor* _owner) : RangeSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
 	SetID(ST_RANGE, SE_FIRE);
+	//ReflectionIn();
+	commandList.push_back(1);
+	commandList.push_back(0);
+	commandList.push_back(0);
+	commandList.push_back(2);
 
 	commandList.push_back(1);
 
@@ -37,4 +43,10 @@ void Meteor::UseSkill()
 	movement->SetDirection(direction);
 	movement->SetSpeed(fallSpeed);
 
+}
+
+void Meteor::ReflectionIn()
+{
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Meteor.txt");
+	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, commandList);
 }

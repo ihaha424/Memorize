@@ -6,9 +6,7 @@
 #include "../D2DGameEngine/World.h"
 #include "PlayerFSMComponent.h"
 #include "MovementComponent.h"
-#include "Fireball.h"
-#include "ChasingWaterBall.h"
-#include "Meteor.h"
+#include "SkillList.h"
 #include "Player.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
@@ -48,6 +46,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<Fireball>();
 	CreateSkill<ChasingWaterBall>();
 	CreateSkill<Meteor>();
+	CreateSkill<PrismReflection>();
 }
 
 void GPlayerController::EndSkill()

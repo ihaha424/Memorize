@@ -9,7 +9,8 @@ TighteningCircle::TighteningCircle(Actor* _owner) : RangeSkill(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
 	SetID(ST_RANGE, SE_DARKNESS);
-
+	commandList.push_back(1);
+	commandList.push_back(3);
 	//원 효과 액터 생성
 	circleEffect = GetWorld()->GetCurLevel()->CreateActor<TighteningCircleEffect>();
 	
@@ -28,4 +29,10 @@ void TighteningCircle::UseSkill()
 	circleEffect->SetLocation(attackPos.x, attackPos.y);
 	circleEffect->GetComponent<BitmapComponent>()->SetScale(1.f, 1.f);
 	circleEffect->Initialize();
+}
+
+void TighteningCircle::ReflectionIn()
+{
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/TighteningCircle.txt");
+	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, commandList);
 }

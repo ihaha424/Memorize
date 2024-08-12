@@ -8,6 +8,7 @@ public:
 	virtual ~MPMaxIncrease();
 
 	virtual void UseSkill() override;
+	virtual void ReflectionIn() override;
 
 };
 

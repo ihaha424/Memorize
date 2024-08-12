@@ -9,8 +9,12 @@ Projectile::Projectile(World* _world) : Actor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 
-	rootComponent = CreateComponent<BitmapComponent>();
-	rootComponent->AddChild(CreateComponent<MovementComponent>());
+	rootComponent = bm = CreateComponent<BitmapComponent>();
+	mv = CreateComponent<MovementComponent>();
+	rootComponent->AddChild(mv);
+
+	mv->SetStatus(OS_INACTIVE);
+	bm->SetStatus(OS_INACTIVE);
 }
 
 Projectile::~Projectile()
@@ -18,8 +22,23 @@ Projectile::~Projectile()
 }
 
 void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
-{
-	MovementComponent* mv = GetComponent<MovementComponent>();
+{ 
+	mv = GetComponent<MovementComponent>();
+	bm = GetComponent<BitmapComponent>();
+
 	mv->SetDirection(_direction);
 	mv->SetSpeed(_speed);
+}
+
+void Projectile::Update(float _dt)
+{
+	__super::Update(_dt);
+
+	elapsedTime += _dt;
+
+	if (elapsedTime > delay)
+	{
+		mv->SetStatus(OS_ACTIVE);
+		bm->SetStatus(OS_ACTIVE);
+	}
 }

@@ -5,6 +5,7 @@
 #include "../D2DGameEngine/CameraComponent.h"
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
+#include "D2dGameEngine/ResourceManager.h"
 
 
 Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
@@ -13,9 +14,9 @@ Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 	commandList.push_back(0);
 	commandList.push_back(0);
 
-	projectileMaxCount = 5;
+	projectileCount = 5;
 
-	for (int i = 0; i < projectileMaxCount; i++)
+	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<FireballProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
@@ -40,7 +41,12 @@ void Fireball::UseSkill()
 
 	//마우스 위치로 이동시킴
 	fireball->SetVelocity(attackDir, projectileSpeed);
-	fireball->Activate();
 	nowUsingCount++;
+}
+
+void Fireball::ReflectionIn()
+{
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Fireball.txt");
+	reflectionResource->ParsingFile(0, strId, conditionCount, mana, castingTime, projectileCount, projectileSpeed, commandList);
 }
 

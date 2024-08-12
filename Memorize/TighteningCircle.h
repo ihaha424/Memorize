@@ -8,6 +8,6 @@ public:
 	virtual ~TighteningCircle();
 
 	virtual void UseSkill() override;
-
+	virtual void ReflectionIn() override;
 };
 

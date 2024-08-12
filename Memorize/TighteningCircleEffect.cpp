@@ -23,11 +23,13 @@ TighteningCircleEffect::~TighteningCircleEffect()
 
 void TighteningCircleEffect::BeginPlay()
 {
+	__super::BeginPlay();
 	Inactivate();
 }
 
 void TighteningCircleEffect::Update(float _dt)
 {
+	__super::Update(_dt);
 	elapsedTime += _dt;
 	if (elapsedTime < tighteningTime)
 	{

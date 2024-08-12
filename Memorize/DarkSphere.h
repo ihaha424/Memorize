@@ -7,5 +7,6 @@ public:
 	DarkSphere(Actor* _owner);
 	virtual ~DarkSphere();
 	virtual void UseSkill() override;
+	virtual void ReflectionIn() override;
 };
 
