@@ -87,6 +87,9 @@
     <Filter Include="Source Files\App\Skill\Range\LightStream">
       <UniqueIdentifier>{4389aa17-f477-4d9e-8b09-ad72221ae47f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\UI">
+      <UniqueIdentifier>{45bb7724-652e-4b78-af22-82457069697b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -274,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="LightStreamEffect.cpp">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementsPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -474,6 +480,9 @@
     </ClInclude>
     <ClInclude Include="LightStreamEffect.h">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementsPanel.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

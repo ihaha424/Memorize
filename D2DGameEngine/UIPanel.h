@@ -13,7 +13,7 @@ public:
 	template<typename T>
 	T* CreateUI(std::wstring name)
 	{
-		T* t = new T;
+		T* t = new T(world);
 		UIElement* ui = dynamic_cast<UIElement*>(t);
 
 		if (ui == nullptr)
@@ -21,6 +21,7 @@ public:
 
 		uiMap[name] = ui;
 		uiList.push_back(ui);
+		ui->SetownerPanel(this);
 
 		uiList.sort([](UIElement* u1, UIElement* u2)
 			{return u1->GetZOrder() < u2->GetZOrder(); });

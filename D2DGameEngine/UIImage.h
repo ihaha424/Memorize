@@ -8,7 +8,7 @@ public:
 	UIImage(class World* _world);
 	virtual ~UIImage();
 
-	void SetSprite(D2D_Sprite* _sprite) { sprite = _sprite; }
+	void SetSprite(std::wstring _path);
 
 	void Render(class D2DRenderer* _renderer);
 };

@@ -4,9 +4,12 @@
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/SpriteResource.h"
 #include "../D2DGameEngine/BitmapComponent.h"
+#include "../D2DGameEngine/World.h"
+#include "../D2DGameEngine/Canvas.h"
 #include "GPlayerController.h"
 #include "BossAIController.h"
 #include "Boss.h"
+#include "ElementsPanel.h"
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
@@ -35,6 +38,10 @@ void TestLevel::Enter()
 		GPlayerController* pc = CreateActor<GPlayerController>();
 		player->SetController(pc);
 		pc->SetPlayer(player);
+	}
+
+	{
+		GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
 	}
 
 	{
