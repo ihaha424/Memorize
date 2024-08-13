@@ -4,10 +4,12 @@
 #include "../D2DGameEngine/Pawn.h"
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
+#include "../D2DGameEngine/Canvas.h"
 #include "PlayerFSMComponent.h"
 #include "MovementComponent.h"
 #include "SkillList.h"
 #include "Player.h"
+#include "ElementsPanel.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
@@ -33,6 +35,11 @@ void GPlayerController::SetupInputComponent()
 	
 	inputComponent->ActionBinding(this, 0, &GPlayerController::Attack, InputState::KeyDown, MouseInput);
 	inputComponent->ActionBinding(this, 1, &GPlayerController::Move, InputState::KeyDown, MouseInput);
+
+	ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->GetPanel<ElementsPanel>(L"Elements");
+	inputComponent->ActionBinding(elementsPanel, DIK_Q, &ElementsPanel::OnPressedQ, InputState::KeyDown, KeyBoardInput);
+	inputComponent->ActionBinding(elementsPanel, DIK_W, &ElementsPanel::OnPressedW, InputState::KeyDown, KeyBoardInput);
+
 }
 
 void GPlayerController::InitializeSkill()

@@ -24,7 +24,8 @@ void Canvas::Render(D2DRenderer* _renderer)
 {
 	for (auto panel : panelList)
 	{
-		panel->Render(_renderer);
+		if(panel->GetStatus() == OS_ACTIVE)
+			panel->Render(_renderer);
 	}
 }
 

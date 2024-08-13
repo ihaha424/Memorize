@@ -3,6 +3,7 @@
 
 UIElement::UIElement(class World* _world) : Actor(_world)
 {
+	status = OS_ACTIVE;
 }
 
 UIElement::~UIElement()
