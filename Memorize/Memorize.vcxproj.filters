@@ -236,6 +236,39 @@
     <ClCompile Include="BossBehaviorTree.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree</Filter>
     </ClCompile>
+    <ClCompile Include="Pattern1Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern2Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern3Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern4Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern5Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern6Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern7Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern8Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern9Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern10Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="PatternAction.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
     <ClCompile Include="LightStream.cpp">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClCompile>
@@ -422,6 +455,18 @@
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
     <ClInclude Include="Pattern8Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="BossActionNodes.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern9Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern10Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="PatternAction.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
     <ClInclude Include="LightStream.h">

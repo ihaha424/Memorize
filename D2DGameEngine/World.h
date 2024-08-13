@@ -28,8 +28,23 @@ public:
     void SetNextScene(std::wstring nextLevel);
     class Level* GetCurLevel() { return CurLevel; }
 
+		template<typename T>
+		T* FindActorByType() {
+			if (!CurLevel) return nullptr;
+
+			return GetCurLevel()->FindActorByType<T>();
+		}
+
+		template<typename T>
+		std::vector<T*> FindAllActorsByType() {
+			if (!CurLevel) return std::vector<T*>();
+
+			return GetCurLevel()->FindAllActorsByType<T>();
+		}
+
     void AddUICanvas(class Canvas* canvas);
     void RemoveUICanvas(class Canvas* canvas);
+    class Canvas* GetCanvas() { return canvas; }
 
     Math::Vector2 ScreenToWorldPoint(Math::Vector2 position);
 		
@@ -150,7 +165,7 @@ protected:
 
     class CameraComponent* mainCamera = nullptr;
 
-    std::vector<class Canvas*> activeUICanvasList;
+	class Canvas* canvas = nullptr;
 
 		// Collision System
 		CollisionSystem collisionSystem;

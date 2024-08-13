@@ -173,6 +173,17 @@
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
     <ClCompile Include="MPRecovery.cpp" />
+    <ClCompile Include="Pattern10Action.cpp" />
+    <ClCompile Include="Pattern1Action.cpp" />
+    <ClCompile Include="Pattern2Action.cpp" />
+    <ClCompile Include="Pattern3Action.cpp" />
+    <ClCompile Include="Pattern4Action.cpp" />
+    <ClCompile Include="Pattern5Action.cpp" />
+    <ClCompile Include="Pattern6Action.cpp" />
+    <ClCompile Include="Pattern7Action.cpp" />
+    <ClCompile Include="Pattern8Action.cpp" />
+    <ClCompile Include="Pattern9Action.cpp" />
+    <ClCompile Include="PatternAction.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="PlayerAttackReady.cpp" />
@@ -202,6 +213,7 @@
     <ClInclude Include="AggressiveWaves.h" />
     <ClInclude Include="AggressiveWavesEffect.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossActionNodes.h" />
     <ClInclude Include="BossAIController.h" />
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />
@@ -229,6 +241,7 @@
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="MPRecovery.h" />
+    <ClInclude Include="Pattern10Action.h" />
     <ClInclude Include="Pattern1Action.h" />
     <ClInclude Include="Pattern2Action.h" />
     <ClInclude Include="Pattern3Action.h" />
@@ -237,6 +250,8 @@
     <ClInclude Include="Pattern6Action.h" />
     <ClInclude Include="Pattern7Action.h" />
     <ClInclude Include="Pattern8Action.h" />
+    <ClInclude Include="Pattern9Action.h" />
+    <ClInclude Include="PatternAction.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAnimationStates.h" />
     <ClInclude Include="PlayerAttack.h" />

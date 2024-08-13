@@ -497,6 +497,9 @@
     <ClInclude Include="ClickComponent.h">
       <Filter>Source Files\GameEngine\Components\InputComponent</Filter>
     </ClInclude>
+    <ClInclude Include="UIPanel.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -711,6 +714,9 @@
     </ClCompile>
     <ClCompile Include="ClickComponent.cpp">
       <Filter>Source Files\GameEngine\Components\InputComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPanel.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

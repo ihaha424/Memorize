@@ -1,7 +1,12 @@
 #include "BossBehaviorTree.h"
 
+#include "D2DGameEngine/World.h"
+#include "D2DGameEngine/Level.h"
 #include "D2DGameEngine/AIController.h"
 #include "Boss.h"
+#include "Player.h"
+
+#include "BossActionNodes.h"
 
 BossBehaviorTree::BossBehaviorTree(Actor* _aiOwner) : BehaviorTree(_aiOwner)
 {
@@ -15,46 +20,50 @@ BossBehaviorTree::BossBehaviorTree(Actor* _aiOwner) : BehaviorTree(_aiOwner)
 
 		{
 			//	Groggy
-			Condition* StateDie = CreateNode<Condition>();
-			rootSelector->PushBackChild(StateDie);
+			Condition* groggyCondition = CreateNode<Condition>();
+			rootSelector->PushBackChild(groggyCondition);
 
-			DeclareKey<int>("DissFellCount");
-			SetKey<int>("DissFellCount", boss->DissfellCount);
-			StateDie->_successCondition = [this]()->bool
-				{
-					return (GetKey<int>("DissFellCount") >= 10);
-				};
+			groggyCondition->_successCondition = [this] () {
+				Boss* boss = GetKey<Boss*>("Boss");
+				return (boss->DissfellCount >= 10);
+			};
 			{
 				//Groggy
+				Sequence* groggySequence = CreateNode<Sequence>();
+				groggySequence->PushBackChild(groggyCondition);
+				{
+					// GroggyAction
+					GroggyAction* groggyAction = CreateNode<GroggyAction>();
+					groggySequence->PushBackChild(groggyAction);
+
+					// Wait for 10
+					Wait* groggyWaitFor10Seconds = CreateNode<Wait>(5);
+					groggySequence->PushBackChild(groggyWaitFor10Seconds);
+				}
 			}
 		}
 		{
 			// BehaviorSelector
 			Selector* BehaviorSelector = CreateNode<Selector>();
 			rootSelector->PushBackChild(BehaviorSelector);
-			DeclareKey<float>("Detection_Range");
-			SetKey<float>("Detection_Range", boss->Detection_Range);
-			DeclareKey<float>("Avoidance_Range");
-			SetKey<float>("Avoidance_Range", boss->Avoidance_Range);
 
 			{
 				//	Periodic_Pattern
-				Condition* periodic_Pattern_Cool_Time = CreateNode<Condition>();
-				BehaviorSelector->PushBackChild(periodic_Pattern_Cool_Time);
+				Condition* IsCooledDown = CreateNode<Condition>();
+				BehaviorSelector->PushBackChild(IsCooledDown);
 
-				DeclareKey<float>("Periodic_Pattern_Cool_Time");
-				SetKey<float>("Periodic_Pattern_Cool_Time", boss->Periodic_Pattern_Cool_Time);
-				periodic_Pattern_Cool_Time->_successCondition = [this]()->bool
-					{
-						return (GetKey<int>("Periodic_Pattern_Cool_Time") < 0.f);
-					};
+				IsCooledDown->_successCondition = [this] () {
+					Boss* boss = GetKey<Boss*>("Boss"); 
+					return boss->Periodic_Pattern_Cool_Time <= 0.f;
+				};
 				{
 					RandomSelector* BehaviorSelector = CreateNode<RandomSelector>();
-					periodic_Pattern_Cool_Time->Wrap(BehaviorSelector);
+					IsCooledDown->Wrap(BehaviorSelector);
 					{
 						{
 							//Pattern06
 							//periodic_Pattern_Cool_Time = Pattern06->DelayTime
+							
 						}
 						{
 							//Pattern07
@@ -67,18 +76,24 @@ BossBehaviorTree::BossBehaviorTree(Actor* _aiOwner) : BehaviorTree(_aiOwner)
 					}
 				}
 
-				//	MoveAction
+				// MoveAction
 				Condition* moveActionCondition = CreateNode<Condition>();
 				BehaviorSelector->PushBackChild(moveActionCondition);
-				moveActionCondition->_successCondition = [this]()->bool
-					{
-						return (GetKey<float>("Detection_Range") < GetKey<float>("Palyer_Distance"));
-					};
+				moveActionCondition->_successCondition = [this] () -> bool {
+					Boss* boss = GetKey<Boss*>("Boss");
+					Player* player = GetKey<Player*>("Player");
+					float detectionRangeSquared = boss->Detection_Range * boss->Detection_Range;
+					float playerDistanceSquared = (player->GetLocation() - boss->GetLocation()).LengthSquared();
+					return detectionRangeSquared < playerDistanceSquared;
+				};
 				{
 					//MoveACtion
+					Player* player = GetKey<Player*>("Player");
+					MoveToLocation* moveToPlayer = CreateNode<MoveToLocation>();
+					moveToPlayer->SetDestination(player->GetLocation());
 				}
 
-				//	Telproting
+				//	Teleporting
 				Condition* telprotingCondition = CreateNode<Condition>();
 				BehaviorSelector->PushBackChild(telprotingCondition);
 				telprotingCondition->_successCondition = [this]()->bool
@@ -86,14 +101,12 @@ BossBehaviorTree::BossBehaviorTree(Actor* _aiOwner) : BehaviorTree(_aiOwner)
 						return (GetKey<float>("Palyer_Distance") < GetKey<float>("Avoidance_Range"));
 					};
 				{
-					//Telproting
+					// Teleporting
 				}
 
 				//	BossPhase
 				Selector* BossPhase = CreateNode<Selector>();
 				BehaviorSelector->PushBackChild(BossPhase);
-				DeclareKey<float>("Boss_HP");
-				SetKey<float>("Boss_HP", boss->hp);
 				{
 					Condition* BossPhase_One = CreateNode<Condition>();
 					BossPhase->PushBackChild(BossPhase_One);
@@ -315,4 +328,14 @@ BossBehaviorTree::BossBehaviorTree(Actor* _aiOwner) : BehaviorTree(_aiOwner)
 			}
 		}
 	}
+}
+
+void BossBehaviorTree::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// 플레이어 찾아서 포인터로 넘김. Key로 접근 가능
+	DeclareKey<Player*>("Player");
+	SetKey<Player*>("Player", GetWorld()->FindActorByType<Player>());
+	
 }

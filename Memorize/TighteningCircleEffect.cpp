@@ -42,4 +42,5 @@ void TighteningCircleEffect::Update(float _dt)
 void TighteningCircleEffect::Initialize()
 {
 	elapsedTime = 0.f;
+	bitmap->SetScale(1.f, 1.f);
 }

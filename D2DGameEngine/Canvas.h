@@ -1,60 +1,58 @@
 #pragma once
 #include "Actor.h"
-#include "UIElement.h"
+#include "UIPanel.h"
 
 class Canvas : public Actor
 {
-	std::map<std::wstring, UIElement*> uiMap;
-	std::list<class UIElement*> uiList;
-
+	std::map<std::wstring, UIPanel*> panelMap;
+	std::vector<class UIPanel*> panelList;
 public:
 	Canvas(class World* _world);
 	virtual ~Canvas();
 
 	template<typename T>
-	T* CreateUI(std::wstring name)
+	T* CreatePannel(std::wstring name)
 	{
 		T* t = new T;
-		UIElement* ui = dynamic_cast<UIElement*>(t);
+		UIPanel* panel = dynamic_cast<UIPanel*>(t);
 
-		if (ui == nullptr)
+		if (panel == nullptr)
 			return nullptr;
 
-		uiMap[name] = ui;
-		uiList.push_back(ui);
+		panelMap[name] = panel;
+		panelList.push_back(panel);
 
-		uiList.sort([](UIElement* u1, UIElement* u2)
-			{return u1->GetZOrder() < u2->GetZOrder(); });
+		std::sort(panelList.begin(), panelList.end(),
+			[](UIPanel* panel, UIPanel* panel)
+			{return panel->GetZOrder() < panel->GetZOrder(); });
 
 		return t;
 	}
 
 	template<typename T>
-	T* GetUI(std::wstring name)
+	T* GetPanel(std::wstring name)
 	{
-		return dynamic_cast<T*>(uiMap[name]);
+		return dynamic_cast<T*>(panelMap[name]);
 	}
 
-	void ShowUI(std::wstring name)
+	void ShowPanel(std::wstring name)
 	{
-		uiMap[name]->SetIsActive(true);
+		panelMap[name]->Activate();
 	}
-	void HideUI(std::wstring name)
+	void HidePanel(std::wstring name)
 	{
-		uiMap[name]->SetIsActive(false);
+		panelMap[name]->Inactivate();
 	}
 
 	void RemoveUI(std::wstring name)
 	{
-		UIElement* ui = uiMap[name];
-		uiList.remove(ui);
-		uiMap.erase(name);
-		delete ui;
-		ui = nullptr;
+		UIPanel* panel = panelMap[name];
+		remove(panelList.begin(), panelList.end(), panel);
+		panelMap.erase(name);
+		delete panel;
+		panel = nullptr;
 	}
 
-	void AddToViewport();
-	void RemoveFromViewport();
 
 	virtual void Update(float _dt) override;
 	virtual void Render(class D2DRenderer* _renderer) override;
