@@ -6,5 +6,8 @@ class LightStream : public RangeSkill
 public:
 	LightStream(Actor* _owner);
 	virtual ~LightStream();
+
+	virtual void UseSkill() override;
+	virtual void ReflectionIn() override;
 };
 

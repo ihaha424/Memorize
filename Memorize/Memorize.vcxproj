@@ -165,6 +165,8 @@
     <ClCompile Include="GPlayerController.cpp" />
     <ClCompile Include="GroggyAction.cpp" />
     <ClCompile Include="Heal.cpp" />
+    <ClCompile Include="LightStream.cpp" />
+    <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -217,6 +219,8 @@
     <ClInclude Include="GPlayerController.h" />
     <ClInclude Include="GroggyAction.h" />
     <ClInclude Include="Heal.h" />
+    <ClInclude Include="LightStream.h" />
+    <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />

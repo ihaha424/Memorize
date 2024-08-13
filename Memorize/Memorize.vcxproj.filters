@@ -78,6 +78,9 @@
     <Filter Include="Source Files\App\Boss\BossBehaviorTree\ActionNodes">
       <UniqueIdentifier>{ba7304c9-da49-4be3-bad7-95ce360383fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\Range\LightStream">
+      <UniqueIdentifier>{4389aa17-f477-4d9e-8b09-ad72221ae47f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -223,6 +226,12 @@
     </ClCompile>
     <ClCompile Include="BossBehaviorTree.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="LightStream.cpp">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
+    </ClCompile>
+    <ClCompile Include="LightStreamEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -399,6 +408,12 @@
     </ClInclude>
     <ClInclude Include="Pattern8Action.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="LightStream.h">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
+    </ClInclude>
+    <ClInclude Include="LightStreamEffect.h">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
