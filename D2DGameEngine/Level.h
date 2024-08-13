@@ -38,7 +38,7 @@ public:
 		{
 			auto it = actorTypeMap.find(std::type_index(typeid(T)));
 			if (it == actorTypeMap.end()) return nullptr;
-			return it->second;
+			return static_cast<T*>(it->second);
 		}
 
 		template<ActorType T>

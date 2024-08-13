@@ -6,7 +6,10 @@
 #include "Canvas.h"
 #include "PrimitiveComponent.h"
 
-World::World() {}
+World::World() 
+{
+	//canvas = new Canvas(this);
+}
 World::~World()
 {
 	auto iter = levelList.begin();

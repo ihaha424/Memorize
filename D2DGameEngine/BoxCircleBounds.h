@@ -2,7 +2,6 @@
 
 #include "Box.h"
 #include "Circle.h"
-#include "SimpleMath.h"
 
 struct BoxCircleBounds {
 	DXVec2 center;
