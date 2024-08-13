@@ -162,6 +162,7 @@
     <ClInclude Include="CapsuleComponent.h" />
     <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="CSpace.h" />
+    <ClInclude Include="EffectSystem.h" />
     <ClInclude Include="FSMComponent.h" />
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="IntersectionUtil.h" />
@@ -265,6 +266,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CapsuleComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
+    <ClCompile Include="EffectSystem.cpp" />
     <ClCompile Include="EventBus.cpp" />
     <ClCompile Include="FSMComponent.cpp" />
     <ClCompile Include="FSMState.cpp" />

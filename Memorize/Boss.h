@@ -1,5 +1,7 @@
 #pragma once
 #include "../D2DGameEngine/Character.h"
+#include "IBossSkill.h"
+
 class Boss : public Character
 {
 public:
@@ -12,10 +14,13 @@ public:
 	float Detection_Range = 880.f;
 	float Avoidance_Range = 450.f;
 
+
+
 public:
 	Boss(class World* _world);
 	virtual ~Boss();
 
 	virtual void Update(float _dt) override;
+
 };
 

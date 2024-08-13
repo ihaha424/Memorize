@@ -150,6 +150,7 @@
     <ClCompile Include="AggressiveWavesEffect.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
+    <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
     <ClCompile Include="ChasingWaterBall.cpp" />
     <ClCompile Include="ChasingWaterBallProjectile.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="AggressiveWavesEffect.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossAIController.h" />
+    <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BuffSkill.h" />
     <ClInclude Include="ChasingWaterBall.h" />
     <ClInclude Include="ChasingWaterBallProjectile.h" />
@@ -212,6 +214,7 @@
     <ClInclude Include="GCameraComponent.h" />
     <ClInclude Include="GPlayerController.h" />
     <ClInclude Include="Heal.h" />
+    <ClInclude Include="IBossSkill.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />
