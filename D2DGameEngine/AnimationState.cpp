@@ -106,7 +106,7 @@ void AnimationState::AddAnimationStateDependency(
 
 void AnimationState::SliceSpriteSheet(uint pixelSizeX, uint pixelSizeY, int offsetX, int offsetY, int paddingX, int paddingY)
 {
-		int newTotalWidth = GetSpriteWidth() - offsetX;
+	int newTotalWidth = GetSpriteWidth() - offsetX;
 	int newTotalHeight = GetSpriteHeight() - offsetY;
 
 	int nrows = newTotalHeight / (pixelSizeY + paddingY);

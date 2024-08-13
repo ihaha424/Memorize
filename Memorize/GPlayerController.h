@@ -46,7 +46,7 @@ public:
 	 * @brief 지정한 스킬을 사용
 	 * @tparam T : Skill 상속받은 클래스
 	 */
-	template <typename T>
+	template <typename SkillType>
 	void StartSkill();
 
 	/**

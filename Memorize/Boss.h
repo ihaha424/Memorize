@@ -17,6 +17,8 @@ public:
 	float Detection_Range = 880.f;
 	float Avoidance_Range = 450.f;
 
+
+
 public:
 	Boss(class World* _world);
 	virtual ~Boss();

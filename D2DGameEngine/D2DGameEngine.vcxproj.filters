@@ -57,9 +57,6 @@
     <Filter Include="Source Files\GameEngine\Camera">
       <UniqueIdentifier>{1bf5ae90-1b15-4d95-8e9e-094a01712cff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\Particle">
-      <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\InputSystem">
       <UniqueIdentifier>{816a7e23-17c5-40e2-bebb-0db373020597}</UniqueIdentifier>
     </Filter>
@@ -150,6 +147,12 @@
     <Filter Include="Resource">
       <UniqueIdentifier>{ff9d721e-1861-4d10-9421-f7c95a4ebe0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\EffectSystem">
+      <UniqueIdentifier>{0f5940a5-f3cb-4206-b649-dcf4a49935ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\EffectSystem\Particle">
+      <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\GameEngine\AI\Brain">
       <UniqueIdentifier>{17554646-95a4-4207-9e58-6911d48bfd6a}</UniqueIdentifier>
     </Filter>
@@ -225,7 +228,7 @@
       <Filter>Source Files\GameEngine\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
-      <Filter>Source Files\GameEngine\Particle</Filter>
+      <Filter>Source Files\GameEngine\EffectSystem\Particle</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
       <Filter>Source Files\GameEngine\Core\Math</Filter>
@@ -479,11 +482,17 @@
     <ClInclude Include="DamageEvent.h">
       <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
+    <ClInclude Include="EffectSystem.h">
+      <Filter>Source Files\GameEngine\EffectSystem</Filter>
+    </ClInclude>
     <ClInclude Include="BrainComponent.h">
       <Filter>Source Files\GameEngine\AI\Brain</Filter>
     </ClInclude>
     <ClInclude Include="PathFinder.h">
       <Filter>Source Files\GameEngine\AI\PathFinder</Filter>
+    </ClInclude>
+    <ClInclude Include="UIPanel.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -689,10 +698,16 @@
       <Filter>Source Files\GameEngine\Components\FSMComponent</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">
-      <Filter>Source Files\GameEngine\Particle</Filter>
+      <Filter>Source Files\GameEngine\EffectSystem\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectSystem.cpp">
+      <Filter>Source Files\GameEngine\EffectSystem</Filter>
     </ClCompile>
     <ClCompile Include="BrainComponent.cpp">
       <Filter>Source Files\GameEngine\AI\Brain</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPanel.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -35,7 +35,16 @@ void Projectile::Update(float _dt)
 
 	if (elapsedTime > delay)
 	{
+		
 		mv->SetStatus(OS_ACTIVE);
 		bm->SetStatus(OS_ACTIVE);
+	}
+
+	if (elapsedTime > duration)
+	{
+		elapsedTime = 0.f;
+		mv->SetStatus(OS_INACTIVE);
+		bm->SetStatus(OS_INACTIVE);
+		Inactivate();
 	}
 }

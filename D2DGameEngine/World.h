@@ -44,6 +44,7 @@ public:
 
     void AddUICanvas(class Canvas* canvas);
     void RemoveUICanvas(class Canvas* canvas);
+    class Canvas* GetCanvas() { return canvas; }
 
     Math::Vector2 ScreenToWorldPoint(Math::Vector2 position);
 		
@@ -164,7 +165,7 @@ protected:
 
     class CameraComponent* mainCamera = nullptr;
 
-    std::vector<class Canvas*> activeUICanvasList;
+	class Canvas* canvas = nullptr;
 
 		// Collision System
 		CollisionSystem collisionSystem;

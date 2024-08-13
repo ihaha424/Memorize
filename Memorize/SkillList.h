@@ -9,7 +9,7 @@
 //#include "ManaOverload.h"
 #include "Heal.h"
 #include "PrismReflection.h"
-//#include "LightStream.h"
+#include "LightStream.h"
 #include "MPMaxIncrease.h"
 //#include "Purification.h"
 #include "DarkSphere.h"

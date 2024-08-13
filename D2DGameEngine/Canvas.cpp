@@ -11,29 +11,20 @@ Canvas::~Canvas()
 {
 }
 
-void Canvas::AddToViewport()
-{
-	GetWorld()->AddUICanvas(this);
-}
-
-void Canvas::RemoveFromViewport()
-{
-	GetWorld()->RemoveUICanvas(this);
-}
 
 void Canvas::Update(float _dt)
 {
-	for (auto ui : uiList)
+	for (auto panel : panelList)
 	{
-		ui->Update(_dt);
+		panel->Update(_dt);
 	}
 }
 
 void Canvas::Render(D2DRenderer* _renderer)
 {
-	for (auto ui : uiList)
+	for (auto panel : panelList)
 	{
-		ui->Render(_renderer);
+		panel->Render(_renderer);
 	}
 }
 

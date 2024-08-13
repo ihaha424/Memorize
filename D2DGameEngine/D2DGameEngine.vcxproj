@@ -163,6 +163,7 @@
     <ClInclude Include="CapsuleComponent.h" />
     <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="CSpace.h" />
+    <ClInclude Include="EffectSystem.h" />
     <ClInclude Include="FSMComponent.h" />
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="IntersectionUtil.h" />
@@ -248,6 +249,7 @@
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UIImage.h" />
+    <ClInclude Include="UIPanel.h" />
     <ClInclude Include="UIText.h" />
     <ClInclude Include="Wait.h" />
     <ClInclude Include="WinApp.h" />
@@ -268,6 +270,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CapsuleComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
+    <ClCompile Include="EffectSystem.cpp" />
     <ClCompile Include="EventBus.cpp" />
     <ClCompile Include="FSMComponent.cpp" />
     <ClCompile Include="FSMState.cpp" />
@@ -318,6 +321,7 @@
     <ClCompile Include="SpriteResource.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIImage.cpp" />
+    <ClCompile Include="UIPanel.cpp" />
     <ClCompile Include="UIText.cpp" />
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
