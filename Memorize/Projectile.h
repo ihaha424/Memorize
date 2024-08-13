@@ -7,7 +7,7 @@ protected:
 	class Character* owner = nullptr;
 	int damage = 0;
 	float speed;
-	float duration;
+	float duration = 2.f;
 
 	float delay = 0.f;
 
