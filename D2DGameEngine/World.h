@@ -28,6 +28,20 @@ public:
     void SetNextScene(std::wstring nextLevel);
     class Level* GetCurLevel() { return CurLevel; }
 
+		template<typename T>
+		T* FindActorByType() {
+			if (!CurLevel) return nullptr;
+
+			return GetCurLevel()->FindActorByType<T>();
+		}
+
+		template<typename T>
+		std::vector<T*> FindAllActorsByType() {
+			if (!CurLevel) return std::vector<T*>();
+
+			return GetCurLevel()->FindAllActorsByType<T>();
+		}
+
     void AddUICanvas(class Canvas* canvas);
     void RemoveUICanvas(class Canvas* canvas);
 

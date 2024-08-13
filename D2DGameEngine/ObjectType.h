@@ -2,7 +2,7 @@
 
 #include "framework.h"
 
-typedef enum ECollisionChannel {
+enum class ECollisionChannel {
 	Camera,
 	WorldStatic,
 	WorldDynamic,

@@ -12,4 +12,5 @@ Boss::~Boss()
 void Boss::Update(float _dt)
 {
 	__super::Update(_dt);
+
 }

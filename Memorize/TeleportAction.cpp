@@ -11,6 +11,12 @@ bool TeleportTo::IsRunning()
 
 void TeleportTo::Run(float dt)
 {
+	if (!started) 
+	{
+		// Starting animation.
+		started = true;
+	}
+
 	if (!bt->IsKeySet<Math::Vector2>(key)) {
 		failed = true;
 		return;

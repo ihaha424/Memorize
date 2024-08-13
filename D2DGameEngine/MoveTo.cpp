@@ -26,10 +26,9 @@ void MoveTo::Run(float dt) {
 
 	Math::Vector2 currLocation = GetPawn()->GetLocation();
 	Math::Vector2 target = bt->GetKey<Math::Vector2>(key);
-	float distance = Math::Vector2::Distance(currLocation, target);
+	float distanceSquared = Math::Vector2::DistanceSquared(currLocation, target);
 
-	LOG_VERBOSE(dbg::text("AI: Move To (", target.x, ", ", target.y, "), Range=", distance));
-	if (distance <= acceptableRadius) return;
+	if (distanceSquared <= acceptableRadius * acceptableRadius) return;
 
 	Math::Vector2 toTarget = target - currLocation;
 	toTarget.Normalize();
@@ -39,4 +38,22 @@ void MoveTo::Run(float dt) {
 	
 	// NOTE: Consider using Pathfinder instead
 	// GetAIController()->MoveToLocation(target);
+}
+
+bool MoveToLocation::IsRunning() {
+
+	float distanceSquared = (destination - GetPawn()->GetLocation()).LengthSquared();
+
+	return distanceSquared > acceptableRadius * acceptableRadius;
+}
+
+void MoveToLocation::Run(float dt) {
+	Math::Vector2 toDestination = destination - GetPawn()->GetLocation();
+
+	float distanceSquared = toDestination.LengthSquared();
+	if (distanceSquared <= acceptableRadius * acceptableRadius) return;
+
+	toDestination.Normalize();
+
+	GetPawn()->SetVelocity(toDestination * speed);
 }

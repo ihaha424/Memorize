@@ -55,9 +55,11 @@ struct Repeater : public Decorator {
 			switch (child->status) {
 			case NodeStatus::Failure: {
 				status = NodeStatus::Failure;
+				return;
 			}
 			case NodeStatus::Running: {
 				status = NodeStatus::Running;
+				return;
 			}
 			case NodeStatus::Success: {
 				++next;
@@ -72,21 +74,38 @@ struct Repeater : public Decorator {
 struct Condition : public Decorator {
 	std::function<bool()> _successCondition;
 	virtual void Traverse(float dt) override {
-		if (!_successCondition()) {
-			status = NodeStatus::Failure;
-			return;
+		if (status == NodeStatus::Running)
+		{
+			child->Traverse(dt);
+			status = child->status;
 		}
+		else 
+		{
+			if (!_successCondition()) 
+			{
+				status = NodeStatus::Failure;
+				return;
+			}
 
-		child->Traverse(dt);
-		status = child->status;
+			child->Traverse(dt);
+			status = child->status;
+		}
 	}
 };
 
 struct Primer : public Decorator {
 	std::function<void()> _action;
 	virtual void Traverse(float dt) override {
-		_action();
-		child->Traverse(dt);
-		status = child->status;
+		if (status == NodeStatus::Running)
+		{
+			child->Traverse(dt);
+			status = child->status;
+		}
+		else
+		{
+			_action();
+			child->Traverse(dt);
+			status = child->status;
+		}
 	}
 };

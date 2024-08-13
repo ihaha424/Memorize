@@ -2,10 +2,10 @@
 
 #include "D2DGameEngine/Leaf.h"
 
-struct Pattern7Action final : public Action
+struct Pattern9Action final : public Action
 {
-	// TODO: Parsing?
 
+	// TODO: Parsing?
 	float Pattern6_Cool_Time{ 0.f };
 	void SetCoolTime(float cooltime) {
 		Pattern6_Cool_Time = cooltime;
@@ -17,4 +17,5 @@ struct Pattern7Action final : public Action
 	bool IsRunning() override;
 
 	void Run(float dt) override;
+
 };

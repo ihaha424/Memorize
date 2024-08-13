@@ -7,6 +7,11 @@ bool GroggyAction::IsRunning()
 
 void GroggyAction::Run(float dt)
 {
-	// Set groggy animation true 
-	// Then wait for n seconds
+	// TODO;
+	if (!started) {
+		// Set groggy animation true 
+
+		started = true;
+	}
+	// ½ÃÄö½º·Î »­ - Then wait for n seconds
 }
