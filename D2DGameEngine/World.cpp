@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "World.h"
 #include "Level.h"
-#include "Canvas.h"
+#include "UIPanel.h"
 #include "CameraComponent.h"
-
+#include "Canvas.h"
 #include "PrimitiveComponent.h"
 
 World::World() {}
@@ -39,15 +39,6 @@ void World::SetNextScene(std::wstring nextLevel)
 	NextLevel = iter->second;
 }
 
-void World::AddUICanvas(Canvas* canvas)
-{
-	activeUICanvasList.push_back(canvas);
-}
-
-void World::RemoveUICanvas(Canvas* canvas)
-{
-	remove(activeUICanvasList.begin(), activeUICanvasList.end(), canvas);
-}
 
 Math::Vector2 World::ScreenToWorldPoint(Math::Vector2 position)
 {
@@ -152,10 +143,9 @@ void World::Update(float _dt)
 {
 	CurLevel->Update(_dt);
 
-	for (auto canvas : activeUICanvasList)
-	{
-		canvas->Update(_dt);
-	}
+
+	canvas->Update(_dt);
+
 }
 
 void World::PostUpdate(float _dt)
@@ -172,8 +162,6 @@ void World::Render(D2DRenderer* _renderer)
 	CurLevel->Render(_renderer);
 
 	// UI ·»´õ
-	for (auto canvas : activeUICanvasList)
-	{
-		canvas->Render(_renderer);
-	}
+	canvas->Render(_renderer);
+
 }

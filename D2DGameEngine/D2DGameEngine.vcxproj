@@ -248,6 +248,7 @@
     <ClInclude Include="TypeRegistryId.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UIImage.h" />
+    <ClInclude Include="UIPanel.h" />
     <ClInclude Include="UIText.h" />
     <ClInclude Include="Wait.h" />
     <ClInclude Include="WinApp.h" />
@@ -318,6 +319,7 @@
     <ClCompile Include="SpriteResource.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIImage.cpp" />
+    <ClCompile Include="UIPanel.cpp" />
     <ClCompile Include="UIText.cpp" />
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />

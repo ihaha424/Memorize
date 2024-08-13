@@ -485,6 +485,9 @@
     <ClInclude Include="PathFinder.h">
       <Filter>Source Files\GameEngine\AI\PathFinder</Filter>
     </ClInclude>
+    <ClInclude Include="UIPanel.h">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -693,6 +696,9 @@
     </ClCompile>
     <ClCompile Include="BrainComponent.cpp">
       <Filter>Source Files\GameEngine\AI\Brain</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPanel.cpp">
+      <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
