@@ -104,6 +104,12 @@ void AnimationState::AddAnimationStateDependency(
 	);
 }
 
+void AnimationState::FrameResize(int index)
+{
+	frames.resize(index);
+	frameDurations.resize(index);
+}
+
 void AnimationState::SliceSpriteSheet(uint pixelSizeX, uint pixelSizeY, int offsetX, int offsetY, int paddingX, int paddingY)
 {
 	int newTotalWidth = GetSpriteWidth() - offsetX;

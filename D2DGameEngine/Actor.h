@@ -124,6 +124,13 @@ public:
 	}
 
 	/**
+	 * @brief ClickComponent Evnet
+	 */
+	virtual void OnBeginCursorOver() {};
+	virtual void OnEndCursorOver() {};
+	virtual void OnClicked() {};
+
+	/**
 	 * @brief TODO;
 	 * @param other 
 	 */

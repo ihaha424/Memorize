@@ -4,6 +4,7 @@
 #include "MovementComponent.h"
 
 BossSkillActor::BossSkillActor(World* _world)
+	:Actor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 

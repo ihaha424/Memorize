@@ -165,6 +165,9 @@
     <Filter Include="Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes\Actions">
       <UniqueIdentifier>{2de1ad6d-d459-43c6-a6e5-3c5c7dbf422d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\Components\InputComponent">
+      <UniqueIdentifier>{b05c34c4-84af-447d-9390-95d8e41af438}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -280,9 +283,6 @@
     </ClInclude>
     <ClInclude Include="Controller.h">
       <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>Source Files\GameEngine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Pawn.h">
       <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
@@ -491,6 +491,12 @@
     <ClInclude Include="PathFinder.h">
       <Filter>Source Files\GameEngine\AI\PathFinder</Filter>
     </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Source Files\GameEngine\Components\InputComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="ClickComponent.h">
+      <Filter>Source Files\GameEngine\Components\InputComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -558,9 +564,6 @@
     </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files\GameEngine\GameFramework\Object\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>Source Files\GameEngine\Components</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files\GameEngine\GameFramework\World</Filter>
@@ -702,6 +705,12 @@
     </ClCompile>
     <ClCompile Include="BrainComponent.cpp">
       <Filter>Source Files\GameEngine\AI\Brain</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\InputComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="ClickComponent.cpp">
+      <Filter>Source Files\GameEngine\Components\InputComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

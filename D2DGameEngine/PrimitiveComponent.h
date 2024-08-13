@@ -106,10 +106,6 @@ public:
 	);
 
 	// Collision Callbacks
-	// TODO: Cursor Events
-	virtual void OnBeginCursorOver() {}
-	virtual void OnEndCursorOver() {}
-	virtual void OnClicked() {}
 	// Collision
 	virtual void OnComponentBeginOverlap() {}
 	virtual void OnComponentEndOverlap() {}

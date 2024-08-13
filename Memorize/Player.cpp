@@ -25,31 +25,39 @@ Player::Player(class World* _world) : Character(_world)
 		rootComponent->AddChild(abm);
 		AnimationState* PlayerAnimationState;
 		{
+			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
+			//PlayerAnimationState->SetSprite(L"TestResource/Skill/Projectile/Skill_Effect_Darkness_1.png");
+			//PlayerAnimationState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
+			//PlayerAnimationState->FrameResize(61);
+			//PlayerAnimationState->SetFrameDurations({ 0.05f });
+			//PlayerAnimationState->Trigger(true);
+			//abm->Initialize(PlayerAnimationState);
+
 			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
-			PlayerAnimationState->SliceSpriteSheet(120, 216, 0, 0, 20, 0);
-			PlayerAnimationState->SetFrameDurations({ 0.05f });
+			PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
+			PlayerAnimationState->SetFrameDurations({ 0.1f });
 			PlayerAnimationState->Trigger(true);
 			abm->Initialize(PlayerAnimationState);
 
 			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
-			PlayerAnimationState->SliceSpriteSheet(180, 216, 0, 0, 20, 0);
-			PlayerAnimationState->SetFrameDurations({ 0.05f });
+			PlayerAnimationState->SliceSpriteSheet(162, 254, 0, 0, 0, 0);
+			PlayerAnimationState->SetFrameDurations({ 0.08f });
 			PlayerAnimationState->Trigger(true);
 
 			//??abm->DeclareVariable<bool>("isMoving");
 		}
 	}
 
-	//AnimationBitmapComponent* abm = CreateComponent<AnimationBitmapComponent>();
-	//rootComponent = abm;
-	//{
-	//	abm->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
-	//	abm->SliceSpriteSheet(180, 216, 0,0,20,0);
-	//}
-	//abm->SetFrameDurations({0.05f});
-	//abm->Trigger(true);
+	/*AnimationBitmapComponent* abm = CreateComponent<AnimationBitmapComponent>();
+	rootComponent = abm;
+	{
+		abm->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
+		abm->SliceSpriteSheet(180, 216, 0,0,20,0);
+	}
+	abm->SetFrameDurations({0.05f});
+	abm->Trigger(true);*/
 
 	GCameraComponent* cm = CreateComponent<GCameraComponent>();
 	GetWorld()->SetMainCamera(cm);

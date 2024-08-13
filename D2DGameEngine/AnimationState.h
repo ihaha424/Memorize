@@ -104,6 +104,12 @@ private:
 
 	float currentFrameTime{ 0.f };
 public:
+	/**
+	 * @brief Frame reSize
+	 * @param index 
+	 */
+	void FrameResize(int index);
+
 		/**
 	 * @brief 스프라이트 시트를 일정한 간격으로 슬라이스 하고, 기본 시간 간격을
 	 * 1초로 설정합니다.

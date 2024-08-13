@@ -2,6 +2,7 @@
 
 #include "Box.h"
 #include "Circle.h"
+#include "SimpleMath.h"
 
 struct BoxCircleBounds {
 	DXVec2 center;
@@ -35,6 +36,12 @@ struct BoxCircleBounds {
 		Circle aCircle = a.GetCircle();
 		Circle bCircle = b.GetCircle();
 		return aCircle.CheckIntersect(bCircle);
+	}
+
+	static bool CheckBoxesToPointIntersect(const BoxCircleBounds& a, const DXVec2& b) {
+		Box aBox = Box::BuildAABB(a.center, a.boxExtent);
+		
+		return aBox.IsInside(b);
 	}
 
 	Box GetBox() const {
