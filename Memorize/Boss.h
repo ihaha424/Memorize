@@ -1,9 +1,12 @@
 #pragma once
 #include "../D2DGameEngine/Character.h"
-#include "IBossSkill.h"
+
+#include "D2DGameEngine/Debug.h"
 
 class Boss : public Character
 {
+	LOG_REGISTER_OBJ(Boss)
+
 public:
 	int hp;
 	int maxHp = 100;
@@ -21,6 +24,20 @@ public:
 	virtual ~Boss();
 
 	virtual void Update(float _dt) override;
+
+	virtual void OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) override {
+		OBJ_MESSAGE("Hit!");
+	}
+
+	virtual void OnBeginOverlap(Actor* other) {
+		OBJ_MESSAGE("Overlap began!");
+	}
+
+	virtual void OnEndOverlap(Actor* other) {
+		OBJ_MESSAGE("Overlap ended!");
+	}
+
+
 
 };
 

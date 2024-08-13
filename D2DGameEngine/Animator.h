@@ -99,7 +99,9 @@ public:
 	}
 
 	// Getters
-	AnimationState* GetCurrentAnimationScene();
+	AnimationState* GetCurrentAnimationScene() const;
+
+	virtual BoxCircleBounds CalculateLocalBounds() const;
 
 	void Update(float _dt) override;
 	void Render(class D2DRenderer* _renderer) override;

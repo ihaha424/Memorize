@@ -55,6 +55,15 @@ public:
 		return _instance->operator() < _T > (from, to);
 	}
 
+	template<typename _T, typename InputIt>
+	static _T Get(InputIt first, InputIt last) {
+
+		if (!_instance)
+			throw std::runtime_error("Access of uninitialized Random detected!");
+
+		return _instance->operator() < _T, InputIt > (first, last);
+	}
+
 	static std::mt19937 Engine() {
 		if (!_instance)
 			throw std::runtime_error("Access of uninitialized Random detected!");
@@ -90,6 +99,20 @@ private:
 		operator()(Float from, Float to) {
 		std::uniform_real_distribution<Float> uniform_dist(from, to);
 		return uniform_dist(gen);
+	}
+
+	template<typename Integer, typename InputIt>
+	std::enable_if_t<std::is_integral<Integer>::value, Integer>
+		operator()(InputIt first, InputIt last) {
+		std::discrete_distribution<Integer> discrete_dist(first, last);
+		return discrete_dist(gen);
+	}
+
+	template<typename Float, typename InputIt>
+	std::enable_if_t<std::is_floating_point<Float>::value, Float>
+		operator()(InputIt first, InputIt last) {
+		std::discrete_distribution<Float> discrete_dist(first, last);
+		return discrete_dist(gen);
 	}
 
 	//public:

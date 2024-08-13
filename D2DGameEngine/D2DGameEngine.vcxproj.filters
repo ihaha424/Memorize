@@ -84,15 +84,6 @@
     <Filter Include="Source Files\GameEngine\Core\Event\Dispatchers">
       <UniqueIdentifier>{d0629488-3a3f-46de-a15e-51447842a6b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEngine\AI\BehaviorTree">
-      <UniqueIdentifier>{b349f543-1f2a-4117-92c4-90f2ec717b22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\AI\BehaviorTree\Nodes">
-      <UniqueIdentifier>{562ef7e0-83a0-4456-98a1-612859a7850b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions">
-      <UniqueIdentifier>{2de1ad6d-d459-43c6-a6e5-3c5c7dbf422d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameEngine\AI\PathFinder">
       <UniqueIdentifier>{bc36ca35-dbc7-437c-897e-b4f45f78d56b}</UniqueIdentifier>
     </Filter>
@@ -161,6 +152,18 @@
     </Filter>
     <Filter Include="Source Files\GameEngine\EffectSystem\Particle">
       <UniqueIdentifier>{4b540ae2-370e-4514-add6-d1cedd51ec8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\Brain">
+      <UniqueIdentifier>{17554646-95a4-4207-9e58-6911d48bfd6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\Brain\BehaviorTree">
+      <UniqueIdentifier>{b349f543-1f2a-4117-92c4-90f2ec717b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes">
+      <UniqueIdentifier>{562ef7e0-83a0-4456-98a1-612859a7850b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes\Actions">
+      <UniqueIdentifier>{2de1ad6d-d459-43c6-a6e5-3c5c7dbf422d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -333,25 +336,25 @@
       <Filter>Source Files\GameEngine\Core\Event\Events</Filter>
     </ClInclude>
     <ClInclude Include="BehaviorTree.h">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree</Filter>
     </ClInclude>
     <ClInclude Include="INode.h">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Leaf.h">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Decorator.h">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Composite.h">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="MoveTo.h">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes\Actions</Filter>
     </ClInclude>
     <ClInclude Include="Wait.h">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes\Actions</Filter>
     </ClInclude>
     <ClInclude Include="EventId.h">
       <Filter>Source Files\GameEngine\Core\Event</Filter>
@@ -482,6 +485,12 @@
     <ClInclude Include="EffectSystem.h">
       <Filter>Source Files\GameEngine\EffectSystem</Filter>
     </ClInclude>
+    <ClInclude Include="BrainComponent.h">
+      <Filter>Source Files\GameEngine\AI\Brain</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
+      <Filter>Source Files\GameEngine\AI\PathFinder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -590,13 +599,13 @@
       <Filter>Source Files\GameEngine\Core\Event\Dispatchers</Filter>
     </ClCompile>
     <ClCompile Include="BehaviorTree.cpp">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree</Filter>
     </ClCompile>
     <ClCompile Include="INode.cpp">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="MoveTo.cpp">
-      <Filter>Source Files\GameEngine\AI\BehaviorTree\Nodes\Actions</Filter>
+      <Filter>Source Files\GameEngine\AI\Brain\BehaviorTree\Nodes\Actions</Filter>
     </ClCompile>
     <ClCompile Include="Reflection.cpp">
       <Filter>Source Files\GameEngine\Core\Reflection</Filter>
@@ -690,6 +699,9 @@
     </ClCompile>
     <ClCompile Include="EffectSystem.cpp">
       <Filter>Source Files\GameEngine\EffectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="BrainComponent.cpp">
+      <Filter>Source Files\GameEngine\AI\Brain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

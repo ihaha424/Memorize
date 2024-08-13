@@ -41,6 +41,47 @@ public:
 	void SetScale(const float x, const float y);
 	Math::Matrix GetTrasnform() const;
 
+	/**
+	 * @brief Translate and overlap test.
+	 * @param _teleportDelta The amount of position to be moved from the current position.
+	 */
+	void Teleport(const DXVec2& _teleportDelta) {
+		if (rootComponent)
+			rootComponent->TeleportComponent(_teleportDelta);
+	}
+	/**
+	 * @brief Set velocity of the component
+	 * @param _velocity 
+	 */
+	void SetVelocity(Math::Vector2 _velocity) {
+		if (rootComponent)
+			rootComponent->SetComponentVelocity(_velocity);
+	}
+	/**
+	 * @brief Add velocity of the component
+	 * @param _velocity
+	 */
+	void AddVelocity(Math::Vector2 _velocity) {
+		if (rootComponent)
+			rootComponent->AddComponentVelocity(_velocity);
+	}
+	/**
+	 * @brief Set angular velocity of the component
+	 * @param _angularVelocity Positive angle or negative angle in degree.
+	 */
+	void SetAngularVelocity(float _angularVelocity) {
+		if (rootComponent)
+			rootComponent->SetComponentAngularVelocity(_angularVelocity);
+	}
+	/**
+	 * @brief Add angular velocity of the component
+	 * @param _angularVelocity Positive angle or negative angle in degree.
+	 */
+	void AddAngularVelocity(float _angularVelocity) {
+		if (rootComponent)
+			rootComponent->AddComponentAngularVelocity(_angularVelocity);
+	}
+
 	template<ComponentType T>
 	requires (!PrimitiveComponentType<T>)
 	T* CreateComponent()

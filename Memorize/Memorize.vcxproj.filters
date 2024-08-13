@@ -81,6 +81,12 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor">
       <UniqueIdentifier>{a8671a51-8261-40de-bcc2-317e9cd5e5ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossBehaviorTree\ActionNodes">
+      <UniqueIdentifier>{ba7304c9-da49-4be3-bad7-95ce360383fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Skill\Range\LightStream">
+      <UniqueIdentifier>{4389aa17-f477-4d9e-8b09-ad72221ae47f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -220,6 +226,21 @@
     </ClCompile>
     <ClCompile Include="BossSkillActor.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
+    </ClCompile>
+    <ClCompile Include="TeleportAction.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="GroggyAction.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="BossBehaviorTree.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="LightStream.cpp">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
+    </ClCompile>
+    <ClCompile Include="LightStreamEffect.cpp">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +390,45 @@
     </ClInclude>
     <ClInclude Include="BossSkillActor.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
+    </ClInclude>
+    <ClInclude Include="BossBehaviorTree.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="TeleportAction.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="GroggyAction.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern1Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern2Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern3Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern4Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern5Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern6Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern7Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern8Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="LightStream.h">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
+    </ClInclude>
+    <ClInclude Include="LightStreamEffect.h">
+      <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

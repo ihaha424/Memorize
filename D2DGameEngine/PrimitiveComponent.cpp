@@ -752,7 +752,6 @@ void PrimitiveComponent::UpdateOverlaps(
 				PushOverlappingComponent(otherComponent, overlapInfo);
 			}
 		}
-
 	}
 }
 
@@ -810,8 +809,9 @@ bool PrimitiveComponent::MoveComponentImpl(
 	const DXVec2& delta, 
 	const float angleDelta,
 	bool bSweep, 
-	HitResult* outHitResult)
-{
+	HitResult* outHitResult,
+	bool teleport
+) {
 	const Math::Matrix initialRotation = R;
 	const Math::Matrix newRotation = R * Math::Matrix::CreateRotationZ(angleDelta);
 	const Math::Vector2 traceStart = GetComponentLocation();
@@ -854,7 +854,7 @@ bool PrimitiveComponent::MoveComponentImpl(
 		bMoved = true;
 		bRotationOnly = (deltaSizeSquared == 0);
 	}
-	else 
+	else if (!teleport)
 	{	// Sweeping
 		std::vector<HitResult> hits;
 		DXVec2 newLocation = traceStart;
@@ -992,6 +992,17 @@ bool PrimitiveComponent::MoveComponentImpl(
 		// Move the component
 		SetTranslation(newLocation.x, newLocation.y);
 		bMoved = true;
+	}	
+	else // Sweep and teleport - Handle collision at the end
+	{
+		// TODO:
+		// Find if the object blocks at traceEnd
+		// Pull it back toward traceStart until it doesn't collide
+		// Basically, traceEnd to traceStart line trace
+
+		// SetTranslation(newLocation.x , newLocatio.y);
+		// bMove = true;
+
 	}	// END if (!bSweep) 
 
 	if (bMoved) {

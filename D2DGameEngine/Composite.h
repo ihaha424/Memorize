@@ -77,21 +77,33 @@ struct Selector : public Composite {
 struct RandomSelector : public Composite {
 	std::size_t i;
 
-	std::vector<INode*> randomOrder;
-	std::vector<double> randomWeights;
+	/**
+	 * @brief Need to be called after adding all children nodes to set weights.
+	 * @param weights 
+	 */
 	virtual void SetRandomWeights(std::initializer_list<double> weights)
 	{
-		randomWeights.assign(weights);
+		randomIndexOrder.resize(children.size());
+		randomWeights.resize(children.size());
+
+		auto it = weights.begin();
+		for (uint i = 0; i < children.size(); ++i) {
+			if (it == weights.end()) --it;
+			randomWeights[i] = *it;
+			++it;
+		}
+
+		WeightedRandomShuffle();
 	}
 
 	virtual void Init() override {
 		status = NodeStatus::Ready;
-		std::shuffle(children.begin(), children.end(), Random::Engine());
+		WeightedRandomShuffle();
 	}
 
 	virtual void Traverse(float dt) override {
-		for (; i < children.size(); ++i) {
-			INode* child = children[i];
+		for (; i < randomIndexOrder.size(); ++i) {
+			INode* child = children[randomIndexOrder[i]];
 			child->Traverse(dt);
 			switch (child->status) {
 			case NodeStatus::Failure: {
@@ -108,6 +120,27 @@ struct RandomSelector : public Composite {
 			}
 		}
 		status = NodeStatus::Failure;
+	}
+
+private:
+	std::vector<double> randomWeights;
+
+	std::vector<uint> randomIndexOrder;
+	
+
+	void WeightedRandomShuffle() 
+	{
+		std::vector<double> randomWeightsCopy = randomWeights;
+
+		for (uint i = 0; i < randomWeightsCopy.size(); ++i)
+		{
+			std::discrete_distribution<> d();
+			uint index = Random::Get<uint>(randomWeightsCopy.begin(), randomWeightsCopy.end());
+
+			randomIndexOrder[i] = index;
+
+			randomWeightsCopy[index] = 0.0;
+		}
 	}
 };
 

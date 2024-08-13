@@ -1,7 +1,14 @@
 #include "INode.h"
 
+#include "Pawn.h"
 #include "BehaviorTree.h"
+#include "AIController.h"
 
-GameObject* INode::GetOwner() { return myBT->_owner; }
+class Pawn* INode::GetPawn() { return GetAIController()->GetPawn(); }
 
-AIController* INode::GetController() { return myBT->_controller; }
+BehaviorTree* INode::GetBehaviorTree()
+{
+	return bt;
+}
+
+AIController* INode::GetAIController() { return bt->aiOwner; }

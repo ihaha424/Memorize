@@ -9,16 +9,17 @@ enum class NodeStatus {
 	Success
 };
 
-class GameObject;
+class Pawn;
 class AIController;
 class BehaviorTree;
 struct INode {
-	BehaviorTree* myBT;
+	BehaviorTree* bt;
 	NodeStatus status;
 	virtual void Init() { status = NodeStatus::Ready; }
 	virtual void Traverse(float dt) = 0;
-	GameObject* GetOwner();
-	AIController* GetController();
+	BehaviorTree* GetBehaviorTree();
+	AIController* GetAIController();
+	class Pawn* GetPawn();
 };
 
 template<class T>

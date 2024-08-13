@@ -50,6 +50,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<TighteningCircle>();
 	CreateSkill<DarkSphere>();
 	CreateSkill<AggressiveWaves>();
+	CreateSkill<LightStream>();
 }
 
 void GPlayerController::EndSkill()

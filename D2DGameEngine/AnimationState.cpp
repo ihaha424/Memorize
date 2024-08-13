@@ -59,6 +59,9 @@ void AnimationState::Update(float _dt)
 		{ frame.left, frame.top },
 		{ frame.right, frame.bottom }
 	);
+
+	// bShouldUpdateBounds = true;
+	onwer->MarkBoundsDirty();
 }
 
 void AnimationState::Render(D2DRenderer* _renderer)

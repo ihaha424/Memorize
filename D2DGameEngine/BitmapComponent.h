@@ -134,10 +134,12 @@ public:
 	}
 
 	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
-		DXVec2 c{ bounds.center.x, bounds.center.y };
+		BoxCircleBounds localBounds = CalculateLocalBounds();
+		
+		DXVec2 c{ localBounds.center.x, localBounds.center.y };
 		c = DXVec2::Transform(c, _worldTransform);
 
-		DXVec2 e{ bounds.boxExtent.width, bounds.boxExtent.height };
+		DXVec2 e{ localBounds.boxExtent.width, localBounds.boxExtent.height };
 		e = DXVec2::Transform(e, _worldTransform);
 
 		return BoxCircleBounds(Box{ c, e });
@@ -155,7 +157,7 @@ public:
 	}
 
 	virtual void UpdateBounds() override {
-		bounds = CalculateLocalBounds();
+		bounds = CalculateBounds(GetWorldTransform());
 	}
 };
 
