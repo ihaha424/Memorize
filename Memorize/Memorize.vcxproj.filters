@@ -75,6 +75,12 @@
     <Filter Include="Source Files\App\Skill\Range\AggressiveWaves">
       <UniqueIdentifier>{7f076608-ace0-45e3-b3e5-f99790f16b00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill">
+      <UniqueIdentifier>{cff3c9e1-8c25-4b20-855e-a7f093dfcae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor">
+      <UniqueIdentifier>{a8671a51-8261-40de-bcc2-317e9cd5e5ba}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\App\Boss\BossBehaviorTree\ActionNodes">
       <UniqueIdentifier>{ba7304c9-da49-4be3-bad7-95ce360383fc}</UniqueIdentifier>
     </Filter>
@@ -217,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="Heal.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="BossSkillActor.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
     </ClCompile>
     <ClCompile Include="TeleportAction.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
@@ -375,6 +384,12 @@
     </ClInclude>
     <ClInclude Include="Heal.h">
       <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="IBossSkill.h">
+      <Filter>Source Files\App\Boss\BossSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="BossSkillActor.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
     </ClInclude>
     <ClInclude Include="BossBehaviorTree.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree</Filter>
