@@ -10,6 +10,7 @@
 #include "BossAIController.h"
 #include "Boss.h"
 #include "ElementsPanel.h"
+//#include "Bat.h"
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
@@ -58,5 +59,7 @@ void TestLevel::Enter()
 	{
 		/*TestWall* testWall = CreateActor<TestWall>();
 		testWall->SetLocation(960, -300);*/
+		/*Bat* bat = CreateActor<Bat>();
+		bat->SetLocation(-100, 100);*/
 	}
 }

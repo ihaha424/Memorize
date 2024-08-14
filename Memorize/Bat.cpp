@@ -10,18 +10,16 @@
 #include "MovementComponent.h"
 #include "Player.h"
 
-Bat::Bat(World* _world) : BossSkillActor(_world)
+Bat::Bat(World* _world) : Actor(_world)
 {
+	SetTickProperties(TICK_PHYSICS | TICK_PRE_UPDATE | TICK_UPDATE | TICK_POST_UPDATE | TICK_RENDER);
 	ReflectionIn();
-
-	bm->isVisible = false;
 
 	CircleComponent* circle = CreateComponent<CircleComponent>();
 	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::DynamicOverlapAll);
 	circle->bGenerateOverlapEvent = true;
+	circle->maxSpeed = speed;
 	rootComponent = circle;
-
-	//rootComponent->AddChild(mv);
 
 	moveAnimation = CreateComponent<AnimationBitmapComponent>();
 	moveAnimation->SetSprite(L"TestResource/Boss/Bat/Idle/Bat_Idle.png");
@@ -36,7 +34,7 @@ Bat::Bat(World* _world) : BossSkillActor(_world)
 	attackAnimation->SliceSpriteSheet(32, 32, 0, 0, 0, 0);
 	attackAnimation->SetFrameDurations({ 0.125 });
 	attackAnimation->isVisible = false;
-	attackAnimation->SetLoop(true);
+	attackAnimation->SetLoop(false);
 	rootComponent->AddChild(attackAnimation);
 
 	DamageType damageType{
@@ -62,7 +60,7 @@ void Bat::OnBeginOverlap(Actor* other)
 
 void Bat::Update(float _dt)
 {
-	static float elapsedTime = 0.f;
+	static float elapsedTime = 0.50f;
 	Super::Update(_dt);
 
 	Math::Vector2 playerLocation = player->GetLocation();
@@ -70,41 +68,43 @@ void Bat::Update(float _dt)
 	float distanceToPlayerSquared = toPlayer.LengthSquared();
 	toPlayer.Normalize();
 
-	if (toPlayer.x >= 0) {
+	if (toPlayer.x >= 0) 
+	{
 		moveAnimation->FlipX(false);
 		attackAnimation->FlipX(false);
 	}
-	else {
+	else 
+	{
 		moveAnimation->FlipX(true);
 		attackAnimation->FlipX(true);
 	}
 
-	if (attackAnimation->IsPlaying()) {
+	if (attackAnimation->IsPlaying()) 
+	{
 		elapsedTime += _dt;
-		if (elapsedTime >= 1.f) {
-			
+		if (elapsedTime >= attackSpeed) 
+		{
 			batDamageEvent.shotDirection = toPlayer;
 			batDamageEvent.hitInfo.hitComponent = (PrimitiveComponent*) player->rootComponent;
 			player->TakeDamage(5.f, batDamageEvent, nullptr, this);
-			
-			if (distanceToPlayerSquared > attackRange * attackRange)
-			{
-				// 어택 애니메이션 끄고 무브
-				moveAnimation->Trigger(true);
-				moveAnimation->isVisible = true;
 
-				attackAnimation->Trigger(false);
-				attackAnimation->isVisible = false;
-
-				elapsedTime = 0.f;
-			}
-			else
-			{
-				elapsedTime -= 1.f;
-			}
+			elapsedTime -= attackSpeed;
 		}
 	}
-	else {
+	else 
+	{
+		if (!moveAnimation->IsPlaying())
+		{
+			LOG_MESSAGE(dbg::text(elapsedTime));
+			moveAnimation->Trigger(true);
+			moveAnimation->isVisible = true;
+
+			attackAnimation->Trigger(false);
+			attackAnimation->isVisible = false;
+
+			elapsedTime = 0.50f;
+		}
+
 		if (distanceToPlayerSquared <= attackRange * attackRange)
 		{
 			// 어택 애니메이션 돌리고 
@@ -113,6 +113,8 @@ void Bat::Update(float _dt)
 
 			attackAnimation->Trigger(true);
 			attackAnimation->isVisible = true;
+
+			SetVelocity(Math::Vector2::Zero);
 		}
 		else
 		{

@@ -322,7 +322,7 @@ public:
 				velocity += acceleration * _dt;
 				acceleration = { 0, 0 }; // Reset acceleration each frame
 
-				// Clamp velocities
+				// Clamp velocity
 				float speed = velocity.Length();
 				DXVec2 unitVel = velocity; unitVel.Normalize();
 				speed = Clamp(speed, minSpeed, maxSpeed);
@@ -346,6 +346,12 @@ public:
 			}
 			else
 			{
+				// Clamp velocity
+				float speed = velocity.Length();
+				DXVec2 unitVel = velocity; unitVel.Normalize();
+				speed = Clamp(speed, minSpeed, maxSpeed);
+				velocity = unitVel * speed;
+
 				// Apply the movement
 				HitResult hitResult;
 				MoveComponent(velocity * _dt, angularVelocity * _dt, false, &hitResult);
