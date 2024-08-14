@@ -4,14 +4,15 @@
 
 struct PatternAction : public Action
 {
+	using Super = PatternAction;
 	// TODO: Parsing?
-	// 패턴 자체의 쿨타임
+	// 행동 트리에서의 쿨타임
 	// 차트에서 Pattern_Cool_Time
 	float patternCooldownTime{ 0.f };
 	void SetCooldown(float _cooldownTime) {
 		patternCooldownTime = _cooldownTime;
 	}
-	float GetCooldownTime() {
+	float GetCooldown() {
 		return patternCooldownTime;
 	}
 
@@ -23,6 +24,23 @@ struct PatternAction : public Action
 	}
 	float GetPatternInterval() {
 		return patternInterval;
+	}
+
+	float elapsedTime{ 0.f };
+	bool IsRunning() override {
+		if (elapsedTime >= patternInterval) 
+		{
+			elapsedTime = 0.f;
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
+	}
+
+	void Run(float dt) override {
+		elapsedTime += dt;
 	}
 
 };

@@ -33,7 +33,6 @@ void BossBehaviorTree::Update(float _dt)
 
 void BossBehaviorTree::BuildBehaviorTree()
 {
-	//Keu Declarations°¡ ¹ºÁö ¸ð¸£°ÚÀ½??
 	Root* root = GetRoot();
 	DeclareKey<Boss*>("Boss");
 	SetKey<Boss*>("Boss", boss);
@@ -42,206 +41,69 @@ void BossBehaviorTree::BuildBehaviorTree()
 
 		{	// -> Root select 1
 			//	Groggy
-			Condition* groggyCondition = CreateNode<Condition>();
-			rootSelector->PushBackChild(groggyCondition);
-
-			// TODO: force if?
-			groggyCondition->_successCondition = [this]() {
-				Boss* boss = GetKey<Boss*>("Boss");
-				return (boss->DissfellCount >= 10);
-				};
-			{
-				//Groggy
-				Sequence* groggySequence = CreateNode<Sequence>();
-				groggySequence->PushBackChild(groggyCondition);
-				{
-					// GroggyAction
-					GroggyAction* groggyAction = CreateNode<GroggyAction>();
-					groggySequence->PushBackChild(groggyAction);
-
-					// Wait for 10
-					Wait* groggyWaitFor10Seconds = CreateNode<Wait>(5);
-					groggySequence->PushBackChild(groggyWaitFor10Seconds);
-				}
-			}
+			rootSelector->PushBackChild(BuildPatternSubtree(Pattern::Groggy));
 		}
 		{	// -> Root select 2
-			// BehaviorSelector
-			Selector* BehaviorSelector = CreateNode<Selector>();
-			rootSelector->PushBackChild(BehaviorSelector);
+			// mainBehaviorSelector
+			Selector* mainBehaviorSelector = CreateNode<Selector>();
+			rootSelector->PushBackChild(mainBehaviorSelector);
 
-			{	// -> BehaviorSelector 1
-				// Periodic_Pattern
+			{	// -> mainBehaviorSelector 1
+				// Main Behavior Branch
 				Condition* IsCooledDown = CreateNode<Condition>();
-				BehaviorSelector->PushBackChild(IsCooledDown);
-
+				mainBehaviorSelector->PushBackChild(IsCooledDown);
 				IsCooledDown->_successCondition = [this]() {
+					// TODO: 시작한지 60 초 지났는지 체크하기.
 					Boss* boss = GetKey<Boss*>("Boss");
 					return boss->Periodic_Pattern_Cool_Time <= 0.f;
 				};
-
-				{
-					RandomSelector* BehaviorSelector = CreateNode<RandomSelector>();
-					IsCooledDown->Wrap(BehaviorSelector);
-					{
-						{	// -> BehaviorSelector 1
-							//Pattern06
-							//periodic_Pattern_Cool_Time = Pattern06->DelayTime
-							Sequence* Pattern6Sequence = CreateNode<Sequence>();
-
-							MoveToLocation* moveToCenter = CreateNode<MoveToLocation>();
-							moveToCenter->SetAcceptableRadius(10.f);
-							moveToCenter->SetSpeed(900.f);
-							moveToCenter->SetDestination(/*TODO:센터 값 조절 요*/{ 2014, 1050 });
-
-							Pattern6Action* pattern6Action = CreateNode<Pattern6Action>();
-							pattern6Action->SetCooldown(15.f);
-							pattern6Action->SetPatternInterval(11.f);
-
-							Pattern6Sequence->PushBackChildren({ moveToCenter, pattern6Action });
-						}
-						{	// -> BehaviorSelector 2
-							//Pattern07
-							//periodic_Pattern_Cool_Time = Pattern07->DelayTime
-							Sequence* Pattern7Sequence = CreateNode<Sequence>();
-
-							DeclareKey<Math::Vector2>("Pattern7Destination");
-							Primer* setDestination = CreateNode<Primer>();
-							setDestination->_action = [this]() {
-								Math::Vector2 playerLocation = GetKey<Player*>("Player")->GetLocation();
-
-								Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
-								Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
-
-								// TODO: 이동 가능한지 확인
-								// 맵 마름모 꼴이니까 변마다 Line 만들고
-								// Line{destination, BossCurrLoc} 가지고 
-								// 교점 체크
-								// -> 없으면 가능
-
-								// 만약 둘다 가능하면 랜덤으로 결정
-								// SetKey<Math::Vector2>("Pattern7Destination", destination);
-
-								// 만약 둘다 안되면
-								// ResetKey<Math::Vector2>("Pattern7Destination");
-							};
-
-							// Selector to find the correct position.
-							MoveTo* moveToPlayer = CreateNode<MoveTo>();
-							moveToPlayer->SetObserveLocationKey("Pattern7Destination");
-							moveToPlayer->SetAcceptableRadius(10.f);
-							moveToPlayer->SetSpeed(900.f);
-
-							setDestination->Wrap(moveToPlayer);
-
-							Pattern7Action* pattern7Action = CreateNode<Pattern7Action>();
-							pattern7Action->SetCooldown(20.f);
-							pattern7Action->SetPatternInterval(5.f);
-
-							Pattern7Sequence->PushBackChildren({ setDestination, pattern7Action });
-						}
-						{	// -> BehaviorSelector 3
-							//Pattern10
-							//periodic_Pattern_Cool_Time = Pattern10->DelayTime
-							Sequence* Pattern10Sequence = CreateNode<Sequence>();
-
-							MoveToLocation* moveToCenter = CreateNode<MoveToLocation>();
-							moveToCenter->SetAcceptableRadius(10.f);
-							moveToCenter->SetSpeed(900.f);
-							moveToCenter->SetDestination(/*TODO:센터 값 조절 요*/{ 2014, 1050 });
-
-							Pattern10Action* pattern10Action = CreateNode<Pattern10Action>();
-							pattern10Action->SetCooldown(20.f);
-							pattern10Action->SetPatternInterval(11.f);
-
-							Pattern10Sequence->PushBackChildren({ moveToCenter, pattern10Action });
-						}
+				{	// Periodic Pattern Selector
+					RandomSelector* periodicPatternSelector = CreateNode<RandomSelector>();
+					IsCooledDown->Wrap(periodicPatternSelector);
+					{	// -> periodicPatternSelector 1
+						//Pattern06
+						INode* pattern06 = BuildPatternSubtree(Pattern::Pattern6);
+						periodicPatternSelector->PushBackChild(pattern06);
 					}
-					BehaviorSelector->SetRandomWeights({ 1.0 });
+					{	// -> periodicPatternSelector 2
+						//Pattern07
+						INode* pattern07 = BuildPatternSubtree(Pattern::Pattern7);
+						periodicPatternSelector->PushBackChild(pattern07);
+					}
+					{	// -> BehaviorSelector 3
+						//Pattern10
+						INode* pattern10 = BuildPatternSubtree(Pattern::Pattern10);
+						periodicPatternSelector->PushBackChild(pattern10);
+					}
+					// Set equal weights
+					periodicPatternSelector->SetRandomWeights({ 1.0 });
 				}
-
+			}	// <- mainBehaviorSelector 1 
+			{	// -> mainBehaviorSelector 2
 				// MoveAction
-				Condition* moveActionCondition = CreateNode<Condition>();
-				BehaviorSelector->PushBackChild(moveActionCondition);
-				moveActionCondition->_successCondition = [this]() -> bool {
-					Boss* boss = GetKey<Boss*>("Boss");
-					Player* player = GetKey<Player*>("Player");
-					float detectionRangeSquared = boss->Detection_Range * boss->Detection_Range;
-					float playerDistanceSquared = (player->GetLocation() - boss->GetLocation()).LengthSquared();
-					return detectionRangeSquared < playerDistanceSquared;
-				};
-
-				{
-					//MoveAction
-					Player* player = GetKey<Player*>("Player");
-					MoveToLocation* moveToPlayer = CreateNode<MoveToLocation>();
-					// 보스를 플레이어 위치로부터 감지 범위와 회피 범위 사이에 둡니다.
-					float acceptableRadius = (boss->Detection_Range + boss->Avoidance_Range) / 2.f;
-					// 하고 랜덤으로 살짝 흔듬.
-					acceptableRadius += Random::Get((boss->Detection_Range - boss->Avoidance_Range) / 4.f);
-					moveToPlayer->SetDestination(player->GetLocation());
-					moveToPlayer->SetAcceptableRadius(acceptableRadius);
-
-					moveActionCondition->Wrap(moveToPlayer);
-				}
-
-				//	Teleporting
-				Condition* teleportingCondition = CreateNode<Condition>();
-				BehaviorSelector->PushBackChild(teleportingCondition);
-				teleportingCondition->_successCondition = [this]() -> bool {
-					Boss* boss = GetKey<Boss*>("Boss");
-					Player* player = GetKey<Player*>("Player");
-					float detectionRangeSquared = boss->Avoidance_Range * boss->Avoidance_Range;
-					float playerDistanceSquared = (player->GetLocation() - boss->GetLocation()).LengthSquared();
-					return playerDistanceSquared < detectionRangeSquared;
-				};
-
-				{
-					// Teleporting
-					DeclareKey<Math::Vector2>("TeleportDestination");
-					Primer* setTeleportDestination = CreateNode<Primer>();
-					setTeleportDestination->_action = [this]() {
-						Math::Vector2 playerLocation = GetKey<Player*>("Player")->GetLocation();
-
-						Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
-						Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
-
-						// TODO: 이동 가능한지 확인
-						// 맵 마름모 꼴이니까 변마다 Line 만들고
-						// Line{destination, BossCurrLoc} 가지고 
-						// 교점 체크
-						// -> 없으면 가능
-
-						// 만약 둘다 가능하면 랜덤으로 결정
-						// SetKey<Math::Vector2>("Pattern7Destination", destination);
-
-						// 만약 둘다 안되면
-						// ResetKey<Math::Vector2>("Pattern7Destination");
-					};
-
-					TeleportTo* teleportTo = CreateNode<TeleportTo>();
-					teleportTo->SetObserveLocationKey("TeleportDestination");
-
-					setTeleportDestination->Wrap(teleportTo);
-					teleportingCondition->Wrap(setTeleportDestination);
-				}
-
+				INode* moveAction = BuildPatternSubtree(Pattern::Move);
+				mainBehaviorSelector->PushBackChild(moveAction);
+			}	// <- mainBehaviorSelector 2
+			{	// -> mainBehaviorSelector 3
+				//	Teleporting Condition
+				INode* teleportAction = BuildPatternSubtree(Pattern::Teleport);
+				mainBehaviorSelector->PushBackChild(teleportAction);
+			}	// <- mainBehaviorSelector 3
+			{	// -> mainBehaviorSelector 4
 				//	BossPhase
-				Selector* BossPhase = CreateNode<Selector>();
-				BehaviorSelector->PushBackChild(BossPhase);
-				{
+				Selector* bossPhaseSelector = CreateNode<Selector>();
+				mainBehaviorSelector->PushBackChild(bossPhaseSelector);
+				{	// -> bossPhaseSelector 1
 					Condition* BossPhase_One = CreateNode<Condition>();
-					BossPhase->PushBackChild(BossPhase_One);
-					BossPhase_One->_successCondition = [this]() -> bool
-					{
-						return (75 < GetKey<float>("Boss_HP") && GetKey<float>("Boss_HP") <= 100);
+					bossPhaseSelector->PushBackChild(BossPhase_One);
+					BossPhase_One->_successCondition = [this]() {
+						float hpPercent = (float) boss->hp / boss->maxHp;
+						return (0.75f < hpPercent && hpPercent <= 1.f);
 					};
-
-					{
-						// Boss Phase One
+					{	// Boss Phase One
 						RandomSelector* Phase_One_Selector = CreateNode<RandomSelector>();
 						BossPhase_One->Wrap(Phase_One_Selector);
-						{
+						{	
 							//Pattern02
 							//Wait* Pattern02.DelayTime
 
@@ -272,15 +134,14 @@ void BossBehaviorTree::BuildBehaviorTree()
 							//Wait* Pattern08.DelayTime
 						}
 					}
-				}
-
-				{
+				}	// <- bossPhaseSelector 1
+				{	// -> bossPhaseSelector 2
 					Condition* BossPhase_Two = CreateNode<Condition>();
-					BossPhase->PushBackChild(BossPhase_Two);
-					BossPhase_Two->_successCondition = [this]()->bool
-						{
-							return (25 < GetKey<float>("Boss_HP") && GetKey<float>("Boss_HP") <= 75);
-						};
+					bossPhaseSelector->PushBackChild(BossPhase_Two);
+					BossPhase_Two->_successCondition = [this]() {
+						float hpPercent = (float)boss->hp / boss->maxHp;
+						return (0.25f < hpPercent && hpPercent <= 0.75f);
+					};
 					{
 						Selector* Phase_Pattern_Select = CreateNode<Selector>();
 						BossPhase_Two->Wrap(Phase_Pattern_Select);
@@ -347,30 +208,29 @@ void BossBehaviorTree::BuildBehaviorTree()
 							}
 						}
 					}
-				}
-
-				{
+				}	// <- bossPhaseSelector 2
+				{	// -> bossPhaseSelector 3
 					Condition* BossPhase_Three = CreateNode<Condition>();
-					BossPhase->PushBackChild(BossPhase_Three);
-					BossPhase_Three->_successCondition = [this]()->bool
-						{
-							return (GetKey<float>("Boss_HP") <= 25);
-						};
-					{
-						Selector* Phase_Pattern_Select = CreateNode<Selector>();
-						BossPhase_Three->Wrap(Phase_Pattern_Select);
+					bossPhaseSelector->PushBackChild(BossPhase_Three);
+					BossPhase_Three->_successCondition = [this]() {
+						float hpPercent = (float)boss->hp / boss->maxHp;
+						return hpPercent <= 0.25f;
+					};
+					{	// Phase3 Pattern Selector
+						Selector* phase3PatternSelector = CreateNode<Selector>();
+						BossPhase_Three->Wrap(phase3PatternSelector);
 						{
 							// 3 Phase Periodic Pattern 1
 							Condition* Phase_Three_Periodic = CreateNode<Condition>();
-							Phase_Pattern_Select->PushBackChild(Phase_Three_Periodic);
+							phase3PatternSelector->PushBackChild(Phase_Three_Periodic);
 							Phase_Three_Periodic->_successCondition = [this]()->bool
 								{
 									return (GetKey<float>("Phase_Pattern_Cool_Time") < 0.f);
 								};
-							{
+							{	
 								// Phase_Three_Periodic_Selector
 								RandomSelector* Phase_Three_Periodic_Selector = CreateNode<RandomSelector>();
-								Phase_Pattern_Select->PushBackChild(Phase_Three_Periodic_Selector);
+								phase3PatternSelector->PushBackChild(Phase_Three_Periodic_Selector);
 								{
 									// 3 Phase Periodic Pattern 1
 									Sequence* Phase_Three_1 = CreateNode<Sequence>();
@@ -405,13 +265,11 @@ void BossBehaviorTree::BuildBehaviorTree()
 									}
 								}
 							}
-
-
 						}
 						{
 							// Boss Phase Three
 							RandomSelector* Phase_Three_Selector = CreateNode<RandomSelector>();
-							Phase_Pattern_Select->PushBackChild(Phase_Three_Selector);
+							phase3PatternSelector->PushBackChild(Phase_Three_Selector);
 							{
 								//	Phase_Three_1
 								Sequence* Phase_Three_1 = CreateNode<Sequence>();
@@ -447,8 +305,221 @@ void BossBehaviorTree::BuildBehaviorTree()
 							}
 						}
 					}
-				}
+				}	// <- bossPhaseSelector 3
 			}
 		}
 	}
+}
+
+INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
+{
+	switch (pattern)
+	{
+	case BossBehaviorTree::Pattern::Groggy: {
+		//	Groggy
+		Condition* groggyCondition = CreateNode<Condition>();
+		// TODO: force if?
+		groggyCondition->_successCondition = [this]() {
+			Boss* boss = GetKey<Boss*>("Boss");
+			return (boss->DissfellCount >= 10);
+		};
+		{	// Groggy
+			Sequence* groggySequence = CreateNode<Sequence>();
+			groggyCondition->Wrap(groggySequence);
+			{
+				// GroggyAction
+				GroggyAction* groggyAction = CreateNode<GroggyAction>();
+				groggySequence->PushBackChild(groggyAction);
+
+				// Wait for 10
+				Wait* groggyWaitFor10Seconds = CreateNode<Wait>(5);
+				groggySequence->PushBackChild(groggyWaitFor10Seconds);
+			}
+		}
+		return groggyCondition;
+	} break;
+	case Pattern::Move: {
+		// MoveAction
+		Condition* moveActionCondition = CreateNode<Condition>();
+		moveActionCondition->_successCondition = [this]() -> bool {
+			Boss* boss = GetKey<Boss*>("Boss");
+			Player* player = GetKey<Player*>("Player");
+			float detectionRangeSquared = boss->Detection_Range * boss->Detection_Range;
+			float playerDistanceSquared = (player->GetLocation() - boss->GetLocation()).LengthSquared();
+			return detectionRangeSquared < playerDistanceSquared;
+		};
+		Player* player = GetKey<Player*>("Player");
+		MoveToLocation* moveToPlayer = CreateNode<MoveToLocation>();
+		// 보스를 플레이어 위치로부터 감지 범위와 회피 범위 사이에 둡니다.
+		float acceptableRadius = (boss->Detection_Range + boss->Avoidance_Range) / 2.f;
+		// 하고 랜덤으로 살짝 흔듬.
+		acceptableRadius += Random::Get((boss->Detection_Range - boss->Avoidance_Range) / 4.f);
+		moveToPlayer->SetDestination(player->GetLocation());
+		moveToPlayer->SetAcceptableRadius(acceptableRadius);
+
+		moveActionCondition->Wrap(moveToPlayer);
+		return moveActionCondition;
+	}	break;
+	case Pattern::Teleport: {
+		//	Teleporting Condition
+		Condition* teleportCondition = CreateNode<Condition>();
+		teleportCondition->_successCondition = [this]() -> bool {
+			Boss* boss = GetKey<Boss*>("Boss");
+			Player* player = GetKey<Player*>("Player");
+			float detectionRangeSquared = boss->Avoidance_Range * boss->Avoidance_Range;
+			float playerDistanceSquared = (player->GetLocation() - boss->GetLocation()).LengthSquared();
+			return playerDistanceSquared < detectionRangeSquared;
+		};
+
+		// Teleporting Logic
+		DeclareKey<Math::Vector2>("TeleportDestination");
+		Primer* setTeleportDestination = CreateNode<Primer>();
+		setTeleportDestination->_action = [this]() {
+			Math::Vector2 playerLocation = GetKey<Player*>("Player")->GetLocation();
+
+			Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
+			Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
+
+			// TODO: 이동 가능한지 확인
+			// 맵 마름모 꼴이니까 변마다 Line 만들고
+			// Line{destination, BossCurrLoc} 가지고 
+			// 교점 체크
+			// -> 없으면 가능
+
+			// 만약 둘다 가능하면 랜덤으로 결정
+			// SetKey<Math::Vector2>("Pattern7Destination", destination);
+
+			// 만약 둘다 안되면
+			// ResetKey<Math::Vector2>("Pattern7Destination");
+		};
+
+		TeleportTo* teleportTo = CreateNode<TeleportTo>();
+		teleportTo->SetObserveLocationKey("TeleportDestination");
+
+		setTeleportDestination->Wrap(teleportTo);
+		teleportCondition->Wrap(setTeleportDestination);
+
+		/*		 
+					텔레포트 로직
+		
+				teleportCondition
+(플레이어가 AvoidanceRange 안으로 들어옴)
+								|
+								V
+			setTeleportDestination
+	(텔레포트 위치가 벽이 아닌지 확인)
+								|
+								V
+						teleport
+	(텔레포트 위치가 이동 가능하면 텔레포트)
+		
+		*/
+		return teleportCondition;
+	} break;
+	case BossBehaviorTree::Pattern::Pattern1: {
+	} break;
+	case BossBehaviorTree::Pattern::Pattern2: {
+		Pattern2Action* pattern2Action = CreateNode<Pattern2Action>();
+		pattern2Action->SetPatternInterval(1.0f);
+		return pattern2Action;
+	} break;
+	case BossBehaviorTree::Pattern::Pattern3: {
+		Pattern3Action* pattern3Action = CreateNode<Pattern3Action>();
+		pattern3Action->SetPatternInterval(0.5f);
+		return pattern3Action;
+	} break;
+	case BossBehaviorTree::Pattern::Pattern4: {
+		Pattern4Action* pattern4Action = CreateNode<Pattern4Action>();
+		pattern4Action->SetPatternInterval(0.5f);
+		return pattern4Action;
+	} break;
+	case BossBehaviorTree::Pattern::Pattern5: {
+	} break;
+	case BossBehaviorTree::Pattern::Pattern6: {
+		//Pattern06
+		Sequence* Pattern6Sequence = CreateNode<Sequence>();
+
+		MoveToLocation* moveToCenter = CreateNode<MoveToLocation>();
+		moveToCenter->SetAcceptableRadius(10.f);
+		moveToCenter->SetSpeed(900.f);
+		moveToCenter->SetDestination(/*TODO:센터 값 조절 요*/{ 2014, 1050 });
+
+		Pattern6Action* pattern6Action = CreateNode<Pattern6Action>();
+		pattern6Action->SetCooldown(15.f);
+		pattern6Action->SetPatternInterval(11.f);
+
+		Pattern6Sequence->PushBackChildren({ moveToCenter, pattern6Action });
+		return Pattern6Sequence;
+	} break;
+	case BossBehaviorTree::Pattern::Pattern7: {
+		Sequence* Pattern7Sequence = CreateNode<Sequence>();
+
+		DeclareKey<Math::Vector2>("Pattern7Destination");
+		Primer* setDestination = CreateNode<Primer>();
+		setDestination->_action = [this]() {
+			Math::Vector2 playerLocation = GetKey<Player*>("Player")->GetLocation();
+
+			Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
+			Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
+
+			// TODO: 이동 가능한지 확인
+			// 맵 마름모 꼴이니까 변마다 Line 만들고
+			// Line{destination, BossCurrLoc} 가지고 
+			// 교점 체크
+			// -> 없으면 가능
+
+			// 만약 둘다 가능하면 랜덤으로 결정
+			// SetKey<Math::Vector2>("Pattern7Destination", destination);
+
+			// 만약 둘다 안되면
+			// ResetKey<Math::Vector2>("Pattern7Destination");
+			};
+
+		// Selector to find the correct position.
+		MoveTo* moveToPlayer = CreateNode<MoveTo>();
+		moveToPlayer->SetObserveLocationKey("Pattern7Destination");
+		moveToPlayer->SetAcceptableRadius(10.f);
+		moveToPlayer->SetSpeed(900.f);
+
+		setDestination->Wrap(moveToPlayer);
+
+		Pattern7Action* pattern7Action = CreateNode<Pattern7Action>();
+		pattern7Action->SetCooldown(20.f);
+		pattern7Action->SetPatternInterval(5.f);
+
+		Pattern7Sequence->PushBackChildren({ setDestination, pattern7Action });
+		return Pattern7Sequence;
+	} break;
+	case BossBehaviorTree::Pattern::Pattern8: {
+	} break;
+	case BossBehaviorTree::Pattern::Pattern9: {
+	} break;
+	case BossBehaviorTree::Pattern::Pattern10: {
+		//Pattern10
+		Sequence* Pattern10Sequence = CreateNode<Sequence>();
+
+		MoveToLocation* moveToCenter = CreateNode<MoveToLocation>();
+		moveToCenter->SetAcceptableRadius(10.f);
+		moveToCenter->SetSpeed(900.f);
+		moveToCenter->SetDestination(/*TODO:센터 값 조절 요*/{ 2014, 1050 });
+
+		Pattern10Action* pattern10Action = CreateNode<Pattern10Action>();
+		pattern10Action->SetCooldown(20.f);
+		pattern10Action->SetPatternInterval(11.f);
+
+		Pattern10Sequence->PushBackChildren({ moveToCenter, pattern10Action });
+		return Pattern10Sequence;
+	} break;
+	case BossBehaviorTree::Pattern::Pattern11: {
+	} break;
+	case BossBehaviorTree::Pattern::Pattern12: {
+	} break;
+	case BossBehaviorTree::Pattern::Pattern13: {
+	} break;
+	default:
+		break;
+	}
+
+	OBJ_ERROR(-1, "Unknown pattern!");
+	return nullptr;
 }

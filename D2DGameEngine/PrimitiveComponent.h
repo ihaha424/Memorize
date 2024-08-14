@@ -355,7 +355,6 @@ public:
 				}
 			}
 		}
-		
 	}
 
 	static void PullBackHit(HitResult& Hit, const DXVec2& Start, const DXVec2& End, const float Dist)

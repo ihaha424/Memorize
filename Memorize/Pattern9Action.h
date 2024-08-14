@@ -6,9 +6,6 @@
 
 struct Pattern9Action final : public PatternAction
 {
-
-	bool IsRunning() override;
-
 	void Run(float dt) override;
 
 };

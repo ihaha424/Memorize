@@ -65,6 +65,7 @@ void AnimationBitmapComponent::Update(float _dt)
 		currentFrameTime -= frameDurations[currentFrameIndex];
 
 		currentFrameIndex++;
+		bShouldUpdateBounds = true;
 		if (currentFrameIndex >= frames.size()) {
 			if (isLoop) {
 				currentFrameIndex = 0;

@@ -24,7 +24,7 @@ public:
 		frame{ 0.f, 0.f, 0.f, 0.f },
 		sprite{ nullptr },
 		imageTransform{ Math::Matrix::Identity } {
-		SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
+		AddTickProperties(TICK_RENDER);
 	}
 
 	virtual ~BitmapComponent() {
@@ -42,7 +42,6 @@ public:
 			GetSpriteWidth(),
 			GetSpriteHeight()
 		};
-
 	}
 
 	std::shared_ptr<SpriteResource> GetSprite() { return sprite; }
@@ -77,7 +76,7 @@ public:
 
 	virtual D2D_RectF GetCurrFrame() { return frame; }
 	virtual Math::Matrix GetWorldTransform() const override;
-	virtual void Render(class D2DRenderer* _renderer);
+	virtual void Render(class D2DRenderer* _renderer) override;
 
 	// From Primitive Component
 	virtual bool IsCollisionEnabled() const {
@@ -134,25 +133,47 @@ public:
 	}
 
 	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
-		BoxCircleBounds localBounds = CalculateLocalBounds();
+		Math::Vector3 translate = Math::ExtractTranslation(_worldTransform);
+		Math::Matrix invertTranslate = Math::Matrix::CreateTranslation(translate).Invert();
+		Math::Matrix scaleAndRotation = _worldTransform * invertTranslate;
 		
-		DXVec2 c{ localBounds.center.x, localBounds.center.y };
-		c = DXVec2::Transform(c, _worldTransform);
+		float halfWidth = GetFrameWidth() / 2.f;
+		float halfHeight = GetFrameHeight() / 2.f;
 
-		DXVec2 e{ localBounds.boxExtent.width, localBounds.boxExtent.height };
-		e = DXVec2::Transform(e, _worldTransform);
+		std::vector<Math::Vector2> vertices{
+			{ -halfWidth, -halfHeight },
+			{ halfWidth, -halfHeight },
+			{ halfWidth, halfHeight },
+			{ -halfWidth, halfHeight },
+		};
 
-		return BoxCircleBounds(Box{ c, e });
+		for (Math::Vector2& v : vertices) {
+			v = DXVec2::Transform(v, _worldTransform);
+		}
+
+		TPolygon polygon{ vertices };
+
+		return BoxCircleBounds(polygon.GetAABB());
 	}
 
 	virtual BoxCircleBounds CalculateLocalBounds() const {
-		std::initializer_list<Math::Vector2> vertices{
-			{	frame.left, frame.top	},
-			{ frame.right, frame.top },
-			{ frame.right, frame.bottom },
-			{	frame.left, frame.bottom	}
+		
+		float halfWidth = GetFrameWidth() / 2.f;
+		float halfHeight = GetFrameHeight() / 2.f;
+
+		std::vector<Math::Vector2> vertices{
+			{ -halfWidth, -halfHeight },
+			{ halfWidth, -halfHeight },
+			{ halfWidth, halfHeight },
+			{ -halfWidth, halfHeight },
 		};
+
+		for (Math::Vector2& v : vertices) {
+			v = DXVec2::Transform(v, S * R * T);
+		}
+
 		TPolygon polygon{ vertices };
+
 		return BoxCircleBounds(polygon.GetAABB());
 	}
 

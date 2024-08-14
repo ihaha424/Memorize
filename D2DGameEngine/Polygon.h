@@ -89,8 +89,8 @@ struct TPolygon {
 		}
 
 		return {
-			{minX, maxY},
-			{maxX, minY}
+			{minX, minY},
+			{maxX, maxY}
 		};
 	}
 
