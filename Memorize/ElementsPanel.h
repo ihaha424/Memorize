@@ -32,12 +32,6 @@ public:
 	void SetQWER(std::vector<std::vector<int>>& elementCommands);
 	void HideAllCommands();
 	void SetSkillList();
-	void SelectFireSkill();
-	void SelectWaterSkill();
-	void SelectLightSkill();
-	void SelectDarkSkill();
-
-
 
 };
 
