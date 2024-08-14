@@ -127,8 +127,37 @@ bool World::CheckComponentSweepMultiByChannel(
 	return false;
 }
 
+void World::UpdateCollisionSystem()
+{
+	if (!CurLevel) return;
+
+	collisionSystem.collisionMap.clear();
+
+	for (Actor* actor : CurLevel->actorList)
+	{
+		if (actor->GetStatus() != EObjectStatus::OS_ACTIVE)
+			continue;
+
+		for (auto [_, component] : actor->components)
+		{
+			if (component->GetStatus() != EObjectStatus::OS_ACTIVE)
+				continue;
+
+			PrimitiveComponent* primComp = dynamic_cast<PrimitiveComponent*>(component);
+			if (primComp == nullptr)
+				continue;
+
+			if (primComp->bCanCollide)
+			{
+				RegisterComponentCollision(primComp);
+			}
+		}
+	}
+}
+
 void World::BeginPlay()
 {
+	UpdateCollisionSystem();
 	CurLevel->BeginPlay();
 }
 

@@ -7,15 +7,15 @@
 class Actor : public IObject
 {
 protected:
+	class World* world = nullptr;
+
+public: 
 	using ComponentRegistry = std::unordered_multimap<std::type_index, class IComponent*>;
 	ComponentRegistry components;
 
 	using ComponentRenderSequence = std::multimap<float, class PrimitiveComponent*>;
 	ComponentRenderSequence renderSequence;
 
-	class World* world = nullptr;
-
-public: 
 	bool bRenderDirty{ false };
 
 	class SceneComponent* rootComponent = nullptr;

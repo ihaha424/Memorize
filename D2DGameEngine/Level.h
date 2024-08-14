@@ -70,7 +70,6 @@ public:
 		virtual void PrepareRender();
     virtual void Render(class D2DRenderer* _renderer);
 
-protected:
     std::vector<Actor*> actorList;
 
 private:
