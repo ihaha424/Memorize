@@ -14,6 +14,7 @@ public:
 
 	std::vector<std::vector<UIImage*>> commands;
 
+	void HideAllCommands();
 	void SelectFireSkill();
 	void SelectWaterSkill();
 	void SelectLightSkill();
@@ -21,5 +22,7 @@ public:
 
 	void OnPressedQ();
 	void OnPressedW();
+	void OnPressedE();
+	void OnPressedR();
 };
 
