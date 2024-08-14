@@ -59,7 +59,15 @@ ElementsPanel::~ElementsPanel()
 
 void ElementsPanel::Update(float _dt)
 {
-	SetSkillList();
+	if (playerController->GetCurSkillInfo().element != SE_END)
+	{
+		SetSkillList();
+	}
+	if (playerController->GetCurSkillInfo().type != ST_END)
+	{
+		HideAllCommands();
+		CheckSkillType();
+	}
 }
 
 void ElementsPanel::SetQWER(std::vector<std::vector<int>>& elementCommands)
@@ -67,25 +75,30 @@ void ElementsPanel::SetQWER(std::vector<std::vector<int>>& elementCommands)
 	HideAllCommands();
 	for (int y = 0; y < elementCommands.size(); y++)
 	{
-		for (int x = 0; x < elementCommands[y].size(); x++)
+		SetQWER(elementCommands, y);
+	}
+}
+
+void ElementsPanel::SetQWER(std::vector<std::vector<int>>& elementCommands, int type)
+{
+	for (int x = 0; x < elementCommands[type].size(); x++)
+	{
+		switch (elementCommands[type][x])
 		{
-			switch (elementCommands[y][x])
-			{
-			case 0:
-				commands[y][x]->SetSprite(Qbm);
-				break;
-			case 1:
-				commands[y][x]->SetSprite(Wbm);
-				break;
-			case 2:
-				commands[y][x]->SetSprite(Ebm);
-				break;
-			case 3:
-				commands[y][x]->SetSprite(Rbm);
-				break;
-			}
-			commands[y][x]->Activate();
+		case 0:
+			commands[type][x]->SetSprite(Qbm);
+			break;
+		case 1:
+			commands[type][x]->SetSprite(Wbm);
+			break;
+		case 2:
+			commands[type][x]->SetSprite(Ebm);
+			break;
+		case 3:
+			commands[type][x]->SetSprite(Rbm);
+			break;
 		}
+		commands[type][x]->Activate();
 	}
 }
 
@@ -137,4 +150,23 @@ void ElementsPanel::SetSkillList()
 		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
 		SetQWER(darkCommands);
 	}
+}
+
+void ElementsPanel::CheckSkillType()
+{
+	std::vector<std::vector<int>>& elementCommands = fireCommands;
+	switch (playerController->GetCurSkillInfo().element)
+	{
+	case SE_WATER:
+		elementCommands = waterCommands;
+		break;
+	case SE_LIGHT:
+		elementCommands = lightCommands;
+		break;
+	case SE_DARKNESS:
+		elementCommands = darkCommands;
+		break;
+	}
+
+	SetQWER(elementCommands, playerController->GetCurSkillInfo().type);
 }
