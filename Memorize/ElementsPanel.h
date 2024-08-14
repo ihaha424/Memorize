@@ -12,17 +12,27 @@ public:
 	class UIImage* e;
 	class UIImage* r;
 
-	std::vector<std::vector<UIImage*>> commands;
+	class ID2D1Bitmap* Qbm;
+	class ID2D1Bitmap* Wbm;
+	class ID2D1Bitmap* Ebm;
+	class ID2D1Bitmap* Rbm;
 
+	std::vector<std::vector<int>> fireCommands;
+	std::vector<std::vector<int>> waterCommands;
+	std::vector<std::vector<int>> lightCommands;
+	std::vector<std::vector<int>> darkCommands;
+
+	std::vector<std::vector<class UIImage*>> commands;
+
+	class GPlayerController* playerController;
+
+	virtual void Update(float _dt) override;
+	void SetPlayerController(class GPlayerController* _playerController) { playerController = _playerController; }
+
+	void SetQWER(std::vector<std::vector<int>>& elementCommands);
+	void SetQWER(std::vector<std::vector<int>>& elementCommands, int type);
 	void HideAllCommands();
-	void SelectFireSkill();
-	void SelectWaterSkill();
-	void SelectLightSkill();
-	void SelectDarkSkill();
-
-	void OnPressedQ();
-	void OnPressedW();
-	void OnPressedE();
-	void OnPressedR();
+	void SetSkillList();
+	void CheckSkillType();
 };
 
