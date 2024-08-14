@@ -275,6 +275,9 @@
     <ClCompile Include="LightStreamEffect.cpp">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClCompile>
+    <ClCompile Include="Pattern06.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -474,6 +477,9 @@
     </ClInclude>
     <ClInclude Include="LightStreamEffect.h">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern06.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,7 +8,7 @@
 
 World::World() 
 {
-	//canvas = new Canvas(this);
+	canvas = new Canvas(this);
 }
 World::~World()
 {

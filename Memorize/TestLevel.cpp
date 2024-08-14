@@ -16,7 +16,7 @@ TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_wo
 TestLevel::~TestLevel()
 {
 }
-
+#include "Pattern06.h"
 void TestLevel::Enter()
 {
 	{
@@ -35,6 +35,8 @@ void TestLevel::Enter()
 		GPlayerController* pc = CreateActor<GPlayerController>();
 		player->SetController(pc);
 		pc->SetPlayer(player);
+
+		CreateActor<Pattern06>();
 	}
 
 	{

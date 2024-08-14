@@ -129,6 +129,7 @@ public:
 	virtual void OnBeginCursorOver() {};
 	virtual void OnEndCursorOver() {};
 	virtual void OnClicked() {};
+	virtual void OnPressed() {};
 
 	/**
 	 * @brief TODO;

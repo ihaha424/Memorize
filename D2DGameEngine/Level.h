@@ -67,7 +67,7 @@ public:
     virtual void PreUpdate(float _dt);
     virtual void Update(float _dt);
     virtual void PostUpdate(float _dt);
-		virtual void PrepareRender();
+	virtual void PrepareRender();
     virtual void Render(class D2DRenderer* _renderer);
 
 protected:

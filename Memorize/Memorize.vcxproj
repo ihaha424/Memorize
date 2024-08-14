@@ -173,6 +173,7 @@
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
     <ClCompile Include="MPRecovery.cpp" />
+    <ClCompile Include="Pattern06.cpp" />
     <ClCompile Include="Pattern10Action.cpp" />
     <ClCompile Include="Pattern1Action.cpp" />
     <ClCompile Include="Pattern2Action.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="MPRecovery.h" />
+    <ClInclude Include="Pattern06.h" />
     <ClInclude Include="Pattern10Action.h" />
     <ClInclude Include="Pattern1Action.h" />
     <ClInclude Include="Pattern2Action.h" />

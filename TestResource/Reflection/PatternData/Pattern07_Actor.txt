@@ -1,0 +1,4 @@
+Pattern_DispelTime : 7
+Pattern_SkillDuration : 2
+Pattern_Damage : 17
+End

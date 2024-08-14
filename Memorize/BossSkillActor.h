@@ -1,15 +1,17 @@
 #pragma once
 #include "../D2DGameEngine/Actor.h"
+#include "../D2DGameEngine/Reflection.h"
 
-class BossSkillActor : public Actor
+class BossSkillActor : public Actor, public IReflection
 {
-	enum BossSkillType {Projectile, Range};
+protected:
+	enum BossSkillType { Projectile, Range };
 
 public:
 	BossSkillActor(class World* _world);
 	virtual ~BossSkillActor();
 
-public:
+protected:
 	bool			isDispel = false;
 	bool			isFragile = false;
 	BossSkillType	type = Projectile;
@@ -20,8 +22,17 @@ public:
 	float			speed = 0.f;
 	float			duration = 0.f;
 
+public:
+	virtual void FixedUpdate(float _fixedRate) override;
+	virtual void OnClicked() override;
+
 protected:
 	class MovementComponent* mv;
 	class BitmapComponent* bm;
+	class ClickComponent* clickComponent = nullptr;
+
+	// IReflection을(를) 통해 상속됨
+	void ReflectionIn() = 0;
+	void ReflectionOut() = 0;
 };
 

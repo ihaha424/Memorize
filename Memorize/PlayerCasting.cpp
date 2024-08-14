@@ -44,7 +44,7 @@ void PlayerCasting::Update(float _dt)
 void PlayerCasting::Exit()
 {
 	commandList.clear();
-	index = 0;
+	index = 1;
 }
 
 void PlayerCasting::Fire()

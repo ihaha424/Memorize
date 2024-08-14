@@ -89,7 +89,7 @@ public:
 	void Rotate(float degree) {
 		R = R * DXMat4x4::CreateRotationZ(Math::DegreeToRadian(degree));
 		bShouldOverlapTest = true;
-	}
+	} 
 
 	void Translate(float dx, float dy) {
 		T = T * DXMat4x4::CreateTranslation(dx, dy, 0.f);

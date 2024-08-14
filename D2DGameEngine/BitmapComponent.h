@@ -156,7 +156,8 @@ public:
 		return BoxCircleBounds(polygon.GetAABB());
 	}
 
-	virtual void UpdateBounds() override {
+	virtual void UpdateBounds() override 
+	{		
 		bounds = CalculateBounds(GetWorldTransform());
 	}
 };

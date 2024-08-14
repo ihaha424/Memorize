@@ -5,12 +5,15 @@
 
 class ClickComponent : public IComponent
 {
-	BoxCircleBounds* OwnerBounds;
+	BoxCircleBounds*	ownerBounds = nullptr;
+	bool				hover = false;
 public:
 
 public:
-	ClickComponent(Actor* _owner) : IComponent(_owner) { SetTickProperties(TICK_UPDATE); };
+	ClickComponent(Actor* _owner);
 	virtual ~ClickComponent() {};
+
+	virtual void Update(float _dt);
 
 	// TODO: Cursor Events
 	void OnBeginCursorOver();

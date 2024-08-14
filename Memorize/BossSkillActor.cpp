@@ -6,16 +6,27 @@
 BossSkillActor::BossSkillActor(World* _world)
 	:Actor(_world)
 {
-	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
+	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 
 	rootComponent = bm = CreateComponent<BitmapComponent>();
+	bm->MarkBoundsDirty();
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
-
-	mv->SetStatus(OS_INACTIVE);
-	bm->SetStatus(OS_INACTIVE);
+	
 }
 
 BossSkillActor::~BossSkillActor()
 {
+}
+
+void BossSkillActor::OnClicked()
+{
+	//Event -> Player
+	//Player.Disfall -> this
+}
+
+void BossSkillActor::FixedUpdate(float _fixedRate)
+{
+	__super::FixedUpdate(_fixedRate);
+	bm->UpdateBounds();
 }

@@ -26,9 +26,8 @@ Player::Player(class World* _world) : Character(_world)
 		AnimationState* PlayerAnimationState;
 		{
 			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			//PlayerAnimationState->SetSprite(L"TestResource/Skill/Projectile/Skill_Effect_Darkness_1.png");
-			//PlayerAnimationState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
-			//PlayerAnimationState->FrameResize(61);
+			//PlayerAnimationState->SetSprite(L"TestResource/Player/Orb/Orb.png");
+			//PlayerAnimationState->SliceSpriteSheet(88, 100, 0, 0, 0, 0);
 			//PlayerAnimationState->SetFrameDurations({ 0.05f });
 			//PlayerAnimationState->Trigger(true);
 			//abm->Initialize(PlayerAnimationState);

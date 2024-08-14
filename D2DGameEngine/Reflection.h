@@ -18,7 +18,7 @@ public:
 private:
 	//Default int
 	template<typename T>
-	static void ReflectInValue(T& _value, const std::wstring& Filevalue) { _value = _wtoi(Filevalue.c_str()); }
+	static void ReflectInValue(T& _value, const std::wstring& Filevalue) { _value.Parse(Filevalue); }
 	template<>
 	static void ReflectInValue(std::wstring& _value, const std::wstring& Filevalue) { _value = Filevalue; }
 	template<>
@@ -29,6 +29,8 @@ private:
 	static void ReflectInValue(int& _value, const std::wstring& Filevalue) { _value = _wtoi(Filevalue.c_str()); }
 	template<>
 	static void ReflectInValue(char& _value, const std::wstring& Filevalue) { _value = Filevalue[0]; }
+	template<>
+	static void ReflectInValue(bool& _value, const std::wstring& Filevalue) { _value = !(_wtoi(Filevalue.c_str()) == 0); }
 	template<>
 	static void ReflectInValue(std::vector<BYTE>& _value, const std::wstring& Filevalue)
 	{
@@ -60,3 +62,7 @@ class ReflectionOut
 public:
 
 };
+
+//Ex>
+// std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");
+// reflectionResource->ParsingFile(0, moveSpeed);

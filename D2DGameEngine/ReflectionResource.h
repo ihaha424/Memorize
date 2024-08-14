@@ -24,22 +24,22 @@ public:
 	void LoadFile(std::wstring _key);
 	
 	template<typename T>
-	void ParsingFile(int _i, T& _value)
+	void ParsingFile(int _index, T& _value)
 	{
-		if ((*resource).size() <= _i)
+		if ((*resource).size() <= _index)
 			OBJ_ERROR(-1, "Reflection Data is Too Many Data.");
-		std::wstring tmep((*resource)[_i].second);
+		std::wstring tmep((*resource)[_index].second);
 		ReflectionIn()(_value, tmep);
 	}
 
 	template<typename T, typename... ARGS>
-	void ParsingFile(int _i, T& _value, ARGS&... _values)
+	void ParsingFile(int _index, T& _value, ARGS&... _values)
 	{
-		if ((*resource).size() <= _i)
+		if ((*resource).size() <= _index)
 			OBJ_ERROR(-1, "Reflection Data is Too Many Data.");
-		std::wstring tmep((*resource)[_i].second);
+		std::wstring tmep((*resource)[_index].second);
 		ReflectionIn()(_value, tmep);
-		ParsingFile(++_i, _values...);
+		ParsingFile(++_index, _values...);
 	}
 
 	static const std::type_index TYPE_ID;
