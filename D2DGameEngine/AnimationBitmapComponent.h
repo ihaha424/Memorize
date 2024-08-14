@@ -28,7 +28,7 @@ public:
 	AnimationBitmapComponent(bool isLoop, Actor* _owner) :
 		BitmapComponent(_owner),
 		isLoop{ isLoop } {
-		SetTickProperties(TICK_UPDATE | TICK_RENDER);
+		AddTickProperties(TICK_UPDATE);
 	}
 
 	~AnimationBitmapComponent() {}

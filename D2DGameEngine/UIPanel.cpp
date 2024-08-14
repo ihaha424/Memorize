@@ -21,6 +21,7 @@ void UIPanel::Render(D2DRenderer* _renderer)
 {
 	for (auto ui : uiList)
 	{
-		ui->Render(_renderer);
+		if(ui->GetStatus() == OS_ACTIVE)
+			ui->Render(_renderer);
 	}
 }

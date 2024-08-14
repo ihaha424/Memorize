@@ -1,4 +1,4 @@
-#include "MoveTo.h"
+﻿#include "MoveTo.h"
 
 #include "Pawn.h"
 #include "BehaviorTree.h"
@@ -31,29 +31,57 @@ void MoveTo::Run(float dt) {
 	if (distanceSquared <= acceptableRadius * acceptableRadius) return;
 
 	Math::Vector2 toTarget = target - currLocation;
+	float toTargetDistanceSquared = toTarget.LengthSquared();
 	toTarget.Normalize();
 
+	Math::Vector2 velocity = toTarget * speed;
+	Math::Vector2 velocityDelta = velocity * FIXED_RATE;
+	float nextVelocityDeltaLengthSquared = velocityDelta.LengthSquared();
+
+	// 남은 거리보다 다음 델타 이동거리가 더 길면
+	// 오브젝트가 위치를 정확히 맞출 때까지 계속 왔다갔다 하는 
+	// 상황이 나올 수 있으므로 속력을 조절합니다.
+	if (toTargetDistanceSquared < nextVelocityDeltaLengthSquared)
+	{
+		float ratio = toTargetDistanceSquared / nextVelocityDeltaLengthSquared;
+		velocity /= ratio;
+	}
+
 	// Move to 
-	GetPawn()->SetVelocity(toTarget * /*TODO: How can I get movement speed*/ 500.f);
+	GetPawn()->SetVelocity(velocity);
 	
 	// NOTE: Consider using Pathfinder instead
 	// GetAIController()->MoveToLocation(target);
 }
 
 bool MoveToLocation::IsRunning() {
-
-	float distanceSquared = (destination - GetPawn()->GetLocation()).LengthSquared();
+	Math::Vector2 currLocation = GetPawn()->GetLocation();
+	float distanceSquared = (destination - currLocation).LengthSquared();
 
 	return distanceSquared > acceptableRadius * acceptableRadius;
 }
 
 void MoveToLocation::Run(float dt) {
-	Math::Vector2 toDestination = destination - GetPawn()->GetLocation();
+	Math::Vector2 currLocation = GetPawn()->GetLocation();
+	Math::Vector2 toDestination = destination - currLocation;
 
-	float distanceSquared = toDestination.LengthSquared();
-	if (distanceSquared <= acceptableRadius * acceptableRadius) return;
+	float toDestinationDistanceSquared = toDestination.LengthSquared();
+	if (toDestinationDistanceSquared <= acceptableRadius * acceptableRadius) return;
 
 	toDestination.Normalize();
 
-	GetPawn()->SetVelocity(toDestination * speed);
+	Math::Vector2 velocity = toDestination * speed;
+	Math::Vector2 velocityDelta = velocity * FIXED_RATE;
+	float nextVelocityDeltaLengthSquared = velocityDelta.LengthSquared();
+
+	// 남은 거리보다 다음 델타 이동거리가 더 길면
+	// 오브젝트가 위치를 정확히 맞출 때까지 계속 왔다갔다 하는 
+	// 상황이 나올 수 있으므로 속력을 조절합니다.
+	if (toDestinationDistanceSquared < nextVelocityDeltaLengthSquared)
+	{
+		float ratio = toDestinationDistanceSquared / nextVelocityDeltaLengthSquared;
+		velocity /= ratio;
+	}
+
+	GetPawn()->SetVelocity(velocity);
 }

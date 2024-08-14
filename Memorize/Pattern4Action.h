@@ -2,10 +2,10 @@
 
 #include "D2DGameEngine/Leaf.h"
 
-struct Pattern4Action final : public Action
-{
+#include "PatternAction.h"
 
-	bool IsRunning() override;
+struct Pattern4Action final : public PatternAction
+{
 
 	void Run(float dt) override;
 

@@ -204,22 +204,15 @@ bool BoxComponent::CheckOverlapComponent(
 void BoxComponent::Render(D2DRenderer* _renderer)
 {
 #ifndef NDEBUG
-	_renderer->PushTransform(GetWorldTransform());
-
-	D2D_RectF dest{
-		.left = -boxExtent.width / 2.f,
-		.top = -boxExtent.height / 2.f,
-		.right = boxExtent.width / 2.f,
-		.bottom = boxExtent.height / 2.f
-	};
+	Box myBox = Box::BuildAABB({ 0.f, 0.f }, GetScaledBoxExtent());
+	
+	myBox.ul = DXVec2::Transform(myBox.ul, GetWorldTransform());
+	myBox.lr = DXVec2::Transform(myBox.lr, GetWorldTransform());
 
 	_renderer->DrawBorder(
-		{ dest.left, dest.top },
-		{ dest.right, dest.bottom },
+		myBox.ul, myBox.lr,
 		D2D_Color::Red
 	);
-
-	_renderer->PopTransform();
 #endif
 }
 

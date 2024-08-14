@@ -13,7 +13,7 @@ public:
 	template<typename T>
 	T* CreatePannel(std::wstring name)
 	{
-		T* t = new T;
+		T* t = new T(world);
 		UIPanel* panel = dynamic_cast<UIPanel*>(t);
 
 		if (panel == nullptr)
@@ -23,8 +23,8 @@ public:
 		panelList.push_back(panel);
 
 		std::sort(panelList.begin(), panelList.end(),
-			[](UIPanel* panel, UIPanel* panel)
-			{return panel->GetZOrder() < panel->GetZOrder(); });
+			[](UIPanel* panel1, UIPanel* panel2)
+			{return panel1->GetZOrder() < panel2->GetZOrder(); });
 
 		return t;
 	}

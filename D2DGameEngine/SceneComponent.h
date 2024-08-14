@@ -42,7 +42,7 @@ public:
 
 	SceneComponent(Actor* _owner) :
 		IComponent(_owner), parent{ nullptr } {
-		SetTickProperties(TICK_PHYSICS);
+		SetTickProperties(TICK_PHYSICS | TICK_POST_UPDATE);
 	}
 
 	void AddChild(SceneComponent* child);
@@ -68,11 +68,13 @@ public:
 
 	void SetScale(float x, float y) {
 		S = DXMat4x4::CreateScale(x, y, 1.0);
+		bShouldUpdateBounds = true;
 		bShouldOverlapTest = true;
 	}
 
 	void SetRotation(float degree) {
 		R = DXMat4x4::CreateRotationZ(Math::DegreeToRadian(degree));
+		bShouldUpdateBounds = true;
 		bShouldOverlapTest = true;
 	}
 
@@ -83,11 +85,13 @@ public:
 
 	void Scale(float dx, float dy) {
 		S = S * DXMat4x4::CreateScale(dx, dy, 1.0);
+		bShouldUpdateBounds = true;
 		bShouldOverlapTest = true;
 	}
 
 	void Rotate(float degree) {
 		R = R * DXMat4x4::CreateRotationZ(Math::DegreeToRadian(degree));
+		bShouldUpdateBounds = true;
 		bShouldOverlapTest = true;
 	} 
 
@@ -195,6 +199,11 @@ public:
 		{
 			MoveComponent(velocity * _dt, angularVelocity * _dt, false);
 		}
+	}
+
+	virtual void PostUpdate(float _dt) override {
+		UpdateBounds();
+		bShouldUpdateBounds = false;
 	}
 
 protected:

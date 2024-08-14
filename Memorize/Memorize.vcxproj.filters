@@ -87,6 +87,9 @@
     <Filter Include="Source Files\App\Skill\Range\LightStream">
       <UniqueIdentifier>{4389aa17-f477-4d9e-8b09-ad72221ae47f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\UI">
+      <UniqueIdentifier>{45bb7724-652e-4b78-af22-82457069697b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="Pattern06.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementsPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -483,6 +489,9 @@
     </ClInclude>
     <ClInclude Include="TestLevel1_RenderLayer.h">
       <Filter>Source Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementsPanel.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

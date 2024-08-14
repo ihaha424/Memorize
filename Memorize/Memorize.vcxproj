@@ -158,6 +158,7 @@
     <ClCompile Include="CoolTime.cpp" />
     <ClCompile Include="DarkSphere.cpp" />
     <ClCompile Include="DarkSphereProjectile.cpp" />
+    <ClCompile Include="ElementsPanel.cpp" />
     <ClCompile Include="Enchant.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="CoolTime.h" />
     <ClInclude Include="DarkSphere.h" />
     <ClInclude Include="DarkSphereProjectile.h" />
+    <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="Enchant.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />

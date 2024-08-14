@@ -12,7 +12,7 @@ public:
 		isVisible = false;
 #endif
 		SetCollisionEnabled(CollisionEnabled::EnableCollision);
-		SetTickProperties(TICK_PHYSICS | TICK_RENDER);
+		AddTickProperties(TICK_PHYSICS | TICK_RENDER);
 	}
 
 	// Collision
