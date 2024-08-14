@@ -140,6 +140,8 @@ public:
 			collisionSystem.UpdateComponent(primComp);
 		}
 
+		void UpdateCollisionSystem();
+
 		bool IsComponentCollisionRegistered(PrimitiveComponent* primComp) {
 			return collisionSystem.IsComponentRegistered(primComp);
 		}
