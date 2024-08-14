@@ -281,9 +281,6 @@
     <ClCompile Include="ElementsPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
-    <ClCompile Include="FireSkillsPanel.cpp">
-      <Filter>Source Files\App\UI</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -485,9 +482,6 @@
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClInclude>
     <ClInclude Include="ElementsPanel.h">
-      <Filter>Source Files\App\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="FireSkillsPanel.h">
       <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,6 +12,13 @@ public:
 	class UIImage* e;
 	class UIImage* r;
 
+	std::vector<std::vector<UIImage*>> commands;
+
+	void SelectFireSkill();
+	void SelectWaterSkill();
+	void SelectLightSkill();
+	void SelectDarkSkill();
+
 	void OnPressedQ();
 	void OnPressedW();
 };

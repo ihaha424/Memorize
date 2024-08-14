@@ -16,7 +16,7 @@ protected:
 
 	class MovementComponent* mv;
 	class BitmapComponent* bm;
-
+	class BoxComponent* box;
 public:
 	Projectile(class World* _world);
 	virtual ~Projectile();

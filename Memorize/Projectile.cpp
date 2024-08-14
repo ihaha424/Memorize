@@ -13,8 +13,17 @@ Projectile::Projectile(World* _world) : Actor(_world)
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
 
+	//box = CreateComponent<BoxComponent>();
+	//box->collisionProperty = CollisionProperty(CollsionPropertyPreset::BlockAll);
+	//box->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
+	//box->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
+	//box->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
+	//box->InitBoxExtent({ bm->GetSprite()->GetResource()->GetSize().width, bm->GetSprite()->GetResource()->GetSize().height });
+	//rootComponent->AddChild(box);
+
 	mv->SetStatus(OS_INACTIVE);
 	bm->SetStatus(OS_INACTIVE);
+	//box->SetStatus(OS_INACTIVE);
 }
 
 Projectile::~Projectile()
