@@ -16,7 +16,7 @@ Projectile::Projectile(World* _world) : Actor(_world)
 	rootComponent->AddChild(mv);
 
 	box = CreateComponent<BoxComponent>();
-	box->collisionProperty = CollisionProperty(CollsionPropertyPreset::BlockAll);
+	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::BlockAll);
 	box->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
 	box->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
 	box->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.

@@ -90,6 +90,9 @@
     <Filter Include="Source Files\App\UI">
       <UniqueIdentifier>{45bb7724-652e-4b78-af22-82457069697b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\Bat">
+      <UniqueIdentifier>{eed70d43-fc1c-4694-af8d-01ea6ffb462a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -283,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="ElementsPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -492,6 +498,9 @@
     </ClInclude>
     <ClInclude Include="ElementsPanel.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

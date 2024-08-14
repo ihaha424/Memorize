@@ -114,12 +114,20 @@ public:
 		teleportDelta = _teleportDelta;
 	}
 
+	Math::Vector2 GetComponentVelocity() {
+		return velocity;
+	}
+
 	void SetComponentVelocity(Math::Vector2 _velocity) {
 		velocity = _velocity;
 	}
 
 	void AddComponentVelocity(Math::Vector2 _velocity) {
 		velocity += _velocity;
+	}
+
+	float GetComponentAngularVelocity() {
+		return angularVelocity;
 	}
 
 	void SetComponentAngularVelocity(float _angularVelocity) {
