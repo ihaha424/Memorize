@@ -19,6 +19,7 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
+		projectiles[i]->SetDamage(damage);
 	}
 }
 

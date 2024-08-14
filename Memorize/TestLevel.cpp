@@ -26,7 +26,7 @@ void TestLevel::Enter()
 		Actor* actor = CreateActor<Actor>();
 		actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
 		BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-		bm->SetSprite(L"Memorize/preview.png");
+		bm->SetSprite(L"TestResource/BackGround_Map.png");
 		actor->rootComponent = bm;
 		//bm->SetTranslation(960, -540);
 	}
@@ -34,7 +34,6 @@ void TestLevel::Enter()
 	{
 		Player* player = CreateActor<Player>();
 		
-
 		GPlayerController* pc = CreateActor<GPlayerController>();
 		player->SetController(pc);
 		pc->SetPlayer(player);
