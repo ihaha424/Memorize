@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/BitmapComponent.h"
 #include "D2DGameEngine/BoxComponent.h"
 #include "MovementComponent.h"
+#include "D2DGameEngine/RandomGenerator.h"
 
 BossSkillActor::BossSkillActor(World* _world)
 	:Actor(_world)
@@ -23,6 +24,27 @@ void BossSkillActor::OnClicked()
 {
 	//Event -> Player
 	//Player.Disfall -> this
+}
+
+bool BossSkillActor::Disfell(int _element)
+{
+	if (disfellCommand[dissfellindex] == _element)
+	{
+		dissfellindex++;
+		DisfellAction();
+		return true;
+	}
+	else
+	{
+		DisfellFailAction();
+		return false;
+	}
+}
+
+void BossSkillActor::CreateDisfellCommand()
+{
+	for(int i = 0; i < disfellCommandCount; i++)
+		disfellCommand.push_back(Random::Get((int)Dark));
 }
 
 void BossSkillActor::FixedUpdate(float _fixedRate)

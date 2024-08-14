@@ -284,6 +284,9 @@
     <ClCompile Include="ElementsPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerDisfell.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -492,6 +495,9 @@
     </ClInclude>
     <ClInclude Include="ElementsPanel.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDisfell.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

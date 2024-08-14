@@ -87,6 +87,7 @@ void PlayerState::Memorize()
 
 void PlayerState::Teleport()
 {
+	//if(마나체크)
 	owner->SetNextState(L"PlayerBlinking");
 }
 
@@ -94,4 +95,5 @@ void PlayerState::Cancellation()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->InitializeSkillInfo();
+	owner->SetNextState(L"PlayerIdle");
 }

@@ -4,32 +4,35 @@
 
 void PlayerCasting::Enter()
 {
-	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-
-	//if(마나 없음 -> return)
-	float skillMana = playerController->FindCurSkiil()->GetMana();
-	Stat& playerStat = playerController->GetPlayer()->GetStat();
-
-	//심판의 빛 -1은 마나 전체 소모 -> 마나 오버라이즈면 어케해?
-	if (skillMana == -1)
+	if (!saveDirtyFlag)
 	{
-		//playerController->FindCurSkiil()->Castring Time = playerStat.mp * 0.02f;
-		playerStat.mp = 0.f;
-	}
+		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 
-	if (playerStat.mp >= skillMana)
-	{
-		playerStat.mp -= skillMana;
-		owner->SetNextState(L"PlayerCasting");
-	}
-	else
-	{
-		playerController->InitializeSkillInfo();
-		owner->SetNextState(L"PlayerIdle");
-		return;
-	}
+		//if(마나 없음 -> return)
+		float skillMana = playerController->FindCurSkiil()->GetMana();
+		Stat& playerStat = playerController->GetPlayer()->GetStat();
 
+		//심판의 빛 -1은 마나 전체 소모 -> 마나 오버라이즈면 어케해?
+		if (skillMana == -1)
+		{
+			//playerController->FindCurSkiil()->Castring Time = playerStat.mp * 0.02f;
+			playerStat.mp = 0.f;
+		}
+
+		if (playerStat.mp >= skillMana)
+		{
+			playerStat.mp -= skillMana;
+			//owner->SetNextState(L"PlayerCasting");
+		}
+		else
+		{
+			playerController->InitializeSkillInfo();
+			owner->SetNextState(L"PlayerIdle");
+			return;
+		}
 	playerController->FindCurSkiil()->SetCommandList(commandList);
+	saveDirtyFlag = false;
+	}
 }
 
 void PlayerCasting::Update(float _dt)
@@ -103,3 +106,17 @@ void PlayerCasting::Dark()
 	}
 }
 
+void PlayerCasting::Teleport()
+{
+	//if(마나체크)
+
+	saveDirtyFlag = true;
+	owner->SetNextState(L"PlayerBlinking");
+}
+
+void PlayerCasting::Cancellation()
+{
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	playerController->InitializeSkillInfo();
+	owner->SetNextState(L"PlayerIdle");
+}

@@ -37,8 +37,10 @@ void PlayerFSMComponent::InputKey(int _key)
 		break;
 	case InputEvent::Memorize:
 		ActionState->Memorize();
+		break;
 	case InputEvent::Teleport:
 		ActionState->Teleport();
+		break;
 	case InputEvent::Cancellation:
 		ActionState->Cancellation();
 		break;

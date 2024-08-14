@@ -11,6 +11,12 @@ public:
 	{}
 	virtual ~PlayerBlinking() {};
 
+	static constexpr float blinkTime = 1.f;
+	static constexpr float blinkDistance = 550.f;
+
+	float curtime = 0.f;
+	Math::Vector2 worldMousePos;
+
 	// PlayerState을(를) 통해 상속됨
 	void Enter() override;
 	void Update(float _dt) override;
