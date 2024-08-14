@@ -276,6 +276,7 @@
     <ClInclude Include="SkillList.h" />
     <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="TestLevel.h" />
+    <ClInclude Include="TestLevel1_RenderLayer.h" />
     <ClInclude Include="TighteningCircle.h" />
     <ClInclude Include="TighteningCircleEffect.h" />
   </ItemGroup>

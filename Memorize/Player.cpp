@@ -10,12 +10,14 @@
 #include "D2DGameEngine/ReflectionResource.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BoxComponent.h"
+#include "TestLevel1_RenderLayer.h"
 
 Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
 
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
+	renderLayer = TestLevel1_RenderLayer::Object;
 
 	
 

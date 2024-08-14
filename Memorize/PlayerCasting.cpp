@@ -56,7 +56,7 @@ void PlayerCasting::Fire()
 	{
 		//fail
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-		playerController->InitializeSkill();
+		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
 	}
 }
@@ -70,7 +70,7 @@ void PlayerCasting::Water()
 	{
 		//fail
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-		playerController->InitializeSkill();
+		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
 	}
 }
@@ -84,7 +84,7 @@ void PlayerCasting::Light()
 	{
 		//fail
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-		playerController->InitializeSkill();
+		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
 	}
 }
@@ -98,7 +98,7 @@ void PlayerCasting::Dark()
 	{
 		//fail
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-		playerController->InitializeSkill();
+		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
 	}
 }

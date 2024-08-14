@@ -100,7 +100,7 @@ void Level::PrepareRender()
 	{
 		auto [prevY, actor] = *it;
 
-		if (EpsilonEquals(prevY, actor->GetLocation().y)) {
+		if (EpsilonEquals(prevY.second, actor->GetLocation().y)) {
 			++it;
 			continue;
 		};
@@ -112,7 +112,7 @@ void Level::PrepareRender()
 
 	for (Actor* actor : renderDirtyActorSet)
 	{
-		actorRenderSequence.insert({ actor->GetLocation().y, actor });
+		actorRenderSequence.insert({ {actor->renderLayer, actor->GetLocation().y}, actor });
 	}
 }
 

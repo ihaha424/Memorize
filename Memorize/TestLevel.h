@@ -1,9 +1,6 @@
 #pragma once
 #include "../D2DGameEngine/Level.h"
 
-enum TestLevel1_RenderLayer {Default, BackGround, Object};
-
-
 class TestLevel : public Level
 {
    

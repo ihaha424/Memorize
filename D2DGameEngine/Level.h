@@ -8,7 +8,7 @@ class Level
 	using ActorTypeMap = std::unordered_multimap<std::type_index, Actor*>;
 	
 protected:
-	using ComponentRenderSequence = std::multimap<float, Actor*>;
+	using ComponentRenderSequence = std::multimap<std::pair<int, float>, Actor*>;
 	ComponentRenderSequence actorRenderSequence;
 	
 	ActorTypeMap actorTypeMap;
@@ -24,7 +24,8 @@ public:
         T* newActor = new T(world);
         actorList.push_back(newActor);
 				actorTypeMap.insert({ std::type_index(typeid(T)), newActor });
-				actorRenderSequence.insert({ 0.f, newActor });
+				actorRenderSequence.insert({ { newActor->renderLayer,0.f }, newActor
+	});
         return newActor;
     }
 

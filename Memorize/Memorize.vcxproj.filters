@@ -481,5 +481,8 @@
     <ClInclude Include="Pattern06.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
     </ClInclude>
+    <ClInclude Include="TestLevel1_RenderLayer.h">
+      <Filter>Source Files\App</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
