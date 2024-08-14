@@ -83,6 +83,8 @@ consteval std::size_t GB(std::size_t gb) { return MB(gb * 1024); }
 
 using Flags = uint32_t;
 
+// Fixed update updating rate
+constexpr double FIXED_RATE = 1.0 / 60.0;
 
 template<class Interface>
 inline void SafeRelease(Interface** ppInterface) {

@@ -10,8 +10,6 @@
 #include <chrono>
 #include <thread>
 
-constexpr double FIXED_RATE = 1.0 / 60.0;
-
 void GameEngine::Initialize() 
 {
 	EventBus::CreateInstance();

@@ -10,4 +10,6 @@
 #include "Pattern6Action.h"
 #include "Pattern7Action.h"
 #include "Pattern8Action.h"
+#include "Pattern9Action.h"
+#include "Pattern10Action.h"
 

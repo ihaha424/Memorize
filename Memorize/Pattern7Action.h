@@ -2,7 +2,9 @@
 
 #include "D2DGameEngine/Leaf.h"
 
-struct Pattern7Action final : public Action
+#include "PatternAction.h"
+
+struct Pattern7Action final : public PatternAction
 {
 	// TODO: Parsing?
 

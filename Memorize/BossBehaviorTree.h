@@ -14,4 +14,7 @@ public:
 	BossBehaviorTree(Actor* _aiOwner);
 
 	void BeginPlay() override;
+	void Update(float _dt) override;
+private:
+	void BuildBehaviorTree();
 };

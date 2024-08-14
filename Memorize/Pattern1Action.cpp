@@ -8,5 +8,6 @@ bool Pattern1Action::IsRunning()
 void Pattern1Action::Run(float dt)
 {
 	// TODO;
+	// 
 
 }

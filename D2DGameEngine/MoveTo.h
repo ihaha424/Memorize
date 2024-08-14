@@ -17,7 +17,7 @@ struct MoveTo final : public Action {
 private:
 	KeyName key;
 	float acceptableRadius{ 1.f };
-	float speed;
+	float speed{ 0.f };
 };
 
 

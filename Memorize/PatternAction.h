@@ -2,7 +2,7 @@
 
 #include "D2DGameEngine/Leaf.h"
 
-struct PatternAction final : public Action
+struct PatternAction : public Action
 {
 	// TODO: Parsing?
 	// 패턴 자체의 쿨타임
