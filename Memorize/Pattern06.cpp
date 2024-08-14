@@ -9,10 +9,13 @@ Pattern06::Pattern06(World* _world)
 	:BossSkillActor(_world)
 {
 	ReflectionIn();
+	disfellCommandCount = 4;
+	CreateDisfellCommand();
 	CreateComponent<ClickComponent>();
 
 	circleComponent = CreateComponent<CircleComponent>();
-	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
+
+	circleComponent->collisionProperty = CollisionProperty(CollsionPropertyPreset::OverlapAll);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
 	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
 	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
@@ -31,6 +34,7 @@ void Pattern06::BeginPlay()
 
 void Pattern06::Update(float _dt)
 {
+	__super::Update(_dt);
 	if (skillDuration > 0.f)
 	{
 		bm->Scale(1.0f + _dt * 0.1f, 1.0f + _dt * 0.1f);
@@ -40,6 +44,11 @@ void Pattern06::Update(float _dt)
 	{
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 	}
+}
+
+void Pattern06::DisfellAction()
+{
+	bm->Scale(0.9f, 0.9f);
 }
 
 void Pattern06::ReflectionIn()

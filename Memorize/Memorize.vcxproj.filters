@@ -287,6 +287,9 @@
     <ClCompile Include="ElementsPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerDisfell.cpp">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
+    </ClCompile>
     <ClCompile Include="Bat.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>
     </ClCompile>
@@ -498,6 +501,9 @@
     </ClInclude>
     <ClInclude Include="ElementsPanel.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDisfell.h">
+      <Filter>Source Files\App\Player\PlayerFSM\PlayerStates</Filter>
     </ClInclude>
     <ClInclude Include="Bat.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>

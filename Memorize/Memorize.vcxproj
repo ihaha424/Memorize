@@ -192,6 +192,7 @@
     <ClCompile Include="PlayerAttackReady.cpp" />
     <ClCompile Include="PlayerBlinking.cpp" />
     <ClCompile Include="PlayerCasting.cpp" />
+    <ClCompile Include="PlayerDisfell.cpp" />
     <ClCompile Include="PlayerFSMComponent.cpp" />
     <ClCompile Include="PlayerIdle.cpp" />
     <ClCompile Include="PlayerIdleAnimation.cpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include="PlayerAttackReady.h" />
     <ClInclude Include="PlayerBlinking.h" />
     <ClInclude Include="PlayerCasting.h" />
+    <ClInclude Include="PlayerDisfell.h" />
     <ClInclude Include="PlayerFSMComponent.h" />
     <ClInclude Include="PlayerIdle.h" />
     <ClInclude Include="PlayerIdleAnimation.h" />
