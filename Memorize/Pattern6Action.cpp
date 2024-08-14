@@ -11,5 +11,5 @@ void Pattern6Action::Run(float dt)
 	// boss->Pattern6Start();
 
 	// 피리오딕 패턴 쿨타임 재시작
-	boss->Periodic_Pattern_Cool_Time = GetCooldown();
+	//boss->Periodic_Pattern_Cool_Time = GetCoolTime();
 }

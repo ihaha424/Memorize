@@ -9,3 +9,11 @@ FireballProjectile::FireballProjectile(World* _world) : Projectile(_world)
 FireballProjectile::~FireballProjectile()
 {
 }
+
+void FireballProjectile::OnBeginOverlap(Actor* other)
+{
+	__super::OnBeginOverlap(other);
+
+	//TODO : Æø¹ß
+	Inactivate();
+}

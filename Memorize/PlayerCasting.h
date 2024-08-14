@@ -23,7 +23,7 @@ public:
 	virtual void Attack() {};
 
 	std::vector<BYTE>	commandList{};
-	size_t				index = 0;
+	size_t				index = 1;
 	//or queue
 
 };

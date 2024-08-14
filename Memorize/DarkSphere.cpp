@@ -14,6 +14,7 @@ DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<DarkSphereProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
+		projectiles[i]->SetDamage(damage);
 	}
 }
 
