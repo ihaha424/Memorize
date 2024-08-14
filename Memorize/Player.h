@@ -70,8 +70,6 @@ public:
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
-
-
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;
 	void ReflectionOut() override;
@@ -86,6 +84,11 @@ public:
 
 	virtual void OnEndOverlap(Actor* other) {
 		OBJ_MESSAGE("Overlap ended!");
+	}
+
+	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) override
+	{
+		OBJ_MESSAGE(dbg::text(damageAmount, " damage taken!"));
 	}
 };
 

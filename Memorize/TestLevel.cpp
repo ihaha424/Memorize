@@ -39,11 +39,15 @@ void TestLevel::Enter()
 		pc->SetPlayer(player);
 
 		CreateActor<Pattern06>();
+
+		{
+			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
+			elementsPanel->SetPlayerController(pc);
+		}
+
 	}
 
-	{
-		GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
-	}
+
 
 	{
 		//Boss* boss = CreateActor<Boss>();

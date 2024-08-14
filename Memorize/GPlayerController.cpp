@@ -36,12 +36,6 @@ void GPlayerController::SetupInputComponent()
 	inputComponent->ActionBinding(this, 0, &GPlayerController::Attack, InputState::KeyDown, MouseInput);
 	inputComponent->ActionBinding(this, 1, &GPlayerController::Move, InputState::KeyDown, MouseInput);
 
-	ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->GetPanel<ElementsPanel>(L"Elements");
-	inputComponent->ActionBinding(elementsPanel, DIK_Q, &ElementsPanel::OnPressedQ, InputState::KeyDown, KeyBoardInput);
-	inputComponent->ActionBinding(elementsPanel, DIK_W, &ElementsPanel::OnPressedW, InputState::KeyDown, KeyBoardInput);
-	inputComponent->ActionBinding(elementsPanel, DIK_E, &ElementsPanel::OnPressedE, InputState::KeyDown, KeyBoardInput);
-	inputComponent->ActionBinding(elementsPanel, DIK_R, &ElementsPanel::OnPressedR, InputState::KeyDown, KeyBoardInput);
-
 }
 
 void GPlayerController::InitializeSkill()

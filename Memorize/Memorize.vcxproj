@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="AggressiveWaves.cpp" />
     <ClCompile Include="AggressiveWavesEffect.cpp" />
+    <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
@@ -215,6 +216,7 @@
   <ItemGroup>
     <ClInclude Include="AggressiveWaves.h" />
     <ClInclude Include="AggressiveWavesEffect.h" />
+    <ClInclude Include="Bat.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossActionNodes.h" />
     <ClInclude Include="BossAIController.h" />

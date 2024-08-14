@@ -168,7 +168,7 @@ public:
 	 * @param damageCauser 
 	 * @return 
 	 */
-	virtual float InternalTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) { return 0.f; }
+	virtual float InternalTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) { return damageAmount; }
 	/**
 	 * @brief 데미지 받았을 때 이벤트. TakeDamage 안에서 호출됨.
 	 * @param damageAmount 

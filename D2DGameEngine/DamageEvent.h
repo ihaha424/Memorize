@@ -107,3 +107,8 @@ struct RadialDamageEvent : public DamageEvent {
 	DXVec2 origin;	// 범위 공격의 원점
 	RadialDamageInfo radialDamageInfo;
 };
+
+
+inline DamageEvent DefaultDamage() {
+	return DamageEvent();
+}

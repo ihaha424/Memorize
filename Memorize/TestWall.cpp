@@ -8,7 +8,7 @@ TestWall::TestWall(class World* _world) : Actor(_world)
 	SetTickProperties(TICK_RENDER);
 
 	BoxComponent* box = CreateComponent<BoxComponent>();
-	box->collisionProperty = CollisionProperty(CollsionPropertyPreset::BlockAll);
+	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::BlockAll);
 	box->bGenerateOverlapEvent = true;
 	rootComponent = box;
 

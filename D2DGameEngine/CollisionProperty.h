@@ -4,7 +4,7 @@
 #include "ObjectType.h"
 #include "CollisionResponse.h"
 
-enum class CollsionPropertyPreset {
+enum class CollisionPropertyPreset {
 	NoCollision,
 	BlockAll,
 	OverlapAll,
@@ -53,56 +53,56 @@ struct CollisionProperty {
 
 	CollisionProperty() {}
 
-	CollisionProperty(CollsionPropertyPreset preset) {
+	CollisionProperty(CollisionPropertyPreset preset) {
 		switch (preset)
 		{
-		case CollsionPropertyPreset::NoCollision:
+		case CollisionPropertyPreset::NoCollision:
 			break;
-		case CollsionPropertyPreset::BlockAll:
+		case CollisionPropertyPreset::BlockAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
 			break;
-		case CollsionPropertyPreset::OverlapAll:
+		case CollisionPropertyPreset::OverlapAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			break;
-		case CollsionPropertyPreset::DynamicBlockAll:
+		case CollisionPropertyPreset::DynamicBlockAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
 			break;
-		case CollsionPropertyPreset::DynamicOverlapAll:
+		case CollisionPropertyPreset::DynamicOverlapAll:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			break;
-		case CollsionPropertyPreset::IgnorePawn:
+		case CollisionPropertyPreset::IgnorePawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Ignore);
 			break;
-		case CollsionPropertyPreset::OverlapPawn:
+		case CollisionPropertyPreset::OverlapPawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
 			break;
-		case CollsionPropertyPreset::Pawn:
+		case CollisionPropertyPreset::Pawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::Pawn;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
 			SetCollsionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
 			break;
-		case CollsionPropertyPreset::Character:
+		case CollisionPropertyPreset::Character:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::Character;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
 			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
 			SetCollsionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
 			break;
-		case CollsionPropertyPreset::Trigger:
+		case CollisionPropertyPreset::Trigger:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);

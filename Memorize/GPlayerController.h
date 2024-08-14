@@ -31,6 +31,8 @@ public:
 	 */
 	void InitializeSkill();
 
+	SkilID GetCurSkillInfo() { return curSkillInfo; }
+
 	/**
 	 * @brief 스킬 생성 & 맵에 추가
 	 * @tparam SkillType : concept SkillType = std::is_base_of<Skill, T>::value;

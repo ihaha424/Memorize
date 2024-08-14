@@ -33,6 +33,10 @@ public:
 
 	~AnimationBitmapComponent() {}
 
+	void SetLoop(bool loop) {
+		isLoop = loop;
+	}
+
 	/**
 	 * @brief 스프라이트 시트를 일정한 간격으로 슬라이스 하고, 기본 시간 간격을
 	 * 1초로 설정합니다.
