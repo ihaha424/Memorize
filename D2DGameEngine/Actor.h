@@ -175,7 +175,6 @@ public:
 	 * @param damageEvent 
 	 * @param eventInstigator 
 	 * @param damageCauser 
-	 * @param hitResult 
 	 */
 	virtual void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) {}
 

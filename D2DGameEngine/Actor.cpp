@@ -40,7 +40,7 @@ float Actor::TakeDamage(float damageAmount, DamageEvent const& damageEvent, Cont
 	else if (damageEvent.damageEventType == DamageEventType::RadialDamage)
 	{
 		const RadialDamageEvent& radialDamageEvent = static_cast<const RadialDamageEvent&>(damageEvent);
-
+		// TODO: Internal Radial Take Damage.
 		if (abs(actualDamage) > EPSILON) 
 		{
 			for (int hitIndex = 0; hitIndex < radialDamageEvent.componentHits.size(); ++hitIndex)
@@ -56,7 +56,7 @@ float Actor::TakeDamage(float damageAmount, DamageEvent const& damageEvent, Cont
 	}
 
 	if (abs(actualDamage) > EPSILON) {
-		OnTakeDamage(damageAmount, damageEvent, eventInstigator, damageCauser);
+		OnTakeDamage(actualDamage, damageEvent, eventInstigator, damageCauser);
 
 		/*if (eventInstigator != nullptr)
 		{

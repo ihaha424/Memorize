@@ -13,8 +13,35 @@ enum class DamageEventType {
 };
 
 struct DamageEvent : public Event<DamageEvent> {
-	DamageEventType damageEventType{ DamageEventType::Default };
-	DamageType damageType{ DamageType::Default() };
+	DamageEventType damageEventType;
+
+	DamageEvent() : 
+		DamageEvent(DamageEventType::Default, DamageType::Default()) {}
+
+	DamageEvent(DamageEventType damageEventType) :
+		DamageEvent(damageEventType, DamageType::Default()) {}
+
+	DamageEvent(DamageType damageType) : 
+		DamageEvent(DamageEventType::Default, damageType) {}
+
+	DamageEvent(DamageEventType damageEventType, DamageType damageType) :
+		damageEventType{ damageEventType }, 
+		damageType{ std::make_shared<DamageType>(damageType) } {}
+
+	DamageEventType GetDamageEventType() {
+		return damageEventType;
+	}
+
+	DamageType GetDamageType() {
+		return *damageType.get();
+	}
+
+	void SetDamageType(DamageType _damageType) {
+		damageType = std::make_shared<DamageType>(_damageType);
+	}
+
+private:
+	std::shared_ptr<DamageType> damageType;
 };
 
 /**
@@ -26,7 +53,7 @@ struct PointDamageEvent : public DamageEvent {
 	DXVec2 shotDirection;	// 삿이 날라온 방향
 
 	PointDamageEvent() : 
-		DamageEvent{ .damageEventType = DamageEventType::PointDamage },
+		DamageEvent(DamageEventType::PointDamage),
 		damage{ 0.f }, 
 		hitInfo{}, 
 		shotDirection{ DXVec2::Zero } {}
@@ -36,10 +63,7 @@ struct PointDamageEvent : public DamageEvent {
 		float damage, 
 		HitResult hitInfo, 
 		DXVec2 shotDirection) : 
-		DamageEvent{ 
-			.damageEventType = DamageEventType::PointDamage, 
-			.damageType = damageType 
-		},
+		DamageEvent(DamageEventType::PointDamage, damageType),
 		damage{damage},
 		hitInfo{hitInfo},
 		shotDirection{shotDirection} {}
@@ -56,7 +80,7 @@ struct RadialDamageInfo : public DamageEvent {
 	float outerRadius;	// 데미지를 가하지 않는 가장 바깥쪽의 반지름
 	
 	RadialDamageInfo() :
-		DamageEvent{ .damageEventType = DamageEventType::RadialDamage },
+		DamageEvent(DamageEventType::RadialDamage),
 		maxDamage{ 0.f },
 		minDamage{ 0.f },
 		damageFalloff{ 0.f },
@@ -70,10 +94,7 @@ struct RadialDamageInfo : public DamageEvent {
 		float damageFalloff,
 		float innerRadius,	
 		float outerRadius) :
-		DamageEvent{
-			.damageEventType = DamageEventType::PointDamage,
-			.damageType = damageType
-		},
+		DamageEvent(DamageEventType::RadialDamage, damageType),
 		maxDamage{ maxDamage },
 		minDamage{ minDamage },
 		damageFalloff{ damageFalloff },

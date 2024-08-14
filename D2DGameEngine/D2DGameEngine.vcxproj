@@ -328,6 +328,7 @@
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="데미지_사용법.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleMath.inl">

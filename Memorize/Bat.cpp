@@ -16,7 +16,7 @@ Bat::Bat(World* _world) : Actor(_world)
 	ReflectionIn();
 
 	CircleComponent* circle = CreateComponent<CircleComponent>();
-	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::DynamicOverlapAll);
+	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::Trigger);
 	circle->bGenerateOverlapEvent = true;
 	circle->maxSpeed = speed;
 	rootComponent = circle;
@@ -40,9 +40,8 @@ Bat::Bat(World* _world) : Actor(_world)
 	DamageType damageType{
 		.damageImpulse = 10000.f,
 	};
-
-	batDamageEvent.damageType = damageType;
-	batDamageEvent.damage = 5.f;
+	batDamageEvent.SetDamageType(damageType);
+	batDamageEvent.damage = damage;
 }
 
 void Bat::BeginPlay()
@@ -86,7 +85,7 @@ void Bat::Update(float _dt)
 		{
 			batDamageEvent.shotDirection = toPlayer;
 			batDamageEvent.hitInfo.hitComponent = (PrimitiveComponent*) player->rootComponent;
-			player->TakeDamage(5.f, batDamageEvent, nullptr, this);
+			player->TakeDamage(damage, batDamageEvent, nullptr, this);
 
 			elapsedTime -= attackSpeed;
 		}
@@ -95,7 +94,6 @@ void Bat::Update(float _dt)
 	{
 		if (!moveAnimation->IsPlaying())
 		{
-			LOG_MESSAGE(dbg::text(elapsedTime));
 			moveAnimation->Trigger(true);
 			moveAnimation->isVisible = true;
 
