@@ -54,7 +54,7 @@ struct Box {
 	}
 
 	bool IsInside(const DXVec2& point) const {
-		return ul.x <= point.x && lr.x <= point.x && 
+		return ul.x <= point.x && point.x <= lr.x &&
 			ul.y <= point.y && point.y <= lr.y;
 	}
 };
