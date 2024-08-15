@@ -85,6 +85,11 @@ bool GPlayerController::isPlayerAfterCasting()
 		|| playerFSMComponent->GetCurState() == L"PlayerAttack";
 }
 
+std::wstring GPlayerController::GetPlayerState()
+{
+	return playerFSMComponent->GetCurState();
+}
+
 void GPlayerController::EndSkill()
 {
 	nowSkill = nullptr;

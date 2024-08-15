@@ -1,4 +1,6 @@
 #include "MagicCircle.h"
+#include "Player.h"
+#include "GPlayerController.h"
 #include "D2DGameEngine/Mouse.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/BitmapComponent.h"
@@ -12,6 +14,7 @@ MagicCircle::MagicCircle(Actor* _owner) : SceneComponent(_owner)
 		AddChild(bms[i]);
 	}
 	SetToFire();
+	HideAll();
 }
 
 MagicCircle::~MagicCircle()
@@ -33,6 +36,26 @@ void MagicCircle::Update(float _dt)
 	{
 		bms[i]->SetScale(0.75 * direction.Dot(Math::Vector2(0, 1)) + 0.25, 1);
 	}
+
+
+	Player* player = static_cast<Player*>(GetOwner());
+	GPlayerController* controller = static_cast<GPlayerController*>(player->GetController());
+
+	ESkillType curSkillType = controller->GetCurSkillInfo().type;
+	ESkillElement curSkillElement = controller->GetCurSkillInfo().element;
+
+	if (curSkillType != ST_END)
+	{
+		//커맨드를 입력중
+		int index = controller->GetPlayerCastingIndex() - 1;
+		if(index >= 0)
+			ShowOne(index);
+
+		if (controller->GetPlayerState() != L"PlayerAttackReady" 
+			&& controller->GetPlayerState() != L"PlayerCasting")
+			HideAll();
+	}
+
 }
 
 void MagicCircle::SetToFire()
