@@ -44,6 +44,15 @@ void MagicCircle::Update(float _dt)
 	ESkillType curSkillType = controller->GetCurSkillInfo().type;
 	ESkillElement curSkillElement = controller->GetCurSkillInfo().element;
 
+	if (curSkillElement == SE_FIRE)
+		SetToFire();
+	else if (curSkillElement == SE_WATER)
+		SetToWater();
+	else if (curSkillElement == SE_LIGHT)
+		SetToLight();
+	else if (curSkillElement == SE_DARKNESS)
+		SetToDark();
+
 	if (curSkillType != ST_END)
 	{
 		//커맨드를 입력중
