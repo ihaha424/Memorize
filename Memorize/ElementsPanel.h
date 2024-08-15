@@ -12,6 +12,8 @@ public:
 	class UIImage* e;
 	class UIImage* r;
 
+	std::vector<class UIText*> infoTexts;
+
 	class ID2D1Bitmap* Qbm;
 	class ID2D1Bitmap* Wbm;
 	class ID2D1Bitmap* Ebm;
@@ -33,6 +35,6 @@ public:
 	void SetQWER(std::vector<std::vector<int>>& elementCommands, int type);
 	void HideAllCommands();
 	void SetSkillList();
-	void CheckSkillType();
+	std::vector<std::vector<int>>& CheckSkillType();
 };
 

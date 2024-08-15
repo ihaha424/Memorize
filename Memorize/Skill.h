@@ -58,6 +58,8 @@ public:
 	void SetID(ESkillType _type, ESkillElement _element) { id.type = _type; id.element = _element; }
 	ULONGLONG GetID() { return id.id; };
 
+	std::wstring GetInfoText() { return text; }
+
 	void SetCommandList(std::vector<BYTE>& _commandList) {
 		_commandList.resize(commandList.size());
 		std::copy(commandList.begin(), commandList.end(), _commandList.begin());

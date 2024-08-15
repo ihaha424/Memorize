@@ -299,6 +299,9 @@
     <ClCompile Include="Pattern06.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
     </ClCompile>
+    <ClCompile Include="MagicCircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -516,6 +519,9 @@
     </ClInclude>
     <ClInclude Include="Pattern06.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicCircle.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

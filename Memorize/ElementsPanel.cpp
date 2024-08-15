@@ -2,6 +2,7 @@
 #include "D2DGameEngine/UIImage.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Canvas.h"
+#include "D2DGameEngine/UIText.h"
 #include "GPlayerController.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/SpriteResource.h"
@@ -50,6 +51,17 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 		}
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		infoTexts.push_back(CreateUI<UIText>(L"infoText_" + i));
+		infoTexts[i]->SetColor(D2D_Color::Black);
+		infoTexts[i]->SetFontSize(15);
+		infoTexts[i]->SetSize(500, 100);
+		infoTexts[i]->SetPosition(250, 130+ 125 * i);
+		infoTexts[i]->SetWeight(FontWeight::Bold);
+		infoTexts[i]->Inactivate();
+	}
+
 }
 
 ElementsPanel::~ElementsPanel()
@@ -59,14 +71,47 @@ ElementsPanel::~ElementsPanel()
 
 void ElementsPanel::Update(float _dt)
 {
-	if (playerController->GetCurSkillInfo().element != SE_END)
+	ESkillType curSkillType = playerController->GetCurSkillInfo().type;
+	ESkillElement curSkillElement = playerController->GetCurSkillInfo().element;
+
+	if (playerController->isPlayerAfterCasting())
+	{
+		HideAllCommands();
+		q->SetSprite(Qbm);
+		w->SetSprite(Wbm);
+		e->SetSprite(Ebm);
+		r->SetSprite(Rbm);
+		return;
+	}
+
+	//스킬 타입까지 정해진 경우
+	if (curSkillType != ST_END)
+	{
+		HideAllCommands();
+		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
+		infoTexts[curSkillType]->Activate();
+		infoTexts[curSkillType]->SetText(playerController->FindCurSkiil()->GetInfoText());
+
+		//커맨드를 입력중
+		int curSkillInputCommand = playerController->GetPlayerCastingIndex();
+		for (int i = 0; i < curSkillInputCommand; i++)
+		{
+			commands[curSkillType][i]->Inactivate();
+		}
+		
+	}
+	//스킬 원소만 정해진 경우
+	else if (curSkillElement != SE_END)
 	{
 		SetSkillList();
 	}
-	if (playerController->GetCurSkillInfo().type != ST_END)
+	else
 	{
 		HideAllCommands();
-		CheckSkillType();
+		q->SetSprite(Qbm);
+		w->SetSprite(Wbm);
+		e->SetSprite(Ebm);
+		r->SetSprite(Rbm);
 	}
 }
 
@@ -106,6 +151,7 @@ void ElementsPanel::HideAllCommands()
 {
 	for (int y = 0; y < 4; y++)
 	{
+		infoTexts[y]->Inactivate();
 		for (int x = 0; x < 6; x++)
 		{
 			commands[y][x]->Inactivate();
@@ -152,7 +198,7 @@ void ElementsPanel::SetSkillList()
 	}
 }
 
-void ElementsPanel::CheckSkillType()
+std::vector<std::vector<int>>& ElementsPanel::CheckSkillType()
 {
 	std::vector<std::vector<int>>& elementCommands = fireCommands;
 	switch (playerController->GetCurSkillInfo().element)
@@ -167,6 +213,5 @@ void ElementsPanel::CheckSkillType()
 		elementCommands = darkCommands;
 		break;
 	}
-
-	SetQWER(elementCommands, playerController->GetCurSkillInfo().type);
+	return elementCommands;
 }
