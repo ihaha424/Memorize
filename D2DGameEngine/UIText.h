@@ -13,7 +13,7 @@ public:
 
 	void SetText(std::wstring _text) { text = _text; }
 	void SetFont(std::wstring _font) { textFormatInfo.fontFamilyName = _font.c_str(); }
-	void SetSize(float _size) { textFormatInfo.fontSize = _size; }
+	void SetFontSize(float _size) { textFormatInfo.fontSize = _size; }
 	void SetStretch(FontStretch _stretch) { textFormatInfo.fontStretch = _stretch; }
 	void SetStyle(FontStyle _style) { textFormatInfo.fontStyle = _style; }
 	void SetWeight(FontWeight _weight) { textFormatInfo.fontWeight = _weight; }

@@ -12,6 +12,8 @@ public:
 	class UIImage* e;
 	class UIImage* r;
 
+	std::vector<class UIText*> infoTexts;
+
 	class ID2D1Bitmap* Qbm;
 	class ID2D1Bitmap* Wbm;
 	class ID2D1Bitmap* Ebm;

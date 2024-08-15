@@ -28,7 +28,7 @@ int WINAPI wWinMain(
 		_debug_callback,
 		true
 	);
-
+	std::locale::global(std::locale("ko_KR.UTF-8"));
 	GameApp app;
 	app.Initialize();
 	app.Execute();

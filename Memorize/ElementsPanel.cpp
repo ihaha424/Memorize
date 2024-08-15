@@ -2,6 +2,7 @@
 #include "D2DGameEngine/UIImage.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Canvas.h"
+#include "D2DGameEngine/UIText.h"
 #include "GPlayerController.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/SpriteResource.h"
@@ -50,6 +51,17 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 		}
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		infoTexts.push_back(CreateUI<UIText>(L"infoText_" + i));
+		infoTexts[i]->SetColor(D2D_Color::Black);
+		infoTexts[i]->SetFontSize(15);
+		infoTexts[i]->SetSize(500, 100);
+		infoTexts[i]->SetPosition(250, 130+ 125 * i);
+		infoTexts[i]->SetWeight(FontWeight::Bold);
+		infoTexts[i]->Inactivate();
+	}
+
 }
 
 ElementsPanel::~ElementsPanel()
@@ -77,6 +89,8 @@ void ElementsPanel::Update(float _dt)
 	{
 		HideAllCommands();
 		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
+		infoTexts[curSkillType]->Activate();
+		infoTexts[curSkillType]->SetText(playerController->FindCurSkiil()->GetInfoText());
 
 		//커맨드를 입력중
 		int curSkillInputCommand = playerController->GetPlayerCastingIndex();
@@ -137,6 +151,7 @@ void ElementsPanel::HideAllCommands()
 {
 	for (int y = 0; y < 4; y++)
 	{
+		infoTexts[y]->Inactivate();
 		for (int x = 0; x < 6; x++)
 		{
 			commands[y][x]->Inactivate();
