@@ -11,6 +11,7 @@
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BoxComponent.h"
 #include "TestLevel1_RenderLayer.h"
+#include "MagicCircle.h"
 
 Player::Player(class World* _world) : Character(_world)
 {
@@ -66,6 +67,9 @@ Player::Player(class World* _world) : Character(_world)
 
 	MovementComponent* mv = CreateComponent< MovementComponent>();
 	rootComponent->AddChild(mv);
+
+	MagicCircle* mc = CreateComponent<MagicCircle>();
+	rootComponent->AddChild(mc);
 }
 
 Player::~Player()
