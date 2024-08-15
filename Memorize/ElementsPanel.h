@@ -33,6 +33,6 @@ public:
 	void SetQWER(std::vector<std::vector<int>>& elementCommands, int type);
 	void HideAllCommands();
 	void SetSkillList();
-	void CheckSkillType();
+	std::vector<std::vector<int>>& CheckSkillType();
 };
 

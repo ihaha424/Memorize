@@ -10,6 +10,7 @@
 #include "SkillList.h"
 #include "Player.h"
 #include "ElementsPanel.h"
+#include "PlayerCasting.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
@@ -54,6 +55,14 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<DarkSphere>();
 	CreateSkill<AggressiveWaves>();
 	CreateSkill<LightStream>();
+}
+
+int GPlayerController::GetPlayerCastingIndex()
+{
+	if (playerFSMComponent->GetCurState() != L"PlayerCasting")
+		return -1;
+	PlayerCasting* castingState = static_cast<PlayerCasting*>(playerFSMComponent->GetCurStateClass());
+	return castingState->index;
 }
 
 void GPlayerController::EndSkill()

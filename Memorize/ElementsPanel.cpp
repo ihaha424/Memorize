@@ -59,14 +59,27 @@ ElementsPanel::~ElementsPanel()
 
 void ElementsPanel::Update(float _dt)
 {
-	if (playerController->GetCurSkillInfo().element != SE_END)
-	{
-		SetSkillList();
-	}
-	if (playerController->GetCurSkillInfo().type != ST_END)
+	ESkillType curSkillType = playerController->GetCurSkillInfo().type;
+	ESkillElement curSkillElement = playerController->GetCurSkillInfo().element;
+
+	//스킬 타입까지 정해진 경우
+	if (curSkillType != ST_END)
 	{
 		HideAllCommands();
-		CheckSkillType();
+		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
+
+		//커맨드를 입력중
+		int curSkillInputCommand = playerController->GetPlayerCastingIndex();
+		for (int i = 0; i < curSkillInputCommand; i++)
+		{
+			commands[curSkillType][i]->Inactivate();
+		}
+		
+	}
+	//스킬 원소만 정해진 경우
+	else if (curSkillElement != SE_END)
+	{
+		SetSkillList();
 	}
 }
 
@@ -152,7 +165,7 @@ void ElementsPanel::SetSkillList()
 	}
 }
 
-void ElementsPanel::CheckSkillType()
+std::vector<std::vector<int>>& ElementsPanel::CheckSkillType()
 {
 	std::vector<std::vector<int>>& elementCommands = fireCommands;
 	switch (playerController->GetCurSkillInfo().element)
@@ -167,6 +180,5 @@ void ElementsPanel::CheckSkillType()
 		elementCommands = darkCommands;
 		break;
 	}
-
-	SetQWER(elementCommands, playerController->GetCurSkillInfo().type);
+	return elementCommands;
 }
