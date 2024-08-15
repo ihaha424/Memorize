@@ -29,5 +29,10 @@ void PlayerAttackReady::Memorize()
 		playerController->SwapMemorize();
 		owner->SetNextState(L"PlayerAttackReady");
 	}
+	else
+	{
+		playerController->SwapMemorize();
+		owner->SetNextState(L"PlayerIdle");
+	}
 }
 
