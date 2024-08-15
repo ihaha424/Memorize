@@ -17,10 +17,10 @@ void PrimitiveComponent::ReceiveComponentDamage(float _damageAmount, const Damag
 		if (damageEvent.damageEventType == DamageEventType::PointDamage) 
 		{
 			const PointDamageEvent& pointDamageEvent = static_cast<const PointDamageEvent&>(damageEvent);
-			if (pointDamageEvent.damageType.damageImpulse > 0.f && !(abs(pointDamageEvent.shotDirection.Length()) < EPSILON)) 
+			if (pointDamageEvent.GetDamageType().damageImpulse > 0.f && !(abs(pointDamageEvent.shotDirection.Length()) < EPSILON))
 			{
 				// TODO: impulse falloff ?
-				Math::Vector2 impulseToApply = pointDamageEvent.shotDirection * pointDamageEvent.damageType.damageImpulse;
+				Math::Vector2 impulseToApply = pointDamageEvent.shotDirection * pointDamageEvent.GetDamageType().damageImpulse;
 
 				AddImpulse(impulseToApply, IsSimulatingPhysics());
 			}
@@ -29,10 +29,10 @@ void PrimitiveComponent::ReceiveComponentDamage(float _damageAmount, const Damag
 		{
 			// TODO: impulse falloff ?
 			const RadialDamageEvent& radialDamageEvent = static_cast<const RadialDamageEvent&>(damageEvent);
-			if (radialDamageEvent.damageType.damageImpulse > 0.f)
+			if (radialDamageEvent.GetDamageType().damageImpulse > 0.f)
 			{
 				Math::Vector2 impulseDirection = GetComponentLocation() - radialDamageEvent.origin; impulseDirection.Normalize();
-				Math::Vector2 impulseToApply = impulseDirection * radialDamageEvent.damageType.damageImpulse;
+				Math::Vector2 impulseToApply = impulseDirection * radialDamageEvent.GetDamageType().damageImpulse;
 
 				AddImpulse(impulseToApply, IsSimulatingPhysics());
 			}

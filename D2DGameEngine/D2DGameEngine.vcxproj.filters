@@ -718,15 +718,15 @@
     <ClCompile Include="UIPanel.cpp">
       <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="데미지_사용법.md">
-      <Filter>Resource</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="디버그_사용법.md">
       <Filter>Source Files\GameEngine\Core\Debug</Filter>
     </None>
     <None Include="콜리션_사용법.md">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="데미지_사용법.md">
       <Filter>Resource</Filter>
     </None>
   </ItemGroup>
