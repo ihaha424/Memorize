@@ -230,6 +230,7 @@
     <ClInclude Include="CoolTime.h" />
     <ClInclude Include="DarkSphere.h" />
     <ClInclude Include="DarkSphereProjectile.h" />
+    <ClInclude Include="DisfellEvent.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="Enchant.h" />
     <ClInclude Include="Fireball.h" />

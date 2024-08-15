@@ -93,6 +93,12 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\Bat">
       <UniqueIdentifier>{eed70d43-fc1c-4694-af8d-01ea6ffb462a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\DisfellEvent">
+      <UniqueIdentifier>{ab5d3842-0703-41b2-b57a-c2e067ceeee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06">
+      <UniqueIdentifier>{00c1fefb-ad86-4d54-8ea3-02e79eb780d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -281,9 +287,6 @@
     <ClCompile Include="LightStreamEffect.cpp">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClCompile>
-    <ClCompile Include="Pattern06.cpp">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
-    </ClCompile>
     <ClCompile Include="ElementsPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
@@ -292,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="Bat.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern06.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
     </ClCompile>
     <ClCompile Include="MagicCircle.cpp">
       <Filter>Source Files</Filter>
@@ -496,9 +502,6 @@
     <ClInclude Include="LightStreamEffect.h">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClInclude>
-    <ClInclude Include="Pattern06.h">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor</Filter>
-    </ClInclude>
     <ClInclude Include="TestLevel1_RenderLayer.h">
       <Filter>Source Files\App</Filter>
     </ClInclude>
@@ -510,6 +513,12 @@
     </ClInclude>
     <ClInclude Include="Bat.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>
+    </ClInclude>
+    <ClInclude Include="DisfellEvent.h">
+      <Filter>Source Files\App\Boss\BossSkill\DisfellEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern06.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
     </ClInclude>
     <ClInclude Include="MagicCircle.h">
       <Filter>Source Files</Filter>

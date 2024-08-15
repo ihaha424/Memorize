@@ -24,6 +24,7 @@ class GPlayerController : public PlayerController
 
 public:
 	GPlayerController(class World* _world);
+	virtual ~GPlayerController();
 	virtual void SetupInputComponent() override;
 
 	/**

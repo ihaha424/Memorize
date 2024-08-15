@@ -24,6 +24,20 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 
 }
 
+GPlayerController::~GPlayerController()
+{
+	inputComponent->DeleteCommand(this, DIK_Q, InputState::KeyDown, KeyBoardInput);
+	inputComponent->DeleteCommand(this, DIK_W, InputState::KeyDown, KeyBoardInput);
+	inputComponent->DeleteCommand(this, DIK_E, InputState::KeyDown, KeyBoardInput);
+	inputComponent->DeleteCommand(this, DIK_R, InputState::KeyDown, KeyBoardInput);
+	inputComponent->DeleteCommand(this, DIK_TAB, InputState::KeyDown, KeyBoardInput);
+	inputComponent->DeleteCommand(this, DIK_SPACE, InputState::KeyDown, KeyBoardInput);
+	inputComponent->DeleteCommand(this, DIK_ESCAPE, InputState::KeyDown, KeyBoardInput);
+
+	inputComponent->DeleteCommand(this, 0, InputState::KeyDown, MouseInput);
+	inputComponent->DeleteCommand(this, 1, InputState::KeyDown, MouseInput);
+}
+
 void GPlayerController::SetupInputComponent()
 {
 	inputComponent->ActionBinding(this, DIK_Q, &GPlayerController::Fire, InputState::KeyDown, KeyBoardInput);

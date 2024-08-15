@@ -12,6 +12,8 @@ public:
 	BossSkillActor(class World* _world);
 	virtual ~BossSkillActor();
 
+
+
 protected:
 	bool				isDispel = false;
 	bool				isFragile = false;
