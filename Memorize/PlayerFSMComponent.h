@@ -10,7 +10,7 @@ class PlayerFSMComponent :
 protected:
 
 public:
-    PlayerFSMComponent(Actor* _owner) : FSMComponent(_owner) { SetTickProperties(TICK_UPDATE); };
+    PlayerFSMComponent(Actor* _owner);
     virtual ~PlayerFSMComponent() {};
 
 

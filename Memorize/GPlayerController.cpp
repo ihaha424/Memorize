@@ -73,6 +73,8 @@ void GPlayerController::InitializeSkill()
 
 int GPlayerController::GetPlayerCastingIndex()
 {
+	if (playerFSMComponent->GetCurState() == L"PlayerAttackReady")
+		return FindCurSkiil()->GetCommandSize();
 	if (playerFSMComponent->GetCurState() != L"PlayerCasting")
 		return -1;
 	PlayerCasting* castingState = static_cast<PlayerCasting*>(playerFSMComponent->GetCurStateClass());

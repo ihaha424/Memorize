@@ -89,6 +89,11 @@ void GameApp::Render() {
 		fps = count;
 		count = 0;
 	}
+
+	std::wstring windowText;
+	windowText.append(L"  FPS: ");
+	windowText.append(std::to_wstring(fps));
+	SetWindowText(hWindow, windowText.c_str());
 #endif
 	// 드로우 시작
 	d2d->BeginDraw();

@@ -54,6 +54,7 @@ public:
 	 */
 	virtual void UseSkill();
 	const float GetMana() const { return 0.0f; }
+	const int	GetCommandSize() const { return commandList.size(); }
 
 	void SetID(ESkillType _type, ESkillElement _element) { id.type = _type; id.element = _element; }
 	ULONGLONG GetID() { return id.id; };

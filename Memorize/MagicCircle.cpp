@@ -52,6 +52,8 @@ void MagicCircle::Update(float _dt)
 		SetToLight();
 	else if (curSkillElement == SE_DARKNESS)
 		SetToDark();
+	else
+		HideAll();
 
 	if (curSkillType != ST_END)
 	{
@@ -59,12 +61,10 @@ void MagicCircle::Update(float _dt)
 		int index = controller->GetPlayerCastingIndex() - 1;
 		if(index >= 0)
 			ShowOne(index);
-
-		if (controller->GetPlayerState() != L"PlayerAttackReady" 
+		if (controller->GetPlayerState() != L"PlayerAttackReady"
 			&& controller->GetPlayerState() != L"PlayerCasting")
 			HideAll();
 	}
-
 }
 
 void MagicCircle::SetToFire()
@@ -109,5 +109,6 @@ void MagicCircle::HideAll()
 
 void MagicCircle::ShowOne(int index)
 {
-	bms[index]->SetStatus(OS_ACTIVE);
+	for(int i = 0; i < index + 1 && i < 4; i++)
+		bms[i]->SetStatus(OS_ACTIVE);
 }

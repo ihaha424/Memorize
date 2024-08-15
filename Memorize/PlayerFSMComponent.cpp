@@ -1,8 +1,9 @@
 #include "PlayerFSMComponent.h"
 
-void PlayerFSMComponent::BeginPlay()
+PlayerFSMComponent::PlayerFSMComponent(Actor* _owner)
+	: FSMComponent(_owner)
 {
-	__super::BeginPlay();
+	SetTickProperties(TICK_UPDATE);
 	CreateState<PlayerIdle>(L"PlayerIdle");
 	//CreateState<PlayerMove>(L"PlayerMove");
 	CreateState<PlayerCasting>(L"PlayerCasting");
@@ -10,6 +11,11 @@ void PlayerFSMComponent::BeginPlay()
 	CreateState<PlayerAttack>(L"PlayerAttack");
 	CreateState<PlayerBlinking>(L"PlayerBlinking");
 	SetNextState(L"PlayerIdle");
+}
+
+void PlayerFSMComponent::BeginPlay()
+{
+	__super::BeginPlay();
 }
 
 void PlayerFSMComponent::InputKey(int _key)
