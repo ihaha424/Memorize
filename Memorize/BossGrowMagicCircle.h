@@ -3,11 +3,11 @@
 #include "DisfellEvent.h"
 #include "D2DGameEngine/DamageEvent.h"
 
-class Pattern06 : public BossSkillActor
+class BossGrowMagicCircle : public BossSkillActor
 {
 public:
-	Pattern06(class World* _world);
-	virtual ~Pattern06() {};
+	BossGrowMagicCircle(class World* _world);
+	virtual ~BossGrowMagicCircle() {};
 
 	virtual void BeginPlay();
 
@@ -24,8 +24,8 @@ public:
 	class CircleComponent* circleComponent;
 
 private:
-	DisFellEvent Pattern06DissfellEvent;
-	RadialDamageEvent Pattern06DamageEvent;
+	DisFellEvent BossGrowMagicCircleDissfellEvent;
+	RadialDamageEvent BossGrowMagicCircleDamageEvent;
 	class Player* player{ nullptr };
 };
 

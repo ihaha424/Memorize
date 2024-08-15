@@ -151,6 +151,7 @@
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
+    <ClCompile Include="BossProjectile.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BossBehaviorTree.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
@@ -176,7 +177,7 @@
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
     <ClCompile Include="MPRecovery.cpp" />
-    <ClCompile Include="Pattern06.cpp" />
+    <ClCompile Include="BossGrowMagicCircle.cpp" />
     <ClCompile Include="Pattern10Action.cpp" />
     <ClCompile Include="Pattern1Action.cpp" />
     <ClCompile Include="Pattern2Action.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossActionNodes.h" />
     <ClInclude Include="BossAIController.h" />
+    <ClInclude Include="BossProjectile.h" />
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />
     <ClInclude Include="BuffSkill.h" />
@@ -250,7 +252,7 @@
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="MPRecovery.h" />
-    <ClInclude Include="Pattern06.h" />
+    <ClInclude Include="BossGrowMagicCircle.h" />
     <ClInclude Include="Pattern10Action.h" />
     <ClInclude Include="Pattern1Action.h" />
     <ClInclude Include="Pattern2Action.h" />

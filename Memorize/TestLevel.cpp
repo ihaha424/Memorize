@@ -20,7 +20,9 @@ TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_wo
 TestLevel::~TestLevel()
 {
 }
-#include "Pattern06.h"
+
+#include "BossGrowMagicCircle.h"
+
 void TestLevel::Enter()
 {
 	{

@@ -1,4 +1,4 @@
-#include "Pattern06.h" 
+#include "BossGrowMagicCircle.h" 
 #include "../D2DGameEngine/ReflectionResource.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/BitmapComponent.h"
@@ -8,7 +8,7 @@
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 
-Pattern06::Pattern06(World* _world)
+BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	:BossSkillActor(_world)
 {
 	ReflectionIn();
@@ -25,30 +25,30 @@ Pattern06::Pattern06(World* _world)
 	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
 	bm->AddChild(circleComponent);
 
-	Pattern06DissfellEvent.SetBossSkillActor(this);
+	BossGrowMagicCircleDissfellEvent.SetBossSkillActor(this);
 
 	DamageType radiaDamageType{
 		.damageImpulse = 10000.f,
 	};
-	Pattern06DamageEvent.SetDamageType(radiaDamageType);
-	Pattern06DamageEvent.origin = GetLocation();
-	Pattern06DamageEvent.radialDamageInfo.maxDamage = damage;
-	Pattern06DamageEvent.radialDamageInfo.minDamage = damage;
-	Pattern06DamageEvent.componentHits.resize(1);
+	BossGrowMagicCircleDamageEvent.SetDamageType(radiaDamageType);
+	BossGrowMagicCircleDamageEvent.origin = GetLocation();
+	BossGrowMagicCircleDamageEvent.radialDamageInfo.maxDamage = damage;
+	BossGrowMagicCircleDamageEvent.radialDamageInfo.minDamage = damage;
+	BossGrowMagicCircleDamageEvent.componentHits.resize(1);
 }
 
-void Pattern06::BeginPlay()
+void BossGrowMagicCircle::BeginPlay()
 {
 	__super::BeginPlay();
 	bm->SetSprite(L"TestResource/Boss/MagicCircle/Pattern06_MagicCircle.png");
 	bm->Translate(0, 200);
-	circleComponent->InitCircleRadius(bm->GetSpriteHeight()/2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
+	circleComponent->InitCircleRadius(bm->GetSpriteHeight() / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
 	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
 }
 
-void Pattern06::Update(float _dt)
+void BossGrowMagicCircle::Update(float _dt)
 {
 	__super::Update(_dt);
 	if (skillDuration > 0.f)
@@ -58,21 +58,21 @@ void Pattern06::Update(float _dt)
 	}
 	if (skillDuration < 0.f)
 	{
-		Pattern06DamageEvent.radialDamageInfo.innerRadius = 500.f;
-		Pattern06DamageEvent.radialDamageInfo.outerRadius = 500.f;
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = 500.f;
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = 500.f;
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
-		Pattern06DamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
-		player->TakeDamage(damage, Pattern06DamageEvent, nullptr, this);
+		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
+		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
 		SetStatus(EObjectStatus::OS_DESTROY);
 	}
 }
 
-void Pattern06::DisfellAction()
+void BossGrowMagicCircle::DisfellAction()
 {
 	bm->Scale(0.9f, 0.9f);
 }
 
-void Pattern06::ReflectionIn()
+void BossGrowMagicCircle::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern06_Actor.txt");
 	int typeInt;
@@ -80,4 +80,4 @@ void Pattern06::ReflectionIn()
 	type = static_cast<BossSkillType>(typeInt);
 }
 
-void Pattern06::ReflectionOut() {}
+void BossGrowMagicCircle::ReflectionOut() {}

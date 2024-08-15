@@ -96,7 +96,10 @@
     <Filter Include="Source Files\App\Boss\BossSkill\DisfellEvent">
       <UniqueIdentifier>{ab5d3842-0703-41b2-b57a-c2e067ceeee4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06">
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile">
+      <UniqueIdentifier>{80db3c3b-3c76-421d-b86a-60dad9a76393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle">
       <UniqueIdentifier>{00c1fefb-ad86-4d54-8ea3-02e79eb780d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -296,11 +299,14 @@
     <ClCompile Include="Bat.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>
     </ClCompile>
-    <ClCompile Include="Pattern06.cpp">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
+    <ClCompile Include="BossGrowMagicCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle</Filter>
     </ClCompile>
     <ClCompile Include="MagicCircle.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BossProjectile.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -517,11 +523,14 @@
     <ClInclude Include="DisfellEvent.h">
       <Filter>Source Files\App\Boss\BossSkill\DisfellEvent</Filter>
     </ClInclude>
-    <ClInclude Include="Pattern06.h">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
+    <ClInclude Include="BossGrowMagicCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle</Filter>
     </ClInclude>
     <ClInclude Include="MagicCircle.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BossProjectile.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
