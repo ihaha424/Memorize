@@ -1,5 +1,7 @@
 #pragma once
 #include "BossSkillActor.h"
+#include "DisfellEvent.h"
+#include "D2DGameEngine/DamageEvent.h"
 
 class Pattern06 : public BossSkillActor
 {
@@ -20,5 +22,10 @@ public:
 
 public:
 	class CircleComponent* circleComponent;
+
+private:
+	DisFellEvent Pattern06DissfellEvent;
+	RadialDamageEvent Pattern06DamageEvent;
+	class Player* player{ nullptr };
 };
 

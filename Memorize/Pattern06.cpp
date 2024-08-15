@@ -5,6 +5,9 @@
 #include "../D2DGameEngine/ClickComponent.h"
 #include "../D2DGameEngine/CircleComponent.h"
 
+#include "D2DGameEngine/World.h"
+#include "Player.h"
+
 Pattern06::Pattern06(World* _world)
 	:BossSkillActor(_world)
 {
@@ -21,6 +24,17 @@ Pattern06::Pattern06(World* _world)
 	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
 	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
 	bm->AddChild(circleComponent);
+
+	Pattern06DissfellEvent.SetBossSkillActor(this);
+
+	DamageType radiaDamageType{
+		.damageImpulse = 10000.f,
+	};
+	Pattern06DamageEvent.SetDamageType(radiaDamageType);
+	Pattern06DamageEvent.origin = GetLocation();
+	Pattern06DamageEvent.radialDamageInfo.maxDamage = damage;
+	Pattern06DamageEvent.radialDamageInfo.minDamage = damage;
+	Pattern06DamageEvent.componentHits.resize(1);
 }
 
 void Pattern06::BeginPlay()
@@ -30,6 +44,8 @@ void Pattern06::BeginPlay()
 	bm->Translate(0, 200);
 	circleComponent->InitCircleRadius(bm->GetSpriteHeight()/2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
 	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
+
+	player = GetWorld()->FindActorByType<Player>();
 }
 
 void Pattern06::Update(float _dt)
@@ -42,7 +58,12 @@ void Pattern06::Update(float _dt)
 	}
 	if (skillDuration < 0.f)
 	{
+		Pattern06DamageEvent.radialDamageInfo.innerRadius = 500.f;
+		Pattern06DamageEvent.radialDamageInfo.outerRadius = 500.f;
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
+		Pattern06DamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
+		player->TakeDamage(damage, Pattern06DamageEvent, nullptr, this);
+		SetStatus(EObjectStatus::OS_DESTROY);
 	}
 }
 

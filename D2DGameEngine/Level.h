@@ -29,29 +29,29 @@ public:
         return newActor;
     }
 
-		/**
-		 * @brief 레벨에 존재하는 특정 타입의 액터 중 하나를 반환합니다. 
-		 * @tparam T 탐색할 액터의 타입
-		 * @return 액터를 찾지 못하면 nullptr, 아니면 액터의 포인터
-		 */
-		template<ActorType T>
-		T* FindActorByType() 
-		{
-			auto it = actorTypeMap.find(std::type_index(typeid(T)));
-			if (it == actorTypeMap.end()) return nullptr;
-			return static_cast<T*>(it->second);
-		}
+	/**
+		* @brief 레벨에 존재하는 특정 타입의 액터 중 하나를 반환합니다. 
+		* @tparam T 탐색할 액터의 타입
+		* @return 액터를 찾지 못하면 nullptr, 아니면 액터의 포인터
+	*/
+	template<ActorType T>
+	T* FindActorByType() 
+	{
+		auto it = actorTypeMap.find(std::type_index(typeid(T)));
+		if (it == actorTypeMap.end()) return nullptr;
+		return static_cast<T*>(it->second);
+	}
 
-		template<ActorType T>
-		std::vector<T*> FindAllActorsByType()
-		{
-			std::vector<T*> res;
-			auto range = actorTypeMap.equal_range(std::type_index(typeid(T)));
-			for (auto it = range.first; it != range.second; ++it) {
-				res.push_back(static_cast<T*>(it->second));
-			}
-			return res;
+	template<ActorType T>
+	std::vector<T*> FindAllActorsByType()
+	{
+		std::vector<T*> res;
+		auto range = actorTypeMap.equal_range(std::type_index(typeid(T)));
+		for (auto it = range.first; it != range.second; ++it) {
+			res.push_back(static_cast<T*>(it->second));
 		}
+		return res;
+	}
 
 
 public:

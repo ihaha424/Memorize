@@ -80,7 +80,15 @@ void Level::PostUpdate(float _dt)
 		}
 	}
 	
-	auto it = std::_Erase_remove_if(actorList,
+	auto it1 = std::erase_if(actorRenderSequence,
+		[=](const std::pair<const std::pair<int, float>, Actor*>& entry) {
+			return entry.second->GetStatus() == OS_DESTROY;
+		});
+	auto it2 = std::erase_if(actorTypeMap,
+		[=](const std::pair<const std::type_index, Actor*>& entry) {
+			return entry.second->GetStatus() == OS_DESTROY;
+		});
+	auto it3 = std::_Erase_remove_if(actorList,
 		[=](Actor* actor) {
 			if (actor->GetStatus() == OS_DESTROY)
 			{
