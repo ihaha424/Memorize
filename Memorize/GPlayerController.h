@@ -34,6 +34,7 @@ public:
 	SkilID GetCurSkillInfo() { return curSkillInfo; }
 
 	int GetPlayerCastingIndex();
+	bool isPlayerAfterCasting();
 
 	/**
 	 * @brief 스킬 생성 & 맵에 추가

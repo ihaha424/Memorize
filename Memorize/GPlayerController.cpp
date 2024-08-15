@@ -65,6 +65,12 @@ int GPlayerController::GetPlayerCastingIndex()
 	return castingState->index;
 }
 
+bool GPlayerController::isPlayerAfterCasting()
+{
+	return playerFSMComponent->GetCurState() == L"PlayerAttackReady" 
+		|| playerFSMComponent->GetCurState() == L"PlayerAttack";
+}
+
 void GPlayerController::EndSkill()
 {
 	nowSkill = nullptr;

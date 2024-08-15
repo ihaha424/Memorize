@@ -62,6 +62,16 @@ void ElementsPanel::Update(float _dt)
 	ESkillType curSkillType = playerController->GetCurSkillInfo().type;
 	ESkillElement curSkillElement = playerController->GetCurSkillInfo().element;
 
+	if (playerController->isPlayerAfterCasting())
+	{
+		HideAllCommands();
+		q->SetSprite(Qbm);
+		w->SetSprite(Wbm);
+		e->SetSprite(Ebm);
+		r->SetSprite(Rbm);
+		return;
+	}
+
 	//스킬 타입까지 정해진 경우
 	if (curSkillType != ST_END)
 	{
@@ -80,6 +90,14 @@ void ElementsPanel::Update(float _dt)
 	else if (curSkillElement != SE_END)
 	{
 		SetSkillList();
+	}
+	else
+	{
+		HideAllCommands();
+		q->SetSprite(Qbm);
+		w->SetSprite(Wbm);
+		e->SetSprite(Ebm);
+		r->SetSprite(Rbm);
 	}
 }
 
