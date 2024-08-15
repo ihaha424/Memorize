@@ -6,9 +6,12 @@
 MagicCircle::MagicCircle(Actor* _owner) : SceneComponent(_owner)
 {
 	SetTickProperties(TICK_UPDATE);
-	bm0 = _owner->CreateComponent<BitmapComponent>();
-	bm0->SetSprite(L"TestResource/Player/MagicCircle/Fire/Magic_Circle_F1.png");
-	AddChild(bm0);
+	for (int i = 0; i < 4; i++)
+	{
+		bms.push_back(_owner->CreateComponent<BitmapComponent>());
+		AddChild(bms[i]);
+	}
+	SetToFire();
 }
 
 MagicCircle::~MagicCircle()
@@ -24,7 +27,55 @@ void MagicCircle::Update(float _dt)
 	Math::Vector2 direction = mousePos - Math::Vector2(GetOwner()->GetLocation().x, GetOwner()->GetLocation().y);
 	direction.Normalize();
 
-	SetTranslation(direction.x * distance, direction.y * distance);
+	SetTranslation(direction.x + 50 * direction.x, 0 );
 
-	bm0->SetScale(0.75 * abs(direction.Dot(Math::Vector2(0, 1))) + 0.25, 1);
+	for (int i = 0; i < 4; i++)
+	{
+		bms[i]->SetScale(0.75 * direction.Dot(Math::Vector2(0, 1)) + 0.25, 1);
+	}
+}
+
+void MagicCircle::SetToFire()
+{
+	bms[0]->SetSprite(L"TestResource/Player/MagicCircle/Fire/Magic_Circle_F1.png");
+	bms[1]->SetSprite(L"TestResource/Player/MagicCircle/Fire/Magic_Circle_F2.png");
+	bms[2]->SetSprite(L"TestResource/Player/MagicCircle/Fire/Magic_Circle_F3.png");
+	bms[3]->SetSprite(L"TestResource/Player/MagicCircle/Fire/Magic_Circle_F4.png");
+}
+
+void MagicCircle::SetToWater()
+{
+	bms[0]->SetSprite(L"TestResource/Player/MagicCircle/Water/Magic_Circle_W1.png");
+	bms[1]->SetSprite(L"TestResource/Player/MagicCircle/Water/Magic_Circle_W2.png");
+	bms[2]->SetSprite(L"TestResource/Player/MagicCircle/Water/Magic_Circle_W3.png");
+	bms[3]->SetSprite(L"TestResource/Player/MagicCircle/Water/Magic_Circle_W4.png");
+}
+
+void MagicCircle::SetToLight()
+{
+	bms[0]->SetSprite(L"TestResource/Player/MagicCircle/Light/Magic_Circle_L1.png");
+	bms[1]->SetSprite(L"TestResource/Player/MagicCircle/Light/Magic_Circle_L2.png");
+	bms[2]->SetSprite(L"TestResource/Player/MagicCircle/Light/Magic_Circle_L3.png");
+	bms[3]->SetSprite(L"TestResource/Player/MagicCircle/Light/Magic_Circle_L4.png");
+}
+
+void MagicCircle::SetToDark()
+{
+	bms[0]->SetSprite(L"TestResource/Player/MagicCircle/Dark/Magic_Circle_D1.png");
+	bms[1]->SetSprite(L"TestResource/Player/MagicCircle/Dark/Magic_Circle_D2.png");
+	bms[2]->SetSprite(L"TestResource/Player/MagicCircle/Dark/Magic_Circle_D3.png");
+	bms[3]->SetSprite(L"TestResource/Player/MagicCircle/Dark/Magic_Circle_D4.png");
+}
+
+void MagicCircle::HideAll()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		bms[i]->SetStatus(OS_INACTIVE);
+	}
+}
+
+void MagicCircle::ShowOne(int index)
+{
+	bms[index]->SetStatus(OS_ACTIVE);
 }

@@ -3,13 +3,18 @@
 
 class MagicCircle : public SceneComponent
 {
-	float distance = 150.f;
-
-	class BitmapComponent* bm0;
+	std::vector<class BitmapComponent*> bms;
 public:
 	MagicCircle(Actor* _owner);
 	virtual ~MagicCircle();
 
 	virtual void Update(float _dt) override;
+
+	void SetToFire();
+	void SetToWater();
+	void SetToLight();
+	void SetToDark();
+	void HideAll();
+	void ShowOne(int index);
 };
 
