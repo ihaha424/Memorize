@@ -328,12 +328,12 @@
     <ClCompile Include="WinApp.cpp" />
     <ClCompile Include="WinBase.h" />
     <ClCompile Include="World.cpp" />
-    <ClCompile Include="데미지_사용법.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleMath.inl">
       <FileType>Document</FileType>
     </ClInclude>
+    <None Include="데미지_사용법.md" />
     <None Include="디버그_사용법.md" />
     <None Include="콜리션_사용법.md" />
   </ItemGroup>

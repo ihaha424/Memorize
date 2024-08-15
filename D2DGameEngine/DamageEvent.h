@@ -28,11 +28,11 @@ struct DamageEvent : public Event<DamageEvent> {
 		damageEventType{ damageEventType }, 
 		damageType{ std::make_shared<DamageType>(damageType) } {}
 
-	DamageEventType GetDamageEventType() {
+	DamageEventType GetDamageEventType() const {
 		return damageEventType;
 	}
 
-	DamageType GetDamageType() {
+	DamageType GetDamageType() const {
 		return *damageType.get();
 	}
 

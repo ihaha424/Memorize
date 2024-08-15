@@ -1,4 +1,4 @@
-#include "Pattern06.h"
+#include "Pattern06.h" 
 #include "../D2DGameEngine/ReflectionResource.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/BitmapComponent.h"
