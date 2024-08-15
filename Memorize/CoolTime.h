@@ -15,9 +15,16 @@ public:
 
 	~CoolTime() {}
 
-	void Update(const float& deltaTime)
+	/**
+	 * @brief 타미어: 특정 시간 마다 매핑된 함수를 실행시켜준다. 루프가 아니면 1면 루프면 계속
+	 * 또한 조건식(bool)을 넣어서 Loop를 종료 시킬 수도 있다.
+	 * 조건식이 참이면 종료, 기본 값 false
+	 * @param deltaTime 
+	 * @param _condition 조건식으로 참이면 종료한다.
+	 */
+	void Update(const float& deltaTime, bool _condition = false)
 	{
-		if (!Finish)
+		if (!Finish && !_condition)
 		{
 			CurTime += deltaTime;
 			if (DelayTime <= CurTime)
@@ -29,10 +36,13 @@ public:
 					CurTime -= DelayTime;
 			}
 		}
+		else
+			CurTime = 0.f;
 	}
 
 	void SetDelayTime(float _DelayTime) { DelayTime = _DelayTime; }
 	void SetLoop(bool _Loop) { Loop = _Loop; }
+	void SetFinish(bool _Finish) { Finish = _Finish};
 	bool GetFinish() const { return Finish; }
 
 private:
