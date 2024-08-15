@@ -42,7 +42,7 @@ public:
 
 	void SetDelayTime(float _DelayTime) { DelayTime = _DelayTime; }
 	void SetLoop(bool _Loop) { Loop = _Loop; }
-	void SetFinish(bool _Finish) { Finish = _Finish};
+	void SetFinish(bool _Finish) { Finish = _Finish; }
 	bool GetFinish() const { return Finish; }
 
 private:

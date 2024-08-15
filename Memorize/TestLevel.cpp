@@ -39,7 +39,7 @@ void TestLevel::Enter()
 		player->SetController(pc);
 		pc->SetPlayer(player);
 
-		CreateActor<Pattern06>();
+		CreateActor<BossGrowMagicCircle>();
 
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
