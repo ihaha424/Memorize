@@ -15,8 +15,10 @@ protected:
 	bool bLaunched = false;
 
 	class MovementComponent* mv;
-	class BitmapComponent* bm;
+	class Animator* anim;
 	class BoxComponent* box;
+
+	class AnimationState* animState;
 public:
 	Projectile(class World* _world);
 	virtual ~Projectile();
@@ -30,6 +32,7 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Initialize() {}
+	virtual void FixedUpdate(float _fixedRate) override;
 	void Update(float _dt) override;
 };
 

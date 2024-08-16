@@ -341,8 +341,14 @@
     <ClCompile Include="BossGrowCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClCompile>
+    <ClCompile Include="ManaOverload.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
     <ClCompile Include="BossRazer.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAttackProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClCompile>
     <ClCompile Include="BossChasingProjectile.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
@@ -592,11 +598,17 @@
     <ClInclude Include="BossGrowCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClInclude>
+    <ClInclude Include="ManaOverload.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
     <ClInclude Include="BossRazer.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClInclude>
     <ClInclude Include="BossChasingProjectile.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAttackProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

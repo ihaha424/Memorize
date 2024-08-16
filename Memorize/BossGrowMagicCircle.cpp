@@ -43,7 +43,6 @@ void BossGrowMagicCircle::BeginPlay()
 {
 	__super::BeginPlay();
 	bm->SetSprite(L"TestResource/Boss/MagicCircle/Pattern06_MagicCircle.png");
-	bm->Translate(0, 200);
 	circleComponent->InitCircleRadius(bm->GetSpriteHeight() / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
 	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 

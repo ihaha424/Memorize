@@ -1,14 +1,17 @@
 #include "ChasingWaterBallProjectile.h"
-#include "../D2DGameEngine/BitmapComponent.h"
+#include "../D2DGameEngine/Animator.h"
+#include "../D2DGameEngine/AnimationState.h"
 #include "../D2DGameEngine/Character.h"
 
 ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	: Projectile(_world)
 {
-	SetTickProperties(TICK_UPDATE | TICK_RENDER);
+	animState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
+	animState->SliceSpriteSheet(170, 254, 0, 0, 0, 0);
+	animState->FrameResize(73);
+	animState->SetFrameDurations({ 0.05f });
+	anim->Initialize(animState);
 
-	BitmapComponent* bm = GetComponent<BitmapComponent>();
-	bm->SetSprite(L"TestResource/Skill/Projectile/ChasingWaterBall/Ready.png");
 	Inactivate();
 }
 

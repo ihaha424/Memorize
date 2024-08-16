@@ -22,7 +22,7 @@ TestLevel::~TestLevel()
 {
 }
 
-#include "BossGrowMagicCircle.h"
+#include "BossGrowCircle.h"
 
 void TestLevel::Enter()
 {
@@ -32,6 +32,7 @@ void TestLevel::Enter()
 		BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
 		bm->SetSprite(L"TestResource/BackGround_Map.png");
 		actor->rootComponent = bm;
+		actor->renderLayer = 0;
 		//bm->SetTranslation(960, -540);
 	}
 
@@ -44,10 +45,7 @@ void TestLevel::Enter()
 
 		////CreateActor<BossGrowMagicCircle>();
 
-		//{
-		//	ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
-		//	elementsPanel->SetPlayerController(pc);
-		//}
+		CreateActor<BossGrowCircle>();
 
 	}
 
