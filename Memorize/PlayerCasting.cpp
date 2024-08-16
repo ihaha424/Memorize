@@ -6,7 +6,16 @@ void PlayerCasting::Enter()
 {
 	if (!saveDirtyFlag)
 	{
+
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+
+		//스킬이 잠금해제 되지 않았으면 return 
+		if (!playerController->FindCurSkiil()->IsUnlocked())
+		{
+			owner->SetNextState(L"PlayerIdle");
+			playerController->InitializeSkillInfo();
+			return;
+		}
 
 		//if(마나 없음 -> return)
 		float skillMana = playerController->FindCurSkiil()->GetMana();

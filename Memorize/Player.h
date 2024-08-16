@@ -70,6 +70,7 @@ public:
 	virtual ~Player();
 
 	void AddSkillUses() { stat.skillUses++; };
+	int GetSkillUses() { return stat.skillUses; }
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
