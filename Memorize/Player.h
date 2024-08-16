@@ -89,6 +89,9 @@ public:
 		OBJ_MESSAGE("Overlap ended!");
 	}
 
+
+	virtual float InternalTakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller* eventInstigator, Actor* damageCauser) override;
+
 	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) override
 	{
 		OBJ_MESSAGE(dbg::text(damageAmount, " damage taken!"));

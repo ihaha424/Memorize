@@ -15,8 +15,8 @@ public:
 	virtual void Update(float _dt) override;
 
 
-	virtual void DisfellAction();
-	virtual void OnClicked();
+	virtual void DisfellAction() override;
+	virtual void OnClicked() override;
 
 
 	// BossSkillActor을(를) 통해 상속됨

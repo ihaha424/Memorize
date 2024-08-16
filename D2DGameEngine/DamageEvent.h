@@ -101,7 +101,7 @@ struct RadialDamageInfo : public DamageEvent {
 		innerRadius{ innerRadius },
 		outerRadius{ outerRadius } {}
 
-	float GetDamageScale(float _distanceFromCenter) {
+	float GetDamageScale(float _distanceFromCenter) const {
 		if (_distanceFromCenter <= innerRadius) {
 			return maxDamage;
 		}

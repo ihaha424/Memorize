@@ -108,7 +108,7 @@ void Level::PrepareRender()
 	{
 		auto [prevY, actor] = *it;
 
-		if (EpsilonEquals(prevY.second, actor->GetLocation().y)) {
+		if (EpsilonEquals(prevY.second, actor->GetLocation().y) && prevY.first == actor->renderLayer) {
 			++it;
 			continue;
 		};

@@ -17,7 +17,7 @@ public:
 	ComponentRenderSequence renderSequence;
 
 	bool bRenderDirty{ false };
-	int	renderLayer = 0;
+	int	renderLayer = 2;
 
 	class SceneComponent* rootComponent = nullptr;
 	Actor(class World* _world);
