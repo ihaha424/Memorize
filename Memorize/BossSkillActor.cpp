@@ -4,6 +4,10 @@
 #include "MovementComponent.h"
 #include "GPlayerController.h"
 #include "D2DGameEngine/RandomGenerator.h"
+#include <utility>
+
+#undef max
+
 
 BossSkillActor::BossSkillActor(World* _world)
 	:Actor(_world)
@@ -14,7 +18,6 @@ BossSkillActor::BossSkillActor(World* _world)
 	bm->MarkBoundsDirty();
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
-	
 }
 
 BossSkillActor::~BossSkillActor()

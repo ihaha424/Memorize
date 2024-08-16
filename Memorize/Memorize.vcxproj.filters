@@ -335,6 +335,9 @@
     <ClCompile Include="BossGrowCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClCompile>
+    <ClCompile Include="ManaOverload.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -579,6 +582,9 @@
     </ClInclude>
     <ClInclude Include="BossGrowCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="ManaOverload.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

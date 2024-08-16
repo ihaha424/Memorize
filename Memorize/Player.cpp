@@ -12,6 +12,7 @@
 #include "D2DGameEngine/BoxComponent.h"
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"
+#include "D2DGameEngine/DamageEvent.h"
 
 Player::Player(class World* _world) : Character(_world)
 {
@@ -33,19 +34,19 @@ Player::Player(class World* _world) : Character(_world)
 			//PlayerAnimationState->Trigger(true);
 			//abm->Initialize(PlayerAnimationState);
 
-			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			PlayerAnimationState->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
-			PlayerAnimationState->SliceSpriteSheet(650, 500, 0, 0, 0, 0);
-			PlayerAnimationState->SetFrameDurations({ 0.033f });
-			PlayerAnimationState->Trigger(true);
-			abm->Initialize(PlayerAnimationState);
-
 			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			//PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
-			//PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
-			//PlayerAnimationState->SetFrameDurations({ 0.1f });
+			//PlayerAnimationState->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
+			//PlayerAnimationState->SliceSpriteSheet(650, 500, 0, 0, 0, 0);
+			//PlayerAnimationState->SetFrameDurations({ 0.033f });
 			//PlayerAnimationState->Trigger(true);
 			//abm->Initialize(PlayerAnimationState);
+
+			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
+			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
+			PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
+			PlayerAnimationState->SetFrameDurations({ 0.1f });
+			PlayerAnimationState->Trigger(true);
+			abm->Initialize(PlayerAnimationState);
 
 			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
@@ -100,4 +101,15 @@ void Player::ReflectionIn()
 
 void Player::ReflectionOut()
 {}
+
+float Player::InternalTakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller * eventInstigator, Actor * damageCauser)
+{
+	if (damageEvent.GetDamageEventType() == DamageEventType::RadialDamage)
+	{
+		const RadialDamageEvent& radialDamageEvent = static_cast<const RadialDamageEvent&>(damageEvent);
+		const RadialDamageInfo& damageInfo = radialDamageEvent.radialDamageInfo;
+		return damageInfo.GetDamageScale((GetLocation() - damageCauser->GetLocation()).Length());
+	}
+	return damageAmount;
+}
 
