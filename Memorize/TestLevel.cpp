@@ -25,7 +25,7 @@ TestLevel::~TestLevel()
 {
 }
 
-#include "BossGrowMagicCircle.h"
+#include "BossChaseCircle.h"
 
 void TestLevel::Enter()
 {
@@ -49,7 +49,7 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&disfellPanel](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&disfellPanel](int index) {disfellPanel->HideCommandImage(index); });
 
-		CreateActor<BossGrowMagicCircle>();
+		CreateActor<BossChaseCircle>();
 
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");

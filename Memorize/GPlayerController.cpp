@@ -210,4 +210,11 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 		playerFSMComponent->SetNextState(L"PlayerDisfell");
 
 	}
+	else
+	{
+		if (targetSkill == _event->GetBossSkillActor() && _event->GetBossSkillDieFlag())
+		{
+			targetSkill = nullptr;
+		}
+	}
 }

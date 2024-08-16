@@ -102,6 +102,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle">
       <UniqueIdentifier>{00c1fefb-ad86-4d54-8ea3-02e79eb780d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle">
+      <UniqueIdentifier>{15cc341e-30d4-4945-a906-f70904d4e7a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -322,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="Signal.cpp">
       <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BossChaseCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -561,6 +567,9 @@
     </ClInclude>
     <ClInclude Include="MagicCircle.h">
       <Filter>Source Files\App\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="BossChaseCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
