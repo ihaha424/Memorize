@@ -105,7 +105,7 @@ void Player::ReflectionOut()
 
 float Player::InternalTakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller * eventInstigator, Actor * damageCauser)
 {
-	if (damageEvent.GetDamageEventType() == DamageEventType::RadialDamage)
+ 	if (damageEvent.GetDamageEventType() == DamageEventType::RadialDamage)
 	{
 		const RadialDamageEvent& radialDamageEvent = static_cast<const RadialDamageEvent&>(damageEvent);
 		const RadialDamageInfo& damageInfo = radialDamageEvent.radialDamageInfo;

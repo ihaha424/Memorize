@@ -45,7 +45,7 @@ struct Stat
 		mpRegenPerSecond *= -1;
 		skillRange *= -1;
 		castingSpeed *= -1;
-		numProjectiles *= -1;
+		numProjectiles *= -1; 
 		defaultDamage *= -1;
 		defaultAttackSpeed *= -1;
 		return *this;

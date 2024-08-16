@@ -6,7 +6,7 @@ void PlayerAttack::Enter()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->FindCurSkiil()->UseSkill();
-	//ÀÌµ¿ ¸ØÃã
+	skillDelay = playerController->FindCurSkiil()->GetCastingTime();
 }
 
 void PlayerAttack::Update(float _dt)
@@ -17,9 +17,8 @@ void PlayerAttack::Update(float _dt)
 	//  or
 	// coolTimeFunction->Animiation-end??
 
-	static float temptime = 0.f;
-	temptime += _dt;
-	if (temptime > 3.f)
+	skillDelay -= _dt;
+	if (skillDelay < 0.f)
 	{
 		owner->SetNextState(L"PlayerIdle");
 	}

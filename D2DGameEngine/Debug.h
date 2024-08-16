@@ -19,31 +19,31 @@
 #ifndef NDEBUG
 #define LOG(...) (Logger::Log(__VA_ARGS__))
 #else
-#define LOG(...) ()
+#define LOG(...) {}
 #endif
 
 #ifndef NDEBUG
 #define LOG_VERBOSE(msg) (Logger::Log(LOG_SEVERITY_VERBOSE, LOG_MESSAGE_TYPE_GENERAL, MSG_ID_NONE, msg))
 #else
-#define LOG_VERBOSE(...) ()
+#define LOG_VERBOSE(...) {}
 #endif
 
 #ifndef NDEBUG
 #define LOG_MESSAGE(msg) (Logger::Log(LOG_SEVERITY_MESSAGE, LOG_MESSAGE_TYPE_GENERAL, MSG_ID_NONE, msg))
 #else
-#define LOG_MESSAGE(...) ()
+#define LOG_MESSAGE(...) {}
 #endif
 
 #ifndef NDEBUG
 #define LOG_INFO(msg) (Logger::Log(LOG_SEVERITY_INFO, LOG_MESSAGE_TYPE_GENERAL, MSG_ID_NONE, msg))
 #else
-#define LOG_INFO(...) ()
+#define LOG_INFO(...) {}
 #endif
 
 #ifndef NDEBUG
 #define LOG_WARNING(msg) (Logger::Log(LOG_SEVERITY_WARNING, LOG_MESSAGE_TYPE_GENERAL, MSG_ID_NONE, msg))
 #else
-#define LOG_WARNING(...) ()
+#define LOG_WARNING(...) {}
 #endif
 
 #define LOG_ERROR(errcode, msg) (Logger::Log(LOG_SEVERITY_ERROR, LOG_MESSAGE_TYPE_GENERAL, errcode, MSG_ID_NONE, msg))
@@ -71,7 +71,7 @@
 		Logger::Log(severity, msg_type, &data, pUser); \
 	}
 #else
-#define LOG_OBJ_6(...) ()
+#define LOG_OBJ_6(...) {}
 #endif
 
 #ifndef NDEBUG
@@ -86,7 +86,7 @@
 		Logger::Log(severity, msg_type, &data); \
 	}
 #else
-#define LOG_OBJ_5(...) ()
+#define LOG_OBJ_5(...) {}
 #endif
 
 #ifndef NDEBUG
@@ -101,7 +101,7 @@
 		Logger::Log(severity, msg_type, &data); \
 	}
 #else
-#define LOG_OBJ_4(...) ()
+#define LOG_OBJ_4(...) {}
 #endif
 
 #ifndef NDEBUG
@@ -116,13 +116,13 @@
 		Logger::Log(LOG_SEVERITY_INFO, LOG_MESSAGE_TYPE_GENERAL, &data); \
 	}
 #else
-#define LOG_OBJ_1(...) ()
+#define LOG_OBJ_1(...) {}
 #endif
 
 #ifndef NDEBUG
 #define LOG_OBJ(...) GET_MACRO(__VA_ARGS__, LOG_OBJ_6, LOG_OBJ_5, LOG_OBJ_4, _,	_, LOG_OBJ_1)(__VA_ARGS__)
 #else
-#define LOG_OBJ(...) ()
+#define LOG_OBJ(...) {}
 #endif
 
 #ifndef NDEBUG
@@ -137,7 +137,7 @@
 		Logger::Log(LOG_SEVERITY_VERBOSE, LOG_MESSAGE_TYPE_GENERAL, &data); \
 	}
 #else
-#define OBJ_VERBOSE(...) ()
+#define OBJ_VERBOSE(...) {}
 #endif
 
 #ifndef NDEBUG
@@ -152,7 +152,7 @@
 		Logger::Log(LOG_SEVERITY_MESSAGE, LOG_MESSAGE_TYPE_GENERAL, &data); \
 	}
 #else
-#define OBJ_MESSAGE(...) ()
+#define OBJ_MESSAGE(...) {}
 #endif
 
 #ifndef NDEBUG
@@ -167,7 +167,7 @@
 		Logger::Log(LOG_SEVERITY_INFO, LOG_MESSAGE_TYPE_GENERAL, &data); \
 	}
 #else
-#define OBJ_INFO(...) ()
+#define OBJ_INFO(...) {}
 #endif
 
 #ifndef NDEBUG
@@ -182,7 +182,7 @@
 		Logger::Log(LOG_SEVERITY_WARNING, LOG_MESSAGE_TYPE_GENERAL, &data); \
 	}
 #else
-#define OBJ_WARNING(...) ()
+#define OBJ_WARNING(...) {}
 #endif
 
 #define OBJ_ERROR(errcode, msg) { \

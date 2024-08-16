@@ -37,6 +37,8 @@ void BossBehaviorTree::BuildBehaviorTree()
 	DeclareKey<Boss*>("Boss");
 	SetKey<Boss*>("Boss", boss);
 	{
+		Primer* waitForDelay = CreateNode<Primer>();
+		//waitForDelay.
 		Selector* rootSelector = CreateNode<Selector>();
 
 		{	// -> Root select 1

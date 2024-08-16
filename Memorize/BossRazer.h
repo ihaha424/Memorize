@@ -23,7 +23,7 @@ class BossRazer : public BossSkillActor
 
 	class PolygonComponent* obb;
 
-	float tickInterval{ 0.4 };
+	float tickInterval{ 1 };
 	
 	using TakeDamageTimer = CoolTime<void>;
 

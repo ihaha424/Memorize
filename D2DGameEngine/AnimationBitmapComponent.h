@@ -91,6 +91,13 @@ public:
 	}
 
 	/**
+	 * @brief 애니메이션을 다시 시작합니다.
+	 */
+	void Resume() {
+		isPlaying = true;
+	}
+
+	/**
 	 * @brief 애니메이션이 현재 플레이되고 있는지 확인합니다.
 	 * @return True - 현재 애니메이션이 플레이되고 있습니다.
 	 */

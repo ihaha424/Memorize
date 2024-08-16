@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 #include "D2DGameEngine/framework.h"
 
 // T의 타입을 std::function<ReturnValue(ARGS...)>으로 제한하는 것.
