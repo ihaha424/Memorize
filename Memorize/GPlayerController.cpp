@@ -168,6 +168,11 @@ bool GPlayerController::CheckMemorize()
 
 #include "D2DGameEngine/Debug.h"
 #include "GCameraComponent.h"
+void GPlayerController::OnManaDepleted()
+{
+	GetWorld()->GetCanvas()->ShowPanel(L"ManaDepleted");
+}
+
 void GPlayerController::Fire()	{ playerFSMComponent->InputKey(InputEvent::Fire); }
 void GPlayerController::Water() { playerFSMComponent->InputKey(InputEvent::Water); }
 void GPlayerController::Light() { playerFSMComponent->InputKey(InputEvent::Light); }

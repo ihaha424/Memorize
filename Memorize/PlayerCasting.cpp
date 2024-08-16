@@ -26,6 +26,8 @@ void PlayerCasting::Enter()
 		}
 		else
 		{
+			//마나 부족
+			playerController->OnManaDepleted();
 			playerController->InitializeSkillInfo();
 			owner->SetNextState(L"PlayerIdle");
 			return;

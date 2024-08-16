@@ -311,6 +311,9 @@
     <ClCompile Include="BasicAttack.cpp">
       <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClCompile>
+    <ClCompile Include="ManaDepletedPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -537,6 +540,9 @@
     </ClInclude>
     <ClInclude Include="BasicAttack.h">
       <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="ManaDepletedPanel.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -71,6 +71,7 @@ ElementsPanel::~ElementsPanel()
 
 void ElementsPanel::Update(float _dt)
 {
+	__super::Update(_dt);
 	ESkillType curSkillType = playerController->GetCurSkillInfo().type;
 	ESkillElement curSkillElement = playerController->GetCurSkillInfo().element;
 

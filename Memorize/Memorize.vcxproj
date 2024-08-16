@@ -173,6 +173,7 @@
     <ClCompile Include="LightStream.cpp" />
     <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="MagicCircle.cpp" />
+    <ClCompile Include="ManaDepletedPanel.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="LightStream.h" />
     <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="MagicCircle.h" />
+    <ClInclude Include="ManaDepletedPanel.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />
