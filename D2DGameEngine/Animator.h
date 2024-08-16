@@ -16,7 +16,7 @@ class Animator : public PrimitiveComponent {
 	AnimationState* _currState = nullptr;
 public:
 	Animator(Actor* _owner) : PrimitiveComponent(_owner){
-		SetTickProperties(TICK_UPDATE | TICK_RENDER);
+		SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 	}
 	virtual ~Animator()
 	{

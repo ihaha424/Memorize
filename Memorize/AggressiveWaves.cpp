@@ -14,10 +14,7 @@ AggressiveWaves::AggressiveWaves(Actor* _owner) : RangeSkill(_owner)
 	{
 		waveEffects.push_back(GetWorld()->GetCurLevel()->CreateActor<AggressiveWavesEffect>());
 	}
-	waveEffects[0]->GetComponent<BitmapComponent>()->SetSprite(L"TestResource/Skill/Range/AggressiveWaves.png");
-	waveEffects[1]->GetComponent<BitmapComponent>()->SetSprite(L"TestResource/Skill/Range/AggressiveWaves2.png");
-	waveEffects[2]->GetComponent<BitmapComponent>()->SetSprite(L"TestResource/Skill/Range/AggressiveWaves.png");
-	waveEffects[3]->GetComponent<BitmapComponent>()->SetSprite(L"TestResource/Skill/Range/AggressiveWaves2.png");
+	
 }
 
 AggressiveWaves::~AggressiveWaves()
