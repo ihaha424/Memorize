@@ -16,6 +16,8 @@ public:
 	void Update(float _dt) override;
 	void Exit() override;
 
+	float skillDelay = 0.f;
+
 	virtual void Fire(){};
 	virtual void Water(){};
 	virtual void Light(){};
