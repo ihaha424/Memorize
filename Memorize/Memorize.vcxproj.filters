@@ -105,6 +105,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle">
       <UniqueIdentifier>{15cc341e-30d4-4945-a906-f70904d4e7a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle">
+      <UniqueIdentifier>{81113077-3b43-4a56-9209-836d822ad18f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -328,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="BossChaseCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="BossGrowCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -570,6 +576,9 @@
     </ClInclude>
     <ClInclude Include="BossChaseCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="BossGrowCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

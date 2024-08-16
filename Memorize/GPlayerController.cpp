@@ -221,6 +221,7 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 		if (targetSkill == _event->GetBossSkillActor() && _event->GetBossSkillDieFlag())
 		{
 			targetSkill = nullptr;
+			playerFSMComponent->SetNextState(L"PlayerIdle");
 		}
 	}
 }
