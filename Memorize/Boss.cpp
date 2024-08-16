@@ -22,3 +22,14 @@ void Boss::Update(float _dt)
 
 	OnHPChanged->Emit(hp/(float)maxHp);
 }
+
+void Boss::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)
+{
+	hp -= damageAmount;	// 체력을 받은 데미지 만큼 감소시킵니다.
+
+	if (hp <= 0.f)	// 만약 체력이 0보다 작거나 같다면,
+	{
+		hp = 0.f;
+		//TODO 사망 시 처리 
+	}
+}

@@ -12,6 +12,8 @@ MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
 	anim->Initialize(normalState);
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
+
+	bIsPassable = true;
 }
 
 MeteorEffect::~MeteorEffect()

@@ -9,6 +9,8 @@ PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile
 	normalState->FrameResize(73);
 	normalState->SetFrameDurations({ 0.05f });
 	anim->Initialize(normalState);
+	bIsPassable = true;
+	bCollideWithOtherAttack = true;
 }
 
 PrismReflectionProjectile::~PrismReflectionProjectile()

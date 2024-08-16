@@ -37,6 +37,7 @@ public:
 		OBJ_MESSAGE("Overlap ended!");
 	}
 
+	virtual void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) overrided;
 
 	//Signal for UI
 	Signal<int>* OnHPChanged;

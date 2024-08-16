@@ -10,6 +10,8 @@ AggressiveWavesEffect::AggressiveWavesEffect(World* _world) : Projectile(_world)
 	normalState->SetFrameDurations({ 0.05f });
 	anim->Initialize(normalState);
 	Inactivate();
+	bIsPassable = true;
+	bCollideWithOtherAttack = true;
 }
 
 AggressiveWavesEffect::~AggressiveWavesEffect()

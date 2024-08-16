@@ -13,6 +13,8 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	anim->Initialize(normalState);
 
 	Inactivate();
+	bIsPassable = false;
+	bCollideWithOtherAttack = true;
 }
 
 ChasingWaterBallProjectile::~ChasingWaterBallProjectile()

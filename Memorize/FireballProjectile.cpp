@@ -9,6 +9,8 @@ FireballProjectile::FireballProjectile(World* _world) : Projectile(_world)
 	normalState->FrameResize(73);
 	normalState->SetFrameDurations({ 0.05f });
 	anim->Initialize(normalState);
+	bIsPassable = false;
+	bCollideWithOtherAttack = true;
 }
 
 FireballProjectile::~FireballProjectile()

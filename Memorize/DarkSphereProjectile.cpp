@@ -15,13 +15,13 @@ DarkSphereProjectile::DarkSphereProjectile(World* _world) : Projectile(_world)
 	endingState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere02.png");
 	endingState->SliceSpriteSheet(150, 150, 0, 0, 0, 0);
 	endingState->FrameResize(7);
-	endingState->SetFrameDurations({ 0.333333f });
+	endingState->SetFrameDurations({ 0.14285f });
 
-	endingTime = 2.f;
-	duration = 1.f;
+	box->InitBoxExtent({ 140, 254 });
 
-
-	box->InitBoxExtent({ 140, 254});
+	endingTime = 1.f;
+	bIsPassable = false;
+	bCollideWithOtherAttack = true;
 }
 
 DarkSphereProjectile::~DarkSphereProjectile()

@@ -7,6 +7,7 @@
 #include "D2DGameEngine/BoxComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "Boss.h"
+#include "BossProjectile.h"
 
 Projectile::Projectile(World* _world) : Actor(_world)
 {
@@ -41,14 +42,38 @@ void Projectile::OnBeginOverlap(Actor* other)
 	__super::OnBeginOverlap(other);
 
 	Boss* boss = dynamic_cast<Boss*>(other);
-	if (boss == nullptr) return;
+	if (boss != nullptr)
+	{
+		//대미지를 입힘
+		DamageEvent damageEvent;
+		DamageType damageType{
+			.damageImpulse = 10000.f, //충격량 넣어주는 게 맞는지?
+		};
+		damageEvent.SetDamageType(damageType);
 
-	//대미지를 입힘
-	PointDamageEvent damageEvent;
-	damageEvent.damage = damage;
-	damageEvent.shotDirection = -mv->GetDirection();
+		boss->TakeDamage(damage, damageEvent, boss->GetController(), this);
 
-	boss->TakeDamage(damage, damageEvent, boss->GetController(), this);
+		//투과되지 않는 발세체의 경우 멈추고 폭발 처리
+		if (!bIsPassable)
+		{
+			bEnding = true;
+			anim->SetState(endingState);
+			mv->SetSpeed(0);
+		}
+	}
+
+	//다른 공격과 충돌하는 스킬은 충돌 처리
+	if (bCollideWithOtherAttack)
+	{
+		BossProjectile* bossProjectile = dynamic_cast<BossProjectile*>(other);
+		if (bossProjectile != nullptr)
+		{
+			bEnding = true;
+			anim->SetState(endingState);
+			mv->SetSpeed(0);
+		}
+	}
+
 
 }
 

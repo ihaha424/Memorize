@@ -15,6 +15,8 @@ protected:
 	float elapsedTime = 0.f;
 	bool bLaunched = false;
 	bool bEnding = false;
+	bool bIsPassable = false;
+	bool bCollideWithOtherAttack = false;
 
 	class MovementComponent* mv;
 	class Animator* anim;
