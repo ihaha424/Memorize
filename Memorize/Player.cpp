@@ -96,7 +96,7 @@ void Player::AddToStat(Stat _addStat)
 void Player::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");
-	reflectionResource->ParsingFile(0, moveSpeed);
+	reflectionResource->ParsingFile(0, stat.maxHp, stat.maxMp, stat.hp, stat.mp, stat.defaultAttackSpeed, stat.skillUses);
 }
 
 void Player::ReflectionOut()

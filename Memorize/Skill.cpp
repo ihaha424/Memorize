@@ -20,6 +20,6 @@ void Skill::SetPlayer(GPlayerController* _pc)
 
 void Skill::UseSkill()
 {
-
+	player->AddSkillUses();
 
 }

@@ -18,6 +18,7 @@ struct Stat
 	int defaultDamage; //기본 대미지
 	int defaultAttackSpeed; //기본 공격 속도
 	bool manaOverLoad = false;
+	int skillUses;
 
 	Stat operator+(Stat stat)
 	{
@@ -34,6 +35,7 @@ struct Stat
 		ret.defaultDamage += stat.defaultDamage;
 		ret.defaultAttackSpeed += stat.defaultAttackSpeed;
 		ret.manaOverLoad = stat.manaOverLoad;
+		ret.skillUses = stat.skillUses;
 		return ret;
 	}
 	Stat operator-()
@@ -49,6 +51,7 @@ struct Stat
 		numProjectiles *= -1;
 		defaultDamage *= -1;
 		defaultAttackSpeed *= -1;
+		skillUses *= -1;
 		return *this;
 	}
 };
@@ -66,7 +69,7 @@ public:
 	Player(class World* _world);
 	virtual ~Player();
 
-	void LevelUp();
+	void AddSkillUses() { stat.skillUses++; };
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
