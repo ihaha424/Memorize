@@ -10,6 +10,9 @@
 #include "BossAIController.h"
 #include "Boss.h"
 #include "ElementsPanel.h"
+#include "DisfellPanel.h"
+#include "BossHPPanel.h"
+#include "ManaDepletedPanel.h"
 //#include "Bat.h"
 #include "BossRazer.h"
 
@@ -43,19 +46,37 @@ void TestLevel::Enter()
 		player->SetController(pc);
 		pc->SetPlayer(player);
 
+		disfellPanel = CreateActor<DisfellPanel>();
+		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
+		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
+
 		////CreateActor<BossGrowMagicCircle>();
 
 		CreateActor<BossGrowCircle>();
+		{
+			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
+			elementsPanel->SetPlayerController(pc);
+		}
+	}
+	
 
+	{
+		Boss* boss = CreateActor<Boss>();
+		BossAIController* bc = CreateActor<BossAIController>();
+		boss->SetController(bc);
+		bc->SetBoss(boss);
+
+		bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
+		boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });
 	}
 
 
 
 	{
-		//Boss* boss = CreateActor<Boss>();
-		//BossAIController* bc = CreateActor<BossAIController>();
-		//boss->SetController(bc);
+		ManaDepletedPanel* manaPanel = GetWorld()->GetCanvas()->CreatePannel< ManaDepletedPanel>(L"ManaDepleted");
 	}
+
+
 
 	{
 		/*TestWall* testWall = CreateActor<TestWall>();
