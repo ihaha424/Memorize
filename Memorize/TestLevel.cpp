@@ -22,7 +22,7 @@ TestLevel::~TestLevel()
 {
 }
 
-#include "BossGrowMagicCircle.h"
+#include "BossChaseCircle.h"
 
 void TestLevel::Enter()
 {
@@ -42,7 +42,7 @@ void TestLevel::Enter()
 		player->SetController(pc);
 		pc->SetPlayer(player);
 
-		CreateActor<BossGrowMagicCircle>();
+		CreateActor<BossChaseCircle>();
 
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");

@@ -43,6 +43,6 @@ void PlayerBlinking::Exit()
 {
 	//Collider->Active
 
-	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(playerController->GetPlayer()->moveSpeed);
+	//GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	//playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(playerController->GetPlayer()->moveSpeed);
 }

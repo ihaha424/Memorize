@@ -65,6 +65,8 @@ void BossGrowMagicCircle::Update(float _dt)
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
 		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		SetStatus(EObjectStatus::OS_DESTROY);
 	}
 }
@@ -82,7 +84,7 @@ void BossGrowMagicCircle::DisfellAction()
 void BossGrowMagicCircle::OnClicked()
 {
 	__super::OnClicked();
-	EventBus::GetInstance().PushEvent<DisFellEvent>(this);
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
 
