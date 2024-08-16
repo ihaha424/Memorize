@@ -16,7 +16,7 @@
 Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
-
+	skillUses = 100;
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
 	
@@ -95,7 +95,7 @@ void Player::Update(float _dt)
 void Player::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PlayerStatus.txt");
-	reflectionResource->ParsingFile(0, stat.maxHp, stat.maxMp, stat.hp, stat.mp, stat.defaultAttackSpeed, stat.skillUses);
+	reflectionResource->ParsingFile(0, stat.maxHp, stat.maxMp, stat.hp, stat.mp, stat.defaultAttackSpeed, skillUses);
 }
 
 void Player::ReflectionOut()

@@ -341,6 +341,9 @@
     <ClCompile Include="BossRazer.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClCompile>
+    <ClCompile Include="BaseAttackProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -588,6 +591,9 @@
     </ClInclude>
     <ClInclude Include="BossRazer.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAttackProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
