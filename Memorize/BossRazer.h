@@ -11,7 +11,6 @@ class BossRazer : public BossSkillActor
 	LOG_REGISTER_OBJ(BossRazer)
 	using Super = BossSkillActor;
 
-	DisFellEvent BossRazerDissfellEvent;
 	RadialDamageEvent BossGrowMagicCircleDamageEvent;
 	class Player* player{ nullptr };
 
@@ -24,7 +23,7 @@ class BossRazer : public BossSkillActor
 
 	class PolygonComponent* obb;
 
-	float tickInterval{ 0.4 };
+	float tickInterval{ 1 };
 	
 	using TakeDamageTimer = CoolTime<void>;
 

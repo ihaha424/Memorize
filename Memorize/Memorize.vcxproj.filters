@@ -111,6 +111,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer">
       <UniqueIdentifier>{662950e6-6c18-4874-9ac3-eef068176ac7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile">
+      <UniqueIdentifier>{84ba3c3a-ecbc-49d8-a20a-e1d694978cef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="BossRazer.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
+    </ClCompile>
+    <ClCompile Include="BossChasingProjectile.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -588,6 +594,9 @@
     </ClInclude>
     <ClInclude Include="BossRazer.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
+    </ClInclude>
+    <ClInclude Include="BossChasingProjectile.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

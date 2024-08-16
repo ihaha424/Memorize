@@ -35,18 +35,21 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	magicCircle4->SetSprite(L"TestResource/Boss/BossRazer/MagicCircle4.png");
 	magicCircleHub->AddChild(magicCircle4);
 
+	// TODO: 레이져 위치 가운데로 옮기기.
 	razer = CreateComponent<AnimationBitmapComponent>();
 	razer->SetSprite(L"TestResource/Boss/BossRazer/Razer.png");
 	razer->SetLoop(true);
 	razer->SliceSpriteSheet(12, 6, 0, 0, 4, 0);
 	razer->SetFrameDurations({ 0.2 });
+	razer->Pause();	// Resume
+	razer->isVisible = false;	// True
 	rootComponent->AddChild(razer);
 	obb = CreateComponent<PolygonComponent>();
 	obb->InitPolygon({ {-6, -3}, {6, -3}, {6, 3}, {-6, 3} });
 	razer->AddChild(obb);
 	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
-	obb->bGenerateOverlapEvent = true;
-
+	obb->bGenerateOverlapEvent = false;	// True
+	razer->Translate(-1200.f, 0.f);
 	razer->Scale(200.f, 30.f);
 
 	// Damage Event
@@ -83,11 +86,24 @@ void BossRazer::Update(float _dt)
 {
 	Super::Update(_dt);
 
+	if (dispelTime >= 0.f)
+	{
+		dispelTime -= _dt;
+		return;
+	}
+
+	if (!obb->bGenerateOverlapEvent)
+	{
+		razer->Resume();
+		razer->isVisible = true;
+		obb->bGenerateOverlapEvent = true;
+	}
+
 	// 스킬이 발동되고 있는 동안
 	if (skillDuration >= 0.f)
 	{
 		obb->bShouldOverlapTest = true;
-		for (auto [actor, f] : tickDamageTimerMap)
+		for (auto& [actor, f] : tickDamageTimerMap)
 		{
 			// 틱 데미지 업데이트
 			f.Update(_dt);

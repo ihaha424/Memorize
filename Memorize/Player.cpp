@@ -33,19 +33,19 @@ Player::Player(class World* _world) : Character(_world)
 			//PlayerAnimationState->Trigger(true);
 			//abm->Initialize(PlayerAnimationState);
 
-			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
+			/*PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
 			PlayerAnimationState->SliceSpriteSheet(650, 500, 0, 0, 0, 0);
 			PlayerAnimationState->SetFrameDurations({ 0.033f });
 			PlayerAnimationState->Trigger(true);
-			abm->Initialize(PlayerAnimationState);
+			abm->Initialize(PlayerAnimationState);*/
 
-			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			//PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
-			//PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
-			//PlayerAnimationState->SetFrameDurations({ 0.1f });
-			//PlayerAnimationState->Trigger(true);
-			//abm->Initialize(PlayerAnimationState);
+			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
+			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
+			PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
+			PlayerAnimationState->SetFrameDurations({ 0.1f });
+			PlayerAnimationState->Trigger(true);
+			abm->Initialize(PlayerAnimationState);
 
 			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
