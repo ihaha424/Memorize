@@ -148,9 +148,11 @@
   <ItemGroup>
     <ClCompile Include="AggressiveWaves.cpp" />
     <ClCompile Include="AggressiveWavesEffect.cpp" />
+    <ClCompile Include="BasicAttack.cpp" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
+    <ClCompile Include="BossHPPanel.cpp" />
     <ClCompile Include="BossProjectile.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BossBehaviorTree.cpp" />
@@ -172,6 +174,7 @@
     <ClCompile Include="LightStream.cpp" />
     <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="MagicCircle.cpp" />
+    <ClCompile Include="ManaDepletedPanel.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -218,10 +221,12 @@
   <ItemGroup>
     <ClInclude Include="AggressiveWaves.h" />
     <ClInclude Include="AggressiveWavesEffect.h" />
+    <ClInclude Include="BasicAttack.h" />
     <ClInclude Include="Bat.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossActionNodes.h" />
     <ClInclude Include="BossAIController.h" />
+    <ClInclude Include="BossHPPanel.h" />
     <ClInclude Include="BossProjectile.h" />
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />
@@ -247,6 +252,7 @@
     <ClInclude Include="LightStream.h" />
     <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="MagicCircle.h" />
+    <ClInclude Include="ManaDepletedPanel.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />

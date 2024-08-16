@@ -26,8 +26,6 @@ union SkilID
 
 class Skill : public IComponent, IReflection
 {
-	static int wholeSkillLevel;
-
 protected:
 	class GPlayerController* controller;
 	class Player* player;
@@ -35,6 +33,7 @@ protected:
 	std::wstring strId;
 	ESkillType type;
 	int conditionCount = 0;
+	bool bUnlocked = false;
 	float damage = 0.f;
 	int mana = 0;
 	float castingTime = 0.f;
@@ -45,19 +44,18 @@ public:
 	Skill(Actor* _owner);
 	virtual ~Skill();
 
-	static int GetWholeSkillLevel() { return wholeSkillLevel; }
-
 	void SetPlayer(GPlayerController* _pc);
 
 	/**
 	 * @brief 스킬을 사용합니다. 스킬 사용 카운트가 증가합니다. 
 	 */
 	virtual void UseSkill();
-	const float GetMana() const { return 0.0f; }
+	const float GetMana() const { return mana; }
 	const int	GetCommandSize() const { return commandList.size(); }
 
 	void SetID(ESkillType _type, ESkillElement _element) { id.type = _type; id.element = _element; }
 	ULONGLONG GetID() { return id.id; };
+	bool IsUnlocked() { return bUnlocked; }
 
 	std::wstring GetInfoText() { return text; }
 

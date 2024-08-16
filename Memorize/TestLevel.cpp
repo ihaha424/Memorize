@@ -10,6 +10,7 @@
 #include "BossAIController.h"
 #include "Boss.h"
 #include "ElementsPanel.h"
+#include "ManaDepletedPanel.h"
 //#include "Bat.h"
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
@@ -50,12 +51,16 @@ void TestLevel::Enter()
 
 	}
 
+	{
+		ManaDepletedPanel* manaPanel = GetWorld()->GetCanvas()->CreatePannel< ManaDepletedPanel>(L"ManaDepleted");
+	}
 
 
 	{
-		//Boss* boss = CreateActor<Boss>();
-		//BossAIController* bc = CreateActor<BossAIController>();
-		//boss->SetController(bc);
+		Boss* boss = CreateActor<Boss>();
+		BossAIController* bc = CreateActor<BossAIController>();
+		boss->SetController(bc);
+		bc->SetBoss(boss);
 	}
 
 	{

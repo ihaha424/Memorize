@@ -74,18 +74,6 @@ Player::~Player()
 {
 }
 
-void Player::LevelUp()
-{
-	if (level < maxLevel)
-	{
-		level++;
-		exp = 0;
-	}
-
-	//TODO
-	//level에 따라 Stat 조정
-}
-
 void Player::AddToStat(Stat _addStat)
 {
 	stat = stat + _addStat;
@@ -99,8 +87,8 @@ void Player::Update(float _dt)
 
 void Player::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");
-	reflectionResource->ParsingFile(0, moveSpeed);
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PlayerStatus.txt");
+	reflectionResource->ParsingFile(0, stat.maxHp, stat.maxMp, stat.hp, stat.mp, stat.defaultAttackSpeed, stat.skillUses);
 }
 
 void Player::ReflectionOut()

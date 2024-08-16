@@ -71,6 +71,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<DarkSphere>();
 	CreateSkill<AggressiveWaves>();
 	CreateSkill<LightStream>();
+	CreateSkill<BasicAttack>();
 }
 
 int GPlayerController::GetPlayerCastingIndex()
@@ -123,9 +124,10 @@ void GPlayerController::BeginPlay()
 void GPlayerController::Update(float _dt)
 {
 	PlayerController::Update(_dt);
-	if (Math::Vector2::Distance(destPos, owner->GetLocation()) < 2.f)
+
+	if (Math::Vector2::Distance(destPos, player->GetLocation()) < 5.f)
 	{
-		owner->GetComponent<MovementComponent>()->SetSpeed(0.f);
+		player->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 }
@@ -168,6 +170,11 @@ bool GPlayerController::CheckMemorize()
 
 #include "D2DGameEngine/Debug.h"
 #include "GCameraComponent.h"
+void GPlayerController::OnManaDepleted()
+{
+	GetWorld()->GetCanvas()->ShowPanel(L"ManaDepleted");
+}
+
 void GPlayerController::Fire()	{ playerFSMComponent->InputKey(InputEvent::Fire); }
 void GPlayerController::Water() { playerFSMComponent->InputKey(InputEvent::Water); }
 void GPlayerController::Light() { playerFSMComponent->InputKey(InputEvent::Light); }

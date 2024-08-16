@@ -111,6 +111,8 @@ public:
 		return nullptr;
 	}
 
+	void SetDestPos(Math::Vector2 _destPos) { destPos = _destPos; }
+	void OnManaDepleted();
 
 	void Fire();
 	void Water();

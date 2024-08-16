@@ -1,0 +1,6 @@
+HPmax : 100 
+MPmax : 100
+CurrentHP : 100
+CurrentMP : 100
+MoveSpeed(px/s) : 450
+SkillUses : 0
