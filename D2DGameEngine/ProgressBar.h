@@ -22,7 +22,9 @@ public:
 	virtual void Render(D2DRenderer* _renderer) override;
 
 	void SetValue(float _value) { value = _value; }
+	void SetValueRef(const float& _value) { value = _value; }
 	void SetDir(ProgressBarDir _dir) { dir = _dir; }
 	void SetFillImage(D2D_Sprite* _image) { fullImage = _image; }
+	void SetFillImage(std::wstring _path);
 };
 

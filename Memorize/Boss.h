@@ -18,7 +18,7 @@ public:
 	float Avoidance_Range = 450.f;
 
 
-
+	class BossHPPanel* hpBar;
 public:
 	Boss(class World* _world);
 	virtual ~Boss();

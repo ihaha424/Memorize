@@ -2,10 +2,12 @@
 #include "D2DRenderer.h"
 #include "World.h"
 #include "CameraComponent.h"
+#include "ResourceManager.h"
+#include "SpriteResource.h"
 
 ProgressBar::ProgressBar(World* _world) : UIElement(_world)
 {
-	
+	SetTickProperties(TICK_RENDER);
 }
 
 ProgressBar::~ProgressBar()
@@ -16,7 +18,7 @@ void ProgressBar::Render(D2DRenderer* _renderer)
 {
 	__super::Render(_renderer);
 
-	if (fullImage = nullptr) 
+	if (fullImage == nullptr) 
 		return;
 
 	D2D1_RECT_F srcRect, dstRect;
@@ -57,3 +59,10 @@ void ProgressBar::Render(D2DRenderer* _renderer)
 	
 }
 
+void ProgressBar::SetFillImage(std::wstring _path)
+{
+	fullImage = ResourceManager::LoadResource<SpriteResource>(_path)->GetResource();
+	if (!fullImage) {
+		throw std::exception("BitmapScene: image asset is not found!");
+	}
+}

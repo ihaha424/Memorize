@@ -152,6 +152,7 @@
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
+    <ClCompile Include="BossHPPanel.cpp" />
     <ClCompile Include="BossProjectile.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BossBehaviorTree.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossActionNodes.h" />
     <ClInclude Include="BossAIController.h" />
+    <ClInclude Include="BossHPPanel.h" />
     <ClInclude Include="BossProjectile.h" />
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />

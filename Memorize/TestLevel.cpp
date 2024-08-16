@@ -57,9 +57,10 @@ void TestLevel::Enter()
 
 
 	{
-		//Boss* boss = CreateActor<Boss>();
-		//BossAIController* bc = CreateActor<BossAIController>();
-		//boss->SetController(bc);
+		Boss* boss = CreateActor<Boss>();
+		BossAIController* bc = CreateActor<BossAIController>();
+		boss->SetController(bc);
+		bc->SetBoss(boss);
 	}
 
 	{
