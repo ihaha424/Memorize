@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/BitmapComponent.h"
 #include "D2DGameEngine/BoxComponent.h"
 #include "MovementComponent.h"
+#include "GPlayerController.h"
 #include "D2DGameEngine/RandomGenerator.h"
 
 BossSkillActor::BossSkillActor(World* _world)
@@ -26,12 +27,21 @@ void BossSkillActor::OnClicked()
 	//Player.Disfall -> this
 }
 
-bool BossSkillActor::Disfell(int _element)
+bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 {
 	if (disfellCommand[dissfellindex] == _element)
 	{
+		//UI : 디스펠 커맨드 입력 
+		controller->OnDoingDisfell->Emit(dissfellindex);
+
 		dissfellindex++;
-		DisfellAction();
+	
+		if (dissfellindex == disfellCommandCount)
+		{
+			DisfellAction();
+			return false;
+		}
+		DisfellOneCountAction();
 		return true;
 	}
 	else

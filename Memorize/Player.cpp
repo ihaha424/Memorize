@@ -19,9 +19,7 @@ Player::Player(class World* _world) : Character(_world)
 
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
-
 	
-
 	// 애니메이션
 	{
 		Animator* abm = CreateComponent<Animator>();
@@ -36,11 +34,18 @@ Player::Player(class World* _world) : Character(_world)
 			//abm->Initialize(PlayerAnimationState);
 
 			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
-			PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
-			PlayerAnimationState->SetFrameDurations({ 0.1f });
+			PlayerAnimationState->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
+			PlayerAnimationState->SliceSpriteSheet(650, 500, 0, 0, 0, 0);
+			PlayerAnimationState->SetFrameDurations({ 0.033f });
 			PlayerAnimationState->Trigger(true);
 			abm->Initialize(PlayerAnimationState);
+
+			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
+			//PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
+			//PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
+			//PlayerAnimationState->SetFrameDurations({ 0.1f });
+			//PlayerAnimationState->Trigger(true);
+			//abm->Initialize(PlayerAnimationState);
 
 			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
@@ -76,28 +81,23 @@ Player::~Player()
 {
 }
 
-void Player::LevelUp()
-{
-	if (level < maxLevel)
-	{
-		level++;
-		exp = 0;
-	}
-
-	//TODO
-	//level에 따라 Stat 조정
-}
-
 void Player::AddToStat(Stat _addStat)
 {
 	stat = stat + _addStat;
 }
 
+void Player::Update(float _dt)
+{
+	__super::Update(_dt);
+	basicAttackTime -= _dt;
+}
+
 void Player::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");
-	reflectionResource->ParsingFile(0, moveSpeed);
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PlayerStatus.txt");
+	reflectionResource->ParsingFile(0, stat.maxHp, stat.maxMp, stat.hp, stat.mp, stat.defaultAttackSpeed, stat.skillUses);
 }
 
 void Player::ReflectionOut()
 {}
+

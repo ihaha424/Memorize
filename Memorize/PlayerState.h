@@ -15,7 +15,6 @@ public:
 	{}
 	~PlayerState() {}
 
-
 	virtual void Fire();
 	virtual void Water();
 	virtual void Light();

@@ -4,6 +4,7 @@
 #include "../D2DGameEngine/BitmapComponent.h"
 #include "../D2DGameEngine/ClickComponent.h"
 #include "../D2DGameEngine/CircleComponent.h"
+#include "../D2DGameEngine/EventBus.h"
 
 #include "D2DGameEngine/World.h"
 #include "Player.h"
@@ -25,8 +26,6 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
 	bm->AddChild(circleComponent);
 
-	BossGrowMagicCircleDissfellEvent.SetBossSkillActor(this);
-
 	DamageType radiaDamageType{
 		.damageImpulse = 10000.f,
 	};
@@ -35,6 +34,9 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	BossGrowMagicCircleDamageEvent.radialDamageInfo.maxDamage = damage;
 	BossGrowMagicCircleDamageEvent.radialDamageInfo.minDamage = damage;
 	BossGrowMagicCircleDamageEvent.componentHits.resize(1);
+
+	for(int i = 0; i < disfellCommand.size(); i++)
+		std::cout << (int)disfellCommand[i] + 1 << ", ";
 }
 
 void BossGrowMagicCircle::BeginPlay()
@@ -63,13 +65,27 @@ void BossGrowMagicCircle::Update(float _dt)
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
 		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		SetStatus(EObjectStatus::OS_DESTROY);
 	}
 }
 
-void BossGrowMagicCircle::DisfellAction()
+void BossGrowMagicCircle::DisfellOneCountAction()
 {
 	bm->Scale(0.9f, 0.9f);
+}
+
+void BossGrowMagicCircle::DisfellAction()
+{
+	SetStatus(EObjectStatus::OS_DESTROY);
+}
+
+void BossGrowMagicCircle::OnClicked()
+{
+	__super::OnClicked();
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
 
 void BossGrowMagicCircle::ReflectionIn()

@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/Character.h"
 
 #include "D2DGameEngine/Debug.h"
+#include "Signal.h"
 
 class Boss : public Character
 {
@@ -16,7 +17,6 @@ public:
 	float Pattern_Delay = 0.f;					//각 패턴의 딜레이
 	float Detection_Range = 880.f;
 	float Avoidance_Range = 450.f;
-
 
 
 public:
@@ -38,6 +38,8 @@ public:
 	}
 
 
+	//Signal for UI
+	Signal<int>* OnHPChanged;
 
 };
 

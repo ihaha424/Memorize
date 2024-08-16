@@ -34,7 +34,7 @@ void MagicCircle::Update(float _dt)
 
 	for (int i = 0; i < 4; i++)
 	{
-		bms[i]->SetScale(0.75 * direction.Dot(Math::Vector2(0, 1)) + 0.25, 1);
+		bms[i]->SetScale(abs(0.75 * direction.Dot(Math::Vector2(0, 1))) + 0.25, 1);
 	}
 
 
@@ -109,6 +109,9 @@ void MagicCircle::HideAll()
 
 void MagicCircle::ShowOne(int index)
 {
-	for(int i = 0; i < index + 1 && i < 4; i++)
+	int i = 0;
+	for(i = 0; i < index + 1; i++)
 		bms[i]->SetStatus(OS_ACTIVE);
+	for(; i < 4; i++)
+		bms[i]->SetStatus(OS_INACTIVE);
 }

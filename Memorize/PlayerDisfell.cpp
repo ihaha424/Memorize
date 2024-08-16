@@ -5,33 +5,54 @@
 void PlayerDisfell::Enter()
 {
 	//디스펠 이미지?
-	//targetSkill = static_cast<GPlayerController*>(owner->GetOwner())->GetTargetSKill();
+	std::cout << "PlayerDisfell Enter\n";
 }
 
 void PlayerDisfell::Update(float _dt)
 {
+
 }
 
 void PlayerDisfell::Exit()
 {
-	targetSkill = nullptr;
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	playerController->targetSkill = nullptr;
 }
 
 void PlayerDisfell::Fire()
 {
-	targetSkill->Disfell(InputEvent::Fire);
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (!playerController->targetSkill->Disfell(InputEvent::Fire, playerController))
+	{
+		owner->SetNextState(L"PlayerIdle");
+	}
 }
 
 void PlayerDisfell::Water()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (!playerController->targetSkill->Disfell(InputEvent::Water, playerController))
+	{
+		owner->SetNextState(L"PlayerIdle");
+	}
 }
 
 void PlayerDisfell::Light()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (!playerController->targetSkill->Disfell(InputEvent::Light, playerController))
+	{
+		owner->SetNextState(L"PlayerIdle");
+	}
 }
 
 void PlayerDisfell::Dark()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (!playerController->targetSkill->Disfell(InputEvent::Dark, playerController))
+	{
+		owner->SetNextState(L"PlayerIdle");
+	}
 }
 
 void PlayerDisfell::Cancellation()

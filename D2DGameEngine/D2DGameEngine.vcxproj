@@ -201,6 +201,7 @@
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="PolygonComponent.h" />
     <ClInclude Include="PrimitiveComponent.h" />
+    <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="SampleEffect.h" />
     <ClInclude Include="Circle.h" />
@@ -288,6 +289,7 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PolygonComponent.cpp" />
     <ClCompile Include="PrimitiveComponent.cpp" />
+    <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="SampleEffect.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="ShapeComponent.cpp" />

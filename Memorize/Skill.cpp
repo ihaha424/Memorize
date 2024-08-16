@@ -2,8 +2,6 @@
 #include "Player.h"
 #include "GPlayerController.h"
 
-int Skill::wholeSkillLevel = 0;
-
 Skill::Skill(Actor* _owner) : IComponent(_owner)
 {
 }
@@ -16,12 +14,18 @@ void Skill::SetPlayer(GPlayerController* _pc)
 {
 	controller = _pc;
 	player = controller->GetPlayer();
+	if (conditionCount <= player->GetSkillUses())
+	{
+		bUnlocked = true;
+	}
 }
 
 void Skill::UseSkill()
 {
-
-	//TODO
-	//플레이어 마나 사용
+	player->AddSkillUses();
+	if (conditionCount <= player->GetSkillUses())
+	{
+		bUnlocked = true;
+	}
 
 }

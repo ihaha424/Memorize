@@ -13,7 +13,10 @@ public:
 
 	virtual void Update(float _dt) override;
 
+
+	virtual void DisfellOneCountAction();
 	virtual void DisfellAction();
+	virtual void OnClicked();
 
 
 	// BossSkillActor을(를) 통해 상속됨
@@ -24,7 +27,6 @@ public:
 	class CircleComponent* circleComponent;
 
 private:
-	DisFellEvent BossGrowMagicCircleDissfellEvent;
 	RadialDamageEvent BossGrowMagicCircleDamageEvent;
 	class Player* player{ nullptr };
 };

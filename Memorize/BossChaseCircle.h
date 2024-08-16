@@ -2,30 +2,39 @@
 #include "BossSkillActor.h"
 #include "DisfellEvent.h"
 #include "D2DGameEngine/DamageEvent.h"
-#include "../D2DGameEngine/ReflectionResource.h"
+#include "D2DGameEngine/DotTween.h"
 
-class BossProjectile : public BossSkillActor
+class BossChaseCircle : public BossSkillActor
 {
 public:
-	BossProjectile(class World* _world, std::wstring fileName);
-	virtual ~BossProjectile() {};
+	BossChaseCircle(class World* _world);
+	virtual ~BossChaseCircle() {};
 
 	virtual void BeginPlay();
 
 	virtual void Update(float _dt) override;
 
+
+	virtual void DisfellAction();
+	virtual void OnClicked();
+
+
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;
 	void ReflectionOut() override;
-
-	void SetPosAndDerection(Math::Vector2 _startPos, Math::Vector2 _direction);
 
 public:
 	class CircleComponent* circleComponent;
 
 private:
-	std::shared_ptr<ReflectionResource> reflectionResource;
-	RadialDamageEvent BossProjectileDamageEvent;
+	RadialDamageEvent BossChaseCircleDamageEvent;
 	class Player* player{ nullptr };
+
+	float			 speedVarias = 0.f;
+	DotTween<float>* speedTween;
+
+
+	float			 scaleVarias = 0.f;
+	DotTween<float>* scaleTween;
 };
 

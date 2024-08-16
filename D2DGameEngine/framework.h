@@ -29,6 +29,7 @@ using WindowStyleFlags = DWORD;
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <functional>
 using namespace std::literals;
 #include <format>
 

@@ -26,7 +26,9 @@ EventBus::~EventBus() {
 
 	// Clear the event queue
 	for (auto& [_, eventQueue] : _eventQueueMap) {
-		delete eventQueue.front();
-		eventQueue.pop();
+		while (!eventQueue.empty()) {
+			delete eventQueue.front();
+			eventQueue.pop();
+		}
 	}
 }
