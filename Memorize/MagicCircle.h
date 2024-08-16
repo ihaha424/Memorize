@@ -3,7 +3,11 @@
 
 class MagicCircle : public SceneComponent
 {
-	std::vector<class BitmapComponent*> bms;
+	std::vector<class Animator*> circles;
+	std::vector<class AnimationState*> animStates;
+
+	enum ESkillType prevType;
+	enum ESkillElement prevElement;
 public:
 	MagicCircle(Actor* _owner);
 	virtual ~MagicCircle();

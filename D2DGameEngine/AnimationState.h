@@ -40,7 +40,11 @@ public:
 
 #pragma region _BitMap
 private:
-	D2D_RectF frame;
+	D2D_RectF frame = {
+			0,0,
+			GetSpriteWidth(),
+			GetSpriteHeight()
+	};
 	std::shared_ptr<SpriteResource> sprite;
 
 	D2D_Mat3x2F imageTransform;
@@ -51,12 +55,6 @@ public:
 			throw std::exception("BitmapScene: image asset is not found!");
 		}
 		// Fit the frame with the image width and height
-		frame = {
-			0,0,
-			GetSpriteWidth(),
-			GetSpriteHeight()
-		};
-
 	}
 
 	std::shared_ptr<SpriteResource> GetSprite() { return sprite; }
