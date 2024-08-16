@@ -122,9 +122,10 @@ void GPlayerController::BeginPlay()
 void GPlayerController::Update(float _dt)
 {
 	PlayerController::Update(_dt);
-	if (Math::Vector2::Distance(destPos, owner->GetLocation()) < 2.f)
+
+	if (Math::Vector2::Distance(destPos, player->GetLocation()) < 5.f)
 	{
-		owner->GetComponent<MovementComponent>()->SetSpeed(0.f);
+		player->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 }

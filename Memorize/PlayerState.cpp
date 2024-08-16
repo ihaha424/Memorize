@@ -67,6 +67,7 @@ void PlayerState::Move()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	Math::Vector2 destPos = playerController->GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
+	playerController->SetDestPos(destPos);
 	Math::Vector2 direction = destPos - playerController->GetPlayer()->GetLocation();
 	direction.Normalize();
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetDirection(direction);
