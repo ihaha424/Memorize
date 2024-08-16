@@ -76,18 +76,6 @@ Player::~Player()
 {
 }
 
-void Player::LevelUp()
-{
-	if (level < maxLevel)
-	{
-		level++;
-		exp = 0;
-	}
-
-	//TODO
-	//level에 따라 Stat 조정
-}
-
 void Player::AddToStat(Stat _addStat)
 {
 	stat = stat + _addStat;
