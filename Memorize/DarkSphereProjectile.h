@@ -7,5 +7,6 @@ public:
 	virtual ~DarkSphereProjectile();
 
 	virtual void BeginPlay() { __super::BeginPlay(); Inactivate(); }
+	virtual void Update(float _dt) override;
 };
 

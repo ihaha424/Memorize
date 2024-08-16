@@ -8,17 +8,20 @@ protected:
 	int damage = 0;
 	float speed;
 	float duration = 2.f;
+	float endingTime = 0.0f;
 
 	float delay = 0.f;
 
 	float elapsedTime = 0.f;
 	bool bLaunched = false;
+	bool bEnding = false;
 
 	class MovementComponent* mv;
 	class Animator* anim;
 	class BoxComponent* box;
 
-	class AnimationState* animState;
+	class AnimationState* normalState;
+	class AnimationState* endingState;
 public:
 	Projectile(class World* _world);
 	virtual ~Projectile();

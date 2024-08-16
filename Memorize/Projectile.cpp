@@ -27,8 +27,9 @@ Projectile::Projectile(World* _world) : Actor(_world)
 	anim->SetStatus(OS_INACTIVE);
 	box->SetStatus(OS_INACTIVE);
 
-	animState = anim->CreateState<AnimationState>();
-	animState->Trigger(true);
+	normalState = anim->CreateState<AnimationState>();
+	endingState = anim->CreateState<AnimationState>();
+	
 }
 
 Projectile::~Projectile()
@@ -61,9 +62,6 @@ void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
 void Projectile::BeginPlay()
 {
 	__super::BeginPlay();
-
-	box->InitBoxExtent({ animState->GetSprite()->GetResource()->GetSize().width, 
-		animState->GetSprite()->GetResource()->GetSize().height });
 }
 
 void Projectile::FixedUpdate(float _fixedRate)
@@ -77,14 +75,22 @@ void Projectile::Update(float _dt)
 
 	elapsedTime += _dt;
 
+	//딜레이 시간 
 	if (elapsedTime > delay)
 	{
 		mv->SetStatus(OS_ACTIVE);
 		anim->SetStatus(OS_ACTIVE);
 		box->SetStatus(OS_ACTIVE);
 	}
-
-	if (elapsedTime > duration + delay)
+	//지속시간 이후 끝나기 전까지
+	if (!bEnding && elapsedTime > duration + delay)
+	{
+		bEnding = true;
+		anim->SetState(endingState);
+		mv->SetSpeed(0);
+	}
+	//+터지는 시간
+	if (elapsedTime > duration + delay + endingTime)
 	{
 		elapsedTime = 0.f;
 		mv->SetStatus(OS_INACTIVE);

@@ -23,9 +23,9 @@ Player::Player(class World* _world) : Character(_world)
 	
 	// 애니메이션
 	{
-		//Animator* abm = CreateComponent<Animator>();
-		//rootComponent->AddChild(abm);
-		//AnimationState* PlayerAnimationState;
+		Animator* abm = CreateComponent<Animator>();
+		rootComponent->AddChild(abm);
+		AnimationState* PlayerAnimationState;
 		{
 			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
 			//PlayerAnimationState->SetSprite(L"TestResource/Player/Orb/Orb.png");
@@ -47,7 +47,7 @@ Player::Player(class World* _world) : Character(_world)
 			PlayerAnimationState->SetFrameDurations({ 0.1f });
 			PlayerAnimationState->Trigger(true);
 			abm->Initialize(PlayerAnimationState);
-
+			
 			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
 			PlayerAnimationState->SliceSpriteSheet(162, 254, 0, 0, 0, 0);
@@ -91,6 +91,7 @@ void Player::Update(float _dt)
 {
 	__super::Update(_dt);
 	basicAttackTime -= _dt;
+	stat.mp += _dt * 100;
 }
 
 void Player::ReflectionIn()
