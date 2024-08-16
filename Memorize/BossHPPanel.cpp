@@ -6,12 +6,12 @@
 
 BossHPPanel::BossHPPanel(World* _world) : UIPanel(_world)
 {
-	SetPosition(1920 / 2, 30);
+	
 	hpBar = CreateUI<ProgressBar>(L"BossHP");
 	hpBar->SetValue(1.0f);
 	hpBar->SetDir(ProgressBarDir::LeftToRight);
 	hpBar->SetFillImage(L"TestResource/Boss/BossHPBarFill.png");
-
+	hpBar->SetPosition(1920 / 2, 30);
 }
 
 BossHPPanel::~BossHPPanel()

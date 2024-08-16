@@ -45,9 +45,9 @@ void TestLevel::Enter()
 		player->SetController(pc);
 		pc->SetPlayer(player);
 
-		DisfellPanel* disfellPanel = CreateActor<DisfellPanel>();
-		pc->OnBeginDisfell->Connect([&disfellPanel](int index, int command) {disfellPanel->SetCommandImage(index, command); });
-		pc->OnDoingDisfell->Connect([&disfellPanel](int index) {disfellPanel->HideCommandImage(index); });
+		disfellPanel = CreateActor<DisfellPanel>();
+		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
+		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
 		CreateActor<BossChaseCircle>();
 
@@ -61,8 +61,8 @@ void TestLevel::Enter()
 		boss->SetController(bc);
 		bc->SetBoss(boss);
 
-		BossHPPanel* bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
-		boss->OnHPChanged->Connect([&bossHpBar](int hp) { bossHpBar->SetValue(hp); });
+		bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
+		boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });
 	}
 
 	{

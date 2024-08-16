@@ -8,7 +8,7 @@ Boss::Boss(World* _world) : Character(_world)
 	SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	hp = maxHp;
 
-
+	OnHPChanged = new Signal<int>;
 }
 
 Boss::~Boss()
@@ -20,5 +20,5 @@ void Boss::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	OnHPChanged->Emit(hp);
+	OnHPChanged->Emit(hp/(float)maxHp);
 }

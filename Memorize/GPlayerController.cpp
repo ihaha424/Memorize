@@ -24,6 +24,8 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 
 	AddEventHandler(&GPlayerController::DisfellEvent);
 
+	OnBeginDisfell = new Signal<int, int>;
+	OnDoingDisfell = new Signal<int>;
 }
 
 GPlayerController::~GPlayerController()
@@ -208,7 +210,11 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 	{
 		targetSkill = _event->GetBossSkillActor();
 		playerFSMComponent->SetNextState(L"PlayerDisfell");
-
+		
+		for (int i = 0; i < _event->GetBossSkillActor()->disfellCommandCount; i++)
+		{
+			OnBeginDisfell->Emit(i, _event->GetBossSkillActor()->disfellCommand[i]);
+		}
 	}
 	else
 	{
