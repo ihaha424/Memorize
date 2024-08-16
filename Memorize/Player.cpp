@@ -23,9 +23,9 @@ Player::Player(class World* _world) : Character(_world)
 	
 	// 애니메이션
 	{
-		Animator* abm = CreateComponent<Animator>();
-		rootComponent->AddChild(abm);
-		AnimationState* PlayerAnimationState;
+		//Animator* abm = CreateComponent<Animator>();
+		//rootComponent->AddChild(abm);
+		//AnimationState* PlayerAnimationState;
 		{
 			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
 			//PlayerAnimationState->SetSprite(L"TestResource/Player/Orb/Orb.png");
