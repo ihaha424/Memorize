@@ -206,7 +206,7 @@ void GPlayerController::Cancellation() { playerFSMComponent->InputKey(InputEvent
 
 void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 {
-	if (targetSkill == nullptr)
+	if (targetSkill == nullptr && !_event->GetBossSkillDieFlag())
 	{
 		targetSkill = _event->GetBossSkillActor();
 		playerFSMComponent->SetNextState(L"PlayerDisfell");
@@ -220,7 +220,6 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 	{
 		if (targetSkill == _event->GetBossSkillActor() && _event->GetBossSkillDieFlag())
 		{
-			targetSkill = nullptr;
 			playerFSMComponent->SetNextState(L"PlayerIdle");
 		}
 	}
