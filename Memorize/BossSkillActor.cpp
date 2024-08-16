@@ -31,7 +31,12 @@ bool BossSkillActor::Disfell(int _element)
 	if (disfellCommand[dissfellindex] == _element)
 	{
 		dissfellindex++;
-		DisfellAction();
+		if (dissfellindex == disfellCommandCount)
+		{
+			DisfellAction();
+			return false;
+		}
+		DisfellOneCountAction();
 		return true;
 	}
 	else

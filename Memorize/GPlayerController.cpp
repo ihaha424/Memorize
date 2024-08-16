@@ -10,7 +10,7 @@
 #include "SkillList.h"
 #include "Player.h"
 #include "ElementsPanel.h"
-#include "PlayerCasting.h"
+#include "BossSkillActor.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
@@ -21,6 +21,8 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 	InitializeSkill();
 
 	playerFSMComponent = CreateComponent<PlayerFSMComponent>();
+
+	AddEventHandler(&GPlayerController::DisfellEvent);
 
 }
 
@@ -189,3 +191,12 @@ void GPlayerController::Memorize() {playerFSMComponent->InputKey(InputEvent::Mem
 void GPlayerController::Teleport() { playerFSMComponent->InputKey(InputEvent::Teleport); }
 
 void GPlayerController::Cancellation() { playerFSMComponent->InputKey(InputEvent::Cancellation); }
+
+void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
+{
+	if (targetSkill == nullptr)
+	{
+		targetSkill = _event->GetBossSkillActor();
+		playerFSMComponent->SetNextState(L"PlayerDisfell");
+	}
+}

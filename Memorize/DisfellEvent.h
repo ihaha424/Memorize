@@ -4,7 +4,6 @@
 #include "BossSkillActor.h"
 
 struct DisFellEvent : public Event<DisFellEvent> {
-	DisFellEvent() {}
 	DisFellEvent(BossSkillActor* _target) :target( std::make_shared<BossSkillActor*>(_target))
 	{}
 		
@@ -12,7 +11,7 @@ struct DisFellEvent : public Event<DisFellEvent> {
 	{
 		target = std::make_shared<BossSkillActor*>(_damageType);
 	}
-	const BossSkillActor* GetBossSkillActor() const
+	BossSkillActor* GetBossSkillActor() const
 	{
 		return *target.get();
 	}

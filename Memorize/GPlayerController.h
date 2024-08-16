@@ -1,9 +1,11 @@
 #pragma once
 #include "../D2DGameEngine/PlayerController.h"
 #include "../D2DGameEngine/Debug.h"
+#include "../D2DGameEngine/IEventListener.h"
+#include "DisfellEvent.h"
 #include "Skill.h"
 
-class GPlayerController : public PlayerController
+class GPlayerController : public PlayerController, public IEventListener
 {
 	Math::Vector2 destPos;
 
@@ -21,6 +23,10 @@ class GPlayerController : public PlayerController
 
 	//FSMPlayer
 	class PlayerFSMComponent* playerFSMComponent;
+
+public:
+	//DisfellSkill
+	class BossSkillActor* targetSkill;
 
 public:
 	GPlayerController(class World* _world);
@@ -115,6 +121,7 @@ public:
 	void Memorize();
 	void Teleport();
 	void Cancellation();
+	void DisfellEvent(const DisFellEvent* const _event);
 };
 
 template<typename T>

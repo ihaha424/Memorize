@@ -11,8 +11,6 @@ public:
 	{}
 	virtual ~PlayerDisfell() {};
 
-	class BossSkillActor* targetSkill;
-
 	// PlayerState을(를) 통해 상속됨
 	void Enter() override;
 	void Update(float _dt) override;

@@ -19,9 +19,7 @@ Player::Player(class World* _world) : Character(_world)
 
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
-
 	
-
 	// 애니메이션
 	{
 		Animator* abm = CreateComponent<Animator>();
@@ -93,6 +91,12 @@ void Player::AddToStat(Stat _addStat)
 	stat = stat + _addStat;
 }
 
+void Player::Update(float _dt)
+{
+	__super::Update(_dt);
+	basicAttackTime -= _dt;
+}
+
 void Player::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Player.txt");
@@ -101,3 +105,4 @@ void Player::ReflectionIn()
 
 void Player::ReflectionOut()
 {}
+

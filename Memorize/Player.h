@@ -1,7 +1,6 @@
 #pragma once
 #include "../D2DGameEngine/Character.h"
 #include "../D2DGameEngine/Reflection.h"
-
 #include "D2DGameEngine/Debug.h"
 
 struct Stat
@@ -53,14 +52,16 @@ struct Stat
 	}
 };
 
-class Player : public Character, IReflection
+class Player : public Character, public IReflection
 {
 	LOG_REGISTER_OBJ(Player)
+public:
 	const int maxLevel = 50;
 	int level = 1;
 	int exp = 0;
-	float moveSpeed = 100;
+	float moveSpeed = 450;
 	Stat stat;
+	float basicAttackTime = 1.f;
 
 public:
 	Player(class World* _world);
@@ -69,6 +70,9 @@ public:
 	void LevelUp();
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
+
+	virtual void Update(float _dt) override;
+
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;

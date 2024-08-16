@@ -109,6 +109,9 @@ void MagicCircle::HideAll()
 
 void MagicCircle::ShowOne(int index)
 {
-	for(int i = 0; i < index + 1 && i < 4; i++)
+	int i = 0;
+	for(i = 0; i < index + 1; i++)
 		bms[i]->SetStatus(OS_ACTIVE);
+	for(; i < 4; i++)
+		bms[i]->SetStatus(OS_INACTIVE);
 }

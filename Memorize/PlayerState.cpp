@@ -52,8 +52,10 @@ void PlayerState::Dark()
 
 void PlayerState::Attack()
 {
-	return;
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (playerController->GetPlayer()->basicAttackTime > 0.f)
+		return;
+	return;
 	//기본 공격은 바로 나감으로 속성과 타입은 NONE(Default와는 다름, (Default == END))
 	bool CheckStates = playerController->AddSkillInfo(ESkillElement::SE_NONE);
 	CheckStates = playerController->AddSkillInfo(ESkillElement::SE_NONE);
@@ -61,6 +63,7 @@ void PlayerState::Attack()
 	{
 		//캐스팅이 필요하지 않은 기본 공격
 		owner->SetNextState(L"PlayerAttack");
+		playerController->GetPlayer()->basicAttackTime = 1.f;
 	}
 }
 
@@ -71,7 +74,7 @@ void PlayerState::Move()
 	Math::Vector2 direction = destPos - playerController->GetPlayer()->GetLocation();
 	direction.Normalize();
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetDirection(direction);
-	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(500.0f);
+	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(playerController->GetPlayer()->moveSpeed);
 }
 
 void PlayerState::Memorize()
