@@ -308,6 +308,9 @@
     <ClCompile Include="BossProjectile.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
     </ClCompile>
+    <ClCompile Include="BasicAttack.cpp">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -531,6 +534,9 @@
     </ClInclude>
     <ClInclude Include="BossProjectile.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicAttack.h">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

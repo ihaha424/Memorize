@@ -69,6 +69,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<DarkSphere>();
 	CreateSkill<AggressiveWaves>();
 	CreateSkill<LightStream>();
+	CreateSkill<BasicAttack>();
 }
 
 int GPlayerController::GetPlayerCastingIndex()
