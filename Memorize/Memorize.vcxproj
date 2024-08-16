@@ -162,6 +162,7 @@
     <ClCompile Include="CoolTime.cpp" />
     <ClCompile Include="DarkSphere.cpp" />
     <ClCompile Include="DarkSphereProjectile.cpp" />
+    <ClCompile Include="DisfellPanel.cpp" />
     <ClCompile Include="ElementsPanel.cpp" />
     <ClCompile Include="Enchant.cpp" />
     <ClCompile Include="Fireball.cpp" />
@@ -209,6 +210,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
+    <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="TestWall.cpp" />
@@ -238,6 +240,7 @@
     <ClInclude Include="DarkSphere.h" />
     <ClInclude Include="DarkSphereProjectile.h" />
     <ClInclude Include="DisfellEvent.h" />
+    <ClInclude Include="DisfellPanel.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="Enchant.h" />
     <ClInclude Include="Fireball.h" />
@@ -289,6 +292,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileSkill.h" />
     <ClInclude Include="RangeSkill.h" />
+    <ClInclude Include="Signal.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />
     <ClInclude Include="TeleportAction.h" />

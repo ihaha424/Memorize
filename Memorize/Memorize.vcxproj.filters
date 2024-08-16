@@ -302,9 +302,6 @@
     <ClCompile Include="BossGrowMagicCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle</Filter>
     </ClCompile>
-    <ClCompile Include="MagicCircle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BossProjectile.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
     </ClCompile>
@@ -315,6 +312,15 @@
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
     <ClCompile Include="BossHPPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="DisfellPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicCircle.cpp">
+      <Filter>Source Files\App\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Signal.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -535,9 +541,6 @@
     <ClInclude Include="BossGrowMagicCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle</Filter>
     </ClInclude>
-    <ClInclude Include="MagicCircle.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="BossProjectile.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
     </ClInclude>
@@ -549,6 +552,15 @@
     </ClInclude>
     <ClInclude Include="BossHPPanel.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DisfellPanel.h">
+      <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Signal.h">
+      <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicCircle.h">
+      <Filter>Source Files\App\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

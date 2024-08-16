@@ -22,7 +22,7 @@ void PlayerDisfell::Exit()
 void PlayerDisfell::Fire()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	if (!playerController->targetSkill->Disfell(InputEvent::Fire))
+	if (!playerController->targetSkill->Disfell(InputEvent::Fire, playerController))
 	{
 		owner->SetNextState(L"PlayerIdle");
 	}
@@ -31,7 +31,7 @@ void PlayerDisfell::Fire()
 void PlayerDisfell::Water()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	if (!playerController->targetSkill->Disfell(InputEvent::Water))
+	if (!playerController->targetSkill->Disfell(InputEvent::Water, playerController))
 	{
 		owner->SetNextState(L"PlayerIdle");
 	}
@@ -40,7 +40,7 @@ void PlayerDisfell::Water()
 void PlayerDisfell::Light()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	if (!playerController->targetSkill->Disfell(InputEvent::Light))
+	if (!playerController->targetSkill->Disfell(InputEvent::Light, playerController))
 	{
 		owner->SetNextState(L"PlayerIdle");
 	}
@@ -49,7 +49,7 @@ void PlayerDisfell::Light()
 void PlayerDisfell::Dark()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	if (!playerController->targetSkill->Disfell(InputEvent::Dark))
+	if (!playerController->targetSkill->Disfell(InputEvent::Dark, playerController))
 	{
 		owner->SetNextState(L"PlayerIdle");
 	}

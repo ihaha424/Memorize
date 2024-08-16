@@ -4,6 +4,7 @@
 #include "../D2DGameEngine/IEventListener.h"
 #include "DisfellEvent.h"
 #include "Skill.h"
+#include "Signal.h"
 
 class GPlayerController : public PlayerController, public IEventListener
 {
@@ -28,6 +29,10 @@ public:
 	//DisfellSkill
 	class BossSkillActor* targetSkill;
 
+	//Signal for UI
+	Signal<int,int>* OnBeginDisfell;
+	Signal<int>* OnDoingDisfell;
+
 public:
 	GPlayerController(class World* _world);
 	virtual ~GPlayerController();
@@ -43,6 +48,7 @@ public:
 	int GetPlayerCastingIndex();
 	bool isPlayerAfterCasting();
 	std::wstring GetPlayerState();
+
 
 	/**
 	 * @brief 스킬 생성 & 맵에 추가

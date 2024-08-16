@@ -35,7 +35,7 @@ public:
 	/**
 	 * @brief 디스펠 하는 것.
 	 */
-	bool Disfell(int _element);
+	bool Disfell(int _element, class GPlayerController* controller);
 
 	/**
 	 * @brief 갯수 설정 후 사용 해주면 디스펠 command가 자동으로 만들어짐

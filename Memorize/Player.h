@@ -98,5 +98,6 @@ public:
 	{
 		OBJ_MESSAGE(dbg::text(damageAmount, " damage taken!"));
 	}
+
 };
 

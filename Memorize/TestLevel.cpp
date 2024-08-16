@@ -11,6 +11,9 @@
 #include "Boss.h"
 #include "ElementsPanel.h"
 #include "ManaDepletedPanel.h"
+#include "BossHPPanel.h"
+#include "Signal.h"
+#include "DisfellPanel.h"
 //#include "Bat.h"
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
@@ -42,6 +45,10 @@ void TestLevel::Enter()
 		player->SetController(pc);
 		pc->SetPlayer(player);
 
+		DisfellPanel* disfellPanel = CreateActor<DisfellPanel>();
+		pc->OnBeginDisfell->Connect([&disfellPanel](int index, int command) {disfellPanel->SetCommandImage(index, command); });
+		pc->OnDoingDisfell->Connect([&disfellPanel](int index) {disfellPanel->HideCommandImage(index); });
+
 		CreateActor<BossGrowMagicCircle>();
 
 		{
@@ -49,6 +56,13 @@ void TestLevel::Enter()
 			elementsPanel->SetPlayerController(pc);
 		}
 
+		Boss* boss = CreateActor<Boss>();
+		BossAIController* bc = CreateActor<BossAIController>();
+		boss->SetController(bc);
+		bc->SetBoss(boss);
+
+		BossHPPanel* bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
+		boss->OnHPChanged->Connect([&bossHpBar](int hp) { bossHpBar->SetValue(hp); });
 	}
 
 	{
@@ -57,10 +71,8 @@ void TestLevel::Enter()
 
 
 	{
-		Boss* boss = CreateActor<Boss>();
-		BossAIController* bc = CreateActor<BossAIController>();
-		boss->SetController(bc);
-		bc->SetBoss(boss);
+
+
 	}
 
 	{

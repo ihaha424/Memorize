@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/Character.h"
 
 #include "D2DGameEngine/Debug.h"
+#include "Signal.h"
 
 class Boss : public Character
 {
@@ -18,7 +19,6 @@ public:
 	float Avoidance_Range = 450.f;
 
 
-	class BossHPPanel* hpBar;
 public:
 	Boss(class World* _world);
 	virtual ~Boss();
@@ -38,6 +38,8 @@ public:
 	}
 
 
+	//Signal for UI
+	Signal<int>* OnHPChanged;
 
 };
 

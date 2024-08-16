@@ -38,6 +38,9 @@ GPlayerController::~GPlayerController()
 
 	inputComponent->DeleteCommand(this, 0, InputState::KeyDown, MouseInput);
 	inputComponent->DeleteCommand(this, 1, InputState::KeyDown, MouseInput);
+
+	delete OnBeginDisfell;
+	delete OnDoingDisfell;
 }
 
 void GPlayerController::SetupInputComponent()
@@ -205,5 +208,6 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 	{
 		targetSkill = _event->GetBossSkillActor();
 		playerFSMComponent->SetNextState(L"PlayerDisfell");
+
 	}
 }
