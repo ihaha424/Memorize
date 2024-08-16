@@ -35,6 +35,7 @@ void TestLevel::Enter()
 		BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
 		bm->SetSprite(L"TestResource/BackGround_Map.png");
 		actor->rootComponent = bm;
+		actor->renderLayer = 0;
 		//bm->SetTranslation(960, -540);
 	}
 

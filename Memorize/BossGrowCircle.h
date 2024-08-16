@@ -11,6 +11,7 @@ public:
 
 	virtual void BeginPlay() override;
 
+	virtual void FixedUpdate(float _fixedRate) override;
 	virtual void Update(float _dt) override;
 
 	virtual void OnBeginOverlap(Actor* other) override;
