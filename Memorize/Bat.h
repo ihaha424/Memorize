@@ -13,13 +13,15 @@ class Bat : public Actor, public IReflection
 	class AnimationBitmapComponent* moveAnimation{ nullptr };
 	class AnimationBitmapComponent* attackAnimation{ nullptr };
 	class Player* player{ nullptr };
+	
+	PointDamageEvent batDamageEvent;
+public:
+
 	float	damage = 0.f;
 	float attackRange{ 100.f };
 	float attackSpeed{ 1.f };
 	float speed{ 250.f };
 
-	PointDamageEvent batDamageEvent;
-public:
 	Bat(World* world);
 
 	void BeginPlay() override;

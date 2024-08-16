@@ -632,7 +632,7 @@ void PrimitiveComponent::BeginComponentOverlap(const OverlapInfo& overlap, bool 
 
 	if (myActor == otherActor) return;
 
-	PushOverlappingComponent(otherComp, overlap);
+	if (!PushOverlappingComponent(otherComp, overlap)) return;
 
 	if (bDoNotifies) 
 	{
@@ -671,7 +671,7 @@ void PrimitiveComponent::EndComponentOverlap(const OverlapInfo& overlap, bool bD
 
 	if (myActor == otherActor) return;
 
-	PopOverlappingComponent(otherComp);
+	// 미리 현재 오버래핑 컴포넌트를 Clear 했으니 팝 할 필요가 없음.
 
 	if (bDoNotifies) {
 
@@ -701,12 +701,14 @@ void PrimitiveComponent::UpdateOverlaps(
 
 	if (bGenerateOverlapEvent && IsCollisionEnabled()) {
 
+		// 밖에서 미리 검사해서 들어온 오버랩 정보 먼저 처리
 		if (newOverlaps) {
 			for (const OverlapInfo& overlapInfo : *newOverlaps) {
 				BeginComponentOverlap(overlapInfo, bDoNotifies);
 			}
 		}
 
+		// 현재 위치에서의 새로운 오버랩 정보 확인
 		OverlappingComponentSet newOverlappingComponents;
 		if (bGenerateOverlapEvent) {
 			World* myWorld = GetWorld();
@@ -732,10 +734,11 @@ void PrimitiveComponent::UpdateOverlaps(
 			}
 		}
 
+		// 현재 위치와 이전 오버랩 정보 비교
 		OverlappingComponentSet oldOverlappingComponents{ std::move(currentlyOverlappingComponents) };
 		currentlyOverlappingComponents.clear();
 
-		// Check begin overlap
+		// BeginOverlap 확인
 		for (auto& [otherComponent, overlapInfo] : newOverlappingComponents) {
 			if (this == otherComponent) continue;
 			auto it = oldOverlappingComponents.find(otherComponent);
@@ -744,7 +747,7 @@ void PrimitiveComponent::UpdateOverlaps(
 			}
 		}
 
-		// Check end overlap
+		// EndOverlap 확인
 		for (auto& [otherComponent, overlapInfo] : oldOverlappingComponents) {
 			auto it = newOverlappingComponents.find(otherComponent);
 			if (it == newOverlappingComponents.end()) {

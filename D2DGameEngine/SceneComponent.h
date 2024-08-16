@@ -27,9 +27,6 @@ protected:
 	Math::Matrix R{ Math::Matrix::Identity };
 	Math::Matrix T{ Math::Matrix::Identity };
 
-	// Overlap test dirty flag
-	bool bShouldOverlapTest{ false };
-
 	// Component Velocity
 	DXVec2 velocity{ 0.f, 0.f };
 	float angularVelocity{ 0.f };
@@ -39,6 +36,9 @@ protected:
 	DXVec2 teleportDelta{ 0.f, 0.f };
 
 public:
+
+	// Overlap test dirty flag
+	bool bShouldOverlapTest{ false };
 
 	SceneComponent(Actor* _owner) :
 		IComponent(_owner), parent{ nullptr } {

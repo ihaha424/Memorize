@@ -101,39 +101,42 @@ void BossBehaviorTree::BuildBehaviorTree()
 						return (0.75f < hpPercent && hpPercent <= 1.f);
 					};
 					{	// Boss Phase One
-						RandomSelector* Phase_One_Selector = CreateNode<RandomSelector>();
-						BossPhase_One->Wrap(Phase_One_Selector);
-						{	
+						RandomSelector* phaseOneRandomSelector = CreateNode<RandomSelector>();
+						BossPhase_One->Wrap(phaseOneRandomSelector);
+						{	// -> phaseOneRandomSelector 1
 							//Pattern02
 							//Wait* Pattern02.DelayTime
 
-						}
-						{
+						}	// <- phaseOneRandomSelector 1
+						{	// -> phaseOneRandomSelector 2
 							//	Phase_One_2
 							Sequence* Phase_One_2 = CreateNode<Sequence>();
-							Phase_One_Selector->PushBackChild(Phase_One_2);
+							phaseOneRandomSelector->PushBackChild(Phase_One_2);
 							{
 								//Pattern05
 								//Pattern03
 								//Pattern04
 								//Wait* Pattern04.DelayTime
 							}
-						}
-						{
+						}	// <- phaseOneRandomSelector 2
+						{	// -> phaseOneRandomSelector 3
 							//	Phase_One_3
 							Sequence* Phase_One_3 = CreateNode<Sequence>();
-							Phase_One_Selector->PushBackChild(Phase_One_3);
+							phaseOneRandomSelector->PushBackChild(Phase_One_3);
 							{
 								//Pattern05
 								//Pattern08
 								//Wait* Pattern08.DelayTime
 							}
-						}
-						{
+						}	// <- phaseOneRandomSelector 3
+						{	// -> phaseOneRandomSelector 4
 							//Pattern01
 							//Wait* Pattern08.DelayTime
-						}
-					}
+							INode* pattern1Action = BuildPatternSubtree(Pattern::Pattern1);
+							phaseOneRandomSelector->PushBackChild(pattern1Action);
+						}	// <- phaseOneRandomSelector 4
+						phaseOneRandomSelector->SetRandomWeights({ 0.2, 0.2, 0.2, 0.35 });
+					}	// END: Boss Phase One
 				}	// <- bossPhaseSelector 1
 				{	// -> bossPhaseSelector 2
 					Condition* BossPhase_Two = CreateNode<Condition>();
@@ -417,6 +420,9 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		return teleportCondition;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern1: {
+		Pattern1Action* pattern1Action = CreateNode<Pattern1Action>();
+		pattern1Action->SetPatternInterval(1.f);
+		return pattern1Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern2: {
 		Pattern2Action* pattern2Action = CreateNode<Pattern2Action>();
@@ -442,7 +448,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		MoveToLocation* moveToCenter = CreateNode<MoveToLocation>();
 		moveToCenter->SetAcceptableRadius(10.f);
 		moveToCenter->SetSpeed(900.f);
-		moveToCenter->SetDestination(/*TODO:센터 값 조절 요*/{ 2014, 1050 });
+		moveToCenter->SetDestination(GET_MAP_CENTER());
 
 		Pattern6Action* pattern6Action = CreateNode<Pattern6Action>();
 		pattern6Action->SetCooldown(15.f);
@@ -467,13 +473,37 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			// Line{destination, BossCurrLoc} 가지고 
 			// 교점 체크
 			// -> 없으면 가능
+			bool isDestinationCandidate1Available = IsInMap(destinationCandidate1);
+			bool isDestinationCandidate2Available = IsInMap(destinationCandidate2);
 
 			// 만약 둘다 가능하면 랜덤으로 결정
-			// SetKey<Math::Vector2>("Pattern7Destination", destination);
-
-			// 만약 둘다 안되면
-			// ResetKey<Math::Vector2>("Pattern7Destination");
-			};
+			if (isDestinationCandidate1Available && isDestinationCandidate2Available)
+			{
+				int r = Random::Get(1);
+				if (r)
+				{
+					SetKey<Math::Vector2>("Pattern7Destination", destinationCandidate1);
+				}
+				else
+				{
+					SetKey<Math::Vector2>("Pattern7Destination", destinationCandidate2);
+				}
+			}
+			else if (isDestinationCandidate1Available)
+			{
+				SetKey<Math::Vector2>("Pattern7Destination", destinationCandidate1);
+			}
+			else if (isDestinationCandidate2Available)
+			{
+				SetKey<Math::Vector2>("Pattern7Destination", destinationCandidate2);
+			}
+			else
+			{
+				// 만약 둘다 안되면
+				// ResetKey<Math::Vector2>("Pattern7Destination");
+				ResetKey<Math::Vector2>("Pattern7Destination");
+			}
+		};
 
 		// Selector to find the correct position.
 		MoveTo* moveToPlayer = CreateNode<MoveTo>();
@@ -501,7 +531,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		MoveToLocation* moveToCenter = CreateNode<MoveToLocation>();
 		moveToCenter->SetAcceptableRadius(10.f);
 		moveToCenter->SetSpeed(900.f);
-		moveToCenter->SetDestination(/*TODO:센터 값 조절 요*/{ 2014, 1050 });
+		moveToCenter->SetDestination(GET_MAP_CENTER());	// 센터로 이동
 
 		Pattern10Action* pattern10Action = CreateNode<Pattern10Action>();
 		pattern10Action->SetCooldown(20.f);

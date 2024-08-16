@@ -152,6 +152,7 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
     <ClCompile Include="BossProjectile.cpp" />
+    <ClCompile Include="BossRazer.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BossBehaviorTree.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
@@ -283,6 +284,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileSkill.h" />
     <ClInclude Include="RangeSkill.h" />
+    <ClInclude Include="BossRazer.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />
     <ClInclude Include="TeleportAction.h" />
