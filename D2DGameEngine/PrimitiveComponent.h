@@ -42,7 +42,7 @@ public:
 	bool bCanCollide{ false };
 	bool bGenerateOverlapEvent{ false };
 	CollisionProperty collisionProperty;	// Default NoCollision
-	using OverlappingComponentSet = std::map<PrimitiveComponent*, OverlapInfo>;
+	using OverlappingComponentSet = std::unordered_map<PrimitiveComponent*, OverlapInfo>;
 	OverlappingComponentSet currentlyOverlappingComponents;
 
 	// Damage
@@ -237,12 +237,14 @@ public:
 	void ReceiveEndComponentOverlap(PrimitiveComponent* otherComp);
 
 	// TODO: Place it in the UpdateOverlaps()
-	void PushOverlappingComponent(PrimitiveComponent* otherComponent, const OverlapInfo& overlapInfo) {
-		currentlyOverlappingComponents.insert({ otherComponent, overlapInfo });
+	bool PushOverlappingComponent(PrimitiveComponent* otherComponent, const OverlapInfo& overlapInfo) {
+		auto [it, res] = currentlyOverlappingComponents.insert({ otherComponent, overlapInfo });
+		return res;
 	}
 
-	void PopOverlappingComponent(PrimitiveComponent* otherComponent) {
-		currentlyOverlappingComponents.erase(otherComponent);
+	bool PopOverlappingComponent(PrimitiveComponent* otherComponent) {
+		std::size_t n = currentlyOverlappingComponents.erase(otherComponent);
+		return n;
 	}
 
 	/**

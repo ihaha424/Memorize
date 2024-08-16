@@ -1,0 +1,54 @@
+#pragma once
+
+#include "BossSkillActor.h"
+#include "DisfellEvent.h"
+#include "D2DGameEngine/DamageEvent.h"
+
+#include "CoolTime.h"
+
+class BossRazer : public BossSkillActor
+{
+	LOG_REGISTER_OBJ(BossRazer)
+	using Super = BossSkillActor;
+
+	DisFellEvent BossRazerDissfellEvent;
+	RadialDamageEvent BossGrowMagicCircleDamageEvent;
+	class Player* player{ nullptr };
+
+	class AnimationBitmapComponent* razer;
+	class SceneComponent* magicCircleHub;
+	class BitmapComponent* magicCircle1;
+	class BitmapComponent* magicCircle2;
+	class BitmapComponent* magicCircle3;
+	class BitmapComponent* magicCircle4;
+
+	class PolygonComponent* obb;
+
+	float tickInterval{ 0.4 };
+	
+	using TakeDamageTimer = CoolTime<void>;
+
+	using FunctionTimerMap = std::unordered_map<Actor*, TakeDamageTimer>;
+	FunctionTimerMap tickDamageTimerMap;
+	RadialDamageEvent razerDamageEvent;
+
+public:
+	BossRazer(class World* _world);
+	virtual ~BossRazer() {};
+
+	virtual void BeginPlay();
+
+	virtual void FixedUpdate(float _fixedRate) override;
+
+	virtual void Update(float _dt) override;
+
+	virtual void DisfellAction();
+
+	virtual void OnBeginOverlap(Actor* other) override;
+
+	virtual void OnEndOverlap(Actor* other) override;
+
+	// BossSkillActor을(를) 통해 상속됨
+	void ReflectionIn() override;
+	void ReflectionOut() override;
+};

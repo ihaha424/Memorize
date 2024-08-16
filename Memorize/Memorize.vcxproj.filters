@@ -108,6 +108,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle">
       <UniqueIdentifier>{81113077-3b43-4a56-9209-836d822ad18f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer">
+      <UniqueIdentifier>{662950e6-6c18-4874-9ac3-eef068176ac7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="ManaOverload.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="BossRazer.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -585,6 +591,9 @@
     </ClInclude>
     <ClInclude Include="ManaOverload.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="BossRazer.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

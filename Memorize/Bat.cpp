@@ -16,7 +16,7 @@ Bat::Bat(World* _world) : Actor(_world)
 	ReflectionIn();
 
 	CircleComponent* circle = CreateComponent<CircleComponent>();
-	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::Trigger);
+	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapPawn);
 	circle->bGenerateOverlapEvent = true;
 	circle->maxSpeed = speed;
 	rootComponent = circle;
