@@ -8,6 +8,8 @@
 
 #include "World.h"
 
+#include "Ray.h"
+
 Actor::Actor(class World* _world) : world(_world)
 {
 }
@@ -190,4 +192,24 @@ Math::Matrix Actor::GetTrasnform() const
 		return rootComponent->GetWorldTransform();
 	else
 		return Math::Matrix::Identity;
+}
+
+void Actor::RotateToward(const Math::Vector2& _direction)
+{
+	Math::Vector2 w = _direction;
+	Math::Vector2 v = Right();
+
+	float x = w.y * v.x - w.x * v.y;
+	float y = w.x * v.x + w.y * v.y;
+	float rad = atan2(x, y);
+
+	SetRotation(rad);
+}
+
+void Actor::LookAt(const Math::Vector2& _point)
+{
+	Math::Vector2 loc = GetLocation();
+	Math::Vector2 direction = _point - loc;
+	direction.Normalize();
+	RotateToward(direction);
 }
