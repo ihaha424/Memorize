@@ -1,6 +1,7 @@
 #include "ChasingWaterBallProjectile.h"
 #include "../D2DGameEngine/Animator.h"
 #include "../D2DGameEngine/AnimationState.h"
+#include "../D2DGameEngine/CircleComponent.h"
 #include "MovementComponent.h"
 #include "Player.h"
 
@@ -84,6 +85,7 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
+		player->GetComponent<CircleComponent>()->SetStatus(OS_INACTIVE);
 	}
 }
 

@@ -5,6 +5,7 @@
 #include "../D2DGameEngine/CameraComponent.h"
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
+#include "../D2DGameEngine/CircleComponent.h"
 
 
 ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
@@ -54,6 +55,7 @@ void ChasingWaterBall::UseSkill()
 	//fireball->SetVelocity(mousePos, projectileSpeed);
 
 	//nowUsingCount++;
+	player->GetComponent<CircleComponent>()->SetStatus(OS_ACTIVE);
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles[i]->SetPlayer(player);

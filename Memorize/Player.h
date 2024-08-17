@@ -74,10 +74,10 @@ public:
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
-	virtual void PreUpdate(float _dt) override;
+	virtual void PostUpdate(float _dt) override;
 	virtual void Update(float _dt) override;
 
-	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
+	virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;

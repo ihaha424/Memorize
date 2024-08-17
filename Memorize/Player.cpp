@@ -19,7 +19,7 @@ Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
 	skillUses = 100;
-	SetTickProperties(TICK_PHYSICS | TICK_PRE_UPDATE | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
+	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
 	
 	// 애니메이션
@@ -86,6 +86,7 @@ Player::Player(class World* _world) : Character(_world)
 	rangeCircle->bSimulatePhysics = false;
 	rangeCircle->bApplyImpulseOnDamage = false;
 	rangeCircle->bGenerateOverlapEvent = true;
+	rangeCircle->SetStatus(OS_INACTIVE);
 }
 
 Player::~Player()
@@ -97,11 +98,9 @@ void Player::AddToStat(Stat _addStat)
 	stat = stat + _addStat;
 }
 
-void Player::PreUpdate(float _dt)
+void Player::PostUpdate(float _dt)
 {
-	__super::PreUpdate(_dt);
-	//매 틱마다 범위 내에 있는 적을 감지하기 위해 초기화해줌
-	//enemiesInRange.clear();
+	__super::PostUpdate(_dt);
 }
 
 void Player::Update(float _dt)
@@ -111,19 +110,17 @@ void Player::Update(float _dt)
 	stat.mp += _dt * 100;
 }
 
-void Player::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
+void Player::OnOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	__super::OnBeginOverlap(other, overlap);
 
-	OBJ_MESSAGE("Overlap began!");
-
-
-	//TODO :: 매 틱마다 체크하는 것으로 바꿔야 함!!!!! 
-	//범위 내에 있는 적을 체크하여 배열에 넣음 
+	//TODO: 채널 설정으로 바꿔야 함. 
+	//범위 내에 있는 적을 체크하여 배열에 넣음  
 	Character* ch = dynamic_cast<Character*>(other);
 	if (ch) 
 	{
-		enemiesInRange.push_back(ch);
+		if(find(enemiesInRange.begin(), enemiesInRange.end(), ch) == enemiesInRange.end())
+			enemiesInRange.push_back(ch);
 	}
 	
 }
