@@ -114,6 +114,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile">
       <UniqueIdentifier>{84ba3c3a-ecbc-49d8-a20a-e1d694978cef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile">
+      <UniqueIdentifier>{16b34b1f-e4e1-42f8-9e3f-d5495452ad29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -352,6 +355,9 @@
     </ClCompile>
     <ClCompile Include="BossChasingProjectile.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
+    </ClCompile>
+    <ClCompile Include="BossThroughProjectile.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -609,6 +615,9 @@
     </ClInclude>
     <ClInclude Include="BaseAttackProjectile.h">
       <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BossThroughProjectile.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

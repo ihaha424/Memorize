@@ -161,6 +161,7 @@
     <ClCompile Include="BossRazer.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BossBehaviorTree.cpp" />
+    <ClCompile Include="BossThroughProjectile.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
     <ClCompile Include="ChasingWaterBall.cpp" />
     <ClCompile Include="ChasingWaterBallProjectile.cpp" />
@@ -242,6 +243,7 @@
     <ClInclude Include="BossProjectile.h" />
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />
+    <ClInclude Include="BossThroughProjectile.h" />
     <ClInclude Include="BuffSkill.h" />
     <ClInclude Include="ChasingWaterBall.h" />
     <ClInclude Include="ChasingWaterBallProjectile.h" />
