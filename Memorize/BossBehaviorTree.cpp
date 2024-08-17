@@ -452,7 +452,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	} break;
 	case BossBehaviorTree::Pattern::Pattern2: {
 		Pattern2Action* pattern2Action = CreateNode<Pattern2Action>();
-		pattern2Action->SetPatternInterval(1.0f);
+		pattern2Action->SetPatternInterval(2.0f);
 		return pattern2Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern3: {

@@ -6,7 +6,5 @@
 
 struct Pattern3Action final : public PatternAction
 {
-
 	void Run(float dt) override;
-
 };

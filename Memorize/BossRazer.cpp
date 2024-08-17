@@ -25,18 +25,15 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	magicCircleHub = CreateComponent<SceneComponent>();
 	rootComponent = magicCircleHub;
 
-	magicCircle1 = CreateComponent<BitmapComponent>();
-	magicCircle1->SetSprite(L"TestResource/Boss/BossRazer/MagicCircle1.png");
-	magicCircleHub->AddChild(magicCircle1);
-	magicCircle2 = CreateComponent<BitmapComponent>();
-	magicCircle2->SetSprite(L"TestResource/Boss/BossRazer/MagicCircle2.png");
-	magicCircleHub->AddChild(magicCircle2);
-	magicCircle3 = CreateComponent<BitmapComponent>();
-	magicCircle3->SetSprite(L"TestResource/Boss/BossRazer/MagicCircle3.png");
-	magicCircleHub->AddChild(magicCircle3);
-	magicCircle4 = CreateComponent<BitmapComponent>();
-	magicCircle4->SetSprite(L"TestResource/Boss/BossRazer/MagicCircle4.png");
-	magicCircleHub->AddChild(magicCircle4);
+	magicCircle = CreateComponent<AnimationBitmapComponent>();
+	magicCircleHub->AddChild(magicCircle);
+	magicCircle->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowMagicCircle.png");
+	magicCircle->SliceSpriteSheet(1200, 1200, 0, 0, 0, 0);
+	magicCircle->SetFrameDurations({ 1.f / 12.f });
+	magicCircle->FrameResize(82);
+	magicCircle->Trigger(true);
+	magicCircle->SetLoop(true);
+	magicCircle->Scale(0.05f, 0.2f);
 
 	// TODO: 레이져 위치 가운데로 옮기기.
 	razer = CreateComponent<AnimationBitmapComponent>();
@@ -84,6 +81,11 @@ void BossRazer::FixedUpdate(float _fixedRate)
 {
 	Super::FixedUpdate(_fixedRate);
 
+	if (destroyThis)
+	{
+		Destroy();
+		return;
+	}
 }
 
 void BossRazer::Update(float _dt)
@@ -116,13 +118,13 @@ void BossRazer::Update(float _dt)
 	// 스킬 사망
 	if (skillDuration < 0.f)
 	{
-		Destroy();
+		DestroyThis();
 	}
 }
 
 void BossRazer::DisfellAction()
 {
-	Destroy();
+	DestroyThis();
 }
 
 void BossRazer::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
@@ -168,3 +170,9 @@ void BossRazer::ReflectionIn()
 }
 
 void BossRazer::ReflectionOut() {}
+
+void BossRazer::DestroyThis()
+{
+	GetWorld()->UnregisterComponentCollision(obb);
+	destroyThis = true;
+}

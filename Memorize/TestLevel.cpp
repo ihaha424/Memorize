@@ -16,6 +16,7 @@
 //#include "Bat.h"
 #include "BossRazer.h"
 #include "BossChasingBomb.h"
+#include "RazerCircle.h"
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
@@ -154,11 +155,14 @@ void TestLevel::Enter()
 	//}
 
 	{
-		BossRazer* razer = CreateActor<BossRazer>();
-		razer->renderLayer = 2;
+		/*BossRazer* razer = CreateActor<BossRazer>();
+		razer->renderLayer = 2;*/
 
-		ChasingBomb* chasingBomb = CreateActor<ChasingBomb>();
+		/*RazerCircle* razerCircle = CreateActor<RazerCircle>();
+		razerCircle->renderLayer = 3;*/
+
+		/*ChasingBomb* chasingBomb = CreateActor<ChasingBomb>();
 		chasingBomb->SetLocation(0.f, -400.f);
-		chasingBomb->renderLayer = 2;
+		chasingBomb->renderLayer = 2;*/
 	}
 }
