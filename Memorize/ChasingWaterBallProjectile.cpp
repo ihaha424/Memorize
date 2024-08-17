@@ -67,7 +67,7 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		normalState->SliceSpriteSheet(58, 56, 0, 0, 0, 0);
 
 		//타겟을 향해 이동
-		Math::Vector2 direction = GetLocation() - target->GetLocation();
+		Math::Vector2 direction = target->GetLocation() - GetLocation();
 		direction.Normalize();
 		SetVelocity(direction, speed);
 

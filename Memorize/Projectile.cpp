@@ -41,25 +41,22 @@ void Projectile::OnBeginOverlap(Actor* other)
 {
 	__super::OnBeginOverlap(other);
 
-	Boss* boss = dynamic_cast<Boss*>(other);
-	if (boss != nullptr)
+
+	//대미지를 입힘
+	DamageEvent damageEvent;
+	DamageType damageType{
+		.damageImpulse = 10000.f, //충격량 넣어주는 게 맞는지?
+	};
+	damageEvent.SetDamageType(damageType);
+
+	other->TakeDamage(damage, damageEvent, nullptr, this);
+
+	//투과되지 않는 발세체의 경우 멈추고 폭발 처리
+	if (!bIsPassable)
 	{
-		//대미지를 입힘
-		DamageEvent damageEvent;
-		DamageType damageType{
-			.damageImpulse = 10000.f, //충격량 넣어주는 게 맞는지?
-		};
-		damageEvent.SetDamageType(damageType);
-
-		boss->TakeDamage(damage, damageEvent, boss->GetController(), this);
-
-		//투과되지 않는 발세체의 경우 멈추고 폭발 처리
-		if (!bIsPassable)
-		{
-			bEnding = true;
-			anim->SetState(endingState);
-			mv->SetSpeed(0);
-		}
+		bEnding = true;
+		anim->SetState(endingState);
+		mv->SetSpeed(0);
 	}
 
 	//다른 공격과 충돌하는 스킬은 충돌 처리
@@ -73,8 +70,6 @@ void Projectile::OnBeginOverlap(Actor* other)
 			mv->SetSpeed(0);
 		}
 	}
-
-
 }
 
 
