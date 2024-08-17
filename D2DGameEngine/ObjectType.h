@@ -13,6 +13,8 @@ enum class ECollisionChannel {
 	Enemy,
 	PlayerProjectile,
 	EnemyProjectile,
+	PlayerPattern,
+	EnemyPattern,
 	NUM_COLLISION_CHANNELS
 };
 

@@ -15,9 +15,12 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	isDispel = true;
 	type = Range;
 	dispelTime = 7.f;
-	skillDuration = 1000.f;
+	skillDuration = 2.f;
 	// 스킬 시전 타이밍은 std::max(DispelTime - SkillDuration, 0);
 	damage = 17.f;
+
+	// cast time
+	castTime = dispelTime - skillDuration;
 
 	magicCircleHub = CreateComponent<SceneComponent>();
 	rootComponent = magicCircleHub;
@@ -48,6 +51,7 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	obb->InitPolygon({ {-6, -3}, {6, -3}, {6, 3}, {-6, 3} });
 	razer->AddChild(obb);
 	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
+	obb->bApplyImpulseOnDamage = true;
 	obb->bGenerateOverlapEvent = false;	// True
 	razer->Translate(-1200.f, 0.f);
 	razer->Scale(200.f, 30.f);
@@ -86,9 +90,9 @@ void BossRazer::Update(float _dt)
 {
 	Super::Update(_dt);
 
-	if (dispelTime >= 0.f)
+	if (castTime >= 0.f)
 	{
-		dispelTime -= _dt;
+		castTime -= _dt;
 		return;
 	}
 
