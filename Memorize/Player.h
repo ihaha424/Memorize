@@ -8,14 +8,14 @@ struct Stat
 	float hp;
 	float maxHp; //HP
 	float mp;
-	float maxMp; //MP
+	float maxMp = 100.f; //MP
 	float hpRegenPerSecond; //초당 HP 회복량
 	float mpRegenPerSecond = 20; //초당 MP 회복량
 	float skillRange; //시전 범위
 	int castingSpeed; //캐스팅 속도
 	int numProjectiles; //투사체 개수
 	int defaultDamage; //기본 대미지
-	int defaultAttackSpeed; //기본 공격 속도
+	float defaultAttackSpeed; //기본 공격 속도
 	bool manaOverLoad = false;
 
 	Stat operator+(Stat stat)
@@ -55,14 +55,20 @@ class Player : public Character, public IReflection
 {
 	LOG_REGISTER_OBJ(Player)
 private:
-	float mpTimer = 0.f;
-
+	float minMp = 0.f;
+	float minHp = 0.f;
+	float minMaxMp = 0.f;
+	float maxMaxMp = 1000.f;
+	float minAttackSpeed = 1.f;
+	float maxAttackSpeed = 2.f;
 public:
 
 	float moveSpeed = 450;
 	Stat stat;
 	float basicAttackTime = 1.f;
 	int skillUses;
+
+
 
 	float waterBallRange = 500.f;
 	class CircleComponent* rangeCircle;

@@ -79,6 +79,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<BasicAttack>();
 	CreateSkill<MPMaxIncrease>();
 	CreateSkill<MPRecovery>();
+	CreateSkill<Heal>();
 
 }
 

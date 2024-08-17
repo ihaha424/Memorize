@@ -100,6 +100,11 @@ Player::~Player()
 void Player::AddToStat(Stat _addStat)
 {
 	stat = stat + _addStat;
+
+	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
+	stat.hp = std::clamp(stat.hp, minHp, stat.maxHp);
+	stat.defaultAttackSpeed = std::clamp(stat.defaultAttackSpeed, minAttackSpeed, maxAttackSpeed);
+	stat.maxMp = std::clamp(stat.maxMp, minMaxMp, maxMaxMp);
 }
 
 void Player::PostUpdate(float _dt)
@@ -111,15 +116,12 @@ void Player::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	mpTimer += _dt;
+	stat.mp += stat.mpRegenPerSecond * _dt;
 
-	if (mpTimer > 1.f)
-	{
-		mpTimer -= 1.f;
-		stat.mp += stat.mpRegenPerSecond;
-	}
-	std::cout << "MP:" << stat.mp << std::endl;
-	basicAttackTime -= _dt;
+	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
+	std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
+
+	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 }
 
 void Player::OnOverlap(Actor* other, const OverlapInfo& overlap)

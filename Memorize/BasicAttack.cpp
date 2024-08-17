@@ -26,6 +26,10 @@ void BasicAttack::UseSkill()
 {
 	__super::UseSkill();
 
+	if (player->basicAttackTime > 0)
+		return;
+	player->basicAttackTime = player->stat.defaultAttackSpeed;
+
 	projectiles[nowUsingCount]->Activate();
 
 	projectiles[nowUsingCount]->SetLocation(player->GetLocation().x, player->GetLocation().y);
