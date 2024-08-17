@@ -84,3 +84,14 @@ void AnimationBitmapComponent::Update(float _dt)
 		{ frame.right, frame.bottom }
 	);
 }
+
+void AnimationBitmapComponent::InitFrame()
+{
+	if (frames.empty()) return;
+	D2D_RectF& frame = frames[0];
+	SetFrame(
+		{ frame.left, frame.top },
+		{ frame.right, frame.bottom }
+	);
+
+}

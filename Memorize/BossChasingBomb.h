@@ -19,11 +19,12 @@ class ChasingBomb : public BossSkillActor
 
 	float explodingTime{ 0.1f };
 	bool exploding{ false };
-	bool destroyThis{ false };
-
+	
 	PointDamageEvent bombDamageEvent;
 
 public:
+	bool destroyThis{ false };
+
 	ChasingBomb(class World* _world);
 
 	virtual void BeginPlay();
@@ -41,4 +42,6 @@ public:
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;
 	void ReflectionOut() override;
+
+	void DistroyThis();
 };

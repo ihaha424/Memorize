@@ -79,6 +79,7 @@ public:
 	 * @param trigger 
 	 */
 	void Trigger(bool trigger) {
+		InitFrame();
 		isTriggered = trigger;
 		isPlaying = trigger;
 		if (!trigger) {
@@ -120,4 +121,6 @@ public:
 	}
 
 	virtual void Update(float _dt);
+
+	void InitFrame();
 };

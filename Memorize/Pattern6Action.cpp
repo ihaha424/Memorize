@@ -4,6 +4,7 @@
 #include "../D2DGameEngine/ReflectionResource.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "Boss.h"
+#include "BossGrowMagicCircle.h"
 
 void Pattern6Action::Run(float dt)
 {

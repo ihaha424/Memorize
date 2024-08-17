@@ -141,18 +141,7 @@ void ChasingBomb::Update(float _dt)
 		explodingTime -= _dt;
 		if (explodingTime < 0.f)	// 폭발 종료
 		{
-			// 콜리션 꺼버림
-			bombExplosionRadius->SetCollisionEnabled(CollisionEnabled::NoCollision);
-			bombExplosionRadius->bGenerateOverlapEvent = false;
-
-			// 월드에서 직접 콜리션 삭제해서
-			// 다음 돌아오는 FixedUpdate 틱에서 OnEndCollision 이벤트 뿌리고
-			// 사망하게 해야됨.
-			GetWorld()->UnregisterComponentCollision(bombTrigger);
-			GetWorld()->UnregisterComponentCollision(bombExplosionRadius);
-
-			// 다음 FixedUpdate 틱 마지막에 오브젝트 삭제하게 만듦.
-			destroyThis = true;
+			DistroyThis();
 		}
 		else
 		{
@@ -211,4 +200,20 @@ void ChasingBomb::ReflectionIn()
 
 void ChasingBomb::ReflectionOut()
 {
+}
+
+void ChasingBomb::DistroyThis()
+{
+	// 콜리션 꺼버림
+	bombExplosionRadius->SetCollisionEnabled(CollisionEnabled::NoCollision);
+	bombExplosionRadius->bGenerateOverlapEvent = false;
+
+	// 월드에서 직접 콜리션 삭제해서
+	// 다음 돌아오는 FixedUpdate 틱에서 OnEndCollision 이벤트 뿌리고
+	// 사망하게 해야됨.
+	GetWorld()->UnregisterComponentCollision(bombTrigger);
+	GetWorld()->UnregisterComponentCollision(bombExplosionRadius);
+
+	// 다음 FixedUpdate 틱 마지막에 오브젝트 삭제하게 만듦.
+	destroyThis = true;
 }

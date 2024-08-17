@@ -15,10 +15,6 @@ class BossRazer : public BossSkillActor
 
 	class AnimationBitmapComponent* razer;
 	class SceneComponent* magicCircleHub;
-	class BitmapComponent* magicCircle1;
-	class BitmapComponent* magicCircle2;
-	class BitmapComponent* magicCircle3;
-	class BitmapComponent* magicCircle4;
 
 	class PolygonComponent* obb;
 
@@ -31,7 +27,10 @@ class BossRazer : public BossSkillActor
 	FunctionTimerMap tickDamageTimerMap;
 	RadialDamageEvent razerDamageEvent;
 
+	bool destroyThis{ false };
 public:
+	class AnimationBitmapComponent* magicCircle;
+	
 	BossRazer(class World* _world);
 	virtual ~BossRazer() {};
 
@@ -50,4 +49,6 @@ public:
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;
 	void ReflectionOut() override;
+
+	void DestroyThis();
 };
