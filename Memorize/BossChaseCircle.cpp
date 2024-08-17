@@ -54,7 +54,6 @@ void BossChaseCircle::BeginPlay()
 {
 	__super::BeginPlay();
 	bm->SetSprite(L"TestResource/Boss/MagicCircle/BossChaseCircle.png");
-	bm->Translate(0, 200);
 	circleComponent->InitCircleRadius(bm->GetSpriteHeight() / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
 	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
@@ -95,6 +94,13 @@ void BossChaseCircle::Update(float _dt)
 void BossChaseCircle::DisfellAction()
 {
 	SetStatus(EObjectStatus::OS_DESTROY);
+}
+
+void BossChaseCircle::DisfellFailAction()
+{
+	disfellCommand.clear();
+	dissfellindex = 0;
+	CreateDisfellCommand();
 }
 
 void BossChaseCircle::OnClicked()

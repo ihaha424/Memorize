@@ -362,11 +362,17 @@
     <ClCompile Include="BossThroughProjectile.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
     </ClCompile>
+    <ClCompile Include="BossThroughProjectileMagicCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
+    </ClCompile>
     <ClCompile Include="BuffEffectComponent.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClCompile>
     <ClCompile Include="RazerCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazerCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMainUIPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -628,11 +634,17 @@
     <ClInclude Include="BossThroughProjectile.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
     </ClInclude>
+    <ClInclude Include="BossThroughProjectileMagicCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
+    </ClInclude>
     <ClInclude Include="BuffEffectComponent.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
     <ClInclude Include="RazerCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazerCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMainUIPanel.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

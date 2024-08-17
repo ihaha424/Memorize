@@ -97,7 +97,8 @@ int GPlayerController::GetPlayerCastingIndex()
 bool GPlayerController::isPlayerAfterCasting()
 {
 	return playerFSMComponent->GetCurState() == L"PlayerAttackReady" 
-		|| playerFSMComponent->GetCurState() == L"PlayerAttack";
+		|| playerFSMComponent->GetCurState() == L"PlayerAttack"
+		|| playerFSMComponent->GetCurState() == L"PlayerDisfell";
 }
 
 std::wstring GPlayerController::GetPlayerState()

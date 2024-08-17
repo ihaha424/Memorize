@@ -41,8 +41,6 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	BossGrowMagicCircleDamageEvent.radialDamageInfo.minDamage = damage;
 	BossGrowMagicCircleDamageEvent.componentHits.resize(1);
 
-	for(int i = 0; i < disfellCommand.size(); i++)
-		std::cout << (int)disfellCommand[i] + 1 << ", ";
 }
 
 void BossGrowMagicCircle::BeginPlay()

@@ -1,6 +1,5 @@
 #pragma once
 #include "BossSkillActor.h"
-#include "DisfellEvent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/ReflectionResource.h"
 

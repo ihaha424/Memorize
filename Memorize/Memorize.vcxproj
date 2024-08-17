@@ -162,6 +162,7 @@
     <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BossBehaviorTree.cpp" />
     <ClCompile Include="BossThroughProjectile.cpp" />
+    <ClCompile Include="BossThroughProjectileMagicCircle.cpp" />
     <ClCompile Include="BuffEffectComponent.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
     <ClCompile Include="ChasingWaterBall.cpp" />
@@ -210,6 +211,7 @@
     <ClCompile Include="PlayerFSMComponent.cpp" />
     <ClCompile Include="PlayerIdle.cpp" />
     <ClCompile Include="PlayerIdleAnimation.cpp" />
+    <ClCompile Include="PlayerMainUIPanel.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="PlayerMoveAnimation.cpp" />
     <ClCompile Include="PlayerState.cpp" />
@@ -246,6 +248,7 @@
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />
     <ClInclude Include="BossThroughProjectile.h" />
+    <ClInclude Include="BossThroughProjectileMagicCircle.h" />
     <ClInclude Include="BuffEffectComponent.h" />
     <ClInclude Include="BuffSkill.h" />
     <ClInclude Include="ChasingWaterBall.h" />
@@ -299,6 +302,7 @@
     <ClInclude Include="PlayerFSMComponent.h" />
     <ClInclude Include="PlayerIdle.h" />
     <ClInclude Include="PlayerIdleAnimation.h" />
+    <ClInclude Include="PlayerMainUIPanel.h" />
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerMoveAnimation.h" />
     <ClInclude Include="PlayerState.h" />
