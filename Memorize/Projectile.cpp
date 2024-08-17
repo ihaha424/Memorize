@@ -75,7 +75,6 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	}
 }
 
-
 void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
 { 
 	mv->SetDirection(_direction);

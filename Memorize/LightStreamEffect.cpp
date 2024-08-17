@@ -37,27 +37,6 @@ void LightStreamEffect::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	damageEvent.SetDamageType(damageType);
 
 	other->TakeDamage(damage, damageEvent, nullptr, this);
-
-	//투과되지 않는 발세체의 경우 멈추고 폭발 처리
-	if (!bIsPassable)
-	{
-		bEnding = true;
-		anim->SetState(endingState);
-		mv->SetSpeed(0);
-		elapsedTime = duration + delay;
-	}
-
-	//다른 공격과 충돌하는 스킬은 충돌 처리
-	if (bCollideWithOtherAttack)
-	{
-		BossProjectile* bossProjectile = dynamic_cast<BossProjectile*>(other);
-		if (bossProjectile != nullptr)
-		{
-			bEnding = true;
-			anim->SetState(endingState);
-			mv->SetSpeed(0);
-		}
-	}
 }
 
 void LightStreamEffect::Update(float _dt)

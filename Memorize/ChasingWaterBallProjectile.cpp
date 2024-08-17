@@ -39,7 +39,7 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	bCollideWithOtherAttack = true;
 	bHasEnding = false;
 	endingTime = 1.f;
-
+	
 }
 
 ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
