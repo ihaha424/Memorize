@@ -15,7 +15,7 @@ struct Stat
 	int castingSpeed; //캐스팅 속도
 	int numProjectiles; //투사체 개수
 	int defaultDamage; //기본 대미지
-	float defaultAttackSpeed; //기본 공격 속도
+	float defaultAttackSpeed = 1.f; //기본 공격 속도
 	bool manaOverLoad = false;
 
 	Stat operator+(Stat stat)

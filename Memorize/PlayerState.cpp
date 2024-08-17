@@ -63,7 +63,7 @@ void PlayerState::Attack()
 	{
 		//캐스팅이 필요하지 않은 기본 공격
 		owner->SetNextState(L"PlayerAttack");
-		playerController->GetPlayer()->basicAttackTime = 1.f;
+		playerController->GetPlayer()->basicAttackTime = playerController->GetPlayer()->stat.defaultAttackSpeed;
 	}
 }
 

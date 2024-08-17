@@ -80,6 +80,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<MPMaxIncrease>();
 	CreateSkill<MPRecovery>();
 	CreateSkill<Heal>();
+	CreateSkill<Enchant>();
 
 }
 

@@ -9,6 +9,7 @@ public:
 	Enchant(Actor* _owner);
 	virtual ~Enchant();
 
+	virtual void Initialize() override;
 	virtual void UseSkill() override;
 	virtual void ReflectionIn() override;
 };
