@@ -18,10 +18,10 @@ Projectile::Projectile(World* _world) : Actor(_world)
 	rootComponent->AddChild(mv);
 
 	box = CreateComponent<BoxComponent>();
-	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::BlockAll);
+	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
 	box->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
 	box->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
-	box->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
+	box->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
 	rootComponent->AddChild(box);
 
 	mv->SetStatus(OS_INACTIVE);
@@ -108,7 +108,7 @@ void Projectile::Update(float _dt)
 		box->SetStatus(OS_ACTIVE);
 	}
 	//지속시간 이후 끝나기 전까지
-	if (!bEnding && elapsedTime > duration + delay)
+	if (bHasEnding && !bEnding && elapsedTime > duration + delay)
 	{
 		bEnding = true;
 		anim->SetState(endingState);

@@ -3,13 +3,14 @@
 
 class ChasingWaterBall : public ProjectileSkill
 {
-	int maxCount = 6;
-	int nowCount = 0;
-	int onceClickCount = 3;
 	float speed = 10.f;
+
+	std::vector<Math::Vector2> locations;
+	
 public:
 	ChasingWaterBall(Actor* _owner);
 	virtual ~ChasingWaterBall();
+
 
 	virtual void UseSkill() override;
 	virtual void ReflectionIn() override;

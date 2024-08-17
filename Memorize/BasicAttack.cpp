@@ -12,6 +12,8 @@ BasicAttack::BasicAttack(Actor* _owner) : ProjectileSkill(_owner)
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<BaseAttackProjectile>());
+		projectiles[i]->SetDuration(projectileDuration); 
+		projectiles[i]->SetSpeed(projectileSpeed);
 	}
 
 }

@@ -61,6 +61,10 @@ public:
 	Stat stat;
 	float basicAttackTime = 1.f;
 	int skillUses;
+
+	float waterBallRange = 500.f;
+	class CircleComponent* rangeCircle;
+	std::vector<class Character*> enemiesInRange; //현재 범위 내에 있는 적
 public:
 	Player(class World* _world);
 	virtual ~Player();
@@ -70,8 +74,10 @@ public:
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
+	virtual void PreUpdate(float _dt) override;
 	virtual void Update(float _dt) override;
 
+	virtual void OnBeginOverlap(Actor* other) override;
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;
@@ -79,10 +85,6 @@ public:
 
 	virtual void OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) override {
 		OBJ_MESSAGE("Hit!");
-	}
-
-	virtual void OnBeginOverlap(Actor* other) {
-		OBJ_MESSAGE("Overlap began!");
 	}
 
 	virtual void OnEndOverlap(Actor* other) {

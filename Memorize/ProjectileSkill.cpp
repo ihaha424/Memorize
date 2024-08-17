@@ -15,8 +15,7 @@ ProjectileSkill::~ProjectileSkill()
 	{
 		if (pj)
 		{
-			delete pj;
-			pj = nullptr;
+			pj->Destroy();
 		}
 	}
 }

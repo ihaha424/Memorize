@@ -22,6 +22,7 @@ DarkSphereProjectile::DarkSphereProjectile(World* _world) : Projectile(_world)
 	endingTime = 1.f;
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;
+	bHasEnding = true;
 }
 
 DarkSphereProjectile::~DarkSphereProjectile()
