@@ -9,6 +9,7 @@ Boss::Boss(World* _world) : Character(_world)
 	hp = maxHp;
 
 	OnHPChanged = new Signal<int>;
+	
 }
 
 Boss::~Boss()

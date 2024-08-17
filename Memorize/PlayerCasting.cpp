@@ -57,8 +57,11 @@ void PlayerCasting::Update(float _dt)
 
 void PlayerCasting::Exit()
 {
-	commandList.clear();
-	index = 1;
+	if (!saveDirtyFlag)
+	{
+		commandList.clear();
+		index = 1;
+	}
 }
 
 void PlayerCasting::Fire()

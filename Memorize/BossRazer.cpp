@@ -87,7 +87,7 @@ void BossRazer::Update(float _dt)
 	if (skillDuration >= 0.f)
 	{
 		obb->bShouldOverlapTest = true;
-		for (auto [actor, f] : tickDamageTimerMap)
+		for (auto& [actor, f] : tickDamageTimerMap)
 		{
 			// 틱 데미지 업데이트
 			f.Update(_dt);

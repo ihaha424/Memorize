@@ -25,10 +25,11 @@ TestLevel::~TestLevel()
 {
 }
 
-#include "BossGrowCircle.h"
-
+#include "BossGrowMagicCircle.h"
+#include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
+	
 	{
 		Actor* actor = CreateActor<Actor>();
 		actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
@@ -50,20 +51,20 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
-		CreateActor<BossGrowCircle>();
+		CreateActor<BossGrowMagicCircle>();
 
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
 			elementsPanel->SetPlayerController(pc);
 		}
 
-		Boss* boss = CreateActor<Boss>();
-		BossAIController* bc = CreateActor<BossAIController>();
-		boss->SetController(bc);
-		bc->SetBoss(boss);
+		//Boss* boss = CreateActor<Boss>();
+		//BossAIController* bc = CreateActor<BossAIController>();
+		//boss->SetController(bc);
+		//bc->SetBoss(boss);
 
-		bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
-		boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });
+		//bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
+		//boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });
 	}
 
 	{

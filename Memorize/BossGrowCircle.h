@@ -3,6 +3,8 @@
 #include "D2DGameEngine/DamageEvent.h"
 #include "D2DGameEngine/DotTween.h"
 
+#include "CoolTime.h"
+
 class BossGrowCircle : public BossSkillActor
 {
 public:
@@ -15,6 +17,7 @@ public:
 	virtual void Update(float _dt) override;
 
 	virtual void OnBeginOverlap(Actor* other) override;
+	virtual void OnEndOverlap(Actor* other) override;
 
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;
@@ -22,14 +25,19 @@ public:
 
 public:
 	class CircleComponent* circleComponent;
+	class AnimationBitmapComponent* abm;
 
 private:
 	float				startSkill = 1.f;
-
+	float				tickInterval = 0.4f;
 
 	RadialDamageEvent BossGrowCircleDamageEvent;
 	class Player* player{ nullptr };
 
 	float			 scaleVarias = 0.f;
 	DotTween<float>* scaleTween;
+
+	using TakeDamageTimer = CoolTime<void>;
+	using FunctionTimerMap = std::unordered_map<Actor*, TakeDamageTimer>;
+	FunctionTimerMap tickDamageTimerMap;
 };

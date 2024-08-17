@@ -15,6 +15,7 @@ void PlayerDisfell::Update(float _dt)
 
 void PlayerDisfell::Exit()
 {
+	std::cout << "PlayerDisfell Exit\n";
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->targetSkill = nullptr;
 }
