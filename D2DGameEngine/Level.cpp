@@ -61,11 +61,11 @@ void Level::PreUpdate(float _dt)
 
 void Level::Update(float _dt)
 {
-	for (auto actor : actorList)
+	for (int i = 0; i < actorList.size(); i++)
 	{
-		if (actor->CheckTickProperty(TICK_UPDATE) && actor->GetStatus() == OS_ACTIVE)
+		if (actorList[i]->CheckTickProperty(TICK_UPDATE) && actorList[i]->GetStatus() == OS_ACTIVE)
 		{
-			actor->Update(_dt);
+			actorList[i]->Update(_dt);
 		}
 	}
 }

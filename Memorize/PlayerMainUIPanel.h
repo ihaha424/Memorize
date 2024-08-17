@@ -10,6 +10,7 @@ public:
 	PlayerMainUIPanel(class World* _world);
 	virtual ~PlayerMainUIPanel();
 
-
+	void SetHPValue(float value);
+	void SetMPValue(float value);
 };
 

@@ -18,6 +18,8 @@
 #include "BossChasingBomb.h"
 #include "RazerCircle.h"
 
+#include "PlayerMainUIPanel.h"
+
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
 
@@ -60,6 +62,12 @@ void TestLevel::Enter()
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
 			elementsPanel->SetPlayerController(pc);
+		}
+
+		{
+			playerMainUI = GetWorld()->GetCanvas()->CreatePannel<PlayerMainUIPanel>(L"PlayerMainUI");
+			player->OnHPChanged->Connect([&](float hp) { playerMainUI->SetHPValue(hp); });
+			player->OnMPChanged->Connect([&](float mp) { playerMainUI->SetMPValue(mp); });
 		}
 	}
 	
@@ -154,6 +162,9 @@ void TestLevel::Enter()
 	//	actor->renderLayer = 3;
 	//}
 
+	/*{
+		BossRazer* razer = CreateActor<BossRazer>();
+		razer->renderLayer = 2;
 	{
 		/*BossRazer* razer = CreateActor<BossRazer>();
 		razer->renderLayer = 2;*/
@@ -163,6 +174,6 @@ void TestLevel::Enter()
 
 		/*ChasingBomb* chasingBomb = CreateActor<ChasingBomb>();
 		chasingBomb->SetLocation(0.f, -400.f);
-		chasingBomb->renderLayer = 2;*/
-	}
+		chasingBomb->renderLayer = 2;
+	}*/
 }

@@ -23,7 +23,6 @@ public:
 	void ReflectionOut() override;
 
 public:
-	class CircleComponent* circleComponent;
 	class AnimationBitmapComponent* abm;
 	CoolTime<void>* coolTime;
 

@@ -5,7 +5,7 @@
 Character::Character(class World* _world) : Pawn(_world)
 {
 	// NOTE: Test collision
-	BoxComponent* box = CreateComponent<BoxComponent>();
+	box = CreateComponent<BoxComponent>();
 	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::BlockAll);
 	box->bSimulatePhysics = true;
 	box->bApplyImpulseOnDamage = true;

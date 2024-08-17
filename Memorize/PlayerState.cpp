@@ -55,7 +55,6 @@ void PlayerState::Attack()
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	if (playerController->GetPlayer()->basicAttackTime > 0.f)
 		return;
-	return;
 	//기본 공격은 바로 나감으로 속성과 타입은 NONE(Default와는 다름, (Default == END))
 	bool CheckStates = playerController->AddSkillInfo(ESkillElement::SE_NONE);
 	CheckStates = playerController->AddSkillInfo(ESkillType::ST_NONE);
