@@ -27,5 +27,5 @@ void Pattern4Action::Run(float dt)
 	Math::Vector2 vel = toPlayer * 800.f;
 
 	proj1->SetVelocity(Math::Vector2::Transform(vel, rotate1));
-	proj2->SetVelocity(Math::Vector2::Transform(vel, rotate2));
+	proj2->SetVelocity(Math::Vector2::Transform(vel, rotate2)); */
 }
