@@ -11,6 +11,7 @@ public:
 
     class BossHPPanel* bossHpBar = nullptr;
     class DisfellPanel* disfellPanel = nullptr;
+    class PlayerMainUIPanel* playerMainUI = nullptr;
     virtual void Enter();
     virtual void Exit() {};
     virtual void Clear() {};

@@ -24,6 +24,9 @@ Player::Player(class World* _world) : Character(_world)
 
 	GetComponent<BoxComponent>()->SetCollisionObjectType(ECollisionChannel::Player);
 	
+	OnHPChanged = new Signal<float>;
+	OnMPChanged = new Signal<float>;
+
 	// 애니메이션
 	{
 		Animator* abm = CreateComponent<Animator>();
@@ -111,6 +114,9 @@ void Player::Update(float _dt)
 	//std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
 
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
+
+	OnHPChanged->Emit(stat.hp / (float)stat.maxHp);
+	OnMPChanged->Emit(stat.mp / (float)stat.maxHp);
 }
 
 
