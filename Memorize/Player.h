@@ -10,7 +10,7 @@ struct Stat
 	float mp;
 	float maxMp; //MP
 	float hpRegenPerSecond; //초당 HP 회복량
-	float mpRegenPerSecond; //초당 MP 회복량
+	float mpRegenPerSecond = 20; //초당 MP 회복량
 	float skillRange; //시전 범위
 	int castingSpeed; //캐스팅 속도
 	int numProjectiles; //투사체 개수
@@ -54,6 +54,9 @@ struct Stat
 class Player : public Character, public IReflection
 {
 	LOG_REGISTER_OBJ(Player)
+private:
+	float mpTimer = 0.f;
+
 public:
 
 	float moveSpeed = 450;
@@ -65,6 +68,7 @@ public:
 	class CircleComponent* rangeCircle;
 	class BuffEffectComponent* buffEffect;
 	std::vector<class Character*> enemiesInRange; //현재 범위 내에 있는 적
+
 public:
 	Player(class World* _world);
 	virtual ~Player();

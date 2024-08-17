@@ -110,8 +110,16 @@ void Player::PostUpdate(float _dt)
 void Player::Update(float _dt)
 {
 	__super::Update(_dt);
+
+	mpTimer += _dt;
+
+	if (mpTimer > 1.f)
+	{
+		mpTimer -= 1.f;
+		stat.mp += stat.mpRegenPerSecond;
+	}
+	std::cout << "MP:" << stat.mp << std::endl;
 	basicAttackTime -= _dt;
-	stat.mp += _dt * 100;
 }
 
 void Player::OnOverlap(Actor* other, const OverlapInfo& overlap)

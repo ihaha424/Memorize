@@ -2,7 +2,7 @@
 #include "D2DGameEngine/Animator.h"
 class BuffEffectComponent : public Animator
 {
-	float duration = 1.f;
+	float duration = 0.5f;
 	float elapsedTime = 0.f;
 	class Player* player;
 

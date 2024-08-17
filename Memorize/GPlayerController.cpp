@@ -78,6 +78,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<LightStream>();
 	CreateSkill<BasicAttack>();
 	CreateSkill<MPMaxIncrease>();
+	CreateSkill<MPRecovery>();
 
 }
 
