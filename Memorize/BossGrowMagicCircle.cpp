@@ -1,7 +1,7 @@
 #include "BossGrowMagicCircle.h" 
 #include "../D2DGameEngine/ReflectionResource.h"
 #include "../D2DGameEngine/ResourceManager.h"
-#include "../D2DGameEngine/BitmapComponent.h"
+#include "../D2DGameEngine/AnimationBitmapComponent.h"
 #include "../D2DGameEngine/ClickComponent.h"
 #include "../D2DGameEngine/CircleComponent.h"
 #include "../D2DGameEngine/EventBus.h"
@@ -13,6 +13,12 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	:BossSkillActor(_world)
 {
 	ReflectionIn();
+
+	abm = CreateComponent<AnimationBitmapComponent>();
+	rootComponent = abm;
+	bm->isVisible = false;
+	abm->MarkBoundsDirty();
+
 	disfellCommandCount = 4;
 	CreateDisfellCommand();
 	CreateComponent<ClickComponent>();
@@ -24,7 +30,7 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
 	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
 	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
-	bm->AddChild(circleComponent);
+	abm->AddChild(circleComponent);
 
 	DamageType radiaDamageType{
 		.damageImpulse = 10000.f,
@@ -42,8 +48,18 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 void BossGrowMagicCircle::BeginPlay()
 {
 	__super::BeginPlay();
-	bm->SetSprite(L"TestResource/Boss/MagicCircle/Pattern06_MagicCircle.png");
-	circleComponent->InitCircleRadius(bm->GetSpriteHeight() / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
+
+
+	{
+		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowMagicCircle.png");
+		abm->SliceSpriteSheet(1200, 1200, 0, 0, 0, 0);
+		abm->SetFrameDurations({ 0.05f });
+		abm->FrameResize(82);
+		abm->SetLoop(true);
+		abm->Trigger(true);
+	}
+
+	circleComponent->InitCircleRadius(1200 / 2);
 	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
@@ -54,7 +70,7 @@ void BossGrowMagicCircle::Update(float _dt)
 	__super::Update(_dt);
 	if (skillDuration > 0.f)
 	{
-		bm->Scale(1.0f + _dt * 0.1f, 1.0f + _dt * 0.1f);
+		abm->Scale(1.0f + _dt * 0.1f, 1.0f + _dt * 0.1f);
 		skillDuration -= _dt;
 	}
 	if (skillDuration < 0.f)
@@ -72,12 +88,21 @@ void BossGrowMagicCircle::Update(float _dt)
 
 void BossGrowMagicCircle::DisfellOneCountAction()
 {
-	bm->Scale(0.9f, 0.9f);
+	abm->Scale(0.9f, 0.9f);
 }
 
 void BossGrowMagicCircle::DisfellAction()
 {
-	SetStatus(EObjectStatus::OS_DESTROY);
+	disfellCommand.clear();
+	dissfellindex = 0;
+	CreateDisfellCommand();
+}
+
+void BossGrowMagicCircle::DisfellFailAction()
+{
+	disfellCommand.clear();
+	dissfellindex = 0;
+	CreateDisfellCommand();
 }
 
 void BossGrowMagicCircle::OnClicked()

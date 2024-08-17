@@ -36,6 +36,10 @@ public:
 	void SetLoop(bool loop) {
 		isLoop = loop;
 	}
+	void FrameResize(int index){
+		frames.resize(index);
+		frameDurations.resize(index);
+	}
 
 	/**
 	 * @brief 스프라이트 시트를 일정한 간격으로 슬라이스 하고, 기본 시간 간격을

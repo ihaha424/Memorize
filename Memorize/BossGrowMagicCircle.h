@@ -16,6 +16,7 @@ public:
 
 	virtual void DisfellOneCountAction();
 	virtual void DisfellAction();
+	virtual void DisfellFailAction();
 	virtual void OnClicked();
 
 
@@ -25,6 +26,7 @@ public:
 
 public:
 	class CircleComponent* circleComponent;
+	class AnimationBitmapComponent* abm;
 
 private:
 	RadialDamageEvent BossGrowMagicCircleDamageEvent;

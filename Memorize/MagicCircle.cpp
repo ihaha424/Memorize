@@ -54,6 +54,9 @@ void MagicCircle::Update(float _dt)
 	ESkillType curSkillType = controller->GetCurSkillInfo().type;
 	ESkillElement curSkillElement = controller->GetCurSkillInfo().element;
 
+	if (curSkillType == ST_END && curSkillElement == SE_END)
+		HideAll();
+
 	if (prevElement != curSkillElement)
 	{
 		if (curSkillElement == SE_FIRE)

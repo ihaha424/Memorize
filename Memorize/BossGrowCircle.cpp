@@ -14,6 +14,10 @@ BossGrowCircle::BossGrowCircle(World* _world)
 {
 	ReflectionIn();
 
+	abm = CreateComponent<AnimationBitmapComponent>();
+	rootComponent->AddChild(abm);
+	bm->isVisible = false;
+
 	circleComponent = CreateComponent<CircleComponent>();
 
 	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
@@ -36,8 +40,7 @@ BossGrowCircle::BossGrowCircle(World* _world)
 	BossGrowCircleDamageEvent.componentHits.resize(1);
 
 	scaleTween = new DotTween<float>(&scaleVarias, EasingEffect::Linear, StepAnimation::StepOnceForward);
-	scaleTween->SetDuration(10.f);
-	skillDuration = 10.f;
+	scaleTween->SetDuration(2.f);
 	scaleTween->SetStartPoint(1.f);
 	scaleTween->SetEndPoint(0.f);
 }
@@ -45,8 +48,16 @@ BossGrowCircle::BossGrowCircle(World* _world)
 void BossGrowCircle::BeginPlay()
 {
 	__super::BeginPlay();
-	bm->SetSprite(L"TestResource/Boss/MagicCircle/Pattern06_MagicCircle.png");
-	circleComponent->InitCircleRadius(bm->GetSpriteHeight() / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
+	
+	{
+		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
+		abm->SliceSpriteSheet(1300, 1000, 0, 0, 0, 0);
+		abm->SetFrameDurations({ 0.084f });
+		abm->Trigger(true);
+	}
+
+
+	circleComponent->InitCircleRadius(750.f);
 	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
@@ -55,22 +66,28 @@ void BossGrowCircle::BeginPlay()
 void BossGrowCircle::FixedUpdate(float _fixedRate)
 {
 	__super::FixedUpdate(_fixedRate);
-	circleComponent->bShouldOverlapTest = true;
 }
 
 void BossGrowCircle::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	if (startSkill < 1.f)
+	if (startSkill > 0.f)
 	{
-		startSkill += _dt;
+		startSkill -= _dt;
 		return;
 	}
 	skillDuration -= _dt;
-
 	scaleTween->Update(_dt);
-	bm->SetScale(scaleVarias, scaleVarias);
+	//bm->SetScale(scaleVarias, scaleVarias);
+
+	circleComponent->InitCircleRadius(750.f * scaleVarias);
+	circleComponent->bShouldOverlapTest = !circleComponent->bShouldOverlapTest;
+	for (auto& [actor, f] : tickDamageTimerMap)
+	{
+		// 틱 데미지 업데이트
+		f.Update(_dt);
+	}
 	if (skillDuration < 0.f)
 	{
 		SetStatus(EObjectStatus::OS_DESTROY);
@@ -79,10 +96,37 @@ void BossGrowCircle::Update(float _dt)
 
 void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = 750.f * scaleVarias;
-	BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = 750.f * scaleVarias;
-	other->TakeDamage(damage, BossGrowCircleDamageEvent, nullptr, this);
+	if (other)
+	{
+		auto f = [this, other]() {
+			BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = 749.f * scaleVarias;
+			BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = 750.f * scaleVarias;
+			other->TakeDamage(
+				damage,
+				BossGrowCircleDamageEvent,
+				nullptr,
+				this
+			);
+		};
+		f();
+		tickDamageTimerMap.insert({ other, TakeDamageTimer(f, tickInterval, true) });
+	}
 }
+
+//void BossGrowCircle::OnEndOverlap(Actor* other)
+//{
+//	if (other)
+//	{
+//		// 틱 데미지 끄기
+//		auto it = tickDamageTimerMap.find(other);
+//		if (it != tickDamageTimerMap.end())
+//		{
+//			it->second.SetFinish(true);
+//			tickDamageTimerMap.erase(it);
+//		}
+//	}
+//}
+
 
 void BossGrowCircle::ReflectionIn()
 {

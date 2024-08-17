@@ -41,6 +41,7 @@ bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 	
 		if (dissfellindex == disfellCommandCount)
 		{
+			DisfellOneCountAction();
 			DisfellAction();
 			return false;
 		}

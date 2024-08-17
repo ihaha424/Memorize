@@ -34,8 +34,8 @@ double Timer::GetTick() {
 	return frameTime * timeScale;
 }
 
-void Timer::SetTimeScale(double timeScale) {
-	timeScale = timeScale;
+void Timer::SetTimeScale(double _timeScale) {
+	timeScale = _timeScale;
 }
 
 double Timer::GetTimeScale()
