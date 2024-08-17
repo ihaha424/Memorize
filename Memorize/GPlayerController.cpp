@@ -77,6 +77,11 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<AggressiveWaves>();
 	CreateSkill<LightStream>();
 	CreateSkill<BasicAttack>();
+	CreateSkill<MPMaxIncrease>();
+	CreateSkill<MPRecovery>();
+	CreateSkill<Heal>();
+	CreateSkill<Enchant>();
+
 }
 
 int GPlayerController::GetPlayerCastingIndex()
@@ -113,14 +118,13 @@ void GPlayerController::BeginPlay()
 	//컨트롤러의 루트 컴포넌트를 플레이어 루트의 자식으로 설정
 	GetPlayer()->rootComponent->AddChild(rootComponent);
 
-	//스킬의 오너 설정
-	for (auto skill : skills)
-	{
-		skill.second->SetPlayer(this);
-	}
-
 	SetupInputComponent();
 
+	for (auto& skill : skills)
+	{
+		skill.second->SetPlayer(this);
+		skill.second->Initialize();
+	}
 
 	//Skill Initialize
 	InitializeSkillInfo();

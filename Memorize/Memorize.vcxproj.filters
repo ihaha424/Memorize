@@ -362,6 +362,9 @@
     <ClCompile Include="BossThroughProjectileMagicCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
     </ClCompile>
+    <ClCompile Include="BuffEffectComponent.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -624,6 +627,9 @@
     </ClInclude>
     <ClInclude Include="BossThroughProjectileMagicCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffEffectComponent.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

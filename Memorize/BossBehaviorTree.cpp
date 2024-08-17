@@ -391,11 +391,35 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			// 교점 체크
 			// -> 없으면 가능
 
-			// 만약 둘다 가능하면 랜덤으로 결정
-			// SetKey<Math::Vector2>("Pattern7Destination", destination);
+			bool isDestinationCandidate1Available = IsInMap(destinationCandidate1);
+			bool isDestinationCandidate2Available = IsInMap(destinationCandidate2);
 
-			// 만약 둘다 안되면
-			// ResetKey<Math::Vector2>("Pattern7Destination");
+			// 만약 둘다 가능하면 랜덤으로 결정
+			if (isDestinationCandidate1Available && isDestinationCandidate2Available)
+			{
+				int r = Random::Get(1);
+				if (r)
+				{
+					SetKey<Math::Vector2>("TeleportDestination", destinationCandidate1);
+				}
+				else
+				{
+					SetKey<Math::Vector2>("TeleportDestination", destinationCandidate2);
+				}
+			}
+			else if (isDestinationCandidate1Available)
+			{
+				SetKey<Math::Vector2>("TeleportDestination", destinationCandidate1);
+			}
+			else if (isDestinationCandidate2Available)
+			{
+				SetKey<Math::Vector2>("TeleportDestination", destinationCandidate2);
+			}
+			else
+			{
+				// 만약 둘다 안되면
+				ResetKey<Math::Vector2>("TeleportDestination");
+			}
 		};
 
 		TeleportTo* teleportTo = CreateNode<TeleportTo>();
@@ -442,6 +466,117 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		return pattern4Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern5: {
+		Sequence* pattern5Sequence = CreateNode<Sequence>();
+
+		// Teleporting Logic
+		DeclareKey<Math::Vector2>("pattern5TeleportDestination");
+		Primer* setTeleportDestination = CreateNode<Primer>();
+		setTeleportDestination->_action = [this]() {
+			Math::Vector2 playerLocation = GetKey<Player*>("Player")->GetLocation();
+
+			Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
+			Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
+
+			// TODO: 이동 가능한지 확인
+			// 맵 마름모 꼴이니까 변마다 Line 만들고
+			// Line{destination, BossCurrLoc} 가지고 
+			// 교점 체크
+			// -> 없으면 가능
+
+			bool isDestinationCandidate1Available = IsInMap(destinationCandidate1);
+			bool isDestinationCandidate2Available = IsInMap(destinationCandidate2);
+
+			// 만약 둘다 가능하면 랜덤으로 결정
+			if (isDestinationCandidate1Available && isDestinationCandidate2Available)
+			{
+				int r = Random::Get(1);
+				if (r)
+				{
+					SetKey<Math::Vector2>("pattern5TeleportDestination", destinationCandidate1);
+				}
+				else
+				{
+					SetKey<Math::Vector2>("pattern5TeleportDestination", destinationCandidate2);
+				}
+			}
+			else if (isDestinationCandidate1Available)
+			{
+				SetKey<Math::Vector2>("pattern5TeleportDestination", destinationCandidate1);
+			}
+			else if (isDestinationCandidate2Available)
+			{
+				SetKey<Math::Vector2>("pattern5TeleportDestination", destinationCandidate2);
+			}
+			else
+			{
+				// 만약 둘다 안되면
+				ResetKey<Math::Vector2>("pattern5TeleportDestination");
+			}
+		};
+
+		TeleportTo* teleportTo = CreateNode<TeleportTo>();
+		teleportTo->SetObserveLocationKey("pattern5TeleportDestination");
+
+		DeclareKey<Math::Vector2>("Pattern5Destination");
+		Primer* setDestination = CreateNode<Primer>();
+		setDestination->_action = [this]() {
+			if (!IsKeySet<Math::Vector2>("pattern5TeleportDestination"))
+			{
+				ResetKey<Math::Vector2>("Pattern5Destination");
+				return;
+			}
+
+			Math::Vector2 teleportLocation = GetKey<Math::Vector2>("pattern5TeleportDestination");
+
+			Math::Vector2 destinationCandidate1 = teleportLocation + Math::Vector2{ 0, 710 };
+			Math::Vector2 destinationCandidate2 = teleportLocation - Math::Vector2{ 0, 710 };
+
+			// TODO: 이동 가능한지 확인
+			// 맵 마름모 꼴이니까 변마다 Line 만들고
+			// Line{destination, BossCurrLoc} 가지고 
+			// 교점 체크
+			// -> 없으면 가능
+			bool isDestinationCandidate1Available = IsInMap(destinationCandidate1);
+			bool isDestinationCandidate2Available = IsInMap(destinationCandidate2);
+
+			// 만약 둘다 가능하면 랜덤으로 결정
+			if (isDestinationCandidate1Available && isDestinationCandidate2Available)
+			{
+				int r = Random::Get(1);
+				if (r)
+				{
+					SetKey<Math::Vector2>("Pattern5Destination", destinationCandidate1);
+				}
+				else
+				{
+					SetKey<Math::Vector2>("Pattern5Destination", destinationCandidate2);
+				}
+			}
+			else if (isDestinationCandidate1Available)
+			{
+				SetKey<Math::Vector2>("Pattern5Destination", destinationCandidate1);
+			}
+			else if (isDestinationCandidate2Available)
+			{
+				SetKey<Math::Vector2>("Pattern5Destination", destinationCandidate2);
+			}
+			else
+			{
+				// 만약 둘다 안되면
+				ResetKey<Math::Vector2>("Pattern5Destination");
+			}
+		};
+
+		Pattern5Action* pattern5Action = CreateNode<Pattern5Action>();
+		pattern5Action->SetPatternInterval(3.f);
+		pattern5Action->speed = 250.f;
+		pattern5Action->castingInterval = 1.f;
+
+		pattern5Sequence->PushBackChildren({ setTeleportDestination, setDestination });
+		setTeleportDestination->Wrap(teleportTo);
+		setDestination->Wrap(pattern5Action);
+
+		return pattern5Sequence;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern6: {
 		//Pattern06

@@ -47,6 +47,6 @@ void Pattern7Action::Run(float dt)
 			locationOffset.y * i
 		};
 		Math::Vector2 location = bossLocation + offset;
-		razers[i]->SetLocation(location.x, location.y);
+		razers[i + 3]->SetLocation(location.x, location.y);
 	}
 }

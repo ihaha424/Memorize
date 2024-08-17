@@ -2,5 +2,5 @@ Skill_Mana : 100
 Command : 2, 1, 1
 Skill_Condition : 10
 Castring Time : 0.5
-Skill_Text : 디스펠 가능한 모든 마법을 무효화합니다.
+Skill_Text : 최대 MP를 10 증가시킵니다.
 End

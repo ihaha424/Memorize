@@ -50,6 +50,7 @@ public:
 	 * @brief 스킬을 사용합니다. 스킬 사용 카운트가 증가합니다. 
 	 */
 	virtual void UseSkill();
+	virtual void Initialize() {};
 	const float GetMana() const { return mana; }
 	const int	GetCommandSize() const { return commandList.size(); }
 	const float	GetCastingTime() const { return castingTime; }
@@ -64,7 +65,7 @@ public:
 		_commandList.resize(commandList.size());
 		std::copy(commandList.begin(), commandList.end(), _commandList.begin());
 	}
-
+	
 	virtual void ReflectionIn() = 0;
 	virtual void ReflectionOut() {}
 

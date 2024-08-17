@@ -130,6 +130,10 @@ void ChasingBomb::Update(float _dt)
 			explosionEffect->isVisible = true;	// 애니메이션 보이게 하기
 
 			exploding = true;	// 폭발 중 마크
+		} 
+		else
+		{
+			bombTrigger->bShouldOverlapTest = true;
 		}
 	}
 	else
@@ -149,6 +153,10 @@ void ChasingBomb::Update(float _dt)
 
 			// 다음 FixedUpdate 틱 마지막에 오브젝트 삭제하게 만듦.
 			destroyThis = true;
+		}
+		else
+		{
+			bombExplosionRadius->bShouldOverlapTest = true;
 		}
 	}
 }

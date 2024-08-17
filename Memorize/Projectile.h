@@ -38,7 +38,7 @@ public:
 	void SetVelocity(Math::Vector2 _direction, float _speed);
 
 	virtual void BeginPlay() override;
-	virtual void Initialize() {};
+	virtual void Initialize();
 	virtual void FixedUpdate(float _fixedRate) override;
 	void Update(float _dt) override;
 };

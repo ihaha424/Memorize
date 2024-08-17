@@ -64,10 +64,10 @@ void TestLevel::Enter()
 	
 
 	{
-		//Boss* boss = CreateActor<Boss>();
-		//BossAIController* bc = CreateActor<BossAIController>();
-		//boss->SetController(bc);
-		//bc->SetBoss(boss);
+		Boss* boss = CreateActor<Boss>();
+		BossAIController* bc = CreateActor<BossAIController>();
+		boss->SetController(bc);
+		bc->SetBoss(boss);
 
 		//bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
 		//boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });
