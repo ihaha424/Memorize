@@ -211,6 +211,7 @@
     <ClCompile Include="PlayerFSMComponent.cpp" />
     <ClCompile Include="PlayerIdle.cpp" />
     <ClCompile Include="PlayerIdleAnimation.cpp" />
+    <ClCompile Include="PlayerMainUIPanel.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="PlayerMoveAnimation.cpp" />
     <ClCompile Include="PlayerState.cpp" />
@@ -300,6 +301,7 @@
     <ClInclude Include="PlayerFSMComponent.h" />
     <ClInclude Include="PlayerIdle.h" />
     <ClInclude Include="PlayerIdleAnimation.h" />
+    <ClInclude Include="PlayerMainUIPanel.h" />
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerMoveAnimation.h" />
     <ClInclude Include="PlayerState.h" />

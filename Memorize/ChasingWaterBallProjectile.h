@@ -19,6 +19,7 @@ public:
 	ChasingWaterBallProjectile(class World* _world);
 	virtual ~ChasingWaterBallProjectile();
 
+	virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) override;
 	virtual void Update(float _dt) override;
 
 	void SetInitialLocation(float _x, float _y) { x = _x, y = _y; }

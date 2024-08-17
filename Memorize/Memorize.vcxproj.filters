@@ -365,6 +365,9 @@
     <ClCompile Include="BuffEffectComponent.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMainUIPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -630,6 +633,9 @@
     </ClInclude>
     <ClInclude Include="BuffEffectComponent.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMainUIPanel.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
