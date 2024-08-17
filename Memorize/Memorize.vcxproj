@@ -218,6 +218,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
+    <ClCompile Include="RazerCircle.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
@@ -308,6 +309,7 @@
     <ClInclude Include="ProjectileSkill.h" />
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="BossRazer.h" />
+    <ClInclude Include="RazerCircle.h" />
     <ClInclude Include="Signal.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />

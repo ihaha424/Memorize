@@ -117,6 +117,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile">
       <UniqueIdentifier>{16b34b1f-e4e1-42f8-9e3f-d5495452ad29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossRazerCircle">
+      <UniqueIdentifier>{d7364d22-329b-4a28-835d-22c2342ddabf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -361,6 +364,9 @@
     </ClCompile>
     <ClCompile Include="BuffEffectComponent.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="RazerCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazerCircle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -624,6 +630,9 @@
     </ClInclude>
     <ClInclude Include="BuffEffectComponent.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="RazerCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazerCircle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
