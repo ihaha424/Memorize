@@ -113,19 +113,19 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	}
 }
 
-void BossGrowCircle::OnEndOverlap(Actor* other)
-{
-	if (other)
-	{
-		// Æ½ µ¥¹ÌÁö ²ô±â
-		auto it = tickDamageTimerMap.find(other);
-		if (it != tickDamageTimerMap.end())
-		{
-			it->second.SetFinish(true);
-			tickDamageTimerMap.erase(it);
-		}
-	}
-}
+//void BossGrowCircle::OnEndOverlap(Actor* other)
+//{
+//	if (other)
+//	{
+//		// Æ½ µ¥¹ÌÁö ²ô±â
+//		auto it = tickDamageTimerMap.find(other);
+//		if (it != tickDamageTimerMap.end())
+//		{
+//			it->second.SetFinish(true);
+//			tickDamageTimerMap.erase(it);
+//		}
+//	}
+//}
 
 
 void BossGrowCircle::ReflectionIn()

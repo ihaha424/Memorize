@@ -16,9 +16,7 @@ public:
 	virtual void FixedUpdate(float _fixedRate) override;
 	virtual void Update(float _dt) override;
 
-	virtual void OnBeginOverlap(Actor* other) override;
-	virtual void OnEndOverlap(Actor* other) override;
-	// virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;

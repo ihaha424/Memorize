@@ -51,9 +51,9 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
-		////CreateActor<BossGrowMagicCircle>();
+		CreateActor<BossGrowMagicCircle>();
 
-		CreateActor<BossGrowCircle>();
+		
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
 			elementsPanel->SetPlayerController(pc);

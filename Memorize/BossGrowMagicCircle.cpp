@@ -55,6 +55,7 @@ void BossGrowMagicCircle::BeginPlay()
 		abm->SliceSpriteSheet(1200, 1200, 0, 0, 0, 0);
 		abm->SetFrameDurations({ 0.05f });
 		abm->FrameResize(82);
+		abm->SetLoop(true);
 		abm->Trigger(true);
 	}
 
