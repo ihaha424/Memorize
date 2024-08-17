@@ -57,12 +57,14 @@ public:
 	}
 
 	Math::Vector2 GetRightVector() const {
-		DXVec3 p = DXVec3::Transform(DXVec3::Right, GetWorldTransform());
+		Math::Matrix worldRotation = Math::ExtractRotation(GetWorldTransform());
+		DXVec3 p = DXVec3::Transform(DXVec3::Right, worldRotation);
 		return DXVec2(p);
 	}
 
 	Math::Vector2 GetUpVector() const {
-		DXVec3 p = DXVec3::Transform(DXVec3::Up, GetWorldTransform());
+		Math::Matrix worldRotation = Math::ExtractRotation(GetWorldTransform());
+		DXVec3 p = DXVec3::Transform(DXVec3::Up, worldRotation);
 		return DXVec2(p);
 	}
 

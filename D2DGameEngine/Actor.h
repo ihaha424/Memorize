@@ -38,18 +38,28 @@ public:
 
 	Math::Vector2 Right() {
 		if (rootComponent != nullptr)
-			rootComponent->GetRightVector();
+			return rootComponent->GetRightVector();
+		return Math::Vector2::UnitX;
 	}
 
 	Math::Vector2 Up() {
 		if (rootComponent != nullptr)
-			rootComponent->GetUpVector();
+			return rootComponent->GetUpVector();
+		return -Math::Vector2::UnitY;
 	}
 
 	void SetLocation(const float x, const float y);
 	Math::Vector2 GetLocation() const;
 	void SetRotation(const float _degree);
+	void Rotate(float _degree) {
+		if (rootComponent != nullptr)
+			rootComponent->Rotate(_degree);
+	}
 	void SetScale(const float x, const float y);
+	void Scale(float x, float y) {
+		if (rootComponent != nullptr)
+			rootComponent->Scale(x, y);
+	}
 	Math::Matrix GetTrasnform() const;
 
 	void RotateToward(const Math::Vector2& _direction);
@@ -62,6 +72,15 @@ public:
 	void Teleport(const DXVec2& _teleportDelta) {
 		if (rootComponent)
 			rootComponent->TeleportComponent(_teleportDelta);
+	}
+	/**
+	 * @brief Get the velocity of this Actor
+	 * @return the velocity
+	 */
+	Math::Vector2 GetVelocity() {
+		if (rootComponent)
+			return rootComponent->GetComponentVelocity();
+		return Math::Vector2::Zero;
 	}
 	/**
 	 * @brief Set velocity of the component

@@ -16,8 +16,8 @@ BossSkillActor::BossSkillActor(World* _world)
 
 	rootComponent = bm = CreateComponent<BitmapComponent>();
 	bm->MarkBoundsDirty();
-	mv = CreateComponent<MovementComponent>();
-	rootComponent->AddChild(mv);
+	/*mv = CreateComponent<MovementComponent>();
+	rootComponent->AddChild(mv);*/
 }
 
 BossSkillActor::~BossSkillActor()
