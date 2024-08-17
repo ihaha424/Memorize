@@ -9,11 +9,13 @@ class BossThroughProjectile : public BossSkillActor
 {
 public:
 	BossThroughProjectile(class World* _world);
-	virtual ~BossThroughProjectile() {};
+	virtual ~BossThroughProjectile() {/*∆¯∆»¿Ã∆Â∆Æ ? */ };
 
 	virtual void BeginPlay();
-
+	virtual void FixedUpdate(float _fixedRate) override;
 	virtual void Update(float _dt) override;
+
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 
 	// BossSkillActor¿ª(∏¶) ≈Î«ÿ ªÛº”µ 
@@ -32,5 +34,6 @@ private:
 
 	float			 speedVarias = 0.f;
 	DotTween<float>* speedTween;
+	bool destroyThis{ false };
 };
 

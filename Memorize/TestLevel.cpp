@@ -153,12 +153,12 @@ void TestLevel::Enter()
 	//	actor->renderLayer = 3;
 	//}
 
-	{
+	/*{
 		BossRazer* razer = CreateActor<BossRazer>();
 		razer->renderLayer = 2;
 
 		ChasingBomb* chasingBomb = CreateActor<ChasingBomb>();
 		chasingBomb->SetLocation(0.f, -400.f);
 		chasingBomb->renderLayer = 2;
-	}
+	}*/
 }

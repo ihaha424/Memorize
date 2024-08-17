@@ -24,12 +24,14 @@ BossThroughProjectile::BossThroughProjectile(World* _world)
 	abm->AddChild(mv);
 
 	circleComponent = CreateComponent<CircleComponent>();
-
 	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
 	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
-	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
-	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
+	circleComponent->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
+	circleComponent->SetCollisionObjectType(ECollisionChannel::EnemyPattern);
+	circleComponent->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
+	circleComponent->collisionProperty.SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Block);
+	
 	abm->AddChild(circleComponent);
 
 	DamageType radiaDamageType{
@@ -61,27 +63,61 @@ void BossThroughProjectile::BeginPlay()
 	}
 
 	circleComponent->InitCircleRadius(150 / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
-	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+void BossThroughProjectile::FixedUpdate(float _fixedRate)
+{
+	__super::FixedUpdate(_fixedRate);
+
+	// 콜리션 이벤트 뿌렸으니 사망 마크.
+	if (destroyThis)
+	{
+		Destroy();
+		return;
+	}
 }
 
 void BossThroughProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
 
+	if (destroyThis) return;
+
 	skillDuration -= _dt;
 	speedTween->Update(_dt);
 	mv->SetSpeed(speedVarias);
+	circleComponent->bShouldOverlapTest = true;
 	if (skillDuration < 0.f)
 	{
-		BossThroughProjectileDamageEvent.radialDamageInfo.innerRadius = 500.f;
-		BossThroughProjectileDamageEvent.radialDamageInfo.outerRadius = 500.f;
-		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
-		BossThroughProjectileDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
-		player->TakeDamage(damage, BossThroughProjectileDamageEvent, nullptr, this);
-		SetStatus(EObjectStatus::OS_DESTROY);
+		// 다음 FixedUpdate 틱 마지막에 오브젝트 삭제하게 만듦.
+		
+		// 콜리션 꺼버림
+		circleComponent->SetCollisionEnabled(CollisionEnabled::NoCollision);
+		circleComponent->bGenerateOverlapEvent = false;
+
+		// 월드에서 직접 콜리션 삭제해서
+		// 다음 돌아오는 FixedUpdate 틱에서 OnEndCollision 이벤트 뿌리고
+		// 사망하게 해야됨.
+		GetWorld()->UnregisterComponentCollision(circleComponent);
+		destroyThis = true;
 	}
+}
+
+void BossThroughProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
+{
+	other->TakeDamage(
+		damage,
+		BossThroughProjectileDamageEvent,
+		nullptr,
+		this
+	);
+
+	circleComponent->SetCollisionEnabled(CollisionEnabled::NoCollision);
+	circleComponent->bGenerateOverlapEvent = false;
+	abm->Quit();	// 애니메이션도 종료
+	abm->isVisible = false;	// 애니메이션 안보이게 하기
 }
 
 
@@ -98,5 +134,5 @@ void BossThroughProjectile::SetPosAndDerection(Math::Vector2 _startPos, Math::Ve
 {
 	SetLocation(_startPos.x, _startPos.y);
 	mv->SetDirection(_direction);
-	RotateToward(_direction);
+	LookAt(_direction);
 }

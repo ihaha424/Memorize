@@ -21,7 +21,7 @@ Player::Player(class World* _world) : Character(_world)
 	skillUses = 100;
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
-	
+	box->SetCollisionObjectType(ECollisionChannel::Player);
 	// 애니메이션
 	{
 		Animator* abm = CreateComponent<Animator>();
