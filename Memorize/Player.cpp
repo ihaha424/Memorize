@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "D2DGameEngine/Animator.h"
 //#include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "PlayerAnimationStates.h"
 
@@ -12,6 +11,7 @@
 #include "D2DGameEngine/BoxComponent.h"
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"
+#include "BuffEffectComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
 
@@ -77,6 +77,10 @@ Player::Player(class World* _world) : Character(_world)
 
 	MagicCircle* mc = CreateComponent<MagicCircle>();
 	rootComponent->AddChild(mc);
+
+	buffEffect = CreateComponent<BuffEffectComponent>();
+	rootComponent->AddChild(buffEffect);
+	buffEffect->SetStatus(OS_INACTIVE);
 
 	//주변 적을 감지하기 위한 원형 콜라이더 for waterball skill
 	rangeCircle = CreateComponent <CircleComponent>();

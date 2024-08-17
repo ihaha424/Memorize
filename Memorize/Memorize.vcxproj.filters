@@ -353,6 +353,9 @@
     <ClCompile Include="BossChasingProjectile.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
     </ClCompile>
+    <ClCompile Include="BuffEffectComponent.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -609,6 +612,9 @@
     </ClInclude>
     <ClInclude Include="BaseAttackProjectile.h">
       <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffEffectComponent.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

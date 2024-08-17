@@ -20,20 +20,19 @@ struct Stat
 
 	Stat operator+(Stat stat)
 	{
-		Stat ret;
-		ret.hp += stat.hp;
-		ret.maxHp += stat.maxHp;
-		ret.mp += stat.mp;
-		ret.maxMp += stat.maxMp;
-		ret.hpRegenPerSecond += stat.hpRegenPerSecond;
-		ret.mpRegenPerSecond += stat.mpRegenPerSecond;
-		ret.skillRange += stat.skillRange;
-		ret.castingSpeed += stat.castingSpeed;
-		ret.numProjectiles += stat.numProjectiles;
-		ret.defaultDamage += stat.defaultDamage;
-		ret.defaultAttackSpeed += stat.defaultAttackSpeed;
-		ret.manaOverLoad = stat.manaOverLoad;
-		return ret;
+		hp += stat.hp;
+		maxHp += stat.maxHp;
+		mp += stat.mp;
+		maxMp += stat.maxMp;
+		hpRegenPerSecond += stat.hpRegenPerSecond;
+		mpRegenPerSecond += stat.mpRegenPerSecond;
+		skillRange += stat.skillRange;
+		castingSpeed += stat.castingSpeed;
+		numProjectiles += stat.numProjectiles;
+		defaultDamage += stat.defaultDamage;
+		defaultAttackSpeed += stat.defaultAttackSpeed;
+		manaOverLoad = stat.manaOverLoad;
+		return *this;
 	}
 	Stat operator-()
 	{
@@ -64,6 +63,7 @@ public:
 
 	float waterBallRange = 500.f;
 	class CircleComponent* rangeCircle;
+	class BuffEffectComponent* buffEffect;
 	std::vector<class Character*> enemiesInRange; //현재 범위 내에 있는 적
 public:
 	Player(class World* _world);

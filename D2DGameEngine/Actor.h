@@ -38,12 +38,14 @@ public:
 
 	Math::Vector2 Right() {
 		if (rootComponent != nullptr)
-			rootComponent->GetRightVector();
+			return rootComponent->GetRightVector();
+		return { 0,0 };
 	}
 
 	Math::Vector2 Up() {
 		if (rootComponent != nullptr)
-			rootComponent->GetUpVector();
+			return rootComponent->GetUpVector();
+		return { 0,0 };
 	}
 
 	void SetLocation(const float x, const float y);
