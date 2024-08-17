@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "D2DGameEngine/Animator.h"
 //#include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "PlayerAnimationStates.h"
 
@@ -12,6 +11,7 @@
 #include "D2DGameEngine/BoxComponent.h"
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"
+#include "BuffEffectComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
 
@@ -78,15 +78,9 @@ Player::Player(class World* _world) : Character(_world)
 	MagicCircle* mc = CreateComponent<MagicCircle>();
 	rootComponent->AddChild(mc);
 
-	//주변 적을 감지하기 위한 원형 콜라이더 for waterball skill
-	rangeCircle = CreateComponent <CircleComponent>();
-	rootComponent->AddChild(rangeCircle);
-	rangeCircle->SetCircleRadius(waterBallRange);
-	rangeCircle->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
-	rangeCircle->bSimulatePhysics = false;
-	rangeCircle->bApplyImpulseOnDamage = false;
-	rangeCircle->bGenerateOverlapEvent = true;
-	rangeCircle->SetStatus(OS_INACTIVE);
+	buffEffect = CreateComponent<BuffEffectComponent>();
+	rootComponent->AddChild(buffEffect);
+	buffEffect->SetStatus(OS_INACTIVE);
 }
 
 Player::~Player()
@@ -96,33 +90,25 @@ Player::~Player()
 void Player::AddToStat(Stat _addStat)
 {
 	stat = stat + _addStat;
+
+	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
+	stat.hp = std::clamp(stat.hp, minHp, stat.maxHp);
+	stat.defaultAttackSpeed = std::clamp(stat.defaultAttackSpeed, minAttackSpeed, maxAttackSpeed);
+	stat.maxMp = std::clamp(stat.maxMp, minMaxMp, maxMaxMp);
 }
 
-void Player::PostUpdate(float _dt)
-{
-	__super::PostUpdate(_dt);
-}
+
 
 void Player::Update(float _dt)
 {
 	__super::Update(_dt);
-	basicAttackTime -= _dt;
-	stat.mp += _dt * 100;
-}
 
-void Player::OnOverlap(Actor* other, const OverlapInfo& overlap)
-{
-	__super::OnBeginOverlap(other, overlap);
+	stat.mp += stat.mpRegenPerSecond * _dt;
 
-	//TODO: 채널 설정으로 바꿔야 함. 
-	//범위 내에 있는 적을 체크하여 배열에 넣음  
-	Character* ch = dynamic_cast<Character*>(other);
-	if (ch) 
-	{
-		if(find(enemiesInRange.begin(), enemiesInRange.end(), ch) == enemiesInRange.end())
-			enemiesInRange.push_back(ch);
-	}
-	
+	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
+	//std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
+
+	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 }
 
 

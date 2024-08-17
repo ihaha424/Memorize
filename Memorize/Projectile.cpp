@@ -41,6 +41,8 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	__super::OnBeginOverlap(other, overlap);
 
+	if (box->bGenerateOverlapEvent == false)
+		return;
 
 	//대미지를 입힘
 	DamageEvent damageEvent;
@@ -57,6 +59,7 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 		bEnding = true;
 		anim->SetState(endingState);
 		mv->SetSpeed(0);
+		elapsedTime = duration + delay;
 	}
 
 	//다른 공격과 충돌하는 스킬은 충돌 처리
@@ -82,6 +85,11 @@ void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
 void Projectile::BeginPlay()
 {
 	__super::BeginPlay();
+}
+
+void Projectile::Initialize()
+{
+	anim->SetState(normalState);
 }
 
 void Projectile::FixedUpdate(float _fixedRate)

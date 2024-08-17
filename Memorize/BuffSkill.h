@@ -6,13 +6,9 @@ class BuffSkill : public Skill
 {
 protected:
 	Stat buffStat;
-	float buffDuration;
-	float elapsedTime = 0.f;
 public:
 	BuffSkill(Actor* _owner);
 	virtual ~BuffSkill();
-
-	virtual void Update(float _dt) override;
 
 	virtual void UseSkill() override;
 

@@ -8,32 +8,31 @@ struct Stat
 	float hp;
 	float maxHp; //HP
 	float mp;
-	float maxMp; //MP
+	float maxMp = 100.f; //MP
 	float hpRegenPerSecond; //초당 HP 회복량
-	float mpRegenPerSecond; //초당 MP 회복량
+	float mpRegenPerSecond = 20; //초당 MP 회복량
 	float skillRange; //시전 범위
 	int castingSpeed; //캐스팅 속도
 	int numProjectiles; //투사체 개수
 	int defaultDamage; //기본 대미지
-	int defaultAttackSpeed; //기본 공격 속도
+	float defaultAttackSpeed = 1.f; //기본 공격 속도
 	bool manaOverLoad = false;
 
 	Stat operator+(Stat stat)
 	{
-		Stat ret;
-		ret.hp += stat.hp;
-		ret.maxHp += stat.maxHp;
-		ret.mp += stat.mp;
-		ret.maxMp += stat.maxMp;
-		ret.hpRegenPerSecond += stat.hpRegenPerSecond;
-		ret.mpRegenPerSecond += stat.mpRegenPerSecond;
-		ret.skillRange += stat.skillRange;
-		ret.castingSpeed += stat.castingSpeed;
-		ret.numProjectiles += stat.numProjectiles;
-		ret.defaultDamage += stat.defaultDamage;
-		ret.defaultAttackSpeed += stat.defaultAttackSpeed;
-		ret.manaOverLoad = stat.manaOverLoad;
-		return ret;
+		hp += stat.hp;
+		maxHp += stat.maxHp;
+		mp += stat.mp;
+		maxMp += stat.maxMp;
+		hpRegenPerSecond += stat.hpRegenPerSecond;
+		mpRegenPerSecond += stat.mpRegenPerSecond;
+		skillRange += stat.skillRange;
+		castingSpeed += stat.castingSpeed;
+		numProjectiles += stat.numProjectiles;
+		defaultDamage += stat.defaultDamage;
+		defaultAttackSpeed += stat.defaultAttackSpeed;
+		manaOverLoad = stat.manaOverLoad;
+		return *this;
 	}
 	Stat operator-()
 	{
@@ -55,6 +54,13 @@ struct Stat
 class Player : public Character, public IReflection
 {
 	LOG_REGISTER_OBJ(Player)
+private:
+	float minMp = 0.f;
+	float minHp = 0.f;
+	float minMaxMp = 0.f;
+	float maxMaxMp = 1000.f;
+	float minAttackSpeed = 1.f;
+	float maxAttackSpeed = 2.f;
 public:
 
 	float moveSpeed = 450;
@@ -62,9 +68,8 @@ public:
 	float basicAttackTime = 1.f;
 	int skillUses;
 
-	float waterBallRange = 500.f;
-	class CircleComponent* rangeCircle;
-	std::vector<class Character*> enemiesInRange; //현재 범위 내에 있는 적
+	class BuffEffectComponent* buffEffect;
+
 public:
 	Player(class World* _world);
 	virtual ~Player();
@@ -74,10 +79,7 @@ public:
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
-	virtual void PostUpdate(float _dt) override;
 	virtual void Update(float _dt) override;
-
-	virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;
