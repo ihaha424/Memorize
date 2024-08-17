@@ -13,12 +13,13 @@
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"
 #include "D2DGameEngine/DamageEvent.h"
+#include "../D2DGameEngine/CircleComponent.h"
 
 Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
 	skillUses = 100;
-	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
+	SetTickProperties(TICK_PHYSICS | TICK_PRE_UPDATE | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
 	
 	// 애니메이션
@@ -47,7 +48,7 @@ Player::Player(class World* _world) : Character(_world)
 			PlayerAnimationState->SetFrameDurations({ 0.1f });
 			PlayerAnimationState->Trigger(true);
 			abm->Initialize(PlayerAnimationState);
-
+			
 			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
 			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
 			PlayerAnimationState->SliceSpriteSheet(162, 254, 0, 0, 0, 0);
@@ -76,6 +77,15 @@ Player::Player(class World* _world) : Character(_world)
 
 	MagicCircle* mc = CreateComponent<MagicCircle>();
 	rootComponent->AddChild(mc);
+
+	//주변 적을 감지하기 위한 원형 콜라이더 for waterball skill
+	rangeCircle = CreateComponent <CircleComponent>();
+	rootComponent->AddChild(rangeCircle);
+	rangeCircle->SetCircleRadius(waterBallRange);
+	rangeCircle->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
+	rangeCircle->bSimulatePhysics = false;
+	rangeCircle->bApplyImpulseOnDamage = false;
+	rangeCircle->bGenerateOverlapEvent = true;
 }
 
 Player::~Player()
@@ -87,11 +97,37 @@ void Player::AddToStat(Stat _addStat)
 	stat = stat + _addStat;
 }
 
+void Player::PreUpdate(float _dt)
+{
+	__super::PreUpdate(_dt);
+	//매 틱마다 범위 내에 있는 적을 감지하기 위해 초기화해줌
+	//enemiesInRange.clear();
+}
+
 void Player::Update(float _dt)
 {
 	__super::Update(_dt);
 	basicAttackTime -= _dt;
+	stat.mp += _dt * 100;
 }
+
+void Player::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
+{
+	__super::OnBeginOverlap(other, overlap);
+
+	OBJ_MESSAGE("Overlap began!");
+
+
+	//TODO :: 매 틱마다 체크하는 것으로 바꿔야 함!!!!! 
+	//범위 내에 있는 적을 체크하여 배열에 넣음 
+	Character* ch = dynamic_cast<Character*>(other);
+	if (ch) 
+	{
+		enemiesInRange.push_back(ch);
+	}
+	
+}
+
 
 void Player::ReflectionIn()
 {

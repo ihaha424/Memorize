@@ -15,6 +15,10 @@ enum class CollisionPropertyPreset {
 	Pawn,
 	Character,
 	Trigger,
+	Player,
+	Enemy,
+	PlayerProjectile,
+	EnemyProjectile
 };
 
 using CollisionResponseMap = std::unordered_map<ECollisionChannel, CollisionResponse>;
@@ -80,32 +84,59 @@ struct CollisionProperty {
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
-			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::Pawn, CollisionResponse::Ignore);
 			break;
 		case CollisionPropertyPreset::OverlapPawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
-			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
 			break;
 		case CollisionPropertyPreset::Pawn:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::Pawn;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
-			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
-			SetCollsionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
 			break;
 		case CollisionPropertyPreset::Character:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::Character;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
-			SetCollsionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
-			SetCollsionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Pawn, CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Character, CollisionResponse::Overlap);
 			break;
 		case CollisionPropertyPreset::Trigger:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::WorldDynamic;
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
+			break;
+		case CollisionPropertyPreset::Player:
+			collisionEnabled = CollisionEnabled::Type::EnableCollision;
+			objectType = ECollisionChannel::Player;
+			responseContainer.SetAllChannels(CollisionResponse::Block);
+			SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Ignore);
+			break;
+		case CollisionPropertyPreset::Enemy:
+			collisionEnabled = CollisionEnabled::Type::EnableCollision;
+			objectType = ECollisionChannel::Enemy;
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
+			break;
+		case CollisionPropertyPreset::PlayerProjectile:
+			collisionEnabled = CollisionEnabled::Type::EnableCollision;
+			objectType = ECollisionChannel::PlayerProjectile;
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Ignore);
+			break;
+		case CollisionPropertyPreset::EnemyProjectile:
+			collisionEnabled = CollisionEnabled::Type::EnableCollision;
+			objectType = ECollisionChannel::EnemyProjectile;
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
 			break;
 		}
 	}
@@ -114,7 +145,7 @@ struct CollisionProperty {
 		return responseContainer.GetCollisionResponseToChannel(channel);
 	}
 
-	void SetCollsionResponse(ECollisionChannel channel, CollisionResponse response) {
+	void SetCollisionResponse(ECollisionChannel channel, CollisionResponse response) {
 		responseContainer.SetCollsionResponseToChannel(channel, response);
 	}
 

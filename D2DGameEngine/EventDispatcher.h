@@ -77,7 +77,8 @@ public:
 	}
 
 	virtual void RemoveEventDelegate(IEventDelegate* eventDelegate) override {
-		if (_locked) {
+		if (_locked) 
+		{
 			// Check if the event delegate exists in the list.
 			auto it = _eventDelegateRegistry.find(eventDelegate);
 			if (it == _eventDelegateRegistry.end()) {
@@ -88,7 +89,8 @@ public:
 			// Put into the garbage collector
 			_pendingDelegateRemoves.insert(eventDelegate);
 		}
-		else {
+		else 
+		{
 			// Check if the event delegate exists in the list.
 			auto it = _eventDelegateRegistry.find(eventDelegate);
 			if (it == _eventDelegateRegistry.end()) {

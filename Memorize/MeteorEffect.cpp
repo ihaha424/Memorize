@@ -5,13 +5,15 @@
 
 MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
 {
-	animState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
-	animState->SliceSpriteSheet(170, 254, 0, 0, 0, 0);
-	animState->FrameResize(73);
-	animState->SetFrameDurations({ 0.05f });
-	anim->Initialize(animState);
+	normalState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
+	normalState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
+	normalState->FrameResize(73);
+	normalState->SetFrameDurations({ 0.05f });
+	anim->Initialize(normalState);
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
+
+	bIsPassable = true;
 }
 
 MeteorEffect::~MeteorEffect()

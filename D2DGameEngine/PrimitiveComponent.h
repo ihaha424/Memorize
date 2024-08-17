@@ -108,6 +108,7 @@ public:
 	// Collision Callbacks
 	// Collision
 	virtual void OnComponentBeginOverlap() {}
+	virtual void OnComponentOverlap() {}
 	virtual void OnComponentEndOverlap() {}
 
 	void SetCollisionEnabled(CollisionEnabled::Type type);
@@ -222,6 +223,9 @@ public:
 	 * @brief Receive begin component overlap event and do all the converting stuff.
 	 */
 	void ReceiveBeginComponentOverlap(PrimitiveComponent* otherComp, const bool bFromSweep, const HitResult& overlapInfo);
+
+	/**/
+	void ComponentOverlap(const OverlapInfo& overlap, bool bDoNotifies);
 
 	/**
 	 * @brief End tracking an overlap interaction

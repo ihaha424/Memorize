@@ -19,6 +19,8 @@ Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<FireballProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
 		projectiles[i]->SetDamage(damage);
+		projectiles[i]->SetSpeed(projectileSpeed); 
+		projectiles[i]->SetDuration(projectileDuration);
 	}
 }
 
@@ -34,7 +36,7 @@ void Fireball::UseSkill()
 	if (nowUsingCount > projectileCount) return;
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];
-	fireball->SetOwner(player);
+	fireball->SetPlayer(player);
 	fireball->SetLocation(player->GetLocation().x, player->GetLocation().y);
 	fireball->SetStatus(OS_ACTIVE);
 

@@ -23,7 +23,7 @@ class BossRazer : public BossSkillActor
 
 	class PolygonComponent* obb;
 
-	float tickInterval{ 0.4 };
+	float tickInterval{ 1 };
 	
 	using TakeDamageTimer = CoolTime<void>;
 
@@ -43,9 +43,9 @@ public:
 
 	virtual void DisfellAction();
 
-	virtual void OnBeginOverlap(Actor* other) override;
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
-	virtual void OnEndOverlap(Actor* other) override;
+	virtual void OnEndOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;

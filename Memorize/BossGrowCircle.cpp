@@ -20,7 +20,7 @@ BossGrowCircle::BossGrowCircle(World* _world)
 
 	circleComponent = CreateComponent<CircleComponent>();
 
-	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
+	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
 	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
 	circleComponent->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
@@ -94,7 +94,7 @@ void BossGrowCircle::Update(float _dt)
 	}
 }
 
-void BossGrowCircle::OnBeginOverlap(Actor* other)
+void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{

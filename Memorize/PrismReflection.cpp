@@ -17,6 +17,8 @@ PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<PrismReflectionProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
 		projectiles[i]->SetDamage(damage);
+		projectiles[i]->SetSpeed(projectileSpeed); 
+		projectiles[i]->SetDuration(projectileDuration);
 	}
 }
 

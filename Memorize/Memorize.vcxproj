@@ -154,6 +154,7 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
     <ClCompile Include="BossChaseCircle.cpp" />
+    <ClCompile Include="BossChasingProjectile.cpp" />
     <ClCompile Include="BossGrowCircle.cpp" />
     <ClCompile Include="BossHPPanel.cpp" />
     <ClCompile Include="BossProjectile.cpp" />
@@ -235,6 +236,7 @@
     <ClInclude Include="BossActionNodes.h" />
     <ClInclude Include="BossAIController.h" />
     <ClInclude Include="BossChaseCircle.h" />
+    <ClInclude Include="BossChasingProjectile.h" />
     <ClInclude Include="BossGrowCircle.h" />
     <ClInclude Include="BossHPPanel.h" />
     <ClInclude Include="BossProjectile.h" />

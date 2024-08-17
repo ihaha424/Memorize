@@ -641,8 +641,8 @@ void PrimitiveComponent::BeginComponentOverlap(const OverlapInfo& overlap, bool 
 		otherComp->ReceiveBeginComponentOverlap(this, overlap.bFromSweep, overlap.overlapInfo);
 		otherComp->OnComponentBeginOverlap();
 
-		myActor->NotifyActorBeginOverlap(otherActor);
-		otherActor->NotifyActorBeginOverlap(myActor);
+		myActor->NotifyActorBeginOverlap(otherActor, overlap);
+		otherActor->NotifyActorBeginOverlap(myActor, overlap);
 	}
 }
 
@@ -659,6 +659,23 @@ void PrimitiveComponent::ReceiveBeginComponentOverlap(
 	}
 
 	PushOverlappingComponent(otherComp, { bFromSweep, myOverlapInfo });
+}
+
+void PrimitiveComponent::ComponentOverlap(const OverlapInfo& overlap, bool bDoNotifies)
+{
+	PrimitiveComponent* otherComp = overlap.overlapInfo.hitComponent;
+
+	Actor* otherActor = otherComp->GetOwner();
+	Actor* myActor = GetOwner();
+
+	if (myActor == otherActor) return;
+
+	if (bDoNotifies)
+	{
+		OnComponentOverlap();
+
+		myActor->NotifyActorOverlap(otherActor, overlap);
+	}
 }
 
 void PrimitiveComponent::EndComponentOverlap(const OverlapInfo& overlap, bool bDoNotifies, bool bSkipNotifySelf)
@@ -681,8 +698,8 @@ void PrimitiveComponent::EndComponentOverlap(const OverlapInfo& overlap, bool bD
 		ReceiveEndComponentOverlap(this);
 		otherComp->OnComponentEndOverlap();
 
-		myActor->NotifyActorEndOverlap(otherActor);
-		otherActor->NotifyActorEndOverlap(myActor);
+		myActor->NotifyActorEndOverlap(otherActor, overlap);
+		otherActor->NotifyActorEndOverlap(myActor, overlap);
 	}
 }
 
@@ -757,7 +774,14 @@ void PrimitiveComponent::UpdateOverlaps(
 				PushOverlappingComponent(otherComponent, overlapInfo);
 			}
 		}
+
+		// Overlap
+		for (auto& [otherComponent, overlapInfo] : currentlyOverlappingComponents)
+		{
+			ComponentOverlap(overlapInfo, bDoNotifies);
+		}
 	}
+
 }
 
 bool PrimitiveComponent::CheckComponentOverlapComponentImpl(

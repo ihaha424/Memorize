@@ -6,7 +6,7 @@ public:
 	BaseAttackProjectile(class World* _world);
 	virtual ~BaseAttackProjectile();
 
-	virtual void OnBeginOverlap(Actor* other) override;
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	void Initialize() override { Inactivate(); }
 	virtual void BeginPlay() { __super::BeginPlay(); Inactivate(); }

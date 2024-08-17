@@ -4,11 +4,11 @@
 
 BaseAttackProjectile::BaseAttackProjectile(World* _world) : Projectile(_world)
 {
-	animState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
-	animState->SliceSpriteSheet(170, 254, 0, 0, 0, 0);
-	animState->FrameResize(73);
-	animState->SetFrameDurations({ 0.05f });
-	anim->Initialize(animState);
+	normalState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
+	normalState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
+	normalState->FrameResize(73);
+	normalState->SetFrameDurations({ 0.05f });
+	anim->Initialize(normalState);
 	Inactivate();
 }
 
@@ -16,9 +16,9 @@ BaseAttackProjectile::~BaseAttackProjectile()
 {
 }
 
-void BaseAttackProjectile::OnBeginOverlap(Actor* other)
+void BaseAttackProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	__super::OnBeginOverlap(other);
+	__super::OnBeginOverlap(other, overlap);
 
 
 }

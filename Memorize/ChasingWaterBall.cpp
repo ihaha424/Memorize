@@ -16,11 +16,25 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 
 	projectileCount = 5;
 
+	locations.resize(projectileCount);
+	locations[0] = {-60,-80};
+	locations[1] = {-30,-100};
+	locations[2] = {0,-120};
+	locations[3] = {30,-100};
+	locations[4] = {60,-80};
+
+	
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
 		projectiles[i]->SetDamage(damage);
+		projectiles[i]->SetDuration(projectileDuration); 
+		projectiles[i]->SetSpeed(projectileSpeed); 
+		ChasingWaterBallProjectile* waterballpj = static_cast<ChasingWaterBallProjectile*>(projectiles[i]);
+		waterballpj->SetInitialLocation(locations[i].x, locations[i].y);
+		
 	}
+
 }
 
 ChasingWaterBall::~ChasingWaterBall()
@@ -40,15 +54,14 @@ void ChasingWaterBall::UseSkill()
 	//fireball->SetVelocity(mousePos, projectileSpeed);
 
 	//nowUsingCount++;
-
-
-	for (int i = nowCount; i < onceClickCount; i++)
+	for (int i = 0; i < projectileCount; i++)
 	{
+		projectiles[i]->SetPlayer(player);
 		projectiles[i]->Activate();
-		projectiles[i]->SetVelocity({0.f, 0.f}, 0.f);
-		projectiles[i]->SetLocation(player->GetLocation().x, player->GetLocation().y);
+		projectiles[i]->SetVelocity({ 0.f, 0.f }, 0.f);
 		projectiles[i]->Initialize();
 	}
+	
 }
 
 void ChasingWaterBall::ReflectionIn()

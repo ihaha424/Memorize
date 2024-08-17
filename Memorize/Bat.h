@@ -26,7 +26,7 @@ public:
 
 	void BeginPlay() override;
 
-	void OnBeginOverlap(Actor* other) override;
+	void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	void Update(float _dt) override;
 

@@ -114,11 +114,14 @@ public:
 
 
 	// Collision Event
-	void NotifyActorBeginOverlap(Actor* other) {
-		OnBeginOverlap(other);
+	void NotifyActorBeginOverlap(Actor* other, const OverlapInfo& overlap) {
+		OnBeginOverlap(other, overlap);
 	}
-	void NotifyActorEndOverlap(Actor* other) {
-		OnEndOverlap(other);
+	void NotifyActorOverlap(Actor* other, const OverlapInfo& overlap) {
+		OnOverlap(other, overlap);
+	}
+	void NotifyActorEndOverlap(Actor* other, const OverlapInfo& overlap) {
+		OnEndOverlap(other, overlap);
 	}
 	void NotifyBlockingHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) {
 		OnHit(myComp, otherComp, bSelfMoved, hitResult);
@@ -133,15 +136,25 @@ public:
 	virtual void OnPressed() {};
 
 	/**
-	 * @brief TODO;
+	 * @brief 
 	 * @param other 
+	 * @param overlap 
 	 */
-	virtual void OnBeginOverlap(Actor* other) {}
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) {}
+
 	/**
-	 * @brief TODO;
+	 * @brief 
 	 * @param other 
+	 * @param overlap 
 	 */
-	virtual void OnEndOverlap(Actor* other) {}
+	virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) {}
+
+	/**
+	 * @brief 
+	 * @param other 
+	 * @param overlap 
+	 */
+	virtual void OnEndOverlap(Actor* other, const OverlapInfo& overlap) {}
 	/**
 	 * @brief TODO;
 	 * @param myComp 

@@ -6,6 +6,8 @@
 
 #include "DamageEvent.h"
 
+#include "World.h"
+
 Actor::Actor(class World* _world) : world(_world)
 {
 }
@@ -13,6 +15,8 @@ Actor::Actor(class World* _world) : world(_world)
 Actor::~Actor()
 {
 	for (auto [_, component] : components) {
+		PrimitiveComponent* primComp = dynamic_cast<PrimitiveComponent*>(component);
+		if (primComp) GetWorld()->UnregisterComponentCollision(primComp);
 		delete component;
 		component = nullptr;
 	}
