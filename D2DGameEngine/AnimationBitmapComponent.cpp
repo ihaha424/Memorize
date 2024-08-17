@@ -59,6 +59,7 @@ void AnimationBitmapComponent::SetFrameData(std::initializer_list<FrameData> ili
 
 void AnimationBitmapComponent::Update(float _dt)
 {
+	if (!isPlaying) return;
 	// 애니메이션 업데이트
 	currentFrameTime += _dt;
 	if (currentFrameTime >= frameDurations[currentFrameIndex]) {

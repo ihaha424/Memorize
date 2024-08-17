@@ -2,7 +2,12 @@
 #include "../D2DGameEngine/BitmapComponent.h"
 #include "D2DGameEngine/BoxComponent.h"
 #include "MovementComponent.h"
+#include "GPlayerController.h"
 #include "D2DGameEngine/RandomGenerator.h"
+#include <utility>
+
+#undef max
+
 
 BossSkillActor::BossSkillActor(World* _world)
 	:Actor(_world)
@@ -13,7 +18,6 @@ BossSkillActor::BossSkillActor(World* _world)
 	bm->MarkBoundsDirty();
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
-	
 }
 
 BossSkillActor::~BossSkillActor()
@@ -26,12 +30,21 @@ void BossSkillActor::OnClicked()
 	//Player.Disfall -> this
 }
 
-bool BossSkillActor::Disfell(int _element)
+bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 {
 	if (disfellCommand[dissfellindex] == _element)
 	{
+		//UI : 디스펠 커맨드 입력 
+		controller->OnDoingDisfell->Emit(dissfellindex);
+
 		dissfellindex++;
-		DisfellAction();
+	
+		if (dissfellindex == disfellCommandCount)
+		{
+			DisfellAction();
+			return false;
+		}
+		DisfellOneCountAction();
 		return true;
 	}
 	else

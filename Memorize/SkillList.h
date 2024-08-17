@@ -18,5 +18,5 @@
 //#include "ElementalMaster.h"
 //#include "Flash.h"
 //#include "Memorize.h"
-//#include "BasicAttack.h"
+#include "BasicAttack.h"
 

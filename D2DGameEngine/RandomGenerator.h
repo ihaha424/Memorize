@@ -57,7 +57,6 @@ public:
 
 	template<typename _T, typename InputIt>
 	static _T Get(InputIt first, InputIt last) {
-
 		if (!_instance)
 			throw std::runtime_error("Access of uninitialized Random detected!");
 

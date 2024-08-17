@@ -29,6 +29,7 @@ using WindowStyleFlags = DWORD;
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <functional>
 using namespace std::literals;
 #include <format>
 
@@ -109,8 +110,12 @@ float Clamp(float value, float min, float max) {
 	return value;
 }
 
+constexpr float FLOAT_MIN = (std::numeric_limits<float>::min)();
+constexpr float FLOAT_MAX = (std::numeric_limits<float>::max)();
 constexpr float PI_F = std::numbers::pi_v<float>;
 constexpr float PI = std::numbers::pi_v<double>;
+constexpr float SQRT2_F = std::numbers::sqrt2_v<float>;
+constexpr double SQRT2 = std::numbers::sqrt2_v<double>;
 
 namespace DirectX::SimpleMath {
 

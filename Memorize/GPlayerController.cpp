@@ -10,7 +10,7 @@
 #include "SkillList.h"
 #include "Player.h"
 #include "ElementsPanel.h"
-#include "PlayerCasting.h"
+#include "BossSkillActor.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
@@ -22,6 +22,10 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 
 	playerFSMComponent = CreateComponent<PlayerFSMComponent>();
 
+	AddEventHandler(&GPlayerController::DisfellEvent);
+
+	OnBeginDisfell = new Signal<int, int>;
+	OnDoingDisfell = new Signal<int>;
 }
 
 GPlayerController::~GPlayerController()
@@ -36,6 +40,9 @@ GPlayerController::~GPlayerController()
 
 	inputComponent->DeleteCommand(this, 0, InputState::KeyDown, MouseInput);
 	inputComponent->DeleteCommand(this, 1, InputState::KeyDown, MouseInput);
+
+	delete OnBeginDisfell;
+	delete OnDoingDisfell;
 }
 
 void GPlayerController::SetupInputComponent()
@@ -69,6 +76,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<DarkSphere>();
 	CreateSkill<AggressiveWaves>();
 	CreateSkill<LightStream>();
+	CreateSkill<BasicAttack>();
 }
 
 int GPlayerController::GetPlayerCastingIndex()
@@ -121,9 +129,10 @@ void GPlayerController::BeginPlay()
 void GPlayerController::Update(float _dt)
 {
 	PlayerController::Update(_dt);
-	if (Math::Vector2::Distance(destPos, owner->GetLocation()) < 2.f)
+
+	if (Math::Vector2::Distance(destPos, player->GetLocation()) < 5.f)
 	{
-		owner->GetComponent<MovementComponent>()->SetSpeed(0.f);
+		player->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 }
@@ -166,6 +175,11 @@ bool GPlayerController::CheckMemorize()
 
 #include "D2DGameEngine/Debug.h"
 #include "GCameraComponent.h"
+void GPlayerController::OnManaDepleted()
+{
+	GetWorld()->GetCanvas()->ShowPanel(L"ManaDepleted");
+}
+
 void GPlayerController::Fire()	{ playerFSMComponent->InputKey(InputEvent::Fire); }
 void GPlayerController::Water() { playerFSMComponent->InputKey(InputEvent::Water); }
 void GPlayerController::Light() { playerFSMComponent->InputKey(InputEvent::Light); }
@@ -189,3 +203,24 @@ void GPlayerController::Memorize() {playerFSMComponent->InputKey(InputEvent::Mem
 void GPlayerController::Teleport() { playerFSMComponent->InputKey(InputEvent::Teleport); }
 
 void GPlayerController::Cancellation() { playerFSMComponent->InputKey(InputEvent::Cancellation); }
+
+void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
+{
+	if (targetSkill == nullptr && !_event->GetBossSkillDieFlag())
+	{
+		targetSkill = _event->GetBossSkillActor();
+		playerFSMComponent->SetNextState(L"PlayerDisfell");
+		
+		for (int i = 0; i < _event->GetBossSkillActor()->disfellCommandCount; i++)
+		{
+			OnBeginDisfell->Emit(i, _event->GetBossSkillActor()->disfellCommand[i]);
+		}
+	}
+	else
+	{
+		if (targetSkill == _event->GetBossSkillActor() && _event->GetBossSkillDieFlag())
+		{
+			playerFSMComponent->SetNextState(L"PlayerIdle");
+		}
+	}
+}

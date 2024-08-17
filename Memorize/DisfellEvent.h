@@ -4,19 +4,24 @@
 #include "BossSkillActor.h"
 
 struct DisFellEvent : public Event<DisFellEvent> {
-	DisFellEvent() {}
-	DisFellEvent(BossSkillActor* _target) :target( std::make_shared<BossSkillActor*>(_target))
+	DisFellEvent(BossSkillActor* _target, bool _dieFlag) :target( std::make_shared<BossSkillActor*>(_target)), dieFlag(_dieFlag)
 	{}
 		
-	void SetBossSkillActor(BossSkillActor* _damageType) 
+	void SetBossSkillActor(BossSkillActor* _damageType, bool _dieFlag) 
 	{
 		target = std::make_shared<BossSkillActor*>(_damageType);
+		dieFlag = _dieFlag;
 	}
-	const BossSkillActor* GetBossSkillActor() const
+	BossSkillActor* GetBossSkillActor() const
 	{
 		return *target.get();
+	}
+	bool GetBossSkillDieFlag() const
+	{
+		return dieFlag;
 	}
 
 private:
 	std::shared_ptr<BossSkillActor*> target;
+	bool	dieFlag;
 };

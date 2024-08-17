@@ -96,8 +96,23 @@
     <Filter Include="Source Files\App\Boss\BossSkill\DisfellEvent">
       <UniqueIdentifier>{ab5d3842-0703-41b2-b57a-c2e067ceeee4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06">
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile">
+      <UniqueIdentifier>{80db3c3b-3c76-421d-b86a-60dad9a76393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle">
       <UniqueIdentifier>{00c1fefb-ad86-4d54-8ea3-02e79eb780d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle">
+      <UniqueIdentifier>{15cc341e-30d4-4945-a906-f70904d4e7a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle">
+      <UniqueIdentifier>{81113077-3b43-4a56-9209-836d822ad18f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer">
+      <UniqueIdentifier>{662950e6-6c18-4874-9ac3-eef068176ac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile">
+      <UniqueIdentifier>{84ba3c3a-ecbc-49d8-a20a-e1d694978cef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -296,11 +311,47 @@
     <ClCompile Include="Bat.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Bat</Filter>
     </ClCompile>
-    <ClCompile Include="Pattern06.cpp">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
+    <ClCompile Include="BossGrowMagicCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="BossProjectile.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicAttack.cpp">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="ManaDepletedPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHPPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="DisfellPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
     </ClCompile>
     <ClCompile Include="MagicCircle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Signal.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BossChaseCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="BossGrowCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="ManaOverload.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="BossRazer.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAttackProjectile.cpp">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="BossChasingProjectile.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -517,11 +568,47 @@
     <ClInclude Include="DisfellEvent.h">
       <Filter>Source Files\App\Boss\BossSkill\DisfellEvent</Filter>
     </ClInclude>
-    <ClInclude Include="Pattern06.h">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\Pattern06</Filter>
+    <ClInclude Include="BossGrowMagicCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowMagicCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="BossProjectile.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicAttack.h">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="ManaDepletedPanel.h">
+      <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHPPanel.h">
+      <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DisfellPanel.h">
+      <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Signal.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
     <ClInclude Include="MagicCircle.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="BossChaseCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChaseCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="BossGrowCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="ManaOverload.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="BossRazer.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
+    </ClInclude>
+    <ClInclude Include="BossChasingProjectile.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAttackProjectile.h">
+      <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

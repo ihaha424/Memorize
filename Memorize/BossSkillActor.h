@@ -14,7 +14,7 @@ public:
 
 
 
-protected:
+public:
 	bool				isDispel = false;
 	bool				isFragile = false;
 	BossSkillType		type = Projectile;
@@ -25,7 +25,7 @@ protected:
 	float				speed = 0.f;
 	float				duration = 0.f;
 	int					disfellCommandCount = 0;
-	std::vector<BYTE>	disfellCommand = {};
+	std::vector<int>	disfellCommand = {};
 	int					dissfellindex = 0;
 
 public:
@@ -35,7 +35,7 @@ public:
 	/**
 	 * @brief 디스펠 하는 것.
 	 */
-	bool Disfell(int _element);
+	bool Disfell(int _element, class GPlayerController* controller);
 
 	/**
 	 * @brief 갯수 설정 후 사용 해주면 디스펠 command가 자동으로 만들어짐
@@ -47,6 +47,7 @@ public:
 	 * 삭속 받아서 사용 하길 권장
 	 */
 	virtual void DisfellAction() {}
+	virtual void DisfellOneCountAction() {}
 	virtual void DisfellFailAction() {}
 
 protected:

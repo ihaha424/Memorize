@@ -8,6 +8,9 @@ public:
     TestLevel(class World* _world, const std::wstring& _name);
     virtual ~TestLevel();
 
+
+    class BossHPPanel* bossHpBar = nullptr;
+    class DisfellPanel* disfellPanel = nullptr;
     virtual void Enter();
     virtual void Exit() {};
     virtual void Clear() {};

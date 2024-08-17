@@ -148,9 +148,17 @@
   <ItemGroup>
     <ClCompile Include="AggressiveWaves.cpp" />
     <ClCompile Include="AggressiveWavesEffect.cpp" />
+    <ClCompile Include="BaseAttackProjectile.cpp" />
+    <ClCompile Include="BasicAttack.cpp" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossAIController.cpp" />
+    <ClCompile Include="BossChaseCircle.cpp" />
+    <ClCompile Include="BossChasingProjectile.cpp" />
+    <ClCompile Include="BossGrowCircle.cpp" />
+    <ClCompile Include="BossHPPanel.cpp" />
+    <ClCompile Include="BossProjectile.cpp" />
+    <ClCompile Include="BossRazer.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
     <ClCompile Include="BossBehaviorTree.cpp" />
     <ClCompile Include="BuffSkill.cpp" />
@@ -159,6 +167,7 @@
     <ClCompile Include="CoolTime.cpp" />
     <ClCompile Include="DarkSphere.cpp" />
     <ClCompile Include="DarkSphereProjectile.cpp" />
+    <ClCompile Include="DisfellPanel.cpp" />
     <ClCompile Include="ElementsPanel.cpp" />
     <ClCompile Include="Enchant.cpp" />
     <ClCompile Include="Fireball.cpp" />
@@ -171,12 +180,14 @@
     <ClCompile Include="LightStream.cpp" />
     <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="MagicCircle.cpp" />
+    <ClCompile Include="ManaDepletedPanel.cpp" />
+    <ClCompile Include="ManaOverload.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
     <ClCompile Include="MPRecovery.cpp" />
-    <ClCompile Include="Pattern06.cpp" />
+    <ClCompile Include="BossGrowMagicCircle.cpp" />
     <ClCompile Include="Pattern10Action.cpp" />
     <ClCompile Include="Pattern1Action.cpp" />
     <ClCompile Include="Pattern2Action.cpp" />
@@ -205,6 +216,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
+    <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="TestWall.cpp" />
@@ -217,10 +229,17 @@
   <ItemGroup>
     <ClInclude Include="AggressiveWaves.h" />
     <ClInclude Include="AggressiveWavesEffect.h" />
+    <ClInclude Include="BaseAttackProjectile.h" />
+    <ClInclude Include="BasicAttack.h" />
     <ClInclude Include="Bat.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossActionNodes.h" />
     <ClInclude Include="BossAIController.h" />
+    <ClInclude Include="BossChaseCircle.h" />
+    <ClInclude Include="BossChasingProjectile.h" />
+    <ClInclude Include="BossGrowCircle.h" />
+    <ClInclude Include="BossHPPanel.h" />
+    <ClInclude Include="BossProjectile.h" />
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />
     <ClInclude Include="BuffSkill.h" />
@@ -231,6 +250,7 @@
     <ClInclude Include="DarkSphere.h" />
     <ClInclude Include="DarkSphereProjectile.h" />
     <ClInclude Include="DisfellEvent.h" />
+    <ClInclude Include="DisfellPanel.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="Enchant.h" />
     <ClInclude Include="Fireball.h" />
@@ -245,12 +265,14 @@
     <ClInclude Include="LightStream.h" />
     <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="MagicCircle.h" />
+    <ClInclude Include="ManaDepletedPanel.h" />
+    <ClInclude Include="ManaOverload.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="MPRecovery.h" />
-    <ClInclude Include="Pattern06.h" />
+    <ClInclude Include="BossGrowMagicCircle.h" />
     <ClInclude Include="Pattern10Action.h" />
     <ClInclude Include="Pattern1Action.h" />
     <ClInclude Include="Pattern2Action.h" />
@@ -281,6 +303,8 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileSkill.h" />
     <ClInclude Include="RangeSkill.h" />
+    <ClInclude Include="BossRazer.h" />
+    <ClInclude Include="Signal.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />
     <ClInclude Include="TeleportAction.h" />

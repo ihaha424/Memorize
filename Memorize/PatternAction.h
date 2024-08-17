@@ -26,6 +26,16 @@ struct PatternAction : public Action
 		return patternInterval;
 	}
 
+	// 행동 트리 자체의 쿨타임
+	// 차트에서 Pattern_Delay
+	/*float treeCooldown{ 0.f };
+	void SetTreeCooldown(float _treeCooldown) {
+		treeCooldown = _treeCooldown;
+	}
+	float GetTreeCooldown() {
+		return treeCooldown;
+	}*/
+
 	float elapsedTime{ 0.f };
 	bool IsRunning() override {
 		if (elapsedTime >= patternInterval) 

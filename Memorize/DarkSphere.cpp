@@ -15,6 +15,7 @@ DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<DarkSphereProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
 		projectiles[i]->SetDamage(damage);
+		projectiles[i]->SetDuration(projectileDuration);
 	}
 }
 
@@ -28,6 +29,7 @@ void DarkSphere::UseSkill()
 	for (int i = 0; i < projectileCount; i++)
 	{
 		Projectile* nowPj = projectiles[i];
+		nowPj->Initialize();
 		nowPj->SetDelay(0.2f * i);
 		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		nowPj->SetVelocity(attackDir, projectileSpeed);

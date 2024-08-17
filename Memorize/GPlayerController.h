@@ -1,9 +1,12 @@
 #pragma once
 #include "../D2DGameEngine/PlayerController.h"
 #include "../D2DGameEngine/Debug.h"
+#include "../D2DGameEngine/IEventListener.h"
+#include "DisfellEvent.h"
 #include "Skill.h"
+#include "Signal.h"
 
-class GPlayerController : public PlayerController
+class GPlayerController : public PlayerController, public IEventListener
 {
 	Math::Vector2 destPos;
 
@@ -23,6 +26,14 @@ class GPlayerController : public PlayerController
 	class PlayerFSMComponent* playerFSMComponent;
 
 public:
+	//DisfellSkill
+	class BossSkillActor* targetSkill;
+
+	//Signal for UI
+	Signal<int,int>* OnBeginDisfell;
+	Signal<int>* OnDoingDisfell;
+
+public:
 	GPlayerController(class World* _world);
 	virtual ~GPlayerController();
 	virtual void SetupInputComponent() override;
@@ -37,6 +48,7 @@ public:
 	int GetPlayerCastingIndex();
 	bool isPlayerAfterCasting();
 	std::wstring GetPlayerState();
+
 
 	/**
 	 * @brief 스킬 생성 & 맵에 추가
@@ -105,6 +117,8 @@ public:
 		return nullptr;
 	}
 
+	void SetDestPos(Math::Vector2 _destPos) { destPos = _destPos; }
+	void OnManaDepleted();
 
 	void Fire();
 	void Water();
@@ -115,6 +129,7 @@ public:
 	void Memorize();
 	void Teleport();
 	void Cancellation();
+	void DisfellEvent(const DisFellEvent* const _event);
 };
 
 template<typename T>

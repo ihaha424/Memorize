@@ -10,6 +10,7 @@ PlayerFSMComponent::PlayerFSMComponent(Actor* _owner)
 	CreateState<PlayerAttackReady>(L"PlayerAttackReady");
 	CreateState<PlayerAttack>(L"PlayerAttack");
 	CreateState<PlayerBlinking>(L"PlayerBlinking");
+	CreateState<PlayerDisfell>(L"PlayerDisfell");
 	SetNextState(L"PlayerIdle");
 }
 

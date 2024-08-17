@@ -28,7 +28,7 @@ void Meteor::UseSkill()
 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	attackPos = GetWorld()->ScreenToWorldPoint(attackPos);
 	meteorEffect->SetAttackPos(attackPos);
-	meteorEffect->SetOwner(player);
+	meteorEffect->SetPlayer(player);
 
 	meteorEffect->SetLocation(player->GetLocation().x, attackPos.y - initialHeight);
 	Math::Vector2 direction = attackPos - meteorEffect->GetLocation();

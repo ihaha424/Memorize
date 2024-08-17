@@ -1,6 +1,7 @@
 #include "PlayerBlinking.h"
 #include "GPlayerController.h"
 #include "Player.h"
+#include "MovementComponent.h"
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/Mouse.h"
 
@@ -12,6 +13,8 @@ void PlayerBlinking::Enter()
 	curtime = blinkTime;
 	D2D_Vec2F mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	worldMousePos = playerController->GetPlayer()->GetWorld()->ScreenToWorldPoint({ mousePos.x, mousePos.y });
+
+	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(0.f);
 }
 
 void PlayerBlinking::Update(float _dt)
@@ -39,4 +42,7 @@ void PlayerBlinking::Update(float _dt)
 void PlayerBlinking::Exit()
 {
 	//Collider->Active
+
+	//GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	//playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(playerController->GetPlayer()->moveSpeed);
 }
