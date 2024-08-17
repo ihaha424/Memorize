@@ -1,12 +1,11 @@
 #pragma once
 
-#include "BossProjectile.h"
+#include "BossSkillActor.h"
 
-class ChasingProjectile : public BossProjectile
+class ChasingProjectile : public BossSkillActor
 {
-	
 public:
-	//ChasingProjectile(World* _world, )
+	ChasingProjectile(class World* _world);
 
 
 };

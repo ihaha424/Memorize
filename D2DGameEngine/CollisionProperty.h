@@ -18,7 +18,9 @@ enum class CollisionPropertyPreset {
 	Player,
 	Enemy,
 	PlayerProjectile,
-	EnemyProjectile
+	EnemyProjectile,
+	PlayerPattern,
+	EnemyPattern
 };
 
 using CollisionResponseMap = std::unordered_map<ECollisionChannel, CollisionResponse>;
@@ -115,7 +117,9 @@ struct CollisionProperty {
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
 			objectType = ECollisionChannel::Player;
 			responseContainer.SetAllChannels(CollisionResponse::Block);
+			SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Ignore);
 			SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Ignore);
 			break;
 		case CollisionPropertyPreset::Enemy:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
@@ -123,6 +127,7 @@ struct CollisionProperty {
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Ignore);
 			SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyPattern, CollisionResponse::Ignore);
 			break;
 		case CollisionPropertyPreset::PlayerProjectile:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
@@ -130,6 +135,8 @@ struct CollisionProperty {
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Ignore);
 			SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyPattern, CollisionResponse::Ignore);
 			break;
 		case CollisionPropertyPreset::EnemyProjectile:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
@@ -137,6 +144,28 @@ struct CollisionProperty {
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Ignore);
 			SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyPattern, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Ignore);
+			break;
+		case CollisionPropertyPreset::PlayerPattern:
+			collisionEnabled = CollisionEnabled::Type::EnableCollision;
+			objectType = ECollisionChannel::EnemyProjectile;
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyPattern, CollisionResponse::Ignore);
+			break;
+		case CollisionPropertyPreset::EnemyPattern:
+			collisionEnabled = CollisionEnabled::Type::EnableCollision;
+			objectType = ECollisionChannel::EnemyProjectile;
+			responseContainer.SetAllChannels(CollisionResponse::Overlap);
+			SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::EnemyPattern, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Ignore);
+			SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Ignore);
 			break;
 		}
 	}

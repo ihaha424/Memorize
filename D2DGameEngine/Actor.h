@@ -42,6 +42,8 @@ public:
 	void SetScale(const float x, const float y);
 	Math::Matrix GetTrasnform() const;
 
+	void RotateTo(const Math::Vector2& point);
+
 	/**
 	 * @brief Translate and overlap test.
 	 * @param _teleportDelta The amount of position to be moved from the current position.
