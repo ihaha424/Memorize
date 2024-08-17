@@ -203,7 +203,7 @@ void Actor::RotateToward(const Math::Vector2& _direction)
 	float y = w.x * v.x + w.y * v.y;
 	float rad = atan2(x, y);
 
-	SetRotation(rad);
+	Rotate(Math::RadianToDegree(rad));
 }
 
 void Actor::LookAt(const Math::Vector2& _point)

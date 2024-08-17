@@ -11,7 +11,6 @@ class BossRazer : public BossSkillActor
 	LOG_REGISTER_OBJ(BossRazer)
 	using Super = BossSkillActor;
 
-	RadialDamageEvent BossGrowMagicCircleDamageEvent;
 	class Player* player{ nullptr };
 
 	class AnimationBitmapComponent* razer;

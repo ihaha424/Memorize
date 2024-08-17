@@ -99,7 +99,7 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{
-		bool hitRadius = intersectionUtil::BoundayCircleBoxIntersect(
+		/*bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
 			circleComponent->CalculateLocalBounds().GetCircle(),
 			overlap.overlapInfo.hitComponent->parent->CalculateLocalBounds().GetBox()
 		);
@@ -116,7 +116,7 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 			);
 		};
 		f();
-		tickDamageTimerMap.insert({ other, TakeDamageTimer(f, tickInterval, true) });
+		tickDamageTimerMap.insert({ other, TakeDamageTimer(f, tickInterval, true) });*/
 	}
 }
 

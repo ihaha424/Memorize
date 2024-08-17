@@ -50,7 +50,7 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	obb = CreateComponent<PolygonComponent>();
 	obb->InitPolygon({ {-6, -3}, {6, -3}, {6, 3}, {-6, 3} });
 	razer->AddChild(obb);
-	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
+	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);
 	obb->bApplyImpulseOnDamage = true;
 	obb->bGenerateOverlapEvent = false;	// True
 	razer->Translate(-1200.f, 0.f);
