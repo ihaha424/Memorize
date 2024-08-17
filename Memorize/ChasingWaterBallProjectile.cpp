@@ -25,7 +25,7 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	Inactivate();
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;
-	bHasEnding = true;
+	bHasEnding = false;
 	endingTime = 1.f;
 
 }
@@ -78,11 +78,12 @@ void ChasingWaterBallProjectile::Update(float _dt)
 			state = State::Boom;
 		}
 	}
-	else
+	else if(bEnding == false)
 	{
 		bEnding = true;
 		anim->SetState(endingState);
 		mv->SetSpeed(0);
+		elapsedTime = duration + delay;
 	}
 }
 
