@@ -116,7 +116,7 @@ void Player::Update(float _dt)
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 
 	OnHPChanged->Emit(stat.hp / (float)stat.maxHp);
-	OnMPChanged->Emit(stat.mp / (float)stat.maxHp);
+	OnMPChanged->Emit(stat.mp / (float)stat.maxMp);
 }
 
 

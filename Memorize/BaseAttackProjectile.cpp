@@ -1,15 +1,20 @@
 #include "BaseAttackProjectile.h"
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/BoxComponent.h"
 
 BaseAttackProjectile::BaseAttackProjectile(World* _world) : Projectile(_world)
 {
-	normalState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
-	normalState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
-	normalState->FrameResize(73);
-	normalState->SetFrameDurations({ 0.05f });
+	normalState->SetSprite(L"TestResource/Player/Skill/Skill_BasicAttack01.png");
+	normalState->SliceSpriteSheet(240, 181, 0, 0, 0, 0);
+	normalState->FrameResize(30);
+	normalState->SetFrameDurations({ 2.f / 30 });
 	anim->Initialize(normalState);
+	
+	box->InitBoxExtent({ 200, 60 });
+	
 	Inactivate();
+
 }
 
 BaseAttackProjectile::~BaseAttackProjectile()
