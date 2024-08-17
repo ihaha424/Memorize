@@ -16,9 +16,9 @@ BaseAttackProjectile::~BaseAttackProjectile()
 {
 }
 
-void BaseAttackProjectile::OnBeginOverlap(Actor* other)
+void BaseAttackProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	__super::OnBeginOverlap(other);
+	__super::OnBeginOverlap(other, overlap);
 
 
 }

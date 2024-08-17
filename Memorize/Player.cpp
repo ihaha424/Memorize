@@ -111,9 +111,9 @@ void Player::Update(float _dt)
 	stat.mp += _dt * 100;
 }
 
-void Player::OnBeginOverlap(Actor* other)
+void Player::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	__super::OnBeginOverlap(other);
+	__super::OnBeginOverlap(other, overlap);
 
 	OBJ_MESSAGE("Overlap began!");
 

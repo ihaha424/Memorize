@@ -47,7 +47,7 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	obb = CreateComponent<PolygonComponent>();
 	obb->InitPolygon({ {-6, -3}, {6, -3}, {6, 3}, {-6, 3} });
 	razer->AddChild(obb);
-	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
+	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
 	obb->bGenerateOverlapEvent = false;	// True
 	razer->Translate(-1200.f, 0.f);
 	razer->Scale(200.f, 30.f);
@@ -121,7 +121,7 @@ void BossRazer::DisfellAction()
 	Destroy();
 }
 
-void BossRazer::OnBeginOverlap(Actor* other)
+void BossRazer::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{
@@ -140,7 +140,7 @@ void BossRazer::OnBeginOverlap(Actor* other)
 	}
 }
 
-void BossRazer::OnEndOverlap(Actor* other)
+void BossRazer::OnEndOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{

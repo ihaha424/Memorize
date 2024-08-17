@@ -37,9 +37,9 @@ Projectile::~Projectile()
 {
 }
 
-void Projectile::OnBeginOverlap(Actor* other)
+void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	__super::OnBeginOverlap(other);
+	__super::OnBeginOverlap(other, overlap);
 
 
 	//대미지를 입힘

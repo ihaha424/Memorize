@@ -16,7 +16,7 @@ Bat::Bat(World* _world) : Actor(_world)
 	ReflectionIn();
 
 	CircleComponent* circle = CreateComponent<CircleComponent>();
-	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapPawn);
+	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
 	circle->bGenerateOverlapEvent = true;
 	circle->maxSpeed = speed;
 	rootComponent = circle;
@@ -52,7 +52,7 @@ void Bat::BeginPlay()
 	player = GetWorld()->FindActorByType<Player>();
 }
 
-void Bat::OnBeginOverlap(Actor* other)
+void Bat::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	// ½ºÅ³ ÃÄ¸ÂÀ¸¸é »ç¸Á¶ì
 }

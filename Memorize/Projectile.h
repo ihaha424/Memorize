@@ -28,7 +28,7 @@ public:
 	Projectile(class World* _world);
 	virtual ~Projectile();
 
-	virtual void OnBeginOverlap(Actor* other) override;
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	void SetDamage(float _damage) { damage = _damage; }
 	void SetDelay(float _delay) { delay = _delay; }
