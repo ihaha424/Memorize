@@ -101,7 +101,7 @@ void Player::PreUpdate(float _dt)
 {
 	__super::PreUpdate(_dt);
 	//매 틱마다 범위 내에 있는 적을 감지하기 위해 초기화해줌
-	enemiesInRange.clear();
+	//enemiesInRange.clear();
 }
 
 void Player::Update(float _dt)
@@ -117,7 +117,9 @@ void Player::OnBeginOverlap(Actor* other)
 
 	OBJ_MESSAGE("Overlap began!");
 
-	//범위 내에 있는 적을 체크하여 배열에 넣음
+
+	//TODO :: 매 틱마다 체크하는 것으로 바꿔야 함!!!!! 
+	//범위 내에 있는 적을 체크하여 배열에 넣음 
 	Character* ch = dynamic_cast<Character*>(other);
 	if (ch) 
 	{
