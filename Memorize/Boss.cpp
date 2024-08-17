@@ -11,7 +11,7 @@ Boss::Boss(World* _world) : Character(_world)
 
 	OnHPChanged = new Signal<int>;
 
-	GetComponent<BoxComponent>()->SetCollisionObjectType(ECollisionChannel::Enemy);
+	box->SetCollisionObjectType(ECollisionChannel::Enemy);
 }
 
 Boss::~Boss()

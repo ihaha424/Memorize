@@ -66,8 +66,8 @@ void TestLevel::Enter()
 
 		{
 			playerMainUI = GetWorld()->GetCanvas()->CreatePannel<PlayerMainUIPanel>(L"PlayerMainUI");
-			player->OnHPChanged->Connect([&](float hp) { playerMainUI->SetHPValue(hp); });
-			player->OnMPChanged->Connect([&](float mp) { playerMainUI->SetMPValue(mp); });
+			player->OnHPChanged->Connect([&](float hpValue) { playerMainUI->SetHPValue(hpValue); });
+			player->OnMPChanged->Connect([&](float mpValue) { playerMainUI->SetMPValue(mpValue); });
 		}
 	}
 	
