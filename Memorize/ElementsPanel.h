@@ -31,10 +31,10 @@ public:
 	virtual void Update(float _dt) override;
 	void SetPlayerController(class GPlayerController* _playerController) { playerController = _playerController; }
 
-	void SetQWER(std::vector<std::vector<int>>& elementCommands);
-	void SetQWER(std::vector<std::vector<int>>& elementCommands, int type);
+	void SetQWER(std::vector<std::vector<int>> elementCommands);
+	void SetQWER(std::vector<std::vector<int>> elementCommands, int type);
 	void HideAllCommands();
 	void SetSkillList();
-	std::vector<std::vector<int>>& CheckSkillType();
+	std::vector<std::vector<int>> CheckSkillType();
 };
 

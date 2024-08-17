@@ -90,7 +90,7 @@ void ElementsPanel::Update(float _dt)
 	}
 
 	//스킬 타입까지 정해진 경우
-	if (curSkillType != ST_END)
+	if (curSkillElement != SE_END && curSkillType != ST_END)
 	{
 		HideAllCommands();
 		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
@@ -120,7 +120,7 @@ void ElementsPanel::Update(float _dt)
 	}
 }
 
-void ElementsPanel::SetQWER(std::vector<std::vector<int>>& elementCommands)
+void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands)
 {
 	HideAllCommands();
 	for (int y = 0; y < elementCommands.size(); y++)
@@ -129,7 +129,7 @@ void ElementsPanel::SetQWER(std::vector<std::vector<int>>& elementCommands)
 	}
 }
 
-void ElementsPanel::SetQWER(std::vector<std::vector<int>>& elementCommands, int type)
+void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands, int type)
 {
 	for (int x = 0; x < elementCommands[type].size(); x++)
 	{
@@ -203,11 +203,14 @@ void ElementsPanel::SetSkillList()
 	}
 }
 
-std::vector<std::vector<int>>& ElementsPanel::CheckSkillType()
+std::vector<std::vector<int>> ElementsPanel::CheckSkillType()
 {
-	std::vector<std::vector<int>>& elementCommands = fireCommands;
+	std::vector<std::vector<int>> elementCommands;
 	switch (playerController->GetCurSkillInfo().element)
 	{
+	case SE_FIRE:
+		elementCommands = fireCommands;
+		break;
 	case SE_WATER:
 		elementCommands = waterCommands;
 		break;

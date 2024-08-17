@@ -119,7 +119,7 @@ void Player::Update(float _dt)
 	stat.mp += stat.mpRegenPerSecond * _dt;
 
 	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
-	std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
+	//std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
 
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 }
