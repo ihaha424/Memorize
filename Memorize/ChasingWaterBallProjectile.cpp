@@ -2,10 +2,11 @@
 #include "../D2DGameEngine/Animator.h"
 #include "../D2DGameEngine/AnimationState.h"
 #include "../D2DGameEngine/CircleComponent.h"
+#include "../D2DGameEngine/BoxComponent.h"
 #include "MovementComponent.h"
 #include "Player.h"
 
-std::vector<class Character*> ChasingWaterBallProjectile::chasingEnemies{};
+std::vector<class Actor*> ChasingWaterBallProjectile::chasingEnemies{};
 
 ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	: Projectile(_world)
@@ -23,6 +24,16 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	//normalState->FrameResize(73);
 	//normalState->SetFrameDurations({ 0.05f });
 
+
+	//적 감지 위한 원형 콜라이더
+	box->bGenerateOverlapEvent = false; //적 감지를 위해 박스는 꺼줌 
+	rangeCircle = CreateComponent<CircleComponent>();
+	rangeCircle->SetCircleRadius(range);
+	rangeCircle->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapPawn);
+	rangeCircle->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
+	rangeCircle->bGenerateOverlapEvent = true;
+	rootComponent->AddChild(rangeCircle);
+
 	Inactivate();
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;
@@ -36,37 +47,41 @@ ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
 
 }
 
+void ChasingWaterBallProjectile::OnOverlap(Actor* other, const OverlapInfo& overlap)
+{
+	std::cout << "overlap!" << std::endl;
+	__super::OnOverlap(other, overlap);
+
+	if (state == State::Idle)
+	{
+		
+		//이미 이 적을 추적중이면 넘긴다.
+		if (find(chasingEnemies.begin(), chasingEnemies.end(), other) != chasingEnemies.end())
+			return;
+
+		//waterball들이 추적중인 적에 추가한다.
+		chasingEnemies.push_back(other);
+		//이 projectile의 타겟으로 설정한다. 
+		target = other;
+		//추적상태로 전환한다. 
+		state = State::Chase;
+	}
+
+}
+
 void ChasingWaterBallProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
 
 	if (state == State::Idle)
 	{
+		rangeCircle->SetStatus(OS_ACTIVE);
 		SetLocation(player->GetLocation().x + x, player->GetLocation().y + y);
-
-		//범위 내에 적이 있으면 
-		for (int i = 0; i < player->enemiesInRange.size(); i++)
-		{
-			Character* enemy = player->enemiesInRange[i];
-			//이미 이 적을 추적중이면 넘긴다.
-			if (find(chasingEnemies.begin(), chasingEnemies.end(), enemy) != chasingEnemies.end())
-				continue;
-
-			//waterball들이 추적중이 적에 추가한다.
-			chasingEnemies.push_back(enemy);
-			//이 projectile의 타겟으로 설정한다. 
-			target = enemy;
-			//추적상태로 전환한다. 
-			state = State::Chase;
-			break;
-		}
 	}
 	else if (state == State::Chase)
 	{
-		//이미지 전환 
-		normalState->SetSprite(L"TestResource/Skill/Projectile/ChasingWaterBall/Chasing.png");
-		normalState->SliceSpriteSheet(58, 56, 0, 0, 0, 0);
-
+		rangeCircle->SetStatus(OS_INACTIVE);
+		box->bGenerateOverlapEvent = true;
 		//타겟을 향해 이동
 		Math::Vector2 direction = target->GetLocation() - GetLocation();
 		direction.Normalize();
@@ -74,23 +89,23 @@ void ChasingWaterBallProjectile::Update(float _dt)
 
 		//타겟의 위치로 이동했으면 폭발 상태로.
 		float distance = Math::Vector2::Distance(GetLocation(), target->GetLocation());
-		if (distance < 5)
+		if (bEnding == true)
 		{
 			state = State::Boom;
 		}
 	}
-	else if(bEnding == false)
+	else if(state == State::Boom && bEnding == false)
 	{
 		bEnding = true;
 		anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
-		player->GetComponent<CircleComponent>()->SetStatus(OS_INACTIVE);
 	}
 }
 
 void ChasingWaterBallProjectile::Initialize()
 {
+	__super::Initialize();
 	//xValue.SetData(&x);
 	//xValue.SetDuration(1.f);
 	//xValue.SetStartPoint(GetLocation().x + 100);

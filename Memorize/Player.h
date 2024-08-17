@@ -68,12 +68,7 @@ public:
 	float basicAttackTime = 1.f;
 	int skillUses;
 
-
-
-	float waterBallRange = 500.f;
-	class CircleComponent* rangeCircle;
 	class BuffEffectComponent* buffEffect;
-	std::vector<class Character*> enemiesInRange; //현재 범위 내에 있는 적
 
 public:
 	Player(class World* _world);
@@ -84,10 +79,7 @@ public:
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
-	virtual void PostUpdate(float _dt) override;
 	virtual void Update(float _dt) override;
-
-	virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;

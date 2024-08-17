@@ -45,17 +45,6 @@ ChasingWaterBall::~ChasingWaterBall()
 
 void ChasingWaterBall::UseSkill()
 {
-	////파이어볼 첫 위치 지정
-	//Projectile* fireball = projectiles[nowUsingCount];
-	//fireball->SetLocation(player->GetLocation().x, player->GetLocation().y);
-
-	////마우스 위치로 이동시킴
-	//Math::Vector2 mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
-	//mousePos = GetWorld()->ScreenToWorldPoint(mousePos);
-	//fireball->SetVelocity(mousePos, projectileSpeed);
-
-	//nowUsingCount++;
-	player->GetComponent<CircleComponent>()->SetStatus(OS_ACTIVE);
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles[i]->SetPlayer(player);

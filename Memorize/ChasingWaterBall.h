@@ -11,7 +11,6 @@ public:
 	ChasingWaterBall(Actor* _owner);
 	virtual ~ChasingWaterBall();
 
-
 	virtual void UseSkill() override;
 	virtual void ReflectionIn() override;
 

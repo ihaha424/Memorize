@@ -81,16 +81,6 @@ Player::Player(class World* _world) : Character(_world)
 	buffEffect = CreateComponent<BuffEffectComponent>();
 	rootComponent->AddChild(buffEffect);
 	buffEffect->SetStatus(OS_INACTIVE);
-
-	//주변 적을 감지하기 위한 원형 콜라이더 for waterball skill
-	rangeCircle = CreateComponent <CircleComponent>();
-	rootComponent->AddChild(rangeCircle);
-	rangeCircle->SetCircleRadius(waterBallRange);
-	rangeCircle->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
-	rangeCircle->bSimulatePhysics = false;
-	rangeCircle->bApplyImpulseOnDamage = false;
-	rangeCircle->bGenerateOverlapEvent = true;
-	rangeCircle->SetStatus(OS_INACTIVE);
 }
 
 Player::~Player()
@@ -107,10 +97,7 @@ void Player::AddToStat(Stat _addStat)
 	stat.maxMp = std::clamp(stat.maxMp, minMaxMp, maxMaxMp);
 }
 
-void Player::PostUpdate(float _dt)
-{
-	__super::PostUpdate(_dt);
-}
+
 
 void Player::Update(float _dt)
 {
@@ -122,21 +109,6 @@ void Player::Update(float _dt)
 	//std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
 
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
-}
-
-void Player::OnOverlap(Actor* other, const OverlapInfo& overlap)
-{
-	__super::OnBeginOverlap(other, overlap);
-
-	//TODO: 채널 설정으로 바꿔야 함. 
-	//범위 내에 있는 적을 체크하여 배열에 넣음  
-	Character* ch = dynamic_cast<Character*>(other);
-	if (ch) 
-	{
-		if(find(enemiesInRange.begin(), enemiesInRange.end(), ch) == enemiesInRange.end())
-			enemiesInRange.push_back(ch);
-	}
-	
 }
 
 
