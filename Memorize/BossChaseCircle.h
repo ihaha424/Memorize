@@ -16,6 +16,7 @@ public:
 
 
 	virtual void DisfellAction() override;
+	virtual void DisfellFailAction() override;
 	virtual void OnClicked() override;
 
 
@@ -25,6 +26,7 @@ public:
 
 public:
 	class CircleComponent* circleComponent;
+	class AnimationBitmapComponent* abm;
 
 private:
 	RadialDamageEvent BossChaseCircleDamageEvent;
