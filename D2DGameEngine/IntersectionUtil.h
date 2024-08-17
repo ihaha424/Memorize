@@ -1744,7 +1744,7 @@ namespace intersectionUtil {
 
 
 	inline
-	bool BoundayCircleBoxIntersect(const Circle& circle, const Box& box) {
+	bool BoundaryCircleBoxIntersect(const Circle& circle, const Box& box) {
 		Line line1{ box.ul, {box.lr.x, box.ul.y} };
 		Line line2{ {box.lr.x, box.ul.y}, box.lr };
 		Line line3{ box.lr, { box.ul.x, box.lr.y} };
@@ -1755,11 +1755,13 @@ namespace intersectionUtil {
 		};
 
 		for (const Line& line : list) {
-			HitResult hitResult;
-			if (CircleLineIntersectWithResult(circle, line, hitResult))
-			{
-				return true;
-			}
+			float dr = Math::Vector2::Distance(line.start, line.end);
+			float d = line.start.x * line.end.y - line.end.x * line.start.y;
+			float r = circle.radius;
+
+			float delta = r * r * dr * dr - d * d;
+
+			if (delta >= 0.f) return true;
 		}
 
 		return false;
