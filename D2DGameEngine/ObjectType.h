@@ -8,7 +8,11 @@ enum class ECollisionChannel {
 	WorldDynamic,
 	Pawn,
 	Character,
-	ProjectTile,
+	Projectile,
+	Player,
+	Enemy,
+	PlayerProjectile,
+	EnemyProjectile,
 	NUM_COLLISION_CHANNELS
 };
 
@@ -17,6 +21,6 @@ constexpr uint GetNumCollisionChannels() {
 }
 
 constexpr ECollisionChannel GetCollisionChannelByIndex(uint index) {
-	if (index >= GetNumCollisionChannels()) return ECollisionChannel::ProjectTile;
+	if (index >= GetNumCollisionChannels()) return ECollisionChannel::WorldStatic;
 	return static_cast<ECollisionChannel>(index);
 }
