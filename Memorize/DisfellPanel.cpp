@@ -51,5 +51,11 @@ void DisfellPanel::SetCommandImage(int index, int command)
 
 void DisfellPanel::HideCommandImage(int index)
 {
+	if (index < 0)
+	{
+		for (auto disfellCommands : disfellCommands)
+			disfellCommands->Inactivate();
+		return; 
+	}
 	disfellCommands[index]->Inactivate();
 }

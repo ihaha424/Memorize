@@ -83,7 +83,7 @@ void BossGrowCircle::Update(float _dt)
 	//bm->SetScale(scaleVarias, scaleVarias);
 
 	circleComponent->InitCircleRadius(radius * scaleVarias);
-	circleComponent->bShouldOverlapTest = !circleComponent->bShouldOverlapTest;
+	circleComponent->bShouldOverlapTest = true;
 	for (auto& [actor, f] : tickDamageTimerMap)
 	{
 		// 틱 데미지 업데이트
@@ -99,9 +99,9 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{
-		/*bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
+		bool hitRadius = intersectionUtil::BoundayCircleBoxIntersect(
 			circleComponent->CalculateLocalBounds().GetCircle(),
-			overlap.overlapInfo.hitComponent->parent->CalculateLocalBounds().GetBox()
+			overlap.overlapInfo.hitComponent->CalculateLocalBounds().GetBox()
 		);
 		if (!hitRadius)
 			return;
@@ -116,7 +116,7 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 			);
 		};
 		f();
-		tickDamageTimerMap.insert({ other, TakeDamageTimer(f, tickInterval, true) });*/
+		tickDamageTimerMap.insert({ other, TakeDamageTimer(f, tickInterval, true) });
 	}
 }
 

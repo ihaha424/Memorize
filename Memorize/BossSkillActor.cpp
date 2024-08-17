@@ -50,6 +50,7 @@ bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 	}
 	else
 	{
+		controller->OnDoingDisfell->Emit(-1);
 		DisfellFailAction();
 		return false;
 	}

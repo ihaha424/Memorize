@@ -220,6 +220,7 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 	{
 		if (targetSkill == _event->GetBossSkillActor() && _event->GetBossSkillDieFlag())
 		{
+			OnDoingDisfell->Emit(-1);
 			playerFSMComponent->SetNextState(L"PlayerIdle");
 		}
 	}
