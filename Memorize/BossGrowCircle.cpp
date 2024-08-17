@@ -99,7 +99,7 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{
-		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
+		bool hitRadius = intersectionUtil::BoundayCircleBoxIntersect(
 			circleComponent->CalculateLocalBounds().GetCircle(),
 			overlap.overlapInfo.hitComponent->CalculateLocalBounds().GetBox()
 		);

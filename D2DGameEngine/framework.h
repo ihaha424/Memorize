@@ -126,7 +126,7 @@ namespace DirectX::SimpleMath {
 
 	inline constexpr
 	float RadianToDegree(float radian) {
-		return radian * 180.f * PI_F;
+		return radian * 180.f / PI_F;
 	}
 
 	inline

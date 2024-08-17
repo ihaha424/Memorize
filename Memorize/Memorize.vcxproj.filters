@@ -111,8 +111,11 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer">
       <UniqueIdentifier>{662950e6-6c18-4874-9ac3-eef068176ac7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile">
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingBomb">
       <UniqueIdentifier>{84ba3c3a-ecbc-49d8-a20a-e1d694978cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile">
+      <UniqueIdentifier>{16b34b1f-e4e1-42f8-9e3f-d5495452ad29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -350,11 +353,11 @@
     <ClCompile Include="BaseAttackProjectile.cpp">
       <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClCompile>
-    <ClCompile Include="BossChasingProjectile.cpp">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
+    <ClCompile Include="BossChasingBomb.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingBomb</Filter>
     </ClCompile>
-    <ClCompile Include="BuffEffectComponent.cpp">
-      <Filter>Source Files\App\Skill\Buff</Filter>
+    <ClCompile Include="BossThroughProjectile.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -607,14 +610,14 @@
     <ClInclude Include="BossRazer.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClInclude>
-    <ClInclude Include="BossChasingProjectile.h">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingProjectile</Filter>
+    <ClInclude Include="BossChasingBomb.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossChasingBomb</Filter>
     </ClInclude>
     <ClInclude Include="BaseAttackProjectile.h">
       <Filter>Source Files\App\Skill\Projectile</Filter>
     </ClInclude>
-    <ClInclude Include="BuffEffectComponent.h">
-      <Filter>Source Files\App\Skill\Buff</Filter>
+    <ClInclude Include="BossThroughProjectile.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossThroughProjectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
