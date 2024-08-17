@@ -149,7 +149,7 @@ struct CollisionProperty {
 			break;
 		case CollisionPropertyPreset::PlayerPattern:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
-			objectType = ECollisionChannel::EnemyProjectile;
+			objectType = ECollisionChannel::PlayerPattern;
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Ignore);
 			SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Ignore);
@@ -159,7 +159,7 @@ struct CollisionProperty {
 			break;
 		case CollisionPropertyPreset::EnemyPattern:
 			collisionEnabled = CollisionEnabled::Type::EnableCollision;
-			objectType = ECollisionChannel::EnemyProjectile;
+			objectType = ECollisionChannel::EnemyPattern;
 			responseContainer.SetAllChannels(CollisionResponse::Overlap);
 			SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Ignore);
 			SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
