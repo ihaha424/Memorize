@@ -8,6 +8,7 @@
 #include "TestLevel1_RenderLayer.h"
 #include "D2DGameEngine/World.h"
 #include "Player.h"
+#include "D2DGameEngine/IntersectionUtil.h"
 
 BossGrowCircle::BossGrowCircle(World* _world)
 	:BossSkillActor(_world)
@@ -33,10 +34,10 @@ BossGrowCircle::BossGrowCircle(World* _world)
 	BossGrowCircleDamageEvent.SetDamageType(radiaDamageType);
 	BossGrowCircleDamageEvent.origin = GetLocation();
 	BossGrowCircleDamageEvent.damageEventType = DamageEventType::RadialDamage;
-	BossGrowCircleDamageEvent.radialDamageInfo.maxDamage = 0.f;
+	BossGrowCircleDamageEvent.radialDamageInfo.maxDamage = damage;
 	BossGrowCircleDamageEvent.radialDamageInfo.minDamage = damage;
-	BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = 749.f;
-	BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = 750.f;
+	BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = radius;
+	BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = radius;
 	BossGrowCircleDamageEvent.componentHits.resize(1);
 
 	scaleTween = new DotTween<float>(&scaleVarias, EasingEffect::Linear, StepAnimation::StepOnceForward);
@@ -48,7 +49,7 @@ BossGrowCircle::BossGrowCircle(World* _world)
 void BossGrowCircle::BeginPlay()
 {
 	__super::BeginPlay();
-	
+
 	{
 		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
 		abm->SliceSpriteSheet(1300, 1000, 0, 0, 0, 0);
@@ -57,7 +58,7 @@ void BossGrowCircle::BeginPlay()
 	}
 
 
-	circleComponent->InitCircleRadius(750.f);
+	circleComponent->InitCircleRadius(radius);
 	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
@@ -81,7 +82,7 @@ void BossGrowCircle::Update(float _dt)
 	scaleTween->Update(_dt);
 	//bm->SetScale(scaleVarias, scaleVarias);
 
-	circleComponent->InitCircleRadius(750.f * scaleVarias);
+	circleComponent->InitCircleRadius(radius * scaleVarias);
 	circleComponent->bShouldOverlapTest = !circleComponent->bShouldOverlapTest;
 	for (auto& [actor, f] : tickDamageTimerMap)
 	{
@@ -98,9 +99,15 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{
+		bool hitRadius = intersectionUtil::BoundayCircleBoxIntersect(
+			circleComponent->CalculateLocalBounds().GetCircle(),
+			overlap.overlapInfo.hitComponent->parent->CalculateLocalBounds().GetBox()
+		);
+		if (!hitRadius)
+			return;
 		auto f = [this, other]() {
-			BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = 749.f * scaleVarias;
-			BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = 750.f * scaleVarias;
+			BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = radius * scaleVarias;
+			BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = radius * scaleVarias;
 			other->TakeDamage(
 				damage,
 				BossGrowCircleDamageEvent,
@@ -113,19 +120,19 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	}
 }
 
-//void BossGrowCircle::OnEndOverlap(Actor* other)
-//{
-//	if (other)
-//	{
-//		// Æ½ µ¥¹ÌÁö ²ô±â
-//		auto it = tickDamageTimerMap.find(other);
-//		if (it != tickDamageTimerMap.end())
-//		{
-//			it->second.SetFinish(true);
-//			tickDamageTimerMap.erase(it);
-//		}
-//	}
-//}
+void BossGrowCircle::OnEndOverlap(Actor* other, const OverlapInfo& overlap)
+{
+	if (other)
+	{
+		// Æ½ µ¥¹ÌÁö ²ô±â
+		auto it = tickDamageTimerMap.find(other);
+		if (it != tickDamageTimerMap.end())
+		{
+			it->second.SetFinish(true);
+			tickDamageTimerMap.erase(it);
+		}
+	}
+}
 
 
 void BossGrowCircle::ReflectionIn()
