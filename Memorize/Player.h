@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/Character.h"
 #include "../D2DGameEngine/Reflection.h"
 #include "D2DGameEngine/Debug.h"
+#include "Signal.h"
 
 struct Stat
 {
@@ -100,6 +101,10 @@ public:
 	{
 		OBJ_MESSAGE(dbg::text(damageAmount, " damage taken!"));
 	}
+
+	//Signals for UI
+	Signal<float>* OnHPChanged;
+	Signal<float>* OnMPChanged;
 
 };
 

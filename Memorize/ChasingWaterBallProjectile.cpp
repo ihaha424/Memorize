@@ -39,7 +39,7 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	bCollideWithOtherAttack = true;
 	bHasEnding = false;
 	endingTime = 1.f;
-
+	
 }
 
 ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
@@ -49,29 +49,35 @@ ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
 
 void ChasingWaterBallProjectile::OnOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	std::cout << "overlap!" << std::endl;
 	__super::OnOverlap(other, overlap);
 
-	if (state == State::Idle)
+	if (overlap.overlapInfo.hitComponent->GetCollisionObjectType() == ECollisionChannel::Enemy)
 	{
-		
-		//이미 이 적을 추적중이면 넘긴다.
-		if (find(chasingEnemies.begin(), chasingEnemies.end(), other) != chasingEnemies.end())
-			return;
+		if (state == State::Idle)
+		{
 
-		//waterball들이 추적중인 적에 추가한다.
-		chasingEnemies.push_back(other);
-		//이 projectile의 타겟으로 설정한다. 
-		target = other;
-		//추적상태로 전환한다. 
-		state = State::Chase;
+			//이미 이 적을 추적중이면 넘긴다.
+			if (find(chasingEnemies.begin(), chasingEnemies.end(), other) != chasingEnemies.end())
+				return;
+
+			//waterball들이 추적중인 적에 추가한다.
+			chasingEnemies.push_back(other);
+			//이 projectile의 타겟으로 설정한다. 
+			target = other;
+			//추적상태로 전환한다. 
+			state = State::Chase;
+		}
 	}
+
+
 
 }
 
 void ChasingWaterBallProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
+
+	rangeCircle->bShouldOverlapTest = true;
 
 	if (state == State::Idle)
 	{

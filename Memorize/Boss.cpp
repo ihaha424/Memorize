@@ -2,6 +2,7 @@
 #include "Signal.h"
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/Canvas.h"
+#include "../D2DGameEngine/BoxComponent.h"
 
 Boss::Boss(World* _world) : Character(_world)
 {
@@ -9,7 +10,8 @@ Boss::Boss(World* _world) : Character(_world)
 	hp = maxHp;
 
 	OnHPChanged = new Signal<int>;
-	
+
+	GetComponent<BoxComponent>()->SetCollisionObjectType(ECollisionChannel::Enemy);
 }
 
 Boss::~Boss()

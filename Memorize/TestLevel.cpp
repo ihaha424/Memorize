@@ -16,6 +16,7 @@
 //#include "Bat.h"
 #include "BossRazer.h"
 #include "BossChasingBomb.h"
+#include "PlayerMainUIPanel.h"
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
@@ -59,6 +60,12 @@ void TestLevel::Enter()
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
 			elementsPanel->SetPlayerController(pc);
+		}
+
+		{
+			playerMainUI = GetWorld()->GetCanvas()->CreatePannel<PlayerMainUIPanel>(L"PlayerMainUI");
+			player->OnHPChanged->Connect([&](float hp) { playerMainUI->SetHPValue(hp); });
+			player->OnMPChanged->Connect([&](float mp) { playerMainUI->SetMPValue(mp); });
 		}
 	}
 	
