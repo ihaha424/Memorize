@@ -20,7 +20,6 @@ BossThroughProjectile::BossThroughProjectile(World* _world)
 	rootComponent = abm;
 	abm->MarkBoundsDirty();
 	mv = CreateComponent<MovementComponent>();
-	rootComponent->AddChild(mv);
 	abm->AddChild(mv);
 
 	circleComponent = CreateComponent<CircleComponent>();
@@ -28,9 +27,10 @@ BossThroughProjectile::BossThroughProjectile(World* _world)
 	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
 	circleComponent->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
-	circleComponent->SetCollisionObjectType(ECollisionChannel::EnemyPattern);
+	circleComponent->SetCollisionObjectType(ECollisionChannel::EnemyProjectile);
 	circleComponent->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
 	circleComponent->collisionProperty.SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Block);
+	circleComponent->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Block);
 	
 	abm->AddChild(circleComponent);
 
