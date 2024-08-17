@@ -1741,6 +1741,29 @@ namespace intersectionUtil {
 		HitResult inHitResult;
 		return PolygonPolygonIntersectWithResult(polygon1, polygon2, inHitResult);
 	}
+
+
+	inline
+	bool BoundayCircleBoxIntersect(const Circle& circle, const Box& box) {
+		Line line1{ box.ul, {box.lr.x, box.ul.y} };
+		Line line2{ {box.lr.x, box.ul.y}, box.lr };
+		Line line3{ box.lr, { box.ul.x, box.lr.y} };
+		Line line4{ { box.ul.x, box.lr.y}, box.ul };
+
+		std::initializer_list<Line> list{
+			line1, line2, line3, line4
+		};
+
+		for (const Line& line : list) {
+			HitResult hitResult;
+			if (CircleLineIntersectWithResult(circle, line, hitResult))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 }
 
 
