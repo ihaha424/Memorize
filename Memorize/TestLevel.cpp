@@ -25,7 +25,7 @@ TestLevel::~TestLevel()
 {
 }
 
-#include "BossGrowMagicCircle.h"
+#include "BossGrowCircle.h"
 #include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
@@ -51,7 +51,8 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
-		CreateActor<BossGrowMagicCircle>();
+		Timer::SetTimeScale(0.2);
+		CreateActor<BossGrowCircle>();
 
 		
 		{
@@ -62,10 +63,10 @@ void TestLevel::Enter()
 	
 
 	{
-		Boss* boss = CreateActor<Boss>();
-		BossAIController* bc = CreateActor<BossAIController>();
-		boss->SetController(bc);
-		bc->SetBoss(boss);
+		//Boss* boss = CreateActor<Boss>();
+		//BossAIController* bc = CreateActor<BossAIController>();
+		//boss->SetController(bc);
+		//bc->SetBoss(boss);
 
 		//bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
 		//boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });

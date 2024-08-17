@@ -17,6 +17,8 @@ public:
 	virtual void Update(float _dt) override;
 
 	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
+	virtual void OnEndOverlap(Actor* other, const OverlapInfo& overlap);
+
 
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;
@@ -29,6 +31,7 @@ public:
 private:
 	float				startSkill = 1.f;
 	float				tickInterval = 0.4f;
+	float				radius = 700.f;
 
 	RadialDamageEvent BossGrowCircleDamageEvent;
 	class Player* player{ nullptr };
