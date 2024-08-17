@@ -36,13 +36,24 @@ public:
 	 */
 	void Inactivate() { status = OS_INACTIVE; }
 
+	Math::Vector2 Right() {
+		if (rootComponent != nullptr)
+			rootComponent->GetRightVector();
+	}
+
+	Math::Vector2 Up() {
+		if (rootComponent != nullptr)
+			rootComponent->GetUpVector();
+	}
+
 	void SetLocation(const float x, const float y);
 	Math::Vector2 GetLocation() const;
 	void SetRotation(const float _degree);
 	void SetScale(const float x, const float y);
 	Math::Matrix GetTrasnform() const;
 
-	void RotateTo(const Math::Vector2& point);
+	void RotateToward(const Math::Vector2& _direction);
+	void LookAt(const Math::Vector2& _point);
 
 	/**
 	 * @brief Translate and overlap test.
