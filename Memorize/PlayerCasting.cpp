@@ -42,8 +42,8 @@ void PlayerCasting::Enter()
 			return;
 		}
 	playerController->FindCurSkiil()->SetCommandList(commandList);
-	saveDirtyFlag = false;
 	}
+	saveDirtyFlag = false;
 }
 
 void PlayerCasting::Update(float _dt)

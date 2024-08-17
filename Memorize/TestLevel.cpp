@@ -25,7 +25,7 @@ TestLevel::~TestLevel()
 {
 }
 
-#include "BossGrowCircle.h"
+#include "BossGrowMagicCircle.h"
 #include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
@@ -51,8 +51,8 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
-		Timer::SetTimeScale(0.2);
-		CreateActor<BossGrowCircle>();
+		//Timer::SetTimeScale(0.5);
+		CreateActor<BossGrowMagicCircle>();
 
 		
 		{

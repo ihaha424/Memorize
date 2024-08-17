@@ -84,6 +84,10 @@ void ElementsPanel::Update(float _dt)
 		r->SetSprite(Rbm);
 		return;
 	}
+	else if (playerController->GetPlayerState() == L"PlayerBlinking")
+	{
+		return;
+	}
 
 	//스킬 타입까지 정해진 경우
 	if (curSkillType != ST_END)
