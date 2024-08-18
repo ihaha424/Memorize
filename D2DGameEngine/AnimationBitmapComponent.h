@@ -59,13 +59,13 @@ public:
 
 		auto framesFirst = frames.begin();
 		std::advance(framesFirst, first);
-		auto framesLast = frames.end();
+		auto framesLast = frames.begin();
 		std::advance(framesLast, last);
 		frames = std::vector<D2D_RectF>(framesFirst, framesLast);
 
 		auto frameDurationsFirst = frameDurations.begin();
 		std::advance(frameDurationsFirst, first);
-		auto frameDurationsLast = frameDurations.end();
+		auto frameDurationsLast = frameDurations.begin();
 		std::advance(frameDurationsLast, last);
 		frameDurations = std::vector<float>(frameDurationsFirst, frameDurationsLast);
 	}

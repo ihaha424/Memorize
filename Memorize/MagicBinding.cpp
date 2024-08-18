@@ -18,56 +18,51 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 	dispelTime = 3.f;
 	skillDuration = 3.f;
 
-	chainingTime = 1.f / 12.f * 13.f;
+	chainingTime = 1.f;
 
 	floorChaining = CreateComponent<AnimationBitmapComponent>();
 	floorChaining->SetSprite(L"TestResource/Boss/MagicBinding/FloorChaining.png");
 	floorChaining->SliceSpriteSheet(150.f, 80.f, 0, 0, 0, 0);
-	floorChaining->SetFrameDurations({ 1.f / 12.f });
-	floorChaining->FrameResize(12);
+	floorChaining->SetFrameDurations({ chainingTime / 12.f });
 	floorChaining->Trigger(true);
 
 	floorChained = CreateComponent<AnimationBitmapComponent>();
 	floorChained->isVisible = false;
 	floorChained->SetSprite(L"TestResource/Boss/MagicBinding/FloorChained.png");
-	floorChaining->SliceSpriteSheet(150.f, 80.f, 0, 0, 0, 0);
-	floorChaining->SetFrameDurations({ 1.f / 12.f });
-	floorChaining->Trigger(false);
-	floorChaining->SetLoop(true);
+	floorChained->SliceSpriteSheet(150.f, 80.f, 0, 0, 0, 0);
+	floorChained->SetFrameDurations({ 1.0f / 12.f });
+	floorChained->FrameResize(32);
+	floorChained->Trigger(false);
+	floorChained->SetLoop(true);
 
-	bodyChain = CreateComponent<AnimationBitmapComponent>();
-	bodyChain->SetSprite(L"TestResource/Boss/MagicBinding/BodyChain.png");
-	bodyChain->SliceSpriteSheet(550.f, 550.f, 0, 0, 0, 0);
-	bodyChain->SetFrameDurations({ 1.f / 12.f });
-	bodyChain->FrameSplice(1, bodyChain->GetFrameSize());
-	bodyChain->Trigger(true);
+	bodyChaining = CreateComponent<AnimationBitmapComponent>();
+	bodyChaining->SetSprite(L"TestResource/Boss/MagicBinding/BodyChain.png");
+	bodyChaining->SliceSpriteSheet(550.f, 550.f, 0, 0, 0, 0);
+	bodyChaining->SetFrameDurations({ chainingTime / 13.f });
+	bodyChaining->FrameSplice(1, 15);
+	bodyChaining->Trigger(true);
 
-
-	// Release Animation
-	floorRelease = CreateComponent<AnimationBitmapComponent>();
-	floorRelease->isVisible = false;
-	floorRelease->SetSprite(L"TestResource/Boss/MagicBinding/FloorChaining.png");
-	floorRelease->SliceSpriteSheet(150.f, 80.f, 0, 0, 0, 0);
-	floorRelease->SetFrameDurations({ releasingTime / 12.f });
-	floorRelease->FrameResize(12);
-	// TODO: Reverse
-	floorRelease->Trigger(false);
-
-	bodyRelease = CreateComponent<AnimationBitmapComponent>();
-	bodyRelease->isVisible = false;
-	bodyRelease->SetSprite(L"TestResource/Boss/MagicBinding/BodyChain.png");
-	bodyRelease->SliceSpriteSheet(550.f, 550.f, 0, 0, 0, 0);
-	bodyRelease->SetFrameDurations({ releasingTime / 14.f });
-	bodyRelease->FrameSplice(1, 15);
-	// TODO: Reverse
-	bodyRelease->Trigger(false);
-
+	bodyChained = CreateComponent<AnimationBitmapComponent>();
+	bodyChained->isVisible = false;
+	bodyChained->SetSprite(L"TestResource/Boss/MagicBinding/BodyChain.png");
+	bodyChained->SliceSpriteSheet(550.f, 550.f, 0, 0, 0, 0);
+	bodyChained->SetFrameDurations({ chainingTime / 12.f });
+	bodyChained->FrameSplice(16, 97);
+	bodyChained->Trigger(false);
+	bodyChained->SetLoop(true);
 
 	bm->AddChild(floorChaining);
 	bm->AddChild(floorChained);
-	bm->AddChild(bodyChain);
-	bm->AddChild(floorRelease);
-	bm->AddChild(bodyRelease);
+	bm->AddChild(bodyChaining);
+	bm->AddChild(bodyChained);
+
+	floorChaining->SetScale(2.f, 2.f);
+	floorChaining->SetTranslation(0.f, 100.f);
+	floorChained->SetScale(2.f, 2.f);
+	floorChained->SetTranslation(-6.f, 103.5f);
+
+	bodyChaining->SetTranslation(0.f, 0.f);
+	bodyChained->SetTranslation(0.f, 0.f);
 }
 
 void MagicBinding::BeginPlay()
@@ -75,17 +70,20 @@ void MagicBinding::BeginPlay()
 	Super::BeginPlay();
 
 	player = GetWorld()->FindActorByType<Player>();
-	// TODO: bind player
+	player->bondageFlag = true;
 	Math::Vector2 playerLocation = player->GetLocation();
 	SetLocation(playerLocation.x, playerLocation.y);
 }
 
 void MagicBinding::FixedUpdate(float _fixedRate)
 {
+	Super::FixedUpdate(_fixedRate);
 }
 
 void MagicBinding::Update(float _dt)
 {
+	Super::Update(_dt);
+
 	if (release) {
 		releasingTime -= _dt;
 
@@ -93,22 +91,6 @@ void MagicBinding::Update(float _dt)
 		{
 			Destroy();
 			return;
-		}
-
-		if (chained)
-		{
-			floorChained->isVisible = false;
-			floorChained->Trigger(false);
-
-			floorRelease->isVisible = true;
-			floorRelease->Trigger(true);
-
-			bodyRelease->isVisible = true;
-			bodyRelease->Trigger(true);
-		}
-		else
-		{
-			// TODO: reverse play floorChaining and bodyChain
 		}
 	}
 	else
@@ -119,9 +101,14 @@ void MagicBinding::Update(float _dt)
 			if (chainingTime <= 0.f)
 			{
 				floorChaining->isVisible = false;
-				floorChaining->Trigger(false);
+				floorChaining->Pause();
 				floorChained->isVisible = true;
 				floorChained->Trigger(true);
+
+				bodyChaining->isVisible = false;
+				bodyChaining->Pause();
+				bodyChained->isVisible = true;
+				bodyChained->Trigger(true);
 
 				chained = true;
 			}
@@ -131,6 +118,19 @@ void MagicBinding::Update(float _dt)
 		if (skillDuration <= 0.f)
 		{
 			DisfellAction();
+			floorChained->isVisible = false;
+			floorChained->Trigger(false);
+
+			bodyChained->isVisible = false;
+			bodyChained->Trigger(false);
+
+			floorChaining->isVisible = true;
+			floorChaining->SetReverse(true);
+			floorChaining->Resume();
+
+			bodyChaining->isVisible = true;
+			bodyChaining->SetReverse(true);
+			bodyChaining->Resume();
 		}
 	}
 }
@@ -138,8 +138,7 @@ void MagicBinding::Update(float _dt)
 void MagicBinding::DisfellAction()
 {
 	release = true;
-	// TODO: release player
-	//player.
+	player->bondageFlag = false;
 }
 
 void MagicBinding::ReflectionIn()

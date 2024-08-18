@@ -15,17 +15,14 @@ class MagicBinding : public BossSkillActor
 
 	class AnimationBitmapComponent* floorChaining;
 	class AnimationBitmapComponent* floorChained;
-	class AnimationBitmapComponent* bodyChain;
-	
-	
-	class AnimationBitmapComponent* floorRelease;
-	class AnimationBitmapComponent* bodyRelease;
+	class AnimationBitmapComponent* bodyChaining;
+	class AnimationBitmapComponent* bodyChained;
 
 
 	float chainingTime;
 	bool chained{ false };
 
-	float releasingTime{ 0.5f };
+	float releasingTime{ 1.f };
 	bool release{ false };
 
 public:
