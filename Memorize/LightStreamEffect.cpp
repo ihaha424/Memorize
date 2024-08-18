@@ -16,6 +16,7 @@ LightStreamEffect::LightStreamEffect(World* _world) : Actor(_world)
 	box->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
 	rootComponent->AddChild(box);
 }
+
 void LightStreamEffect::BeginPlay()
 {
 	__super::BeginPlay();

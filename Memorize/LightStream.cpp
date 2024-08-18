@@ -12,6 +12,7 @@ LightStream::LightStream(Actor* _owner) : RangeSkill(_owner)
 	ReflectionIn();
 	lightStreamEffect = GetWorld()->GetCurLevel()->CreateActor<LightStreamEffect>();
 	lightStreamEffect->SetDamage(damage);
+
 }
 
 LightStream::~LightStream()
@@ -21,6 +22,9 @@ LightStream::~LightStream()
 void LightStream::UseSkill()
 {
 	lightStreamEffect->Activate();
+
+	mana = player->stat.mp;
+	lightStreamEffect->SetDuration(mana / 50.f);
 
 	//마우스 위치 
 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };

@@ -15,6 +15,7 @@ public:
 	void SetDamage(float _damage) { damage = _damage; }
 	void OnBeginOverlap(Actor* other, const OverlapInfo& overlap);
 
+	void SetDuration(float _duration) { duration = _duration; };
 	virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;
 };
