@@ -74,22 +74,26 @@ void GPlayerController::InitializeSkill()
 		{ std::type_index(typeid(Meteor)), CreateComponent<Meteor>()},
 	};*/
 	CreateSkill<Fireball>();
-	CreateSkill<ChasingWaterBall>();
 	CreateSkill<Meteor>();
-	CreateSkill<ElementalExplosion>();
-	CreateSkill<PrismReflection>();
-	CreateSkill<TighteningCircle>();
-	CreateSkill<DarkSphere>();
-	CreateSkill<AggressiveWaves>();
-	CreateSkill<LightStream>();
-	CreateSkill<BasicAttack>();
-	CreateSkill<MPMaxIncrease>();
-	CreateSkill<MPRecovery>();
-	CreateSkill<Heal>();
 	CreateSkill<Enchant>();
+	CreateSkill<ElementalExplosion>();
+
+	CreateSkill<ChasingWaterBall>();
+	CreateSkill<AggressiveWaves>();
 	CreateSkill<ManaOverload>();
+	CreateSkill<Heal>();
+
+	CreateSkill<PrismReflection>();
+	CreateSkill<LightStream>();
+	CreateSkill<MPMaxIncrease>();
+	//CreateSkill<Purification>();
+	
+	CreateSkill<DarkSphere>();
+	CreateSkill<TighteningCircle>();
+	CreateSkill<MPRecovery>();
 	CreateSkill<ElementalMaster>();
 
+	CreateSkill<BasicAttack>();
 }
 
 int GPlayerController::GetPlayerCastingIndex()
