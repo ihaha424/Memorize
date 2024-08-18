@@ -35,6 +35,7 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 		waterballpj->SetInitialLocation(locations[i].x, locations[i].y);
 		
 	}
+	skillDuration = projectileDuration;
 
 }
 

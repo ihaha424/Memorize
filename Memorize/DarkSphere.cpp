@@ -17,6 +17,7 @@ DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles[i]->SetDamage(damage);
 		projectiles[i]->SetDuration(projectileDuration);
 	}
+	skillDuration = projectileDuration;
 }
 
 DarkSphere::~DarkSphere()

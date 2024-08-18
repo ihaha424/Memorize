@@ -410,6 +410,12 @@
     <ClCompile Include="ManaOverload.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
+    <ClCompile Include="ElementalMaster.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalMasterComponent.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -710,6 +716,12 @@
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
     </ClInclude>
     <ClInclude Include="ManaOverload.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalMaster.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalMasterComponent.h">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>

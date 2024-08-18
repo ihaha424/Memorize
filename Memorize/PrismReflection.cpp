@@ -19,6 +19,7 @@ PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles[i]->SetDamage(damage);
 		projectiles[i]->SetSpeed(projectileSpeed); 
 	}
+	skillDuration = projectileDuration;
 }
 
 PrismReflection::~PrismReflection()

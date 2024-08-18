@@ -41,6 +41,8 @@ protected:
 	std::vector<BYTE>	commandList{};
 	std::wstring text;
 public:
+	float skillDuration = 2.f;
+
 	Skill(Actor* _owner);
 	virtual ~Skill();
 

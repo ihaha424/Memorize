@@ -9,6 +9,13 @@ void PlayerCasting::Enter()
 
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 
+		if (playerController->FindCurSkiil() == nullptr)
+		{
+			owner->SetNextState(L"PlayerIdle");
+			playerController->InitializeSkillInfo();
+			return;
+		}
+
 		//스킬이 잠금해제 되지 않았으면 return 
 		if (!playerController->FindCurSkiil()->IsUnlocked())
 		{
@@ -28,7 +35,7 @@ void PlayerCasting::Enter()
 			playerStat.mp = 0.f;
 		}
 
-		if (playerController->bManaOverload)
+		if (playerController->bManaOverload || playerController->bElementalMaster)
 		{
 			//마나 오버로드 상태면 mp를 사용하지 않음
 		}

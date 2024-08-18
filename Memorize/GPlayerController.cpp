@@ -5,12 +5,14 @@
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/Canvas.h"
+#include "../D2DGameEngine/RandomGenerator.h"
 #include "PlayerFSMComponent.h"
 #include "MovementComponent.h"
 #include "SkillList.h"
 #include "Player.h"
 #include "ElementsPanel.h"
 #include "BossSkillActor.h"
+#include "ElementalMasterComponent.h"
 
 GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 {
@@ -26,6 +28,9 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 
 	OnBeginDisfell = new Signal<int, int>;
 	OnDoingDisfell = new Signal<int>;
+
+	elementalMasterComponent = CreateComponent<ElementalMasterComponent>();
+	elementalMasterComponent->SetStatus(OS_INACTIVE);
 }
 
 GPlayerController::~GPlayerController()
@@ -82,6 +87,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<Heal>();
 	CreateSkill<Enchant>();
 	CreateSkill<ManaOverload>();
+	CreateSkill<ElementalMaster>();
 
 }
 
@@ -140,6 +146,10 @@ void GPlayerController::Update(float _dt)
 	{
 		player->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
+	else
+	{
+		bElementalMaster = false;
+	}
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 
 	if (bManaOverload)
@@ -152,6 +162,13 @@ void GPlayerController::Update(float _dt)
 			bManaOverload = false;
 		}
 	}
+}
+
+void GPlayerController::SetRandomSkillReady()
+{
+	curSkillInfo.element = (ESkillElement)Random::Get<int>(3);
+	curSkillInfo.type = ST_PROJECTILE;
+
 }
 
 bool GPlayerController::AddSkillInfo(int index)
