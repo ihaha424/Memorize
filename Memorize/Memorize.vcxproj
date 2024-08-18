@@ -198,6 +198,7 @@
     <ClCompile Include="Pattern11Action.cpp" />
     <ClCompile Include="Pattern12Action.cpp" />
     <ClCompile Include="Pattern13Action.cpp" />
+    <ClCompile Include="Pattern14Action.cpp" />
     <ClCompile Include="Pattern1Action.cpp" />
     <ClCompile Include="Pattern2Action.cpp" />
     <ClCompile Include="Pattern3Action.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="Pattern11Action.h" />
     <ClInclude Include="Pattern12Action.h" />
     <ClInclude Include="Pattern13Action.h" />
+    <ClInclude Include="Pattern14Action.h" />
     <ClInclude Include="Pattern1Action.h" />
     <ClInclude Include="Pattern2Action.h" />
     <ClInclude Include="Pattern3Action.h" />

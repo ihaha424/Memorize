@@ -19,6 +19,7 @@ public:
 	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 	virtual void OnEndOverlap(Actor* other, const OverlapInfo& overlap) override;
 
+	void SetGrowLess(bool _Grow);
 
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;

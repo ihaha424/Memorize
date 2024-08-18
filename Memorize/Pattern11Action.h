@@ -4,7 +4,7 @@
 
 #include "PatternAction.h"
 
-struct Pattern10Action final : public PatternAction
+struct Pattern11Action final : public PatternAction
 {
 	void Run(float dt) override;
 

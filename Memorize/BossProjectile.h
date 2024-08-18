@@ -6,12 +6,14 @@
 class BossProjectile : public BossSkillActor
 {
 public:
-	BossProjectile(class World* _world, std::wstring fileName);
+	BossProjectile(class World* _world);
 	virtual ~BossProjectile() {};
 
 	virtual void BeginPlay();
 
 	virtual void Update(float _dt) override;
+
+	void SetActor(std::wstring _fileName);
 
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;
