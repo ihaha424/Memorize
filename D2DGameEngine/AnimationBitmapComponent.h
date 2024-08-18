@@ -45,6 +45,31 @@ public:
 		isReverse = _reverse;
 	}
 
+	std::size_t GetFrameSize() {
+		return frames.size();
+	}
+
+	void FrameSplice(int first, int last)
+	{
+		if (first < 0 || GetFrameSize() < last)
+		{
+			LOG_ERROR(-1, "Invalid splicing range!");
+			return;
+		}
+
+		auto framesFirst = frames.begin();
+		std::advance(framesFirst, first);
+		auto framesLast = frames.begin();
+		std::advance(framesLast, last);
+		frames = std::vector<D2D_RectF>(framesFirst, framesLast);
+
+		auto frameDurationsFirst = frameDurations.begin();
+		std::advance(frameDurationsFirst, first);
+		auto frameDurationsLast = frameDurations.begin();
+		std::advance(frameDurationsLast, last);
+		frameDurations = std::vector<float>(frameDurationsFirst, frameDurationsLast);
+	}
+
 	/**
 	 * @brief 스프라이트 시트를 일정한 간격으로 슬라이스 하고, 기본 시간 간격을
 	 * 1초로 설정합니다.

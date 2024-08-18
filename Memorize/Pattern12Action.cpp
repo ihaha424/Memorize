@@ -3,8 +3,12 @@
 #include "D2DGameEngine/BehaviorTree.h"
 #include "D2DGameEngine/World.h"
 
+#include "MagicBinding.h"
+
 void Pattern12Action::Run(float dt)
 {
 	Super::Run(dt);
+
+	bt->GetWorld()->GetCurLevel()->CreateActor<MagicBinding>();
 
 }

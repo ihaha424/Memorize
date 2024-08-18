@@ -49,9 +49,9 @@ void Pattern1Action::Run(float dt)
 		}
 	}
 	
-	Math::Vector2 shotDirection1 = ANGLES[(index - 1) % NUM_ANGLES];
-	Math::Vector2 shotDirection2 = ANGLES[index];
-	Math::Vector2 shotDirection3 = ANGLES[(index + 1) % NUM_ANGLES];
+	Math::Vector2 shotDirection1 = ANGLES[(index - 1 + NUM_ANGLES) % NUM_ANGLES];
+	Math::Vector2 shotDirection2 = ANGLES[(index + NUM_ANGLES) % NUM_ANGLES];
+	Math::Vector2 shotDirection3 = ANGLES[(index + 1 + NUM_ANGLES) % NUM_ANGLES];
 
 	bat1->AddVelocity(shotDirection1 * bat1->speed);
 	bat2->AddVelocity(shotDirection2 * bat1->speed);

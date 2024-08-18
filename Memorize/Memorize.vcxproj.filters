@@ -123,6 +123,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo">
       <UniqueIdentifier>{511fb780-3989-4ebb-81df-423781e7f044}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding">
+      <UniqueIdentifier>{f9f031de-c4c2-40d2-82ce-437b4994a154}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -400,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="Pattern14Action.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicBinding.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
     </ClCompile>
     <ClCompile Include="ManaOverload.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
@@ -699,6 +705,9 @@
     </ClInclude>
     <ClInclude Include="Pattern14Action.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBinding.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
     </ClInclude>
     <ClInclude Include="ManaOverload.h">
       <Filter>Source Files\App\Skill\Special</Filter>
