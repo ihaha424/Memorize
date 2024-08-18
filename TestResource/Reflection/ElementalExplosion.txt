@@ -2,5 +2,6 @@ Skill_Mana : 100
 Command : 3, 2, 2, 0, 0, 2
 Skill_Condition : 30
 Castring Time : 0.5
+Crash	: 1
 Skill_Text : 모든 투사체를 폭발시킵니다.
 End
