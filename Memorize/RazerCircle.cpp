@@ -11,6 +11,8 @@
 
 RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 {
+	renderLayer = 1;
+
 	bm->isVisible = false;
 
 	isDispel = true;

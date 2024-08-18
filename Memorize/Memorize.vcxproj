@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="AggressiveWaves.cpp" />
     <ClCompile Include="AggressiveWavesEffect.cpp" />
+    <ClCompile Include="Arena.cpp" />
     <ClCompile Include="BaseAttackProjectile.cpp" />
     <ClCompile Include="BasicAttack.cpp" />
     <ClCompile Include="Bat.cpp" />
@@ -241,6 +242,7 @@
   <ItemGroup>
     <ClInclude Include="AggressiveWaves.h" />
     <ClInclude Include="AggressiveWavesEffect.h" />
+    <ClInclude Include="Arena.h" />
     <ClInclude Include="BaseAttackProjectile.h" />
     <ClInclude Include="BasicAttack.h" />
     <ClInclude Include="Bat.h" />

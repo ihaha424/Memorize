@@ -10,6 +10,7 @@
 
 MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 {
+	renderLayer = 3;
 	bm->isVisible = false;
 
 	isDispel = true;

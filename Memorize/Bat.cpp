@@ -15,6 +15,8 @@ Bat::Bat(World* _world) : Actor(_world)
 	SetTickProperties(TICK_PHYSICS | TICK_PRE_UPDATE | TICK_UPDATE | TICK_POST_UPDATE | TICK_RENDER);
 	ReflectionIn();
 
+	renderLayer = 2;
+
 	CircleComponent* circle = CreateComponent<CircleComponent>();
 	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
 	circle->bGenerateOverlapEvent = true;

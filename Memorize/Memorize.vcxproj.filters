@@ -126,6 +126,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding">
       <UniqueIdentifier>{f9f031de-c4c2-40d2-82ce-437b4994a154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Arena">
+      <UniqueIdentifier>{9b0b6d68-2654-4b44-9901-9ac0b0968bae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -353,6 +356,9 @@
     <ClCompile Include="BossGrowCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClCompile>
+    <ClCompile Include="ManaOverload.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
     <ClCompile Include="BossRazer.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClCompile>
@@ -407,8 +413,8 @@
     <ClCompile Include="MagicBinding.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
     </ClCompile>
-    <ClCompile Include="ManaOverload.cpp">
-      <Filter>Source Files\App\Skill\Special</Filter>
+    <ClCompile Include="Arena.cpp">
+      <Filter>Source Files\App\Arena</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -655,6 +661,9 @@
     <ClInclude Include="BossGrowCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClInclude>
+    <ClInclude Include="ManaOverload.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
     <ClInclude Include="BossRazer.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClInclude>
@@ -709,8 +718,8 @@
     <ClInclude Include="MagicBinding.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
     </ClInclude>
-    <ClInclude Include="ManaOverload.h">
-      <Filter>Source Files\App\Skill\Special</Filter>
+    <ClInclude Include="Arena.h">
+      <Filter>Source Files\App\Arena</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

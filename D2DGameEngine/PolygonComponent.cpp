@@ -10,10 +10,11 @@ bool PolygonComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 	// Early out if collision is not enabled
 	if (!bCanCollide) return false;
 
-	if (GetCollisionObjectType() != collisionChannel) return false;
+	if (this->collisionProperty.GetCollisionResponse(collisionChannel) == CollisionResponse::Ignore ||
+		collisionProperty.GetCollisionResponse(GetCollisionObjectType()) == CollisionResponse::Ignore) return false;
 
 	CollisionShape myCollisionShape;
-	this->GetCollisionShape(1.f, myCollisionShape);
+	if (!this->GetCollisionShape(1.f, myCollisionShape)) return false;
 
 	if (myCollisionShape.IsNearlyZero() || collisionShape.IsNearlyZero())
 		return false;
@@ -30,7 +31,7 @@ bool PolygonComponent::CheckSweepComponent(HitResult& outHit, const DXVec2& star
 
 	constexpr uint maxNumSteps = 20;
 
-	float stepSize = 1.f;
+	float stepSize = 0.01f;
 	uint numSteps = deltaSize / stepSize;
 	if (maxNumSteps < numSteps) {
 		stepSize = deltaSize / maxNumSteps;

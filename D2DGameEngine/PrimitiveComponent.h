@@ -339,7 +339,7 @@ public:
 				MoveComponent(velocity * _dt, angularVelocity * _dt, true, &hitResult);
 
 				if (hitResult.bBlockingHit && hitResult.bStartPenetrating) {
-					Translate(hitResult.normal * hitResult.penetrationDepth * 1.1f);
+					Translate(hitResult.normal * hitResult.penetrationDepth * 1.12f);
 				}
 			}
 		}

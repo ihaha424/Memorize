@@ -10,6 +10,7 @@
 
 ChasingBomb::ChasingBomb(World* _world) : BossSkillActor(_world)
 {
+	renderLayer = 2;
 	bm->isVisible = false;
 
 	isDispel = false;

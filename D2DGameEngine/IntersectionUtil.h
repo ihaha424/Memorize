@@ -743,7 +743,7 @@ namespace intersectionUtil {
 		for (size_t i = 0; i < polygon.points.size(); i++) {
 			size_t next = (i + 1) % polygon.points.size();
 			Math::Vector2 edge = polygon.points[next] - polygon.points[i];
-			Math::Vector2 normal = { -edge.y, edge.x }; // Perpendicular to the edge
+			Math::Vector2 normal = { edge.y, -edge.x }; // Perpendicular to the edge
 			normal.Normalize();
 			axes.push_back(normal);
 		}

@@ -1,5 +1,5 @@
 #include "TestLevel.h"
-#include "TestWall.h"
+#include "Arena.h"
 #include "Player.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/SpriteResource.h"
@@ -35,12 +35,13 @@ void TestLevel::Enter()
 {
 	
 	{
-		Actor* actor = CreateActor<Actor>();
+		Arena* arena = CreateActor<Arena>();
+		/*Actor* actor = CreateActor<Actor>();
 		actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
 		BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
 		bm->SetSprite(L"TestResource/BackGround_Map.png");
 		actor->rootComponent = bm;
-		actor->renderLayer = 0;
+		actor->renderLayer = 0;*/
 		//bm->SetTranslation(960, -540);
 	}
 
@@ -56,8 +57,8 @@ void TestLevel::Enter()
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
 		//Timer::SetTimeScale(0.5);
-		BossGrowCircle* temp = CreateActor<BossGrowCircle>();
-		temp->SetGrowLess(false);
+		/*BossGrowCircle* temp = CreateActor<BossGrowCircle>();
+		temp->SetGrowLess(false);*/
 
 		
 		{
