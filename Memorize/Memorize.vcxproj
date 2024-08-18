@@ -173,6 +173,8 @@
     <ClCompile Include="DarkSphere.cpp" />
     <ClCompile Include="DarkSphereProjectile.cpp" />
     <ClCompile Include="DisfellPanel.cpp" />
+    <ClCompile Include="ElementalExplosion.cpp" />
+    <ClCompile Include="ElementalExplosionEffect.cpp" />
     <ClCompile Include="ElementsPanel.cpp" />
     <ClCompile Include="Enchant.cpp" />
     <ClCompile Include="Fireball.cpp" />
@@ -268,6 +270,8 @@
     <ClInclude Include="DarkSphereProjectile.h" />
     <ClInclude Include="DisfellEvent.h" />
     <ClInclude Include="DisfellPanel.h" />
+    <ClInclude Include="ElementalExplosion.h" />
+    <ClInclude Include="ElementalExplosionEffect.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="Enchant.h" />
     <ClInclude Include="Fireball.h" />

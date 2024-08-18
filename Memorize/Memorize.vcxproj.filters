@@ -126,6 +126,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding">
       <UniqueIdentifier>{f9f031de-c4c2-40d2-82ce-437b4994a154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\Special\ElementalExplosion">
+      <UniqueIdentifier>{4abae98b-ba91-40af-b9f9-b35d77fcb1cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -409,6 +412,12 @@
     </ClCompile>
     <ClCompile Include="ManaOverload.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalExplosion.cpp">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalExplosionEffect.cpp">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -711,6 +720,12 @@
     </ClInclude>
     <ClInclude Include="ManaOverload.h">
       <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalExplosionEffect.h">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalExplosion.h">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
