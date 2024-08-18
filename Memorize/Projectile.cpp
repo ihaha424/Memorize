@@ -57,7 +57,8 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	if (!bIsPassable)
 	{
 		bEnding = true;
-		anim->SetState(endingState);
+		if(bHasEnding)
+			anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
 	}

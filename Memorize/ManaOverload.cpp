@@ -38,6 +38,6 @@ void ManaOverload::UseSkill()
 
 void ManaOverload::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/Overload.txt");
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/ManaOverload.txt");
 	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text);
 }

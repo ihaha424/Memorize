@@ -20,6 +20,7 @@ AggressiveWavesEffect::AggressiveWavesEffect(World* _world) : Projectile(_world)
 	box->SetBoxExtent({ 130, 200 });
 
 	bIsPassable = true;
+	bEnding = false;
 	bCollideWithOtherAttack = true;
 }
 
