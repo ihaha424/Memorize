@@ -87,6 +87,9 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		rangeCircle->SetStatus(OS_ACTIVE);
 		rangeCircle->bShouldOverlapTest = true;
 		SetLocation(player->GetLocation().x + x, player->GetLocation().y + y);
+
+		if (elapsedTime > duration)
+			elapsedTime += endingTime;
 	}
 	else if (state == State::Chase)
 	{

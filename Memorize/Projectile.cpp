@@ -97,6 +97,8 @@ void Projectile::BeginPlay()
 void Projectile::Initialize()
 {
 	anim->SetState(normalState);
+	elapsedTime = 0.f;
+	bEnding = false;
 }
 
 void Projectile::FixedUpdate(float _fixedRate)

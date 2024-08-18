@@ -56,7 +56,7 @@ void ElementalMasterComponent::Update(float _dt)
 			PlayerCasting* state = static_cast<PlayerCasting*>(controller->playerFSMComponent->GetCurStateClass());
 			state->index = state->commandList.size();
 			bSkillReady = true;
-			skillDuration = controller->FindCurSkiil()->skillDuration;
+			skillDuration = controller->FindCurSkiil()->skillDuration + 1.0f;
 		}
 
 	}
