@@ -5,14 +5,10 @@
 
 #include "PatternAction.h"
 
-struct Pattern6Action final : public PatternAction, IReflection
+struct Pattern6Action final : public PatternAction
 {
 	float	delay;
 	int		posCircle;
 	float	bossSpeed;
 	void Run(float dt) override;
-
-	// IReflection을(를) 통해 상속됨
-	void ReflectionIn() override;
-	void ReflectionOut() override;
 };

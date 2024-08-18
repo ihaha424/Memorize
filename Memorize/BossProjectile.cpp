@@ -6,7 +6,7 @@
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 
-BossProjectile::BossProjectile(World* _worldme)
+BossProjectile::BossProjectile(World* _world)
 	:BossSkillActor(_world)
 {}
 
