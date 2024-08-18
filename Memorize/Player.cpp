@@ -12,6 +12,7 @@
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"
 #include "BuffEffectComponent.h"
+#include "ElementalMasterComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
 
@@ -110,6 +111,7 @@ void Player::Update(float _dt)
 
 	stat.mp += stat.mpRegenPerSecond * _dt;
 
+	stat.maxMp = maxMaxMp;
 	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
 	//std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
 

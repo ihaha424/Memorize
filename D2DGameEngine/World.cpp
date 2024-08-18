@@ -164,6 +164,8 @@ void World::BeginPlay()
 void World::FixedUpdate(float _fixedRate)
 {
 	CurLevel->FixedUpdate(_fixedRate);
+	CurLevel->CleanUp();
+	CurLevel->Destroy();
 }
 
 void World::PreUpdate(float _dt)

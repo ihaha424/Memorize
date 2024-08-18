@@ -7,6 +7,7 @@ void PlayerAttack::Enter()
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->FindCurSkiil()->UseSkill();
 	skillDelay = playerController->FindCurSkiil()->GetCastingTime();
+	playerController->bNowAttacking = true;
 }
 
 void PlayerAttack::Update(float _dt)

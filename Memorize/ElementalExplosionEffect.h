@@ -1,22 +1,27 @@
 #pragma once
 #include "D2DGameEngine/Actor.h"
 
-class LightStreamEffect : public Actor
+class ElementalExplosionEffect : public Actor
 {
 	class BitmapComponent* bm;
-	float duration = 1.f;
+	float duration = 0.5f;
 	float elapsedTime = 0.f;
 	float damage = 0.f;
 	class BoxComponent* box;
 public:
-	LightStreamEffect(World* _world);
-	virtual ~LightStreamEffect();
+	ElementalExplosionEffect(World* _world);
+	virtual ~ElementalExplosionEffect();
 
-	void SetDamage(float _damage) { damage = _damage; }
 	void OnBeginOverlap(Actor* other, const OverlapInfo& overlap);
 
-	void SetDuration(float _duration) { duration = _duration; };
 	virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;
 };
 
+//Skill_Mana: 100
+//Command : 3, 2, 2, 0, 0, 2
+//Skill_Condition : 30
+//Castring Time : 0.5
+// bCrash : 1
+//Skill_Text : 모든 투사체를 폭발시킵니다.
+//End

@@ -113,7 +113,6 @@ void BossThroughProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& over
 		nullptr,
 		this
 	);
-
 	circleComponent->SetCollisionEnabled(CollisionEnabled::NoCollision);
 	circleComponent->bGenerateOverlapEvent = false;
 	abm->Quit();	// 애니메이션도 종료

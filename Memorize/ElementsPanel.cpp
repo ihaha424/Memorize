@@ -4,6 +4,7 @@
 #include "D2DGameEngine/Canvas.h"
 #include "D2DGameEngine/UIText.h"
 #include "GPlayerController.h"
+#include "ElementalMasterComponent.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/SpriteResource.h"
 
@@ -75,7 +76,7 @@ void ElementsPanel::Update(float _dt)
 	ESkillType curSkillType = playerController->GetCurSkillInfo().type;
 	ESkillElement curSkillElement = playerController->GetCurSkillInfo().element;
 
-	if (playerController->isPlayerAfterCasting())
+	if (playerController->isPlayerAfterCasting() || playerController->bElementalMaster)
 	{
 		HideAllCommands();
 		q->SetSprite(Qbm);
@@ -92,6 +93,7 @@ void ElementsPanel::Update(float _dt)
 	//스킬 타입까지 정해진 경우
 	if (curSkillElement != SE_END && curSkillType != ST_END)
 	{
+
 		HideAllCommands();
 		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
 		infoTexts[curSkillType]->Activate();

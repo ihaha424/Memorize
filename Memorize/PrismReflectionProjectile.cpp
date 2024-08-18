@@ -7,7 +7,7 @@ PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile
 	normalState->SetSprite(L"TestResource/Player/Skill/Skill_PrismReflection01.png");
 	normalState->SliceSpriteSheet(240, 181, 0, 0, 0, 0);
 	normalState->FrameResize(120);
-	normalState->SetFrameDurations({ 2.f/120 });
+	normalState->SetFrameDurations({ 1.f/120 });
 	anim->Initialize(normalState);
 	bIsPassable = true;
 	bCollideWithOtherAttack = true;
@@ -15,6 +15,7 @@ PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;
 	bHasEnding = false;
+	endingTime = 0.f;
 }
 
 PrismReflectionProjectile::~PrismReflectionProjectile()

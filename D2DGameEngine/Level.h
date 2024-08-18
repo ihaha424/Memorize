@@ -65,6 +65,8 @@ public:
     
     virtual void BeginPlay();
     virtual void FixedUpdate(float _fixedRate);
+	virtual void Destroy();
+	virtual void CleanUp();
     virtual void PreUpdate(float _dt);
     virtual void Update(float _dt);
     virtual void PostUpdate(float _dt);

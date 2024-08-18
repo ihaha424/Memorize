@@ -126,6 +126,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding">
       <UniqueIdentifier>{f9f031de-c4c2-40d2-82ce-437b4994a154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Skill\Special\ElementalExplosion">
+      <UniqueIdentifier>{4abae98b-ba91-40af-b9f9-b35d77fcb1cd}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\App\Arena">
       <UniqueIdentifier>{9b0b6d68-2654-4b44-9901-9ac0b0968bae}</UniqueIdentifier>
     </Filter>
@@ -415,6 +418,18 @@
     </ClCompile>
     <ClCompile Include="Arena.cpp">
       <Filter>Source Files\App\Arena</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalExplosion.cpp">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalExplosionEffect.cpp">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalMaster.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalMasterComponent.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -720,6 +735,18 @@
     </ClInclude>
     <ClInclude Include="Arena.h">
       <Filter>Source Files\App\Arena</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalExplosionEffect.h">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalExplosion.h">
+      <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalMaster.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalMasterComponent.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
