@@ -11,14 +11,17 @@ PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 	projectileCount = 10;
 	SetID(ST_PROJECTILE, SE_LIGHT);
 	ReflectionIn();
+	projectileDuration = 1.f;
 
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<PrismReflectionProjectile>());
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
 		projectiles[i]->SetDamage(damage);
+		projectiles[i]->SetDuration(projectileDuration);
 		projectiles[i]->SetSpeed(projectileSpeed); 
 	}
+	
 	skillDuration = projectileDuration;
 }
 
