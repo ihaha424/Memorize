@@ -29,26 +29,36 @@ void ElementalMasterComponent::Update(float _dt)
 		SetStatus(OS_INACTIVE);
 		return;
 	}
-	if (bSkillReady && controller->playerFSMComponent->GetCurState() != L"PlayerAttack"
-		&& controller->FindCurSkiil() != nullptr )
+
+	if (bSkillReady )
 	{
-		nowSkillTimer += _dt;
-		if (nowSkillTimer > controller->FindCurSkiil()->skillDuration)
-		{
-			nowSkillTimer = 0.f;
-			bSkillReady = false;
+		if (controller->bNowAttacking) {
+
+			nowSkillTimer += _dt;
+			if (nowSkillTimer > skillDuration)
+			{
+				nowSkillTimer = 0.f;
+				bSkillReady = false;
+				controller->bNowAttacking = false;
+				controller->InitializeSkillInfo();
+			}
 		}
 		return;
 	}
 
-	controller->playerFSMComponent->SetNextState(L"PlayerCasting");
-	controller->SetRandomSkillReady();
 
-	if (!bSkillReady && controller->playerFSMComponent->GetCurState() == L"PlayerCasting")
+	if (!bSkillReady )
 	{
-		PlayerCasting* state = static_cast<PlayerCasting*>(controller->playerFSMComponent->GetCurStateClass());
-		state->index = state->commandList.size();
-		bSkillReady = true;
+		controller->playerFSMComponent->SetNextState(L"PlayerCasting");
+		controller->SetRandomSkillReady();
+		if (controller->playerFSMComponent->GetCurState() == L"PlayerCasting")
+		{
+			PlayerCasting* state = static_cast<PlayerCasting*>(controller->playerFSMComponent->GetCurStateClass());
+			state->index = state->commandList.size();
+			bSkillReady = true;
+			skillDuration = controller->FindCurSkiil()->skillDuration;
+		}
+
 	}
 
 }

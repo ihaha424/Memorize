@@ -6,6 +6,7 @@ class ElementalMasterComponent : public IComponent
 	float nowSkillTimer = 0.f;
 	class GPlayerController* controller;
 	bool bSkillReady = false;
+	float skillDuration = 0.f;
 public:
 	ElementalMasterComponent(Actor* _owner);
 	virtual ~ElementalMasterComponent();

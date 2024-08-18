@@ -38,10 +38,12 @@ public:
 
 	//Mana overload skill
 	bool bManaOverload = false;
-	bool bElementalMaster = false;
 	const float manaOverloadTime = 10.f;
 	float manaOverloadTimer = 0.f;
 
+	//Elemental Master
+	bool bElementalMaster = false;
+	bool bNowAttacking = false;
 public:
 	GPlayerController(class World* _world);
 	virtual ~GPlayerController();
