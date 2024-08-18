@@ -6,7 +6,7 @@
 //#include "ElementalExplosion.h"
 #include "ChasingWaterBall.h"
 #include "AggressiveWaves.h"
-//#include "ManaOverload.h"
+#include "ManaOverload.h"
 #include "Heal.h"
 #include "PrismReflection.h"
 #include "LightStream.h"

@@ -33,6 +33,11 @@ public:
 	Signal<int,int>* OnBeginDisfell;
 	Signal<int>* OnDoingDisfell;
 
+	//Mana overload skill
+	bool bManaOverload = false;
+	const float manaOverloadTime = 10.f;
+	float manaOverloadTimer = 0.f;
+
 public:
 	GPlayerController(class World* _world);
 	virtual ~GPlayerController();

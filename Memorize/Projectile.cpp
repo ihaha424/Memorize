@@ -28,10 +28,6 @@ Projectile::Projectile(World* _world) : Actor(_world)
 	box->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
 	rootComponent->AddChild(box);
 
-	mv->SetStatus(OS_INACTIVE);
-	anim->SetStatus(OS_INACTIVE);
-	box->SetStatus(OS_INACTIVE);
-
 	normalState = anim->CreateState<AnimationState>();
 	endingState = anim->CreateState<AnimationState>();
 	
@@ -61,7 +57,8 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	if (!bIsPassable)
 	{
 		bEnding = true;
-		anim->SetState(endingState);
+		if(bHasEnding)
+			anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
 	}
@@ -88,6 +85,9 @@ void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
 void Projectile::BeginPlay()
 {
 	__super::BeginPlay();
+	mv->SetStatus(OS_INACTIVE);
+	anim->SetStatus(OS_INACTIVE);
+	box->SetStatus(OS_INACTIVE);
 }
 
 void Projectile::Initialize()

@@ -69,6 +69,8 @@ void PlayerState::Attack()
 void PlayerState::Move()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (playerController->GetPlayer()->bondageFlag)
+		return;
 	Math::Vector2 destPos = playerController->GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
 	playerController->SetDestPos(destPos);
 	Math::Vector2 direction = destPos - playerController->GetPlayer()->GetLocation();
@@ -90,6 +92,9 @@ void PlayerState::Memorize()
 
 void PlayerState::Teleport()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (playerController->GetPlayer()->bondageFlag)
+		return;
 	//if(마나체크)
 	owner->SetNextState(L"PlayerBlinking");
 }
