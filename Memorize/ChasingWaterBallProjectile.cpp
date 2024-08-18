@@ -11,18 +11,20 @@ std::vector<class Actor*> ChasingWaterBallProjectile::chasingEnemies{};
 ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	: Projectile(_world)
 {
-	normalState->SetSprite(L"TestResource/Skill/Projectile/ChasingWaterBall/Ready.png");
-	//normalState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
-	normalState->SliceSpriteSheet(58, 56, 0, 0, 0, 0);
-	//normalState->FrameResize(73);
-	//normalState->SetFrameDurations({ 0.05f });
+	normalState->SetSprite(L"TestResource/Player/Skill/Skill_ChasingWaterBall03.png");
+	normalState->SliceSpriteSheet(140, 140, 0, 0, 0, 0);
+	normalState->SetFrameDurations({ 0.05f });
 	anim->Initialize(normalState);
 
-	endingState->SetSprite(L"TestResource/Skill/Projectile/ChasingWaterBall/Boom.png");
-	//normalState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
-	endingState->SliceSpriteSheet(194, 181, 0, 0, 0, 0);
-	//normalState->FrameResize(73);
-	//normalState->SetFrameDurations({ 0.05f });
+	endingState->SetSprite(L"TestResource/Player/Skill/Skill_ChasingWaterBall02.png");
+	endingState->SliceSpriteSheet(200, 200, 0, 0, 0, 0);
+	endingState->FrameResize(18);
+	endingState->SetFrameDurations({ 0.05f });
+
+	chaseState = anim->CreateState<AnimationState>();
+	chaseState->SetSprite(L"TestResource/Player/Skill/Skill_ChasingWaterBall01.png");
+	chaseState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
+	chaseState->SetFrameDurations({ 0.05f });
 
 
 	//적 감지 위한 원형 콜라이더
@@ -66,6 +68,7 @@ void ChasingWaterBallProjectile::OnOverlap(Actor* other, const OverlapInfo& over
 			target = other;
 			//추적상태로 전환한다. 
 			state = State::Chase;
+			anim->SetState(chaseState);
 		}
 	}
 
@@ -77,11 +80,12 @@ void ChasingWaterBallProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	rangeCircle->bShouldOverlapTest = true;
+	
 
 	if (state == State::Idle)
 	{
 		rangeCircle->SetStatus(OS_ACTIVE);
+		rangeCircle->bShouldOverlapTest = true;
 		SetLocation(player->GetLocation().x + x, player->GetLocation().y + y);
 	}
 	else if (state == State::Chase)
@@ -95,7 +99,7 @@ void ChasingWaterBallProjectile::Update(float _dt)
 
 		//타겟의 위치로 이동했으면 폭발 상태로.
 		float distance = Math::Vector2::Distance(GetLocation(), target->GetLocation());
-		if (bEnding == true)
+		if (distance <= 5)
 		{
 			state = State::Boom;
 		}

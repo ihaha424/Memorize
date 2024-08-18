@@ -30,7 +30,7 @@ Projectile::Projectile(World* _world) : Actor(_world)
 
 	normalState = anim->CreateState<AnimationState>();
 	endingState = anim->CreateState<AnimationState>();
-	Inactivate();
+	
 }
 
 Projectile::~Projectile()

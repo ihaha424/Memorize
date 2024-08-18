@@ -15,6 +15,8 @@ class ChasingWaterBallProjectile : public Projectile
 	class CircleComponent* rangeCircle;
 	float range = 500.f;
 	static std::vector<class Actor*> chasingEnemies;
+
+	class AnimationState* chaseState;
 public:
 	ChasingWaterBallProjectile(class World* _world);
 	virtual ~ChasingWaterBallProjectile();
