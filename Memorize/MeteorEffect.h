@@ -10,6 +10,7 @@ public:
 	virtual ~MeteorEffect();
 
 	virtual void BeginPlay() override;
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 	virtual void Update(float _dt) override;
 
 	void Initialize();
