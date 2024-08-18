@@ -52,6 +52,8 @@ void BossGrowCircle::BeginPlay()
 		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
 		abm->SliceSpriteSheet(1300, 1000, 0, 0, 0, 0);
 		abm->SetFrameDurations({ 0.084f });
+		abm->SetReverse(isReverse);
+		abm->Trigger(false);
 		abm->Trigger(true);
 	}
 
@@ -143,6 +145,7 @@ void BossGrowCircle::SetGrowLess(bool _Grow)
 		scaleTween->SetStartPoint(0.f);
 		scaleTween->SetEndPoint(1.f);
 		circleComponent->InitCircleRadius(0.f);
+		isReverse = true;
 	}
 }
 

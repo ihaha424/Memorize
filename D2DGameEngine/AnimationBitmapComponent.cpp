@@ -65,14 +65,30 @@ void AnimationBitmapComponent::Update(float _dt)
 	if (currentFrameTime >= frameDurations[currentFrameIndex]) {
 		currentFrameTime -= frameDurations[currentFrameIndex];
 
-		currentFrameIndex++;
-		bShouldUpdateBounds = true;
-		if (currentFrameIndex >= frames.size()) {
-			if (isLoop) {
-				currentFrameIndex = 0;
+		if (!isReverse)
+		{
+			currentFrameIndex++;
+			bShouldUpdateBounds = true;
+			if (currentFrameIndex >= frames.size()) {
+				if (isLoop) {
+					currentFrameIndex = 0;
+				}
+				else {
+					Quit();
+				}			
 			}
-			else {
-				Quit();
+		}
+		else	//ReversePlay
+		{
+			currentFrameIndex--;
+			bShouldUpdateBounds = true;
+			if (currentFrameIndex < 0) {
+				if (isLoop) {
+					currentFrameIndex = frames.size() - 1;
+				}
+				else {
+					Quit();
+				}
 			}
 		}
 	}

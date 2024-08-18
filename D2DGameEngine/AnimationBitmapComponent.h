@@ -14,6 +14,7 @@ class AnimationBitmapComponent : public BitmapComponent {
 	bool isLoop;
 	bool isTriggered{ false };
 	bool isPlaying{ false };
+	bool isReverse{ false };
 	
 	int currentFrameIndex{ 0 };
 	std::vector<D2D_RectF> frames;
@@ -39,6 +40,9 @@ public:
 	void FrameResize(int index){
 		frames.resize(index);
 		frameDurations.resize(index);
+	}
+	void SetReverse(bool _reverse) {
+		isReverse = _reverse;
 	}
 
 	/**
@@ -83,7 +87,10 @@ public:
 		isTriggered = trigger;
 		isPlaying = trigger;
 		if (!trigger) {
-			currentFrameIndex = 0;
+			if (!isReverse)
+				currentFrameIndex = 0;
+			else
+				currentFrameIndex = frames.size() - 1;
 			currentFrameTime = 0.f;
 		}
 	}
@@ -116,8 +123,11 @@ public:
 	void Quit() {
 		isTriggered = false;
 		isPlaying = false;
-		currentFrameIndex = 0;
 		currentFrameTime = 0.f;
+		if(!isReverse)
+			currentFrameIndex = 0;
+		else
+			currentFrameIndex = frames.size() - 1;
 	}
 
 	virtual void Update(float _dt);
