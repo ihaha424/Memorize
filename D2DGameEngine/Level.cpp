@@ -48,6 +48,38 @@ void Level::FixedUpdate(float _fixedRate)
 	}
 }
 
+void Level::Destroy()
+{
+	for (auto actor : actorList)
+	{
+		if (actor->GetStatus() == OS_DESTROY)
+		{
+			actor->SetStatus(OS_CLEAN_UP);
+		}
+	}
+}
+
+void Level::CleanUp()
+{
+	auto it1 = std::erase_if(actorRenderSequence,
+		[=](const std::pair<const std::pair<int, float>, Actor*>& entry) {
+			return entry.second->GetStatus() == OS_CLEAN_UP;
+		});
+	auto it2 = std::erase_if(actorTypeMap,
+		[=](const std::pair<const std::type_index, Actor*>& entry) {
+			return entry.second->GetStatus() == OS_CLEAN_UP;
+		});
+	auto it3 = std::_Erase_remove_if(actorList,
+		[=](Actor* actor) {
+			if (actor->GetStatus() == OS_CLEAN_UP)
+			{
+				delete actor;
+				return 1;
+			}
+			return 0;
+		});
+}
+
 void Level::PreUpdate(float _dt)
 {
 	for (auto actor : actorList)
@@ -79,24 +111,6 @@ void Level::PostUpdate(float _dt)
 			actor->PostUpdate(_dt);
 		}
 	}
-	
-	auto it1 = std::erase_if(actorRenderSequence,
-		[=](const std::pair<const std::pair<int, float>, Actor*>& entry) {
-			return entry.second->GetStatus() == OS_DESTROY;
-		});
-	auto it2 = std::erase_if(actorTypeMap,
-		[=](const std::pair<const std::type_index, Actor*>& entry) {
-			return entry.second->GetStatus() == OS_DESTROY;
-		});
-	auto it3 = std::_Erase_remove_if(actorList,
-		[=](Actor* actor) {
-			if (actor->GetStatus() == OS_DESTROY)
-			{
-				delete actor;
-				return 1;
-			}
-			return 0;
-		});
 }
 
 void Level::PrepareRender()
