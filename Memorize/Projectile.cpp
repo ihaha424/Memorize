@@ -30,7 +30,7 @@ Projectile::Projectile(World* _world) : Actor(_world)
 
 	normalState = anim->CreateState<AnimationState>();
 	endingState = anim->CreateState<AnimationState>();
-	
+	Inactivate();
 }
 
 Projectile::~Projectile()
@@ -45,14 +45,18 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 		return;
 
 	//대미지를 입힘
-	DamageEvent damageEvent;
-	DamageType damageType{
-		.damageImpulse = 10000.f, //충격량 넣어주는 게 맞는지?
-	};
-	damageEvent.SetDamageType(damageType);
+	if (overlap.overlapInfo.hitComponent->GetCollisionObjectType() == ECollisionChannel::Enemy)
+	{
+		DamageEvent damageEvent;
+		DamageType damageType{
+			.damageImpulse = 10000.f, //충격량 넣어주는 게 맞는지?
+		};
+		damageEvent.SetDamageType(damageType);
 
-	other->TakeDamage(damage, damageEvent, nullptr, this);
+		other->TakeDamage(damage, damageEvent, nullptr, this);
 
+	}
+	
 	//투과되지 않는 발세체의 경우 멈추고 폭발 처리
 	if (!bIsPassable)
 	{
@@ -103,7 +107,7 @@ void Projectile::FixedUpdate(float _fixedRate)
 void Projectile::Update(float _dt)
 {
 	__super::Update(_dt);
-	
+
 	box->bShouldOverlapTest = true;
 
 	elapsedTime += _dt;
