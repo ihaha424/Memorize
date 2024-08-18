@@ -68,6 +68,7 @@ public:
 	Stat stat;
 	float basicAttackTime = 1.f;
 	int skillUses;
+	bool bondageFlag{ false };
 
 	class BuffEffectComponent* buffEffect;
 

@@ -10,11 +10,7 @@ BaseAttackProjectile::BaseAttackProjectile(World* _world) : Projectile(_world)
 	normalState->FrameResize(30);
 	normalState->SetFrameDurations({ 2.f / 30 });
 	anim->Initialize(normalState);
-	
 	box->InitBoxExtent({ 200, 60 });
-	
-	Inactivate();
-
 }
 
 BaseAttackProjectile::~BaseAttackProjectile()
