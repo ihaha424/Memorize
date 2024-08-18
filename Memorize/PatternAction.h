@@ -37,17 +37,7 @@ struct PatternAction : public Action
 	}*/
 
 	float elapsedTime{ 0.f };
-	bool IsRunning() override {
-		if (elapsedTime >= patternInterval) 
-		{
-			elapsedTime = 0.f;
-			return false;
-		}
-		else 
-		{
-			return true;
-		}
-	}
+	bool IsRunning() override;
 
 	void Run(float dt) override {
 		elapsedTime += dt;

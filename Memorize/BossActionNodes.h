@@ -12,4 +12,7 @@
 #include "Pattern8Action.h"
 #include "Pattern9Action.h"
 #include "Pattern10Action.h"
+#include "Pattern11Action.h"
+#include "Pattern12Action.h"
+#include "Pattern13Action.h"
 
