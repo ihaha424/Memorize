@@ -383,6 +383,18 @@
     <ClCompile Include="BossMeteoCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo</Filter>
     </ClCompile>
+    <ClCompile Include="Pattern11Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern12Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern13Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern14Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -660,6 +672,18 @@
     </ClInclude>
     <ClInclude Include="BossMeteoCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern11Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern12Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern13Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern14Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

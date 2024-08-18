@@ -6,30 +6,9 @@
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 
-BossProjectile::BossProjectile(World* _world, std::wstring fileName)
+BossProjectile::BossProjectile(World* _worldme)
 	:BossSkillActor(_world)
-{
-	reflectionResource = ResourceManager::LoadResource<ReflectionResource>(fileName);
-
-
-	circleComponent = CreateComponent<CircleComponent>();
-
-	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyProjectile);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
-	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
-	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
-	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
-	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
-	bm->AddChild(circleComponent);
-
-	DamageType radiaDamageType{
-		.damageImpulse = 10000.f,
-	};
-	BossProjectileDamageEvent.SetDamageType(radiaDamageType);
-	BossProjectileDamageEvent.origin = GetLocation();
-	BossProjectileDamageEvent.radialDamageInfo.maxDamage = damage;
-	BossProjectileDamageEvent.radialDamageInfo.minDamage = damage;
-	BossProjectileDamageEvent.componentHits.resize(1);
-}
+{}
 
 void BossProjectile::BeginPlay()
 {
@@ -57,6 +36,30 @@ void BossProjectile::Update(float _dt)
 	//{
 	//	SetStatus(EObjectStatus::OS_DESTROY);
 	//}
+}
+
+void BossProjectile::SetActor(std::wstring _fileName)
+{
+	reflectionResource = ResourceManager::LoadResource<ReflectionResource>(_fileName);
+
+
+	circleComponent = CreateComponent<CircleComponent>();
+
+	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyProjectile);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
+	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
+	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
+	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
+	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
+	bm->AddChild(circleComponent);
+
+	DamageType radiaDamageType{
+		.damageImpulse = 10000.f,
+	};
+	BossProjectileDamageEvent.SetDamageType(radiaDamageType);
+	BossProjectileDamageEvent.origin = GetLocation();
+	BossProjectileDamageEvent.radialDamageInfo.maxDamage = damage;
+	BossProjectileDamageEvent.radialDamageInfo.minDamage = damage;
+	BossProjectileDamageEvent.componentHits.resize(1);
 }
 
 void BossProjectile::ReflectionIn()

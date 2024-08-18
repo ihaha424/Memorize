@@ -2,6 +2,7 @@
 
 #include "D2DGameEngine/BehaviorTree.h"
 #include "D2DGameEngine/World.h"
+#include "BossProjectile.h"
 #include "Player.h"
 #include "Boss.h"
 
@@ -15,9 +16,13 @@ void Pattern3Action::Run(float dt)
 	toPlayer.Normalize();
 
 	// TODO: 보스 투사체 붙히기
-	/*BossProjectile* proj1 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
+	BossProjectile* proj1 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
 	BossProjectile* proj2 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
 	BossProjectile* proj3 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
+
+	proj1->SetActor(L"TestResource/Reflection/PatternData/Pattern03_Actor.txt");
+	proj2->SetActor(L"TestResource/Reflection/PatternData/Pattern03_Actor.txt");
+	proj3->SetActor(L"TestResource/Reflection/PatternData/Pattern03_Actor.txt");
 
 	proj1->SetLocation(bossLocation.x, bossLocation.y);
 	proj2->SetLocation(bossLocation.x, bossLocation.y);
@@ -30,5 +35,5 @@ void Pattern3Action::Run(float dt)
 
 	proj1->SetVelocity(Math::Vector2::Transform(vel, rotate1));
 	proj2->SetVelocity(vel);
-	proj3->SetVelocity(Math::Vector2::Transform(vel, rotate3));*/
+	proj3->SetVelocity(Math::Vector2::Transform(vel, rotate3));
 }

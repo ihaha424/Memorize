@@ -1,4 +1,4 @@
-#include "Pattern2Action.h"
+#include "Pattern14Action.h"
 
 #include "D2DGameEngine/BehaviorTree.h"
 #include "D2DGameEngine/World.h"
@@ -7,7 +7,8 @@
 
 #include "BossGrowCircle.h"
 
-void Pattern2Action::Run(float dt)
+
+void Pattern14Action::Run(float dt)
 {
 	Super::Run(dt);
 
@@ -15,5 +16,5 @@ void Pattern2Action::Run(float dt)
 
 	BossGrowCircle* circle = bt->GetWorld()->GetCurLevel()->CreateActor<BossGrowCircle>();
 	circle->SetLocation(playerLocation.x, playerLocation.y);
-	circle->SetGrowLess(true);
+	circle->SetGrowLess(false);
 }

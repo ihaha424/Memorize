@@ -42,8 +42,6 @@ BossGrowCircle::BossGrowCircle(World* _world)
 
 	scaleTween = new DotTween<float>(&scaleVarias, EasingEffect::Linear, StepAnimation::StepOnceForward);
 	scaleTween->SetDuration(2.f);
-	scaleTween->SetStartPoint(1.f);
-	scaleTween->SetEndPoint(0.f);
 }
 
 void BossGrowCircle::BeginPlay()
@@ -57,8 +55,6 @@ void BossGrowCircle::BeginPlay()
 		abm->Trigger(true);
 	}
 
-
-	circleComponent->InitCircleRadius(radius);
 	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
@@ -82,7 +78,7 @@ void BossGrowCircle::Update(float _dt)
 	scaleTween->Update(_dt);
 	//bm->SetScale(scaleVarias, scaleVarias);
 
-	circleComponent->InitCircleRadius(radius * scaleVarias);
+	circleComponent->SetCircleRadius(radius * scaleVarias);
 	circleComponent->bShouldOverlapTest = true;
 	for (auto& [actor, f] : tickDamageTimerMap)
 	{
@@ -131,6 +127,22 @@ void BossGrowCircle::OnEndOverlap(Actor* other, const OverlapInfo& overlap)
 			it->second.SetFinish(true);
 			tickDamageTimerMap.erase(it);
 		}
+	}
+}
+
+void BossGrowCircle::SetGrowLess(bool _Grow)
+{
+	if (_Grow)
+	{
+		scaleTween->SetStartPoint(1.f);
+		scaleTween->SetEndPoint(0.f);
+		circleComponent->InitCircleRadius(radius);
+	}
+	else
+	{
+		scaleTween->SetStartPoint(0.f);
+		scaleTween->SetEndPoint(1.f);
+		circleComponent->InitCircleRadius(0.f);
 	}
 }
 
