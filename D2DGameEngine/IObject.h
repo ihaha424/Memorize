@@ -14,7 +14,7 @@ using TickPropertyFlags = Flags;
 
 enum EObjectStatus
 {
-	OS_AWAKE, OS_INACTIVE, OS_ACTIVE, OS_DESTROY
+	OS_AWAKE, OS_INACTIVE, OS_ACTIVE, OS_DESTROY, OS_CLEAN_UP
 };
 
 
