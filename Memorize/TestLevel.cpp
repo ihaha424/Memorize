@@ -29,7 +29,7 @@ TestLevel::~TestLevel()
 {
 }
 
-#include "BossThroughProjectileMagicCircle.h"
+#include "BossMeteoCircle.h"
 #include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
@@ -55,8 +55,8 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
-		Timer::SetTimeScale(0.5);
-		CreateActor<BossThroughProjectileMagicCircle>();
+		//Timer::SetTimeScale(0.5);
+		CreateActor<BossMeteoCircle>();
 
 		
 		{
@@ -66,8 +66,8 @@ void TestLevel::Enter()
 
 		{
 			playerMainUI = GetWorld()->GetCanvas()->CreatePannel<PlayerMainUIPanel>(L"PlayerMainUI");
-			player->OnHPChanged->Connect([&](float hp) { playerMainUI->SetHPValue(hp); });
-			player->OnMPChanged->Connect([&](float mp) { playerMainUI->SetMPValue(mp); });
+			player->OnHPChanged->Connect([&](float hpValue) { playerMainUI->SetHPValue(hpValue); });
+			player->OnMPChanged->Connect([&](float mpValue) { playerMainUI->SetMPValue(mpValue); });
 		}
 	}
 	

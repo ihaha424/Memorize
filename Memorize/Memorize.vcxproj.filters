@@ -120,6 +120,9 @@
     <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossRazerCircle">
       <UniqueIdentifier>{d7364d22-329b-4a28-835d-22c2342ddabf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo">
+      <UniqueIdentifier>{511fb780-3989-4ebb-81df-423781e7f044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -382,6 +385,12 @@
     </ClCompile>
     <ClCompile Include="Pattern13Action.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMeteo.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMeteoCircle.cpp">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -663,6 +672,12 @@
     </ClInclude>
     <ClInclude Include="Pattern13Action.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMeteo.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMeteoCircle.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMeteo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -157,6 +157,8 @@
     <ClCompile Include="BossChasingBomb.cpp" />
     <ClCompile Include="BossGrowCircle.cpp" />
     <ClCompile Include="BossHPPanel.cpp" />
+    <ClCompile Include="BossMeteo.cpp" />
+    <ClCompile Include="BossMeteoCircle.cpp" />
     <ClCompile Include="BossProjectile.cpp" />
     <ClCompile Include="BossRazer.cpp" />
     <ClCompile Include="BossSkillActor.cpp" />
@@ -247,6 +249,8 @@
     <ClInclude Include="BossChasingBomb.h" />
     <ClInclude Include="BossGrowCircle.h" />
     <ClInclude Include="BossHPPanel.h" />
+    <ClInclude Include="BossMeteo.h" />
+    <ClInclude Include="BossMeteoCircle.h" />
     <ClInclude Include="BossProjectile.h" />
     <ClInclude Include="BossSkillActor.h" />
     <ClInclude Include="BossBehaviorTree.h" />

@@ -97,10 +97,8 @@ public:
 
 	virtual float InternalTakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller* eventInstigator, Actor* damageCauser) override;
 
-	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) override
-	{
-		OBJ_MESSAGE(dbg::text(damageAmount, " damage taken!"));
-	}
+	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) override;
+
 
 	//Signals for UI
 	Signal<float>* OnHPChanged;
