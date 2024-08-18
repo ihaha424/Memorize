@@ -122,6 +122,9 @@ void PlayerCasting::Dark()
 
 void PlayerCasting::Teleport()
 {
+	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+	if (playerController->GetPlayer()->bondageFlag)
+		return;
 	//if(마나체크)
 
 	saveDirtyFlag = true;
