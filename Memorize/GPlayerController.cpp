@@ -81,6 +81,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<MPRecovery>();
 	CreateSkill<Heal>();
 	CreateSkill<Enchant>();
+	CreateSkill<ManaOverload>();
 
 }
 
@@ -140,6 +141,17 @@ void GPlayerController::Update(float _dt)
 		player->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
+
+	if (bManaOverload)
+	{
+		manaOverloadTimer += _dt;
+
+		if (manaOverloadTimer > manaOverloadTime)
+		{
+			manaOverloadTimer = 0.f;
+			bManaOverload = false;
+		}
+	}
 }
 
 bool GPlayerController::AddSkillInfo(int index)

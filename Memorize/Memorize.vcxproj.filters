@@ -350,9 +350,6 @@
     <ClCompile Include="BossGrowCircle.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClCompile>
-    <ClCompile Include="ManaOverload.cpp">
-      <Filter>Source Files\App\Skill\Buff</Filter>
-    </ClCompile>
     <ClCompile Include="BossRazer.cpp">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClCompile>
@@ -403,6 +400,9 @@
     </ClCompile>
     <ClCompile Include="Pattern14Action.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ManaOverload.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -649,9 +649,6 @@
     <ClInclude Include="BossGrowCircle.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossGrowCircle</Filter>
     </ClInclude>
-    <ClInclude Include="ManaOverload.h">
-      <Filter>Source Files\App\Skill\Buff</Filter>
-    </ClInclude>
     <ClInclude Include="BossRazer.h">
       <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossRazer</Filter>
     </ClInclude>
@@ -702,6 +699,9 @@
     </ClInclude>
     <ClInclude Include="Pattern14Action.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ManaOverload.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
