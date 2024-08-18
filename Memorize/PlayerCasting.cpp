@@ -28,7 +28,11 @@ void PlayerCasting::Enter()
 			playerStat.mp = 0.f;
 		}
 
-		if (playerStat.mp >= skillMana)
+		if (playerController->bManaOverload)
+		{
+			//마나 오버로드 상태면 mp를 사용하지 않음
+		}
+		else if (playerStat.mp >= skillMana)
 		{
 			playerStat.mp -= skillMana;
 			//owner->SetNextState(L"PlayerCasting");
