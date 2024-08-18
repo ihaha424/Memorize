@@ -13,9 +13,20 @@ class MagicBinding : public BossSkillActor
 
 	class Player* player{ nullptr };
 
-	class AnimationBitmapComponent* binding;
+	class AnimationBitmapComponent* floorChaining;
+	class AnimationBitmapComponent* floorChained;
+	class AnimationBitmapComponent* bodyChain;
+	
+	
+	class AnimationBitmapComponent* floorRelease;
+	class AnimationBitmapComponent* bodyRelease;
 
-	bool bound{ false };
+
+	float chainingTime;
+	bool chained{ false };
+
+	float releasingTime{ 0.5f };
+	bool release{ false };
 
 public:
 	MagicBinding(class World* _world);
