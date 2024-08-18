@@ -705,8 +705,12 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		return Pattern7Sequence;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern8: {
+		Pattern8Action* pattern8Action = CreateNode<Pattern8Action>();
+		return pattern8Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern9: {
+		Pattern9Action* pattern9Action = CreateNode<Pattern9Action>();
+		return pattern9Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern10: {
 		//Pattern10
@@ -725,10 +729,16 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		return Pattern10Sequence;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern11: {
+		Pattern11Action* pattern11Action = CreateNode<Pattern11Action>();
+		return pattern11Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern12: {
+		Pattern12Action* pattern12Action = CreateNode<Pattern12Action>();
+		return pattern12Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern13: {
+		Pattern13Action* pattern13Action = CreateNode<Pattern13Action>();
+		return pattern13Action;
 	} break;
 	default:
 		break;
