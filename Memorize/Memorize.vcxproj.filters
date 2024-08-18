@@ -419,6 +419,12 @@
     <ClCompile Include="ElementalExplosionEffect.cpp">
       <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
     </ClCompile>
+    <ClCompile Include="ElementalMaster.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementalMasterComponent.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -726,6 +732,12 @@
     </ClInclude>
     <ClInclude Include="ElementalExplosion.h">
       <Filter>Source Files\App\Skill\Special\ElementalExplosion</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalMaster.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementalMasterComponent.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

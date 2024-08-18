@@ -30,7 +30,7 @@ Projectile::Projectile(World* _world) : Actor(_world)
 
 	normalState = anim->CreateState<AnimationState>();
 	endingState = anim->CreateState<AnimationState>();
-	Inactivate();
+	
 }
 
 Projectile::~Projectile()
@@ -97,6 +97,8 @@ void Projectile::BeginPlay()
 void Projectile::Initialize()
 {
 	anim->SetState(normalState);
+	elapsedTime = 0.f;
+	bEnding = false;
 }
 
 void Projectile::FixedUpdate(float _fixedRate)

@@ -12,7 +12,7 @@ Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetID(ST_PROJECTILE, SE_FIRE);
 	ReflectionIn();
-	projectileCount = 5;
+	projectileCount = 2;
 
 	for (int i = 0; i < projectileCount; i++)
 	{
@@ -22,6 +22,7 @@ Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles[i]->SetSpeed(projectileSpeed); 
 		projectiles[i]->SetDuration(projectileDuration);
 	}
+	skillDuration = projectileDuration;
 }
 
 Fireball::~Fireball()
@@ -42,7 +43,7 @@ void Fireball::UseSkill()
 
 	//마우스 위치로 이동시킴
 	fireball->SetVelocity(attackDir, projectileSpeed);
-	nowUsingCount++;
+	nowUsingCount = (nowUsingCount + 1 ) % projectileCount;
 }
 
 void Fireball::ReflectionIn()

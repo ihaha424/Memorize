@@ -15,7 +15,7 @@
 #include "DarkSphere.h"
 #include "TighteningCircle.h"
 #include "MPrecovery.h"
-//#include "ElementalMaster.h"
+#include "ElementalMaster.h"
 //#include "Flash.h"
 //#include "Memorize.h"
 #include "BasicAttack.h"

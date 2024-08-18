@@ -8,6 +8,7 @@
 
 class GPlayerController : public PlayerController, public IEventListener
 {
+public:
 	Math::Vector2 destPos;
 
 	//현재 발동중인 스킬
@@ -25,7 +26,9 @@ class GPlayerController : public PlayerController, public IEventListener
 	//FSMPlayer
 	class PlayerFSMComponent* playerFSMComponent;
 
-public:
+	//For Elemental Master
+	class ElementalMasterComponent* elementalMasterComponent;
+
 	//DisfellSkill
 	class BossSkillActor* targetSkill;
 
@@ -38,6 +41,9 @@ public:
 	const float manaOverloadTime = 10.f;
 	float manaOverloadTimer = 0.f;
 
+	//Elemental Master
+	bool bElementalMaster = false;
+	bool bNowAttacking = false;
 public:
 	GPlayerController(class World* _world);
 	virtual ~GPlayerController();
@@ -80,6 +86,9 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;
+
+
+	void SetRandomSkillReady();
 
 	/**
 	 * @brief Idle or Move에서 누르면 처음에는 속성, 두번째는 타입이 정해진다
