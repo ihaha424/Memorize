@@ -374,6 +374,15 @@
     <ClCompile Include="PlayerMainUIPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Pattern11Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern12Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern13Action.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -645,6 +654,15 @@
     </ClInclude>
     <ClInclude Include="PlayerMainUIPanel.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern11Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern12Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern13Action.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

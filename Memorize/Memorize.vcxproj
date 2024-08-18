@@ -192,6 +192,9 @@
     <ClCompile Include="MPRecovery.cpp" />
     <ClCompile Include="BossGrowMagicCircle.cpp" />
     <ClCompile Include="Pattern10Action.cpp" />
+    <ClCompile Include="Pattern11Action.cpp" />
+    <ClCompile Include="Pattern12Action.cpp" />
+    <ClCompile Include="Pattern13Action.cpp" />
     <ClCompile Include="Pattern1Action.cpp" />
     <ClCompile Include="Pattern2Action.cpp" />
     <ClCompile Include="Pattern3Action.cpp" />
@@ -282,6 +285,9 @@
     <ClInclude Include="MPRecovery.h" />
     <ClInclude Include="BossGrowMagicCircle.h" />
     <ClInclude Include="Pattern10Action.h" />
+    <ClInclude Include="Pattern11Action.h" />
+    <ClInclude Include="Pattern12Action.h" />
+    <ClInclude Include="Pattern13Action.h" />
     <ClInclude Include="Pattern1Action.h" />
     <ClInclude Include="Pattern2Action.h" />
     <ClInclude Include="Pattern3Action.h" />

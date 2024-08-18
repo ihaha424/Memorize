@@ -13,6 +13,7 @@ bool Pattern5Action::IsRunning()
 	if (elapsedTime >= patternInterval)
 	{
 		elapsedTime = 0.f;
+		GetBehaviorTree()->GetKey<Boss*>("Boss")->Periodic_Pattern_Cool_Time = GetCooldown();
 		return false;
 	}
 	else
@@ -22,7 +23,16 @@ bool Pattern5Action::IsRunning()
 		// Get distance to the target
 		float distanceSquared = Math::Vector2::DistanceSquared(GetPawn()->GetLocation(), target);
 
-		return distanceSquared > acceptableRadius * acceptableRadius;
+		if (distanceSquared > acceptableRadius * acceptableRadius)
+		{
+			return true;
+		}
+		else
+		{
+			elapsedTime = 0.f;
+			GetBehaviorTree()->GetKey<Boss*>("Boss")->Periodic_Pattern_Cool_Time = GetCooldown();
+			return false;
+		}
 	}
 }
 
