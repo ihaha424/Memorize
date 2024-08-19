@@ -9,7 +9,7 @@ Boss::Boss(World* _world) : Character(_world)
 	SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	hp = maxHp;
 
-	OnHPChanged = new Signal<int>;
+	OnHPChanged = new Signal<float>;
 
 	box->SetCollisionObjectType(ECollisionChannel::Enemy);
 }

@@ -7,7 +7,6 @@
 
 TighteningCircle::TighteningCircle(Actor* _owner) : RangeSkill(_owner)
 {
-	SetTickProperties(TICK_UPDATE);
 	ReflectionIn();
 	SetID(ST_RANGE, SE_DARKNESS);
 
@@ -27,7 +26,8 @@ void TighteningCircle::UseSkill()
 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	attackPos = GetWorld()->ScreenToWorldPoint(attackPos);
 	circleEffect->SetLocation(attackPos.x, attackPos.y);
-	circleEffect->GetComponent<BitmapComponent>()->SetScale(1.f, 1.f);
+	circleEffect->SetDuration(2.f);
+	circleEffect->SetDamage(damage);
 	circleEffect->Initialize();
 }
 
