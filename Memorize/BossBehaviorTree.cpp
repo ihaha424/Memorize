@@ -39,10 +39,15 @@ void BossBehaviorTree::BuildBehaviorTree()
 	boss = static_cast<BossAIController*>(GetOwner())->GetBoss();
 	SetKey<Boss*>("Boss", boss);
 	{
-		Primer* waitForDelay = CreateNode<Primer>();
-		//waitForDelay.
+		Sequence* WaitAndGo = CreateNode<Sequence>();
+		root->child = WaitAndGo;
+
+		WaitForDelay* waitForDelay = CreateNode<WaitForDelay>();
+		
 		Selector* rootSelector = CreateNode<Selector>();
-		root->child = rootSelector;
+
+		WaitAndGo->PushBackChildren({ waitForDelay, rootSelector });
+
 		{	// -> Root select 1
 			//	Groggy
 			rootSelector->PushBackChild(BuildPatternSubtree(Pattern::Groggy));
@@ -296,8 +301,8 @@ void BossBehaviorTree::BuildBehaviorTree()
 										INode* pattern02_1 = BuildPatternSubtree(Pattern::Pattern2);
 										INode* pattern02_2 = BuildPatternSubtree(Pattern::Pattern2);
 										INode* pattern02_3 = BuildPatternSubtree(Pattern::Pattern2);
-										Phase_Three_2->PushBackChildren({ pattern13, pattern02_1, pattern02_2, pattern02_3 });
-										GetKey<Boss*>("Boss")->Periodic_Pattern_Cool_Time = 20.f;
+										SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
+										Phase_Three_2->PushBackChildren({ pattern13, pattern02_1, pattern02_2, pattern02_3, _20sec });
 									}
 								}
 								Phase_Three_Periodic_Selector->SetRandomWeights({ 1.f });
@@ -320,8 +325,8 @@ void BossBehaviorTree::BuildBehaviorTree()
 									INode* pattern9 = BuildPatternSubtree(Pattern::Pattern9);
 									INode* pattern02_1 = BuildPatternSubtree(Pattern::Pattern2);
 									INode* pattern02_2 = BuildPatternSubtree(Pattern::Pattern2);
-									Phase_Three_1->PushBackChildren({ pattern9, pattern02_1, pattern02_2 });
-									GetKey<Boss*>("Boss")->Periodic_Pattern_Cool_Time = 15.f;
+									SetPeriodicCoolTime* _15sec = CreateNode<SetPeriodicCoolTime>(15.f);
+									Phase_Three_1->PushBackChildren({ pattern9, pattern02_1, pattern02_2, _15sec });
 								}
 							}
 							{
@@ -402,16 +407,43 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			float playerDistanceSquared = (player->GetLocation() - boss->GetLocation()).LengthSquared();
 			return detectionRangeSquared < playerDistanceSquared;
 		};
-		Player* player = GetKey<Player*>("Player");
-		MoveToLocation* moveToPlayer = CreateNode<MoveToLocation>();
-		// 보스를 플레이어 위치로부터 감지 범위와 회피 범위 사이에 둡니다.
-		float acceptableRadius = (boss->Detection_Range + boss->Avoidance_Range) / 2.f;
-		// 하고 랜덤으로 살짝 흔듬.
-		acceptableRadius += Random::Get((boss->Detection_Range - boss->Avoidance_Range) / 4.f);
-		moveToPlayer->SetDestination(player->GetLocation());
-		moveToPlayer->SetAcceptableRadius(acceptableRadius);
 
-		moveActionCondition->Wrap(moveToPlayer);
+		DeclareKey<Math::Vector2>("MoveLocation");
+		Primer* setMoveLocation = CreateNode<Primer>();
+		moveActionCondition->Wrap(setMoveLocation);
+		setMoveLocation->_action = [this]() {
+			Boss* boss = GetKey<Boss*>("Boss");
+			Player* player = GetKey<Player*>("Player");
+
+			Math::Vector2 bossLocation = boss->GetLocation();
+			Math::Vector2 playerLocation = player->GetLocation();
+
+			// 보스를 플레이어 위치로부터 감지 범위와 회피 범위 사이에 둡니다.
+			float acceptableRadius = (boss->Detection_Range + boss->Avoidance_Range) / 2.f;
+			// 하고 랜덤으로 살짝 흔듬.
+			acceptableRadius += Random::Get((boss->Detection_Range - boss->Avoidance_Range) / 4.f);
+			
+			Math::Vector2 fromPlayerToBoss = bossLocation - playerLocation;
+			fromPlayerToBoss.Normalize();
+
+			Math::Vector2 moveLocation = playerLocation + fromPlayerToBoss * acceptableRadius;
+
+			while (!IsInMap(moveLocation))
+			{
+				Math::Matrix rotate45Degree = Math::Matrix::CreateRotationZ(PI_F / 4.f);
+
+				moveLocation = Math::Vector2::Transform(moveLocation, rotate45Degree);
+			}
+
+			SetKey<Math::Vector2>("MoveLocation", moveLocation);
+		};
+
+		MoveTo* move = CreateNode<MoveTo>();
+		setMoveLocation->Wrap(move);
+		move->SetObserveLocationKey("MoveLocation");
+		move->SetAcceptableRadius(50.f);
+		move->SetSpeed(450.f);
+
 		return moveActionCondition;
 	}	break;
 	case Pattern::Teleport: {
@@ -497,21 +529,25 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	case BossBehaviorTree::Pattern::Pattern1: {
 		Pattern1Action* pattern1Action = CreateNode<Pattern1Action>();
 		pattern1Action->SetPatternInterval(1.f);
+		pattern1Action->SetTreeCooldown(1.f);
 		return pattern1Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern2: {
 		Pattern2Action* pattern2Action = CreateNode<Pattern2Action>();
 		pattern2Action->SetPatternInterval(2.0f);
+		pattern2Action->SetTreeCooldown(2.f);
 		return pattern2Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern3: {
 		Pattern3Action* pattern3Action = CreateNode<Pattern3Action>();
 		pattern3Action->SetPatternInterval(0.5f);
+		pattern3Action->SetTreeCooldown(2.f);
 		return pattern3Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern4: {
 		Pattern4Action* pattern4Action = CreateNode<Pattern4Action>();
 		pattern4Action->SetPatternInterval(0.5f);
+		pattern4Action->SetTreeCooldown(2.f);
 		return pattern4Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern5: {
@@ -580,7 +616,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			Math::Vector2 destinationCandidate1 = teleportLocation + Math::Vector2{ 0, 710 };
 			Math::Vector2 destinationCandidate2 = teleportLocation - Math::Vector2{ 0, 710 };
 
-			// TODO: 이동 가능한지 확인
+			// 이동 가능한지 확인
 			// 맵 마름모 꼴이니까 변마다 Line 만들고
 			// Line{destination, BossCurrLoc} 가지고 
 			// 교점 체크
@@ -639,6 +675,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		Pattern6Action* pattern6Action = CreateNode<Pattern6Action>();
 		pattern6Action->SetCooldown(15.f);
 		pattern6Action->SetPatternInterval(11.f);
+		pattern6Action->SetTreeCooldown(3.f);
 
 		Pattern6Sequence->PushBackChildren({ moveToCenter, pattern6Action });
 		return Pattern6Sequence;
@@ -654,7 +691,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
 			Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
 
-			// TODO: 이동 가능한지 확인
+			// 이동 가능한지 확인
 			// 맵 마름모 꼴이니까 변마다 Line 만들고
 			// Line{destination, BossCurrLoc} 가지고 
 			// 교점 체크
@@ -702,16 +739,22 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		Pattern7Action* pattern7Action = CreateNode<Pattern7Action>();
 		pattern7Action->SetCooldown(20.f);
 		pattern7Action->SetPatternInterval(5.f);
+		pattern7Action->SetTreeCooldown(4.f);
 
 		Pattern7Sequence->PushBackChildren({ setDestination, pattern7Action });
 		return Pattern7Sequence;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern8: {
 		Pattern8Action* pattern8Action = CreateNode<Pattern8Action>();
+		pattern8Action->SetPatternInterval(0.5f);
+		pattern8Action->SetTreeCooldown(1.f);
 		return pattern8Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern9: {
 		Pattern9Action* pattern9Action = CreateNode<Pattern9Action>();
+		pattern9Action->SetCooldown(15.f);
+		pattern9Action->SetPatternInterval(5.f);
+		pattern9Action->SetTreeCooldown(2.f);
 		return pattern9Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern10: {
@@ -726,20 +769,27 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		Pattern10Action* pattern10Action = CreateNode<Pattern10Action>();
 		pattern10Action->SetCooldown(20.f);
 		pattern10Action->SetPatternInterval(11.f);
+		pattern10Action->SetTreeCooldown(5.f);
 
 		Pattern10Sequence->PushBackChildren({ moveToCenter, pattern10Action });
 		return Pattern10Sequence;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern11: {
 		Pattern11Action* pattern11Action = CreateNode<Pattern11Action>();
+		pattern11Action->SetPatternInterval(2.f);
 		return pattern11Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern12: {
 		Pattern12Action* pattern12Action = CreateNode<Pattern12Action>();
+		pattern12Action->SetCooldown(25.f);
+		pattern12Action->SetPatternInterval(1.f);
 		return pattern12Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern13: {
 		Pattern13Action* pattern13Action = CreateNode<Pattern13Action>();
+		pattern13Action->SetCooldown(20.f);
+		pattern13Action->SetPatternInterval(1.f);
+		pattern13Action->SetTreeCooldown(3.f);
 		return pattern13Action;
 	} break;
 	default:

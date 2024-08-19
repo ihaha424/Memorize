@@ -233,6 +233,7 @@
     <ClCompile Include="ProjectileSkill.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="RazerCircle.cpp" />
+    <ClCompile Include="SetPeriodicCoolTime.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
@@ -241,6 +242,8 @@
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="TighteningCircle.cpp" />
     <ClCompile Include="TighteningCircleEffect.cpp" />
+    <ClCompile Include="WaitForDelay.cpp" />
+    <ClCompile Include="WaitForDelay.h" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +341,7 @@
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="BossRazer.h" />
     <ClInclude Include="RazerCircle.h" />
+    <ClInclude Include="SetPeriodicCoolTime.h" />
     <ClInclude Include="Signal.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillList.h" />

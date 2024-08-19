@@ -89,9 +89,7 @@ void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
 void Projectile::BeginPlay()
 {
 	__super::BeginPlay();
-	mv->SetStatus(OS_INACTIVE);
-	anim->SetStatus(OS_INACTIVE);
-	box->SetStatus(OS_INACTIVE);
+
 }
 
 void Projectile::Initialize()
@@ -111,6 +109,11 @@ void Projectile::Update(float _dt)
 	__super::Update(_dt);
 
 	box->bShouldOverlapTest = true;
+
+	if (elapsedTime == 0.0f)
+	{
+		Initialize();
+	}
 
 	elapsedTime += _dt;
 
@@ -135,6 +138,6 @@ void Projectile::Update(float _dt)
 		mv->SetStatus(OS_INACTIVE);
 		anim->SetStatus(OS_INACTIVE);
 		box->SetStatus(OS_INACTIVE);
-		Inactivate();
+		Destroy();
 	}
 }

@@ -25,16 +25,7 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 	locations[4] = {120,-80};
 
 	
-	for (int i = 0; i < projectileCount; i++)
-	{
-		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
-		projectiles[i]->SetDamage(damage);
-		projectiles[i]->SetDuration(projectileDuration); 
-		projectiles[i]->SetSpeed(projectileSpeed); 
-		ChasingWaterBallProjectile* waterballpj = static_cast<ChasingWaterBallProjectile*>(projectiles[i]);
-		waterballpj->SetInitialLocation(locations[i].x, locations[i].y);
-		
-	}
+	
 	skillDuration = projectileDuration;
 
 }
@@ -46,6 +37,18 @@ ChasingWaterBall::~ChasingWaterBall()
 
 void ChasingWaterBall::UseSkill()
 {
+	projectiles.clear();
+	for (int i = 0; i < projectileCount; i++)
+	{
+		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<ChasingWaterBallProjectile>());
+		projectiles[i]->SetDamage(damage);
+		projectiles[i]->SetDuration(projectileDuration);
+		projectiles[i]->SetSpeed(projectileSpeed);
+		ChasingWaterBallProjectile* waterballpj = static_cast<ChasingWaterBallProjectile*>(projectiles[i]);
+		waterballpj->SetInitialLocation(locations[i].x, locations[i].y);
+
+	}
+
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles[i]->SetPlayer(player);

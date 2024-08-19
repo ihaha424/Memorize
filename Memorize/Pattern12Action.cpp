@@ -8,7 +8,10 @@
 void Pattern12Action::Run(float dt)
 {
 	Super::Run(dt);
+	if (!started)
+	{
+		bt->GetWorld()->GetCurLevel()->CreateActor<MagicBinding>();
 
-	bt->GetWorld()->GetCurLevel()->CreateActor<MagicBinding>();
-
+		started = true;
+	}
 }

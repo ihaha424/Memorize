@@ -25,7 +25,7 @@ public:
 
 private:
 	float	tickInterval = 0.2f;
-	float	radius = 500.f;
+	float	radius = 250.f;
 	float	damage = 0.f;
 	float	skillDuration = 2.f;
 	float elapsedTime = 0.f;

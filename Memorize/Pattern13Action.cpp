@@ -9,9 +9,12 @@
 void Pattern13Action::Run(float dt)
 {
 	Super::Run(dt);
+	if (!started)
+	{
+		BossMeteoCircle* actor = bt->GetWorld()->GetCurLevel()->CreateActor<BossMeteoCircle>();
+		Math::Vector2 bossLocation = bt->GetKey<Boss*>("Boss")->GetLocation();
+		actor->SetLocation(bossLocation.x, bossLocation.y);
 
-	BossMeteoCircle* actor = bt->GetWorld()->GetCurLevel()->CreateActor<BossMeteoCircle>();
-	Math::Vector2 bossLocation = bt->GetKey<Boss*>("Boss")->GetLocation();
-	actor->SetLocation(bossLocation.x, bossLocation.y);
-
+		started = true;
+	}
 }

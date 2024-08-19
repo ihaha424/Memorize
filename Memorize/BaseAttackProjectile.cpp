@@ -20,10 +20,3 @@ BaseAttackProjectile::BaseAttackProjectile(World* _world) : Projectile(_world)
 BaseAttackProjectile::~BaseAttackProjectile()
 {
 }
-
-void BaseAttackProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
-{
-	__super::OnBeginOverlap(other, overlap);
-
-
-}
