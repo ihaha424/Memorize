@@ -15,5 +15,6 @@ public:
 
     static const Math::Vector2 screenSize;
     static const Math::Vector2 mapSize;
+
 };
 
