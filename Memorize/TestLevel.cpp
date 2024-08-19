@@ -75,12 +75,13 @@ void TestLevel::Enter()
 
 	{
 		Boss* boss = CreateActor<Boss>();
+		boss->SetLocation(500.f, 0);
 		BossAIController* bc = CreateActor<BossAIController>();
 		boss->SetController(bc);
 		bc->SetBoss(boss);
 
-		//bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
-		//boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });
+		bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
+		boss->OnHPChanged->Connect([&](float hp) { bossHpBar->SetValue(hp); });
 	}
 
 

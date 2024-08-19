@@ -24,7 +24,7 @@ Meteor::~Meteor()
 void Meteor::UseSkill()
 {
 	meteorEffect->Activate();
-	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
+ 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	attackPos = GetWorld()->ScreenToWorldPoint(attackPos);
 	meteorEffect->SetAttackPos(attackPos);
 	meteorEffect->SetPlayer(player);

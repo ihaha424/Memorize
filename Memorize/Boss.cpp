@@ -12,7 +12,7 @@ Boss::Boss(World* _world) : Character(_world)
 
 	hp = maxHp;
 
-	OnHPChanged = new Signal<int>;
+	OnHPChanged = new Signal<float>;
 
 }
 

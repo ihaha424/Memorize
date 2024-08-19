@@ -83,13 +83,13 @@ void BossMeteoCircle::Update(float _dt)
 	{
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
-		SetStatus(EObjectStatus::OS_DESTROY);
+		Destroy();
 	}
 }
 
 void BossMeteoCircle::DisfellAction()
 {
-	SetStatus(EObjectStatus::OS_DESTROY);
+	Destroy();
 }
 
 void BossMeteoCircle::DisfellFailAction()

@@ -87,13 +87,13 @@ void BossChaseCircle::Update(float _dt)
 		player->TakeDamage(damage, BossChaseCircleDamageEvent, nullptr, this);
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
-		SetStatus(EObjectStatus::OS_DESTROY);
+		Destroy();
 	}
 }
 
 void BossChaseCircle::DisfellAction()
 {
-	SetStatus(EObjectStatus::OS_DESTROY);
+	Destroy();
 }
 
 void BossChaseCircle::DisfellFailAction()
