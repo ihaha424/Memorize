@@ -80,7 +80,7 @@ void ChasingWaterBallProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	
+	std::cout << chasingEnemies.size() << std::endl;
 
 	if (state == State::Idle)
 	{
@@ -105,6 +105,10 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		if (distance <= 5)
 		{
 			state = State::Boom;
+			auto it = std::find(chasingEnemies.begin(), chasingEnemies.end(), target);
+			if (it != chasingEnemies.end()) 
+				chasingEnemies.erase(it);
+			target = nullptr;
 		}
 	}
 	else if(state == State::Boom && bEnding == false)
@@ -119,6 +123,9 @@ void ChasingWaterBallProjectile::Update(float _dt)
 void ChasingWaterBallProjectile::Initialize()
 {
 	__super::Initialize();
+	target = nullptr;
+	chasingEnemies.clear();
+	state = State::Idle;
 	//xValue.SetData(&x);
 	//xValue.SetDuration(1.f);
 	//xValue.SetStartPoint(GetLocation().x + 100);
