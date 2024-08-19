@@ -2,6 +2,7 @@
 
 #include "Level.h"
 
+#include "EffectSystem.h"
 #include "CollisionSystem.h"
 #include "CollisionShape.h"
 #include "OverlapResult.h"
@@ -153,6 +154,8 @@ public:
     void SetMainCamera(class CameraComponent* _camera) { mainCamera = _camera; };
     class CameraComponent* GetMainCamera() { return mainCamera; };
 
+	EffectSystem& GetEffectSystem() { return effectSystem; }
+
     virtual void BeginPlay();
     virtual void FixedUpdate(float _fixedRate);
     virtual void PreUpdate(float _dt);
@@ -169,6 +172,9 @@ protected:
 
 	class Canvas* canvas = nullptr;
 
-		// Collision System
-		CollisionSystem collisionSystem;
+	//EffectSystem
+	EffectSystem effectSystem;
+
+	// Collision System
+	CollisionSystem collisionSystem;
 };

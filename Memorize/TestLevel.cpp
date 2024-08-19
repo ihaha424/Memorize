@@ -57,7 +57,7 @@ void TestLevel::Enter()
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
 		//Timer::SetTimeScale(0.5);
-		BossThroughProjectileMagicCircle* temp = CreateActor<BossThroughProjectileMagicCircle>();
+		//BossThroughProjectileMagicCircle* temp = CreateActor<BossThroughProjectileMagicCircle>();
 
 		
 		{

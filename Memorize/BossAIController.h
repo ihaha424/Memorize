@@ -8,6 +8,7 @@ public:
 	BossAIController(class World* _world);
 	virtual ~BossAIController();
 
+	virtual void BeginPlay();
 	virtual void Update(float  _dt) override;
 
 	void InitializeBoss();

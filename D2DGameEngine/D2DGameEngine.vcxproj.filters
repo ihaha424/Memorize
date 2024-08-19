@@ -168,6 +168,12 @@
     <Filter Include="Source Files\GameEngine\Components\InputComponent">
       <UniqueIdentifier>{b05c34c4-84af-447d-9390-95d8e41af438}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\EffectSystem\BitmapEffect">
+      <UniqueIdentifier>{58b3fe1a-ebe3-45a2-bf97-376b4f6aede9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEngine\EffectSystem\AnimationEffect">
+      <UniqueIdentifier>{08cb7f90-5ae4-4172-99f7-86554cc1f51a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -503,6 +509,15 @@
     <ClInclude Include="ProgressBar.h">
       <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="BitmapEffect.h">
+      <Filter>Source Files\GameEngine\EffectSystem\BitmapEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="IEffect.h">
+      <Filter>Source Files\GameEngine\EffectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationEffect.h">
+      <Filter>Source Files\GameEngine\EffectSystem\AnimationEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -723,6 +738,15 @@
     </ClCompile>
     <ClCompile Include="ProgressBar.cpp">
       <Filter>Source Files\GameEngine\GameFramework\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapEffect.cpp">
+      <Filter>Source Files\GameEngine\EffectSystem\BitmapEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="IEffect.cpp">
+      <Filter>Source Files\GameEngine\EffectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationEffect.cpp">
+      <Filter>Source Files\GameEngine\EffectSystem\AnimationEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Level.h"
-#include "D2DGameEngine/AIController.h"
+#include "BossAIController.h"
 #include "Boss.h"
 #include "Player.h"
 
@@ -13,8 +13,6 @@ BossBehaviorTree::BossBehaviorTree(Actor* _aiOwner) : BehaviorTree(_aiOwner)
 	SetTickProperties(TICK_UPDATE);
 
 	boss = static_cast<Boss*>(GetAIOwner()->GetPawn());
-	
-	BuildBehaviorTree();
 }
 
 void BossBehaviorTree::BeginPlay()
@@ -24,23 +22,27 @@ void BossBehaviorTree::BeginPlay()
 	// ÇÃ·¹ÀÌ¾î Ã£¾Æ¼­ Æ÷ÀÎÅÍ·Î ³Ñ±è. Key·Î Á¢±Ù °¡´É
 	DeclareKey<Player*>("Player");
 	SetKey<Player*>("Player", GetWorld()->FindActorByType<Player>());
-	
+
+	BuildBehaviorTree();
+	GetRoot()->Init();
 }
 
 void BossBehaviorTree::Update(float _dt)
 {
+	UpdateBehaviorTree(_dt);
 }
 
 void BossBehaviorTree::BuildBehaviorTree()
 {
 	Root* root = GetRoot();
 	DeclareKey<Boss*>("Boss");
+	boss = static_cast<BossAIController*>(GetOwner())->GetBoss();
 	SetKey<Boss*>("Boss", boss);
 	{
 		Primer* waitForDelay = CreateNode<Primer>();
 		//waitForDelay.
 		Selector* rootSelector = CreateNode<Selector>();
-
+		root->child = rootSelector;
 		{	// -> Root select 1
 			//	Groggy
 			rootSelector->PushBackChild(BuildPatternSubtree(Pattern::Groggy));
