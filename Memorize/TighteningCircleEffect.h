@@ -1,19 +1,40 @@
 #pragma once
 #include "D2DGameEngine/Actor.h"
+#include "D2DGameEngine/DamageEvent.h"
+#include "D2DGameEngine/DotTween.h"
+#include "CoolTime.h"
 
 class TighteningCircleEffect : public Actor
 {
-	class BitmapComponent* bitmap;
-	class CapsuleComponent* capsule;
-	float tighteningTime = 2.f;
-	float elapsedTime = 0.f;
 public:
-	TighteningCircleEffect(World* _world);
-	virtual ~TighteningCircleEffect();
-
+	TighteningCircleEffect(class World* _world);
+	virtual ~TighteningCircleEffect() {};
 	virtual void BeginPlay() override;
-	virtual void Update(float _dt) override;
 
 	void Initialize();
+	virtual void Update(float _dt) override;
+
+	virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) override;
+	
+	void SetDuration(float _duration) { skillDuration = _duration; }
+	void SetDamage(float _damage) { damage = _damage; }
+
+public:
+	class CircleComponent* circleComponent;
+	class AnimationBitmapComponent* abm;
+
+private:
+	float	tickInterval = 0.2f;
+	float	radius = 500.f;
+	float	damage = 0.f;
+	float	skillDuration = 2.f;
+	float elapsedTime = 0.f;
+	float damageTimer = 0.f;
+
+	RadialDamageEvent tighteningDamageEvent;
+
+	float			 scaleVarias = 0.f;
+	DotTween<float>* scaleTween;
+
 };
 

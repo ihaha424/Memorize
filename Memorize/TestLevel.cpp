@@ -79,8 +79,8 @@ void TestLevel::Enter()
 		boss->SetController(bc);
 		bc->SetBoss(boss);
 
-		//bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
-		//boss->OnHPChanged->Connect([&](int hp) { bossHpBar->SetValue(hp); });
+		bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
+		boss->OnHPChanged->Connect([&](float hp) { bossHpBar->SetValue(hp); });
 	}
 
 
