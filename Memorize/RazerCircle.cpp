@@ -18,8 +18,8 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	isDispel = true;
 	isFragile = false;
 	type = Range;
-	dispelTime = 11.f;
-	skillDuration = 10.f;
+	dispelTime = 13.f;
+	skillDuration = 15.f;
 	castingTime = 0.f;
 	damage = 5.f;
 	speed = 0.f;
@@ -48,8 +48,8 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	attach1->SetRotation(0.f);
 	razer1 = GetWorld()->GetCurLevel()->CreateActor<BossRazer>();
 	attach1->AddChild(razer1->rootComponent);
-	razer1->skillDuration = 15.f;
-	razer1->castTime = 1.f;
+	razer1->skillDuration = 10.f;
+	razer1->castTime = 2.f;
 	razer1->magicCircle->SetScale(.2f, .2f);
 	razer1->SetScale(2.f, 2.f);
 	razer1->SetRotation(-90.f);
@@ -61,8 +61,8 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	attach2->SetRotation(120.f);
 	razer2 = GetWorld()->GetCurLevel()->CreateActor<BossRazer>();
 	attach2->AddChild(razer2->rootComponent);
-	razer2->skillDuration = 15.f;
-	razer2->castTime = 1.f;
+	razer2->skillDuration = 10.f;
+	razer2->castTime = 2.f;
 	razer2->magicCircle->SetScale(.2f, .2f);
 	razer2->SetScale(2.f, 2.f);
 	razer2->SetRotation(-90.f);
@@ -74,8 +74,8 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	attach3->SetRotation(240.f);
 	razer3 = GetWorld()->GetCurLevel()->CreateActor<BossRazer>();
 	attach3->AddChild(razer3->rootComponent);
-	razer3->skillDuration = 15.f;
-	razer3->castTime = 1.f;
+	razer3->skillDuration = 10.f;
+	razer3->castTime = 2.f;
 	razer3->magicCircle->SetScale(.2f, .2f);
 	razer3->SetScale(2.f, 2.f);
 	razer3->SetRotation(-90.f);

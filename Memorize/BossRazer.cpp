@@ -38,22 +38,48 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	magicCircle->Scale(0.05f, 0.2f);
 
 	// TODO: 레이져 위치 가운데로 옮기기.
-	razer = CreateComponent<AnimationBitmapComponent>();
-	razer->SetSprite(L"TestResource/Boss/BossRazer/Razer.png");
-	razer->SetLoop(true);
-	razer->SliceSpriteSheet(12, 6, 0, 0, 4, 0);
-	razer->SetFrameDurations({ 0.2 });
-	razer->Pause();	// Resume
-	razer->isVisible = false;	// True
-	rootComponent->AddChild(razer);
+	lazerCharging = CreateComponent<AnimationBitmapComponent>();
+	lazerCharging->SetSprite(L"TestResource/Boss/BossLazer/Boss_Laser1.png");
+	lazerCharging->SetLoop(false);
+	lazerCharging->SliceSpriteSheet(1920, 290, 0, 0, 0, 0);
+	lazerCharging->SetFrameDurations({ 2.f / 25.f });
+	lazerCharging->FrameResize(25);
+	lazerCharging->Trigger(false);
+	lazerCharging->isVisible = false;
+	rootComponent->AddChild(lazerCharging);
+	lazerCharging->SetScale(-1.f, 1.f);
+	lazerCharging->Translate(-900.f, 0.f);
+
+	// TODO: 레이져 위치 가운데로 옮기기.
+	lazerShuttingDown = CreateComponent<AnimationBitmapComponent>();
+	lazerShuttingDown->SetSprite(L"TestResource/Boss/BossLazer/Boss_Laser3.png");
+	lazerShuttingDown->SetLoop(false);
+	lazerShuttingDown->SliceSpriteSheet(1920, 290, 0, 0, 0, 0);
+	lazerShuttingDown->SetFrameDurations({ 1.f / 19.f });
+	lazerShuttingDown->FrameResize(19);
+	lazerShuttingDown->Trigger(false);
+	lazerShuttingDown->isVisible = false;
+	rootComponent->AddChild(lazerShuttingDown);
+	lazerShuttingDown->SetScale(-1.f, 1.f);
+	lazerShuttingDown->Translate(-900.f, 0.f);
+
+	lazer = CreateComponent<AnimationBitmapComponent>();
+	lazer->SetSprite(L"TestResource/Boss/BossLazer/Boss_Laser2.png");
+	lazer->SetLoop(true);
+	lazer->SliceSpriteSheet(1920, 290, 0, 0, 0, 0);
+	lazer->SetFrameDurations({ 5.f / 60.f });	// 12 frames per sec
+	lazer->FrameResize(60);
+	lazer->Trigger(false);		// -> Resume
+	lazer->isVisible = false;	// -> True
+	rootComponent->AddChild(lazer);
 	obb = CreateComponent<PolygonComponent>();
-	obb->InitPolygon({ {-6, -3}, {6, -3}, {6, 3}, {-6, 3} });
-	razer->AddChild(obb);
+	obb->InitPolygon({ {-960, -80}, {960, -80}, {960, 80}, {-960, 80} });
+	lazer->AddChild(obb);
 	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);
 	obb->bApplyImpulseOnDamage = true;
-	obb->bGenerateOverlapEvent = false;	// True
-	razer->Translate(-1200.f, 0.f);
-	razer->Scale(200.f, 30.f);
+	obb->bGenerateOverlapEvent = false;	// -> True
+	lazer->SetScale(-1.f, 1.f);
+	lazer->Translate(-900.f, 0.f);
 
 	// Damage Event
 	DamageType damageType {
@@ -99,16 +125,45 @@ void BossRazer::Update(float _dt)
 {
 	Super::Update(_dt);
 
+	if (startShuttingDown)
+	{
+		shuttingDownTimer -= _dt;
+		if (shuttingDownTimer <= 0.f)
+		{
+			lazerShuttingDown->Trigger(false);
+			lazerShuttingDown->isVisible = false;
+			DestroyThis();
+		}
+
+		return;
+	}
+	
 	if (castTime >= 0.f)
 	{
 		castTime -= _dt;
+
+		if (0.f <= castTime && castTime <= 2.f)
+		{
+			// TODO: Start charging lazer.
+			if (!startCharging)
+			{
+				lazerCharging->isVisible = true;
+				lazerCharging->Trigger(true);
+
+				startCharging = true;
+			}
+		}
+
 		return;
 	}
 
 	if (!obb->bGenerateOverlapEvent)
 	{
-		razer->Resume();
-		razer->isVisible = true;
+		lazerCharging->Trigger(false);
+		lazerCharging->isVisible = false;
+
+		lazer->Trigger(true);
+		lazer->isVisible = true;
 		obb->bGenerateOverlapEvent = true;
 	}
 
@@ -126,7 +181,14 @@ void BossRazer::Update(float _dt)
 	// 스킬 사망
 	if (skillDuration < 0.f)
 	{
-		DestroyThis();
+		lazer->Trigger(false);
+		lazer->isVisible = false;
+
+		lazerShuttingDown->Trigger(true);
+		lazerShuttingDown->isVisible = true;
+
+		obb->SetCollisionEnabled(CollisionEnabled::NoCollision);
+		startShuttingDown = true;
 	}
 }
 
@@ -186,6 +248,5 @@ void BossRazer::DestroyThis()
 		rootComponent->parent->RemoveChild(rootComponent);
 		rootComponent->parent = nullptr;
 	}
-	GetWorld()->UnregisterComponentCollision(obb);
 	destroyThis = true;
 }
