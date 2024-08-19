@@ -1,5 +1,5 @@
 #include "LightStreamEffect.h"
-#include "D2DGameEngine/BoxComponent.h"
+#include "D2DGameEngine/PolygonComponent.h"
 #include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/DamageEvent.h"
@@ -29,12 +29,15 @@ LightStreamEffect::LightStreamEffect(World* _world) : Actor(_world)
 
 	anim->Initialize(initialState);
 
-	box = CreateComponent<BoxComponent>();
-	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
-	box->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
-	box->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
-	box->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
-	rootComponent->AddChild(box);
+	obb = CreateComponent<PolygonComponent>();
+	obb->SetCollisionObjectType(ECollisionChannel::PlayerPattern);
+	obb->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
+	obb->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
+	obb->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
+	obb->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
+	obb->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
+	obb->SetPolygon({ {-500.f, -80.f}, {500.f, -80.f }, {-500.f, 80.f}, {500.f, 80.f} });
+	rootComponent->AddChild(obb);
 }
 
 void LightStreamEffect::Initialize()
@@ -42,6 +45,7 @@ void LightStreamEffect::Initialize()
 	state = State::Initial;
 	anim->SetState(initialState);
 	elapsedTime = 0.f;
+	damageTimer = 0.f;
 }
 
 void LightStreamEffect::BeginPlay()
@@ -50,21 +54,24 @@ void LightStreamEffect::BeginPlay()
 	Inactivate();
 }
 
-void LightStreamEffect::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
+void LightStreamEffect::OnOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	__super::OnBeginOverlap(other, overlap);
+	__super::OnOverlap(other, overlap);
 
-	if (box->bGenerateOverlapEvent == false)
-		return;
+	if (damageTimer > damageInterval)
+	{
+		damageTimer = 0.f;
+		//대미지를 입힘
+		DamageEvent damageEvent;
+		DamageType damageType
+		{
+			.damageImpulse = 10000
+		};
+		damageEvent.SetDamageType(damageType);
 
-	//대미지를 입힘
-	DamageEvent damageEvent;
-	DamageType damageType{
-		.damageImpulse = 10000.f, //충격량 넣어주는 게 맞는지?
-	};
-	damageEvent.SetDamageType(damageType);
+		other->TakeDamage(damage, damageEvent, nullptr, this);
+	}
 
-	other->TakeDamage(damage, damageEvent, nullptr, this);
 }
 
 void LightStreamEffect::Update(float _dt)
@@ -75,7 +82,8 @@ void LightStreamEffect::Update(float _dt)
 
 	if (state == State::Normal)
 	{
-		box->bShouldOverlapTest = true;
+		obb->bShouldOverlapTest = true;
+		damageTimer += _dt;
 	}
 
 	if (elapsedTime > initialTime && state == State::Initial)
