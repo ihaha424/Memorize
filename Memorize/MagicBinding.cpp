@@ -25,6 +25,7 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 	floorChaining->SetSprite(L"TestResource/Boss/MagicBinding/FloorChaining.png");
 	floorChaining->SliceSpriteSheet(150.f, 80.f, 0, 0, 0, 0);
 	floorChaining->SetFrameDurations({ chainingTime / 12.f });
+	floorChaining->FrameResize(13);
 	floorChaining->Trigger(true);
 
 	floorChained = CreateComponent<AnimationBitmapComponent>();
@@ -38,7 +39,7 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 
 	bodyChaining = CreateComponent<AnimationBitmapComponent>();
 	bodyChaining->SetSprite(L"TestResource/Boss/MagicBinding/BodyChain.png");
-	bodyChaining->SliceSpriteSheet(550.f, 550.f, 0, 0, 0, 0);
+	bodyChaining->SliceSpriteSheet(250.f, 400.f, 0, 0, 0, 0);
 	bodyChaining->SetFrameDurations({ chainingTime / 13.f });
 	bodyChaining->FrameSplice(1, 15);
 	bodyChaining->Trigger(true);
@@ -46,8 +47,8 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 	bodyChained = CreateComponent<AnimationBitmapComponent>();
 	bodyChained->isVisible = false;
 	bodyChained->SetSprite(L"TestResource/Boss/MagicBinding/BodyChain.png");
-	bodyChained->SliceSpriteSheet(550.f, 550.f, 0, 0, 0, 0);
-	bodyChained->SetFrameDurations({ chainingTime / 12.f });
+	bodyChained->SliceSpriteSheet(250.f, 400.f, 0, 0, 0, 0);
+	bodyChained->SetFrameDurations({ 8 / 97.f });
 	bodyChained->FrameSplice(16, 97);
 	bodyChained->Trigger(false);
 	bodyChained->SetLoop(true);
@@ -58,12 +59,12 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 	bm->AddChild(bodyChained);
 
 	floorChaining->SetScale(2.f, 2.f);
-	floorChaining->SetTranslation(0.f, 100.f);
+	floorChaining->SetTranslation(0.f, 120.f);
 	floorChained->SetScale(2.f, 2.f);
-	floorChained->SetTranslation(-6.f, 103.5f);
+	floorChained->SetTranslation(0.f, 120.f);
 
-	bodyChaining->SetTranslation(0.f, 0.f);
-	bodyChained->SetTranslation(0.f, 0.f);
+	bodyChaining->SetTranslation(0.f, -80.f);
+	bodyChained->SetTranslation(0.f, -80.f);
 }
 
 void MagicBinding::BeginPlay()
