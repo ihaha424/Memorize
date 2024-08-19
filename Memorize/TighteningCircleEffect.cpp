@@ -13,10 +13,11 @@ TighteningCircleEffect::TighteningCircleEffect(World* _world) :Actor(_world)
 	abm->SetFrameDurations({ 2.f/36 });
 
 	circleComponent = CreateComponent<CircleComponent>();
-	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::PlayerPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
+	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::PlayerPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
 	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
 	circleComponent->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
+	abm->AddChild(circleComponent);
 
 	DamageType radialDamageType{
 		.damageImpulse = 10000.f,
@@ -30,10 +31,6 @@ TighteningCircleEffect::TighteningCircleEffect(World* _world) :Actor(_world)
 	tighteningDamageEvent.radialDamageInfo.outerRadius = radius;
 	tighteningDamageEvent.componentHits.resize(1);
 
-	scaleTween = new DotTween<float>(&scaleVarias, EasingEffect::Linear, StepAnimation::StepOnceForward);
-	scaleTween->SetDuration(2.f);
-
-
 }
 
 void TighteningCircleEffect::BeginPlay()
@@ -44,6 +41,8 @@ void TighteningCircleEffect::BeginPlay()
 
 void TighteningCircleEffect::Initialize()
 {
+	scaleTween = new DotTween<float>(&scaleVarias, EasingEffect::Linear, StepAnimation::StepOnceForward);
+	scaleTween->SetDuration(2.f);
 	scaleTween->SetStartPoint(1.f);
 	scaleTween->SetEndPoint(0.f);
 	circleComponent->InitCircleRadius(radius);
@@ -56,18 +55,21 @@ void TighteningCircleEffect::Update(float _dt)
 {
 	__super::Update(_dt);
 
+	scaleTween->Update(_dt);
 	damageTimer += _dt;
 	elapsedTime += _dt;
 
-	circleComponent->bGenerateOverlapEvent = true;
+	circleComponent->bShouldOverlapTest = true;
+
 	circleComponent->SetCircleRadius(radius * scaleVarias);
-	tighteningDamageEvent.radialDamageInfo.innerRadius = radius * scaleVarias;
+	tighteningDamageEvent.radialDamageInfo.innerRadius = radius * scaleVarias - 10;
 	tighteningDamageEvent.radialDamageInfo.outerRadius = radius * scaleVarias;
 
 	if (elapsedTime > skillDuration)
 	{
 		Inactivate();
 		elapsedTime = 0.f;
+		delete scaleTween;
 	}
 }
 
