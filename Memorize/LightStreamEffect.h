@@ -3,11 +3,21 @@
 
 class LightStreamEffect : public Actor
 {
-	class BitmapComponent* bm;
+	enum class State
+	{
+		Initial, Normal, Ending
+	};
+	class Animator* anim;
 	float duration = 1.f;
+	float initialTime = 2.f;
+	float endingTime = 1.f; 
 	float elapsedTime = 0.f;
 	float damage = 0.f;
 	class BoxComponent* box;
+	class AnimationState* initialState;
+	class AnimationState* normalState;
+	class AnimationState* endingState;
+	State state = State::Initial;
 public:
 	LightStreamEffect(World* _world);
 	virtual ~LightStreamEffect();
@@ -16,6 +26,7 @@ public:
 	void OnBeginOverlap(Actor* other, const OverlapInfo& overlap);
 
 	void SetDuration(float _duration) { duration = _duration; };
+	void Initialize();
 	virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;
 };
