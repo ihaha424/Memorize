@@ -36,7 +36,6 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	rangeCircle->bGenerateOverlapEvent = true;
 	rootComponent->AddChild(rangeCircle);
 
-	Inactivate();
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;
 	bHasEnding = false;
@@ -79,8 +78,6 @@ void ChasingWaterBallProjectile::OnOverlap(Actor* other, const OverlapInfo& over
 void ChasingWaterBallProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
-
-	std::cout << chasingEnemies.size() << std::endl;
 
 	if (state == State::Idle)
 	{
