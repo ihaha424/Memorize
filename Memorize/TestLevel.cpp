@@ -75,6 +75,7 @@ void TestLevel::Enter()
 
 	{
 		Boss* boss = CreateActor<Boss>();
+		boss->SetLocation(500.f, 0);
 		BossAIController* bc = CreateActor<BossAIController>();
 		boss->SetController(bc);
 		bc->SetBoss(boss);

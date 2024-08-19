@@ -41,9 +41,12 @@ void Level::FixedUpdate(float _fixedRate)
 {
 	for (auto actor : actorList)
 	{
-		if (actor->CheckTickProperty(TICK_PHYSICS) && actor->GetStatus() == OS_ACTIVE)
+		if (actor->CheckTickProperty(TICK_PHYSICS))
 		{
-			actor->FixedUpdate(_fixedRate);
+			if(actor->GetStatus() == OS_ACTIVE)
+				actor->FixedUpdate(_fixedRate);
+			if (actor->GetStatus() == OS_DESTROY)
+				actor->FixedUpdate(_fixedRate);
 		}
 	}
 }

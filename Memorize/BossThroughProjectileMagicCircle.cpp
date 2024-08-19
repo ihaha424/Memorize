@@ -87,13 +87,13 @@ void BossThroughProjectileMagicCircle::Update(float _dt)
 		std::cout << "Finish\n";
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
-		SetStatus(EObjectStatus::OS_DESTROY);
+		Destroy();
 	}
 }
 
 void BossThroughProjectileMagicCircle::DisfellAction()
 {
-	SetStatus(EObjectStatus::OS_DESTROY);
+	Destroy();
 }
 
 void BossThroughProjectileMagicCircle::DisfellFailAction()

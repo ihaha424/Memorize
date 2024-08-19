@@ -89,7 +89,7 @@ void BossGrowCircle::Update(float _dt)
 	}
 	if (skillDuration < 0.f)
 	{
-		SetStatus(EObjectStatus::OS_DESTROY);
+		Destroy();
 	}
 }
 

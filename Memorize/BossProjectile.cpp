@@ -30,11 +30,11 @@ void BossProjectile::Update(float _dt)
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 		BossProjectileDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
 		player->TakeDamage(damage, BossProjectileDamageEvent, nullptr, this);
-		SetStatus(EObjectStatus::OS_DESTROY);
+		Destroy();
 	}
 	//if (폭팔 이펙트 -> 이펙트로 할 수도? 지속시간)
 	//{
-	//	SetStatus(EObjectStatus::OS_DESTROY);
+	//	Destroy();
 	//}
 }
 

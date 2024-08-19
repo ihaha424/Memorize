@@ -84,6 +84,11 @@ void Actor::BeginPlay()
 
 bool Actor::Destroy()
 {
+	for (auto [_, component] : components) {
+		PrimitiveComponent* primitiveComponent = dynamic_cast<PrimitiveComponent*>(component);
+		if (nullptr != primitiveComponent)
+			GetWorld()->UnregisterComponentCollision(primitiveComponent);
+	}
 	if (status == OS_DESTROY)
 		return false;
 	status = OS_DESTROY;
