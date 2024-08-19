@@ -48,8 +48,12 @@ void World::SetNextScene(std::wstring nextLevel)
 
 Math::Vector2 World::ScreenToWorldPoint(Math::Vector2 position)
 {
-	Math::Vector2 center = {CameraComponent::screenSize.x/2, CameraComponent::screenSize.y / 2 };
-	Math::Vector2 temp = position - center + Math::Vector2{mainCamera->GetComponentLocation().x, mainCamera->GetComponentLocation().y};
+	Math::Matrix cameraTF = GetMainCamera()->GetWorldTransform();
+	Math::Vector2 center = {CameraComponent::screenSize.x * 0.5f , CameraComponent::screenSize.y * 0.5f};
+	Math::Vector2 ScreenPos = (position - center);
+	ScreenPos.x = ScreenPos.x * cameraTF._11;
+	ScreenPos.y = ScreenPos.y * cameraTF._22;
+	Math::Vector2 temp = ScreenPos + Math::Vector2{mainCamera->GetComponentLocation().x, mainCamera->GetComponentLocation().y};
 
 	return temp;
 }

@@ -25,7 +25,6 @@ BossGrowCircle::BossGrowCircle(World* _world)
 	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
 	circleComponent->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
-	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
 	bm->AddChild(circleComponent);
 
 	DamageType radiaDamageType{
@@ -36,7 +35,7 @@ BossGrowCircle::BossGrowCircle(World* _world)
 	BossGrowCircleDamageEvent.damageEventType = DamageEventType::RadialDamage;
 	BossGrowCircleDamageEvent.radialDamageInfo.maxDamage = damage;
 	BossGrowCircleDamageEvent.radialDamageInfo.minDamage = damage;
-	BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = radius;
+	BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = radius - 1;
 	BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = radius;
 	BossGrowCircleDamageEvent.componentHits.resize(1);
 
@@ -57,7 +56,7 @@ void BossGrowCircle::BeginPlay()
 		abm->Trigger(true);
 	}
 
-	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
+	//circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
 }
