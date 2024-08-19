@@ -15,14 +15,7 @@ struct Action : public Leaf {
 	virtual bool IsFailed() { return failed; };
 	virtual void Traverse(float dt) override {
 		Run(dt);
-		const std::type_info& self = typeid(*this);
-		std::string className = self.name();
-		size_t classPos = className.find("class ");
-		if (classPos != std::string::npos) {
-			className.erase(classPos, 6); // 6 is the length of "class "
-		}
 
-		std::cout << "run: " << className<<"\n";
 		if (IsRunning()) {
 			status = NodeStatus::Running;
 		}

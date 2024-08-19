@@ -72,15 +72,16 @@ void Level::CleanUp()
 		[=](const std::pair<const std::type_index, Actor*>& entry) {
 			return entry.second->GetStatus() == OS_CLEAN_UP;
 		});
-	auto it3 = std::_Erase_remove_if(actorList,
-		[=](Actor* actor) {
+	auto it = std::remove_if(actorList.begin(), actorList.end(),
+		[](Actor* actor) {
 			if (actor->GetStatus() == OS_CLEAN_UP)
 			{
 				delete actor;
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		});
+	actorList.erase(it, actorList.end());
 }
 
 void Level::PreUpdate(float _dt)

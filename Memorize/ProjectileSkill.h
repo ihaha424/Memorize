@@ -3,7 +3,7 @@
 class ProjectileSkill : public Skill
 {
 protected:
-	std::vector<class Projectile*> projectiles;
+	std::vector<class Projectile*> projectiles{};
 
 	int projectileCount = 1;
 	int nowUsingCount = 0;

@@ -110,6 +110,11 @@ void Projectile::Update(float _dt)
 
 	box->bShouldOverlapTest = true;
 
+	if (elapsedTime == 0.0f)
+	{
+		Initialize();
+	}
+
 	elapsedTime += _dt;
 
 	//µÙ∑π¿Ã Ω√∞£ 
