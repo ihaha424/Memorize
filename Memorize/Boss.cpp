@@ -6,12 +6,14 @@
 
 Boss::Boss(World* _world) : Character(_world)
 {
-	SetTickProperties(TICK_UPDATE | TICK_RENDER);
+	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
+
+	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
+
 	hp = maxHp;
 
 	OnHPChanged = new Signal<float>;
 
-	box->SetCollisionObjectType(ECollisionChannel::Enemy);
 }
 
 Boss::~Boss()
@@ -24,6 +26,9 @@ void Boss::Update(float _dt)
 	__super::Update(_dt);
 
 	OnHPChanged->Emit(hp/(float)maxHp);
+
+	if (Periodic_Pattern_Cool_Time > 0.f)
+		Periodic_Pattern_Cool_Time -= _dt;
 }
 
 void Boss::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)

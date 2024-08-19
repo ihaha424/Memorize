@@ -8,8 +8,13 @@
 void Pattern9Action::Run(float dt)
 {
 	Super::Run(dt);
+	if (!started)
+	{
+		BossThroughProjectileMagicCircle* actor = bt->GetWorld()->GetCurLevel()->CreateActor<BossThroughProjectileMagicCircle>();
+		Math::Vector2 bossLocation = bt->GetKey<Boss*>("Boss")->GetLocation();
+		actor->SetLocation(bossLocation.x, bossLocation.y);
 
-	BossThroughProjectileMagicCircle* actor= bt->GetWorld()->GetCurLevel()->CreateActor<BossThroughProjectileMagicCircle>();
-	Math::Vector2 bossLocation = bt->GetKey<Boss*>("Boss")->GetLocation();
-	actor->SetLocation(bossLocation.x, bossLocation.y);
+
+		started = true;
+	}
 }

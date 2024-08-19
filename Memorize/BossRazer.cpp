@@ -73,6 +73,11 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	razerDamageEvent.radialDamageInfo = damageInfo;
 }
 
+BossRazer::~BossRazer()
+{
+	
+}
+
 void BossRazer::BeginPlay()
 {
 	Super::BeginPlay();
@@ -110,6 +115,7 @@ void BossRazer::Update(float _dt)
 	// 스킬이 발동되고 있는 동안
 	if (skillDuration >= 0.f)
 	{
+		skillDuration -= _dt;
 		obb->bShouldOverlapTest = true;
 		for (auto& [actor, f] : tickDamageTimerMap)
 		{
@@ -175,6 +181,11 @@ void BossRazer::ReflectionOut() {}
 
 void BossRazer::DestroyThis()
 {
+	if (rootComponent->parent)
+	{
+		rootComponent->parent->RemoveChild(rootComponent);
+		rootComponent->parent = nullptr;
+	}
 	GetWorld()->UnregisterComponentCollision(obb);
 	destroyThis = true;
 }
