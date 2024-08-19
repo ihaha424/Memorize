@@ -9,11 +9,16 @@ Boss::Boss(World* _world) : Character(_world)
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 
 	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
+	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
+	box->collisionProperty.SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Block);
+	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Overlap);
+	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Overlap);
 
 	hp = maxHp;
 
 	OnHPChanged = new Signal<float>;
 
+	box->SetCollisionObjectType(ECollisionChannel::Enemy);
 }
 
 Boss::~Boss()

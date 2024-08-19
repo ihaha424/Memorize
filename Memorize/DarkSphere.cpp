@@ -6,7 +6,7 @@
 
 DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 {
-	projectileCount = 8;
+	projectileCount = 16;
 	ReflectionIn();
 	SetID(ST_PROJECTILE, SE_DARKNESS);
 
@@ -27,14 +27,15 @@ DarkSphere::~DarkSphere()
 void DarkSphere::UseSkill()
 {
 	__super::UseSkill();
-	for (int i = 0; i < projectileCount; i++)
+	for (int i = 0; i < 8; i++)
 	{
-		Projectile* nowPj = projectiles[i];
+		Projectile* nowPj = projectiles[nowUsingCount];
 		nowPj->Initialize();
 		nowPj->SetDelay(0.2f * i);
 		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		nowPj->SetVelocity(attackDir, projectileSpeed);
 		nowPj->Activate();
+		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
 
 }

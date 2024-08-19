@@ -8,7 +8,7 @@
 
 PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 {
-	projectileCount = 10;
+	projectileCount = 20;
 	SetID(ST_PROJECTILE, SE_LIGHT);
 	ReflectionIn();
 	projectileDuration = 1.f;
@@ -47,10 +47,10 @@ void PrismReflection::UseSkill()
 	}
 	
 	//랜덤으로 N 방향에 투사체 발사 
-	for (int i = 0; i < projectileCount; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		int n = Random::Get<int>(8);
-		Projectile* nowPj = projectiles[i];
+		Projectile* nowPj = projectiles[nowUsingCount];
 		nowPj->SetDelay(0.1f * i);
 		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		nowPj->SetVelocity(directions[n], projectileSpeed);
@@ -61,6 +61,7 @@ void PrismReflection::UseSkill()
 		if (directions[n].y < 0)
 			rotateRad *= -1;
 		nowPj->rootComponent->SetRotation(rotateRad * 180.f / PI);
+		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
 }
 

@@ -72,15 +72,16 @@ void Level::CleanUp()
 		[=](const std::pair<const std::type_index, Actor*>& entry) {
 			return entry.second->GetStatus() == OS_CLEAN_UP;
 		});
-	auto it3 = std::_Erase_remove_if(actorList,
-		[=](Actor* actor) {
+	auto it = std::remove_if(actorList.begin(), actorList.end(),
+		[](Actor* actor) {
 			if (actor->GetStatus() == OS_CLEAN_UP)
 			{
 				delete actor;
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		});
+	actorList.erase(it, actorList.end());
 }
 
 void Level::PreUpdate(float _dt)
@@ -144,7 +145,7 @@ void Level::PrepareRender()
 void Level::Render(D2DRenderer* _renderer)
 {
 	Math::Matrix cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
-	cameraTF = cameraTF * Math::Matrix::CreateTranslation(-CameraComponent::screenSize.x / 2, -CameraComponent::screenSize.y / 2, 0.f);
+	cameraTF = cameraTF * Math::Matrix::CreateTranslation(-(CameraComponent::screenSize.x * 0.5f) * cameraTF._11, -(CameraComponent::screenSize.y *0.5f) * cameraTF._22, 0.f);
 	_renderer->PushTransform(cameraTF.Invert());
 
 	for (auto [_, actor] : actorRenderSequence)

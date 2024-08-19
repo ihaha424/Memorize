@@ -8,7 +8,6 @@ public:
 	virtual ~PrismReflectionProjectile();
 
 	
-	void Initialize() override { __super::Initialize(); }
 	virtual void BeginPlay() { __super::BeginPlay(); Inactivate(); }
 	void Update(float _dt) override;
 

@@ -1,10 +1,12 @@
 #pragma once
 #include "Skill.h"
-class ElementalMaster : public Skill
+class Purification : public Skill
 {
+	class AnimationState* animState;
+
 public:
-	ElementalMaster(Actor* _owner);
-	virtual ~ElementalMaster();
+	Purification(Actor* _owner);
+	virtual ~Purification();
 
 	virtual void Initialize() override;
 	virtual void UseSkill() override;
