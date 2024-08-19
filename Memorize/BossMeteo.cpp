@@ -79,7 +79,7 @@ void BossMeteo::Update(float _dt)
 			player->rootComponent->CalculateBounds(player->GetTrasnform()).GetBox());
 		if(hitRadius)
 			player->TakeDamage(damage, BossMeteoDamageEvent, nullptr, this);
-		SetStatus(EObjectStatus::OS_DESTROY);
+		Destroy();
 	}
 }
 

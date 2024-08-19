@@ -80,7 +80,7 @@ void BossGrowMagicCircle::Update(float _dt)
 		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
-		SetStatus(EObjectStatus::OS_DESTROY);
+		Destroy();
 	}
 }
 
