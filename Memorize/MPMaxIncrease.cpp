@@ -20,10 +20,10 @@ void MPMaxIncrease::Initialize()
 	__super::Initialize();
 
 	animState = player->buffEffect->CreateState<AnimationState>();
-	animState->SetSprite(L"TestResource/Player/Skill/Skill_MPrecovery.png");
-	animState->SliceSpriteSheet(250, 330, 0, 0, 0, 0);
-	animState->FrameResize(20);
-	animState->SetFrameDurations({ 0.025 });
+	animState->SetSprite(L"TestResource/Player/Skill/Skill_MPMaxIncrease.png");
+	animState->SliceSpriteSheet(250, 350, 0, 0, 0, 0);
+	animState->FrameResize(17);
+	animState->SetFrameDurations({ castingTime /17 });
 	player->buffEffect->Initialize(animState);
 }
 
