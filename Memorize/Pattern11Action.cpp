@@ -8,8 +8,12 @@
 void Pattern11Action::Run(float dt)
 {
 	Super::Run(dt);
+	if (!started)
+	{
+		BossChaseCircle* actor = bt->GetWorld()->GetCurLevel()->CreateActor<BossChaseCircle>();
+		Math::Vector2 playerLocation = bt->GetKey<Player*>("Player")->GetLocation();
+		actor->SetLocation(playerLocation.x, playerLocation.y);
 
-	BossChaseCircle* actor = bt->GetWorld()->GetCurLevel()->CreateActor<BossChaseCircle>();
-	Math::Vector2 playerLocation = bt->GetKey<Player*>("Player")->GetLocation();
-	actor->SetLocation(playerLocation.x, playerLocation.y);
+		started = true;
+	}
 }

@@ -6,12 +6,14 @@
 
 Boss::Boss(World* _world) : Character(_world)
 {
-	SetTickProperties(TICK_UPDATE | TICK_RENDER);
+	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
+
+	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
+
 	hp = maxHp;
 
 	OnHPChanged = new Signal<int>;
 
-	box->SetCollisionObjectType(ECollisionChannel::Enemy);
 }
 
 Boss::~Boss()

@@ -11,10 +11,14 @@
 void Pattern14Action::Run(float dt)
 {
 	Super::Run(dt);
+	if (!started)
+	{
+		Math::Vector2 playerLocation = bt->GetKey<Player*>("Player")->GetLocation();
 
-	Math::Vector2 playerLocation = bt->GetKey<Player*>("Player")->GetLocation();
+		BossGrowCircle* circle = bt->GetWorld()->GetCurLevel()->CreateActor<BossGrowCircle>();
+		circle->SetLocation(playerLocation.x, playerLocation.y);
+		circle->SetGrowLess(false);
 
-	BossGrowCircle* circle = bt->GetWorld()->GetCurLevel()->CreateActor<BossGrowCircle>();
-	circle->SetLocation(playerLocation.x, playerLocation.y);
-	circle->SetGrowLess(false);
+		started = true;
+	}
 }

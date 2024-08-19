@@ -18,8 +18,9 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	isDispel = true;
 	isFragile = false;
 	type = Range;
-	dispelTime = 0.f;
-	skillDuration = 10.f;
+	dispelTime = 11.f;
+	skillDuration = 10.5f;
+	castingTime = 0.f;
 	damage = 5.f;
 	speed = 0.f;
 	duration = 0.f;
@@ -42,33 +43,39 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	circle->SetScale(0.8f, 0.8f);
 
 
-	SceneComponent* attach1 = CreateComponent<SceneComponent>();
+	attach1 = CreateComponent<SceneComponent>();
 	rootComponent->AddChild(attach1);
 	attach1->SetRotation(0.f);
 	razer1 = GetWorld()->GetCurLevel()->CreateActor<BossRazer>();
 	attach1->AddChild(razer1->rootComponent);
+	razer1->skillDuration = 10.f;
+	razer1->castTime = 1.f;
 	razer1->magicCircle->SetScale(.2f, .2f);
 	razer1->SetScale(2.f, 2.f);
 	razer1->SetRotation(-90.f);
 	razer1->SetLocation(0.f, 500.f);
 	razer1->renderLayer = 5;
 
-	SceneComponent* attach2 = CreateComponent<SceneComponent>();
+	attach2 = CreateComponent<SceneComponent>();
 	rootComponent->AddChild(attach2);
 	attach2->SetRotation(120.f);
 	razer2 = GetWorld()->GetCurLevel()->CreateActor<BossRazer>();
 	attach2->AddChild(razer2->rootComponent);
+	razer2->skillDuration = 10.f;
+	razer2->castTime = 1.f;
 	razer2->magicCircle->SetScale(.2f, .2f);
 	razer2->SetScale(2.f, 2.f);
 	razer2->SetRotation(-90.f);
 	razer2->SetLocation(0.f, 500.f);
 	razer2->renderLayer = 5;
 
-	SceneComponent* attach3 = CreateComponent<SceneComponent>();
+	attach3 = CreateComponent<SceneComponent>();
 	rootComponent->AddChild(attach3);
 	attach3->SetRotation(240.f);
 	razer3 = GetWorld()->GetCurLevel()->CreateActor<BossRazer>();
 	attach3->AddChild(razer3->rootComponent);
+	razer3->skillDuration = 10.f;
+	razer3->castTime = 1.f;
 	razer3->magicCircle->SetScale(.2f, .2f);
 	razer3->SetScale(2.f, 2.f);
 	razer3->SetRotation(-90.f);
@@ -97,6 +104,8 @@ void RazerCircle::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Place circle
+	circle->SetTranslation(GET_MAP_CENTER().x, GET_MAP_CENTER().y);
 	// Rotate circle
 	SetAngularVelocity(angularVelocity);
 }
@@ -191,10 +200,9 @@ void RazerCircle::ReflectionOut() {}
 
 void RazerCircle::DestroyThis()
 {
-	razer1->DestroyThis();
-	razer2->DestroyThis();
-	razer3->DestroyThis();
-
+	attach1->RemoveChild(razer1->rootComponent);
+	attach2->RemoveChild(razer2->rootComponent);
+	attach3->RemoveChild(razer3->rootComponent);
 	GetWorld()->UnregisterComponentCollision(circle);
 	destroyThis = true;
 }

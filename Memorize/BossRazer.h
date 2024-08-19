@@ -18,8 +18,6 @@ class BossRazer : public BossSkillActor
 
 	class PolygonComponent* obb;
 
-	float castTime{ 0.f };
-	float tickInterval{ 0.4 };
 	
 	using TakeDamageTimer = CoolTime<void>;
 
@@ -29,10 +27,12 @@ class BossRazer : public BossSkillActor
 
 	bool destroyThis{ false };
 public:
+	float castTime{ 0.f };
+	float tickInterval{ 0.4 };
 	class AnimationBitmapComponent* magicCircle;
 	
 	BossRazer(class World* _world);
-	virtual ~BossRazer() {};
+	virtual ~BossRazer();
 
 	virtual void BeginPlay();
 

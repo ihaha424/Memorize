@@ -7,7 +7,11 @@
 void Pattern6Action::Run(float dt)
 {
 	Super::Run(dt);
-	
-	bt->GetWorld()->GetCurLevel()->CreateActor<BossGrowMagicCircle>();
+	if (!started)
+	{
+		bt->GetWorld()->GetCurLevel()->CreateActor<BossGrowMagicCircle>();
+
+		started = true;
+	}
 }
 

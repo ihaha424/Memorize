@@ -1028,9 +1028,9 @@ bool PrimitiveComponent::MoveComponentImpl(
 		// Find if the object blocks at traceEnd
 		// Pull it back toward traceStart until it doesn't collide
 		// Basically, traceEnd to traceStart line trace
-
-		// SetTranslation(newLocation.x , newLocatio.y);
-		// bMove = true;
+		DXVec2 newLocation = traceEnd;
+		SetTranslation(newLocation.x , newLocation.y);
+		bMoved = true;
 
 	}	// END if (!bSweep) 
 

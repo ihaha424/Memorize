@@ -21,6 +21,10 @@ class RazerCircle : public BossSkillActor
 	class BossRazer* razer2;
 	class BossRazer* razer3;
 
+	class SceneComponent* attach1;
+	class SceneComponent* attach2;
+	class SceneComponent* attach3;
+
 	using TakeDamageTimer = CoolTime<void>;
 	using FunctionTimerMap = std::unordered_map<Actor*, TakeDamageTimer>;
 	FunctionTimerMap tickDamageTimerMap;

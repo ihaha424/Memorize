@@ -35,6 +35,6 @@ struct Action : public Leaf {
 	}
 
 protected:
-	bool started;
-	bool failed;
+	bool started{ false };
+	bool failed{ false };
 };

@@ -7,6 +7,10 @@
 void Pattern10Action::Run(float dt)
 {
 	Super::Run(dt);
+	if (!started)
+	{
+		bt->GetWorld()->GetCurLevel()->CreateActor<RazerCircle>();
 
-	bt->GetWorld()->GetCurLevel()->CreateActor<RazerCircle>();
+		started = true;
+	}
 }

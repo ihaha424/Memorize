@@ -431,6 +431,15 @@
     <ClCompile Include="ElementalMasterComponent.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
+    <ClCompile Include="WaitForDelay.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="WaitForDelay.cpp">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="SetPeriodicCoolTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -747,6 +756,9 @@
     </ClInclude>
     <ClInclude Include="ElementalMasterComponent.h">
       <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPeriodicCoolTime.h">
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
