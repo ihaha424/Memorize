@@ -13,7 +13,7 @@
 #include "PrismReflection.h"
 #include "LightStream.h"
 #include "MPMaxIncrease.h"
-//#include "Purification.h"
+#include "Purification.h"
 
 #include "DarkSphere.h"
 #include "TighteningCircle.h"

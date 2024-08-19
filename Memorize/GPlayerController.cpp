@@ -86,7 +86,7 @@ void GPlayerController::InitializeSkill()
 	CreateSkill<PrismReflection>();
 	CreateSkill<LightStream>();
 	CreateSkill<MPMaxIncrease>();
-	//CreateSkill<Purification>();
+	CreateSkill<Purification>();
 	
 	CreateSkill<DarkSphere>();
 	CreateSkill<TighteningCircle>();

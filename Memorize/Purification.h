@@ -2,9 +2,9 @@
 #include "Skill.h"
 class Purification : public Skill
 {
-	class AnimationState* animState;
-
 public:
+	std::vector<class Actor*> disfellSkills;
+
 	Purification(Actor* _owner);
 	virtual ~Purification();
 
