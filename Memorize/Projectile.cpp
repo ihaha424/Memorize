@@ -89,7 +89,9 @@ void Projectile::SetVelocity(Math::Vector2 _direction, float _speed)
 void Projectile::BeginPlay()
 {
 	__super::BeginPlay();
-
+	mv->SetStatus(OS_INACTIVE);
+	anim->SetStatus(OS_INACTIVE);
+	box->SetStatus(OS_INACTIVE);
 }
 
 void Projectile::Initialize()
