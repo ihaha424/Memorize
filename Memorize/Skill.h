@@ -36,12 +36,13 @@ protected:
 	bool bUnlocked = false;
 	float damage = 0.f;
 	int mana = 0;
-	float castingTime = 0.f;
+	
 	bool bCrash;
 	std::vector<BYTE>	commandList{};
 	std::wstring text;
 public:
 	float skillDuration = 2.f;
+	float castingTime = 0.f;
 
 	Skill(Actor* _owner);
 	virtual ~Skill();

@@ -1,5 +1,8 @@
 #include "LightStream.h"
 #include "LightStreamEffect.h"
+#include "GPlayerController.h"
+#include "PlayerFSMComponent.h"
+#include "PlayerAttack.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BitmapComponent.h"
@@ -41,6 +44,9 @@ void LightStream::UseSkill()
 	float rotateRad = std::acos(direction.Dot(Math::Vector2(1.f, 0.f)));
 	if (direction.y < 0) rotateRad *= -1;
 	lightStreamEffect->rootComponent->SetRotation(rotateRad * 180.f / PI);
+
+
+	controller->FindCurSkiil()->castingTime = mana / 50.f;
 }
 
 void LightStream::ReflectionIn()
