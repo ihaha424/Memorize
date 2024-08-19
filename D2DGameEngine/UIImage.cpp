@@ -27,13 +27,14 @@ void UIImage::Render(D2DRenderer* _renderer)
 	Math::Matrix transform = Math::Matrix::Identity;
 	transform._41 = position.x;
 	transform._42 = position.y;
+
 	_renderer->PushTransform(transform);
 
 	D2D1_RECT_F DestRect = { 
-		position.x - width / 2, 
-		position.y - height / 2, 
-		position.x + width / 2,
-		position.y + height / 2 };
+		-width / 2, 
+		-height / 2, 
+		width / 2,
+		height / 2 };
 
 	_renderer->DrawSprite(sprite, DestRect, {0, 0, sprite->GetSize().width, sprite->GetSize().height});
 

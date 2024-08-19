@@ -197,6 +197,7 @@ void World::Update(float _dt)
 void World::PostUpdate(float _dt)
 {
 	CurLevel->PostUpdate(_dt);
+	ChangeScene();
 }
 
 void World::Render(D2DRenderer* _renderer)

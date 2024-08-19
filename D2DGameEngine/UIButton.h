@@ -30,17 +30,17 @@ public:
 	void OnClicked();
 	void OnPressed();
 
-	void AddOnClickHandler(void (*handler)())
+	void AddOnClickHandler(std::function<void()> handler)
 	{
 		onClickHandlers.push_back(handler);
 	}
 
-	void AddOnHoveredHandler(void (*handler)())
+	void AddOnHoveredHandler(std::function<void()> handler)
 	{
 		onHoveredHandlers.push_back(handler);
 	}
 
-	void AddOnPressedHandler(void (*handler)())
+	void AddOnPressedHandler(std::function<void()> handler)
 	{
 		onPressedHandlers.push_back(handler);
 	}

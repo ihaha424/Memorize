@@ -191,6 +191,8 @@
     <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="MagicBinding.cpp" />
     <ClCompile Include="MagicCircle.cpp" />
+    <ClCompile Include="MainLevel.cpp" />
+    <ClCompile Include="MainLevelUIPanel.cpp" />
     <ClCompile Include="ManaDepletedPanel.cpp" />
     <ClCompile Include="ManaOverload.cpp" />
     <ClCompile Include="Meteor.cpp" />
@@ -297,6 +299,8 @@
     <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="MagicBinding.h" />
     <ClInclude Include="MagicCircle.h" />
+    <ClInclude Include="MainLevel.h" />
+    <ClInclude Include="MainLevelUIPanel.h" />
     <ClInclude Include="ManaDepletedPanel.h" />
     <ClInclude Include="ManaOverload.h" />
     <ClInclude Include="Meteor.h" />

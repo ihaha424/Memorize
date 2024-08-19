@@ -443,6 +443,12 @@
     <ClCompile Include="Purification.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
+    <ClCompile Include="MainLevel.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLevelUIPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -765,6 +771,12 @@
     </ClInclude>
     <ClInclude Include="Purification.h">
       <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLevel.h">
+      <Filter>Source Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLevelUIPanel.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

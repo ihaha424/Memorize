@@ -4,6 +4,7 @@
 
 #include "D2DGameEngine/D2DRenderer.h"
 #include "D2DGameEngine/World.h"
+#include "MainLevel.h"
 #include "TestLevel.h"
 
 GameApp* loadedApp{ nullptr };
@@ -23,8 +24,9 @@ void GameApp::Initialize() {
 	loadedApp = this;
 
 	world = new World;
+	world->CreateLevel<MainLevel>(L"MainLevel");
 	world->CreateLevel<TestLevel>(L"TestLevel");
-	world->SetNextScene(L"TestLevel");
+	world->SetNextScene(L"MainLevel");
 	world->ChangeScene();
 	world->BeginPlay();
 
