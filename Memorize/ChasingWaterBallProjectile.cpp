@@ -115,6 +115,10 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
 	}
+	else if (mv->GetStatus() == OS_INACTIVE)
+	{
+		Destroy();
+	}
 }
 
 void ChasingWaterBallProjectile::Initialize()

@@ -140,6 +140,6 @@ void Projectile::Update(float _dt)
 		mv->SetStatus(OS_INACTIVE);
 		anim->SetStatus(OS_INACTIVE);
 		box->SetStatus(OS_INACTIVE);
-		Destroy();
+		Inactivate();
 	}
 }

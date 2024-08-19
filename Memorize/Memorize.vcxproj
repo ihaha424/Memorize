@@ -231,6 +231,7 @@
     <ClCompile Include="PrismReflectionProjectile.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
+    <ClCompile Include="Purification.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="RazerCircle.cpp" />
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
@@ -338,6 +339,7 @@
     <ClInclude Include="PrismReflectionProjectile.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileSkill.h" />
+    <ClInclude Include="Purification.h" />
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="BossRazer.h" />
     <ClInclude Include="RazerCircle.h" />

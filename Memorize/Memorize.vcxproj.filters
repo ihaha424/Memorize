@@ -440,6 +440,9 @@
     <ClCompile Include="SetPeriodicCoolTime.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClCompile>
+    <ClCompile Include="Purification.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -759,6 +762,9 @@
     </ClInclude>
     <ClInclude Include="SetPeriodicCoolTime.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Purification.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
