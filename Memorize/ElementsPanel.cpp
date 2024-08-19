@@ -175,13 +175,13 @@ void ElementsPanel::SetSkillList()
 	{
 		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
 		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
+		e->SetSprite(L"TestResource/Icon/Icon_Enchant.png");
 		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
 		SetQWER(fireCommands);
 	}
 	else if (nowElement == SE_WATER)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
+		q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall.png");
 		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
 		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
 		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
@@ -190,17 +190,17 @@ void ElementsPanel::SetSkillList()
 	else if (nowElement == SE_LIGHT)
 	{
 		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
+		w->SetSprite(L"TestResource/Icon/Icon_LightStream.png");
+		e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease.png");
 		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
 		SetQWER(lightCommands);
 	}
 	else if (nowElement == SE_DARKNESS)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		q->SetSprite(L"TestResource/Icon/Icon_DarkSphere.png");
+		w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle.png");
+		e->SetSprite(L"TestResource/Icon/Icon_MPrecovery.png");
+		r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster.png");
 		SetQWER(darkCommands);
 	}
 }
