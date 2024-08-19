@@ -1,8 +1,11 @@
 #include "BossSkillActor.h"
 #include "../D2DGameEngine/BitmapComponent.h"
+#include "../D2DGameEngine/World.h"
 #include "D2DGameEngine/BoxComponent.h"
 #include "MovementComponent.h"
 #include "GPlayerController.h"
+#include "Player.h"
+#include "Purification.h"
 #include "D2DGameEngine/RandomGenerator.h"
 #include <utility>
 
@@ -22,6 +25,10 @@ BossSkillActor::BossSkillActor(World* _world)
 
 BossSkillActor::~BossSkillActor()
 {
+	//for Purification skill
+	GPlayerController* pController = static_cast<GPlayerController*>(GetWorld()->FindActorByType<Player>()->GetController());
+	Purification* purification = static_cast<Purification*>(pController->FindSkiil(SE_LIGHT, ST_SPECIAL));
+	purification->disfellSkills.erase(std::find(purification->disfellSkills.begin(), purification->disfellSkills.end(), this));
 }
 
 void BossSkillActor::OnClicked()
@@ -60,6 +67,11 @@ void BossSkillActor::CreateDisfellCommand()
 {
 	for(int i = 0; i < disfellCommandCount; i++)
 		disfellCommand.push_back(Random::Get((int)Dark));
+
+	//for Purification skill
+	GPlayerController* pController = static_cast<GPlayerController*>(GetWorld()->FindActorByType<Player>()->GetController());
+	Purification* purification = static_cast<Purification*>(pController->FindSkiil(SE_LIGHT, ST_SPECIAL));
+	purification->disfellSkills.push_back(this);
 }
 
 void BossSkillActor::FixedUpdate(float _fixedRate)
