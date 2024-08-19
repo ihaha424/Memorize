@@ -13,8 +13,14 @@ class BossRazer : public BossSkillActor
 
 	class Player* player{ nullptr };
 
-	class AnimationBitmapComponent* razer;
 	class SceneComponent* magicCircleHub;
+
+	bool startCharging{ false };
+	class AnimationBitmapComponent* lazerCharging;
+	class AnimationBitmapComponent* lazer;
+	bool startShuttingDown{ false };
+	float shuttingDownTimer{ 1.f };
+	class AnimationBitmapComponent* lazerShuttingDown;
 
 	class PolygonComponent* obb;
 
