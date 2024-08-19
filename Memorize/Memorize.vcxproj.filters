@@ -438,7 +438,7 @@
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClCompile>
     <ClCompile Include="SetPeriodicCoolTime.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

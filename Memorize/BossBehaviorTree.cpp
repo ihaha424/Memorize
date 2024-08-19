@@ -529,21 +529,25 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	case BossBehaviorTree::Pattern::Pattern1: {
 		Pattern1Action* pattern1Action = CreateNode<Pattern1Action>();
 		pattern1Action->SetPatternInterval(1.f);
+		pattern1Action->SetTreeCooldown(1.f);
 		return pattern1Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern2: {
 		Pattern2Action* pattern2Action = CreateNode<Pattern2Action>();
 		pattern2Action->SetPatternInterval(2.0f);
+		pattern2Action->SetTreeCooldown(2.f);
 		return pattern2Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern3: {
 		Pattern3Action* pattern3Action = CreateNode<Pattern3Action>();
 		pattern3Action->SetPatternInterval(0.5f);
+		pattern3Action->SetTreeCooldown(2.f);
 		return pattern3Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern4: {
 		Pattern4Action* pattern4Action = CreateNode<Pattern4Action>();
 		pattern4Action->SetPatternInterval(0.5f);
+		pattern4Action->SetTreeCooldown(2.f);
 		return pattern4Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern5: {
@@ -671,6 +675,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		Pattern6Action* pattern6Action = CreateNode<Pattern6Action>();
 		pattern6Action->SetCooldown(15.f);
 		pattern6Action->SetPatternInterval(11.f);
+		pattern6Action->SetTreeCooldown(3.f);
 
 		Pattern6Sequence->PushBackChildren({ moveToCenter, pattern6Action });
 		return Pattern6Sequence;
@@ -734,6 +739,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		Pattern7Action* pattern7Action = CreateNode<Pattern7Action>();
 		pattern7Action->SetCooldown(20.f);
 		pattern7Action->SetPatternInterval(5.f);
+		pattern7Action->SetTreeCooldown(4.f);
 
 		Pattern7Sequence->PushBackChildren({ setDestination, pattern7Action });
 		return Pattern7Sequence;
@@ -741,12 +747,14 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	case BossBehaviorTree::Pattern::Pattern8: {
 		Pattern8Action* pattern8Action = CreateNode<Pattern8Action>();
 		pattern8Action->SetPatternInterval(0.5f);
+		pattern8Action->SetTreeCooldown(1.f);
 		return pattern8Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern9: {
 		Pattern9Action* pattern9Action = CreateNode<Pattern9Action>();
 		pattern9Action->SetCooldown(15.f);
 		pattern9Action->SetPatternInterval(5.f);
+		pattern9Action->SetTreeCooldown(2.f);
 		return pattern9Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern10: {
@@ -761,6 +769,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		Pattern10Action* pattern10Action = CreateNode<Pattern10Action>();
 		pattern10Action->SetCooldown(20.f);
 		pattern10Action->SetPatternInterval(11.f);
+		pattern10Action->SetTreeCooldown(5.f);
 
 		Pattern10Sequence->PushBackChildren({ moveToCenter, pattern10Action });
 		return Pattern10Sequence;
@@ -780,6 +789,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		Pattern13Action* pattern13Action = CreateNode<Pattern13Action>();
 		pattern13Action->SetCooldown(20.f);
 		pattern13Action->SetPatternInterval(1.f);
+		pattern13Action->SetTreeCooldown(3.f);
 		return pattern13Action;
 	} break;
 	default:

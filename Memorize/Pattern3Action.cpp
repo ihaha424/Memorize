@@ -17,7 +17,7 @@ void Pattern3Action::Run(float dt)
 		Math::Vector2 toPlayer = (playerLocation - bossLocation);
 		toPlayer.Normalize();
 
-		// TODO: 보스 투사체 붙히기
+		// 보스 투사체 붙히기
 		BossProjectile* proj1 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
 		BossProjectile* proj2 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
 		BossProjectile* proj3 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
@@ -30,8 +30,8 @@ void Pattern3Action::Run(float dt)
 		proj2->SetLocation(bossLocation.x, bossLocation.y);
 		proj3->SetLocation(bossLocation.x, bossLocation.y);
 
-		Math::Matrix rotate1 = Math::Matrix::CreateRotationZ(20.f);
-		Math::Matrix rotate3 = Math::Matrix::CreateRotationZ(-20.f);
+		Math::Matrix rotate1 = Math::Matrix::CreateRotationZ(Math::DegreeToRadian(20.f));
+		Math::Matrix rotate3 = Math::Matrix::CreateRotationZ(Math::DegreeToRadian(-20.f));
 
 		Math::Vector2 vel = toPlayer * 800.f;
 

@@ -26,6 +26,9 @@ void Boss::Update(float _dt)
 	__super::Update(_dt);
 
 	OnHPChanged->Emit(hp/(float)maxHp);
+
+	if (Periodic_Pattern_Cool_Time > 0.f)
+		Periodic_Pattern_Cool_Time -= _dt;
 }
 
 void Boss::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)
