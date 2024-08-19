@@ -1,6 +1,6 @@
 #include "BossAIController.h"
 #include "Boss.h"
-#include "../D2DGameEngine/BehaviorTree.h"
+#include "BossBehaviorTree.h"
 #include "../D2DGameEngine/Decorator.h"
 #include "../D2DGameEngine/Timer.h"
 #include "../D2DGameEngine/Debug.h"
@@ -9,10 +9,16 @@
 BossAIController::BossAIController(class World* _world) : AIController(_world)
 {
 	SetTickProperties(TICK_UPDATE);
+	InitializeBoss();
 }
 
 BossAIController::~BossAIController()
 {
+}
+
+void BossAIController::BeginPlay()
+{
+	__super::BeginPlay();
 }
 
 void BossAIController::Update(float _dt)
@@ -24,6 +30,6 @@ void BossAIController::Update(float _dt)
 void BossAIController::InitializeBoss()
 {
 	// Create the behavior tree
-	BehaviorTree* bt = CreateComponent<BehaviorTree>();
-
+	BossBehaviorTree* bt = CreateComponent<BossBehaviorTree>();
+	brainComponent = bt;
 }

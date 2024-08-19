@@ -9,6 +9,7 @@
 World::World() 
 {
 	canvas = new Canvas(this);
+	effectSystem.SetWorld(this);
 }
 World::~World()
 {
@@ -18,6 +19,7 @@ World::~World()
 		delete iter->second;
 	}
 	levelList.clear();
+	effectSystem.Clean();
 }
 
 void World::ChangeScene()
@@ -28,6 +30,7 @@ void World::ChangeScene()
 		{
 			CurLevel->Exit();
 			CurLevel->Clear();
+			effectSystem.Clean();
 		}
 		CurLevel = NextLevel;
 		NextLevel = nullptr;
@@ -166,6 +169,10 @@ void World::FixedUpdate(float _fixedRate)
 	CurLevel->FixedUpdate(_fixedRate);
 	CurLevel->CleanUp();
 	CurLevel->Destroy();
+
+	effectSystem.FixedUpdate(_fixedRate);
+	effectSystem.CleanUp();
+	effectSystem.Destroy();
 }
 
 void World::PreUpdate(float _dt)
@@ -177,6 +184,7 @@ void World::Update(float _dt)
 {
 	CurLevel->Update(_dt);
 
+	effectSystem.Update(_dt);
 
 	canvas->Update(_dt);
 
@@ -194,6 +202,9 @@ void World::Render(D2DRenderer* _renderer)
 
 	// ÇöÀç ·¹º§ ·»´õ
 	CurLevel->Render(_renderer);
+
+	//Effect ·£´õ
+	effectSystem.Render(_renderer);
 
 	// UI ·»´õ
 	canvas->Render(_renderer);
