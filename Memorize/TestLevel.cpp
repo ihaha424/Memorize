@@ -66,7 +66,7 @@ void TestLevel::Enter()
 
 		disfellPanel = GetWorld()->GetCanvas()->CreatePannel<DisfellPanel>(L"DisfellCommands");
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
-		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
+		pc->OnDoingDisfell->Connect([&](int index, int command) {disfellPanel->CommandImageOff(index, command); });
 
 		//Timer::SetTimeScale(2);
 		BossGrowCircle* temp = CreateActor<BossGrowCircle>();

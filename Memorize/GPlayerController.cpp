@@ -27,7 +27,7 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 	AddEventHandler(&GPlayerController::DisfellEvent);
 
 	OnBeginDisfell = new Signal<int, int>;
-	OnDoingDisfell = new Signal<int>;
+	OnDoingDisfell = new Signal<int, int>;
 
 	elementalMasterComponent = CreateComponent<ElementalMasterComponent>();
 	elementalMasterComponent->SetStatus(OS_INACTIVE);
@@ -159,6 +159,10 @@ void GPlayerController::Update(float _dt)
 	}
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 
+	if (playerFSMComponent->GetCurState() != L"PlayerDisfell")
+	{
+		OnDoingDisfell->Emit(-1, 0);
+	}
 }
 
 void GPlayerController::SetRandomSkillReady()
@@ -251,7 +255,7 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 	{
 		if (targetSkill == _event->GetBossSkillActor() && _event->GetBossSkillDieFlag())
 		{
-			OnDoingDisfell->Emit(-1);
+			OnDoingDisfell->Emit(-1, 0);
 			playerFSMComponent->SetNextState(L"PlayerIdle");
 		}
 	}
