@@ -73,6 +73,7 @@ public:
 	bool bondageFlag{ false };
 
 	class BuffEffectComponent* buffEffect;
+	class ManaOverloadComponent* manaOverloadEffect;
 	
 public:
 	Player(class World* _world);

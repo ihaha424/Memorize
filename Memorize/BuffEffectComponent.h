@@ -1,6 +1,6 @@
 #pragma once
-#include "D2DGameEngine/Animator.h"
-class BuffEffectComponent : public Animator
+#include "D2DGameEngine/AnimationBitmapComponent.h"
+class BuffEffectComponent : public AnimationBitmapComponent
 {
 	float duration = 0.5f;
 	float elapsedTime = 0.f;

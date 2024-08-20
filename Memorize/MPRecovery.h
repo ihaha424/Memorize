@@ -3,7 +3,6 @@
 class MPRecovery : public BuffSkill
 {
 	float mpRecovery = 10.f;
-	class AnimationState* animState;
 public:
 	MPRecovery(Actor* _owner);
 	virtual ~MPRecovery();

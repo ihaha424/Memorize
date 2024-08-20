@@ -196,6 +196,7 @@
     <ClCompile Include="MainLevelUIPanel.cpp" />
     <ClCompile Include="ManaDepletedPanel.cpp" />
     <ClCompile Include="ManaOverload.cpp" />
+    <ClCompile Include="ManaOverloadComponent.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -305,6 +306,7 @@
     <ClInclude Include="MainLevelUIPanel.h" />
     <ClInclude Include="ManaDepletedPanel.h" />
     <ClInclude Include="ManaOverload.h" />
+    <ClInclude Include="ManaOverloadComponent.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />

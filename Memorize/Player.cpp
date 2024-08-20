@@ -10,10 +10,12 @@
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BoxComponent.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
+#include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/Mouse.h"
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"
 #include "BuffEffectComponent.h"
+#include "ManaOverloadComponent.h"
 #include "ElementalMasterComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
@@ -97,6 +99,10 @@ Player::Player(class World* _world) : Character(_world)
 	buffEffect = CreateComponent<BuffEffectComponent>();
 	rootComponent->AddChild(buffEffect);
 	buffEffect->SetStatus(OS_INACTIVE);
+
+	manaOverloadEffect = CreateComponent<ManaOverloadComponent>();
+	rootComponent->AddChild(manaOverloadEffect);
+	manaOverloadEffect->SetStatus(OS_INACTIVE);
 }
 
 Player::~Player()

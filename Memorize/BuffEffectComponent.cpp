@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "GPlayerController.h"
 
-BuffEffectComponent::BuffEffectComponent(Actor* _owner) : Animator(_owner)
+BuffEffectComponent::BuffEffectComponent(Actor* _owner) : AnimationBitmapComponent(_owner)
 {
 }
 

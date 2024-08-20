@@ -458,6 +458,9 @@
     <ClCompile Include="BossHitEffect.cpp">
       <Filter>Source Files\App\Effect\BossHitEffect</Filter>
     </ClCompile>
+    <ClCompile Include="ManaOverloadComponent.cpp">
+      <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -789,6 +792,9 @@
     </ClInclude>
     <ClInclude Include="BossHitEffect.h">
       <Filter>Source Files\App\Effect\BossHitEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="ManaOverloadComponent.h">
+      <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
