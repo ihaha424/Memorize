@@ -8,3 +8,13 @@ AnimationEffect::AnimationEffect(World* _world)
 	rootComponent = animationBitMap;
 
 }
+
+void AnimationEffect::SetSprite(std::wstring _path)
+{
+	animationBitMap->SetSprite(_path.c_str());
+}
+
+AnimationBitmapComponent* AnimationEffect::GetAnimationBitmapComponent()
+{
+	return animationBitMap;
+}
