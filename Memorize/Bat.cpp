@@ -129,7 +129,16 @@ void Bat::Update(float _dt)
 		}
 		else
 		{
-			AddVelocity(toPlayer * speed);
+			추적_타이머 -= _dt;
+			if (추적_타이머 <= 0.f)
+			{
+				AddVelocity(toPlayer * speed * 0.9f);
+				추적_타이머 = 0.f;
+			}
+			else
+			{
+				AddVelocity(toPlayer * speed * 0.005f);
+			}
 		}
 	}
 }
