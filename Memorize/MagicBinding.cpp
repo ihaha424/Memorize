@@ -145,7 +145,7 @@ void MagicBinding::DisfellAction()
 
 void MagicBinding::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern07_Actor.txt");
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern12_Actor.txt");
 	int typeInt;
 	reflectionResource->ParsingFile(0, isFragile, typeInt, dispelTime, skillDuration, damage);
 	type = static_cast<BossSkillType>(typeInt);

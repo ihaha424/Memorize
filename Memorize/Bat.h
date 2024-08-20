@@ -26,7 +26,7 @@ public:
 
 	void BeginPlay() override;
 
-	void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
+	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser);
 
 	void Update(float _dt) override;
 

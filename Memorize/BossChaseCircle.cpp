@@ -112,7 +112,7 @@ void BossChaseCircle::OnClicked()
 
 void BossChaseCircle::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern11_Actor.txt");
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern05_Actor.txt");
 	int typeInt;
 	reflectionResource->ParsingFile(0, isFragile, typeInt, dispelTime, skillDuration, damage, speed, duration);
 	type = static_cast<BossSkillType>(typeInt);
