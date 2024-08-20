@@ -39,7 +39,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	centerCircle->FrameResize(82);
 	centerCircle->Trigger(true);
 	centerCircle->SetLoop(true);
-	circle->InitCircleRadius(800);
+	circle->InitCircleRadius(520);
 	circle->SetScale(0.8f, 0.8f);
 
 

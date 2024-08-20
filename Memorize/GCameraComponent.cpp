@@ -146,7 +146,7 @@ void GCameraComponent::Render(D2DRenderer* _renderer)
 		&dest,
 		피격opacity
 	);
-	LOG_INFO(dbg::text(피격Timer, " ", 피격opacity));
+
 	// 레이어 부시기
 	deviceContext->PopLayer();
 	SafeRelease(&layer);
