@@ -30,6 +30,17 @@ TestLevel::~TestLevel()
 {
 }
 
+void TestLevel::Clear()
+{
+	actorRenderSequence.clear();
+	actorTypeMap.clear();
+	for (auto& pGameObject : actorList)
+	{
+		delete pGameObject;
+	}
+	actorList.clear();
+}
+
 #include "BossGrowCircle.h"
 #include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()

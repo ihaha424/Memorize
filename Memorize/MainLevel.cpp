@@ -24,5 +24,9 @@ void MainLevel::Exit()
 
 void MainLevel::Clear()
 {
-	GetWorld()->GetCanvas()->RemovePanel(L"MainLevel");
+	for (auto& pGameObject : actorList)
+	{
+		delete pGameObject;
+	}
+	actorList.clear();
 }
