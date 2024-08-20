@@ -20,7 +20,7 @@ protected:
 
 	class MovementComponent* mv;
 	class Animator* anim;
-	class BoxComponent* box;
+	class PolygonComponent* box;
 
 	class AnimationState* normalState;
 	class AnimationState* endingState;

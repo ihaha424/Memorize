@@ -2,7 +2,7 @@
 #include "../D2DGameEngine/Animator.h"
 #include "../D2DGameEngine/AnimationState.h"
 #include "../D2DGameEngine/CircleComponent.h"
-#include "../D2DGameEngine/BoxComponent.h"
+#include "../D2DGameEngine/PolygonComponent.h"
 #include "MovementComponent.h"
 #include "Player.h"
 
@@ -28,6 +28,8 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 
 
 	//적 감지 위한 원형 콜라이더
+	box->SetPolygon({ {-80, 150}, {80, -150}, {-80, -150}, {80, 150} });
+
 	box->bGenerateOverlapEvent = false; //적 감지를 위해 박스는 꺼줌 
 	rangeCircle = CreateComponent<CircleComponent>();
 	rangeCircle->SetCircleRadius(range);

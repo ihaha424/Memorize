@@ -32,9 +32,9 @@ void AggressiveWaves::UseSkill()
 		Math::Vector2 newDir ={ std::cos(radians),std::sin(radians)};
 		waveEffects[i]->SetVelocity(newDir, speed);
 	}
-	waveEffects[0]->SetRotation(0);
-	waveEffects[1]->SetRotation(0);
-	waveEffects[2]->SetRotation(180);
+	waveEffects[0]->SetRotation(-45);
+	waveEffects[1]->SetRotation(45);
+	waveEffects[2]->SetRotation(135);
 	waveEffects[3]->SetRotation(180);
 }
 

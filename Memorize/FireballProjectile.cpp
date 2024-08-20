@@ -1,7 +1,7 @@
 #include "FireballProjectile.h"
 #include "../D2DGameEngine/AnimationState.h"
 #include "../D2DGameEngine/Animator.h"
-#include "../D2DGameEngine/BoxComponent.h"
+#include "../D2DGameEngine/PolygonComponent.h"
 #include "MovementComponent.h"
 
 FireballProjectile::FireballProjectile(World* _world) : Projectile(_world)
@@ -17,7 +17,8 @@ FireballProjectile::FireballProjectile(World* _world) : Projectile(_world)
 	endingState->FrameResize(48);
 	endingState->SetFrameDurations({ 0.14285f });
 
-	box->InitBoxExtent({ 137, 254 });
+	box->SetPolygon({ {-50, 80}, {50, -80}, {-50, -80}, {50, 80} });
+
 
 	endingTime = 1.f;
 	bIsPassable = false;
