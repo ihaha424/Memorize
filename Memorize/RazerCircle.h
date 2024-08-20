@@ -41,7 +41,10 @@ public:
 
 	virtual void Update(float _dt) override;
 
-	virtual void DisfellAction();
+	virtual void DisfellAction() override;
+	virtual void DisfellFailAction() override;
+
+	void OnClicked() override;
 
 	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
