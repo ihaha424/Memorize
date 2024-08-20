@@ -31,8 +31,10 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	box->bGenerateOverlapEvent = false; //적 감지를 위해 박스는 꺼줌 
 	rangeCircle = CreateComponent<CircleComponent>();
 	rangeCircle->SetCircleRadius(range);
-	rangeCircle->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapPawn);
 	rangeCircle->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
+	rangeCircle->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
+	rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
+	rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Overlap);
 	rangeCircle->bGenerateOverlapEvent = true;
 	rootComponent->AddChild(rangeCircle);
 
@@ -114,6 +116,10 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
+	}
+	else if (mv->GetStatus() == OS_INACTIVE)
+	{
+		Destroy();
 	}
 }
 

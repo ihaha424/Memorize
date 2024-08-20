@@ -62,6 +62,8 @@ private:
 	float maxMaxMp = 1000.f;
 	float minAttackSpeed = 1.f;
 	float maxAttackSpeed = 2.f;
+
+	class AnimationBitmapComponent* orb;
 public:
 
 	float moveSpeed = 450;
@@ -71,7 +73,7 @@ public:
 	bool bondageFlag{ false };
 
 	class BuffEffectComponent* buffEffect;
-
+	
 public:
 	Player(class World* _world);
 	virtual ~Player();

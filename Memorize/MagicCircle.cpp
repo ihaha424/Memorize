@@ -40,7 +40,7 @@ void MagicCircle::Update(float _dt)
 	Math::Vector2 direction = mousePos - Math::Vector2(GetOwner()->GetLocation().x, GetOwner()->GetLocation().y);
 	direction.Normalize();
 
-	SetTranslation(50 * direction.x, direction.y * 5);
+	SetTranslation(200 * direction.x, direction.y * 5);
 
 	for (int i = 0; i < 7; i++)
 	{

@@ -191,6 +191,8 @@
     <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="MagicBinding.cpp" />
     <ClCompile Include="MagicCircle.cpp" />
+    <ClCompile Include="MainLevel.cpp" />
+    <ClCompile Include="MainLevelUIPanel.cpp" />
     <ClCompile Include="ManaDepletedPanel.cpp" />
     <ClCompile Include="ManaOverload.cpp" />
     <ClCompile Include="Meteor.cpp" />
@@ -231,6 +233,7 @@
     <ClCompile Include="PrismReflectionProjectile.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileSkill.cpp" />
+    <ClCompile Include="Purification.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="RazerCircle.cpp" />
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
@@ -296,6 +299,8 @@
     <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="MagicBinding.h" />
     <ClInclude Include="MagicCircle.h" />
+    <ClInclude Include="MainLevel.h" />
+    <ClInclude Include="MainLevelUIPanel.h" />
     <ClInclude Include="ManaDepletedPanel.h" />
     <ClInclude Include="ManaOverload.h" />
     <ClInclude Include="Meteor.h" />
@@ -338,6 +343,7 @@
     <ClInclude Include="PrismReflectionProjectile.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileSkill.h" />
+    <ClInclude Include="Purification.h" />
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="BossRazer.h" />
     <ClInclude Include="RazerCircle.h" />

@@ -15,7 +15,7 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 	lightCommands = { {0, 2}, {1, 0, 2, 2}, {2, 1, 1},{3, 2, 2, 1, 2, 2} };
 	darkCommands = { {0, 3, 3, 3}, {1, 3}, {2, 3, 3},{3, 2, 1, 0, 1, 2} };
 
-	SetPosition(70, 240);
+	SetPosition(70, 1080/2);
 
 	Qbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Q.png")->GetResource();
 	Wbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/W.png")->GetResource();
@@ -24,19 +24,19 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 
 	q = CreateUI<UIImage>(L"Q");
 	q->SetSprite(Qbm);
-	q->SetPosition(0, -90);
+	q->SetPosition(0, -180);
 
 	w = CreateUI<UIImage>(L"W");
 	w->SetSprite(Wbm);
-	w->SetPosition(0, -30);
+	w->SetPosition(0, -60);
 
 	e = CreateUI<UIImage>(L"E");
 	e->SetSprite(Ebm);
-	e->SetPosition(0, 30);
+	e->SetPosition(0, 60);
 
 	r = CreateUI<UIImage>(L"R");
 	r->SetSprite(Rbm);
-	r->SetPosition(0, 90);
+	r->SetPosition(0, 180);
 
 	
 	//이미지 배열
@@ -47,7 +47,7 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 		{
 			UIImage* image = CreateUI<UIImage>(L"command"+ y + x);
 			commands[y].push_back(image);
-			image->SetPosition(60 + x * 60, -90 + 60 * y);
+			image->SetPosition(120 + x * 120, -180 + 120 * y);
 			image->Inactivate();
 		}
 	}
@@ -58,7 +58,7 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 		infoTexts[i]->SetColor(D2D_Color::Black);
 		infoTexts[i]->SetFontSize(15);
 		infoTexts[i]->SetSize(500, 100);
-		infoTexts[i]->SetPosition(250, 130+ 125 * i);
+		infoTexts[i]->SetPosition(250, -100 + 120 * i);
 		infoTexts[i]->SetWeight(FontWeight::Bold);
 		infoTexts[i]->Inactivate();
 	}
@@ -175,13 +175,13 @@ void ElementsPanel::SetSkillList()
 	{
 		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
 		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
+		e->SetSprite(L"TestResource/Icon/Icon_Enchant.png");
 		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
 		SetQWER(fireCommands);
 	}
 	else if (nowElement == SE_WATER)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
+		q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall.png");
 		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
 		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
 		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
@@ -190,17 +190,17 @@ void ElementsPanel::SetSkillList()
 	else if (nowElement == SE_LIGHT)
 	{
 		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
+		w->SetSprite(L"TestResource/Icon/Icon_LightStream.png");
+		e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease.png");
 		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
 		SetQWER(lightCommands);
 	}
 	else if (nowElement == SE_DARKNESS)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		q->SetSprite(L"TestResource/Icon/Icon_DarkSphere.png");
+		w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle.png");
+		e->SetSprite(L"TestResource/Icon/Icon_MPrecovery.png");
+		r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster.png");
 		SetQWER(darkCommands);
 	}
 }
