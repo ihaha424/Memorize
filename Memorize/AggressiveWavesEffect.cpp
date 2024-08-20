@@ -12,7 +12,7 @@ AggressiveWavesEffect::AggressiveWavesEffect(World* _world) : Projectile(_world)
 	normalState->SetFrameDurations({ 0.05f });
 	anim->Initialize(normalState);
 
-	box->SetPolygon({ {-300, 400}, {300, -400}, {-300, -400}, {300, 400} });
+	box->SetPolygon({ {-200, 400}, {200, -400}, {-200, -400}, {200, 400} });
 
 	bIsPassable = true;
 	bEnding = false;

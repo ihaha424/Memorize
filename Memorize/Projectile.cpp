@@ -92,6 +92,7 @@ void Projectile::BeginPlay()
 	mv->SetStatus(OS_INACTIVE);
 	anim->SetStatus(OS_INACTIVE);
 	box->SetStatus(OS_INACTIVE);
+	Inactivate();
 }
 
 void Projectile::Initialize()
