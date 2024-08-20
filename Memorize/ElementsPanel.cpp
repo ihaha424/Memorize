@@ -218,36 +218,86 @@ void ElementsPanel::SetSkillList()
 	if (playerController == nullptr) return;
 
 	ESkillElement nowElement = playerController->GetCurSkillInfo().element;
+
 	if (nowElement == SE_FIRE)
 	{
-		q->SetSprite(L"TestResource/Icon/Icon_Fireball.png");
-		w->SetSprite(L"TestResource/Icon/Icon_Meteor.png");
-		e->SetSprite(L"TestResource/Icon/Icon_Enchant.png");
-		r->SetSprite(L"TestResource/Icon/Icon_ElementalExplosion.png");
+		if(playerController->FindSkiil(SE_FIRE, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_Fireball.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_Fireball_off.png");
+
+		if (playerController->FindSkiil(SE_FIRE, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_Meteor.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_Meteor_off.png");
+		if (playerController->FindSkiil(SE_FIRE, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_Enchant.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_Enchant_off.png");
+		if (playerController->FindSkiil(SE_FIRE, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalExplosion.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalExplosion_off.png");
 		SetQWER(fireCommands);
 	}
 	else if (nowElement == SE_WATER)
 	{
-		q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall.png");
-		w->SetSprite(L"TestResource/Icon/Icon_AggressiveWaves.png");
-		e->SetSprite(L"TestResource/Icon/Icon_ManaOverload.png");
-		r->SetSprite(L"TestResource/Icon/Icon_Heal.png");
+		if (playerController->FindSkiil(SE_WATER, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall_off.png");
+		if (playerController->FindSkiil(SE_WATER, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_AggressiveWaves.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_AggressiveWaves_off.png");
+		if (playerController->FindSkiil(SE_WATER, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_ManaOverload.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_ManaOverload_off.png");
+		if (playerController->FindSkiil(SE_WATER, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_Heal.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_Heal_off.png");
 		SetQWER(waterCommands);
 	}
 	else if (nowElement == SE_LIGHT)
 	{
-		q->SetSprite(L"TestResource/Icon/Icon_PrismReflection.png");
-		w->SetSprite(L"TestResource/Icon/Icon_LightStream.png");
-		e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease.png");
-		r->SetSprite(L"TestResource/Icon/Icon_Purification.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_PrismReflection.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_PrismReflection_off.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_LightStream.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_LightStream_off.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease_off.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_Purification.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_Purification_off.png");
 		SetQWER(lightCommands);
 	}
 	else if (nowElement == SE_DARKNESS)
 	{
-		q->SetSprite(L"TestResource/Icon/Icon_DarkSphere.png");
-		w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle.png");
-		e->SetSprite(L"TestResource/Icon/Icon_MPrecovery.png");
-		r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_DarkSphere.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_DarkSphere_off.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle_off.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_MPrecovery.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_MPrecovery_off.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster_off.png");
 		SetQWER(darkCommands);
 	}
 }

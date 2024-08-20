@@ -56,6 +56,7 @@ public:
 	void InitializeSkill();
 
 	SkilID GetCurSkillInfo() { return curSkillInfo; }
+	bool GetCurSkillOpend();
 
 	int GetPlayerCastingIndex();
 	bool isPlayerAfterCasting();
