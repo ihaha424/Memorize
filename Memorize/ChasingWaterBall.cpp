@@ -57,6 +57,7 @@ void ChasingWaterBall::UseSkill()
 		projectiles[i]->Activate();
 		projectiles[i]->SetVelocity({ 0.f, 0.f }, 0.f);
 		projectiles[i]->Initialize();
+		projectiles[i]->SetSkillID(id);
 	}
 	
 }

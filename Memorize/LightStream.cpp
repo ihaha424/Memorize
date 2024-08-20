@@ -26,6 +26,7 @@ LightStream::~LightStream()
 void LightStream::UseSkill()
 {
 	lightStreamEffect->Activate();
+	lightStreamEffect->SetSkillID(id);
 
 	mana = player->stat.mp;
 	lightStreamEffect->SetDuration(mana / 50.f);
