@@ -10,6 +10,7 @@
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BoxComponent.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
+#include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/Mouse.h"
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"

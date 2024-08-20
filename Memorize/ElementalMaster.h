@@ -2,6 +2,7 @@
 #include "Skill.h"
 class ElementalMaster : public Skill
 {
+	class BuffEffectComponent* abm;
 public:
 	ElementalMaster(Actor* _owner);
 	virtual ~ElementalMaster();

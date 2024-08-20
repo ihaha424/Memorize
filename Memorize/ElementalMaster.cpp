@@ -19,13 +19,23 @@ ElementalMaster::~ElementalMaster()
 
 void ElementalMaster::Initialize()
 {
+	
+	
 }
 
 void ElementalMaster::UseSkill()
 {
 	__super::UseSkill();
+	abm = player->buffEffect;
+	abm->SetSprite(L"TestResource/Player/Skill/Skill_ElementalMaster.png");
+	abm->SliceSpriteSheet(550, 550, 0, 0, 0, 0);
+	abm->FrameResize(97);
+	abm->SetFrameDurations({ castingTime / 97.f });
+	abm->Trigger(true);
+	abm->SetLoop(true);
 	controller->elementalMasterComponent->SetStatus(OS_ACTIVE);
 	controller->bElementalMaster = true;
+	player->buffEffect->SetStatus(OS_ACTIVE);
 }
 
 void ElementalMaster::ReflectionIn()
