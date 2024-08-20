@@ -7,6 +7,11 @@ UIPanel::UIPanel(World* _world) : UIElement(_world)
 
 UIPanel::~UIPanel()
 {
+	for (auto ui : uiList)
+	{
+		delete ui;
+		ui = nullptr;
+	}
 }
 
 void UIPanel::Update(float _dt)

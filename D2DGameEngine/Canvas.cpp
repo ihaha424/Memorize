@@ -9,6 +9,11 @@ Canvas::Canvas(class World* _world) : Actor(_world)
 
 Canvas::~Canvas()
 {
+	for (auto panel : panelList)
+	{
+		delete panel;
+		panel = nullptr;
+	}
 }
 
 
