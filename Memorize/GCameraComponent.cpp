@@ -5,14 +5,7 @@
 #include "D2DGameEngine/BitmapComponent.h"
 
 #include "D2DGameEngine/D2DRenderer.h"
-#include <wrl.h>
-using namespace Microsoft::WRL;
-#include <d2d1.h>
-#include <d2d1helper.h>
-#include <d2d1effects.h>
-#include <d2d1effects_1.h>
-#include <d2d1effects_2.h>
-#include <dcommon.h>
+
 
 GCameraComponent::GCameraComponent(Actor* _owner) : CameraComponent(_owner)
 {

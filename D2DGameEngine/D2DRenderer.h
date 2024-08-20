@@ -2,6 +2,15 @@
 
 #include "framework.h"
 
+#include <wrl.h>
+using namespace Microsoft::WRL;
+#include <d2d1.h>
+#include <d2d1helper.h>
+#include <d2d1effects.h>
+#include <d2d1effects_1.h>
+#include <d2d1effects_2.h>
+#include <dcommon.h>
+
 enum class FontWeight {
 	Thin = 100,
 	ExtraLight = 200,
@@ -50,6 +59,7 @@ class D2DRenderer {
 	//std::unordered_set<struct IDWriteTextFormat*> textFormatGarbageCollector;
 
 	std::unique_ptr<struct ID2D1HwndRenderTarget> renderTarget;
+	std::unique_ptr<struct ID2D1DeviceContext> dc;
 	std::unique_ptr<struct IDXGIAdapter3> _DXGIAdapter;		// 비디오카드 정보에 접근 가능한 인터페이스
 
 	struct ID2D1SolidColorBrush* brush;
@@ -59,7 +69,8 @@ class D2DRenderer {
 
 public:
 
-	struct ID2D1HwndRenderTarget* GetRenderTarget();
+	ID2D1HwndRenderTarget* GetRenderTarget() { return renderTarget.get(); }
+	ID2D1DeviceContext* GetDC() { return dc.get(); }
 
 	D2DRenderer(HWND hWnd);
 	~D2DRenderer();

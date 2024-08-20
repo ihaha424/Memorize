@@ -17,6 +17,7 @@ class BitmapComponent : public PrimitiveComponent {
 
 	Math::Matrix imageTransform;
 
+	float opacity{ 1.f };
 public:
 
 	BitmapComponent(Actor* _owner) :
@@ -72,6 +73,14 @@ public:
 
 	void FlipY(bool flip) {
 		imageTransform._22 = flip ? -1.f : 1.f;
+	}
+
+	float GetOpacity() {
+		return opacity;
+	}
+
+	void SetOpacity(float _opacity) {
+		opacity = _opacity;
 	}
 
 	virtual D2D_RectF GetCurrFrame() { return frame; }
