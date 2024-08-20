@@ -3,7 +3,7 @@
 
 class ManaOverload : public BuffSkill
 {
-	class AnimationState* animState;
+	class ManaOverloadComponent* effect;
 
 public:
 	ManaOverload(Actor* _owner);
