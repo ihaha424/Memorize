@@ -3,6 +3,7 @@
 #include "Skill.h"
 class SkillActor : public Actor
 {
+public:
 	SkilID skill;
 public:
 	SkillActor(World* _world);

@@ -3,6 +3,10 @@
 #include "D2DGameEngine/BoxComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 
+#include "../D2DGameEngine/AnimationEffect.h"
+#include "../D2DGameEngine/AnimationBitmapComponent.h"
+
+
 ElementalExplosionEffect::ElementalExplosionEffect(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_UPDATE | TICK_RENDER);
@@ -28,6 +32,7 @@ void ElementalExplosionEffect::BeginPlay()
 
 void ElementalExplosionEffect::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
+
 	other->Destroy();
 }
 

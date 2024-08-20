@@ -6,8 +6,9 @@
 #include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/AnimationState.h"
 #include "Player.h"
-#include "Skill.h"
+#include "SkillActor.h"
 #include "BossHitEffect.h"
+#include "D2DGameEngine/RandomGenerator.h"
 
 Boss::Boss(World* _world) : Character(_world)
 {
@@ -96,11 +97,11 @@ void Boss::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEven
 {
 	hp -= damageAmount;	// 체력을 받은 데미지 만큼 감소시킵니다.
 
-	//Skill* temp = static_cast<Skill*>(damageCauser)
+	SkillActor* temp = static_cast<SkillActor*>(damageCauser);
 	BossHitEffect* bosshitEffect = GetWorld()->GetEffectSystem().CreateEffect<BossHitEffect>();
-	bosshitEffect->SetEffect(0);
+	bosshitEffect->SetEffect(temp->skill.element);
 	Math::Vector2 thisPos = GetLocation();
-	bosshitEffect->SetLocation(thisPos.x, thisPos.y);
+	bosshitEffect->SetLocation(thisPos.x + Random::Get((int)200) - 100, thisPos.y + Random::Get((int)500) - 250);
 	if (hp <= 0.f)	// 만약 체력이 0보다 작거나 같다면,
 	{
 		hp = 0.f;

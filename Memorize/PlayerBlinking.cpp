@@ -4,8 +4,8 @@
 #include "MovementComponent.h"
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/Mouse.h"
-#include "../D2DGameEngine/AnimationEffect.h"
 #include "../D2DGameEngine/BoxComponent.h"
+#include "../D2DGameEngine/AnimationEffect.h"
 #include "../D2DGameEngine/AnimationBitmapComponent.h"
 
 
