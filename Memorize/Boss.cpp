@@ -45,6 +45,8 @@ Boss::Boss(World* _world) : Character(_world)
 			MoveAnimationState->Trigger(true);
 		}
 	}
+
+	SetScale(2.f, 2.f);
 }
 
 Boss::~Boss()
