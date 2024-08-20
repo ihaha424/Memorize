@@ -17,7 +17,8 @@ class Bat : public Actor, public IReflection
 	PointDamageEvent batDamageEvent;
 public:
 
-	float	damage = 0.f;
+	float hp = 40.f;
+	float	damage = 5.f;
 	float attackRange{ 100.f };
 	float attackSpeed{ 1.f };
 	float speed{ 250.f };

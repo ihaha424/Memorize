@@ -76,7 +76,7 @@ Player::Player(class World* _world) : Character(_world)
 	abm->SetFrameDurations({0.05f});
 	abm->Trigger(true);*/
 
-	GCameraComponent* cm = CreateComponent<GCameraComponent>();
+	cm = CreateComponent<GCameraComponent>();
 	GetWorld()->SetMainCamera(cm);
 	rootComponent->AddChild(cm);
 
@@ -141,6 +141,11 @@ void Player::Update(float _dt)
 	orb->SetTranslation(100 * direction.x, direction.y * 5);
 }
 
+void Player::Render(D2DRenderer* _renderer)
+{
+	__super::Render(_renderer);
+}
+
 
 void Player::ReflectionIn()
 {
@@ -164,6 +169,9 @@ float Player::InternalTakeDamage(float damageAmount, DamageEvent const& damageEv
 
 void Player::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)
 {
+	// 피격
+	cm->Trigger피격();
+
 	stat.hp -= damageAmount;	// 체력을 받은 데미지 만큼 감소시킵니다.
 
 	if (stat.hp <= 0.f)	// 만약 체력이 0보다 작거나 같다면,

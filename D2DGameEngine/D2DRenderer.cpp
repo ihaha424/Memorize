@@ -239,25 +239,29 @@ void D2DRenderer::DrawString(
 
 void D2DRenderer::DrawSprite(
 	D2D_Sprite* sprite,
-	const Math::Vector2& ul, const Math::Vector2& lr
+	const Math::Vector2& ul, 
+	const Math::Vector2& lr,
+	float opacity
 ) {
 	if (!sprite) return;
 	renderTarget->DrawBitmap(
 		sprite,
-		D2D1::RectF(ul.x, ul.y, lr.x, lr.y)
+		D2D1::RectF(ul.x, ul.y, lr.x, lr.y),
+		opacity
 	);
 }
 
 void D2DRenderer::DrawSprite(
 	D2D_Sprite* sprite,
 	const D2D_RectF& dst, 
-	const D2D_RectF& srcArea
+	const D2D_RectF& srcArea,
+	float opacity
 ) {
 	if (!sprite) return;
 	renderTarget->DrawBitmap(
 		sprite,
 		&dst,
-		1.0f,
+		opacity,
 		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
 		&srcArea
 	);

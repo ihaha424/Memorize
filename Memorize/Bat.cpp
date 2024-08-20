@@ -56,7 +56,12 @@ void Bat::BeginPlay()
 
 void Bat::OnTakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller* eventInstigator, Actor* damageCauser)
 {
-	Destroy();
+	hp -= damageAmount;
+
+	if (hp <= 0.f)
+	{
+		Destroy();
+	}
 }
 
 void Bat::Update(float _dt)
