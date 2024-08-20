@@ -30,6 +30,8 @@ void World::ChangeScene()
 		{
 			CurLevel->Exit();
 			CurLevel->Clear();
+			delete canvas;
+			canvas = new Canvas(this);
 			effectSystem.Clean();
 		}
 		CurLevel = NextLevel;
@@ -166,12 +168,13 @@ void World::BeginPlay()
 {
 	UpdateCollisionSystem();
 	CurLevel->BeginPlay();
+	effectSystem.BeginPlay();
 }
 
 void World::FixedUpdate(float _fixedRate)
 {
 	CurLevel->FixedUpdate(_fixedRate);
-	CurLevel->CleanUp();
+	//CurLevel->CleanUp();
 	CurLevel->Destroy();
 
 	effectSystem.FixedUpdate(_fixedRate);

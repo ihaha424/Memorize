@@ -3,6 +3,15 @@
 #include "CameraComponent.h"
 #include "D2DRenderer.h"
 
+void EffectSystem::BeginPlay()
+{
+	for (auto effect : effectList)
+	{
+		if (effect->GetStatus() == OS_AWAKE)
+			effect->BeginPlay();
+	}
+}
+
 void EffectSystem::FixedUpdate(float _fixedRate)
 {
 	for (auto effect : effectList)
@@ -16,25 +25,23 @@ void EffectSystem::FixedUpdate(float _fixedRate)
 
 void EffectSystem::Destroy()
 {
-	for (auto actor : effectList)
+	for (auto effect : effectList)
 	{
-		if (actor->GetStatus() == OS_DESTROY)
+		if (effect->GetStatus() == OS_DESTROY)
 		{
-			actor->SetStatus(OS_CLEAN_UP);
+			effect->SetStatus(OS_CLEAN_UP);
 		}
 	}
 }
 
 void EffectSystem::CleanUp()
 {
-	auto iter = std::_Erase_remove_if(effectList,
-		[=](Actor* actor) {
-			if (actor->GetStatus() == OS_CLEAN_UP)
-			{
-				delete actor;
-				return 1;
-			}
-			return 0;
+	effectList.remove_if([](IEffect* effect) {
+		if (effect->GetStatus() == OS_CLEAN_UP) {
+			delete effect;  // 메모리 해제
+			return true;    // 리스트에서 제거
+		}
+		return false;       // 리스트에 남김
 		});
 }
 
@@ -49,11 +56,12 @@ void EffectSystem::Clean()
 
 void EffectSystem::Update(float _dt)
 {
-	for (int i = 0; i < effectList.size(); i++)
+
+	for (auto effect : effectList)
 	{
-		if (effectList[i]->CheckTickProperty(TICK_UPDATE) && effectList[i]->GetStatus() == OS_ACTIVE)
+		if (effect->CheckTickProperty(TICK_UPDATE) && effect->GetStatus() == OS_ACTIVE)
 		{
-			effectList[i]->Update(_dt);
+			effect->Update(_dt);
 		}
 	}
 }
@@ -61,7 +69,7 @@ void EffectSystem::Update(float _dt)
 void EffectSystem::Render(D2DRenderer* _renderer)
 {
 	Math::Matrix cameraTF = GetWorld()->GetMainCamera()->GetWorldTransform();
-	cameraTF = cameraTF * Math::Matrix::CreateTranslation(-CameraComponent::screenSize.x / 2, -CameraComponent::screenSize.y / 2, 0.f);
+	cameraTF = cameraTF * Math::Matrix::CreateTranslation(-(CameraComponent::screenSize.x * 0.5f) * cameraTF._11, -(CameraComponent::screenSize.y * 0.5f) * cameraTF._22, 0.f);
 	_renderer->PushTransform(cameraTF.Invert());
 
 	for (auto effect : effectList)

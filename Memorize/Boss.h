@@ -26,9 +26,7 @@ public:
 
 	virtual void Update(float _dt) override;
 
-	virtual void OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) override {
-		OBJ_MESSAGE("Hit!");
-	}
+	virtual void OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult) override;
 
 	virtual void OnBeginOverlap(Actor* other) {
 		OBJ_MESSAGE("Overlap began!");

@@ -44,7 +44,7 @@ public:
 		panelMap[name]->Inactivate();
 	}
 
-	void RemoveUI(std::wstring name)
+	void RemovePanel(std::wstring name)
 	{
 		UIPanel* panel = panelMap[name];
 		remove(panelList.begin(), panelList.end(), panel);

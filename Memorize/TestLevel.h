@@ -14,6 +14,6 @@ public:
     class PlayerMainUIPanel* playerMainUI = nullptr;
     virtual void Enter();
     virtual void Exit() {};
-    virtual void Clear() {};
+    virtual void Clear();
 };
 

@@ -21,6 +21,8 @@ void PlayerFSMComponent::BeginPlay()
 
 void PlayerFSMComponent::InputKey(int _key)
 {
+	if (OneTImeOneInput)
+		return;
 	PlayerState* ActionState = static_cast<PlayerState*>(currState);
 	switch (_key)
 	{
@@ -54,4 +56,5 @@ void PlayerFSMComponent::InputKey(int _key)
 default:
 		break;
 	}
+	OneTImeOneInput = true;
 }

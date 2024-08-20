@@ -157,6 +157,7 @@
     <ClCompile Include="BossChaseCircle.cpp" />
     <ClCompile Include="BossChasingBomb.cpp" />
     <ClCompile Include="BossGrowCircle.cpp" />
+    <ClCompile Include="BossHitEffect.cpp" />
     <ClCompile Include="BossHPPanel.cpp" />
     <ClCompile Include="BossMeteo.cpp" />
     <ClCompile Include="BossMeteoCircle.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="MainLevelUIPanel.cpp" />
     <ClCompile Include="ManaDepletedPanel.cpp" />
     <ClCompile Include="ManaOverload.cpp" />
+    <ClCompile Include="ManaOverloadComponent.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -262,6 +264,7 @@
     <ClInclude Include="BossChaseCircle.h" />
     <ClInclude Include="BossChasingBomb.h" />
     <ClInclude Include="BossGrowCircle.h" />
+    <ClInclude Include="BossHitEffect.h" />
     <ClInclude Include="BossHPPanel.h" />
     <ClInclude Include="BossMeteo.h" />
     <ClInclude Include="BossMeteoCircle.h" />
@@ -303,6 +306,7 @@
     <ClInclude Include="MainLevelUIPanel.h" />
     <ClInclude Include="ManaDepletedPanel.h" />
     <ClInclude Include="ManaOverload.h" />
+    <ClInclude Include="ManaOverloadComponent.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
     <ClInclude Include="MovementComponent.h" />

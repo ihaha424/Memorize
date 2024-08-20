@@ -30,6 +30,17 @@ TestLevel::~TestLevel()
 {
 }
 
+void TestLevel::Clear()
+{
+	actorRenderSequence.clear();
+	actorTypeMap.clear();
+	for (auto& pGameObject : actorList)
+	{
+		delete pGameObject;
+	}
+	actorList.clear();
+}
+
 #include "BossGrowCircle.h"
 #include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
@@ -57,7 +68,7 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index) {disfellPanel->HideCommandImage(index); });
 
-		Timer::SetTimeScale(2);
+		//Timer::SetTimeScale(2);
 		BossGrowCircle* temp = CreateActor<BossGrowCircle>();
 		temp->SetGrowLess(true);
 

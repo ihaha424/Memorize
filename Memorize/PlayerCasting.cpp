@@ -13,6 +13,7 @@ void PlayerCasting::Enter()
 		{
 			owner->SetNextState(L"PlayerIdle");
 			playerController->InitializeSkillInfo();
+			NoCastingState = true;
 			return;
 		}
 
@@ -21,6 +22,7 @@ void PlayerCasting::Enter()
 		{
 			owner->SetNextState(L"PlayerIdle");
 			playerController->InitializeSkillInfo();
+			NoCastingState = true;
 			return;
 		}
 
@@ -50,11 +52,13 @@ void PlayerCasting::Enter()
 			playerController->OnManaDepleted();
 			playerController->InitializeSkillInfo();
 			owner->SetNextState(L"PlayerIdle");
+			NoCastingState = true;
 			return;
 		}
 	playerController->FindCurSkiil()->SetCommandList(commandList);
 	}
 	saveDirtyFlag = false;
+	NoCastingState = false;
 }
 
 void PlayerCasting::Update(float _dt)
@@ -78,7 +82,7 @@ void PlayerCasting::Exit()
 void PlayerCasting::Fire()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (commandList[index] == InputEvent::Fire)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Fire)
 		index++;
 	else
 	{
@@ -92,7 +96,7 @@ void PlayerCasting::Fire()
 void PlayerCasting::Water()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (commandList[index] == InputEvent::Water)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Water)
 		index++;
 	else
 	{
@@ -106,7 +110,7 @@ void PlayerCasting::Water()
 void PlayerCasting::Light()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (commandList[index] == InputEvent::Light)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Light)
 		index++;
 	else
 	{
@@ -120,7 +124,7 @@ void PlayerCasting::Light()
 void PlayerCasting::Dark()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (commandList[index] == InputEvent::Dark)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Dark)
 		index++;
 	else
 	{
@@ -133,6 +137,8 @@ void PlayerCasting::Dark()
 
 void PlayerCasting::Teleport()
 {
+	if (NoCastingState)
+		return;
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	if (playerController->GetPlayer()->bondageFlag)
 		return;

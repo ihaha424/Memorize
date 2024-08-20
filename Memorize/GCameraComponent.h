@@ -27,6 +27,7 @@ private:
     class Boss* boss;
     float initialDistance;
     Math::Vector2 prevBossPos;
+    Math::Vector2 prevPlayerPos;
     float moveSecond{1.f};
     float moveSpeed{ 0.f};
 		float cameraScale{ 1.f };

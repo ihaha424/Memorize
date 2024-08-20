@@ -4,7 +4,7 @@
 #include "../D2DGameEngine/AnimationState.h"
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/Character.h"
-#include "D2DGameEngine/BoxComponent.h"
+#include "D2DGameEngine/PolygonComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "Boss.h"
 #include "BossProjectile.h"
@@ -17,7 +17,7 @@ Projectile::Projectile(World* _world) : Actor(_world)
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
 
-	box = CreateComponent<BoxComponent>();
+	box = CreateComponent<PolygonComponent>();
 	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
 	box->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
 	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
@@ -92,6 +92,7 @@ void Projectile::BeginPlay()
 	mv->SetStatus(OS_INACTIVE);
 	anim->SetStatus(OS_INACTIVE);
 	box->SetStatus(OS_INACTIVE);
+	Inactivate();
 }
 
 void Projectile::Initialize()
@@ -111,11 +112,6 @@ void Projectile::Update(float _dt)
 	__super::Update(_dt);
 
 	box->bShouldOverlapTest = true;
-
-	if (elapsedTime == 0.0f)
-	{
-		Initialize();
-	}
 
 	elapsedTime += _dt;
 

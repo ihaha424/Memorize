@@ -19,19 +19,19 @@ void MPMaxIncrease::Initialize()
 {
 	__super::Initialize();
 
-	animState = player->buffEffect->CreateState<AnimationState>();
-	animState->SetSprite(L"TestResource/Player/Skill/Skill_MPMaxIncrease.png");
-	animState->SliceSpriteSheet(250, 350, 0, 0, 0, 0);
-	animState->FrameResize(17);
-	animState->SetFrameDurations({ castingTime /17 });
-	player->buffEffect->Initialize(animState);
 }
 
 void MPMaxIncrease::UseSkill()
 {
 	__super::UseSkill();
 
-	player->buffEffect->SetState(animState);
+	BuffEffectComponent* abm = player->buffEffect;
+	abm->SetSprite(L"TestResource/Player/Skill/Skill_MPMaxIncrease.png");
+	abm->SliceSpriteSheet(250, 350, 0, 0, 0, 0);
+	abm->FrameResize(17);
+	abm->SetFrameDurations({ castingTime / 17 });
+	abm->Trigger(true);
+	abm->SetLoop(true);
 	player->buffEffect->SetStatus(OS_ACTIVE);
 }
 

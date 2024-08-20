@@ -2,7 +2,7 @@
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/Animator.h"
 #include "MovementComponent.h"
-#include "D2DGameEngine/BoxComponent.h"
+#include "D2DGameEngine/PolygonComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 
 MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
@@ -23,6 +23,7 @@ MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
 	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
 	box->SetStatus(OS_INACTIVE);
+	box->SetPolygon({ {-80, 150}, {80, -150}, {-80, -150}, {80, 150} });
 
 	duration = 10.f;
 	bIsPassable = true;

@@ -3,8 +3,6 @@
 class Heal : public BuffSkill
 {
 	float healHP = 20.f;
-	class AnimationState* animState; 
-
 public:
 	Heal(Actor* _owner);
 	virtual ~Heal();

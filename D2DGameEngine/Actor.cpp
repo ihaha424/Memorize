@@ -102,7 +102,7 @@ bool Actor::Destroy()
 void Actor::FixedUpdate(float _fixedRate)
 {
 	for (auto [_, component] : components) {
-		if(component->CheckTickProperty(TICK_PHYSICS) && (component->GetStatus() == OS_ACTIVE || component->GetStatus() == OS_DESTROY))
+		if(component->CheckTickProperty(TICK_PHYSICS) && (component->GetStatus() == OS_ACTIVE || component->GetStatus() == OS_DESTROY || component->GetStatus() == OS_CLEAN_UP))
 			component->FixedUpdate(_fixedRate);
 	}
 }

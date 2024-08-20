@@ -99,8 +99,9 @@ public:
 			}
 
 			// Delete it immediately
-			delete* it;
+			auto temp = *it;
 			_eventDelegateRegistry.erase(it);
+			delete temp;
 		}
 	}
 

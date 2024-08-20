@@ -33,10 +33,8 @@ HRESULT Mouse::Initialize(HINSTANCE hInst, HWND hWnd, LPDIRECTINPUT8& LPDInput)
 void Mouse::Update()
 {
 	HRESULT hr;
-	if (mouse != nullptr)
-		hr = mouse->GetDeviceState(sizeof(DIMOUSESTATE), (LPVOID)&mouseState);
-	else
-		hr = DIERR_INPUTLOST;
+
+	hr = mouse->GetDeviceState(sizeof(DIMOUSESTATE), (LPVOID)&mouseState);
 	if (FAILED(hr)) {
 		// 디바이스가 포커스를 잃었으면 다시 얻기 시도
 		if (hr == DIERR_INPUTLOST || hr == DIERR_NOTACQUIRED) {

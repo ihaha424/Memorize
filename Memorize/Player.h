@@ -74,6 +74,8 @@ public:
 
 	class BuffEffectComponent* buffEffect;
 	class GCameraComponent* cm;
+	class ManaOverloadComponent* manaOverloadEffect;
+	
 public:
 	Player(class World* _world);
 	virtual ~Player();

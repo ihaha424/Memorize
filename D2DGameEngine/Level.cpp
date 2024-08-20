@@ -14,6 +14,8 @@ Level::Level(class World* _world, const std::wstring& _name)
 
 Level::~Level()
 {
+	actorRenderSequence.clear();
+	actorTypeMap.clear();
 	for (auto& pGameObject : actorList)
 	{
 		delete pGameObject;
@@ -45,7 +47,7 @@ void Level::FixedUpdate(float _fixedRate)
 		{
 			if(actor->GetStatus() == OS_ACTIVE)
 				actor->FixedUpdate(_fixedRate);
-			if (actor->GetStatus() == OS_DESTROY)
+			if (actor->GetStatus() == OS_DESTROY || actor->GetStatus() == OS_CLEAN_UP)
 				actor->FixedUpdate(_fixedRate);
 		}
 	}
@@ -72,16 +74,13 @@ void Level::CleanUp()
 		[=](const std::pair<const std::type_index, Actor*>& entry) {
 			return entry.second->GetStatus() == OS_CLEAN_UP;
 		});
-	auto it = std::remove_if(actorList.begin(), actorList.end(),
-		[](Actor* actor) {
-			if (actor->GetStatus() == OS_CLEAN_UP)
-			{
-				delete actor;
-				return true;
-			}
-			return false;
+	actorList.remove_if([](Actor* actor) {
+		if (actor->GetStatus() == OS_CLEAN_UP) {
+			delete actor;  // 메모리 해제
+			return true;    // 리스트에서 제거
+		}
+		return false;       // 리스트에 남김
 		});
-	actorList.erase(it, actorList.end());
 }
 
 void Level::PreUpdate(float _dt)
@@ -97,11 +96,11 @@ void Level::PreUpdate(float _dt)
 
 void Level::Update(float _dt)
 {
-	for (int i = 0; i < actorList.size(); i++)
+	for (auto actor : actorList)
 	{
-		if (actorList[i]->CheckTickProperty(TICK_UPDATE) && actorList[i]->GetStatus() == OS_ACTIVE)
+		if (actor->CheckTickProperty(TICK_UPDATE) && actor->GetStatus() == OS_ACTIVE)
 		{
-			actorList[i]->Update(_dt);
+			actor->Update(_dt);
 		}
 	}
 }
