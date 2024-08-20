@@ -64,7 +64,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 				IsCooledDown->_successCondition = [this]() {
 					// TODO: 시작한지 60 초 지났는지 체크하기.
 					Boss* boss = GetKey<Boss*>("Boss");
-					return boss->elapsedTime >= 60.f && boss->Periodic_Pattern_Cool_Time <= 0.f;
+					return true;
 				};
 				{	// Periodic Pattern Selector
 					RandomSelector* periodicPatternSelector = CreateNode<RandomSelector>();

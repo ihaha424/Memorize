@@ -6,6 +6,7 @@
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "D2DGameEngine/CircleComponent.h"
+#include "D2DGameEngine/ClickComponent.h"
 
 #include "BossRazer.h"
 
@@ -55,6 +56,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	razer1->SetRotation(-90.f);
 	razer1->SetLocation(0.f, 500.f);
 	razer1->renderLayer = 5;
+	razer1->clickComp->ownerBounds = &bm->bounds;
 
 	attach2 = CreateComponent<SceneComponent>();
 	rootComponent->AddChild(attach2);
@@ -68,6 +70,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	razer2->SetRotation(-90.f);
 	razer2->SetLocation(0.f, 500.f);
 	razer2->renderLayer = 5;
+	razer2->clickComp->ownerBounds = &bm->bounds;
 
 	attach3 = CreateComponent<SceneComponent>();
 	rootComponent->AddChild(attach3);
@@ -81,6 +84,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	razer3->SetRotation(-90.f);
 	razer3->SetLocation(0.f, 500.f);
 	razer3->renderLayer = 5;
+	razer3->clickComp->ownerBounds = &bm->bounds;
 
 	// Damage Event
 	DamageType damageType{

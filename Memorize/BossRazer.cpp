@@ -1,10 +1,13 @@
 #include "BossRazer.h"
 
+#include "D2DGameEngine/EventBus.h"
+
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/ReflectionResource.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "D2DGameEngine/PolygonComponent.h"
+#include "D2DGameEngine/ClickComponent.h"
 
 #include "Player.h"
 
@@ -24,8 +27,11 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 	// cast time
 	castTime = dispelTime - skillDuration;
 
-	magicCircleHub = CreateComponent<SceneComponent>();
+	magicCircleHub = CreateComponent<BitmapComponent>();
 	rootComponent = magicCircleHub;
+	magicCircleHub->SetFrame({ 0,0 }, { 60, 240 });
+	magicCircleHub->MarkBoundsDirty();
+	magicCircleHub->isVisible = false;
 
 	magicCircle = CreateComponent<AnimationBitmapComponent>();
 	magicCircleHub->AddChild(magicCircle);
@@ -97,6 +103,10 @@ BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 		4000.f
 	);
 	razerDamageEvent.radialDamageInfo = damageInfo;
+
+	disfellCommandCount = 3;
+	CreateDisfellCommand();
+	clickComp = CreateComponent<ClickComponent>();
 }
 
 BossRazer::~BossRazer()
@@ -195,6 +205,20 @@ void BossRazer::Update(float _dt)
 void BossRazer::DisfellAction()
 {
 	DestroyThis();
+}
+
+void BossRazer::DisfellFailAction()
+{
+	disfellCommand.clear();
+	dissfellindex = 0;
+	CreateDisfellCommand();
+}
+
+void BossRazer::OnClicked()
+{
+	__super::OnClicked();
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
 
 void BossRazer::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
