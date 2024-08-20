@@ -112,10 +112,7 @@ void Projectile::Update(float _dt)
 
 	box->bShouldOverlapTest = true;
 
-	if (elapsedTime == 0.0f)
-	{
-		Initialize();
-	}
+	std::cout << endingTime << std::endl;
 
 	elapsedTime += _dt;
 

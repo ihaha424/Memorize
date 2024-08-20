@@ -33,8 +33,6 @@ Fireball::~Fireball()
 void Fireball::UseSkill()
 {
 	__super::UseSkill();
-
-	if (nowUsingCount > projectileCount) return;
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];
 	fireball->SetPlayer(player);
