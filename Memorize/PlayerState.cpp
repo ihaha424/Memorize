@@ -4,6 +4,7 @@
 #include "MovementComponent.h"
 #include "GPlayerController.h"
 #include "Player.h"
+#include "MemorizeEffect.h"
 
 
 #include "Fireball.h"

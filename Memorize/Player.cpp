@@ -16,6 +16,7 @@
 #include "MagicCircle.h"
 #include "BuffEffectComponent.h"
 #include "ManaOverloadComponent.h"
+#include "MemorizeEffect.h"
 #include "ElementalMasterComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
@@ -103,10 +104,19 @@ Player::Player(class World* _world) : Character(_world)
 	manaOverloadEffect = CreateComponent<ManaOverloadComponent>();
 	rootComponent->AddChild(manaOverloadEffect);
 	manaOverloadEffect->SetStatus(OS_INACTIVE);
+
+	
 }
 
 Player::~Player()
 {
+}
+
+void Player::StartMemorizeEffect()
+{
+	MemorizeEffect* memorize = GetWorld()->GetEffectSystem().CreateEffect<MemorizeEffect>();
+	memorize->StartEffect();
+	memorize->SetPosition(&memorizePos);
 }
 
 void Player::AddToStat(Stat _addStat)
@@ -145,6 +155,8 @@ void Player::Update(float _dt)
 	direction.Normalize();
 
 	orb->SetTranslation(100 * direction.x, direction.y * 5);
+
+	memorizePos = { GetLocation().x, GetLocation().y - 230 };
 }
 
 

@@ -75,10 +75,12 @@ public:
 	class BuffEffectComponent* buffEffect;
 	class ManaOverloadComponent* manaOverloadEffect;
 	
+	Math::Vector2 memorizePos;
 public:
 	Player(class World* _world);
 	virtual ~Player();
 
+	void StartMemorizeEffect();
 	void AddSkillUses() { skillUses++; };
 	int GetSkillUses() { return skillUses; }
 	void AddToStat(Stat _addStat);

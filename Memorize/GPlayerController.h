@@ -5,6 +5,7 @@
 #include "DisfellEvent.h"
 #include "Skill.h"
 #include "Signal.h"
+#include "Player.h"
 
 class GPlayerController : public PlayerController, public IEventListener
 {
@@ -104,7 +105,8 @@ public:
 	 * @return 
 	 */
 	bool CheckMemorize();
-	void SwapMemorize() { std::swap(curSkillInfo, MemorizeSkill);}
+	void SwapMemorize() { std::swap(curSkillInfo, MemorizeSkill); player->StartMemorizeEffect(); }
+
 	void InitializeMemorize() { MemorizeSkill.element = ESkillElement::SE_END; MemorizeSkill.type = ESkillType::ST_END; }
 
 	/**
