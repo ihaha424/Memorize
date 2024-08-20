@@ -29,5 +29,8 @@ void ProjectileSkill::UseSkill()
 	mousePos = GetWorld()->ScreenToWorldPoint(mousePos);
 	attackDir = mousePos - Math::Vector2(player->GetLocation().x, player->GetLocation().y);
 	attackDir.Normalize();
-
+	for (auto pj : projectiles)
+	{
+		pj->Initialize();
+	}
 }
