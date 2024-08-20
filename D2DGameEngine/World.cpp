@@ -171,7 +171,7 @@ void World::BeginPlay()
 void World::FixedUpdate(float _fixedRate)
 {
 	CurLevel->FixedUpdate(_fixedRate);
-	//CurLevel->CleanUp();
+	CurLevel->CleanUp();
 	CurLevel->Destroy();
 
 	effectSystem.FixedUpdate(_fixedRate);

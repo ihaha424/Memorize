@@ -18,6 +18,7 @@ void GCameraComponent::BeginPlay()
 	boss = GetOwner()->GetWorld()->FindActorByType<Boss>();
 	Math::Vector2 parentPos = parent->GetComponentLocation();
 	Math::Vector2 bossPos = boss->rootComponent->GetComponentLocation();
+	prevBossPos = bossPos;
 	initialDistance = (parentPos - bossPos).Length();
 
 }
@@ -27,36 +28,44 @@ void GCameraComponent::PostUpdate(float _dt)
 	CameraComponent::PostUpdate(_dt);
 
 	Math::Vector2 parentPos = parent->GetComponentLocation();
+
+
+	if (isMove)
+	{
+		moveSecond -= _dt;
+		Math::Vector2 destinationCameraPos = ((prevBossPos - parentPos) * 0.5f - GetComponentLocation());
+		destinationCameraPos.Normalize();
+		Translate(destinationCameraPos * moveSpeed * _dt);
+		if (moveSecond < 0.f)
+			isMove = false;
+		return;
+	}
+
 	Math::Vector2 bossPos = boss->rootComponent->GetComponentLocation();
-	Math::Vector2 cameraPos = (bossPos - parentPos) * 0.5f;
-	float cameraScale = (parentPos - bossPos).Length() / initialDistance;
+
+	if ((prevBossPos - bossPos).Length() > 100.f)
+	{
+		isMove = true;
+		moveSecond = 1.f;
+		moveSpeed = (prevBossPos - bossPos).Length() / (1.f + cameraScale);	// (prevBossPos - bossPos).Length() / moveSecond;
+		prevBossPos = bossPos;
+		return;
+	}
+
+	prevBossPos = bossPos;
+	Math::Vector2 destinationCameraPos = (bossPos - parentPos) * 0.5f;
+
+	//Scale
+	cameraScale = (parentPos - bossPos).Length() / initialDistance;
 	cameraScale -= 1;
 	cameraScale *= 0.3f;
 	if (cameraScale < 0.5f)
 		cameraScale = 0.5f;
 	SetScale(1.f + cameraScale, 1.f + cameraScale);
+
+
+	//Position
 	SetTranslation(0, 0);
-	Translate(cameraPos.x, cameraPos.y);
+	Translate(destinationCameraPos);
 
-
-	//if (parentPos.x < screenSize.x / 2)
-	//{
-	//	// Æ®·»½ºÆû ¸ÅÆ®¸¯½ºÀÇ dx
-	//	T._41 = screenSize.x / 2 - parentPos.x;
-	//}
-	//if (parentPos.x > mapSize.x - screenSize.x / 2)
-	//{
-	//	// Æ®·»½ºÆû ¸ÅÆ®¸¯½ºÀÇ dx
-	//	T._41 = mapSize.x - screenSize.x / 2 - parentPos.x;
-	//}
-	//if (parentPos.y < screenSize.y / 2)
-	//{
-	//	// Æ®·»½ºÆû ¸ÅÆ®¸¯½ºÀÇ dy
-	//	T._42 = screenSize.y / 2 - parentPos.y;
-	//}
-	//if (parentPos.y > mapSize.y - screenSize.y / 2)
-	//{
-	//	// Æ®·»½ºÆû ¸ÅÆ®¸¯½ºÀÇ dy
-	//	T._42 = mapSize.y - screenSize.y / 2 - parentPos.y;
-	//}
 }

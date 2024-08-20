@@ -79,10 +79,6 @@ void PlayerState::Move()
 	if (playerController->GetPlayer()->bondageFlag)
 		return;
 	Math::Vector2 destPos = playerController->GetWorld()->ScreenToWorldPoint({ Mouse::curMousePosition.x, Mouse::curMousePosition.y });
-	
-
-	std::cout << "Mouse: " << destPos.x << ", " << destPos.y << "\n";
-	std::cout << "Player: " << playerController->GetPlayer()->GetLocation().x << ", " << playerController->GetPlayer()->GetLocation().y << "\n";
 
 	playerController->SetDestPos(destPos);
 	Math::Vector2 direction = destPos - playerController->GetPlayer()->GetLocation();

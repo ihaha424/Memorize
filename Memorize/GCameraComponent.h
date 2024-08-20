@@ -13,5 +13,10 @@ public:
 private:
     class Boss* boss;
     float initialDistance;
+    Math::Vector2 prevBossPos;
+    float moveSecond{1.f};
+    float moveSpeed{ 0.f};
+    float cameraScale;
+    bool  isMove{ false };
 };
 
