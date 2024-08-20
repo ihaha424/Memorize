@@ -265,6 +265,10 @@ void BossBehaviorTree::BuildBehaviorTree()
 									{
 										//Pattern12
 										{
+											INode* pattern12 = BuildPatternSubtree(Pattern::Pattern12);
+											Phase_Three_1->PushBackChild(pattern12);
+										}
+										{
 											// Phase_Three_Periodic_1_RandomSelecor
 											RandomSelector* Phase_Three_Periodic_1_RandomSelecor = CreateNode<RandomSelector>();
 											Phase_Three_1->PushBackChild(Phase_Three_Periodic_1_RandomSelecor);
