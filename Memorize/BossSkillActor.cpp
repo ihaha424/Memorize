@@ -26,12 +26,15 @@ BossSkillActor::BossSkillActor(World* _world)
 BossSkillActor::~BossSkillActor()
 {
 	//for Purification skill
-	GPlayerController* pController = static_cast<GPlayerController*>(GetWorld()->FindActorByType<Player>()->GetController());
+	auto it1 = GetWorld()->FindActorByType<Player>();
+	if (it1 == nullptr)
+		return;
+	GPlayerController* pController = static_cast<GPlayerController*>(it1->GetController());
 	Purification* purification = static_cast<Purification*>(pController->FindSkiil(SE_LIGHT, ST_SPECIAL));
-	auto it = std::find(purification->disfellSkills.begin(), purification->disfellSkills.end(), this);
-	if (it != purification->disfellSkills.end())
+	auto it2 = std::find(purification->disfellSkills.begin(), purification->disfellSkills.end(), this);
+	if (it2 != purification->disfellSkills.end())
 	{
-		purification->disfellSkills.erase(it, purification->disfellSkills.end());
+		purification->disfellSkills.erase(it2, purification->disfellSkills.end());
 	}
 	
 }

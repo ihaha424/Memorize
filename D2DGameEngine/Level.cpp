@@ -14,6 +14,8 @@ Level::Level(class World* _world, const std::wstring& _name)
 
 Level::~Level()
 {
+	actorRenderSequence.clear();
+	actorTypeMap.clear();
 	for (auto& pGameObject : actorList)
 	{
 		delete pGameObject;

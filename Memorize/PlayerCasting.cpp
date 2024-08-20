@@ -82,7 +82,7 @@ void PlayerCasting::Exit()
 void PlayerCasting::Fire()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (!NoCastingState && commandList[index] == InputEvent::Fire)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Fire)
 		index++;
 	else
 	{
@@ -96,7 +96,7 @@ void PlayerCasting::Fire()
 void PlayerCasting::Water()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (!NoCastingState && commandList[index] == InputEvent::Water)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Water)
 		index++;
 	else
 	{
@@ -110,7 +110,7 @@ void PlayerCasting::Water()
 void PlayerCasting::Light()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (!NoCastingState && commandList[index] == InputEvent::Light)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Light)
 		index++;
 	else
 	{
@@ -124,7 +124,7 @@ void PlayerCasting::Light()
 void PlayerCasting::Dark()
 {
 	// 큐가 하나씪 줄어드는 방식이면 조금 다르게 해야한다.
-	if (!NoCastingState && commandList[index] == InputEvent::Dark)
+	if (!NoCastingState && commandList.size() > index && commandList[index] == InputEvent::Dark)
 		index++;
 	else
 	{

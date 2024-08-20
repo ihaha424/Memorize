@@ -30,6 +30,8 @@ void World::ChangeScene()
 		{
 			CurLevel->Exit();
 			CurLevel->Clear();
+			delete canvas;
+			canvas = new Canvas(this);
 			effectSystem.Clean();
 		}
 		CurLevel = NextLevel;

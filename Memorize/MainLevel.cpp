@@ -24,4 +24,9 @@ void MainLevel::Exit()
 
 void MainLevel::Clear()
 {
+	for (auto& pGameObject : actorList)
+	{
+		delete pGameObject;
+	}
+	actorList.clear();
 }
