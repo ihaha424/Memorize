@@ -73,6 +73,7 @@ public:
 	bool bondageFlag{ false };
 
 	class BuffEffectComponent* buffEffect;
+	class GCameraComponent* cm;
 	class ManaOverloadComponent* manaOverloadEffect;
 	
 	Math::Vector2 memorizePos;
@@ -87,6 +88,7 @@ public:
 	Stat& GetStat() { return stat; }
 
 	virtual void Update(float _dt) override;
+	virtual void Render(class D2DRenderer* _renderer) override;
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;

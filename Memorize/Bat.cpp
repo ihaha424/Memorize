@@ -54,9 +54,14 @@ void Bat::BeginPlay()
 	player = GetWorld()->FindActorByType<Player>();
 }
 
-void Bat::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
+void Bat::OnTakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller* eventInstigator, Actor* damageCauser)
 {
-	// ½ºÅ³ ÃÄ¸ÂÀ¸¸é »ç¸Á¶ì
+	hp -= damageAmount;
+
+	if (hp <= 0.f)
+	{
+		Destroy();
+	}
 }
 
 void Bat::Update(float _dt)
