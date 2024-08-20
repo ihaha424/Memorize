@@ -18,7 +18,6 @@ Projectile::Projectile(World* _world) : SkillActor(_world)
 	rootComponent->AddChild(mv);
 
 	box = CreateComponent<PolygonComponent>();
-	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
 	box->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Overlap);
