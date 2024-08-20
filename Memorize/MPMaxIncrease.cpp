@@ -30,6 +30,7 @@ void MPMaxIncrease::UseSkill()
 	abm->SliceSpriteSheet(250, 350, 0, 0, 0, 0);
 	abm->FrameResize(17);
 	abm->SetFrameDurations({ castingTime / 17 });
+	abm->Trigger(false); 
 	abm->Trigger(true);
 	abm->SetLoop(true);
 	player->buffEffect->SetStatus(OS_ACTIVE);
