@@ -17,6 +17,7 @@
 #include "BossRazer.h"
 #include "BossChasingBomb.h"
 #include "RazerCircle.h"
+#include "MainLevelUIPanel.h"
 
 #include "PlayerMainUIPanel.h"
 
