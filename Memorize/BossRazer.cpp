@@ -5,8 +5,11 @@
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "D2DGameEngine/PolygonComponent.h"
+#include "D2DGameEngine/ClickComponent.h"
 
+#include "../D2DGameEngine/EventBus.h"
 #include "Player.h"
+#include "DisfellEvent.h"
 
 BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 {
@@ -197,6 +200,27 @@ void BossRazer::DisfellAction()
 	DestroyThis();
 }
 
+void BossRazer::DisfellFailAction()
+{
+	disfellCommand.clear();
+	dissfellindex = 0;
+	CreateDisfellCommand();
+}
+
+void BossRazer::OnClicked()
+{
+	__super::OnClicked();
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+}
+
+void BossRazer::SetDisfell()
+{
+	disfellCommandCount = 4;
+	CreateDisfellCommand();
+	CreateComponent<ClickComponent>();
+}
+
 void BossRazer::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
@@ -223,7 +247,7 @@ void BossRazer::OnEndOverlap(Actor* other, const OverlapInfo& overlap)
 		// Æ½ µ¥¹ÌÁö ²ô±â
 		auto it = tickDamageTimerMap.find(other);
 		if (it != tickDamageTimerMap.end())
-		{
+		{ 
 			it->second.SetFinish(true);
 			tickDamageTimerMap.erase(it);
 		}
@@ -248,5 +272,7 @@ void BossRazer::DestroyThis()
 		rootComponent->parent->RemoveChild(rootComponent);
 		rootComponent->parent = nullptr;
 	}
-	destroyThis = true;
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+	Destroy();
 }

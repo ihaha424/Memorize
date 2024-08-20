@@ -6,6 +6,7 @@ void PlayerDisfell::Enter()
 {
 	//디스펠 이미지?
 	std::cout << "PlayerDisfell Enter\n";
+	saveDirtyFlag = false;
 }
 
 void PlayerDisfell::Update(float _dt)
