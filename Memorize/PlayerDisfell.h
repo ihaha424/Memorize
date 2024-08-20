@@ -23,8 +23,10 @@ public:
 	virtual void Attack() {};
 	//virtual void Move() {};
 	virtual void Memorize() {};
-	//virtual void Teleport() {};
+	virtual void Teleport();
 	virtual void Cancellation();
 
+
+	bool	saveDirtyFlag = false;
 };
 

@@ -140,7 +140,7 @@ void Player::Update(float _dt)
 		abm->SetScale(1.f, 1.f);
 
 	//Animation
-	if (stat.hp < 0.f)
+	if (stat.hp > 0.f)
 	{
 		if (mv->GetSpeed() < 10.f)
 		{
