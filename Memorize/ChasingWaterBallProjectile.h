@@ -12,7 +12,7 @@ class ChasingWaterBallProjectile : public Projectile
 	//DotTween<float> xValue;
 	//DotTween<float> yValue;
 	class Actor* target;
-	class CircleComponent* rangeCircle;
+	//class CircleComponent* rangeCircle;
 	float range = 500.f;
 	static std::vector<class Actor*> chasingEnemies;
 
@@ -21,11 +21,11 @@ public:
 	ChasingWaterBallProjectile(class World* _world);
 	virtual ~ChasingWaterBallProjectile();
 
-	virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) override;
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
+	//virtual void OnOverlap(Actor* other, const OverlapInfo& overlap) override;
 	virtual void Update(float _dt) override;
 
 	void SetInitialLocation(float _x, float _y) { x = _x, y = _y; }
-	// Projectile을(를) 통해 상속됨
-	void Initialize() override;
+
 };
 
