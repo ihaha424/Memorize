@@ -24,4 +24,5 @@ void MainLevel::Exit()
 
 void MainLevel::Clear()
 {
+	GetWorld()->GetCanvas()->RemovePanel(L"MainLevel");
 }
