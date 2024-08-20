@@ -168,6 +168,7 @@ void World::BeginPlay()
 {
 	UpdateCollisionSystem();
 	CurLevel->BeginPlay();
+	effectSystem.BeginPlay();
 }
 
 void World::FixedUpdate(float _fixedRate)

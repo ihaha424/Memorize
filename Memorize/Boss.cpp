@@ -4,6 +4,8 @@
 #include "../D2DGameEngine/Canvas.h"
 #include "../D2DGameEngine/BoxComponent.h"
 
+#include "BossHitEffect.h"
+
 Boss::Boss(World* _world) : Character(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
@@ -36,9 +38,19 @@ void Boss::Update(float _dt)
 		Periodic_Pattern_Cool_Time -= _dt;
 }
 
+void Boss::OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult)
+{
+	OBJ_MESSAGE("Hit!");
+}
+
 void Boss::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)
 {
 	hp -= damageAmount;	// 체력을 받은 데미지 만큼 감소시킵니다.
+
+	BossHitEffect* bosshitEffect = GetWorld()->GetEffectSystem().CreateEffect<BossHitEffect>();
+	bosshitEffect->SetEffect(1);
+	Math::Vector2 thisPos = GetLocation();
+	bosshitEffect->SetLocation(thisPos.x, thisPos.y);
 
 	if (hp <= 0.f)	// 만약 체력이 0보다 작거나 같다면,
 	{

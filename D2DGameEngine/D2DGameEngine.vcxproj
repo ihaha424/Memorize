@@ -152,6 +152,7 @@
     <ClInclude Include="AnimationEffect.h" />
     <ClInclude Include="AnimationState.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="AnimatorEffect.h" />
     <ClInclude Include="BehaviorTree.h" />
     <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="BitmapEffect.h" />
@@ -267,6 +268,7 @@
     <ClCompile Include="AnimationEffect.cpp" />
     <ClCompile Include="AnimationState.cpp" />
     <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="AnimatorEffect.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="BitmapEffect.cpp" />

@@ -5,4 +5,6 @@ AnimationEffect::AnimationEffect(World* _world)
 	: IEffect(_world)
 {
 	animationBitMap = CreateComponent<AnimationBitmapComponent>();
+	rootComponent = animationBitMap;
+
 }

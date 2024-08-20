@@ -5,4 +5,5 @@ BitmapEffect::BitmapEffect(World* _world)
 	: IEffect(_world)
 {
 	bitmap = CreateComponent<BitmapComponent>();
+	rootComponent = bitmap;
 }

@@ -132,6 +132,12 @@
     <Filter Include="Source Files\App\Arena">
       <UniqueIdentifier>{9b0b6d68-2654-4b44-9901-9ac0b0968bae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Effect">
+      <UniqueIdentifier>{df5eafa8-eaad-45f2-91a1-0125c12960b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Effect\BossHitEffect">
+      <UniqueIdentifier>{78149cde-142d-43bb-987f-d61443c93d7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -448,6 +454,9 @@
     </ClCompile>
     <ClCompile Include="MainLevelUIPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHitEffect.cpp">
+      <Filter>Source Files\App\Effect\BossHitEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -777,6 +786,9 @@
     </ClInclude>
     <ClInclude Include="MainLevelUIPanel.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHitEffect.h">
+      <Filter>Source Files\App\Effect\BossHitEffect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

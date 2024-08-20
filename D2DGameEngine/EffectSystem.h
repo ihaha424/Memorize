@@ -16,6 +16,7 @@ public:
 		return newEffect;
 	}
 
+	virtual void BeginPlay();
 	virtual void FixedUpdate(float _fixedRate);
 	virtual void Update(float _dt);
 	virtual void Render(class D2DRenderer* _renderer);
@@ -27,7 +28,7 @@ public:
 	class World* GetWorld() { return world; }
 
 private:
-	std::vector<IEffect*> effectList {};
+	std::list<IEffect*> effectList {};
 	class World* world = nullptr;
 };
 

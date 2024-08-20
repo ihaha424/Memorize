@@ -174,6 +174,9 @@
     <Filter Include="Source Files\GameEngine\EffectSystem\AnimationEffect">
       <UniqueIdentifier>{08cb7f90-5ae4-4172-99f7-86554cc1f51a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\EffectSystem\AnimatorEffect">
+      <UniqueIdentifier>{8cd15f07-7a10-43db-b5c4-ae845067a2e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -518,6 +521,9 @@
     <ClInclude Include="AnimationEffect.h">
       <Filter>Source Files\GameEngine\EffectSystem\AnimationEffect</Filter>
     </ClInclude>
+    <ClInclude Include="AnimatorEffect.h">
+      <Filter>Source Files\GameEngine\EffectSystem\AnimatorEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">
@@ -747,6 +753,9 @@
     </ClCompile>
     <ClCompile Include="AnimationEffect.cpp">
       <Filter>Source Files\GameEngine\EffectSystem\AnimationEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatorEffect.cpp">
+      <Filter>Source Files\GameEngine\EffectSystem\AnimatorEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
