@@ -30,6 +30,8 @@ void Boss::Update(float _dt)
 {
 	__super::Update(_dt);
 
+	elapsedTime += _dt;
+
 	OnHPChanged->Emit(hp/(float)maxHp);
 
 	if (Periodic_Pattern_Cool_Time > 0.f)

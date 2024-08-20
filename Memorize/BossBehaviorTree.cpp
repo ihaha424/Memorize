@@ -64,7 +64,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 				IsCooledDown->_successCondition = [this]() {
 					// TODO: 시작한지 60 초 지났는지 체크하기.
 					Boss* boss = GetKey<Boss*>("Boss");
-					return boss->Periodic_Pattern_Cool_Time <= 0.f;
+					return boss->elapsedTime >= 60.f && boss->Periodic_Pattern_Cool_Time <= 0.f;
 				};
 				{	// Periodic Pattern Selector
 					RandomSelector* periodicPatternSelector = CreateNode<RandomSelector>();
@@ -269,14 +269,12 @@ void BossBehaviorTree::BuildBehaviorTree()
 											RandomSelector* Phase_Three_Periodic_1_RandomSelecor = CreateNode<RandomSelector>();
 											Phase_Three_1->PushBackChild(Phase_Three_Periodic_1_RandomSelecor);
 											{
-												// TODO;
 												//Pattern08
 												// Phase_Pattern_Cool_Time = Pattern12->DelayTime
 												INode* pattern8 = BuildPatternSubtree(Pattern::Pattern8);
 												Phase_Three_Periodic_1_RandomSelecor->PushBackChild(pattern8);
 											}
 											{
-												// TODO;
 												//Pattern09
 												// Phase_Pattern_Cool_Time = Pattern12->DelayTime
 												INode* pattern9 = BuildPatternSubtree(Pattern::Pattern9);
@@ -291,7 +289,6 @@ void BossBehaviorTree::BuildBehaviorTree()
 									Sequence* Phase_Three_2 = CreateNode<Sequence>();
 									Phase_Three_Periodic_Selector->PushBackChild(Phase_Three_2);
 									{
-										// TODO;
 										//Pattern13
 										//Pattern02
 										//Pattern02
@@ -317,7 +314,6 @@ void BossBehaviorTree::BuildBehaviorTree()
 								Sequence* Phase_Three_1 = CreateNode<Sequence>();
 								Phase_Three_Selector->PushBackChild(Phase_Three_1);
 								{
-									// TODO;
 									//Pattern09
 									//Pattern02
 									//Pattern02
@@ -334,7 +330,6 @@ void BossBehaviorTree::BuildBehaviorTree()
 								Sequence* Phase_Three_2 = CreateNode<Sequence>();
 								Phase_Three_Selector->PushBackChild(Phase_Three_2);
 								{
-									// TODO;
 									//Pattern02
 									//Pattern04
 									//Wait* Pattern04.DelayTime
@@ -348,7 +343,6 @@ void BossBehaviorTree::BuildBehaviorTree()
 								Sequence* Phase_Three_3 = CreateNode<Sequence>();
 								Phase_Three_Selector->PushBackChild(Phase_Three_3);
 								{
-									// TODO;
 									//Pattern11
 									//Pattern04
 									//Pattern04
@@ -376,8 +370,8 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	{
 	case BossBehaviorTree::Pattern::Groggy: {
 		//	Groggy
-		Condition* groggyCondition = CreateNode<Condition>();
-		// TODO: force if?
+		ForceCondition* groggyCondition = CreateNode<ForceCondition>();
+		// force if?
 		groggyCondition->_successCondition = [this]() {
 			Boss* boss = GetKey<Boss*>("Boss");
 			return (boss->DissfellCount >= 10);
@@ -466,7 +460,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
 			Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
 
-			// TODO: 이동 가능한지 확인
+			// 이동 가능한지 확인
 			// 맵 마름모 꼴이니까 변마다 Line 만들고
 			// Line{destination, BossCurrLoc} 가지고 
 			// 교점 체크
@@ -562,7 +556,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			Math::Vector2 destinationCandidate1 = playerLocation + Math::Vector2{ 800, 0 };
 			Math::Vector2 destinationCandidate2 = playerLocation - Math::Vector2{ 800, 0 };
 
-			// TODO: 이동 가능한지 확인
+			// 이동 가능한지 확인
 			// 맵 마름모 꼴이니까 변마다 Line 만들고
 			// Line{destination, BossCurrLoc} 가지고 
 			// 교점 체크
