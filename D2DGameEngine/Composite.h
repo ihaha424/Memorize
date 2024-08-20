@@ -99,6 +99,7 @@ struct RandomSelector : public Composite {
 	virtual void Init() override {
 		status = NodeStatus::Ready;
 		WeightedRandomShuffle();
+		i = 0;
 	}
 
 	virtual void Traverse(float dt) override {
