@@ -33,7 +33,7 @@ void GCameraComponent::PostUpdate(float _dt)
 	if (isMove)
 	{
 		moveSecond -= _dt;
-		Math::Vector2 destinationCameraPos = ((prevBossPos - parentPos) * 0.5f - GetComponentLocation());
+		Math::Vector2 destinationCameraPos = ((prevBossPos - prevPlayerPos) * 0.5f - GetComponentLocation());
 		destinationCameraPos.Normalize();
 		Translate(destinationCameraPos * moveSpeed * _dt);
 		if (moveSecond < 0.f)
@@ -49,6 +49,7 @@ void GCameraComponent::PostUpdate(float _dt)
 		moveSecond = 1.f;
 		moveSpeed = (prevBossPos - bossPos).Length() / (1.f + cameraScale);	// (prevBossPos - bossPos).Length() / moveSecond;
 		prevBossPos = bossPos;
+		prevPlayerPos = parentPos;
 		return;
 	}
 

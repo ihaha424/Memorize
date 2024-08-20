@@ -73,7 +73,7 @@ public:
 	virtual void PrepareRender();
     virtual void Render(class D2DRenderer* _renderer);
 
-    std::vector<Actor*> actorList;
+    std::list<Actor*> actorList;
 
 private:
     std::wstring LevelName;

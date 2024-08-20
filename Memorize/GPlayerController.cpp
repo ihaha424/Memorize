@@ -147,6 +147,8 @@ void GPlayerController::Update(float _dt)
 {
 	PlayerController::Update(_dt);
 
+	playerFSMComponent->OneTImeOneInput = false;
+
 	if (Math::Vector2::Distance(destPos, player->GetLocation()) < 5.f)
 	{
 		player->GetComponent<MovementComponent>()->SetSpeed(0.f);
