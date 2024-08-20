@@ -50,7 +50,7 @@ bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 	if (disfellCommand[dissfellindex] == _element)
 	{
 		//UI : 디스펠 커맨드 입력 
-		controller->OnDoingDisfell->Emit(dissfellindex);
+		controller->OnDoingDisfell->Emit(dissfellindex, _element);
 
 		dissfellindex++;
 	
@@ -65,7 +65,7 @@ bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 	}
 	else
 	{
-		controller->OnDoingDisfell->Emit(-1);
+		controller->OnDoingDisfell->Emit(-1, 0);
 		DisfellFailAction();
 		return false;
 	}

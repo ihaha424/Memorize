@@ -80,6 +80,18 @@ void ElementsPanel::Update(float _dt)
 	ESkillType curSkillType = playerController->GetCurSkillInfo().type;
 	ESkillElement curSkillElement = playerController->GetCurSkillInfo().element;
 
+
+	//다 눌렀으면 0.5초 후에 사라지게 함 
+	if (ending)
+	{
+		elapsedTime += _dt;
+		if (elapsedTime > 0.5f)
+		{
+			elapsedTime = 0.f;
+			ending = false;
+		}
+	}
+
 	if (playerController->isPlayerAfterCasting() || playerController->bElementalMaster)
 	{
 		if (!ending || playerController->bElementalMaster)
@@ -132,16 +144,7 @@ void ElementsPanel::Update(float _dt)
 		}
 	}
 
-	//다 눌렀으면 0.5초 후에 사라지게 함 
-	if (ending)
-	{
-		elapsedTime += _dt;
-		if (elapsedTime > 0.5f)
-		{
-			elapsedTime = 0.f;
-			ending = false;
-		}
-	}
+
 }
 
 void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands)

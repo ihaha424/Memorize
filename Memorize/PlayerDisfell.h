@@ -25,6 +25,6 @@ public:
 	virtual void Memorize() {};
 	//virtual void Teleport() {};
 	virtual void Cancellation();
-
+	
 };
 
