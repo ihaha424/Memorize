@@ -28,7 +28,12 @@ BossSkillActor::~BossSkillActor()
 	//for Purification skill
 	GPlayerController* pController = static_cast<GPlayerController*>(GetWorld()->FindActorByType<Player>()->GetController());
 	Purification* purification = static_cast<Purification*>(pController->FindSkiil(SE_LIGHT, ST_SPECIAL));
-	purification->disfellSkills.erase(std::find(purification->disfellSkills.begin(), purification->disfellSkills.end(), this));
+	auto it = std::find(purification->disfellSkills.begin(), purification->disfellSkills.end(), this);
+	if (it != purification->disfellSkills.end())
+	{
+		purification->disfellSkills.erase(it, purification->disfellSkills.end());
+	}
+	
 }
 
 void BossSkillActor::OnClicked()
