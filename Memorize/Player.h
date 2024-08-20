@@ -73,6 +73,7 @@ public:
 	bool bondageFlag{ false };
 
 	class BuffEffectComponent* buffEffect;
+	class GCameraComponent* cm;
 	class ManaOverloadComponent* manaOverloadEffect;
 	class MovementComponent* mv;
 	class Animator* abm;
@@ -80,16 +81,19 @@ public:
 	class AnimationState* MoveAnimationState;
 	class AnimationState* DieAnimationState;
 	
+	Math::Vector2 headEffectPos;
 public:
 	Player(class World* _world);
 	virtual ~Player();
 
+	void StartHeadEffect(int index);
 	void AddSkillUses() { skillUses++; };
 	int GetSkillUses() { return skillUses; }
 	void AddToStat(Stat _addStat);
 	Stat& GetStat() { return stat; }
 
 	virtual void Update(float _dt) override;
+	virtual void Render(class D2DRenderer* _renderer) override;
 
 	// IReflection을(를) 통해 상속됨
 	void ReflectionIn() override;

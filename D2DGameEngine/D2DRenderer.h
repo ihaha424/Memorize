@@ -103,7 +103,9 @@ public:
 	);
 	void DrawSprite(
 		D2D_Sprite* sprite,
-		const Math::Vector2& ul, const Math::Vector2& lr
+		const Math::Vector2& ul, 
+		const Math::Vector2& lr,
+		float opacity = 1.f
 	);
 	/**
 	 * @brief 스프라이트를 렌더 타겟에 그립니다.
@@ -113,7 +115,9 @@ public:
 	 */
 	void DrawSprite(
 		D2D_Sprite* sprite,
-		const D2D_RectF& dst, const D2D_RectF& srcArea
+		const D2D_RectF& dst, 
+		const D2D_RectF& srcArea,
+		float opacity = 1.f
 	);
 
 	// Transform operators

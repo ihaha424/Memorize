@@ -39,7 +39,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	centerCircle->FrameResize(82);
 	centerCircle->Trigger(true);
 	centerCircle->SetLoop(true);
-	circle->InitCircleRadius(800);
+	circle->InitCircleRadius(520);
 	circle->SetScale(0.8f, 0.8f);
 
 
@@ -190,7 +190,7 @@ void RazerCircle::OnEndOverlap(Actor* other, const OverlapInfo& overlap)
 
 void RazerCircle::ReflectionIn()
 {
-	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern07_Actor.txt");
+	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern10_Actor.txt");
 	int typeInt;
 	reflectionResource->ParsingFile(0, isFragile, typeInt, dispelTime, skillDuration, damage);
 	type = static_cast<BossSkillType>(typeInt);

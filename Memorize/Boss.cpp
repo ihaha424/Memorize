@@ -56,6 +56,8 @@ void Boss::Update(float _dt)
 {
 	__super::Update(_dt);
 
+	elapsedTime += _dt;
+
 	OnHPChanged->Emit(hp/(float)maxHp);
 
 	if (Periodic_Pattern_Cool_Time > 0.f)
@@ -96,7 +98,6 @@ void Boss::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEven
 	bosshitEffect->SetEffect(1);
 	Math::Vector2 thisPos = GetLocation();
 	bosshitEffect->SetLocation(thisPos.x, thisPos.y);
-
 	if (hp <= 0.f)	// 만약 체력이 0보다 작거나 같다면,
 	{
 		hp = 0.f;

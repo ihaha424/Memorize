@@ -12,7 +12,7 @@ class RazerCircle : public BossSkillActor
 
 	float castingTime{ 1.f };
 	
-	float angularVelocity{ 72.f };
+	float angularVelocity{ 36.f };
 
 	float tickInterval{ 0.4f };
 

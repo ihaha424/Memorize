@@ -43,6 +43,7 @@ void MPRecovery::UseSkill()
 	abm->SliceSpriteSheet(250, 330, 0, 0, 0, 0);
 	abm->FrameResize(20);
 	abm->SetFrameDurations({ castingTime / 20.f });
+	abm->Trigger(false); 
 	abm->Trigger(true);
 	abm->SetLoop(true);
 	player->buffEffect->SetStatus(OS_ACTIVE);

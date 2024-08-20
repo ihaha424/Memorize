@@ -14,6 +14,7 @@
 #include "MagicCircle.h"
 #include "BuffEffectComponent.h"
 #include "ManaOverloadComponent.h"
+#include "HeadEffect.h"
 #include "ElementalMasterComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
@@ -56,7 +57,7 @@ Player::Player(class World* _world) : Character(_world)
 		}
 	}
 
-	GCameraComponent* cm = CreateComponent<GCameraComponent>();
+	cm = CreateComponent<GCameraComponent>();
 	GetWorld()->SetMainCamera(cm);
 	rootComponent->AddChild(cm);
 
@@ -81,10 +82,19 @@ Player::Player(class World* _world) : Character(_world)
 	manaOverloadEffect = CreateComponent<ManaOverloadComponent>();
 	rootComponent->AddChild(manaOverloadEffect);
 	manaOverloadEffect->SetStatus(OS_INACTIVE);
+
+	
 }
 
 Player::~Player()
 {
+}
+
+void Player::StartHeadEffect(int index)
+{
+	HeadEffect* effect = GetWorld()->GetEffectSystem().CreateEffect<HeadEffect>();
+	effect->SetEffect(index);
+	effect->SetPosition(&headEffectPos);
 }
 
 void Player::AddToStat(Stat _addStat)
@@ -148,6 +158,13 @@ void Player::Update(float _dt)
 		if (abm->GetCurrentAnimationScene() != DieAnimationState)
 			abm->SetState(DieAnimationState);
 	}
+
+	headEffectPos = { GetLocation().x, GetLocation().y - 230 };
+}
+
+void Player::Render(D2DRenderer* _renderer)
+{
+	__super::Render(_renderer);
 }
 
 
@@ -173,6 +190,9 @@ float Player::InternalTakeDamage(float damageAmount, DamageEvent const& damageEv
 
 void Player::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)
 {
+	// 피격
+	cm->Trigger피격();
+
 	stat.hp -= damageAmount;	// 체력을 받은 데미지 만큼 감소시킵니다.
 
 	if (stat.hp <= 0.f)	// 만약 체력이 0보다 작거나 같다면,

@@ -452,6 +452,9 @@
     <ClCompile Include="ManaOverloadComponent.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClCompile>
+    <ClCompile Include="HeadEffect.cpp">
+      <Filter>Source Files\App\Skill\Special</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -777,6 +780,9 @@
     </ClInclude>
     <ClInclude Include="ManaOverloadComponent.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="HeadEffect.h">
+      <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

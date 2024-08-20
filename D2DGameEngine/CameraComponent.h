@@ -1,9 +1,9 @@
 #pragma once
-#include "SceneComponent.h"
+#include "PrimitiveComponent.h"
 
 class Pawn;
 
-class CameraComponent : public SceneComponent
+class CameraComponent : public PrimitiveComponent
 {
 public:
     CameraComponent(Actor* _owner);

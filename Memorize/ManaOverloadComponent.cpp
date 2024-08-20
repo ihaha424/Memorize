@@ -31,5 +31,7 @@ void ManaOverloadComponent::Update(float _dt)
 		controller->bManaOverload = false;
 
 		SetStatus(OS_INACTIVE);
+		Trigger(false);
+		Trigger(true);
 	}
 }

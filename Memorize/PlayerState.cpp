@@ -4,6 +4,7 @@
 #include "MovementComponent.h"
 #include "GPlayerController.h"
 #include "Player.h"
+#include "HeadEffect.h"
 
 
 #include "Fireball.h"

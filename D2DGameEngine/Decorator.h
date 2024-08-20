@@ -93,6 +93,20 @@ struct Condition : public Decorator {
 	}
 };
 
+struct ForceCondition : public Decorator {
+	std::function<bool()> _successCondition;
+	virtual void Traverse(float dt) override {
+		if (!_successCondition())
+		{
+			status = NodeStatus::Failure;
+			return;
+		}
+
+		child->Traverse(dt);
+		status = child->status;
+	}
+};
+
 struct Primer : public Decorator {
 	std::function<void()> _action;
 	virtual void Traverse(float dt) override {

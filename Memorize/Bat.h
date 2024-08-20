@@ -17,7 +17,8 @@ class Bat : public Actor, public IReflection
 	PointDamageEvent batDamageEvent;
 public:
 
-	float	damage = 0.f;
+	float hp = 40.f;
+	float	damage = 5.f;
 	float attackRange{ 100.f };
 	float attackSpeed{ 1.f };
 	float speed{ 250.f };
@@ -26,7 +27,7 @@ public:
 
 	void BeginPlay() override;
 
-	void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
+	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser);
 
 	void Update(float _dt) override;
 
