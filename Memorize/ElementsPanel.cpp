@@ -220,26 +220,26 @@ void ElementsPanel::SetSkillList()
 	ESkillElement nowElement = playerController->GetCurSkillInfo().element;
 	if (nowElement == SE_FIRE)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
+		q->SetSprite(L"TestResource/Icon/Icon_Fireball.png");
+		w->SetSprite(L"TestResource/Icon/Icon_Meteor.png");
 		e->SetSprite(L"TestResource/Icon/Icon_Enchant.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		r->SetSprite(L"TestResource/Icon/Icon_ElementalExplosion.png");
 		SetQWER(fireCommands);
 	}
 	else if (nowElement == SE_WATER)
 	{
 		q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		w->SetSprite(L"TestResource/Icon/Icon_AggressiveWaves.png");
+		e->SetSprite(L"TestResource/Icon/Icon_ManaOverload.png");
+		r->SetSprite(L"TestResource/Icon/Icon_Heal.png");
 		SetQWER(waterCommands);
 	}
 	else if (nowElement == SE_LIGHT)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
+		q->SetSprite(L"TestResource/Icon/Icon_PrismReflection.png");
 		w->SetSprite(L"TestResource/Icon/Icon_LightStream.png");
 		e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		r->SetSprite(L"TestResource/Icon/Icon_Purification.png");
 		SetQWER(lightCommands);
 	}
 	else if (nowElement == SE_DARKNESS)
