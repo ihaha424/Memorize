@@ -9,7 +9,7 @@ public:
 	BitmapEffect(class World* _world);
 	virtual ~BitmapEffect() {}
 
-
+	void SetSprite(std::wstring _path);
 protected:
 	class BitmapComponent* bitmap;
 

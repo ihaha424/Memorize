@@ -7,3 +7,8 @@ BitmapEffect::BitmapEffect(World* _world)
 	bitmap = CreateComponent<BitmapComponent>();
 	rootComponent = bitmap;
 }
+
+void BitmapEffect::SetSprite(std::wstring _path)
+{
+	bitmap->SetSprite(_path.c_str());
+}
