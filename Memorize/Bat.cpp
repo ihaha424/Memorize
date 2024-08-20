@@ -19,7 +19,12 @@ Bat::Bat(World* _world) : Actor(_world)
 
 	CircleComponent* circle = CreateComponent<CircleComponent>();
 	circle->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
+	circle->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
+	circle->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Overlap);
+	circle->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Overlap);
+	circle->SetCollisionObjectType(ECollisionChannel::Enemy);
 	circle->bGenerateOverlapEvent = true;
+	circle->SetCircleRadius(30);
 	circle->maxSpeed = speed;
 	rootComponent = circle;
 
@@ -68,7 +73,8 @@ void Bat::Update(float _dt)
 {
 	static float elapsedTime = 0.50f;
 	Super::Update(_dt);
-
+	
+	GetComponent<CircleComponent>()->bShouldOverlapTest = true;
 	Math::Vector2 playerLocation = player->GetLocation();
 	Math::Vector2 toPlayer = playerLocation - GetLocation();
 	float distanceToPlayerSquared = toPlayer.LengthSquared();
