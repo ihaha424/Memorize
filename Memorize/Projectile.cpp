@@ -58,7 +58,7 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	}
 	
 	//투과되지 않는 발세체의 경우 멈추고 폭발 처리
-	if (!bIsPassable)
+	if (!bIsPassable && !bEnding)
 	{
 		bEnding = true;
 		if(bHasEnding)
@@ -71,10 +71,10 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 	if (bCollideWithOtherAttack)
 	{
 		BossProjectile* bossProjectile = dynamic_cast<BossProjectile*>(other);
-		if (bossProjectile != nullptr)
+		if (bossProjectile != nullptr && !bEnding)
 		{
 			bEnding = true;
-			anim->SetState(endingState);
+			elapsedTime = duration + delay;
 			mv->SetSpeed(0);
 		}
 	}

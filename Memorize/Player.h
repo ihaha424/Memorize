@@ -75,6 +75,11 @@ public:
 	class BuffEffectComponent* buffEffect;
 	class GCameraComponent* cm;
 	class ManaOverloadComponent* manaOverloadEffect;
+	class MovementComponent* mv;
+	class Animator* abm;
+	class AnimationState* IdleAnimationState;
+	class AnimationState* MoveAnimationState;
+	class AnimationState* DieAnimationState;
 	
 	Math::Vector2 headEffectPos;
 public:

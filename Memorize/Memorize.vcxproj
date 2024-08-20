@@ -227,10 +227,8 @@
     <ClCompile Include="PlayerDisfell.cpp" />
     <ClCompile Include="PlayerFSMComponent.cpp" />
     <ClCompile Include="PlayerIdle.cpp" />
-    <ClCompile Include="PlayerIdleAnimation.cpp" />
     <ClCompile Include="PlayerMainUIPanel.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
-    <ClCompile Include="PlayerMoveAnimation.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PrismReflection.cpp" />
     <ClCompile Include="PrismReflectionProjectile.cpp" />
@@ -331,7 +329,6 @@
     <ClInclude Include="Pattern9Action.h" />
     <ClInclude Include="PatternAction.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerAnimationStates.h" />
     <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="PlayerAttackReady.h" />
     <ClInclude Include="PlayerBlinking.h" />
@@ -339,10 +336,8 @@
     <ClInclude Include="PlayerDisfell.h" />
     <ClInclude Include="PlayerFSMComponent.h" />
     <ClInclude Include="PlayerIdle.h" />
-    <ClInclude Include="PlayerIdleAnimation.h" />
     <ClInclude Include="PlayerMainUIPanel.h" />
     <ClInclude Include="PlayerMove.h" />
-    <ClInclude Include="PlayerMoveAnimation.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayerStates.h" />
     <ClInclude Include="PrismReflection.h" />

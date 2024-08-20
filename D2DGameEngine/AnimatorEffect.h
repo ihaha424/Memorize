@@ -9,7 +9,6 @@ public:
 	AnimatorEffect(class World* _world);
 	virtual ~AnimatorEffect() {}
 
-
 protected:
 	class Animator* animatorBitMap;
 

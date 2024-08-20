@@ -3,6 +3,9 @@
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/Canvas.h"
 #include "../D2DGameEngine/BoxComponent.h"
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+#include "Player.h"
 
 #include "BossHitEffect.h"
 
@@ -21,6 +24,27 @@ Boss::Boss(World* _world) : Character(_world)
 	OnHPChanged = new Signal<float>;
 
 	box->SetCollisionObjectType(ECollisionChannel::Enemy);
+
+
+	// 애니메이션
+	{
+		abm = CreateComponent<Animator>();
+		rootComponent->AddChild(abm);
+		{
+			IdleAnimationState = abm->CreateState<AnimationState>();
+			IdleAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Idle.png");
+			IdleAnimationState->SliceSpriteSheet(187, 287, 0, 0, 0, 0);
+			IdleAnimationState->SetFrameDurations({ 0.06f });
+			IdleAnimationState->Trigger(true);
+			abm->Initialize(IdleAnimationState);
+
+			MoveAnimationState = abm->CreateState<AnimationState>();
+			MoveAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Moving.png");
+			MoveAnimationState->SliceSpriteSheet(187, 280, 0, 0, 0, 0);
+			MoveAnimationState->SetFrameDurations({ 0.06f });
+			MoveAnimationState->Trigger(true);
+		}
+	}
 }
 
 Boss::~Boss()
@@ -39,7 +63,26 @@ void Boss::Update(float _dt)
 	if (Periodic_Pattern_Cool_Time > 0.f)
 		Periodic_Pattern_Cool_Time -= _dt;
 
-	OBJ_MESSAGE(dbg::text(Periodic_Pattern_Cool_Time));
+	//Flip
+	Math::Vector2 playerPos = GetWorld()->FindActorByType<Player>()->GetLocation();
+	playerPos = GetLocation() - playerPos;
+	if (playerPos.x < 0.f)
+		abm->SetScale(-1.f, 1.f);
+	else
+		abm->SetScale(1.f, 1.f);
+
+	//Animation
+	Math::Vector2 velocity = GetVelocity();
+	if (velocity.Length() < 10.f)
+	{
+		if (abm->GetCurrentAnimationScene() != IdleAnimationState)
+			abm->SetState(IdleAnimationState);
+	}
+	else
+	{
+		if (abm->GetCurrentAnimationScene() != MoveAnimationState)
+			abm->SetState(MoveAnimationState);
+	}
 }
 
 void Boss::OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult)
