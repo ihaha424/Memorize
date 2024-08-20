@@ -15,6 +15,7 @@ LightStream::LightStream(Actor* _owner) : RangeSkill(_owner)
 	ReflectionIn();
 	lightStreamEffect = GetWorld()->GetCurLevel()->CreateActor<LightStreamEffect>();
 	lightStreamEffect->SetDamage(damage);
+	lightStreamEffect->SetSkillID(id);
 
 }
 

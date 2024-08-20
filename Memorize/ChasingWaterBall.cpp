@@ -37,6 +37,8 @@ ChasingWaterBall::~ChasingWaterBall()
 
 void ChasingWaterBall::UseSkill()
 {
+	__super::UseSkill();
+
 	projectiles.clear();
 	for (int i = 0; i < projectileCount; i++)
 	{

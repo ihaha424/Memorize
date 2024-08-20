@@ -38,6 +38,7 @@ void Fireball::UseSkill()
 	fireball->SetPlayer(player);
 	fireball->SetLocation(player->GetLocation().x, player->GetLocation().y);
 	fireball->SetStatus(OS_ACTIVE);
+	fireball->Initialize();
 
 	//마우스 위치로 이동시킴
 	fireball->SetVelocity(attackDir, projectileSpeed);

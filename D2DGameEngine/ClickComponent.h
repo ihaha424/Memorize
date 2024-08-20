@@ -5,9 +5,9 @@
 
 class ClickComponent : public IComponent
 {
-	BoxCircleBounds*	ownerBounds = nullptr;
 	bool				hover = false;
 public:
+	BoxCircleBounds*	ownerBounds = nullptr;
 
 public:
 	ClickComponent(Actor* _owner);

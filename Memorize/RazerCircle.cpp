@@ -8,9 +8,7 @@
 #include "D2DGameEngine/CircleComponent.h"
 #include "D2DGameEngine/ClickComponent.h"
 
-#include "../D2DGameEngine/EventBus.h"
 #include "BossRazer.h"
-#include "DisfellEvent.h"
 
 RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 {
@@ -20,7 +18,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 
 	isDispel = true;
 	isFragile = false;
-	type = Range; 
+	type = Range;
 	dispelTime = 13.f;
 	skillDuration = 15.f;
 	castingTime = 0.f;
@@ -33,7 +31,6 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	circle->bApplyImpulseOnDamage = true;
 	circle->bGenerateOverlapEvent = false;	// True
 	rootComponent = circle;
-	circle->MarkBoundsDirty();
 
 	AnimationBitmapComponent* centerCircle = CreateComponent<AnimationBitmapComponent>();
 	circle->AddChild(centerCircle);
@@ -59,7 +56,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	razer1->SetRotation(-90.f);
 	razer1->SetLocation(0.f, 500.f);
 	razer1->renderLayer = 5;
-	razer1->SetDisfell();
+	razer1->clickComp->ownerBounds = &bm->bounds;
 
 	attach2 = CreateComponent<SceneComponent>();
 	rootComponent->AddChild(attach2);
@@ -73,7 +70,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	razer2->SetRotation(-90.f);
 	razer2->SetLocation(0.f, 500.f);
 	razer2->renderLayer = 5;
-	razer2->SetDisfell();
+	razer2->clickComp->ownerBounds = &bm->bounds;
 
 	attach3 = CreateComponent<SceneComponent>();
 	rootComponent->AddChild(attach3);
@@ -87,7 +84,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	razer3->SetRotation(-90.f);
 	razer3->SetLocation(0.f, 500.f);
 	razer3->renderLayer = 5;
-	razer3->SetDisfell();
+	razer3->clickComp->ownerBounds = &bm->bounds;
 
 	// Damage Event
 	DamageType damageType{
@@ -105,10 +102,6 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 		1000.f
 	);
 	circleDamage.radialDamageInfo = damageInfo;
-
-	disfellCommandCount = 3;
-	CreateDisfellCommand();
-	CreateComponent<ClickComponent>();
 }
 
 void RazerCircle::BeginPlay()
@@ -127,8 +120,6 @@ void RazerCircle::FixedUpdate(float _fixedRate)
 
 	if (destroyThis)
 	{
-		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		Destroy();
 		return;
 	}
@@ -166,20 +157,6 @@ void RazerCircle::Update(float _dt)
 void RazerCircle::DisfellAction()
 {
 	DestroyThis();
-}
-
-void RazerCircle::DisfellFailAction()
-{
-	disfellCommand.clear();
-	dissfellindex = 0;
-	CreateDisfellCommand();
-}
-
-void RazerCircle::OnClicked()
-{
-	__super::OnClicked();
-	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
-	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
 
 void RazerCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
@@ -227,7 +204,17 @@ void RazerCircle::ReflectionOut() {}
 
 void RazerCircle::DestroyThis()
 {
-	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+	//if (razer1->GetStatus() != EObjectStatus::OS_DESTROY)
+	//	razer1->DestroyThis();
+	//if (razer2->GetStatus() != EObjectStatus::OS_DESTROY)
+	//	razer2->DestroyThis();
+	//if (razer3->GetStatus() != EObjectStatus::OS_DESTROY)
+	//	razer3->DestroyThis();
+
+	//attach1->RemoveChild(razer1->rootComponent);
+	//attach2->RemoveChild(razer2->rootComponent);
+	//attach3->RemoveChild(razer3->rootComponent);
+	//GetWorld()->UnregisterComponentCollision(circle);
+	//destroyThis = true;
 	Destroy();
 }

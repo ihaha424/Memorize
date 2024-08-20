@@ -455,6 +455,9 @@
     <ClCompile Include="HeadEffect.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
+    <ClCompile Include="SkillActor.cpp">
+      <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -783,6 +786,9 @@
     </ClInclude>
     <ClInclude Include="HeadEffect.h">
       <Filter>Source Files\App\Skill\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillActor.h">
+      <Filter>Source Files\App\Skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@
 #include "Boss.h"
 #include "BossProjectile.h"
 
-Projectile::Projectile(World* _world) : Actor(_world)
+Projectile::Projectile(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 
@@ -18,9 +18,7 @@ Projectile::Projectile(World* _world) : Actor(_world)
 	rootComponent->AddChild(mv);
 
 	box = CreateComponent<PolygonComponent>();
-	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
 	box->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
-	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Overlap);
 	box->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
@@ -45,17 +43,14 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 		return;
 
 	//대미지를 입힘
-	if (overlap.overlapInfo.hitComponent->GetCollisionObjectType() == ECollisionChannel::Enemy)
-	{
-		DamageEvent damageEvent;
-		DamageType damageType{
-			.damageImpulse = 10000.f, //충격량 넣어주는 게 맞는지?
-		};
-		damageEvent.SetDamageType(damageType);
+	DamageEvent damageEvent;
+	DamageType damageType{
+		.damageImpulse = 10000.f,
+	};
+	damageEvent.SetDamageType(damageType);
 
-		other->TakeDamage(damage, damageEvent, nullptr, this);
+	other->TakeDamage(damage, damageEvent, nullptr, this);
 
-	}
 	
 	//투과되지 않는 발세체의 경우 멈추고 폭발 처리
 	if (!bIsPassable && !bEnding)

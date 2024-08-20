@@ -15,8 +15,6 @@ PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile
 
 	box->SetPolygon({ {-100, 50}, {100, -50}, {-100, -50}, {100, 50} });
 
-	bIsPassable = true;
-	bCollideWithOtherAttack = true;
 	bHasEnding = false;
 	endingTime = 0.f;
 }

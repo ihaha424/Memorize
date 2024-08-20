@@ -3,8 +3,11 @@
 #include "../D2DGameEngine/AnimationState.h"
 #include "../D2DGameEngine/CircleComponent.h"
 #include "../D2DGameEngine/PolygonComponent.h"
+#include "../D2DGameEngine/World.h"
 #include "MovementComponent.h"
 #include "Player.h"
+#include "Boss.h"
+#include "Bat.h"
 
 std::vector<class Actor*> ChasingWaterBallProjectile::chasingEnemies{};
 
@@ -31,86 +34,119 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	box->SetPolygon({ {-80, 150}, {80, -150}, {-80, -150}, {80, 150} });
 
 	box->bGenerateOverlapEvent = false; //적 감지를 위해 박스는 꺼줌 
-	rangeCircle = CreateComponent<CircleComponent>();
-	rangeCircle->SetCircleRadius(range);
-	rangeCircle->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
-	rangeCircle->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
-	rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
-	rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Overlap);
-	rangeCircle->bGenerateOverlapEvent = true;
-	rootComponent->AddChild(rangeCircle);
+	//rangeCircle = CreateComponent<CircleComponent>();
+	//rangeCircle->SetCircleRadius(range);
+	//rangeCircle->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
+	//rangeCircle->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
+	//rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
+	//rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Overlap);
+	//rangeCircle->bGenerateOverlapEvent = true;
+	//rootComponent->AddChild(rangeCircle);
 
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;
-	bHasEnding = false;
+	bHasEnding = true;
 	endingTime = 1.f;
 	
+
 }
 
 ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
 {
-
+	
 }
 
-void ChasingWaterBallProjectile::OnOverlap(Actor* other, const OverlapInfo& overlap)
+void ChasingWaterBallProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
-	__super::OnOverlap(other, overlap);
+	__super::OnBeginOverlap(other, overlap);
 
-	if (overlap.overlapInfo.hitComponent->GetCollisionObjectType() == ECollisionChannel::Enemy)
-	{
-		if (state == State::Idle)
-		{
-
-			//이미 이 적을 추적중이면 넘긴다.
-			if (find(chasingEnemies.begin(), chasingEnemies.end(), other) != chasingEnemies.end())
-				return;
-
-			//waterball들이 추적중인 적에 추가한다.
-			chasingEnemies.push_back(other);
-			//이 projectile의 타겟으로 설정한다. 
-			target = other;
-			//추적상태로 전환한다. 
-			state = State::Chase;
-			anim->SetState(chaseState);
-		}
-	}
-
-
-
+	state = State::Boom;
+	bHasEnding = true;
 }
+
+//void ChasingWaterBallProjectile::OnOverlap(Actor* other, const OverlapInfo& overlap)
+//{
+//	__super::OnOverlap(other, overlap);
+//
+//	if (overlap.overlapInfo.hitComponent->GetCollisionObjectType() == ECollisionChannel::Enemy)
+//	{
+//		if (state == State::Idle)
+//		{
+//
+//			//이미 이 적을 추적중이면 넘긴다.
+//			if (find(chasingEnemies.begin(), chasingEnemies.end(), other) != chasingEnemies.end())
+//				return;
+//
+//			//waterball들이 추적중인 적에 추가한다.
+//			chasingEnemies.push_back(other);
+//			//이 projectile의 타겟으로 설정한다. 
+//			target = other;
+//			//추적상태로 전환한다. 
+//			state = State::Chase;
+//			anim->SetState(chaseState);
+//		}
+//	}
+//
+//
+//
+//}
 
 void ChasingWaterBallProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
 
+	
 	if (state == State::Idle)
 	{
-		rangeCircle->SetStatus(OS_ACTIVE);
-		rangeCircle->bShouldOverlapTest = true;
 		SetLocation(player->GetLocation().x + x, player->GetLocation().y + y);
 
+		Boss* boss = GetWorld()->FindActorByType<Boss>();
+		auto it = find(chasingEnemies.begin(), chasingEnemies.end(), boss);
+		if (it == chasingEnemies.end())
+		{
+			if (Math::Vector2::Distance(boss->GetLocation(), GetLocation()) < range)
+			{
+				target = boss;
+				state = State::Chase;
+				chasingEnemies.push_back(target);
+			}
+			
+		}
+		else
+		{
+			std::vector<Bat*> bats = GetWorld()->FindAllActorsByType<Bat>();
+			for (auto bat : bats)
+			{
+				it = find(chasingEnemies.begin(), chasingEnemies.end(), boss);
+				if (it == chasingEnemies.end())
+				{
+					if (Math::Vector2::Distance(bat->GetLocation(), GetLocation()) < range)
+					{
+						target = bat;
+						state = State::Chase;
+						chasingEnemies.push_back(target);
+						break;
+					}
+
+				}
+			}
+		}
+
 		if (elapsedTime > duration)
+		{
 			elapsedTime += endingTime;
+			bHasEnding = true;
+		}
+			
 	}
 	else if (state == State::Chase)
 	{
-		rangeCircle->SetStatus(OS_INACTIVE);
 		box->bGenerateOverlapEvent = true;
 		//타겟을 향해 이동
 		Math::Vector2 direction = target->GetLocation() - GetLocation();
 		direction.Normalize();
 		SetVelocity(direction, speed);
-
-		//타겟의 위치로 이동했으면 폭발 상태로.
-		float distance = Math::Vector2::Distance(GetLocation(), target->GetLocation());
-		if (distance <= 5)
-		{
-			state = State::Boom;
-			auto it = std::find(chasingEnemies.begin(), chasingEnemies.end(), target);
-			if (it != chasingEnemies.end()) 
-				chasingEnemies.erase(it);
-			target = nullptr;
-		}
+		elapsedTime = 0.f;
 	}
 	else if(state == State::Boom && bEnding == false)
 	{
@@ -118,31 +154,16 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
+
+		auto it = find(chasingEnemies.begin(), chasingEnemies.end(), target);
+		if(it != chasingEnemies.end())
+			chasingEnemies.erase(it);
 	}
 	else if (mv->GetStatus() == OS_INACTIVE)
 	{
 		Destroy();
+		auto it = find(chasingEnemies.begin(), chasingEnemies.end(), target);
+		if (it != chasingEnemies.end())
+			chasingEnemies.erase(it);
 	}
-}
-
-void ChasingWaterBallProjectile::Initialize()
-{
-	__super::Initialize();
-	target = nullptr;
-	chasingEnemies.clear();
-	state = State::Idle;
-	//xValue.SetData(&x);
-	//xValue.SetDuration(1.f);
-	//xValue.SetStartPoint(GetLocation().x + 100);
-	//xValue.SetEndPoint(GetLocation().x - 100);
-	//xValue.SetEasingEffect(EasingEffect::Linear);
-	//xValue.SetStepAnimation(StepAnimation::StepLoopPingPong);
-	//
-	//yValue.SetData(&y);
-	//yValue.SetDuration(0.5f);
-	//yValue.SetStartPoint(GetLocation().y - 5);
-	//yValue.SetEndPoint(GetLocation().y + 5);
-	//yValue.SetEasingEffect(EasingEffect::InOutBounce);
-	//yValue.SetStepAnimation(StepAnimation::StepLoopPingPong);
-
 }

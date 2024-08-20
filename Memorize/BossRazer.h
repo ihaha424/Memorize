@@ -13,7 +13,7 @@ class BossRazer : public BossSkillActor
 
 	class Player* player{ nullptr };
 
-	class SceneComponent* magicCircleHub;
+	class BitmapComponent* magicCircleHub;
 
 	bool startCharging{ false };
 	class AnimationBitmapComponent* lazerCharging;
@@ -23,7 +23,6 @@ class BossRazer : public BossSkillActor
 	class AnimationBitmapComponent* lazerShuttingDown;
 
 	class PolygonComponent* obb;
-
 	
 	using TakeDamageTimer = CoolTime<void>;
 
@@ -36,7 +35,7 @@ public:
 	float castTime{ 0.f };
 	float tickInterval{ 0.4 };
 	class AnimationBitmapComponent* magicCircle;
-	
+	class ClickComponent* clickComp;
 	BossRazer(class World* _world);
 	virtual ~BossRazer();
 
@@ -46,11 +45,10 @@ public:
 
 	virtual void Update(float _dt) override;
 
-	virtual void DisfellAction();
-	virtual void DisfellFailAction();
-	virtual void OnClicked();
+	virtual void DisfellAction() override;
+	virtual void DisfellFailAction() override;
 
-	virtual void SetDisfell();
+	void OnClicked() override;
 
 	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 

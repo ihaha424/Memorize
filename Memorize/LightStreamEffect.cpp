@@ -4,7 +4,7 @@
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/DamageEvent.h"
 
-LightStreamEffect::LightStreamEffect(World* _world) : Actor(_world)
+LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 	rootComponent = anim = CreateComponent<Animator>();
@@ -30,9 +30,8 @@ LightStreamEffect::LightStreamEffect(World* _world) : Actor(_world)
 	anim->Initialize(initialState);
 
 	obb = CreateComponent<PolygonComponent>();
+	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
 	obb->SetCollisionObjectType(ECollisionChannel::PlayerPattern);
-	obb->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
-	obb->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
 	obb->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
 	obb->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
 	obb->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
@@ -80,16 +79,17 @@ void LightStreamEffect::Update(float _dt)
 
 	elapsedTime += _dt;
 
-	if (state == State::Normal)
+	obb->bShouldOverlapTest = true;
+	damageTimer += _dt;
+	if (state == State::Initial || state == State::Ending)
 	{
-		obb->bShouldOverlapTest = true;
-		damageTimer += _dt;
+		obb->bShouldOverlapTest = false;
 	}
 
 	if (elapsedTime > initialTime && state == State::Initial)
 	{
 		state = State::Normal;
-		anim->SetState(normalState);
+		anim->SetState(normalState);	
 	}
 	else if (elapsedTime >= initialTime + duration && state == State::Normal)
 	{

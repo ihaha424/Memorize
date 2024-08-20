@@ -15,6 +15,8 @@ class Bat : public Actor, public IReflection
 	class Player* player{ nullptr };
 	
 	PointDamageEvent batDamageEvent;
+
+	float 추적_타이머{ 3.f };
 public:
 
 	float hp = 40.f;

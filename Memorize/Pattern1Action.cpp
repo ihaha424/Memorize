@@ -11,11 +11,11 @@ constexpr std::array<Math::Vector2, 8> ANGLES{
 	Math::Vector2{0, -1},
 	Math::Vector2{SQRT2_F, -SQRT2_F},
 	Math::Vector2{1, 0},
-	Math::Vector2{-SQRT2_F, -SQRT2_F},
+	Math::Vector2{SQRT2_F, SQRT2_F},
 	Math::Vector2{0, 1},
 	Math::Vector2{-SQRT2_F, SQRT2_F},
 	Math::Vector2{-1, 0},
-	Math::Vector2{SQRT2_F, -SQRT2_F},
+	Math::Vector2{-SQRT2_F, -SQRT2_F},
 };
 constexpr std::size_t NUM_ANGLES = ANGLES.size();
 
@@ -44,7 +44,16 @@ void Pattern1Action::Run(float dt)
 		float smallestAngle = FLOAT_MAX;
 		for (int i = 0; i < NUM_ANGLES; ++i)
 		{
-			float angle = toPlayer.Dot(ANGLES[i]);
+			/*Math::Vector2 w = ANGLES[i];
+			Math::Vector2 v = toPlayer;
+
+			float x = w.y * v.x - w.x * v.y;
+			float y = w.x * v.x + w.y * v.y;
+			float rad = atan2(x, y);
+			float angle = Math::RadianToDegree(rad);*/
+
+			float d = ANGLES[i].Dot(toPlayer) / ANGLES[i].Length() / toPlayer.Length();
+			float angle = Math::RadianToDegree(std::acos(d));
 			if (smallestAngle > angle)
 			{
 				index = i;
