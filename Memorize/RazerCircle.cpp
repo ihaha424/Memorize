@@ -1,5 +1,7 @@
 #include "RazerCircle.h"
 
+#include "D2DGameEngine/EventBus.h"
+
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Level.h"
 #include "D2DGameEngine/ReflectionResource.h"
@@ -102,6 +104,10 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 		1000.f
 	);
 	circleDamage.radialDamageInfo = damageInfo;
+
+	disfellCommandCount = 4;
+	CreateDisfellCommand();
+	CreateComponent<ClickComponent>();
 }
 
 void RazerCircle::BeginPlay()
@@ -157,6 +163,20 @@ void RazerCircle::Update(float _dt)
 void RazerCircle::DisfellAction()
 {
 	DestroyThis();
+}
+
+void RazerCircle::DisfellFailAction()
+{
+	disfellCommand.clear();
+	dissfellindex = 0;
+	CreateDisfellCommand();
+}
+
+void RazerCircle::OnClicked()
+{
+	__super::OnClicked();
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
 
 void RazerCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
