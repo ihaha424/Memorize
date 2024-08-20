@@ -10,7 +10,7 @@ Boss::Boss(World* _world) : Character(_world)
 
 	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
 	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
-	box->collisionProperty.SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Block);
+	//box->collisionProperty.SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Block);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Overlap);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Overlap);
 

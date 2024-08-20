@@ -17,5 +17,7 @@ public:
     void BeginPlay() override;
 
     void InputKey(int _key);
+
+    bool OneTImeOneInput = false;
 };
 

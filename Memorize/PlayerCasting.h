@@ -27,6 +27,7 @@ public:
 	std::vector<BYTE>	commandList{};
 	size_t				index = 1;
 	bool				saveDirtyFlag = false;
+	bool				NoCastingState = false;
 	//or queue
 
 };
