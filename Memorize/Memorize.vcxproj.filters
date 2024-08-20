@@ -461,7 +461,7 @@
     <ClCompile Include="ManaOverloadComponent.cpp">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClCompile>
-    <ClCompile Include="MemorizeEffect.cpp">
+    <ClCompile Include="HeadEffect.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
   </ItemGroup>
@@ -799,7 +799,7 @@
     <ClInclude Include="ManaOverloadComponent.h">
       <Filter>Source Files\App\Skill\Buff</Filter>
     </ClInclude>
-    <ClInclude Include="MemorizeEffect.h">
+    <ClInclude Include="HeadEffect.h">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
   </ItemGroup>

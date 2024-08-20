@@ -105,7 +105,7 @@ public:
 	 * @return 
 	 */
 	bool CheckMemorize();
-	void SwapMemorize() { std::swap(curSkillInfo, MemorizeSkill); player->StartMemorizeEffect(); }
+	void SwapMemorize() { std::swap(curSkillInfo, MemorizeSkill); player->StartHeadEffect(0); }
 
 	void InitializeMemorize() { MemorizeSkill.element = ESkillElement::SE_END; MemorizeSkill.type = ESkillType::ST_END; }
 

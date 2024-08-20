@@ -31,6 +31,7 @@ void Enchant::UseSkill()
 	abm->SliceSpriteSheet(250, 330, 0, 0, 0, 0);
 	abm->FrameResize(20);
 	abm->SetFrameDurations({ 0.025 });
+	abm->Trigger(false); 
 	abm->Trigger(true);
 	abm->SetLoop(true);
 	player->buffEffect->SetStatus(OS_ACTIVE);

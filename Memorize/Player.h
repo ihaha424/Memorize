@@ -76,12 +76,12 @@ public:
 	class GCameraComponent* cm;
 	class ManaOverloadComponent* manaOverloadEffect;
 	
-	Math::Vector2 memorizePos;
+	Math::Vector2 headEffectPos;
 public:
 	Player(class World* _world);
 	virtual ~Player();
 
-	void StartMemorizeEffect();
+	void StartHeadEffect(int index);
 	void AddSkillUses() { skillUses++; };
 	int GetSkillUses() { return skillUses; }
 	void AddToStat(Stat _addStat);

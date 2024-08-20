@@ -31,6 +31,7 @@ void ElementalMaster::UseSkill()
 	abm->SliceSpriteSheet(550, 550, 0, 0, 0, 0);
 	abm->FrameResize(97);
 	abm->SetFrameDurations({ castingTime / 97.f });
+	abm->Trigger(false); 
 	abm->Trigger(true);
 	abm->SetLoop(true);
 	controller->elementalMasterComponent->SetStatus(OS_ACTIVE);

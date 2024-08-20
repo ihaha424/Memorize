@@ -16,7 +16,7 @@
 #include "MagicCircle.h"
 #include "BuffEffectComponent.h"
 #include "ManaOverloadComponent.h"
-#include "MemorizeEffect.h"
+#include "HeadEffect.h"
 #include "ElementalMasterComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
@@ -112,11 +112,11 @@ Player::~Player()
 {
 }
 
-void Player::StartMemorizeEffect()
+void Player::StartHeadEffect(int index)
 {
-	MemorizeEffect* memorize = GetWorld()->GetEffectSystem().CreateEffect<MemorizeEffect>();
-	memorize->StartEffect();
-	memorize->SetPosition(&memorizePos);
+	HeadEffect* effect = GetWorld()->GetEffectSystem().CreateEffect<HeadEffect>();
+	effect->SetEffect(index);
+	effect->SetPosition(&headEffectPos);
 }
 
 void Player::AddToStat(Stat _addStat)
@@ -156,7 +156,7 @@ void Player::Update(float _dt)
 
 	orb->SetTranslation(100 * direction.x, direction.y * 5);
 
-	memorizePos = { GetLocation().x, GetLocation().y - 230 };
+	headEffectPos = { GetLocation().x, GetLocation().y - 230 };
 }
 
 void Player::Render(D2DRenderer* _renderer)

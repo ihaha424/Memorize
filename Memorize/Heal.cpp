@@ -27,13 +27,14 @@ void Heal::UseSkill()
 	__super::UseSkill();
 
 	BuffEffectComponent* abm = player->buffEffect;
-	abm->SetSprite(L"TestResource/Player/Skill/Skill_Enchant.png");
-	abm->SliceSpriteSheet(250, 330, 0, 0, 0, 0);
-	abm->FrameResize(20);
-	abm->SetFrameDurations({ castingTime / 20.f });
+	abm->SetSprite(L"TestResource/Player/Skill/Skill_Heal02.png");
+	abm->SliceSpriteSheet(500, 500, 0, 0, 0, 0);
+	abm->SetFrameDurations({ 1.0f / 24.f });
+	abm->Trigger(false);
 	abm->Trigger(true);
 	abm->SetLoop(true);
 	player->buffEffect->SetStatus(OS_ACTIVE);
+	player->StartHeadEffect(1);
 }
 
 void Heal::ReflectionIn()
