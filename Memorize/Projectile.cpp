@@ -9,7 +9,7 @@
 #include "Boss.h"
 #include "BossProjectile.h"
 
-Projectile::Projectile(World* _world) : Actor(_world)
+Projectile::Projectile(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 

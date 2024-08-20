@@ -4,7 +4,7 @@
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/DamageEvent.h"
 
-LightStreamEffect::LightStreamEffect(World* _world) : Actor(_world)
+LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 	rootComponent = anim = CreateComponent<Animator>();

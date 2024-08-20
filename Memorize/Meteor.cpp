@@ -14,6 +14,7 @@ Meteor::Meteor(Actor* _owner) : RangeSkill(_owner)
 
 	//메테오 효과 액터 생성
 	meteorEffect = GetWorld()->GetCurLevel()->CreateActor<MeteorEffect>();
+	meteorEffect->SetSkillID(id);
 }
 
 Meteor::~Meteor()

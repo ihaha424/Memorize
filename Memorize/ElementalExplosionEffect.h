@@ -1,7 +1,7 @@
 #pragma once
-#include "D2DGameEngine/Actor.h"
+#include "SkillActor.h"
 
-class ElementalExplosionEffect : public Actor
+class ElementalExplosionEffect : public SkillActor
 {
 	class BitmapComponent* bm;
 	float duration = 0.5f;

@@ -1,7 +1,7 @@
 #pragma once
-#include "D2DGameEngine/Actor.h"
+#include "SkillActor.h"
 
-class LightStreamEffect : public Actor
+class LightStreamEffect : public SkillActor
 {
 	enum class State
 	{

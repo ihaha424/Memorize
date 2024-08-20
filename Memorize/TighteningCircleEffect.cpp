@@ -3,7 +3,7 @@
 #include "../D2DGameEngine/AnimationBitmapComponent.h"
 #include "../D2DGameEngine/CircleComponent.h"
 
-TighteningCircleEffect::TighteningCircleEffect(World* _world) :Actor(_world)
+TighteningCircleEffect::TighteningCircleEffect(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 
