@@ -43,8 +43,6 @@ public:
 			return GetCurLevel()->FindAllActorsByType<T>();
 		}
 
-    void AddUICanvas(class Canvas* canvas);
-    void RemoveUICanvas(class Canvas* canvas);
     class Canvas* GetCanvas() { return canvas; }
 
     Math::Vector2 ScreenToWorldPoint(Math::Vector2 position);

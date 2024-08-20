@@ -16,7 +16,8 @@ void Canvas::Update(float _dt)
 {
 	for (auto panel : panelList)
 	{
-		panel->Update(_dt);
+		if (panel->GetStatus() == OS_ACTIVE)
+			panel->Update(_dt);
 	}
 }
 

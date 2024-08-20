@@ -1,6 +1,7 @@
 #include "PrismReflectionProjectile.h"
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/PolygonComponent.h"
 
 PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile(_world)
 {
@@ -12,7 +13,9 @@ PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile
 	bIsPassable = true;
 	bCollideWithOtherAttack = true;
 
-	bIsPassable = false;
+	box->SetPolygon({ {-100, 50}, {100, -50}, {-100, -50}, {100, 50} });
+
+	bIsPassable = true;
 	bCollideWithOtherAttack = true;
 	bHasEnding = false;
 	endingTime = 0.f;

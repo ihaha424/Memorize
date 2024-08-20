@@ -2,25 +2,21 @@
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/DamageEvent.h"
-#include "D2DGameEngine/BoxComponent.h"
+#include "D2DGameEngine/PolygonComponent.h"
 
 AggressiveWavesEffect::AggressiveWavesEffect(World* _world) : Projectile(_world)
 {
-	normalState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
-	normalState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
+	normalState->SetSprite(L"TestResource/Player/Skill/Skill_AggressiveWaves.png");
+	normalState->SliceSpriteSheet(1024, 1024, 0, 0, 0, 0);
 	normalState->FrameResize(73);
 	normalState->SetFrameDurations({ 0.05f });
 	anim->Initialize(normalState);
 
-	endingState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere02.png");
-	endingState->SliceSpriteSheet(150, 150, 0, 0, 0, 0);
-	endingState->FrameResize(7);
-	endingState->SetFrameDurations({ 0.14285f });
-
-	box->SetBoxExtent({ 130, 200 });
+	box->SetPolygon({ {-200, 400}, {200, -400}, {-200, -400}, {200, 400} });
 
 	bIsPassable = true;
 	bEnding = false;
+	bHasEnding = false;
 	bCollideWithOtherAttack = true;
 }
 

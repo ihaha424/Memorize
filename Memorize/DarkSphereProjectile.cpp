@@ -1,7 +1,7 @@
 #include "DarkSphereProjectile.h"
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/Animator.h"
-#include "D2DGameEngine/BoxComponent.h"
+#include "D2DGameEngine/PolygonComponent.h"
 #include "MovementComponent.h"
 
 DarkSphereProjectile::DarkSphereProjectile(World* _world) : Projectile(_world)
@@ -17,7 +17,7 @@ DarkSphereProjectile::DarkSphereProjectile(World* _world) : Projectile(_world)
 	endingState->FrameResize(7);
 	endingState->SetFrameDurations({ 0.14285f });
 
-	box->InitBoxExtent({ 140, 254 });
+	box->SetPolygon({ {-60, 60}, {60, -60}, {-60, -60}, {60, 60} });
 
 	endingTime = 1.f;
 	bIsPassable = false;
