@@ -31,6 +31,7 @@ void AggressiveWaves::UseSkill()
 		float radians = angles[i] * PI / 180.f;
 		Math::Vector2 newDir ={ std::cos(radians),std::sin(radians)};
 		waveEffects[i]->SetVelocity(newDir, speed);
+		waveEffects[i]->SetDamage(damage);
 	}
 	waveEffects[0]->SetRotation(-45);
 	waveEffects[1]->SetRotation(45);

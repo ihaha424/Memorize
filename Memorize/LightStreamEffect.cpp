@@ -30,9 +30,8 @@ LightStreamEffect::LightStreamEffect(World* _world) : Actor(_world)
 	anim->Initialize(initialState);
 
 	obb = CreateComponent<PolygonComponent>();
+	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
 	obb->SetCollisionObjectType(ECollisionChannel::PlayerPattern);
-	obb->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
-	obb->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
 	obb->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
 	obb->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
 	obb->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.

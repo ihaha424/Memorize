@@ -34,6 +34,7 @@ void Meteor::UseSkill()
 	direction.Normalize();
 
 	meteorEffect->SetVelocity(direction, fallSpeed);
+	meteorEffect->SetDamage(damage);
 
 }
 
