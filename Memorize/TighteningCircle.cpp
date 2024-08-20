@@ -12,7 +12,7 @@ TighteningCircle::TighteningCircle(Actor* _owner) : RangeSkill(_owner)
 
 	//원 효과 액터 생성
 	circleEffect = GetWorld()->GetCurLevel()->CreateActor<TighteningCircleEffect>();
-	
+	circleEffect->SetSkillID(id);
 }
 
 TighteningCircle::~TighteningCircle()

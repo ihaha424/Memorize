@@ -32,5 +32,6 @@ void ProjectileSkill::UseSkill()
 	for (auto pj : projectiles)
 	{
 		pj->Initialize();
+		pj->SetSkillID(id);
 	}
 }

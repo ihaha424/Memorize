@@ -4,7 +4,7 @@
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/DamageEvent.h"
 
-LightStreamEffect::LightStreamEffect(World* _world) : Actor(_world)
+LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 	rootComponent = anim = CreateComponent<Animator>();
@@ -79,16 +79,17 @@ void LightStreamEffect::Update(float _dt)
 
 	elapsedTime += _dt;
 
-	if (state == State::Normal)
+	obb->bShouldOverlapTest = true;
+	damageTimer += _dt;
+	if (state == State::Initial || state == State::Ending)
 	{
-		obb->bShouldOverlapTest = true;
-		damageTimer += _dt;
+		obb->bShouldOverlapTest = false;
 	}
 
 	if (elapsedTime > initialTime && state == State::Initial)
 	{
 		state = State::Normal;
-		anim->SetState(normalState);
+		anim->SetState(normalState);	
 	}
 	else if (elapsedTime >= initialTime + duration && state == State::Normal)
 	{

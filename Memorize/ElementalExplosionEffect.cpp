@@ -3,7 +3,7 @@
 #include "D2DGameEngine/BoxComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 
-ElementalExplosionEffect::ElementalExplosionEffect(World* _world) : Actor(_world)
+ElementalExplosionEffect::ElementalExplosionEffect(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_UPDATE | TICK_RENDER);
 	rootComponent = bm = CreateComponent<BitmapComponent>();

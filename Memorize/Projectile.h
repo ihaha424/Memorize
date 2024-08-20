@@ -1,7 +1,7 @@
 #pragma once
-#include "../D2DGameEngine/Actor.h"
+#include "SkillActor.h"
 
-class Projectile : public Actor
+class Projectile : public SkillActor
 {
 protected:
 	class Player* player = nullptr;

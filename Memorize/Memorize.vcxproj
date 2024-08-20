@@ -240,6 +240,7 @@
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="SkillActor.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="TestWall.cpp" />
     <ClCompile Include="TestActor2.cpp" />
@@ -351,6 +352,7 @@
     <ClInclude Include="SetPeriodicCoolTime.h" />
     <ClInclude Include="Signal.h" />
     <ClInclude Include="Skill.h" />
+    <ClInclude Include="SkillActor.h" />
     <ClInclude Include="SkillList.h" />
     <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="TestLevel.h" />

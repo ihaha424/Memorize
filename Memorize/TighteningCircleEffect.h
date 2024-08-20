@@ -1,10 +1,10 @@
 #pragma once
-#include "D2DGameEngine/Actor.h"
+#include "SkillActor.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "D2DGameEngine/DotTween.h"
 #include "CoolTime.h"
 
-class TighteningCircleEffect : public Actor
+class TighteningCircleEffect : public SkillActor
 {
 public:
 	TighteningCircleEffect(class World* _world);
