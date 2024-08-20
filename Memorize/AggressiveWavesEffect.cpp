@@ -29,14 +29,6 @@ void AggressiveWavesEffect::BeginPlay()
 	__super::BeginPlay();
 }
 
-void AggressiveWavesEffect::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
-{
-	__super::OnBeginOverlap(other, overlap);
-
-	DamageEvent damageEvent;
-	other->TakeDamage(damage, damageEvent, nullptr, this);
-}
-
 void AggressiveWavesEffect::Update(float _dt)
 {
 	__super::Update(_dt);

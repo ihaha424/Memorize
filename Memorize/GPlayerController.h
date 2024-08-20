@@ -35,7 +35,7 @@ public:
 
 	//Signal for UI
 	Signal<int,int>* OnBeginDisfell;
-	Signal<int>* OnDoingDisfell;
+	Signal<int, int>* OnDoingDisfell;
 
 	//Mana overload skill
 	bool bManaOverload = false;
@@ -56,6 +56,7 @@ public:
 	void InitializeSkill();
 
 	SkilID GetCurSkillInfo() { return curSkillInfo; }
+	bool GetCurSkillOpend();
 
 	int GetPlayerCastingIndex();
 	bool isPlayerAfterCasting();

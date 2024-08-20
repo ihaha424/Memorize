@@ -17,10 +17,14 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 
 	SetPosition(70, 1080/2);
 
-	Qbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Q.png")->GetResource();
-	Wbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/W.png")->GetResource();
-	Ebm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/E.png")->GetResource();
-	Rbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/R.png")->GetResource();
+	Qbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button01.png")->GetResource();
+	Wbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button02.png")->GetResource();
+	Ebm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button03.png")->GetResource();
+	Rbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button04.png")->GetResource();
+	Qbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button05.png")->GetResource();
+	Wbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button06.png")->GetResource();
+	Ebm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button07.png")->GetResource();
+	Rbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button08.png")->GetResource();
 
 	q = CreateUI<UIImage>(L"Q");
 	q->SetSprite(Qbm);
@@ -76,13 +80,28 @@ void ElementsPanel::Update(float _dt)
 	ESkillType curSkillType = playerController->GetCurSkillInfo().type;
 	ESkillElement curSkillElement = playerController->GetCurSkillInfo().element;
 
+
+	//다 눌렀으면 0.5초 후에 사라지게 함 
+	if (ending)
+	{
+		elapsedTime += _dt;
+		if (elapsedTime > 0.5f)
+		{
+			elapsedTime = 0.f;
+			ending = false;
+		}
+	}
+
 	if (playerController->isPlayerAfterCasting() || playerController->bElementalMaster)
 	{
-		HideAllCommands();
-		q->SetSprite(Qbm);
-		w->SetSprite(Wbm);
-		e->SetSprite(Ebm);
-		r->SetSprite(Rbm);
+		if (!ending || playerController->bElementalMaster)
+		{
+			HideAllCommands();
+			q->SetSprite(Qbm);
+			w->SetSprite(Wbm);
+			e->SetSprite(Ebm);
+			r->SetSprite(Rbm);
+		}
 		return;
 	}
 	else if (playerController->GetPlayerState() == L"PlayerBlinking")
@@ -93,7 +112,7 @@ void ElementsPanel::Update(float _dt)
 	//스킬 타입까지 정해진 경우
 	if (curSkillElement != SE_END && curSkillType != ST_END)
 	{
-
+		ending = false;
 		HideAllCommands();
 		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
 		infoTexts[curSkillType]->Activate();
@@ -103,7 +122,8 @@ void ElementsPanel::Update(float _dt)
 		int curSkillInputCommand = playerController->GetPlayerCastingIndex();
 		for (int i = 0; i < curSkillInputCommand; i++)
 		{
-			commands[curSkillType][i]->Inactivate();
+			SetOff(CheckSkillType(), curSkillType, i);
+			ending = true;
 		}
 		
 	}
@@ -114,12 +134,17 @@ void ElementsPanel::Update(float _dt)
 	}
 	else
 	{
-		HideAllCommands();
-		q->SetSprite(Qbm);
-		w->SetSprite(Wbm);
-		e->SetSprite(Ebm);
-		r->SetSprite(Rbm);
+		if(!ending)
+		{
+			HideAllCommands();
+			q->SetSprite(Qbm);
+			w->SetSprite(Wbm);
+			e->SetSprite(Ebm);
+			r->SetSprite(Rbm);
+		}
 	}
+
+
 }
 
 void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands)
@@ -139,6 +164,7 @@ void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands, int t
 		{
 		case 0:
 			commands[type][x]->SetSprite(Qbm);
+
 			break;
 		case 1:
 			commands[type][x]->SetSprite(Wbm);
@@ -152,6 +178,27 @@ void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands, int t
 		}
 		commands[type][x]->Activate();
 	}
+}
+
+void ElementsPanel::SetOff(std::vector<std::vector<int>> elementCommands, int type, int index)
+{
+	switch (elementCommands[type][index])
+	{
+	case 0:
+		commands[type][index]->SetSprite(Qbm_off);
+		break;
+	case 1:
+		commands[type][index]->SetSprite(Wbm_off);
+		break;
+	case 2:
+		commands[type][index]->SetSprite(Ebm_off);
+		break;
+	case 3:
+		commands[type][index]->SetSprite(Rbm_off);
+		break;
+	}
+	commands[type][index]->Activate();
+
 }
 
 void ElementsPanel::HideAllCommands()
@@ -171,36 +218,86 @@ void ElementsPanel::SetSkillList()
 	if (playerController == nullptr) return;
 
 	ESkillElement nowElement = playerController->GetCurSkillInfo().element;
+
 	if (nowElement == SE_FIRE)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/Icon/Icon_Enchant.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		if(playerController->FindSkiil(SE_FIRE, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_Fireball.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_Fireball_off.png");
+
+		if (playerController->FindSkiil(SE_FIRE, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_Meteor.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_Meteor_off.png");
+		if (playerController->FindSkiil(SE_FIRE, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_Enchant.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_Enchant_off.png");
+		if (playerController->FindSkiil(SE_FIRE, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalExplosion.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalExplosion_off.png");
 		SetQWER(fireCommands);
 	}
 	else if (nowElement == SE_WATER)
 	{
-		q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall.png");
-		w->SetSprite(L"TestResource/UI/Skill/Meteor.png");
-		e->SetSprite(L"TestResource/UI/Skill/Enchant.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		if (playerController->FindSkiil(SE_WATER, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_ChasingWaterBall_off.png");
+		if (playerController->FindSkiil(SE_WATER, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_AggressiveWaves.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_AggressiveWaves_off.png");
+		if (playerController->FindSkiil(SE_WATER, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_ManaOverload.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_ManaOverload_off.png");
+		if (playerController->FindSkiil(SE_WATER, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_Heal.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_Heal_off.png");
 		SetQWER(waterCommands);
 	}
 	else if (nowElement == SE_LIGHT)
 	{
-		q->SetSprite(L"TestResource/UI/Skill/Fireball.png");
-		w->SetSprite(L"TestResource/Icon/Icon_LightStream.png");
-		e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease.png");
-		r->SetSprite(L"TestResource/UI/Skill/ElementalExplosion.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_PrismReflection.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_PrismReflection_off.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_LightStream.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_LightStream_off.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_MPMaxIncrease_off.png");
+		if (playerController->FindSkiil(SE_LIGHT, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_Purification.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_Purification_off.png");
 		SetQWER(lightCommands);
 	}
 	else if (nowElement == SE_DARKNESS)
 	{
-		q->SetSprite(L"TestResource/Icon/Icon_DarkSphere.png");
-		w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle.png");
-		e->SetSprite(L"TestResource/Icon/Icon_MPrecovery.png");
-		r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_PROJECTILE)->IsUnlocked())
+			q->SetSprite(L"TestResource/Icon/Icon_DarkSphere.png");
+		else
+			q->SetSprite(L"TestResource/Icon/Icon_DarkSphere_off.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_RANGE)->IsUnlocked())
+			w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle.png");
+		else
+			w->SetSprite(L"TestResource/Icon/Icon_TighteningCircle_off.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_BUFF)->IsUnlocked())
+			e->SetSprite(L"TestResource/Icon/Icon_MPrecovery.png");
+		else
+			e->SetSprite(L"TestResource/Icon/Icon_MPrecovery_off.png");
+		if (playerController->FindSkiil(SE_DARKNESS, ST_SPECIAL)->IsUnlocked())
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster.png");
+		else
+			r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster_off.png");
 		SetQWER(darkCommands);
 	}
 }

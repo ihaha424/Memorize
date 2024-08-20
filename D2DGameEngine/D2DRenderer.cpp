@@ -49,10 +49,6 @@ D2DRenderer::~D2DRenderer() {
 	FactoryManager::Destroy();
 }
 
-ID2D1HwndRenderTarget* D2DRenderer::GetRenderTarget() {
-	return renderTarget.get();
-}
-
 void D2DRenderer::BeginDraw() {
 	renderTarget->BeginDraw();
 	renderTarget->Clear();
@@ -344,4 +340,12 @@ void D2DRenderer::CreateRenderTarget() {
 			&brush
 		);
 	}
+
+	ID2D1DeviceContext* deviceContext;
+	hr = renderTarget->QueryInterface(
+		__uuidof(ID2D1DeviceContext),
+		(void**)&deviceContext
+	);
+
+	dc.reset(deviceContext);
 }

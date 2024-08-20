@@ -19,6 +19,11 @@ public:
 	class ID2D1Bitmap* Ebm;
 	class ID2D1Bitmap* Rbm;
 
+	class ID2D1Bitmap* Qbm_off;
+	class ID2D1Bitmap* Wbm_off;
+	class ID2D1Bitmap* Ebm_off;
+	class ID2D1Bitmap* Rbm_off;
+
 	std::vector<std::vector<int>> fireCommands;
 	std::vector<std::vector<int>> waterCommands;
 	std::vector<std::vector<int>> lightCommands;
@@ -28,11 +33,15 @@ public:
 
 	class GPlayerController* playerController;
 
+	bool ending = false;
+	float elapsedTime = 0.f;
+
 	virtual void Update(float _dt) override;
 	void SetPlayerController(class GPlayerController* _playerController) { playerController = _playerController; }
 
 	void SetQWER(std::vector<std::vector<int>> elementCommands);
 	void SetQWER(std::vector<std::vector<int>> elementCommands, int type);
+	void SetOff(std::vector<std::vector<int>> elementCommands, int type, int index);
 	void HideAllCommands();
 	void SetSkillList();
 	std::vector<std::vector<int>> CheckSkillType();

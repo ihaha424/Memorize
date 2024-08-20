@@ -22,7 +22,12 @@ void BitmapComponent::Render(D2DRenderer* _renderer)
 		.bottom = halfHeight
 	};
 
-	_renderer->DrawSprite(sprite->GetResource(), dest, frame);
+	_renderer->DrawSprite(
+		sprite->GetResource(), 
+		dest, 
+		frame,
+		opacity
+	);
 
 #ifndef NDEBUG
 	_renderer->DrawBorder(

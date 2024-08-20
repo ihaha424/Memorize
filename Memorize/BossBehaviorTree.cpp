@@ -57,7 +57,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 			Selector* mainBehaviorSelector = CreateNode<Selector>();
 			rootSelector->PushBackChild(mainBehaviorSelector);
 
-			{	// -> mainBehaviorSelector 1
+			{	// -> mainBehaviorSelector 1: Periodic Patterns
 				// Main Behavior Branch
 				Condition* IsCooledDown = CreateNode<Condition>();
 				mainBehaviorSelector->PushBackChild(IsCooledDown);
@@ -88,26 +88,26 @@ void BossBehaviorTree::BuildBehaviorTree()
 					periodicPatternSelector->SetRandomWeights({ 1.0 });
 				}
 			}	// <- mainBehaviorSelector 1 
-			{	// -> mainBehaviorSelector 2
+			{	// -> mainBehaviorSelector 2: Move
 				// MoveAction
 				INode* moveAction = BuildPatternSubtree(Pattern::Move);
 				mainBehaviorSelector->PushBackChild(moveAction);
 			}	// <- mainBehaviorSelector 2
-			{	// -> mainBehaviorSelector 3
+			{	// -> mainBehaviorSelector 3: Teleport
 				//	Teleporting Condition
 				INode* teleportAction = BuildPatternSubtree(Pattern::Teleport);
 				mainBehaviorSelector->PushBackChild(teleportAction);
 			}	// <- mainBehaviorSelector 3
-			{	// -> mainBehaviorSelector 4
+			{	// -> mainBehaviorSelector 4: Boss phases
 				//	BossPhase
-				Selector* bossPhaseSelector = CreateNode<Selector>();
+				RandomSelector* bossPhaseSelector = CreateNode<RandomSelector>();
 				mainBehaviorSelector->PushBackChild(bossPhaseSelector);
 				{	// -> bossPhaseSelector 1
 					Condition* BossPhase_One = CreateNode<Condition>();
 					bossPhaseSelector->PushBackChild(BossPhase_One);
 					BossPhase_One->_successCondition = [this]() {
 						float hpPercent = (float) boss->hp / boss->maxHp;
-						return (0.75f < hpPercent && hpPercent <= 1.f);
+						return (hpPercent <= 1.f);
 					};
 					{	// Boss Phase One
 						RandomSelector* phaseOneRandomSelector = CreateNode<RandomSelector>();
@@ -160,7 +160,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 					bossPhaseSelector->PushBackChild(BossPhase_Two);
 					BossPhase_Two->_successCondition = [this]() {
 						float hpPercent = (float)boss->hp / boss->maxHp;
-						return (0.25f < hpPercent && hpPercent <= 0.75f);
+						return (hpPercent <= 0.75f);
 					};
 					{
 						Selector* Phase_Pattern_Select = CreateNode<Selector>();
@@ -170,7 +170,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 							Condition* Phase_Two_Periodic = CreateNode<Condition>();
 							Phase_Pattern_Select->PushBackChild(Phase_Two_Periodic);
 							Phase_Two_Periodic->_successCondition = [this]() {
-								return boss->Phase_Pattern_Cool_Time < 0.f;
+								return boss->Periodic_Pattern_Cool_Time <= 0.f;
 							};
 							//Pattern09
 							// Phase_Pattern_Cool_Time = Pattern19->DelayTime
@@ -359,6 +359,8 @@ void BossBehaviorTree::BuildBehaviorTree()
 						}
 					}
 				}	// <- bossPhaseSelector 3
+
+				bossPhaseSelector->SetRandomWeights({ 3.f, 2.f, 1.f });
 			}
 		}
 	}
@@ -667,7 +669,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		moveToCenter->SetDestination(GET_MAP_CENTER());
 
 		Pattern6Action* pattern6Action = CreateNode<Pattern6Action>();
-		pattern6Action->SetCooldown(15.f);
+		pattern6Action->SetCooldown(11.f + 15.f);
 		pattern6Action->SetPatternInterval(11.f);
 		pattern6Action->SetTreeCooldown(3.f);
 
@@ -731,7 +733,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		setDestination->Wrap(moveToPlayer);
 
 		Pattern7Action* pattern7Action = CreateNode<Pattern7Action>();
-		pattern7Action->SetCooldown(20.f);
+		pattern7Action->SetCooldown(20.f + 5.f);
 		pattern7Action->SetPatternInterval(5.f);
 		pattern7Action->SetTreeCooldown(4.f);
 
@@ -746,7 +748,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	} break;
 	case BossBehaviorTree::Pattern::Pattern9: {
 		Pattern9Action* pattern9Action = CreateNode<Pattern9Action>();
-		pattern9Action->SetCooldown(15.f);
+		pattern9Action->SetCooldown(15.f + 5.f);
 		pattern9Action->SetPatternInterval(5.f);
 		pattern9Action->SetTreeCooldown(2.f);
 		return pattern9Action;
@@ -761,7 +763,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		moveToCenter->SetDestination(GET_MAP_CENTER());	// 센터로 이동
 
 		Pattern10Action* pattern10Action = CreateNode<Pattern10Action>();
-		pattern10Action->SetCooldown(20.f);
+		pattern10Action->SetCooldown(20.f + 11.f);
 		pattern10Action->SetPatternInterval(11.f);
 		pattern10Action->SetTreeCooldown(5.f);
 

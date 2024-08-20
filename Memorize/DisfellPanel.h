@@ -12,7 +12,13 @@ class DisfellPanel : public UIPanel
 	class ID2D1Bitmap* Wbm;
 	class ID2D1Bitmap* Ebm;
 	class ID2D1Bitmap* Rbm;
+	class ID2D1Bitmap* Qbm_off;
+	class ID2D1Bitmap* Wbm_off;
+	class ID2D1Bitmap* Ebm_off;
+	class ID2D1Bitmap* Rbm_off;
 
+	bool ending = false;
+	float elapsedTime = 0.f;
 public:
 	DisfellPanel(World* _world);
 	virtual ~DisfellPanel();
@@ -28,6 +34,6 @@ public:
 	 * @brief index번째 커맨드 이미지를 숨깁니다. 
 	 * @param index 숨길 커맨드 번째수
 	 */
-	void HideCommandImage(int index);
+	void CommandImageOff(int index, int command);
 };
 
