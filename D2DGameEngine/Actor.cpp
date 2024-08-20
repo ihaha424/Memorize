@@ -87,7 +87,11 @@ bool Actor::Destroy()
 	for (auto [_, component] : components) {
 		PrimitiveComponent* primitiveComponent = dynamic_cast<PrimitiveComponent*>(component);
 		if (nullptr != primitiveComponent)
+		{
+			primitiveComponent->SetCollisionEnabled(CollisionEnabled::NoCollision);
+			primitiveComponent->bGenerateOverlapEvent = false;
 			GetWorld()->UnregisterComponentCollision(primitiveComponent);
+		}
 	}
 	if (status == OS_DESTROY)
 		return false;
@@ -98,7 +102,7 @@ bool Actor::Destroy()
 void Actor::FixedUpdate(float _fixedRate)
 {
 	for (auto [_, component] : components) {
-		if(component->CheckTickProperty(TICK_PHYSICS) && component->GetStatus() == OS_ACTIVE)
+		if(component->CheckTickProperty(TICK_PHYSICS) && (component->GetStatus() == OS_ACTIVE || component->GetStatus() == OS_DESTROY))
 			component->FixedUpdate(_fixedRate);
 	}
 }
