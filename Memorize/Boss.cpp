@@ -16,7 +16,7 @@ Boss::Boss(World* _world) : Character(_world)
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Overlap);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Overlap);
 
-	hp = maxHp;
+	hp = maxHp * 0.1f;
 
 	OnHPChanged = new Signal<float>;
 
@@ -38,6 +38,8 @@ void Boss::Update(float _dt)
 
 	if (Periodic_Pattern_Cool_Time > 0.f)
 		Periodic_Pattern_Cool_Time -= _dt;
+
+	OBJ_MESSAGE(dbg::text(Periodic_Pattern_Cool_Time));
 }
 
 void Boss::OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult)
