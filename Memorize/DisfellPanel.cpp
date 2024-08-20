@@ -16,7 +16,7 @@ DisfellPanel::DisfellPanel(World* _world) : UIPanel(_world)
 	{
 		disfellCommands.push_back(CreateUI<UIImage>(L"DisfellCommand" + i));
 		disfellCommands[i]->Inactivate();
-		disfellCommands[i]->SetPosition(1920/2 -600 + 50 * i, 30);
+		disfellCommands[i]->SetPosition(1920/2 -300 + 100 * i, 100);
 	}
 
 }

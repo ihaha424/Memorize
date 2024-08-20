@@ -6,7 +6,6 @@ class DisfellPanel : public UIPanel
 	std::vector<class UIImage*> disfellCommands;
 	int commandMaxCount = 8;
 
-	class Boss* boss;
 	class GPlayerController* playerController;
 
 	class ID2D1Bitmap* Qbm;
