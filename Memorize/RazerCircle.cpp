@@ -236,5 +236,8 @@ void RazerCircle::DestroyThis()
 	//attach3->RemoveChild(razer3->rootComponent);
 	//GetWorld()->UnregisterComponentCollision(circle);
 	//destroyThis = true;
+	razer3->Destroy();
+	razer2->Destroy();
+	razer1->Destroy();
 	Destroy();
 }
