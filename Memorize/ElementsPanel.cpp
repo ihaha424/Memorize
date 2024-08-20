@@ -17,10 +17,14 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 
 	SetPosition(70, 1080/2);
 
-	Qbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Q.png")->GetResource();
-	Wbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/W.png")->GetResource();
-	Ebm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/E.png")->GetResource();
-	Rbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/R.png")->GetResource();
+	Qbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button01.png")->GetResource();
+	Wbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button02.png")->GetResource();
+	Ebm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button03.png")->GetResource();
+	Rbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button04.png")->GetResource();
+	Qbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button05.png")->GetResource();
+	Wbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button06.png")->GetResource();
+	Ebm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button07.png")->GetResource();
+	Rbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button08.png")->GetResource();
 
 	q = CreateUI<UIImage>(L"Q");
 	q->SetSprite(Qbm);
@@ -78,11 +82,14 @@ void ElementsPanel::Update(float _dt)
 
 	if (playerController->isPlayerAfterCasting() || playerController->bElementalMaster)
 	{
-		HideAllCommands();
-		q->SetSprite(Qbm);
-		w->SetSprite(Wbm);
-		e->SetSprite(Ebm);
-		r->SetSprite(Rbm);
+		if (!ending || playerController->bElementalMaster)
+		{
+			HideAllCommands();
+			q->SetSprite(Qbm);
+			w->SetSprite(Wbm);
+			e->SetSprite(Ebm);
+			r->SetSprite(Rbm);
+		}
 		return;
 	}
 	else if (playerController->GetPlayerState() == L"PlayerBlinking")
@@ -93,7 +100,7 @@ void ElementsPanel::Update(float _dt)
 	//스킬 타입까지 정해진 경우
 	if (curSkillElement != SE_END && curSkillType != ST_END)
 	{
-
+		ending = false;
 		HideAllCommands();
 		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
 		infoTexts[curSkillType]->Activate();
@@ -103,7 +110,8 @@ void ElementsPanel::Update(float _dt)
 		int curSkillInputCommand = playerController->GetPlayerCastingIndex();
 		for (int i = 0; i < curSkillInputCommand; i++)
 		{
-			commands[curSkillType][i]->Inactivate();
+			SetOff(CheckSkillType(), curSkillType, i);
+			ending = true;
 		}
 		
 	}
@@ -114,11 +122,25 @@ void ElementsPanel::Update(float _dt)
 	}
 	else
 	{
-		HideAllCommands();
-		q->SetSprite(Qbm);
-		w->SetSprite(Wbm);
-		e->SetSprite(Ebm);
-		r->SetSprite(Rbm);
+		if(!ending)
+		{
+			HideAllCommands();
+			q->SetSprite(Qbm);
+			w->SetSprite(Wbm);
+			e->SetSprite(Ebm);
+			r->SetSprite(Rbm);
+		}
+	}
+
+	//다 눌렀으면 0.5초 후에 사라지게 함 
+	if (ending)
+	{
+		elapsedTime += _dt;
+		if (elapsedTime > 0.5f)
+		{
+			elapsedTime = 0.f;
+			ending = false;
+		}
 	}
 }
 
@@ -139,6 +161,7 @@ void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands, int t
 		{
 		case 0:
 			commands[type][x]->SetSprite(Qbm);
+
 			break;
 		case 1:
 			commands[type][x]->SetSprite(Wbm);
@@ -152,6 +175,27 @@ void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands, int t
 		}
 		commands[type][x]->Activate();
 	}
+}
+
+void ElementsPanel::SetOff(std::vector<std::vector<int>> elementCommands, int type, int index)
+{
+	switch (elementCommands[type][index])
+	{
+	case 0:
+		commands[type][index]->SetSprite(Qbm_off);
+		break;
+	case 1:
+		commands[type][index]->SetSprite(Wbm_off);
+		break;
+	case 2:
+		commands[type][index]->SetSprite(Ebm_off);
+		break;
+	case 3:
+		commands[type][index]->SetSprite(Rbm_off);
+		break;
+	}
+	commands[type][index]->Activate();
+
 }
 
 void ElementsPanel::HideAllCommands()
