@@ -1,6 +1,4 @@
 #include "Player.h"
-//#include "D2DGameEngine/AnimationBitmapComponent.h"
-#include "PlayerAnimationStates.h"
 
 
 #include "GCameraComponent.h"
@@ -9,8 +7,8 @@
 #include "D2DGameEngine/ReflectionResource.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BoxComponent.h"
-#include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/Mouse.h"
 #include "TestLevel1_RenderLayer.h"
 #include "MagicCircle.h"
@@ -34,55 +32,35 @@ Player::Player(class World* _world) : Character(_world)
 
 	// 애니메이션
 	{
-		Animator* abm = CreateComponent<Animator>();
+		abm = CreateComponent<Animator>();
 		rootComponent->AddChild(abm);
-		AnimationState* PlayerAnimationState;
 		{
-			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			//PlayerAnimationState->SetSprite(L"TestResource/Player/Orb/Orb.png");
-			//PlayerAnimationState->SliceSpriteSheet(88, 100, 0, 0, 0, 0);
-			//PlayerAnimationState->SetFrameDurations({ 0.05f });
-			//PlayerAnimationState->Trigger(true);
-			//abm->Initialize(PlayerAnimationState);
-
-			//PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			//PlayerAnimationState->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
-			//PlayerAnimationState->SliceSpriteSheet(650, 500, 0, 0, 0, 0);
-			//PlayerAnimationState->SetFrameDurations({ 0.033f });
-			//PlayerAnimationState->Trigger(true);
-			//abm->Initialize(PlayerAnimationState);
-
-			PlayerAnimationState = abm->CreateState<PlayerIdleAnimation>();
-			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
-			PlayerAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
-			PlayerAnimationState->SetFrameDurations({ 0.1f });
-			PlayerAnimationState->Trigger(true);
-			abm->Initialize(PlayerAnimationState);
+			IdleAnimationState = abm->CreateState<AnimationState>();
+			IdleAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
+			IdleAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
+			IdleAnimationState->SetFrameDurations({ 0.1f });
+			IdleAnimationState->Trigger(true);
+			abm->Initialize(IdleAnimationState);
 			
-			PlayerAnimationState = abm->CreateState<PlayerMoveAnimation>();
-			PlayerAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
-			PlayerAnimationState->SliceSpriteSheet(162, 254, 0, 0, 0, 0);
-			PlayerAnimationState->SetFrameDurations({ 0.08f });
-			PlayerAnimationState->Trigger(true);
+			MoveAnimationState = abm->CreateState<AnimationState>();
+			MoveAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
+			MoveAnimationState->SliceSpriteSheet(162, 254, 0, 0, 0, 0);
+			MoveAnimationState->SetFrameDurations({ 0.08f });
+			MoveAnimationState->Trigger(true);
 
-			//??abm->DeclareVariable<bool>("isMoving");
+			DieAnimationState = abm->CreateState<AnimationState>();
+			DieAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerDie.png");
+			DieAnimationState->SliceSpriteSheet(150, 254, 0, 0, 0, 0);
+			DieAnimationState->SetFrameDurations({ 0.08f });
+			DieAnimationState->Trigger(true);
 		}
 	}
-
-	/*AnimationBitmapComponent* abm = CreateComponent<AnimationBitmapComponent>();
-	rootComponent = abm;
-	{
-		abm->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
-		abm->SliceSpriteSheet(180, 216, 0,0,20,0);
-	}
-	abm->SetFrameDurations({0.05f});
-	abm->Trigger(true);*/
 
 	GCameraComponent* cm = CreateComponent<GCameraComponent>();
 	GetWorld()->SetMainCamera(cm);
 	rootComponent->AddChild(cm);
 
-	MovementComponent* mv = CreateComponent< MovementComponent>();
+	mv = CreateComponent< MovementComponent>();
 	rootComponent->AddChild(mv);
 
 	orb = CreateComponent< AnimationBitmapComponent>();
@@ -137,7 +115,6 @@ void Player::Update(float _dt)
 	OnMPChanged->Emit(stat.mp / (float)stat.maxMp);
 
 
-
 	//Orb
 	Math::Vector2 mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	mousePos = GetWorld()->ScreenToWorldPoint(mousePos);
@@ -145,6 +122,32 @@ void Player::Update(float _dt)
 	direction.Normalize();
 
 	orb->SetTranslation(100 * direction.x, direction.y * 5);
+
+	//Flip
+	if (direction.x < 0.f)
+		abm->SetScale(-1.f, 1.f);
+	else
+		abm->SetScale(1.f, 1.f);
+
+	//Animation
+	if (stat.hp < 0.f)
+	{
+		if (mv->GetSpeed() < 10.f)
+		{
+			if(abm->GetCurrentAnimationScene() != IdleAnimationState)
+				abm->SetState(IdleAnimationState);
+		}
+		else
+		{
+			if (abm->GetCurrentAnimationScene() != MoveAnimationState)
+				abm->SetState(MoveAnimationState);
+		}
+	}
+	else
+	{
+		if (abm->GetCurrentAnimationScene() != DieAnimationState)
+			abm->SetState(DieAnimationState);
+	}
 }
 
 

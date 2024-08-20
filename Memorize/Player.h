@@ -74,6 +74,11 @@ public:
 
 	class BuffEffectComponent* buffEffect;
 	class ManaOverloadComponent* manaOverloadEffect;
+	class MovementComponent* mv;
+	class Animator* abm;
+	class AnimationState* IdleAnimationState;
+	class AnimationState* MoveAnimationState;
+	class AnimationState* DieAnimationState;
 	
 public:
 	Player(class World* _world);

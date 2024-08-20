@@ -40,5 +40,10 @@ public:
 	//Signal for UI
 	Signal<float>* OnHPChanged;
 
+private:
+	class Animator* abm;
+	class AnimationState* IdleAnimationState;
+	class AnimationState* MoveAnimationState;
+
 };
 
