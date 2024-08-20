@@ -200,16 +200,17 @@ void RazerCircle::ReflectionOut() {}
 
 void RazerCircle::DestroyThis()
 {
-	if (razer1->GetStatus() != EObjectStatus::OS_DESTROY)
-		razer1->DestroyThis();
-	if (razer2->GetStatus() != EObjectStatus::OS_DESTROY)
-		razer2->DestroyThis();
-	if (razer3->GetStatus() != EObjectStatus::OS_DESTROY)
-		razer3->DestroyThis();
+	//if (razer1->GetStatus() != EObjectStatus::OS_DESTROY)
+	//	razer1->DestroyThis();
+	//if (razer2->GetStatus() != EObjectStatus::OS_DESTROY)
+	//	razer2->DestroyThis();
+	//if (razer3->GetStatus() != EObjectStatus::OS_DESTROY)
+	//	razer3->DestroyThis();
 
-	attach1->RemoveChild(razer1->rootComponent);
-	attach2->RemoveChild(razer2->rootComponent);
-	attach3->RemoveChild(razer3->rootComponent);
-	GetWorld()->UnregisterComponentCollision(circle);
-	destroyThis = true;
+	//attach1->RemoveChild(razer1->rootComponent);
+	//attach2->RemoveChild(razer2->rootComponent);
+	//attach3->RemoveChild(razer3->rootComponent);
+	//GetWorld()->UnregisterComponentCollision(circle);
+	//destroyThis = true;
+	Destroy();
 }
