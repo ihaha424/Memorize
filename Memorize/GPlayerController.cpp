@@ -159,7 +159,7 @@ void GPlayerController::Update(float _dt)
 	}
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 
-	if (playerFSMComponent->GetCurState() != L"PlayerDisfell")
+	if (playerFSMComponent->GetCurState() != L"PlayerDisfell" && playerFSMComponent->GetCurState() != L"PlayerBlinking")
 	{
 		OnDoingDisfell->Emit(-1, 0);
 	}

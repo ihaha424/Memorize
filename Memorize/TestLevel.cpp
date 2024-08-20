@@ -68,7 +68,7 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index, int command) {disfellPanel->CommandImageOff(index, command); });
 
-		//Timer::SetTimeScale(2);
+		//Timer::SetTimeScale(3);
 		BossGrowCircle* temp = CreateActor<BossGrowCircle>();
 		temp->SetGrowLess(true);
 

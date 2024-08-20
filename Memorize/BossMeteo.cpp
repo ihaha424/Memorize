@@ -34,9 +34,9 @@ BossMeteo::BossMeteo(World* _world)
 	BossMeteoDamageEvent.componentHits.resize(1);
 
 	meteoPosTweenX = new DotTween<float>(&meteoPosX, EasingEffect::InQuart, StepAnimation::StepOnceForward);
-	meteoPosTweenX->SetDuration(5.f);
+	meteoPosTweenX->SetDuration(2.f);
 	meteoPosTweenY = new DotTween<float>(&meteoPosY, EasingEffect::InQuart, StepAnimation::StepOnceForward);
-	meteoPosTweenY->SetDuration(5.f);
+	meteoPosTweenY->SetDuration(2.f);
 }
 
 void BossMeteo::BeginPlay()

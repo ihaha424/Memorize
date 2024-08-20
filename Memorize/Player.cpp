@@ -171,7 +171,7 @@ void Player::Render(D2DRenderer* _renderer)
 void Player::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PlayerStatus.txt");
-	reflectionResource->ParsingFile(0, stat.maxHp, stat.maxMp, stat.hp, stat.mp, stat.defaultAttackSpeed, skillUses);
+	reflectionResource->ParsingFile(0, stat.maxHp, stat.maxMp, stat.hp, stat.mp, moveSpeed, skillUses);
 }
 
 void Player::ReflectionOut()

@@ -66,7 +66,7 @@ private:
 	class AnimationBitmapComponent* orb;
 public:
 
-	float moveSpeed = 450;
+	float moveSpeed = 950;
 	Stat stat;
 	float basicAttackTime = 1.f;
 	int skillUses;
