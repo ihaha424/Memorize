@@ -16,8 +16,12 @@ void PlayerDisfell::Update(float _dt)
 void PlayerDisfell::Exit()
 {
 	std::cout << "PlayerDisfell Exit\n";
-	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	playerController->targetSkill = nullptr;
+	
+	if (!saveDirtyFlag)
+	{
+		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
+		playerController->targetSkill = nullptr;
+	}
 }
 
 void PlayerDisfell::Fire()
@@ -54,6 +58,13 @@ void PlayerDisfell::Dark()
 	{
 		owner->SetNextState(L"PlayerIdle");
 	}
+}
+
+void PlayerDisfell::Teleport()
+{
+	saveDirtyFlag = true;
+
+	__super::Teleport();
 }
 
 void PlayerDisfell::Cancellation()

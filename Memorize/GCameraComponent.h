@@ -3,6 +3,7 @@
 #include "common.h"
 
 #include "D2DGameEngine/CameraComponent.h"
+#include "../D2DGameEngine/DotTween.h"
 
 class GCameraComponent : public CameraComponent
 {
@@ -15,13 +16,13 @@ public:
     GCameraComponent(Actor* _owner);
     virtual ~GCameraComponent();
 
-		void Trigger피격();
-		void Trigger마나부족();
+	void Trigger피격();
+	void Trigger마나부족();
 
     virtual void BeginPlay() override;
-		virtual void Update(float _dt) override;
+	virtual void Update(float _dt) override;
     virtual void PostUpdate(float _dt) override;
-		virtual void Render(class D2DRenderer* _renderer) override;
+	virtual void Render(class D2DRenderer* _renderer) override;
 
 private:
     class Boss* boss;
@@ -30,7 +31,13 @@ private:
     Math::Vector2 prevPlayerPos;
     float moveSecond{1.f};
     float moveSpeed{ 0.f};
-		float cameraScale{ 1.f };
+	float cameraScale{ 1.f };
     bool  isMove{ false };
+
+    //DotTween<Math::Vector2>
+
+
+    static constexpr float camerScaleRatio = 0.3f;
+    static constexpr float camerScaleMin = 0.5f;
 };
 

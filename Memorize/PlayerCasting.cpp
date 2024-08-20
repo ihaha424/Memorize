@@ -139,13 +139,9 @@ void PlayerCasting::Teleport()
 {
 	if (NoCastingState)
 		return;
-	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
-	if (playerController->GetPlayer()->bondageFlag)
-		return;
-	//if(마나체크)
-
 	saveDirtyFlag = true;
-	owner->SetNextState(L"PlayerBlinking");
+
+	__super::Teleport();
 }
 
 void PlayerCasting::Cancellation()

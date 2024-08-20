@@ -61,45 +61,44 @@ void GCameraComponent::Update(float _dt)
 	}
 }
 
-#include "../D2DGameEngine/Mouse.h"
 void GCameraComponent::PostUpdate(float _dt)
 {
 	CameraComponent::PostUpdate(_dt);
 
 	Math::Vector2 parentPos = parent->GetComponentLocation();
 
-	if (isMove)
-	{
-		moveSecond -= _dt;
-		Math::Vector2 destinationCameraPos = ((prevBossPos - prevPlayerPos) * 0.5f - GetComponentLocation());
-		destinationCameraPos.Normalize();
-		Translate(destinationCameraPos * moveSpeed * _dt);
-		if (moveSecond < 0.f)
-			isMove = false;
-		return;
-	}
+	//if (isMove)
+	//{
+	//	moveSecond -= _dt;
+	//	Math::Vector2 destinationCameraPos = GetComponentLocation() - ((prevBossPos - prevPlayerPos) * 0.5f);
+	//	destinationCameraPos.Normalize();
+	//	Translate(destinationCameraPos * moveSpeed * _dt);
+	//	if (moveSecond < 0.f)
+	//		isMove = false;
+	//	return;
+	//}
 
 	Math::Vector2 bossPos = boss->rootComponent->GetComponentLocation();
 
-	if ((prevBossPos - bossPos).Length() > 100.f)
-	{
-		isMove = true;
-		moveSecond = 1.f;
-		moveSpeed = (prevBossPos - bossPos).Length() / (1.f + cameraScale);	// (prevBossPos - bossPos).Length() / moveSecond;
-		prevBossPos = bossPos;
-		prevPlayerPos = parentPos;
-		return;
-	}
+	//if ((prevBossPos - bossPos).Length() > 100.f)
+	//{
+	//	isMove = true;
+	//	moveSecond = 1.f;
+	//	moveSpeed = ((prevBossPos - bossPos) - GetComponentLocation()).Length() / ((cameraScale * camerScaleRatio > camerScaleMin) ? 1.f + (cameraScale * camerScaleRatio) : 1.f + camerScaleMin);	// (prevBossPos - bossPos).Length() / moveSecond;
+	//	prevBossPos = bossPos;
+	//	prevPlayerPos = parentPos;
+	//	return;
+	//}
 
-	prevBossPos = bossPos;
+	//prevBossPos = bossPos;
 	Math::Vector2 destinationCameraPos = (bossPos - parentPos) * 0.5f;
 
 	//Scale
 	cameraScale = (parentPos - bossPos).Length() / initialDistance;
 	cameraScale -= 1;
-	cameraScale *= 0.3f;
-	if (cameraScale < 0.5f)
-		cameraScale = 0.5f;
+	cameraScale *= camerScaleRatio;
+	if (cameraScale < camerScaleMin)
+		cameraScale = camerScaleMin;
 	SetScale(1.f + cameraScale, 1.f + cameraScale);
 
 
