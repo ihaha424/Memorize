@@ -138,6 +138,9 @@
     <Filter Include="Source Files\App\Components">
       <UniqueIdentifier>{1e4993f8-5149-4e88-8ea3-eed8ebfc8512}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Cursor">
+      <UniqueIdentifier>{07b578e1-4582-4bba-a740-cd661d9960a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -463,6 +466,9 @@
     </ClCompile>
     <ClCompile Include="MouseComponent.cpp">
       <Filter>Source Files\App\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Source Files\App\Cursor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -798,6 +804,9 @@
     </ClInclude>
     <ClInclude Include="MouseComponent.h">
       <Filter>Source Files\App\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Source Files\App\Cursor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

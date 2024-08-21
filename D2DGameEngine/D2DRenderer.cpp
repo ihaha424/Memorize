@@ -293,6 +293,22 @@ Math::Matrix D2DRenderer::GetGlobalTransform() {
 	return globalTransform;
 }
 
+void D2DRenderer::PushLayer() {
+	ID2D1DeviceContext* deviceContext = GetDC();
+
+	// 레이어 만들기
+	ID2D1Layer* layer = nullptr;
+	deviceContext->CreateLayer(&layer);
+	deviceContext->PushLayer(
+		D2D1::LayerParameters(),
+		layer
+	);
+}
+
+void D2DRenderer::PopLayer() {
+
+}
+
 void D2DRenderer::ResizeScreen(int w, int h) {
 	renderTarget->Resize(D2D1::SizeU(w, h));
 }

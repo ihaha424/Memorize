@@ -18,6 +18,8 @@ void GameApp::Initialize() {
 	WindowStyleFlags styleFlags = WS_OVERLAPPED;
 	hWindow = WinApp::App_CreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE, styleFlags);
 
+	ShowCursor(false);
+
 	// GameEngine의 이니셜라이제이션
 	Super::Initialize();
 

@@ -3,6 +3,8 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Canvas.h"
 
+#include "Cursor.h"
+
 MainLevel::MainLevel(World* _world, const std::wstring& _name)
 	: Level(_world, _name)
 {
@@ -15,6 +17,7 @@ MainLevel::~MainLevel()
 
 void MainLevel::Enter()
 {
+	CreateActor<Cursor>();
 }
 
 void MainLevel::Exit()
