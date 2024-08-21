@@ -33,7 +33,7 @@ public:
 	bool destroyThis{ false };
 
 	RazerCircle(class World* _world);
-	virtual ~RazerCircle() {};
+	virtual ~RazerCircle();
 
 	virtual void BeginPlay();
 

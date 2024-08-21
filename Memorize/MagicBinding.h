@@ -27,7 +27,7 @@ class MagicBinding : public BossSkillActor
 
 public:
 	MagicBinding(class World* _world);
-	virtual ~MagicBinding() {};
+	virtual ~MagicBinding();
 
 	virtual void BeginPlay();
 

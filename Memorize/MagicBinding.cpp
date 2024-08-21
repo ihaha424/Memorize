@@ -71,6 +71,16 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 	bodyChained->SetTranslation(0.f, -80.f);
 }
 
+MagicBinding::~MagicBinding()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+}
+
 void MagicBinding::BeginPlay()
 {
 	Super::BeginPlay();

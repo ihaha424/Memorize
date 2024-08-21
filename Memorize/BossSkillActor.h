@@ -13,7 +13,6 @@ public:
 	virtual ~BossSkillActor();
 
 
-
 public:
 	bool				isDispel = false;
 	bool				isFragile = false;

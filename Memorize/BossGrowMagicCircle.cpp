@@ -43,6 +43,16 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 
 }
 
+BossGrowMagicCircle::~BossGrowMagicCircle()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+}
+
 void BossGrowMagicCircle::BeginPlay()
 {
 	__super::BeginPlay();
