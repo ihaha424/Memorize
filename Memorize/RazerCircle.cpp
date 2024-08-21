@@ -115,6 +115,16 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 	CreateComponent<ClickComponent>();
 }
 
+RazerCircle::~RazerCircle()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+}
+
 void RazerCircle::BeginPlay()
 {
 	Super::BeginPlay();

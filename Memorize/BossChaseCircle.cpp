@@ -54,6 +54,16 @@ BossChaseCircle::BossChaseCircle(World* _world)
 	scaleTween->SetEndPoint(1.1f);
 }
 
+BossChaseCircle::~BossChaseCircle()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+}
+
 void BossChaseCircle::BeginPlay()
 {
 	__super::BeginPlay();

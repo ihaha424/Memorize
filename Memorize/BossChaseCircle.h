@@ -8,7 +8,7 @@ class BossChaseCircle : public BossSkillActor
 {
 public:
 	BossChaseCircle(class World* _world);
-	virtual ~BossChaseCircle() {};
+	virtual ~BossChaseCircle();
 
 	virtual void BeginPlay();
 

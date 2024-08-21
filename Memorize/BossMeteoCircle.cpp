@@ -48,6 +48,12 @@ BossMeteoCircle::BossMeteoCircle(World* _world)
 
 BossMeteoCircle::~BossMeteoCircle()
 {
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
 	delete coolTime;
 }
 
