@@ -29,6 +29,9 @@ void BossBehaviorTree::BeginPlay()
 
 void BossBehaviorTree::Update(float _dt)
 {
+	Boss* boss = GetKey<Boss*>("Boss");
+	if (boss->hp <= 0.f)
+		return;
 	UpdateBehaviorTree(_dt);
 }
 

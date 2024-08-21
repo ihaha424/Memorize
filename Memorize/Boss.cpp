@@ -22,7 +22,7 @@ Boss::Boss(World* _world) : Character(_world)
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Overlap);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Overlap);
 	box->SetBoxExtent({ 187 / 2.8f, 287 / 2.4f });
-	hp = maxHp;
+	hp = 1;
 
 	OnHPChanged = new Signal<float>;
 
@@ -53,6 +53,14 @@ Boss::Boss(World* _world) : Character(_world)
 			CastingAnimationState->SetFrameDurations({ 1.f / 12.f });
 			CastingAnimationState->FrameResize(9);
 			CastingAnimationState->Trigger(true);
+
+			DieAnimationState = abm->CreateState<AnimationState>();
+			DieAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Dead.png");
+			DieAnimationState->SliceSpriteSheet(250, 280, 0, 0, 0, 0);
+			DieAnimationState->SetFrameDurations({ 1.f / 12.f });
+			DieAnimationState->FrameResize(33);
+			DieAnimationState->SetLoop(false);
+			DieAnimationState->Trigger(true);
 
 			TeleportStartAnimationState = abm->CreateState<AnimationState>();
 			TeleportStartAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Teleport_Start.png");
@@ -96,16 +104,24 @@ void Boss::Update(float _dt)
 		abm->SetScale(1.f, 1.f);
 
 	//Animation
-	Math::Vector2 velocity = GetVelocity();
-	if (velocity.Length() < 10.f)
+	if (hp > 0.f)
 	{
-		if (abm->GetCurrentAnimationScene() == MoveAnimationState)
-			abm->SetState(IdleAnimationState);
+		Math::Vector2 velocity = GetVelocity();
+		if (velocity.Length() < 10.f)
+		{
+			if (abm->GetCurrentAnimationScene() == MoveAnimationState)
+				abm->SetState(IdleAnimationState);
+		}
+		else
+		{
+			if (abm->GetCurrentAnimationScene() == IdleAnimationState)
+				abm->SetState(MoveAnimationState);
+		}
 	}
 	else
 	{
-		if (abm->GetCurrentAnimationScene() == IdleAnimationState)
-			abm->SetState(MoveAnimationState);
+		if (abm->GetCurrentAnimationScene() != DieAnimationState)
+			abm->SetState(DieAnimationState);
 	}
 }
 

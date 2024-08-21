@@ -48,7 +48,8 @@ void AnimationState::Update(float _dt)
 				currentFrameIndex = 0;
 			}
 			else {
-				Quit();
+				currentFrameIndex = frames.size() - 1;
+				Pause();
 			}
 		}
 	}
@@ -102,6 +103,11 @@ void AnimationState::AddAnimationStateDependency(
 	_stateDependency.insert(
 		std::make_pair(name, state)
 	);
+}
+
+void AnimationState::SetLoop(bool _isLoop)
+{
+	isLoop = _isLoop;
 }
 
 void AnimationState::FrameResize(int index)

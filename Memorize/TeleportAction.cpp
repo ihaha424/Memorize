@@ -8,6 +8,11 @@
 #include "D2DGameEngine/BehaviorTree.h"
 #include "D2DGameEngine/AIController.h"
 
+#include "../D2DGameEngine/World.h"
+#include "../D2DGameEngine/AnimationEffect.h"
+#include "../D2DGameEngine/AnimationBitmapComponent.h"
+
+
 void TeleportTo::Init()
 {
 	Super::Init();
@@ -39,6 +44,19 @@ void TeleportTo::Run(float dt)
 		channeling = true;
 		// 시작 플레그 온
 		started = true;
+
+
+		//BlickSource Effect
+		{
+			AnimationEffect* BlickSource = bt->GetKey<Boss*>("Boss")->GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
+			BlickSource->SetSprite(L"TestResource/Boss/Effect/Boss_FlashSource.png");
+			BlickSource->GetAnimationBitmapComponent()->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
+			BlickSource->GetAnimationBitmapComponent()->SetFrameDurations({ 0.04f });
+			BlickSource->GetAnimationBitmapComponent()->Trigger(true);
+			BlickSource->SetAliveTime(1.f);
+			Math::Vector2 bossPos = bt->GetKey<Boss*>("Boss")->GetLocation();
+			BlickSource->SetLocation(bossPos.x, bossPos.y);
+		}
 	}
 
 	if (channeling)
@@ -89,4 +107,15 @@ void TeleportTo::Teleport()
 	Math::Vector2 currLocation = GetPawn()->GetLocation();
 	Math::Vector2 teleportDelta = target - currLocation;
 	GetPawn()->Teleport(teleportDelta);
+
+	//BlickDest Effect
+	{
+		AnimationEffect* BlickDest = bt->GetKey<Boss*>("Boss")->GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
+		BlickDest->SetSprite(L"TestResource/Boss/Effect/Boss_FlashDest.png");
+		BlickDest->GetAnimationBitmapComponent()->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
+		BlickDest->GetAnimationBitmapComponent()->SetFrameDurations({ 0.041f });
+		BlickDest->GetAnimationBitmapComponent()->Trigger(true);
+		BlickDest->SetAliveTime(1.f);
+		BlickDest->SetLocation(target.x, target.y);
+	}
 }
