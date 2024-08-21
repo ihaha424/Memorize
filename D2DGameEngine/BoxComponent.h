@@ -36,11 +36,6 @@ public:
 		// TODO: 콜리션 체크
 	}
 
-	virtual BoxCircleBounds CalculateLocalBounds() const override {
-		// TODO: 월드 트렌스폼 적용
-		return BoxCircleBounds(Box::BuildAABB({ 0, 0 }, boxExtent));
-	}
-
 	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
 		Extent2D scaledExtent = GetScaledBoxExtent();
 		collisionShape.SetBox({ 0.5f * scaledExtent.width * inflation, 0.5f * scaledExtent.height * inflation });
@@ -51,6 +46,35 @@ public:
 		CollisionShape collisionShape;
 		collisionShape.SetBox({ boxExtent.width, boxExtent.height });
 		return collisionShape.IsNearlyZero();
+	}
+
+	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
+
+		Math::Vector2 location = GetComponentLocation();
+		Extent2D extent = GetScaledBoxExtent();
+
+		Box box{
+			.ul = { location.x - extent.width / 2.f, location.y - extent.height / 2.f },
+			.lr = { location.x + extent.width / 2.f, location.y + extent.height / 2.f }
+		};
+
+		return BoxCircleBounds(box);
+	}
+
+	virtual BoxCircleBounds CalculateLocalBounds() const override {
+		Extent2D extent = GetScaledBoxExtent();
+
+		Box box {
+			.ul = { -extent.width / 2.f, -extent.height / 2.f },
+			.lr = { +extent.width / 2.f, +extent.height / 2.f }
+		};
+
+		return BoxCircleBounds(box);
+	}
+
+	virtual void UpdateBounds() override
+	{
+		bounds = CalculateBounds(GetWorldTransform());
 	}
 
 	virtual bool CheckLineTraceComponent(
