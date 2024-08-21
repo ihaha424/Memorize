@@ -1745,25 +1745,47 @@ namespace intersectionUtil {
 
 	inline
 	bool BoundaryCircleBoxIntersect(const Circle& circle, const Box& box) {
-		Line line1{ box.ul, {box.lr.x, box.ul.y} };
-		Line line2{ {box.lr.x, box.ul.y}, box.lr };
-		Line line3{ box.lr, { box.ul.x, box.lr.y} };
-		Line line4{ { box.ul.x, box.lr.y}, box.ul };
-
-		std::initializer_list<Line> list{
-			line1, line2, line3, line4
-		};
-
-		for (const Line& line : list) {
-			float dr = Math::Vector2::Distance(line.start, line.end);
-			float d = line.start.x * line.end.y - line.end.x * line.start.y;
-			float r = circle.radius;
-
-			float delta = r * r * dr * dr - d * d;
-
-			if (delta >= 0.f) return true;
+		// 1. Check intersection with the left edge (x = ul.x)
+		if (circle.center.x - circle.radius <= box.ul.x && circle.center.x + circle.radius >= box.ul.x) {
+			float yDelta = std::sqrt(circle.radius * circle.radius - (box.ul.x - circle.center.x) * (box.ul.x - circle.center.x));
+			float y1 = circle.center.y + yDelta;
+			float y2 = circle.center.y - yDelta;
+			if ((y1 >= box.ul.y && y1 <= box.lr.y) || (y2 >= box.ul.y && y2 <= box.lr.y)) {
+				return true;
+			}
 		}
 
+		// 2. Check intersection with the right edge (x = lr.x)
+		if (circle.center.x - circle.radius <= box.lr.x && circle.center.x + circle.radius >= box.lr.x) {
+			float yDelta = std::sqrt(circle.radius * circle.radius - (box.lr.x - circle.center.x) * (box.lr.x - circle.center.x));
+			float y1 = circle.center.y + yDelta;
+			float y2 = circle.center.y - yDelta;
+			if ((y1 >= box.ul.y && y1 <= box.lr.y) || (y2 >= box.ul.y && y2 <= box.lr.y)) {
+				return true;
+			}
+		}
+
+		// 3. Check intersection with the top edge (y = ul.y)
+		if (circle.center.y - circle.radius <= box.ul.y && circle.center.y + circle.radius >= box.ul.y) {
+			float xDelta = std::sqrt(circle.radius * circle.radius - (box.ul.y - circle.center.y) * (box.ul.y - circle.center.y));
+			float x1 = circle.center.x + xDelta;
+			float x2 = circle.center.x - xDelta;
+			if ((x1 >= box.ul.x && x1 <= box.lr.x) || (x2 >= box.ul.x && x2 <= box.lr.x)) {
+				return true;
+			}
+		}
+
+		// 4. Check intersection with the bottom edge (y = lr.y)
+		if (circle.center.y - circle.radius <= box.lr.y && circle.center.y + circle.radius >= box.lr.y) {
+			float xDelta = std::sqrt(circle.radius * circle.radius - (box.lr.y - circle.center.y) * (box.lr.y - circle.center.y));
+			float x1 = circle.center.x + xDelta;
+			float x2 = circle.center.x - xDelta;
+			if ((x1 >= box.ul.x && x1 <= box.lr.x) || (x2 >= box.ul.x && x2 <= box.lr.x)) {
+				return true;
+			}
+		}
+
+		// No intersection
 		return false;
 	}
 }
