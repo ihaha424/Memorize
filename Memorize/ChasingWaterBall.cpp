@@ -18,10 +18,10 @@ ChasingWaterBall::ChasingWaterBall(Actor* _owner) : ProjectileSkill(_owner)
 	projectileCount = 5;
 
 	locations.resize(projectileCount);
-	locations[0] = {-120,-80};
+	locations[3] = {-120,-80};
 	locations[1] = {-60,-140};
-	locations[2] = {0,-180};
-	locations[3] = {60,-140};
+	locations[0] = {0,-180};
+	locations[2] = {60,-140};
 	locations[4] = {120,-80};
 
 	
@@ -48,6 +48,7 @@ void ChasingWaterBall::UseSkill()
 		projectiles[i]->SetSpeed(projectileSpeed);
 		ChasingWaterBallProjectile* waterballpj = static_cast<ChasingWaterBallProjectile*>(projectiles[i]);
 		waterballpj->SetInitialLocation(locations[i].x, locations[i].y);
+		waterballpj->SetChaseDelay(0.1 * i);
 
 	}
 

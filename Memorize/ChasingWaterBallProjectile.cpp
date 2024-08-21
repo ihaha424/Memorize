@@ -4,12 +4,11 @@
 #include "../D2DGameEngine/CircleComponent.h"
 #include "../D2DGameEngine/PolygonComponent.h"
 #include "../D2DGameEngine/World.h"
+#include "../D2DGameEngine/RandomGenerator.h"
 #include "MovementComponent.h"
 #include "Player.h"
 #include "Boss.h"
 #include "Bat.h"
-
-std::vector<class Actor*> ChasingWaterBallProjectile::chasingEnemies{};
 
 ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	: Projectile(_world)
@@ -30,17 +29,8 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	chaseState->SetFrameDurations({ 0.05f });
 
 
-	//적 감지 위한 원형 콜라이더
 	box->SetPolygon({ {-80, -150}, {80, -150}, {80, 150}, {-80, 150} });
 	box->bGenerateOverlapEvent = false; //적 감지를 위해 박스는 꺼줌 
-	//rangeCircle = CreateComponent<CircleComponent>();
-	//rangeCircle->SetCircleRadius(range);
-	//rangeCircle->SetCollisionObjectType(ECollisionChannel::PlayerProjectile);
-	//rangeCircle->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
-	//rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
-	//rangeCircle->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Overlap);
-	//rangeCircle->bGenerateOverlapEvent = true;
-	//rootComponent->AddChild(rangeCircle);
 
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;
@@ -63,88 +53,80 @@ void ChasingWaterBallProjectile::OnBeginOverlap(Actor* other, const OverlapInfo&
 	bHasEnding = true;
 }
 
-//void ChasingWaterBallProjectile::OnOverlap(Actor* other, const OverlapInfo& overlap)
-//{
-//	__super::OnOverlap(other, overlap);
-//
-//	if (overlap.overlapInfo.hitComponent->GetCollisionObjectType() == ECollisionChannel::Enemy)
-//	{
-//		if (state == State::Idle)
-//		{
-//
-//			//이미 이 적을 추적중이면 넘긴다.
-//			if (find(chasingEnemies.begin(), chasingEnemies.end(), other) != chasingEnemies.end())
-//				return;
-//
-//			//waterball들이 추적중인 적에 추가한다.
-//			chasingEnemies.push_back(other);
-//			//이 projectile의 타겟으로 설정한다. 
-//			target = other;
-//			//추적상태로 전환한다. 
-//			state = State::Chase;
-//			anim->SetState(chaseState);
-//		}
-//	}
-//
-//
-//
-//}
-
 void ChasingWaterBallProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	
 	if (state == State::Idle)
 	{
+		
 		SetLocation(player->GetLocation().x + x, player->GetLocation().y + y);
 
-		Boss* boss = GetWorld()->FindActorByType<Boss>();
-		auto it = find(chasingEnemies.begin(), chasingEnemies.end(), boss);
-		if (it == chasingEnemies.end())
-		{
-			if (Math::Vector2::Distance(boss->GetLocation(), GetLocation()) < range)
-			{
-				target = boss;
-				state = State::Chase;
-				chasingEnemies.push_back(target);
-			}
-			
-		}
-		else
-		{
-			std::vector<Bat*> bats = GetWorld()->FindAllActorsByType<Bat>();
-			for (auto bat : bats)
-			{
-				it = find(chasingEnemies.begin(), chasingEnemies.end(), boss);
-				if (it == chasingEnemies.end())
-				{
-					if (Math::Vector2::Distance(bat->GetLocation(), GetLocation()) < range)
-					{
-						target = bat;
-						state = State::Chase;
-						chasingEnemies.push_back(target);
-						break;
-					}
+		if (elapsedTime < chaseDelay)
+			return;
 
-				}
+
+		Boss* boss = GetWorld()->FindActorByType<Boss>();
+		chasingEnemies.push_back(boss);
+		std::vector<Bat*> bats = GetWorld()->FindAllActorsByType<Bat>();
+		for (auto bat : bats)
+		{
+			chasingEnemies.push_back(bat);
+		}
+
+		float minDistance = 999999;
+		//가장 가까운 적의 위치를 타겟으로 잡는다. 
+		for (auto enemy : chasingEnemies)
+		{
+			float enemyDistance = Math::Vector2::Distance(GetLocation(), enemy->GetLocation());
+			if (enemyDistance < minDistance)
+			{
+				minDistance = enemyDistance;
+				targetPos = enemy->GetLocation();
 			}
+		}
+
+		//추적할 적이 있으면 
+		if (minDistance < 999999)
+		{
+			//제어점 설정
+			Math::Vector2 direction = targetPos - GetLocation();
+			int rand = Random::Get<int>(1);
+			if(direction.x > direction.y)
+				if(rand == 0)
+					controlPoint = GetLocation() + (direction * 0.7f) + Math::Vector2(0, 400);
+				else
+					controlPoint = GetLocation() + (direction * 0.7f) + Math::Vector2(0, -400);
+			else
+				if(rand == 0)
+					controlPoint = GetLocation() + (direction * 0.7f) + Math::Vector2(400, 0);
+				else
+					controlPoint = GetLocation() + (direction * 0.7f) + Math::Vector2(-400, 0);
+
+			startPos = GetLocation();
+			state = State::Chase;
 		}
 
 		if (elapsedTime > duration)
 		{
 			elapsedTime += endingTime;
 			bHasEnding = true;
-		}
-			
+		}	
 	}
 	else if (state == State::Chase)
 	{
 		box->bGenerateOverlapEvent = true;
 		//타겟을 향해 이동
-		Math::Vector2 direction = target->GetLocation() - GetLocation();
-		direction.Normalize();
-		SetVelocity(direction, speed);
+		Math::Vector2 pos = CalculateBezierPoint(t, startPos, controlPoint, targetPos);
+		SetLocation(pos.x, pos.y);
+
+		t += _dt * 0.8;
+
+		if (t >= 1.0f)
+		{
+			state = State::Boom;
+		}
+
 		elapsedTime = 0.f;
 	}
 	else if(state == State::Boom && bEnding == false)
@@ -153,16 +135,22 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
-
-		auto it = find(chasingEnemies.begin(), chasingEnemies.end(), target);
-		if(it != chasingEnemies.end())
-			chasingEnemies.erase(it);
 	}
 	else if (mv->GetStatus() == OS_INACTIVE)
 	{
 		Destroy();
-		auto it = find(chasingEnemies.begin(), chasingEnemies.end(), target);
-		if (it != chasingEnemies.end())
-			chasingEnemies.erase(it);
 	}
+}
+
+Math::Vector2 ChasingWaterBallProjectile::CalculateBezierPoint(float t, const Math::Vector2& p0, const Math::Vector2& p1, const Math::Vector2& p2)
+{
+	float u = 1.0f - t;
+	float tt = t * t;
+	float uu = u * u;
+
+	Math::Vector2 p = uu * p0; // (1 - t)^2 * p0
+	p += 2 * u * t * p1; // 2(1 - t)t * p1
+	p += tt * p2; // t^2 * p2
+
+	return p;
 }
