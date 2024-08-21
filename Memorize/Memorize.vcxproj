@@ -200,6 +200,7 @@
     <ClCompile Include="HeadEffect.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="MeteorEffect.cpp" />
+    <ClCompile Include="MouseComponent.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MPMaxIncrease.cpp" />
     <ClCompile Include="MPRecovery.cpp" />
@@ -310,6 +311,7 @@
     <ClInclude Include="HeadEffect.h" />
     <ClInclude Include="Meteor.h" />
     <ClInclude Include="MeteorEffect.h" />
+    <ClInclude Include="MouseComponent.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MPMaxIncrease.h" />
     <ClInclude Include="MPRecovery.h" />

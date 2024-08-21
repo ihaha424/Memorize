@@ -135,6 +135,9 @@
     <Filter Include="Source Files\App\Effect\BossHitEffect">
       <UniqueIdentifier>{78149cde-142d-43bb-987f-d61443c93d7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Components">
+      <UniqueIdentifier>{1e4993f8-5149-4e88-8ea3-eed8ebfc8512}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -151,9 +154,6 @@
     </ClCompile>
     <ClCompile Include="GCameraComponent.cpp">
       <Filter>Source Files\App\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>Source Files\App\Boss</Filter>
@@ -458,6 +458,12 @@
     <ClCompile Include="SkillActor.cpp">
       <Filter>Source Files\App\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files\App\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseComponent.cpp">
+      <Filter>Source Files\App\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -480,9 +486,6 @@
     </ClInclude>
     <ClInclude Include="GCameraComponent.h">
       <Filter>Source Files\App\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
-      <Filter>Source Files\App</Filter>
     </ClInclude>
     <ClInclude Include="Boss.h">
       <Filter>Source Files\App\Boss</Filter>
@@ -789,6 +792,12 @@
     </ClInclude>
     <ClInclude Include="SkillActor.h">
       <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Source Files\App\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseComponent.h">
+      <Filter>Source Files\App\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
