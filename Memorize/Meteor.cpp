@@ -36,6 +36,13 @@ void Meteor::UseSkill()
 
 	meteorEffect->SetVelocity(direction, fallSpeed);
 	meteorEffect->SetDamage(damage);
+	meteorEffect->Initialize();
+
+	//방향에 맞게 회전
+	double rotateRad = std::acos(direction.Dot(Math::Vector2(1.f, 0.f)));
+	if (direction.y < 0)
+		rotateRad *= -1;
+	meteorEffect->rootComponent->SetRotation(rotateRad * 180.f / PI - 90);
 
 }
 

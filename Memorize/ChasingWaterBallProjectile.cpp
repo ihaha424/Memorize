@@ -71,7 +71,8 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		std::vector<Bat*> bats = GetWorld()->FindAllActorsByType<Bat>();
 		for (auto bat : bats)
 		{
-			chasingEnemies.push_back(bat);
+			if(bat->GetStatus() == OS_ACTIVE)
+				chasingEnemies.push_back(bat);
 		}
 
 		float minDistance = 999999;

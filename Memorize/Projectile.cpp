@@ -8,6 +8,7 @@
 #include "D2DGameEngine/DamageEvent.h"
 #include "Boss.h"
 #include "BossProjectile.h"
+#include "ProjectileSkill.h"
 
 Projectile::Projectile(World* _world) : SkillActor(_world)
 {
@@ -128,6 +129,8 @@ void Projectile::Update(float _dt)
 	if (elapsedTime > duration + delay + endingTime)
 	{
 		elapsedTime = 0.f;
+		if(ownerSkill)	
+			ownerSkill->bEnd = true;
 		mv->SetStatus(OS_INACTIVE);
 		anim->SetStatus(OS_INACTIVE);
 		box->SetStatus(OS_INACTIVE);
