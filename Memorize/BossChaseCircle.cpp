@@ -24,6 +24,9 @@ BossChaseCircle::BossChaseCircle(World* _world)
 
 	circleComponent = CreateComponent<CircleComponent>();
 
+	mv = CreateComponent<MovementComponent>();
+	rootComponent->AddChild(mv);
+
 	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
 	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
 	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
@@ -52,6 +55,16 @@ BossChaseCircle::BossChaseCircle(World* _world)
 	scaleTween->SetDuration(2.f);
 	scaleTween->SetStartPoint(0.9f);
 	scaleTween->SetEndPoint(1.1f);
+}
+
+BossChaseCircle::~BossChaseCircle()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
 }
 
 void BossChaseCircle::BeginPlay()
@@ -88,7 +101,13 @@ void BossChaseCircle::Update(float _dt)
 		BossChaseCircleDamageEvent.radialDamageInfo.outerRadius = 500.f;
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 		BossChaseCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
-		player->TakeDamage(damage, BossChaseCircleDamageEvent, nullptr, this);
+		
+		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
+			circleComponent->CalculateLocalBounds().GetCircle(),
+			player->rootComponent->CalculateBounds(player->rootComponent->GetWorldTransform()).GetBox()
+		);
+		if (hitRadius)
+			player->TakeDamage(damage, BossChaseCircleDamageEvent, nullptr, this);
 
 		// 애니메이션 초기화
 		Boss* boss = GetWorld()->FindActorByType<Boss>();

@@ -7,7 +7,7 @@ class BossGrowMagicCircle : public BossSkillActor
 {
 public:
 	BossGrowMagicCircle(class World* _world);
-	virtual ~BossGrowMagicCircle() {};
+	virtual ~BossGrowMagicCircle();
 
 	virtual void BeginPlay();
 

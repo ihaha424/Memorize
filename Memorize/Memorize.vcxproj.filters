@@ -135,6 +135,9 @@
     <Filter Include="Source Files\App\Effect\BossHitEffect">
       <UniqueIdentifier>{78149cde-142d-43bb-987f-d61443c93d7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level">
+      <UniqueIdentifier>{c0e235f7-011e-4cd4-b24b-2d3c248229df}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\App\Components">
       <UniqueIdentifier>{1e4993f8-5149-4e88-8ea3-eed8ebfc8512}</UniqueIdentifier>
     </Filter>
@@ -144,9 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
-      <Filter>Source Files\App</Filter>
-    </ClCompile>
-    <ClCompile Include="TestLevel.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="BossAIController.cpp">
@@ -443,9 +443,6 @@
     <ClCompile Include="Purification.cpp">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClCompile>
-    <ClCompile Include="MainLevel.cpp">
-      <Filter>Source Files\App</Filter>
-    </ClCompile>
     <ClCompile Include="MainLevelUIPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
@@ -470,6 +467,18 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>Source Files\App\Cursor</Filter>
     </ClCompile>
+    <ClCompile Include="TestLevel.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLevel.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files\App\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingLevel.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -480,9 +489,6 @@
     </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestLevel.h">
-      <Filter>Source Files\App</Filter>
     </ClInclude>
     <ClInclude Include="BossAIController.h">
       <Filter>Source Files\App\Boss</Filter>
@@ -658,9 +664,6 @@
     <ClInclude Include="LightStreamEffect.h">
       <Filter>Source Files\App\Skill\Range\LightStream</Filter>
     </ClInclude>
-    <ClInclude Include="TestLevel1_RenderLayer.h">
-      <Filter>Source Files\App</Filter>
-    </ClInclude>
     <ClInclude Include="ElementsPanel.h">
       <Filter>Source Files\App\UI</Filter>
     </ClInclude>
@@ -781,9 +784,6 @@
     <ClInclude Include="Purification.h">
       <Filter>Source Files\App\Skill\Special</Filter>
     </ClInclude>
-    <ClInclude Include="MainLevel.h">
-      <Filter>Source Files\App</Filter>
-    </ClInclude>
     <ClInclude Include="MainLevelUIPanel.h">
       <Filter>Source Files\App\UI</Filter>
     </ClInclude>
@@ -807,6 +807,24 @@
     </ClInclude>
     <ClInclude Include="Cursor.h">
       <Filter>Source Files\App\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLevel1_RenderLayer.h">
+      <Filter>Source Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLevel.h">
+      <Filter>Source Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLevel.h">
+      <Filter>Source Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Loading.h">
+      <Filter>Source Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Source Files\App\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingLevel.h">
+      <Filter>Source Files\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

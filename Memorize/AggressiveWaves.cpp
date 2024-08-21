@@ -10,7 +10,7 @@ AggressiveWaves::AggressiveWaves(Actor* _owner) : RangeSkill(_owner)
 	SetID(ST_RANGE, SE_WATER);
 	ReflectionIn();
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		waveEffects.push_back(GetWorld()->GetCurLevel()->CreateActor<AggressiveWavesEffect>());
 	}
@@ -25,19 +25,21 @@ void AggressiveWaves::UseSkill()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		waveEffects[i]->Activate();
-		waveEffects[i]->SetLocation(player->GetLocation().x, player->GetLocation().y);
+		waveEffects[curIndex + i]->Activate();
+		waveEffects[curIndex + i]->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		
 		float radians = angles[i] * PI / 180.f;
 		Math::Vector2 newDir ={ std::cos(radians),std::sin(radians)};
-		waveEffects[i]->SetVelocity(newDir, speed);
-		waveEffects[i]->SetDamage(damage);
-		waveEffects[i]->SetSkillID(id);
+		waveEffects[curIndex + i]->SetVelocity(newDir, speed);
+		waveEffects[curIndex + i]->SetDamage(damage);
+		waveEffects[curIndex + i]->SetSkillID(id);
+		waveEffects[curIndex + i]->SetAinimation();
 	}
-	waveEffects[0]->SetRotation(-45);
-	waveEffects[1]->SetRotation(45);
-	waveEffects[2]->SetRotation(135);
-	waveEffects[3]->SetRotation(180);
+	for (int i = 0; i < 4; i++)
+	{
+		waveEffects[curIndex + i]->SetRotation(SetAngles[i]);
+	}
+	curIndex = (curIndex + 4) % 8;
 }
 
 void AggressiveWaves::ReflectionIn()

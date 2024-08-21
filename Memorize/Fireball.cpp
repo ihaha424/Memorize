@@ -43,6 +43,13 @@ void Fireball::UseSkill()
 	//마우스 위치로 이동시킴
 	fireball->SetVelocity(attackDir, projectileSpeed);
 	nowUsingCount = (nowUsingCount + 1 ) % projectileCount;
+
+	//방향에 맞게 회전
+	double rotateRad = std::acos(attackDir.Dot(Math::Vector2(1.f, 0.f)));
+	if (attackDir.y < 0)
+		rotateRad *= -1;
+	fireball->rootComponent->SetRotation(rotateRad * 180.f / PI - 90);
+
 }
 
 void Fireball::ReflectionIn()

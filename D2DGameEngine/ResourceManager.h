@@ -21,6 +21,7 @@ private:
 
 
 	static void InitialPath();
+	static wchar_t* GetInitialPath() { return resourcePath; }
 
 
 	ResourceManager(const ResourceManager&) = delete;

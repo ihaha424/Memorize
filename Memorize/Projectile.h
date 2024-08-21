@@ -4,6 +4,7 @@
 class Projectile : public SkillActor
 {
 protected:
+	class ProjectileSkill* ownerSkill = nullptr;
 	class Player* player = nullptr;
 	int damage = 0;
 	float speed;
@@ -34,6 +35,7 @@ public:
 	void SetDelay(float _delay) { delay = _delay; }
 	void SetDuration(float _duration) { duration = _duration; }
 	void SetPlayer(class Player* _player) { player = _player; }
+	void SetOwnerSkill(class ProjectileSkill* _ownerSkill) { ownerSkill = _ownerSkill; }
 	void SetSpeed(float _speed) { speed = _speed; }
 	void SetVelocity(Math::Vector2 _direction, float _speed);
 

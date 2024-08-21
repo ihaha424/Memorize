@@ -11,6 +11,8 @@
 #include "Boss.h"
 
 #include "D2DGameEngine/World.h"
+#include "D2DGameEngine/intersectionUtil.h"
+
 #include "Player.h"
 
 BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
@@ -23,8 +25,6 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	bm->isVisible = false;
 	abm->MarkBoundsDirty();
 
-	disfellCommandCount = 4;
-	CreateDisfellCommand();
 	CreateComponent<ClickComponent>();
 
 	circleComponent = CreateComponent<CircleComponent>();
@@ -47,6 +47,16 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 
 }
 
+BossGrowMagicCircle::~BossGrowMagicCircle()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+}
+
 void BossGrowMagicCircle::BeginPlay()
 {
 	__super::BeginPlay();
@@ -65,6 +75,10 @@ void BossGrowMagicCircle::BeginPlay()
 	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
+
+
+	disfellCommandCount = 4;
+	CreateDisfellCommand();
 }
 
 void BossGrowMagicCircle::Update(float _dt)
@@ -77,11 +91,18 @@ void BossGrowMagicCircle::Update(float _dt)
 	}
 	if (skillDuration < 0.f)
 	{
-		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = 500.f;
-		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = 500.f;
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = 500.f * abm->GetWorldTransform()._11;
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = 500.f * abm->GetWorldTransform()._11;
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
-		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
+		
+
+		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
+			circleComponent->CalculateLocalBounds().GetCircle(),
+			player->rootComponent->CalculateBounds(player->rootComponent->GetWorldTransform()).GetBox()
+		);
+		if (hitRadius)
+			player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
 
 		// 애니메이션 초기화
 		Boss* boss = GetWorld()->FindActorByType<Boss>();

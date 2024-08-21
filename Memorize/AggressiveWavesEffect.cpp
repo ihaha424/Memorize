@@ -22,3 +22,9 @@ AggressiveWavesEffect::AggressiveWavesEffect(World* _world) : Projectile(_world)
 AggressiveWavesEffect::~AggressiveWavesEffect()
 {
 }
+
+void AggressiveWavesEffect::SetAinimation()
+{
+	normalState->Trigger(false);
+	normalState->Trigger(true);
+}

@@ -112,6 +112,11 @@ public:
 		const Math::Vector2& ul, const Math::Vector2& lr,
 		D2D_Color color = D2D_Color::White
 	);
+
+	void DrawSprite(
+		D2D_Sprite* sprite
+	);
+
 	void DrawSprite(
 		D2D_Sprite* sprite,
 		const Math::Vector2& ul, 

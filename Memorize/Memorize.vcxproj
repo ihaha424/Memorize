@@ -190,6 +190,7 @@
     <ClCompile Include="Heal.cpp" />
     <ClCompile Include="LightStream.cpp" />
     <ClCompile Include="LightStreamEffect.cpp" />
+    <ClCompile Include="LoadingLevel.cpp" />
     <ClCompile Include="MagicBinding.cpp" />
     <ClCompile Include="MagicCircle.cpp" />
     <ClCompile Include="MainLevel.cpp" />
@@ -302,6 +303,8 @@
     <ClInclude Include="IBossSkill.h" />
     <ClInclude Include="LightStream.h" />
     <ClInclude Include="LightStreamEffect.h" />
+    <ClInclude Include="Loading.h" />
+    <ClInclude Include="LoadingLevel.h" />
     <ClInclude Include="MagicBinding.h" />
     <ClInclude Include="MagicCircle.h" />
     <ClInclude Include="MainLevel.h" />

@@ -10,10 +10,7 @@
 ElementalExplosionEffect::ElementalExplosionEffect(World* _world) : SkillActor(_world)
 {
 	SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	rootComponent = bm = CreateComponent<BitmapComponent>();
-	bm->SetSprite(L"TestResource/Skill/Range/TighteningCircle.png");
-
-	box = CreateComponent<BoxComponent>();
+	rootComponent = box = CreateComponent<BoxComponent>();
 	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
 	box->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
 	box->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
@@ -22,7 +19,6 @@ ElementalExplosionEffect::ElementalExplosionEffect(World* _world) : SkillActor(_
 	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Block);
 	box->SetBoxExtent({3000.f, 3000.f});
-	rootComponent->AddChild(box);
 }
 void ElementalExplosionEffect::BeginPlay()
 {

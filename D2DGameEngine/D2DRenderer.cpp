@@ -234,6 +234,15 @@ void D2DRenderer::DrawString(
 }
 
 void D2DRenderer::DrawSprite(
+	D2D_Sprite* sprite
+) {
+	if (!sprite) return;
+	renderTarget->DrawBitmap(
+		sprite
+	);
+}
+
+void D2DRenderer::DrawSprite(
 	D2D_Sprite* sprite,
 	const Math::Vector2& ul, 
 	const Math::Vector2& lr,

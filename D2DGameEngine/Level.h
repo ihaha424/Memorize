@@ -59,7 +59,7 @@ public:
     void SetWorld(World* _world) { world = _world; }
     class World* GetWorld() { return world; }
 
-    virtual void Enter() = 0;
+	virtual void Enter() { BeginPlay(); };
     virtual void Exit() = 0;
     virtual void Clear() = 0;
     

@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "GPlayerController.h"
 #include "PlayerFSMComponent.h"
+#include "ProjectileSkill.h"
 
 ElementalMasterComponent::ElementalMasterComponent(Actor* _owner) : IComponent(_owner)
 {
@@ -23,25 +24,20 @@ void ElementalMasterComponent::Update(float _dt)
 	
 	if (controller->bElementalMaster == false)
 	{
-		nowSkillTimer = 0.f;
 		bSkillReady = false;
 
 		SetStatus(OS_INACTIVE);
 		return;
 	}
 
-	if (bSkillReady )
+	if (bSkillReady && controller->bNowAttacking)
 	{
-		if (controller->bNowAttacking) {
-
-			nowSkillTimer += _dt;
-			if (nowSkillTimer > skillDuration)
-			{
-				nowSkillTimer = 0.f;
-				bSkillReady = false;
-				controller->bNowAttacking = false;
-				controller->InitializeSkillInfo();
-			}
+		Skill* nowSkill = controller->FindCurSkiil();
+		if (nowSkill == nullptr || static_cast<ProjectileSkill*>(nowSkill)->bEnd == true)
+		{
+			bSkillReady = false;
+			controller->bNowAttacking = false;
+			controller->InitializeSkillInfo();
 		}
 		return;
 	}
@@ -56,7 +52,6 @@ void ElementalMasterComponent::Update(float _dt)
 			PlayerCasting* state = static_cast<PlayerCasting*>(controller->playerFSMComponent->GetCurStateClass());
 			state->index = state->commandList.size();
 			bSkillReady = true;
-			skillDuration = controller->FindCurSkiil()->skillDuration + 1.0f;
 		}
 
 	}
