@@ -23,10 +23,12 @@ Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
 	skillUses = 200;
+	stat.defaultDamage = 20;
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
 
-	GetComponent<BoxComponent>()->SetCollisionObjectType(ECollisionChannel::Player);
+	collisionBox = GetComponent<BoxComponent>(); 
+	collisionBox->SetCollisionObjectType(ECollisionChannel::Player);
 	
 	OnHPChanged = new Signal<float>;
 	OnMPChanged = new Signal<float>;

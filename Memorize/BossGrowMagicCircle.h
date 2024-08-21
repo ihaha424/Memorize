@@ -25,8 +25,12 @@ public:
 	void ReflectionOut() override;
 
 public:
-	class CircleComponent* circleComponent;
+	// class CircleComponent* circleComponent;
 	class AnimationBitmapComponent* abm;
+
+	bool destructing{ false };
+	float destructionTimer{ 1.25f };
+	class AnimationBitmapComponent* circleBreak;
 
 private:
 	RadialDamageEvent BossGrowMagicCircleDamageEvent;

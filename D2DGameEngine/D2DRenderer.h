@@ -82,6 +82,10 @@ public:
 		const Math::Vector2& center, float rad,
 		D2D1::ColorF color = D2D1::ColorF::White
 	);
+	void DrawEllipse(
+		const Math::Vector2& center, float major, float minor,
+		D2D1::ColorF color = D2D1::ColorF::White
+	);
 	void DrawBox(
 		const Math::Vector2& ul,
 		const Math::Vector2& lr,

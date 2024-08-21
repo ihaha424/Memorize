@@ -8,11 +8,12 @@ BasicAttack::BasicAttack(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetID(ST_NONE, SE_NONE);
 	projectileCount = 5;
-
+	projectileSpeed = 800.f;
+	projectileDuration = 1.f;
 	for (int i = 0; i < projectileCount; i++)
 	{
 		projectiles.push_back(GetWorld()->GetCurLevel()->CreateActor<BaseAttackProjectile>());
-		projectiles[i]->SetSpeed(projectileSpeed);
+		projectiles[i]->SetDuration(projectileDuration);
 	}
 
 }
@@ -29,6 +30,7 @@ void BasicAttack::UseSkill()
 
 	projectiles[nowUsingCount]->SetLocation(player->GetLocation().x, player->GetLocation().y);
 	projectiles[nowUsingCount]->SetVelocity(attackDir, projectileSpeed);
+	projectiles[nowUsingCount]->SetDamage(player->stat.defaultDamage);
 
 	//방향에 맞게 회전
 	double rotateRad = std::acos(attackDir.Dot(Math::Vector2(1.f, 0.f)));

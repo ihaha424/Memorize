@@ -28,6 +28,16 @@ PlayerMainUIPanel::PlayerMainUIPanel(World* _world) : UIPanel(_world)
 	mpBar->SetFillImage(L"TestResource/UI/UI_middle_status_MP.png");
 	mpBar->SetPosition(150, -33);
 	mpBar->SetZOrder(1);
+
+	memorize = CreateUI<UIImage>(L"PlayerUIMemorize");
+	memorize->SetSprite(L"TestResource/UI/Icon_Memorize_off.png");
+	memorize->SetPosition(-243, 21);
+	memorize->SetZOrder(3);
+
+	flash = CreateUI<UIImage>(L"PlayerUIMemorize");
+	flash->SetSprite(L"TestResource/UI/Icon_Flash_off.png");
+	flash->SetPosition(243, 21);
+	flash->SetZOrder(3);
 }
 
 PlayerMainUIPanel::~PlayerMainUIPanel()
@@ -42,4 +52,24 @@ void PlayerMainUIPanel::SetHPValue(float value)
 void PlayerMainUIPanel::SetMPValue(float value)
 {
 	mpBar->SetValue(value);
+}
+
+void PlayerMainUIPanel::SetMemorizeOn()
+{
+	memorize->SetSprite(L"TestResource/UI/Icon_Memorize.png");
+}
+
+void PlayerMainUIPanel::SetMemorizeOff()
+{
+	memorize->SetSprite(L"TestResource/UI/Icon_Memorize_off.png");
+}
+
+void PlayerMainUIPanel::SetFlashOn()
+{
+	flash->SetSprite(L"TestResource/UI/Icon_Flash.png");
+}
+
+void PlayerMainUIPanel::SetFlashOff()
+{
+	flash->SetSprite(L"TestResource/UI/Icon_Flash_off.png");
 }

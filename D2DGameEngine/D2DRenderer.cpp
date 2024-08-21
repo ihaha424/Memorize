@@ -72,7 +72,16 @@ void D2DRenderer::DrawCircle(
 	);
 	brush->SetColor(tmp);
 }
-
+void D2DRenderer::DrawEllipse(
+	const Math::Vector2& center, float major, float minor,
+	D2D1::ColorF color) {
+	D2D_TColor tmp = brush->GetColor();
+	brush->SetColor(color);
+	renderTarget->DrawEllipse(
+		{ {center.x, center.y}, major * 0.5f, minor * 0.5f }, brush
+	);
+	brush->SetColor(tmp);
+}
 void D2DRenderer::DrawBox(
 	const Math::Vector2& ul, 
 	const Math::Vector2& lr,
