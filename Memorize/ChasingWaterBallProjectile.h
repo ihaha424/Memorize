@@ -13,6 +13,7 @@ class ChasingWaterBallProjectile : public Projectile
 	Math::Vector2 startPos;
 	Math::Vector2 targetPos;
 	Math::Vector2 controlPoint;
+	Math::Vector2 prevPos;
 	float chaseDelay = 0.f;
 	float t = 0.f;
 	float range = 500.f;

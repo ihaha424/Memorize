@@ -38,7 +38,7 @@ ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	bHasEnding = true;
 	endingTime = 1.f;
 	
-
+	prevPos = GetLocation();
 }
 
 ChasingWaterBallProjectile::~ChasingWaterBallProjectile()
@@ -113,6 +113,7 @@ void ChasingWaterBallProjectile::Update(float _dt)
 
 			startPos = GetLocation();
 			state = State::Chase;
+			anim->SetState(chaseState);
 		}
 
 		if (elapsedTime > duration)
@@ -134,6 +135,15 @@ void ChasingWaterBallProjectile::Update(float _dt)
 		{
 			state = State::Boom;
 		}
+
+		//방향에 맞게 회전
+		Math::Vector2 direction = GetLocation() - prevPos;
+		direction.Normalize();
+		double rotateRad = std::acos(direction.Dot(Math::Vector2(1.f, 0.f)));
+		if (direction.y < 0)
+			rotateRad *= -1;
+		rootComponent->SetRotation(rotateRad * 180.f / PI - 90);
+		prevPos = GetLocation();
 
 		elapsedTime = 0.f;
 	}
