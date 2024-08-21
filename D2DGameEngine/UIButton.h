@@ -15,6 +15,7 @@ class UIButton : public UIElement
 
 	std::vector<std::function<void()>> onClickHandlers;
 	std::vector<std::function<void()>> onHoveredHandlers;
+	std::vector<std::function<void()>> onUnHoveredHandlers;
 	std::vector<std::function<void()>> onPressedHandlers;
 
 public:
@@ -27,6 +28,7 @@ public:
 	virtual void Update(float _dt);
 
 	void OnHovered();
+	void OnUnHovered();
 	void OnClicked();
 	void OnPressed();
 
@@ -45,5 +47,9 @@ public:
 		onPressedHandlers.push_back(handler);
 	}
 
+	void AddOnUnHoveredHandler(std::function<void()> handler)
+	{
+		onUnHoveredHandlers.push_back(handler);
+	}
 };
 

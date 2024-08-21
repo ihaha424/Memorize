@@ -20,6 +20,7 @@
 #include "MainLevelUIPanel.h"
 
 #include "PlayerMainUIPanel.h"
+#include "CursorUIPanel.h"
 
 #include "Cursor.h"
 
@@ -48,9 +49,10 @@ void TestLevel::Clear()
 void TestLevel::Enter()
 {
 	__super::Enter();
+
+	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 	{
 		Arena* arena = CreateActor<Arena>();
-		Cursor* cursor = CreateActor<Cursor>();
 		/*Actor* actor = CreateActor<Actor>();
 		actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
 		BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
@@ -99,7 +101,7 @@ void TestLevel::Enter()
 		boss->OnHPChanged->Connect([&](float hp) { bossHpBar->SetValue(hp); });
 	}
 
-
+	
 
 	{
 		ManaDepletedPanel* manaPanel = GetWorld()->GetCanvas()->CreatePannel< ManaDepletedPanel>(L"ManaDepleted");

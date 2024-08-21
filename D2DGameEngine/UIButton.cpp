@@ -14,7 +14,7 @@ void UIButton::Update(float _dt)
     if (left < mousePos.x && mousePos.x < right && top < mousePos.y && mousePos.y < buttom)
     {
 
-        if (Mouse::clickStaus[0] == InputState::KeyDown)
+        if (Mouse::clickStaus[0] == InputState::KeyUp)
         {
             _state = BS_Clicked;
             OnClicked();
@@ -33,12 +33,21 @@ void UIButton::Update(float _dt)
     else
     {
         _state = BS_None;
+        OnUnHovered();
     }
 }
 
 void UIButton::OnHovered()
 {
     for (auto handler : onHoveredHandlers)
+    {
+        handler();
+    }
+}
+
+void UIButton::OnUnHovered()
+{
+    for (auto handler : onUnHoveredHandlers)
     {
         handler();
     }
