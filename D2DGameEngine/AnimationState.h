@@ -102,6 +102,8 @@ private:
 
 	float currentFrameTime{ 0.f };
 public:
+	void SetLoop(bool _isLoop);
+
 	/**
 	 * @brief Frame reSize
 	 * @param index 
