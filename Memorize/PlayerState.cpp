@@ -86,6 +86,7 @@ void PlayerState::Move()
 	direction.Normalize();
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetDirection(direction);
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(playerController->GetPlayer()->moveSpeed);
+	playerController->bElementalMaster = false;
 }
 
 void PlayerState::Memorize()

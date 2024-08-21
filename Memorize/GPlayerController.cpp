@@ -149,14 +149,11 @@ void GPlayerController::Update(float _dt)
 
 	playerFSMComponent->OneTImeOneInput = false;
 
-	if (Math::Vector2::Distance(destPos, player->GetLocation()) < 5.f)
+	if (Math::Vector2::Distance(destPos, player->GetLocation()) < 12.f)
 	{
 		player->GetComponent<MovementComponent>()->SetSpeed(0.f);
 	}
-	else
-	{
-		bElementalMaster = false;
-	}
+
 	// ++RigidBody에 속도의 방향에 대한 정보로 x filp하기
 
 	if (playerFSMComponent->GetCurState() != L"PlayerDisfell" && playerFSMComponent->GetCurState() != L"PlayerBlinking")

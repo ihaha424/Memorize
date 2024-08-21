@@ -9,9 +9,11 @@ protected:
 	int nowUsingCount = 0;
 	float projectileSpeed = 150.f;
 	float projectileDuration = 0.f;
-
+	
 	Math::Vector2 attackDir;
 public:
+	bool bEnd = false;
+
 	ProjectileSkill(Actor* _owner);
 	virtual ~ProjectileSkill();
 
