@@ -23,6 +23,7 @@ void HeadEffect::SetEffect(int index)
 	{
 		state->SetSprite(L"TestResource/Player/Skill/Skill_Heal01.png");
 		state->SliceSpriteSheet(500, 500, 0, 0, 0, 0);
+		state->SetFrameDurations({ 2.0f / 24 });
 		SetAliveTime(1.0f);
 	}
 	else if (index == 2)
