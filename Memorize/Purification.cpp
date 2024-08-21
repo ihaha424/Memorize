@@ -28,6 +28,7 @@ void Purification::UseSkill()
 		skill->SetStatus(OS_DESTROY);
 	}
 	disfellSkills.clear();
+	player->StartHeadEffect(3);
 }
 
 void Purification::ReflectionIn()
