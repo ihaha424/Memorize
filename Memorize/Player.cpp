@@ -160,6 +160,12 @@ void Player::Update(float _dt)
 	}
 
 	headEffectPos = { GetLocation().x, GetLocation().y - 230 };
+
+	// 속박이면 속도 0
+	if (bondageFlag)
+	{
+		SetVelocity({ 0, 0 });
+	}
 }
 
 void Player::Render(D2DRenderer* _renderer)
