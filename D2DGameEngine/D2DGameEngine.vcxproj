@@ -169,6 +169,14 @@
     <ClInclude Include="CSpace.h" />
     <ClInclude Include="EffectSystem.h" />
     <ClInclude Include="Ellipse.h" />
+    <ClInclude Include="fmod.h" />
+    <ClInclude Include="fmod.hpp" />
+    <ClInclude Include="fmod_codec.h" />
+    <ClInclude Include="fmod_common.h" />
+    <ClInclude Include="fmod_dsp.h" />
+    <ClInclude Include="fmod_dsp_effects.h" />
+    <ClInclude Include="fmod_errors.h" />
+    <ClInclude Include="fmod_output.h" />
     <ClInclude Include="FSMComponent.h" />
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="IEffect.h" />
@@ -210,6 +218,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="SampleEffect.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="ShapeComponent.h" />
     <ClInclude Include="UIElement.h" />
@@ -250,7 +259,6 @@
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundResource.h" />
-    <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SpriteResource.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TypeRegistryId.h" />
@@ -300,6 +308,7 @@
     <ClCompile Include="PrimitiveComponent.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="SampleEffect.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="ShapeComponent.cpp" />
     <ClCompile Include="UIElement.cpp" />
@@ -330,7 +339,6 @@
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
     <ClCompile Include="SoundResource.cpp" />
-    <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SpriteResource.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIImage.cpp" />
@@ -344,12 +352,19 @@
     <ClInclude Include="SimpleMath.inl">
       <FileType>Document</FileType>
     </ClInclude>
+    <None Include="fmod.cs" />
+    <None Include="fmod.dll" />
+    <None Include="fmod_dsp.cs" />
+    <None Include="fmod_errors.cs" />
     <None Include="데미지_사용법.md" />
     <None Include="디버그_사용법.md" />
     <None Include="콜리션_사용법.md" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="CollisionFigure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="fmod_vc.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,0 @@
-Pattern_Fragile : 0
-Pattern_Type : 1
-Pattern_DispelTime : 11
-Pattern_SkillDuration : 10
-Pattern_Damage : 99
-End

@@ -1,7 +1,0 @@
-Skill_Damage : 20
-Command : 1, 0, 2, 2
-Skill_Condition : 20
-Castring Time : 1.0
-Skill_Crash : 0
-Skill_Text : Mp를 모두 소모하여, 소모 마나에 비례한 빛의 광선을 발사합니다.
-End

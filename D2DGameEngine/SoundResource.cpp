@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "SoundResource.h"
-#include "SoundSystem.h"
+#include "SoundManager.h"
+#include "Debug.h"
 
 const std::type_index SoundResource::TYPE_ID = std::type_index(typeid(SoundResource));
 
@@ -21,5 +22,5 @@ void SoundResource::LoadFile(std::wstring _key)
 
 void SoundResource::LoadFileLoop(std::wstring _key, bool _loopCheck)
 {
-	SoundSystem::CreateSound(_key, _loopCheck, resource);
+	SoundManager::CreateSound(_key, _loopCheck, resource);
 }

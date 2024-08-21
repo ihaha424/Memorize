@@ -1,3 +1,0 @@
-Pattern_SkillDuration : 2
-Pattern_Damage : 40
-End

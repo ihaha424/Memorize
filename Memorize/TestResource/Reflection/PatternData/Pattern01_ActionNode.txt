@@ -1,4 +1,0 @@
-Pattern_Delay : 0
-Pattern_CoolTime : 1
-Patteren_PosCircle : 0
-End
