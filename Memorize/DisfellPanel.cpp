@@ -52,7 +52,7 @@ void DisfellPanel::Update(float _dt)
 	if (ending)
 	{
 		elapsedTime += _dt;
-		if (elapsedTime > 2.f)
+		if (elapsedTime > 0.f)
 		{
 			elapsedTime = 0.f;
 			for (int i = 0; i < commandMaxCount; i++)

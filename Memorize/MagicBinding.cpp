@@ -1,5 +1,7 @@
 #include "MagicBinding.h"
 
+#include "D2DGameEngine/EventBus.h"
+
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/ReflectionResource.h"
 #include "D2DGameEngine/ResourceManager.h"
@@ -69,6 +71,9 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 
 	bodyChaining->SetTranslation(0.f, -80.f);
 	bodyChained->SetTranslation(0.f, -80.f);
+	
+	disfellCommandCount = 3;
+	CreateDisfellCommand();
 }
 
 MagicBinding::~MagicBinding()
@@ -82,6 +87,10 @@ void MagicBinding::BeginPlay()
 	player->bondageFlag = true;
 	Math::Vector2 playerLocation = player->GetLocation();
 	SetLocation(playerLocation.x, playerLocation.y);
+
+	// 
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
 
 void MagicBinding::FixedUpdate(float _fixedRate)
@@ -92,6 +101,21 @@ void MagicBinding::FixedUpdate(float _fixedRate)
 void MagicBinding::Update(float _dt)
 {
 	Super::Update(_dt);
+
+	if (failed)
+	{
+		if (retryCooldown >= 0.f)
+		{
+			retryCooldown -= _dt;
+		}
+		else
+		{
+			EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
+			EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+
+			failed = false;
+		}
+	}
 
 	if (release) {
 		releasingTime -= _dt;
@@ -168,6 +192,21 @@ void MagicBinding::DisfellAction()
 	AnimationState* CastingAnimationState = boss->CastingAnimationState;
 	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
 		abm->SetState(IdleAnimationState);
+
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+}
+
+void MagicBinding::DisfellFailAction()
+{
+	disfellCommand.clear();
+	dissfellindex = 0;
+	CreateDisfellCommand();
+
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+
+	failed = true;
 }
 
 void MagicBinding::ReflectionIn()

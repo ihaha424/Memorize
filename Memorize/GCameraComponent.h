@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "common.h"
 
@@ -7,17 +7,17 @@
 
 class GCameraComponent : public CameraComponent
 {
-	float ÇÇ°ÝTimer{ 0.f };
-	float ÇÇ°Ýopacity{ 0.f };
-	class BitmapComponent* ÇÇ°Ý;
-	float ¸¶³ªºÎÁ·opacity{ 0.f };
-	class BitmapComponent* ¸¶³ªºÎÁ·;
+	float í”¼ê²©Timer{ 0.f };
+	float í”¼ê²©opacity{ 0.f };
+	class BitmapComponent* í”¼ê²©;
+	float ë§ˆë‚˜ë¶€ì¡±opacity{ 0.f };
+	class BitmapComponent* ë§ˆë‚˜ë¶€ì¡±;
 public:
     GCameraComponent(Actor* _owner);
     virtual ~GCameraComponent();
 
-	void TriggerÇÇ°Ý();
-	void Trigger¸¶³ªºÎÁ·();
+	void Triggerí”¼ê²©();
+	void Triggerë§ˆë‚˜ë¶€ì¡±();
 
     virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;

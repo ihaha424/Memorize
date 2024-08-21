@@ -42,7 +42,7 @@ MainLevelUIPanel::MainLevelUIPanel(World* _world) : UIPanel(_world)
 	howToImage->SetSprite(L"TestResource/UI/button_howtoplay.png");
 	howToImage->SetPosition(1920 / 2 + 470, 750);
 	howToImage->SetZOrder(1);
-	howToBtn->SetSize(howToBtn->GetSize().x, howToBtn->GetSize().y);
+	howToBtn->SetSize(howToImage->GetSize().x, howToImage->GetSize().y);
 
 }
 

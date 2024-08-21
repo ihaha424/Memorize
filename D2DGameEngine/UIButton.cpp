@@ -32,8 +32,11 @@ void UIButton::Update(float _dt)
     }
     else
     {
+        if (_state == BS_Hovered || _state == BS_Pressed)
+        {
+            OnUnHovered();
+        }
         _state = BS_None;
-        OnUnHovered();
     }
 }
 

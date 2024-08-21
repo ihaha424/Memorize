@@ -25,6 +25,9 @@ class MagicBinding : public BossSkillActor
 	float releasingTime{ 1.f };
 	bool release{ false };
 
+	float retryCooldown{ 0.f };
+	bool failed{ false };
+
 public:
 	MagicBinding(class World* _world);
 	virtual ~MagicBinding();
@@ -37,7 +40,8 @@ public:
 
 	virtual bool Destroy() override;
 
-	virtual void DisfellAction();
+	virtual void DisfellAction() override;
+	virtual void DisfellFailAction() override;
 
 	void ReflectionIn() override;
 	void ReflectionOut() override;
