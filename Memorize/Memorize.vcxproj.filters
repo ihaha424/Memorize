@@ -144,6 +144,9 @@
     <Filter Include="Source Files\App\Cursor">
       <UniqueIdentifier>{07b578e1-4582-4bba-a740-cd661d9960a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Tutorials">
+      <UniqueIdentifier>{8521074e-ecd9-4729-8f6e-21b8e4bcfb5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -482,6 +485,15 @@
     <ClCompile Include="CursorUIPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Ending.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorials.cpp">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
+    <ClCompile Include="Scarecrow.cpp">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -763,6 +775,9 @@
     <ClInclude Include="Pattern14Action.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
+    <ClInclude Include="MagicBinding.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
+    </ClInclude>
     <ClInclude Include="Arena.h">
       <Filter>Source Files\App\Arena</Filter>
     </ClInclude>
@@ -829,8 +844,14 @@
     <ClInclude Include="CursorUIPanel.h">
       <Filter>Source Files\App\UI</Filter>
     </ClInclude>
-    <ClInclude Include="MagicBinding.h">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
+    <ClInclude Include="Ending.h">
+      <Filter>Source Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorials.h">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClInclude>
+    <ClInclude Include="Scarecrow.h">
+      <Filter>Source Files\Level\Tutorials</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

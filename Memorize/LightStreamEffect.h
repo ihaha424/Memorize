@@ -9,8 +9,8 @@ class LightStreamEffect : public SkillActor
 	};
 	class Animator* anim;
 	float duration = 1.f;
-	float initialTime = 2.f;
-	float endingTime = 1.f; 
+	float initialTime = 0.5f;
+	float endingTime = 0.5f; 
 	float elapsedTime = 0.f;
 	float damage = 0.f;
 

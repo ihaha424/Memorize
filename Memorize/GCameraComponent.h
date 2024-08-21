@@ -25,7 +25,7 @@ public:
 	virtual void Render(class D2DRenderer* _renderer) override;
 
 private:
-    class Boss* boss;
+    class Character* boss;
     float initialDistance;
     Math::Vector2 prevBossPos;
     Math::Vector2 prevPlayerPos;

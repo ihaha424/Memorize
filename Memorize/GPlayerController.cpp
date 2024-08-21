@@ -28,7 +28,11 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 
 	OnBeginDisfell = new Signal<int, int>;
 	OnDoingDisfell = new Signal<int, int>;
-
+	OnFlash = new Signal<>;
+	OnMemorize = new Signal<>;
+	OffFlash = new Signal<>;
+	OffMemorize = new Signal<>;
+	
 	elementalMasterComponent = CreateComponent<ElementalMasterComponent>();
 	elementalMasterComponent->SetStatus(OS_INACTIVE);
 }
@@ -48,6 +52,10 @@ GPlayerController::~GPlayerController()
 
 	delete OnBeginDisfell;
 	delete OnDoingDisfell;
+	delete OnFlash;
+	delete OnMemorize;
+	delete OffFlash;
+	delete OffMemorize;
 }
 
 void GPlayerController::SetupInputComponent()
@@ -160,6 +168,9 @@ void GPlayerController::Update(float _dt)
 	{
 		OnDoingDisfell->Emit(-1, 0);
 	}
+
+	if (playerFSMComponent->GetCurState() != L"PlayerBlinking")
+		OffFlash->Emit();
 }
 
 void GPlayerController::SetRandomSkillReady()
@@ -228,9 +239,17 @@ void GPlayerController::Attack() {
 }
 void GPlayerController::Move() { playerFSMComponent->InputKey(InputEvent::Move); }
 
-void GPlayerController::Memorize() {playerFSMComponent->InputKey(InputEvent::Memorize);}
+void GPlayerController::Memorize() {
+	playerFSMComponent->InputKey(InputEvent::Memorize);
+	if (CheckMemorize())
+		OnMemorize->Emit();
+	else
+		OffMemorize->Emit();
+}
 
-void GPlayerController::Teleport() { playerFSMComponent->InputKey(InputEvent::Teleport); }
+void GPlayerController::Teleport() { playerFSMComponent->InputKey(InputEvent::Teleport); 
+		OnFlash->Emit();
+}
 
 void GPlayerController::Cancellation() { playerFSMComponent->InputKey(InputEvent::Cancellation); }
 

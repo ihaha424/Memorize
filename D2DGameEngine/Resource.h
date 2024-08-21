@@ -43,6 +43,6 @@ public:
 	virtual const std::type_index GetType() { return std::type_index(typeid(T)); }
 
 protected:
-	ResourceType* resource;
+	ResourceType* resource = nullptr;
 };
 

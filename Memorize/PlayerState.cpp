@@ -6,8 +6,7 @@
 #include "Player.h"
 #include "HeadEffect.h"
 
-
-#include "Fireball.h"
+#include "D2DGameEngine/SoundManager.h"
 
 void PlayerState::Fire()
 {
@@ -68,6 +67,9 @@ void PlayerState::Attack()
 	CheckStates = playerController->AddSkillInfo(ESkillType::ST_NONE);
 	if (CheckStates)
 	{
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_BasicAttack01.wav", 0);
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerAttack01.wav", 1);
+
 		//캐스팅이 필요하지 않은 기본 공격
 		owner->SetNextState(L"PlayerAttack");
 		playerController->GetPlayer()->basicAttackTime = playerController->GetPlayer()->stat.defaultAttackSpeed;

@@ -60,6 +60,7 @@ void ChasingWaterBall::UseSkill()
 		projectiles[i]->Initialize();
 		projectiles[i]->SetSkillID(id);
 		projectiles[i]->SetOwnerSkill(this);
+
 	}
 	
 }
