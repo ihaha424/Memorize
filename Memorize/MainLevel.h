@@ -8,9 +8,8 @@ public:
     MainLevel(class World* _world, const std::wstring& _name);
     virtual ~MainLevel();
 
-    virtual void Enter();
+    virtual void Enter() override;
     virtual void Exit();
     virtual void Clear();
 
 };
-

@@ -23,10 +23,6 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	bm->isVisible = false;
 	abm->MarkBoundsDirty();
 
-	disfellCommandCount = 4;
-	CreateDisfellCommand();
-	CreateComponent<ClickComponent>();
-
 	circleComponent = CreateComponent<CircleComponent>();
 
 	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
@@ -65,6 +61,11 @@ void BossGrowMagicCircle::BeginPlay()
 	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
+
+
+	disfellCommandCount = 4;
+	CreateDisfellCommand();
+	CreateComponent<ClickComponent>();
 }
 
 void BossGrowMagicCircle::Update(float _dt)

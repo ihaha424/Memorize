@@ -208,8 +208,6 @@ bool GPlayerController::CheckMemorize()
 	return false;
 }
 
-#include "D2DGameEngine/Debug.h"
-#include "GCameraComponent.h"
 void GPlayerController::OnManaDepleted()
 {
 	GetWorld()->GetCanvas()->ShowPanel(L"ManaDepleted");
