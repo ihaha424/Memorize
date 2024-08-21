@@ -1,5 +1,7 @@
 #include "Pattern9Action.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/BehaviorTree.h"
 #include "D2DGameEngine/World.h"
 #include "BossThroughProjectileMagicCircle.h"
@@ -14,6 +16,11 @@ void Pattern9Action::Run(float dt)
 		Math::Vector2 bossLocation = bt->GetKey<Boss*>("Boss")->GetLocation();
 		actor->SetLocation(bossLocation.x, bossLocation.y);
 
+		// 캐스팅 애니메이션 발동
+		Animator* abm = bt->GetKey<Boss*>("Boss")->abm;
+		AnimationState* CastingAnimationState = bt->GetKey<Boss*>("Boss")->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() != CastingAnimationState)
+			abm->SetState(CastingAnimationState);
 
 		started = true;
 	}

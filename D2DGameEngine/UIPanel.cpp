@@ -19,7 +19,10 @@ void UIPanel::Update(float _dt)
 	for (auto ui : uiList)
 	{
 		ui->Update(_dt);
+
 	}
+	uiList.sort([](UIElement* u1, UIElement* u2)
+		{return u1->GetZOrder() < u2->GetZOrder(); });
 }
 
 void UIPanel::Render(D2DRenderer* _renderer)

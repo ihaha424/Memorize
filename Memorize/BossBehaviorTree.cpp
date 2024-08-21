@@ -64,8 +64,8 @@ void BossBehaviorTree::BuildBehaviorTree()
 				IsCooledDown->_successCondition = [this]() {
 					// TODO: 시작한지 60 초 지났는지 체크하기.
 					Boss* boss = GetKey<Boss*>("Boss");
-					//return boss->elapsedTime >= 60.f && boss->Periodic_Pattern_Cool_Time <= 0.f;
-					return true;
+					return boss->elapsedTime >= 60.f && boss->Periodic_Pattern_Cool_Time <= 0.f;
+					//return true;
 				};
 				{	// Periodic Pattern Selector
 					RandomSelector* periodicPatternSelector = CreateNode<RandomSelector>();
@@ -253,12 +253,12 @@ void BossBehaviorTree::BuildBehaviorTree()
 							Condition* Phase_Three_Periodic = CreateNode<Condition>();
 							phase3PatternSelector->PushBackChild(Phase_Three_Periodic);
 							Phase_Three_Periodic->_successCondition = [this]() {
-								return boss->Phase_Pattern_Cool_Time < 0.f;
+								return boss->Periodic_Pattern_Cool_Time <= 0.f;
 							};
 							{	
 								// Phase_Three_Periodic_Selector
 								RandomSelector* Phase_Three_Periodic_Selector = CreateNode<RandomSelector>();
-								phase3PatternSelector->PushBackChild(Phase_Three_Periodic_Selector);
+								Phase_Three_Periodic->Wrap(Phase_Three_Periodic_Selector);
 								{
 									// 3 Phase Periodic Pattern 1
 									Sequence* Phase_Three_1 = CreateNode<Sequence>();
@@ -357,7 +357,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 									INode* pattern4_1 = BuildPatternSubtree(Pattern::Pattern4);
 									INode* pattern4_2 = BuildPatternSubtree(Pattern::Pattern4);
 									INode* pattern4_3 = BuildPatternSubtree(Pattern::Pattern4);
-									Phase_Three_3->PushBackChildren({ pattern11, pattern4_1,pattern4_2, pattern4_3 });
+									Phase_Three_3->PushBackChildren({ pattern11, pattern4_1, pattern4_2, pattern4_3 });
 								}
 							}
 							Phase_Three_Selector->SetRandomWeights({ 1.f });
@@ -365,7 +365,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 					}
 				}	// <- bossPhaseSelector 3
 
-				bossPhaseSelector->SetRandomWeights({ 3.f, 2.f, 1.f });
+				bossPhaseSelector->SetRandomWeights({ 1.f, 2.f, 3.f });
 			}
 		}
 	}

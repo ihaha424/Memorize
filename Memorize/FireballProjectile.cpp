@@ -17,8 +17,7 @@ FireballProjectile::FireballProjectile(World* _world) : Projectile(_world)
 	endingState->FrameResize(48);
 	endingState->SetFrameDurations({ 0.14285f });
 
-	box->SetPolygon({ {-50, 80}, {50, -80}, {-50, -80}, {50, 80} });
-
+	box->SetPolygon({ {-50, -80}, {50, -80}, {50, 80}, {-50, 80} });
 
 	endingTime = 1.f;
 	bIsPassable = false;

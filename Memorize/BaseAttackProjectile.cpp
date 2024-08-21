@@ -10,8 +10,7 @@ BaseAttackProjectile::BaseAttackProjectile(World* _world) : Projectile(_world)
 	normalState->FrameResize(30);
 	normalState->SetFrameDurations({ 2.f / 30 });
 	anim->Initialize(normalState);
-	box->SetPolygon({ {-100, 40}, {100, -40}, {-100, -40}, {100, 40} });
-
+	box->SetPolygon({ {-100, -40}, {100, -40}, {100, 40}, {-100, 40} });
 	bIsPassable = false;
 	bEnding = false;
 	bCollideWithOtherAttack = false;

@@ -35,7 +35,7 @@ public:
 	float minAcceleration{ -1000.f };
 	float maxAccelaration{ 10000.f };
 	float minSpeed{ 0.f };
-	float maxSpeed{ 500.f };
+	float maxSpeed{ 800.f };
 	DXVec2 acceleration{};
 
 	// Collision

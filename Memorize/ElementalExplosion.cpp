@@ -3,6 +3,7 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BitmapComponent.h"
+#include "BuffEffectComponent.h"
 #include "D2DGameEngine/Mouse.h"
 #include "Player.h"
 
@@ -21,7 +22,17 @@ void ElementalExplosion::UseSkill()
 {
 	elementalExplosionEffect->Activate();
 	Math::Vector2 pos = player->GetLocation();
-	elementalExplosionEffect->SetLocation(pos.x, pos.y + 150);
+	elementalExplosionEffect->SetLocation(pos.x, pos.y);
+
+	BuffEffectComponent* abm = player->buffEffect;
+	abm->SetSprite(L"TestResource/Player/Skill/Skill_ElementalExplosion1.png");
+	abm->SliceSpriteSheet(300, 300, 0, 0, 0, 0);
+	abm->SetFrameDurations({ 2.0f / 48.f });
+	abm->Trigger(false);
+	abm->Trigger(true);
+	abm->SetLoop(true);
+	abm->SetStatus(OS_ACTIVE);
+	player->StartHeadEffect(2);
 }
 
 void ElementalExplosion::ReflectionIn()

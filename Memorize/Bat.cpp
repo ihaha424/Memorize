@@ -29,17 +29,18 @@ Bat::Bat(World* _world) : Actor(_world)
 	rootComponent = circle;
 
 	moveAnimation = CreateComponent<AnimationBitmapComponent>();
-	moveAnimation->SetSprite(L"TestResource/Boss/Bat/Idle/Bat_Idle.png");
-	moveAnimation->SliceSpriteSheet(32, 32, 0, 0, 0, 0);
+	moveAnimation->SetSprite(L"TestResource/Boss/Bat/Idle/bat_idle.png");
+	moveAnimation->SliceSpriteSheet(130, 170, 0, 0, 0, 0);
 	moveAnimation->SetFrameDurations({ 0.125 });
 	moveAnimation->isVisible = true;
 	moveAnimation->SetLoop(true);
 	rootComponent->AddChild(moveAnimation);
 
 	attackAnimation = CreateComponent<AnimationBitmapComponent>();
-	attackAnimation->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack.png");
-	attackAnimation->SliceSpriteSheet(32, 32, 0, 0, 0, 0);
+	attackAnimation->SetSprite(L"TestResource/Boss/Bat/Attack/bat_attack.png");
+	attackAnimation->SliceSpriteSheet(130, 170, 0, 0, 0, 0);
 	attackAnimation->SetFrameDurations({ 0.125 });
+	attackAnimation->FrameResize(9);
 	attackAnimation->isVisible = false;
 	attackAnimation->SetLoop(false);
 	rootComponent->AddChild(attackAnimation);

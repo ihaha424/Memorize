@@ -9,6 +9,10 @@
 #include "D2DGameEngine/PolygonComponent.h"
 #include "D2DGameEngine/ClickComponent.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+#include "Boss.h"
+
 #include "Player.h"
 
 BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
@@ -203,6 +207,13 @@ void BossRazer::Update(float _dt)
 
 		lazerShuttingDown->Trigger(true);
 		lazerShuttingDown->isVisible = true;
+
+		Boss* boss = GetWorld()->FindActorByType<Boss>();
+		Animator* abm = boss->abm;
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
 
 		obb->SetCollisionEnabled(CollisionEnabled::NoCollision);
 		startShuttingDown = true;

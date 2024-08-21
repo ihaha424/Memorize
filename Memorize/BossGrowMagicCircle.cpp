@@ -6,6 +6,10 @@
 #include "../D2DGameEngine/CircleComponent.h"
 #include "../D2DGameEngine/EventBus.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+#include "Boss.h"
+
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 
@@ -79,6 +83,15 @@ void BossGrowMagicCircle::Update(float _dt)
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
 		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
+
+		// 애니메이션 초기화
+		Boss* boss = GetWorld()->FindActorByType<Boss>();
+		Animator* abm = boss->abm;
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
+
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		Destroy();

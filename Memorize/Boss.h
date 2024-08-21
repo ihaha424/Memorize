@@ -10,7 +10,7 @@ class Boss : public Character
 
 public:
 	int hp;
-	int maxHp = 100;
+	int maxHp = 10000;
 	int DissfellCount = 0;
 	float Periodic_Pattern_Cool_Time = 0.f;		//메인 패턴의 딜레이
 	float Phase_Pattern_Cool_Time = 0.f;		//각 페이즈의 특수 패턴 딜레이
@@ -19,6 +19,8 @@ public:
 	float Avoidance_Range = 450.f;
 
 	float elapsedTime{ 0.f };
+
+	bool casting{ false };
 
 public:
 	Boss(class World* _world);
@@ -41,10 +43,11 @@ public:
 	//Signal for UI
 	Signal<float>* OnHPChanged;
 
-private:
+public:
 	class Animator* abm;
 	class AnimationState* IdleAnimationState;
 	class AnimationState* MoveAnimationState;
+	class AnimationState* CastingAnimationState;
 
 };
 

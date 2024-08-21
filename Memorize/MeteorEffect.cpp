@@ -23,7 +23,7 @@ MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
 	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
 	box->SetStatus(OS_INACTIVE);
-	box->SetPolygon({ {-80, 150}, {80, -150}, {-80, -150}, {80, 150} });
+	box->SetPolygon({ {-80, -150}, {80, -150}, {80, 150}, {-80, 150} });
 
 	duration = 10.f;
 	bIsPassable = true;

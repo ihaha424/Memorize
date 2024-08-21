@@ -25,6 +25,13 @@ void HeadEffect::SetEffect(int index)
 		state->SliceSpriteSheet(500, 500, 0, 0, 0, 0);
 		SetAliveTime(1.0f);
 	}
+	else if (index == 2)
+	{
+		state->SetSprite(L"TestResource/Player/Skill/Skill_ElementalExplosion.png");
+		state->SliceSpriteSheet(450, 512, 0, 0, 0, 0);
+		state->SetFrameDurations({ 2.0f / 72 });
+		SetAliveTime(2.0f);
+	}
 	
 	animatorBitMap->Initialize(state);
 }
@@ -38,5 +45,5 @@ void HeadEffect::FixedUpdate(float _fixedRate)
 {
 	__super::FixedUpdate(_fixedRate);
 
-	SetLocation(playerPos->x, playerPos->y);
+	SetLocation(playerPos->x, playerPos->y - 100);
 }

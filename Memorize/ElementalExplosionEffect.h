@@ -3,7 +3,6 @@
 
 class ElementalExplosionEffect : public SkillActor
 {
-	class BitmapComponent* bm;
 	float duration = 0.5f;
 	float elapsedTime = 0.f;
 	float damage = 0.f;
