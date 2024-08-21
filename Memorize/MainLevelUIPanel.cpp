@@ -7,21 +7,18 @@
 MainLevelUIPanel::MainLevelUIPanel(World* _world) : UIPanel(_world)
 {
 	startBtn = CreateUI<UIButton>(L"StartButton");
-	startBtn->SetPosition(1920 / 2, 800);
-	startBtn->SetSize(200, 100);
+	startBtn->SetPosition(1920 / 2 + 300, 600);
 	startBtn->AddOnClickHandler([this]() {GetWorld()->SetNextScene(L"TestLevel"); });
+	startBtn->AddOnHoveredHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_2.png"); });
+	startBtn->AddOnPressedHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_3.png"); });
+	startBtn->AddOnUnHoveredHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_1.png"); });
 
 	startImage = CreateUI<UIImage>(L"StartImage");
-	startImage->SetSprite(L"TestResource/UI/ElementSkillUI.png");
-	startImage->SetPosition(1920 / 2, 800);
-	startImage->SetSize(200, 100);
+	startImage->SetSprite(L"TestResource/UI/button_play_1.png");
+	startImage->SetPosition(1920 / 2 + 300, 600);
 	startImage->SetZOrder(1);
+	startBtn->SetSize(startImage->GetSize().x, startImage->GetSize().y);
 
-	mainImage = CreateUI<UIImage>(L"MainImage");
-	mainImage->SetSprite(L"TestResource/MainImage.png");
-	mainImage->SetPosition(1920 / 2, 1080 / 2);
-	mainImage->SetSize(1920, 1080);
-	mainImage->SetZOrder(-1);
 }
 
 MainLevelUIPanel::~MainLevelUIPanel()
