@@ -81,12 +81,8 @@ void LightStreamEffect::Update(float _dt)
 
 	elapsedTime += _dt;
 
-	obb->bShouldOverlapTest = true;
+	
 	damageTimer += _dt;
-	if (state == State::Normal)
-	{
-		//obb->bShouldOverlapTest = false;
-	}
 
 	if (elapsedTime > initialTime && state == State::Initial)
 	{
@@ -97,6 +93,11 @@ void LightStreamEffect::Update(float _dt)
 	{
 		state = State::Ending;
 		anim->SetState(endingState);
+		
+	}
+	else
+	{
+		obb->bShouldOverlapTest = true;
 	}
 	if (elapsedTime >= initialTime + duration + endingTime)
 	{
