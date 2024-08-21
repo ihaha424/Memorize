@@ -32,7 +32,7 @@ GPlayerController::GPlayerController(World* _world) : PlayerController(_world)
 	OnMemorize = new Signal<>;
 	OffFlash = new Signal<>;
 	OffMemorize = new Signal<>;
-
+	
 	elementalMasterComponent = CreateComponent<ElementalMasterComponent>();
 	elementalMasterComponent->SetStatus(OS_INACTIVE);
 }
@@ -52,6 +52,10 @@ GPlayerController::~GPlayerController()
 
 	delete OnBeginDisfell;
 	delete OnDoingDisfell;
+	delete OnFlash;
+	delete OnMemorize;
+	delete OffFlash;
+	delete OffMemorize;
 }
 
 void GPlayerController::SetupInputComponent()

@@ -29,9 +29,9 @@ Player::Player(class World* _world) : Character(_world)
 
 	collisionBox = GetComponent<BoxComponent>(); 
 	collisionBox->SetCollisionObjectType(ECollisionChannel::Player);
-	
-	OnHPChanged = new Signal<float>;
-	OnMPChanged = new Signal<float>;
+
+	OnHPInfoChanged = new Signal<float, float>;
+	OnMPInfoChanged = new Signal<float, float>;
 
 	// ¾Ö´Ï¸ÞÀÌ¼Ç
 	{
@@ -123,9 +123,8 @@ void Player::Update(float _dt)
 
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 
-	OnHPChanged->Emit(stat.hp / (float)stat.maxHp);
-	OnMPChanged->Emit(stat.mp / (float)stat.maxMp);
-
+	OnHPInfoChanged->Emit(stat.hp, stat.maxHp);
+	OnMPInfoChanged->Emit(stat.mp, stat.maxMp);
 
 	//Orb
 	Math::Vector2 mousePos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };

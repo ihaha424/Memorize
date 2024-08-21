@@ -83,8 +83,12 @@ void Tutorials::Enter()
 
 		{
 			playerMainUI = GetWorld()->GetCanvas()->CreatePannel<PlayerMainUIPanel>(L"PlayerMainUI");
-			player->OnHPChanged->Connect([&](float hpValue) { playerMainUI->SetHPValue(hpValue); });
-			player->OnMPChanged->Connect([&](float mpValue) { playerMainUI->SetMPValue(mpValue); });
+			player->OnHPInfoChanged->Connect([&](float hp, float maxHp) { playerMainUI->SetHPInfo(hp, maxHp); });
+			player->OnMPInfoChanged->Connect([&](float mp, float maxMp) { playerMainUI->SetMPInfo(mp, maxMp); });
+			pc->OnMemorize->Connect([&]() {playerMainUI->SetMemorizeOn(); });
+			pc->OffMemorize->Connect([&]() {playerMainUI->SetMemorizeOff(); });
+			pc->OnFlash->Connect([&]() {playerMainUI->SetFlashOn(); });
+			pc->OffFlash->Connect([&]() {playerMainUI->SetFlashOff(); });
 		}
 	}
 

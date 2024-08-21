@@ -1,6 +1,7 @@
 #include "PlayerMainUIPanel.h"
 #include "D2DGameEngine/ProgressBar.h"
 #include "D2DGameEngine/UIImage.h"
+#include "D2DGameEngine/UIText.h"
 
 PlayerMainUIPanel::PlayerMainUIPanel(World* _world) : UIPanel(_world)
 {
@@ -38,20 +39,20 @@ PlayerMainUIPanel::PlayerMainUIPanel(World* _world) : UIPanel(_world)
 	flash->SetSprite(L"TestResource/UI/Icon_Flash_off.png");
 	flash->SetPosition(243, 21);
 	flash->SetZOrder(3);
+
+	hpText = CreateUI<UIText>(L"HPText");
+	hpText->SetFontSize(20);
+	hpText->SetPosition(-125, -5);
+	hpText->SetZOrder(4);
+
+	mpText = CreateUI<UIText>(L"MPText");
+	mpText->SetFontSize(20);
+	mpText->SetPosition(150, -5);
+	hpText->SetZOrder(4);
 }
 
 PlayerMainUIPanel::~PlayerMainUIPanel()
 {
-}
-
-void PlayerMainUIPanel::SetHPValue(float value)
-{
-	hpBar->SetValue(value);
-}
-
-void PlayerMainUIPanel::SetMPValue(float value)
-{
-	mpBar->SetValue(value);
 }
 
 void PlayerMainUIPanel::SetMemorizeOn()
@@ -72,4 +73,16 @@ void PlayerMainUIPanel::SetFlashOn()
 void PlayerMainUIPanel::SetFlashOff()
 {
 	flash->SetSprite(L"TestResource/UI/Icon_Flash_off.png");
+}
+
+void PlayerMainUIPanel::SetHPInfo(float hp, float maxHp)
+{
+	hpText->SetText(std::to_wstring((int)hp) + L"/" + std::to_wstring((int)maxHp));
+	hpBar->SetValue(hp/maxHp);
+}
+
+void PlayerMainUIPanel::SetMPInfo(float mp, float maxMp)
+{
+	mpText->SetText(std::to_wstring((int)mp) + L"/" + std::to_wstring((int)maxMp));
+	mpBar->SetValue(mp/maxMp);
 }
