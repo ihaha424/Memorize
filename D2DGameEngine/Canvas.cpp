@@ -24,6 +24,9 @@ void Canvas::Update(float _dt)
 		if (panel->GetStatus() == OS_ACTIVE)
 			panel->Update(_dt);
 	}
+	std::sort(panelList.begin(), panelList.end(),
+		[](UIPanel* panel1, UIPanel* panel2)
+		{return panel1->GetZOrder() < panel2->GetZOrder(); });
 }
 
 void Canvas::Render(D2DRenderer* _renderer)
