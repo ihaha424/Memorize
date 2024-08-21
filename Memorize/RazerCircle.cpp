@@ -158,6 +158,13 @@ void RazerCircle::Update(float _dt)
 			}
 		}
 	}
+
+	dispelTime -= _dt;
+	if (dispelTime <= 0.f)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+	}
 }
 
 void RazerCircle::DisfellAction()
@@ -175,6 +182,10 @@ void RazerCircle::DisfellFailAction()
 void RazerCircle::OnClicked()
 {
 	__super::OnClicked();
+
+	if (dispelTime <= 0.f) return;
+
+	LOG_MESSAGE("Circle Clicked!");
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
@@ -236,5 +247,12 @@ void RazerCircle::DestroyThis()
 	//attach3->RemoveChild(razer3->rootComponent);
 	//GetWorld()->UnregisterComponentCollision(circle);
 	//destroyThis = true;
+
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+
+	razer3->Destroy();
+	razer2->Destroy();
+	razer1->Destroy();
 	Destroy();
 }

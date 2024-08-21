@@ -31,9 +31,23 @@ public:
 		circleRadius = inCircleRadius;
 	}
 
+	virtual BoxCircleBounds CalculateBounds(const Math::Matrix& _worldTransform) const override {
+		Circle circle{
+			GetComponentLocation(),
+			GetScaledSphereRadius()
+		};
+
+		return BoxCircleBounds(circle);
+	}
+
 	virtual BoxCircleBounds CalculateLocalBounds() const override {
 		// TODO: ¿ùµå Æ®·»½ºÆû Àû¿ë
 		return BoxCircleBounds(Circle{ { 0.f, 0.f }, circleRadius });
+	}
+
+	virtual void UpdateBounds() override
+	{
+		bounds = CalculateBounds(GetWorldTransform());
 	}
 
 	virtual bool GetCollisionShape(float inflation, CollisionShape& collisionShape) const {
