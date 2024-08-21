@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Boss.h"
 #include "Bat.h"
+#include "Scarecrow.h"
 
 ChasingWaterBallProjectile::ChasingWaterBallProjectile(World* _world)
 	: Projectile(_world)
@@ -67,7 +68,13 @@ void ChasingWaterBallProjectile::Update(float _dt)
 
 
 		Boss* boss = GetWorld()->FindActorByType<Boss>();
-		chasingEnemies.push_back(boss);
+		if(boss)
+			chasingEnemies.push_back(boss);
+
+		Scarecrow* scarecrow = GetWorld()->FindActorByType<Scarecrow>();
+		if (scarecrow)
+			chasingEnemies.push_back(scarecrow);
+
 		std::vector<Bat*> bats = GetWorld()->FindAllActorsByType<Bat>();
 		for (auto bat : bats)
 		{

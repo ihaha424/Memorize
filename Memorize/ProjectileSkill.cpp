@@ -30,7 +30,10 @@ void ProjectileSkill::UseSkill()
 	attackDir = mousePos - Math::Vector2(player->GetLocation().x, player->GetLocation().y);
 	attackDir.Normalize();
 	bEnd = false;
-	projectiles[nowUsingCount]->Initialize();
-	projectiles[nowUsingCount]->SetSkillID(id);
-	projectiles[nowUsingCount]->SetOwnerSkill(this);
+	if (projectiles.size() > 0)
+	{
+		projectiles[nowUsingCount]->Initialize();
+		projectiles[nowUsingCount]->SetSkillID(id);
+		projectiles[nowUsingCount]->SetOwnerSkill(this);
+	}
 }
