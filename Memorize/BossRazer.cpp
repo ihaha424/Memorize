@@ -135,6 +135,13 @@ void BossRazer::Update(float _dt)
 {
 	Super::Update(_dt);
 
+	dispelTime -= _dt;
+	if (dispelTime <= 0.f)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+	}
+
 	if (startShuttingDown)
 	{
 		shuttingDownTimer -= _dt;
@@ -217,6 +224,10 @@ void BossRazer::DisfellFailAction()
 void BossRazer::OnClicked()
 {
 	__super::OnClicked();
+
+	if (dispelTime <= 0.f) return;
+
+	LOG_MESSAGE("Razer Clicked!");
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
@@ -267,6 +278,8 @@ void BossRazer::ReflectionOut() {}
 
 void BossRazer::DestroyThis()
 {
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 	if (rootComponent->parent)
 	{
 		rootComponent->parent->RemoveChild(rootComponent);
