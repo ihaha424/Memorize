@@ -69,6 +69,7 @@ void TestLevel::Enter()
 		disfellPanel = GetWorld()->GetCanvas()->CreatePannel<DisfellPanel>(L"DisfellCommands");
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index, int command) {disfellPanel->CommandImageOff(index, command); });
+		
 
 		// 보스 투사체 붙히기
 		/*BossProjectile* proj1 =CreateActor<BossProjectile>();*/
@@ -82,6 +83,10 @@ void TestLevel::Enter()
 			playerMainUI = GetWorld()->GetCanvas()->CreatePannel<PlayerMainUIPanel>(L"PlayerMainUI");
 			player->OnHPChanged->Connect([&](float hpValue) { playerMainUI->SetHPValue(hpValue); });
 			player->OnMPChanged->Connect([&](float mpValue) { playerMainUI->SetMPValue(mpValue); });
+			pc->OnMemorize->Connect([&]() {playerMainUI->SetMemorizeOn(); });
+			pc->OffMemorize->Connect([&]() {playerMainUI->SetMemorizeOff(); });
+			pc->OnFlash->Connect([&]() {playerMainUI->SetFlashOn(); });
+			pc->OffFlash->Connect([&]() {playerMainUI->SetFlashOff(); });
 		}
 	}
 	

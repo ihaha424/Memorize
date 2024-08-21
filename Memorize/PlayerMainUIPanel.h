@@ -9,11 +9,18 @@ class PlayerMainUIPanel : public UIPanel
 	class UIImage* back;
 	class UIImage* front;
 
+	class UIImage* memorize;
+	class UIImage* flash;
+
 public:
 	PlayerMainUIPanel(class World* _world);
 	virtual ~PlayerMainUIPanel();
 
 	void SetHPValue(float value);
 	void SetMPValue(float value);
+	void SetMemorizeOn();
+	void SetMemorizeOff();
+	void SetFlashOn();
+	void SetFlashOff();
 };
 
