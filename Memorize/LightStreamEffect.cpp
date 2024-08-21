@@ -15,7 +15,7 @@ LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 	initialState->SetSprite(L"TestResource/Player/Skill/Skill_LightStream01.png");
 	initialState->SliceSpriteSheet(1000, 290, 0, 0, 0, 0);
 	initialState->FrameResize(25);
-	initialState->SetFrameDurations({ 2.f / 25 });
+	initialState->SetFrameDurations({ 0.5f / 25 });
 
 	normalState->SetSprite(L"TestResource/Player/Skill/Skill_LightStream02.png");
 	normalState->SliceSpriteSheet(1000, 290, 0, 0, 0, 0);
@@ -25,13 +25,15 @@ LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 	endingState->SetSprite(L"TestResource/Player/Skill/Skill_LightStream03.png");
 	endingState->SliceSpriteSheet(1000, 290, 0, 0, 0, 0);
 	endingState->FrameResize(15);
-	endingState->SetFrameDurations({ 1.f / 15 });
+	endingState->SetFrameDurations({ 0.5f / 15 });
 
 	anim->Initialize(initialState);
 
 	obb = CreateComponent<PolygonComponent>();
-	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::OverlapAll);
+	obb->collisionProperty = CollisionProperty(CollisionPropertyPreset::PlayerPattern);
 	obb->SetCollisionObjectType(ECollisionChannel::PlayerPattern);
+	obb->collisionProperty.SetCollisionResponse(ECollisionChannel::Enemy, CollisionResponse::Overlap);
+	obb->collisionProperty.SetCollisionResponse(ECollisionChannel::EnemyProjectile, CollisionResponse::Ignore);
 	obb->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
 	obb->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
 	obb->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
@@ -81,9 +83,9 @@ void LightStreamEffect::Update(float _dt)
 
 	obb->bShouldOverlapTest = true;
 	damageTimer += _dt;
-	if (state == State::Initial || state == State::Ending)
+	if (state == State::Normal)
 	{
-		obb->bShouldOverlapTest = false;
+		//obb->bShouldOverlapTest = false;
 	}
 
 	if (elapsedTime > initialTime && state == State::Initial)
