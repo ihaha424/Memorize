@@ -17,8 +17,7 @@ DarkSphereProjectile::DarkSphereProjectile(World* _world) : Projectile(_world)
 	endingState->FrameResize(7);
 	endingState->SetFrameDurations({ 0.14285f });
 
-	box->SetPolygon({ {-60, 60}, {60, -60}, {-60, -60}, {60, 60} });
-
+	box->SetPolygon({ {-60, -60}, {60, -60}, {60, 60}, {-60, 60} });
 	endingTime = 1.f;
 	bIsPassable = false;
 	bCollideWithOtherAttack = true;

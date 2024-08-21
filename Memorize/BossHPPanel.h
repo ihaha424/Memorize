@@ -4,7 +4,7 @@
 class BossHPPanel : public UIPanel
 {
 	class ProgressBar* hpBar;
-
+	class UIImage* back;
 public:
 	BossHPPanel(World* _world);
 	virtual ~BossHPPanel();

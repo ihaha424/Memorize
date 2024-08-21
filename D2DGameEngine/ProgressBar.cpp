@@ -36,13 +36,16 @@ void ProgressBar::Render(D2DRenderer* _renderer)
 	switch (dir)
 	{
 	case ProgressBarDir::BottomToTop:
-
 		srcRect.top = fullImage->GetSize().height * (1 - value);
-		dstRect.top = -GetSize().y / 2 + GetSize().y * (1 - value);
+		dstRect.top = -fullImage->GetSize().height / 2 + fullImage->GetSize().height * (1 - value);
 		break;
 	case ProgressBarDir::LeftToRight:
 		srcRect.right = fullImage->GetSize().width * value;
 		dstRect.right = -fullImage->GetSize().width / 2 + fullImage->GetSize().width * value;
+		break;
+	case ProgressBarDir::RightToLeft:
+		srcRect.left = fullImage->GetSize().width * (1 - value);
+		dstRect.left = -fullImage->GetSize().width / 2 + fullImage->GetSize().width * (1 - value);
 		break;
 	}
 

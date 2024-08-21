@@ -6,6 +6,9 @@ class PlayerMainUIPanel : public UIPanel
 	class ProgressBar* hpBar;
 	class ProgressBar* mpBar;
 
+	class UIImage* back;
+	class UIImage* front;
+
 public:
 	PlayerMainUIPanel(class World* _world);
 	virtual ~PlayerMainUIPanel();
