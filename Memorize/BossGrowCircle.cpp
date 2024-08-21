@@ -9,6 +9,8 @@
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 #include "D2DGameEngine/IntersectionUtil.h"
+#include "D2DGameEngine/D2DRenderer.h"
+#include "D2DGameEngine/BoxComponent.h"
 
 BossGrowCircle::BossGrowCircle(World* _world)
 	:BossSkillActor(_world)
@@ -19,13 +21,15 @@ BossGrowCircle::BossGrowCircle(World* _world)
 	rootComponent->AddChild(abm);
 	bm->isVisible = false;
 
-	circleComponent = CreateComponent<CircleComponent>();
+	//circleComponent = CreateComponent<CircleComponent>();
 
-	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
-	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
-	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
-	circleComponent->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
-	bm->AddChild(circleComponent);
+	//circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
+	//circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
+	//circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
+	//circleComponent->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
+	//bm->AddChild(circleComponent);
+
+
 
 	DamageType radiaDamageType{
 		.damageImpulse = 10000.f,
@@ -79,8 +83,38 @@ void BossGrowCircle::Update(float _dt)
 	scaleTween->Update(_dt);
 	//bm->SetScale(scaleVarias, scaleVarias);
 
-	circleComponent->SetCircleRadius(radius * scaleVarias);
-	circleComponent->bShouldOverlapTest = true;
+	ellipse.center = GetLocation();
+	ellipse.minor = minor * scaleVarias;
+	ellipse.major = major * scaleVarias;
+	/*circleComponent->SetCircleRadius(radius * scaleVarias);
+	circleComponent->bShouldOverlapTest = true;*/
+
+	bool res = ellipse.CheckIntersectWithBox(player->collisionBox->bounds.GetBox());
+	if (res)
+	{
+		auto f = [this]() {
+			BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = radius * scaleVarias;
+			BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = radius * scaleVarias;
+			player->TakeDamage(
+				damage,
+				BossGrowCircleDamageEvent,
+				nullptr,
+				this
+			);
+			};
+		f();
+		tickDamageTimerMap.insert({ player, TakeDamageTimer(f, tickInterval, true) });
+	}
+	else
+	{
+		auto it = tickDamageTimerMap.find(player);
+		if (it != tickDamageTimerMap.end())
+		{
+			it->second.SetFinish(true);
+			tickDamageTimerMap.erase(it);
+		}
+	}
+
 	for (auto& [actor, f] : tickDamageTimerMap)
 	{
 		// 틱 데미지 업데이트
@@ -92,6 +126,15 @@ void BossGrowCircle::Update(float _dt)
 	}
 }
 
+void BossGrowCircle::Render(D2DRenderer* _renderer)
+{
+	Super::Render(_renderer);
+
+#ifndef NDEBUG
+	_renderer->DrawEllipse(ellipse.center, ellipse.major, ellipse.minor, D2D_Color::Red);
+#endif // !NDEBUG
+}
+
 bool BossGrowCircle::Destroy()
 {
 	return __super::Destroy();
@@ -101,7 +144,7 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)
 	{
-		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
+		/*bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
 			circleComponent->CalculateLocalBounds().GetCircle(),
 			overlap.overlapInfo.hitComponent->CalculateBounds(overlap.overlapInfo.hitComponent->GetWorldTransform()).GetBox()
 		);
@@ -118,7 +161,7 @@ void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 			);
 		};
 		f();
-		tickDamageTimerMap.insert({ other, TakeDamageTimer(f, tickInterval, true) });
+		tickDamageTimerMap.insert({ other, TakeDamageTimer(f, tickInterval, true) });*/
 	}
 }
 
@@ -127,12 +170,12 @@ void BossGrowCircle::OnEndOverlap(Actor* other, const OverlapInfo& overlap)
 	if (other)
 	{
 		// 틱 데미지 끄기
-		auto it = tickDamageTimerMap.find(other);
+		/*auto it = tickDamageTimerMap.find(other);
 		if (it != tickDamageTimerMap.end())
 		{
 			it->second.SetFinish(true);
 			tickDamageTimerMap.erase(it);
-		}
+		}*/
 	}
 }
 
@@ -142,13 +185,13 @@ void BossGrowCircle::SetGrowLess(bool _Grow)
 	{
 		scaleTween->SetStartPoint(1.f);
 		scaleTween->SetEndPoint(0.f);
-		circleComponent->InitCircleRadius(radius);
+		//circleComponent->InitCircleRadius(radius);
 	}
 	else
 	{
 		scaleTween->SetStartPoint(0.f);
 		scaleTween->SetEndPoint(1.f);
-		circleComponent->InitCircleRadius(0.f);
+		//circleComponent->InitCircleRadius(0.f);
 		isReverse = true;
 	}
 }

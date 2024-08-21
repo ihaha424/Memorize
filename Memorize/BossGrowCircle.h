@@ -2,11 +2,13 @@
 #include "BossSkillActor.h"
 #include "D2DGameEngine/DamageEvent.h"
 #include "D2DGameEngine/DotTween.h"
+#include "D2DGameEngine/Ellipse.h"
 
 #include "CoolTime.h"
 
 class BossGrowCircle : public BossSkillActor
 {
+	using Super = BossSkillActor;
 public:
 	BossGrowCircle(class World* _world);
 	virtual ~BossGrowCircle() {};
@@ -15,6 +17,7 @@ public:
 
 	virtual void FixedUpdate(float _fixedRate) override;
 	virtual void Update(float _dt) override;
+	virtual void Render(class D2DRenderer* _renderer) override;
 	virtual bool Destroy() override;
 
 	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
@@ -27,7 +30,10 @@ public:
 	void ReflectionOut() override;
 
 public:
-	class CircleComponent* circleComponent;
+	//class CircleComponent* circleComponent;
+	TEllipse ellipse;
+	float minor{ 800.f };
+	float major{ 1200.f };
 	class AnimationBitmapComponent* abm;
 
 private:
