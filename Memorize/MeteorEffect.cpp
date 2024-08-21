@@ -7,16 +7,14 @@
 
 MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
 {
-	normalState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere01.png");
-	normalState->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
-	normalState->FrameResize(73);
-	normalState->SetFrameDurations({ 0.05f });
+	normalState->SetSprite(L"TestResource/Player/Skill/Skill_Meteor01.png");
+	normalState->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
+	normalState->SetFrameDurations({ 3.f/96 });
 	anim->Initialize(normalState);
 
-	endingState->SetSprite(L"TestResource/Player/Skill/Skill_DarkSphere02.png");
-	endingState->SliceSpriteSheet(150, 150, 0, 0, 0, 0);
-	endingState->FrameResize(7);
-	endingState->SetFrameDurations({ 0.14285f });
+	endingState->SetSprite(L"TestResource/Player/Skill/Skill_Meteor03.png");
+	endingState->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
+	endingState->SetFrameDurations({ 2.f/48 });
 
 	//box collider Àç¼³Á¤
 	box->SetCollisionObjectType(ECollisionChannel::PlayerPattern);
@@ -27,7 +25,9 @@ MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
 
 	duration = 10.f;
 	bIsPassable = true;
-	endingTime = 1.f;
+	endingTime = 2.f;
+	bIsPassable = true;
+	bCollideWithOtherAttack = false;
 }
 
 MeteorEffect::~MeteorEffect()
@@ -43,9 +43,6 @@ void MeteorEffect::BeginPlay()
 void MeteorEffect::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	__super::OnBeginOverlap(other, overlap);
-
-	DamageEvent damageEvent;
-	other->TakeDamage(damage, damageEvent, nullptr, this);
 }
 
 void MeteorEffect::Update(float _dt)
