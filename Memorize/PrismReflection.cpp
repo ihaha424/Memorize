@@ -60,7 +60,7 @@ void PrismReflection::UseSkill()
 		double rotateRad = std::acos(directions[n].Dot(Math::Vector2(1.f, 0.f)));
 		if (directions[n].y < 0)
 			rotateRad *= -1;
-		nowPj->rootComponent->SetRotation(rotateRad * 180.f / PI);
+		nowPj->rootComponent->SetRotation(rotateRad * 180.f / PI + 180);
 		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
 }

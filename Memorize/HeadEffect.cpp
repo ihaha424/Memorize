@@ -32,7 +32,13 @@ void HeadEffect::SetEffect(int index)
 		state->SetFrameDurations({ 2.0f / 72 });
 		SetAliveTime(2.0f);
 	}
-	
+	else if (index == 3)
+	{
+		state->SetSprite(L"TestResource/Player/Skill/Skill_Purification.png");
+		state->SliceSpriteSheet(1000, 1000, 0, 0, 0, 0);
+		state->SetFrameDurations({ 2.0f / 60 });
+		SetAliveTime(2.0f);
+	}
 	animatorBitMap->Initialize(state);
 }
 
