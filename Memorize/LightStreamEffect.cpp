@@ -35,7 +35,7 @@ LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 	obb->bSimulatePhysics = false;	// 움직임에 물리를 적용하지 않습니다.
 	obb->bApplyImpulseOnDamage = false;	// 데미지를 받을 때 충격을 가합니다.
 	obb->bGenerateOverlapEvent = true;	// Overlap 이벤트를 발생시킵니다.
-	obb->SetPolygon({ {-500.f, -80.f}, {500.f, -80.f }, {-500.f, 80.f}, {500.f, 80.f} });
+	obb->SetPolygon({ {-500.f, -80.f}, {500.f, -80.f }, {500.f, 80.f}, {-500.f, 80.f} });
 	rootComponent->AddChild(obb);
 }
 

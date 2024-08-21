@@ -13,8 +13,7 @@ PrismReflectionProjectile::PrismReflectionProjectile(World* _world) : Projectile
 	bIsPassable = true;
 	bCollideWithOtherAttack = true;
 
-	box->SetPolygon({ {-100, 50}, {100, -50}, {-100, -50}, {100, 50} });
-
+	box->SetPolygon({ {-100, -50}, {100, -50}, {100, 50}, {-100, 50} });
 	bHasEnding = false;
 	endingTime = 0.f;
 }
