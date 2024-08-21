@@ -168,6 +168,7 @@
     <ClInclude Include="ClickComponent.h" />
     <ClInclude Include="CSpace.h" />
     <ClInclude Include="EffectSystem.h" />
+    <ClInclude Include="Ellipse.h" />
     <ClInclude Include="FSMComponent.h" />
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="IEffect.h" />

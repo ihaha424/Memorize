@@ -524,6 +524,9 @@
     <ClInclude Include="AnimatorEffect.h">
       <Filter>Source Files\GameEngine\EffectSystem\AnimatorEffect</Filter>
     </ClInclude>
+    <ClInclude Include="Ellipse.h">
+      <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinBase.h">

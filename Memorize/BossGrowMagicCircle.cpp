@@ -20,21 +20,37 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 {
 	ReflectionIn();
 
+	bm->isVisible = false;
+
 	abm = CreateComponent<AnimationBitmapComponent>();
 	rootComponent = abm;
-	bm->isVisible = false;
+	abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowMagicCircle.png");
+	abm->SliceSpriteSheet(1200, 1200, 0, 0, 0, 0);
+	abm->SetFrameDurations({ 0.05f });
+	abm->FrameResize(82);
+	abm->SetLoop(true);
+	abm->Trigger(true);
 	abm->MarkBoundsDirty();
+
+	circleBreak = CreateComponent<AnimationBitmapComponent>();
+	rootComponent->AddChild(circleBreak);
+	circleBreak->SetSprite(L"TestResource/Boss/MagicCircle/BossCircleBreak.png");
+	circleBreak->SliceSpriteSheet(1500, 1500, 0, 0, 0, 0);
+	circleBreak->SetFrameDurations({ 1.f / 12.f });
+	circleBreak->SetLoop(false);
+	circleBreak->Trigger(false);
+	circleBreak->isVisible = false;
 
 	CreateComponent<ClickComponent>();
 
-	circleComponent = CreateComponent<CircleComponent>();
+	//circleComponent = CreateComponent<CircleComponent>();
 
-	circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
-	circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
-	circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
-	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
-	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
-	abm->AddChild(circleComponent);
+	//circleComponent->collisionProperty = CollisionProperty(CollisionPropertyPreset::EnemyPattern);	// 오브젝트의 충돌 채널은 WorldStatic, 모든 충돌 채널에 대한 반응은 `Block`.
+	//circleComponent->bSimulatePhysics = false;				// 움직임에 물리를 적용합니다.
+	//circleComponent->bApplyImpulseOnDamage = true;	// 데미지를 받을 때 충격을 가합니다.
+	//circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
+	//circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
+	//abm->AddChild(circleComponent);
 
 	DamageType radiaDamageType{
 		.damageImpulse = 10000.f,
@@ -43,6 +59,7 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	BossGrowMagicCircleDamageEvent.origin = GetLocation();
 	BossGrowMagicCircleDamageEvent.radialDamageInfo.maxDamage = damage;
 	BossGrowMagicCircleDamageEvent.radialDamageInfo.minDamage = damage;
+	BossGrowMagicCircleDamageEvent.radialDamageInfo.damageFalloff = 0.f;
 	BossGrowMagicCircleDamageEvent.componentHits.resize(1);
 
 }
@@ -54,29 +71,29 @@ void BossGrowMagicCircle::BeginPlay()
 {
 	__super::BeginPlay();
 
-
-	{
-		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowMagicCircle.png");
-		abm->SliceSpriteSheet(1200, 1200, 0, 0, 0, 0);
-		abm->SetFrameDurations({ 0.05f });
-		abm->FrameResize(82);
-		abm->SetLoop(true);
-		abm->Trigger(true);
-	}
-
-	circleComponent->InitCircleRadius(1200 / 2);
+	//circleComponent->InitCircleRadius(1200 / 2);
 	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
 
-
-	disfellCommandCount = 4;
+	disfellCommandCount = 8;
 	CreateDisfellCommand();
 }
 
 void BossGrowMagicCircle::Update(float _dt)
 {
 	__super::Update(_dt);
+
+	if (destructing)
+	{
+		destructionTimer -= _dt;
+		if (destructionTimer <= 0.f)
+		{
+			Destroy();
+		}
+		return;
+	}
+
 	if (skillDuration > 0.f)
 	{
 		abm->Scale(1.0f + _dt * 0.1f, 1.0f + _dt * 0.1f);
@@ -84,18 +101,11 @@ void BossGrowMagicCircle::Update(float _dt)
 	}
 	if (skillDuration < 0.f)
 	{
-		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = circleComponent->GetScaledSphereRadius();
-		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = circleComponent->GetScaledSphereRadius();
-		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = 0.f;
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = 10000.f;
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
 		
-
-		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
-			circleComponent->CalculateBounds(circleComponent->GetWorldTransform()).GetCircle(),
-			player->rootComponent->CalculateBounds(player->rootComponent->GetWorldTransform()).GetBox()
-		);
-		if (hitRadius)
-			player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
+		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
 
 		// 애니메이션 초기화
 		Boss* boss = GetWorld()->FindActorByType<Boss>();
@@ -130,9 +140,16 @@ void BossGrowMagicCircle::DisfellOneCountAction()
 
 void BossGrowMagicCircle::DisfellAction()
 {
-	disfellCommand.clear();
-	dissfellindex = 0;
-	CreateDisfellCommand();
+	abm->Trigger(false);
+	abm->isVisible = false;
+
+	circleBreak->Trigger(true);
+	circleBreak->isVisible = true;
+
+	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+
+	destructing = true;
 }
 
 void BossGrowMagicCircle::DisfellFailAction()

@@ -72,6 +72,7 @@ public:
 	int skillUses;
 	bool bondageFlag{ false };
 
+	class BoxComponent* collisionBox;
 	class BuffEffectComponent* buffEffect;
 	class GCameraComponent* cm;
 	class ManaOverloadComponent* manaOverloadEffect;

@@ -6,7 +6,7 @@
 
 class Arena : public Actor
 {
-
+	
 public:
 
 	Arena(class World* _world);
