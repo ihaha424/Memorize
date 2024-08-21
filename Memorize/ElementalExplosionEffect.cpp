@@ -3,6 +3,8 @@
 #include "D2DGameEngine/BoxComponent.h"
 #include "D2DGameEngine/DamageEvent.h"
 
+
+#include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/AnimationEffect.h"
 #include "../D2DGameEngine/AnimationBitmapComponent.h"
 
@@ -28,8 +30,18 @@ void ElementalExplosionEffect::BeginPlay()
 
 void ElementalExplosionEffect::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
-
 	other->Destroy();
+	Math::Vector2 DestoryProjectileEPos = other->GetLocation();
+	//BlickSource Effect
+	{
+		AnimationEffect* DestoryProjectileEffect = GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
+		DestoryProjectileEffect->SetSprite(L"TestResource/Player/Skill/Skill_ElementalExplosion1.png");
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->SliceSpriteSheet(300, 300, 0, 0, 0, 0);
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->SetFrameDurations({ 0.025f });
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->Trigger(true);
+		DestoryProjectileEffect->SetAliveTime(1.f);
+		DestoryProjectileEffect->SetLocation(DestoryProjectileEPos.x, DestoryProjectileEPos.y);
+	}
 }
 
 void ElementalExplosionEffect::Update(float _dt)
