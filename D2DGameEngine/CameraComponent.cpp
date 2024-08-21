@@ -11,6 +11,8 @@ CameraComponent::CameraComponent(Actor* _owner) : PrimitiveComponent(_owner)
 
 CameraComponent::~CameraComponent()
 {
+	if(GetWorld()->GetMainCamera() == this)
+		GetWorld()->SetMainCamera(nullptr);
 }
 
 void CameraComponent::Update(float _dt)

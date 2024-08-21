@@ -45,7 +45,7 @@ void TestLevel::Clear()
 #include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
-
+	__super::Enter();
 	{
 		Arena* arena = CreateActor<Arena>();
 		/*Actor* actor = CreateActor<Actor>();
