@@ -114,8 +114,8 @@ public:
 	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser) override;
 
 	//Signals for UI
-	Signal<float>* OnHPChanged;
-	Signal<float>* OnMPChanged;
-
+	
+	Signal<float, float>* OnHPInfoChanged;
+	Signal<float, float>* OnMPInfoChanged;
 };
 
