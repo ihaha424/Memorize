@@ -48,6 +48,8 @@ public:
 	class AnimationState* IdleAnimationState;
 	class AnimationState* MoveAnimationState;
 	class AnimationState* CastingAnimationState;
+	class AnimationState* TeleportStartAnimationState;
+	class AnimationState* TeleportEndAnimationState;
 
 };
 

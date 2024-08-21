@@ -5,6 +5,8 @@
 
 #include "Loading.h"
 
+#include "Cursor.h"
+
 MainLevel::MainLevel(World* _world, const std::wstring& _name)
 	: Level(_world, _name)
 {}
@@ -17,6 +19,7 @@ void MainLevel::Enter()
 {
 	__super::Enter();
 	mainPanel = GetWorld()->GetCanvas()->CreatePannel<MainLevelUIPanel>(L"MainLevel");
+	CreateActor<Cursor>();
 }
 
 void MainLevel::Exit()

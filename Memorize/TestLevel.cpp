@@ -21,6 +21,8 @@
 
 #include "PlayerMainUIPanel.h"
 
+#include "Cursor.h"
+
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
 
@@ -48,6 +50,7 @@ void TestLevel::Enter()
 	__super::Enter();
 	{
 		Arena* arena = CreateActor<Arena>();
+		Cursor* cursor = CreateActor<Cursor>();
 		/*Actor* actor = CreateActor<Actor>();
 		actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
 		BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();

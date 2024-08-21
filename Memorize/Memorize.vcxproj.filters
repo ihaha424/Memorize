@@ -138,6 +138,12 @@
     <Filter Include="Source Files\Level">
       <UniqueIdentifier>{c0e235f7-011e-4cd4-b24b-2d3c248229df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Components">
+      <UniqueIdentifier>{1e4993f8-5149-4e88-8ea3-eed8ebfc8512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\Cursor">
+      <UniqueIdentifier>{07b578e1-4582-4bba-a740-cd661d9960a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -451,6 +457,15 @@
     </ClCompile>
     <ClCompile Include="SkillActor.cpp">
       <Filter>Source Files\App\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files\App\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseComponent.cpp">
+      <Filter>Source Files\App\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Source Files\App\Cursor</Filter>
     </ClCompile>
     <ClCompile Include="TestLevel.cpp">
       <Filter>Source Files\Level</Filter>
@@ -783,6 +798,15 @@
     </ClInclude>
     <ClInclude Include="SkillActor.h">
       <Filter>Source Files\App\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Source Files\App\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseComponent.h">
+      <Filter>Source Files\App\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Source Files\App\Cursor</Filter>
     </ClInclude>
     <ClInclude Include="TestLevel1_RenderLayer.h">
       <Filter>Source Files\Level</Filter>

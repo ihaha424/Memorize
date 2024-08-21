@@ -165,6 +165,10 @@ public:
 	 */
 	Math::Matrix GetGlobalTransform();
 
+	// Layer operator
+	void PushLayer();
+	void PopLayer();
+
 	void ResizeScreen(int w, int h);
 
 	void ShowVRAMUsage();

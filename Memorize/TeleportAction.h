@@ -3,7 +3,10 @@
 #include "D2DGameEngine\Leaf.h"
 
 struct TeleportTo final : public Action {
+	using Super = Action;
 	using KeyName = std::string;
+
+	void Init() override;
 
 	/**
 	 * @brief Observe the teleport location key.
@@ -17,5 +20,13 @@ struct TeleportTo final : public Action {
 
 private:
 	KeyName key;
+
+	bool channeling{ false };
+	float castingTime{ .8f };
+	bool cooling{ false };
+	float coolingTime{ .25f };
+	bool done{ false };
+
+	void Teleport();
 };
 
