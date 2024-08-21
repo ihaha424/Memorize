@@ -17,6 +17,7 @@ public:
 	virtual void DisfellAction();
 	virtual void DisfellFailAction();
 	virtual void OnClicked();
+	virtual bool Destroy() override;
 
 	// BossSkillActor을(를) 통해 상속됨
 	void ReflectionIn() override;

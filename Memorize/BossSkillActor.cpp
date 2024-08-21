@@ -24,22 +24,7 @@ BossSkillActor::BossSkillActor(World* _world)
 }
 
 BossSkillActor::~BossSkillActor()
-{
-	//for Purification skill
-	auto it1 = GetWorld()->FindActorByType<Player>();
-	if (it1 == nullptr)
-		return;
-	GPlayerController* pController = GetWorld()->FindActorByType<GPlayerController>();
-	if (pController == nullptr)
-		return;
-	Purification* purification = static_cast<Purification*>(pController->FindSkiil(SE_LIGHT, ST_SPECIAL));
-	auto it2 = std::find(purification->disfellSkills.begin(), purification->disfellSkills.end(), this);
-	if (it2 != purification->disfellSkills.end())
-	{
-		purification->disfellSkills.erase(it2, purification->disfellSkills.end());
-	}
-	
-}
+{}
 
 void BossSkillActor::OnClicked()
 {
@@ -90,4 +75,22 @@ void BossSkillActor::FixedUpdate(float _fixedRate)
 {
 	__super::FixedUpdate(_fixedRate);
 	bm->UpdateBounds();
+}
+
+bool BossSkillActor::Destroy()
+{
+	//for Purification skill
+	auto it1 = GetWorld()->FindActorByType<Player>();
+	if (it1 == nullptr)
+		return false;
+	GPlayerController* pController = GetWorld()->FindActorByType<GPlayerController>();
+	if (pController == nullptr)
+		return false;
+	Purification* purification = static_cast<Purification*>(pController->FindSkiil(SE_LIGHT, ST_SPECIAL));
+	auto it2 = std::find(purification->disfellSkills.begin(), purification->disfellSkills.end(), this);
+	if (it2 != purification->disfellSkills.end())
+	{
+		purification->disfellSkills.erase(it2, purification->disfellSkills.end());
+	}
+	return __super::Destroy();
 }

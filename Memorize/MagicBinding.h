@@ -35,6 +35,8 @@ public:
 
 	virtual void Update(float _dt) override;
 
+	virtual bool Destroy() override;
+
 	virtual void DisfellAction();
 
 	void ReflectionIn() override;

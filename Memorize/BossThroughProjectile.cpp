@@ -105,6 +105,12 @@ void BossThroughProjectile::Update(float _dt)
 	}
 }
 
+bool BossThroughProjectile::Destroy()
+{
+	return __super::Destroy();
+	/*ÆøÆÈÀÌÆåÆ® ? */
+}
+
 void BossThroughProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	other->TakeDamage(

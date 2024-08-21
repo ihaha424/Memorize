@@ -58,14 +58,7 @@ BossChaseCircle::BossChaseCircle(World* _world)
 }
 
 BossChaseCircle::~BossChaseCircle()
-{
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
-}
+{}
 
 void BossChaseCircle::BeginPlay()
 {
@@ -121,6 +114,18 @@ void BossChaseCircle::Update(float _dt)
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		Destroy();
 	}
+}
+
+bool BossChaseCircle::Destroy()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+
+	return __super::Destroy();
 }
 
 void BossChaseCircle::DisfellAction()

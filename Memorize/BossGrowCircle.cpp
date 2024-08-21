@@ -92,6 +92,11 @@ void BossGrowCircle::Update(float _dt)
 	}
 }
 
+bool BossGrowCircle::Destroy()
+{
+	return __super::Destroy();
+}
+
 void BossGrowCircle::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 {
 	if (other)

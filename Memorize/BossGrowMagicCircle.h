@@ -12,7 +12,7 @@ public:
 	virtual void BeginPlay();
 
 	virtual void Update(float _dt) override;
-
+	virtual bool Destroy() override;
 
 	virtual void DisfellOneCountAction();
 	virtual void DisfellAction();

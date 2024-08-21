@@ -151,6 +151,11 @@ void ChasingBomb::Update(float _dt)
 	}
 }
 
+bool ChasingBomb::Destroy()
+{
+	return __super::Destroy();
+}
+
 void ChasingBomb::DisfellAction()
 {
 }

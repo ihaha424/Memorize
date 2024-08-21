@@ -29,6 +29,7 @@ public:
 
 public:
 	virtual void FixedUpdate(float _fixedRate) override;
+	virtual bool Destroy() override;
 	virtual void OnClicked() override;
 
 	/**

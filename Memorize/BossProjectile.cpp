@@ -38,6 +38,11 @@ void BossProjectile::Update(float _dt)
 	//}
 }
 
+bool BossProjectile::Destroy()
+{
+	return __super::Destroy();
+}
+
 void BossProjectile::SetActor(std::wstring _fileName)
 {
 	reflectionResource = ResourceManager::LoadResource<ReflectionResource>(_fileName);

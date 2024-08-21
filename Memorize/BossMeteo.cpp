@@ -83,6 +83,12 @@ void BossMeteo::Update(float _dt)
 	}
 }
 
+bool BossMeteo::Destroy()
+{
+	/*ÆøÆÈÀÌÆåÆ® ? */
+	return __super::Destroy();
+}
+
 
 void BossMeteo::ReflectionIn()
 {

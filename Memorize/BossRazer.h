@@ -44,6 +44,7 @@ public:
 	virtual void FixedUpdate(float _fixedRate) override;
 
 	virtual void Update(float _dt) override;
+	virtual bool Destroy() override;
 
 	virtual void DisfellAction() override;
 	virtual void DisfellFailAction() override;

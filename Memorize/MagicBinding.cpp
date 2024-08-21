@@ -72,14 +72,7 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 }
 
 MagicBinding::~MagicBinding()
-{
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
-}
+{}
 
 void MagicBinding::BeginPlay()
 {
@@ -149,6 +142,18 @@ void MagicBinding::Update(float _dt)
 			bodyChaining->Resume();
 		}
 	}
+}
+
+bool MagicBinding::Destroy()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+
+	return __super::Destroy();
 }
 
 void MagicBinding::DisfellAction()

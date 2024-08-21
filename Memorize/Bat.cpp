@@ -144,6 +144,11 @@ void Bat::Update(float _dt)
 	}
 }
 
+bool Bat::Destroy()
+{
+	return __super::Destroy();
+}
+
 void Bat::ReflectionIn()
 {
 	//auto reflectionResource = ResourceManager::LoadResource<ReflectionResource>();

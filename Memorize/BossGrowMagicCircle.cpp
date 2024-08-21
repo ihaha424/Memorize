@@ -48,14 +48,7 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 }
 
 BossGrowMagicCircle::~BossGrowMagicCircle()
-{
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
-}
+{}
 
 void BossGrowMagicCircle::BeginPlay()
 {
@@ -116,6 +109,18 @@ void BossGrowMagicCircle::Update(float _dt)
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		Destroy();
 	}
+}
+
+bool BossGrowMagicCircle::Destroy()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+
+	return __super::Destroy();
 }
 
 void BossGrowMagicCircle::DisfellOneCountAction()

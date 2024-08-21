@@ -55,15 +55,7 @@ BossThroughProjectileMagicCircle::BossThroughProjectileMagicCircle(World* _world
 }
 
 BossThroughProjectileMagicCircle::~BossThroughProjectileMagicCircle()
-{
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
-	delete coolTime;
-}
+{}
 
 void BossThroughProjectileMagicCircle::BeginPlay()
 {
@@ -132,6 +124,19 @@ void BossThroughProjectileMagicCircle::OnClicked()
 	__super::OnClicked();
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+}
+
+bool BossThroughProjectileMagicCircle::Destroy()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+	delete coolTime;
+
+	return __super::Destroy();
 }
 
 void BossThroughProjectileMagicCircle::ReflectionIn()

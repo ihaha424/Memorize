@@ -9,12 +9,12 @@ class BossThroughProjectile : public BossSkillActor
 {
 public:
 	BossThroughProjectile(class World* _world);
-	virtual ~BossThroughProjectile() {/*∆¯∆»¿Ã∆Â∆Æ ? */ };
+	virtual ~BossThroughProjectile() {};
 
 	virtual void BeginPlay();
 	virtual void FixedUpdate(float _fixedRate) override;
 	virtual void Update(float _dt) override;
-
+	virtual bool Destroy() override;
 	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 

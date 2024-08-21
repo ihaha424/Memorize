@@ -47,15 +47,7 @@ BossMeteoCircle::BossMeteoCircle(World* _world)
 }
 
 BossMeteoCircle::~BossMeteoCircle()
-{
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
-	delete coolTime;
-}
+{}
 
 void BossMeteoCircle::BeginPlay()
 {
@@ -95,6 +87,19 @@ void BossMeteoCircle::Update(float _dt)
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		Destroy();
 	}
+}
+
+bool BossMeteoCircle::Destroy()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+	delete coolTime;
+
+	return __super::Destroy();
 }
 
 void BossMeteoCircle::DisfellAction()

@@ -32,7 +32,7 @@ public:
 	void OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser);
 
 	void Update(float _dt) override;
-
+	virtual bool Destroy() override;
 	void ReflectionIn() override;
 	void ReflectionOut() override {};
 };

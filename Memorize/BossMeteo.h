@@ -9,10 +9,11 @@ class BossMeteo : public BossSkillActor
 {
 public:
 	BossMeteo(class World* _world);
-	virtual ~BossMeteo() {/*∆¯∆»¿Ã∆Â∆Æ ? */ };
+	virtual ~BossMeteo() {};
 
 	virtual void BeginPlay();
 	virtual void Update(float _dt) override;
+	virtual bool Destroy() override;
 
 	// BossSkillActor¿ª(∏¶) ≈Î«ÿ ªÛº”µ 
 	void ReflectionIn() override;

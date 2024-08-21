@@ -116,14 +116,7 @@ RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 }
 
 RazerCircle::~RazerCircle()
-{
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
-}
+{}
 
 void RazerCircle::BeginPlay()
 {
@@ -180,6 +173,18 @@ void RazerCircle::Update(float _dt)
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 	}
+}
+
+bool RazerCircle::Destroy()
+{
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+
+	return __super::Destroy();
 }
 
 void RazerCircle::DisfellAction()
