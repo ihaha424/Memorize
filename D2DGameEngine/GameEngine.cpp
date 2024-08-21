@@ -5,6 +5,7 @@
 #include "InputAction.h"
 #include "EventBus.h"
 #include "ResourceManager.h"
+//#include "SoundSystem.h"
 
 #include "Timer.h"
 #include <chrono>
@@ -19,6 +20,7 @@ void GameEngine::Initialize()
 	// NOTE: 엔진 초기화 작업
 	// e.g., 리소스 매니저, 팩토리 싱글톤 등...
 	ResourceManager::Initialize(d2d->GetRenderTarget());
+	//SoundSystem::Initialize();
 
 }
 

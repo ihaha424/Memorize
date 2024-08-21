@@ -1,0 +1,7 @@
+Pattern_Fragile : 1
+Pattern_DispelTime : 1
+Pattern_SkillDuration : 0.5
+Pattern_Damage : 20
+Pattern_Speed : 800
+Pattern_Duration : 1.5
+End

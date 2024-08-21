@@ -1,0 +1,8 @@
+Skill_Damage : 505
+Skill_Mana : 120
+Command : 1, 0, 0, 2
+Skill_Condition : 25
+Castring Time : 0.5
+Skill_Crash : 0
+Skill_Text : 클릭 위치로 메테오를 떨어뜨립니다.
+End

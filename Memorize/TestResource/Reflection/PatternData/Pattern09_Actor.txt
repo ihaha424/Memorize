@@ -1,0 +1,6 @@
+Pattern_DispelTime : 5
+Pattern_SkillDuration : 4
+Pattern_Damage : 10
+Pattern_Speed : 600
+Pattern_Duration : 3
+End

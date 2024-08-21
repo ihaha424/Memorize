@@ -5,6 +5,7 @@
 #include "GPlayerController.h"
 #include "Player.h"
 #include "HeadEffect.h"
+//#include "D2DGameEngine/SoundSystem.h"
 
 
 #include "Fireball.h"
@@ -68,6 +69,7 @@ void PlayerState::Attack()
 	CheckStates = playerController->AddSkillInfo(ESkillType::ST_NONE);
 	if (CheckStates)
 	{
+		//SoundSystem::PlayMusic(L"Sound_BasicAttack01.wav", 0);
 		//캐스팅이 필요하지 않은 기본 공격
 		owner->SetNextState(L"PlayerAttack");
 		playerController->GetPlayer()->basicAttackTime = playerController->GetPlayer()->stat.defaultAttackSpeed;

@@ -7,6 +7,7 @@
 #include "MainLevel.h"
 #include "TestLevel.h"
 #include "LoadingLevel.h"
+#include "Tutorials.h"
 
 GameApp* loadedApp{ nullptr };
 
@@ -29,7 +30,9 @@ void GameApp::Initialize() {
 	world = new World;
 	world->CreateLevel<LoadingLevel>(L"LoadingLevel");
 	world->CreateLevel<MainLevel>(L"MainLevel");
+	world->CreateLevel<Tutorials>(L"Tutorials");
 	world->CreateLevel<TestLevel>(L"TestLevel");
+	//world->CreateLevel<Ending>(L"Ending");
 	world->SetNextScene(L"LoadingLevel");
 	world->ChangeScene();
 	world->BeginPlay();
