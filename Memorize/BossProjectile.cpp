@@ -41,6 +41,7 @@ void BossProjectile::Update(float _dt)
 {
 	__super::Update(_dt);
 	duration -= _dt;
+	circleComponent->bShouldOverlapTest = true;
 	if (duration < 0.f)
 	{
 		circleComponent->SetCollisionEnabled(CollisionEnabled::NoCollision);

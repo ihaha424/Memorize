@@ -14,6 +14,7 @@
 #include "D2DGameEngine/intersectionUtil.h"
 
 #include "Player.h"
+#include "Arena.h"
 
 BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	:BossSkillActor(_world)
@@ -40,6 +41,12 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	circleBreak->SetLoop(false);
 	circleBreak->Trigger(false);
 	circleBreak->isVisible = false;
+
+
+	shockwave = CreateComponent<BitmapComponent>();
+	rootComponent->AddChild(shockwave);
+	shockwave->SetSprite(L"TestResource/Boss/Shockwave.png");
+	shockwave->isVisible = false;
 
 	CreateComponent<ClickComponent>();
 
@@ -84,6 +91,19 @@ void BossGrowMagicCircle::Update(float _dt)
 {
 	__super::Update(_dt);
 
+	if (shockwaving)
+	{
+		shockwaveScale += _dt * 1.5f;
+		shockwave->SetScale(shockwaveScale, shockwaveScale * 0.7f);
+		shockwave->SetOpacity(shockwaveTimer / 9.f);
+		shockwaveTimer -= _dt;
+		if (shockwaveTimer <= 0.f)
+		{
+			Destroy();
+		}
+		return;
+	}
+
 	if (destructing)
 	{
 		destructionTimer -= _dt;
@@ -105,7 +125,8 @@ void BossGrowMagicCircle::Update(float _dt)
 		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = 10000.f;
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
 		
-		player->TakeDamage(damage, BossGrowMagicCircleDamageEvent, nullptr, this);
+		GetWorld()->FindActorByType<Arena>()->earthquake = true;
+		player->TakeDamage(damage * (rootComponent->bounds.GetBox().GetWidth() / 3261.f), BossGrowMagicCircleDamageEvent, nullptr, this);
 
 		// 애니메이션 초기화
 		Boss* boss = GetWorld()->FindActorByType<Boss>();
@@ -117,7 +138,12 @@ void BossGrowMagicCircle::Update(float _dt)
 
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
-		Destroy();
+		
+		this->abm->Trigger(false);
+		this->abm->isVisible = false;
+
+		shockwaving = true;
+		shockwave->isVisible = true;
 	}
 }
 

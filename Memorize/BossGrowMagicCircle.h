@@ -32,6 +32,10 @@ public:
 	float destructionTimer{ 1.25f };
 	class AnimationBitmapComponent* circleBreak;
 
+	bool shockwaving{ false };
+	float shockwaveScale{ 1.2f };
+	float shockwaveTimer{ 3.f };
+	class BitmapComponent* shockwave;
 private:
 	RadialDamageEvent BossGrowMagicCircleDamageEvent;
 	class Player* player{ nullptr };
