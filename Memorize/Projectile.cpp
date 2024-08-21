@@ -61,7 +61,6 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 			anim->SetState(endingState);
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
-		ownerSkill->bEnd = true;
 	}
 
 	//다른 공격과 충돌하는 스킬은 충돌 처리
@@ -73,7 +72,6 @@ void Projectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
 			bEnding = true;
 			elapsedTime = duration + delay;
 			mv->SetSpeed(0);
-			ownerSkill->bEnd = true;
 		}
 	}
 }
@@ -131,7 +129,8 @@ void Projectile::Update(float _dt)
 	if (elapsedTime > duration + delay + endingTime)
 	{
 		elapsedTime = 0.f;
-		ownerSkill->bEnd = true;
+		if(ownerSkill)	
+			ownerSkill->bEnd = true;
 		mv->SetStatus(OS_INACTIVE);
 		anim->SetStatus(OS_INACTIVE);
 		box->SetStatus(OS_INACTIVE);
