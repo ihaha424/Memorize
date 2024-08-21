@@ -1,0 +1,8 @@
+Skill_Damage : 60
+Skill_Mana : 60
+Command : 1, 1, 2, 1
+Skill_Condition : 40
+Castring Time : 0.5
+Skill_Crash : 1
+Skill_Text : 4방향으로 이동하는 파도를 소환합니다.
+End

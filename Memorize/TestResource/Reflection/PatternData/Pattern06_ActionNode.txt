@@ -1,0 +1,5 @@
+Pattern_Delay : 11
+Pattern_CoolTime : 15
+Patteren_PosCircle : 0
+Boss_Speed(Direction) : 900
+End

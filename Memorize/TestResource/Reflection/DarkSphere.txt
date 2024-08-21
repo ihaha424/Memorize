@@ -1,0 +1,10 @@
+Skill_Damage : 50
+Skill_Mana : 100
+Command : 0, 3, 3, 3
+Skill_LimitLevel : 700
+Skill_Duration : 1.2
+Skill_Condition : 30
+Castring Time : 2
+Skill_Crash : 1
+Skill_Text : 잠시 이동 불가 상태가 됩니다. 클릭 위치로 8개의 어둠속성 투사체를 발사합니다.
+End

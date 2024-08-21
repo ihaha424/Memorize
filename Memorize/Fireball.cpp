@@ -12,7 +12,7 @@ Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 {
 	SetID(ST_PROJECTILE, SE_FIRE);
 	ReflectionIn();
-	projectileCount = 2;
+	projectileCount = 5;
 
 	for (int i = 0; i < projectileCount; i++)
 	{

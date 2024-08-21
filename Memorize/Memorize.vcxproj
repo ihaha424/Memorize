@@ -182,6 +182,7 @@
     <ClCompile Include="ElementalMasterComponent.cpp" />
     <ClCompile Include="ElementsPanel.cpp" />
     <ClCompile Include="Enchant.cpp" />
+    <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -241,6 +242,7 @@
     <ClCompile Include="Purification.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="RazerCircle.cpp" />
+    <ClCompile Include="Scarecrow.cpp" />
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Skill.cpp" />
@@ -251,6 +253,7 @@
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="TighteningCircle.cpp" />
     <ClCompile Include="TighteningCircleEffect.cpp" />
+    <ClCompile Include="Tutorials.cpp" />
     <ClCompile Include="WaitForDelay.cpp" />
     <ClCompile Include="WaitForDelay.h" />
     <ClCompile Include="WinMain.cpp" />
@@ -294,6 +297,7 @@
     <ClInclude Include="ElementalMasterComponent.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="Enchant.h" />
+    <ClInclude Include="Ending.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />
     <ClInclude Include="GameApp.h" />
@@ -358,6 +362,7 @@
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="BossRazer.h" />
     <ClInclude Include="RazerCircle.h" />
+    <ClInclude Include="Scarecrow.h" />
     <ClInclude Include="SetPeriodicCoolTime.h" />
     <ClInclude Include="Signal.h" />
     <ClInclude Include="Skill.h" />
@@ -368,6 +373,7 @@
     <ClInclude Include="TestLevel1_RenderLayer.h" />
     <ClInclude Include="TighteningCircle.h" />
     <ClInclude Include="TighteningCircleEffect.h" />
+    <ClInclude Include="Tutorials.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

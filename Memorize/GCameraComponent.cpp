@@ -1,5 +1,7 @@
 ﻿#include "GCameraComponent.h"
 #include "Boss.h"
+#include "Scarecrow.h"
+
 #include "../D2DGameEngine/World.h"
 
 #include "D2DGameEngine/BitmapComponent.h"
@@ -38,6 +40,10 @@ void GCameraComponent::BeginPlay()
 {
 	__super::BeginPlay();
 	boss = GetOwner()->GetWorld()->FindActorByType<Boss>();
+	if (!boss)
+	{
+		boss = GetOwner()->GetWorld()->FindActorByType<Scarecrow>();
+	}
 	Math::Vector2 parentPos = parent->GetComponentLocation();
 	Math::Vector2 bossPos = boss->rootComponent->GetComponentLocation();
 	prevBossPos = bossPos;
