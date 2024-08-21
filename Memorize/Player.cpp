@@ -1,4 +1,4 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 
 
 #include "GCameraComponent.h"
@@ -31,7 +31,7 @@ Player::Player(class World* _world) : Character(_world)
 	OnHPChanged = new Signal<float>;
 	OnMPChanged = new Signal<float>;
 
-	// ¾Ö´Ï¸ŞÀÌ¼Ç
+	// Â¾Ã–Â´ÃÂ¸ÃÃ€ÃŒÂ¼Ã‡
 	{
 		abm = CreateComponent<Animator>();
 		rootComponent->AddChild(abm);
@@ -161,7 +161,7 @@ void Player::Update(float _dt)
 
 	headEffectPos = { GetLocation().x, GetLocation().y - 230 };
 
-	// ¼Ó¹ÚÀÌ¸é ¼Óµµ 0
+	// ì†ë°•ì´ë©´ ì†ë„ 0
 	if (bondageFlag)
 	{
 		SetVelocity({ 0, 0 });
@@ -196,14 +196,14 @@ float Player::InternalTakeDamage(float damageAmount, DamageEvent const& damageEv
 
 void Player::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)
 {
-	// ÇÇ°İ
-	cm->TriggerÇÇ°İ();
+	// í”¼ê²©
+	cm->Triggerí”¼ê²©();
 
-	stat.hp -= damageAmount;	// Ã¼·ÂÀ» ¹ŞÀº µ¥¹ÌÁö ¸¸Å­ °¨¼Ò½ÃÅµ´Ï´Ù.
+	stat.hp -= damageAmount;	// ì²´ë ¥ì„ ë°›ì€ ë°ë¯¸ì§€ ë§Œí¼ ê°ì†Œì‹œí‚µë‹ˆë‹¤.
 
-	if (stat.hp <= 0.f)	// ¸¸¾à Ã¼·ÂÀÌ 0º¸´Ù ÀÛ°Å³ª °°´Ù¸é,
+	if (stat.hp <= 0.f)	// ë§Œì•½ ì²´ë ¥ì´ 0ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ë‹¤ë©´,
 	{
 		stat.hp = 0.f;
-		//TODO »ç¸Á ½Ã Ã³¸® 
+		//TODO ì‚¬ë§ ì‹œ ì²˜ë¦¬
 	}
 }

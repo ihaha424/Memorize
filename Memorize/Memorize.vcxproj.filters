@@ -763,9 +763,6 @@
     <ClInclude Include="Pattern14Action.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
-    <ClInclude Include="MagicBinding.h">
-      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
-    </ClInclude>
     <ClInclude Include="Arena.h">
       <Filter>Source Files\App\Arena</Filter>
     </ClInclude>
@@ -831,6 +828,9 @@
     </ClInclude>
     <ClInclude Include="CursorUIPanel.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBinding.h">
+      <Filter>Source Files\App\Boss\BossSkill\BossSkillActor\BossMagicBinding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
