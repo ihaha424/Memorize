@@ -10,7 +10,7 @@ class Boss : public Character
 
 public:
 	int hp;
-	int maxHp = 100;
+	int maxHp = 10000;
 	int DissfellCount = 0;
 	float Periodic_Pattern_Cool_Time = 0.f;		//메인 패턴의 딜레이
 	float Phase_Pattern_Cool_Time = 0.f;		//각 페이즈의 특수 패턴 딜레이
