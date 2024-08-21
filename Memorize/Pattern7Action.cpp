@@ -1,5 +1,7 @@
 #include "Pattern7Action.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/BehaviorTree.h"
 #include "D2DGameEngine/World.h"
 #include "BossRazer.h"
@@ -51,6 +53,12 @@ void Pattern7Action::Run(float dt)
 			Math::Vector2 location = bossLocation + offset;
 			razers[i + 3]->SetLocation(location.x, location.y);
 		}
+
+		// 캐스팅 애니메이션 발동
+		Animator* abm = bt->GetKey<Boss*>("Boss")->abm;
+		AnimationState* CastingAnimationState = bt->GetKey<Boss*>("Boss")->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() != CastingAnimationState)
+			abm->SetState(CastingAnimationState);
 
 		started = true;
 	}

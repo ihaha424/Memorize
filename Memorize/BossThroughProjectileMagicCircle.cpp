@@ -6,6 +6,10 @@
 #include "../D2DGameEngine/EventBus.h"
 #include "D2DGameEngine/RandomGenerator.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+#include "Boss.h"
+
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 #include "DisfellEvent.h"
@@ -15,6 +19,8 @@ BossThroughProjectileMagicCircle::BossThroughProjectileMagicCircle(World* _world
 	:BossSkillActor(_world)
 {
 	ReflectionIn();
+
+	renderLayer = 2;
 
 	abm = CreateComponent<AnimationBitmapComponent>();
 	rootComponent = abm;
@@ -85,6 +91,12 @@ void BossThroughProjectileMagicCircle::Update(float _dt)
 	if (skillDuration < 0.f)
 	{
 		std::cout << "Finish\n";
+		Boss* boss = GetWorld()->FindActorByType<Boss>();
+		Animator* abm = boss->abm;
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 		Destroy();
@@ -93,6 +105,12 @@ void BossThroughProjectileMagicCircle::Update(float _dt)
 
 void BossThroughProjectileMagicCircle::DisfellAction()
 {
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
 	Destroy();
 }
 

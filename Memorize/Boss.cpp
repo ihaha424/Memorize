@@ -14,6 +14,8 @@ Boss::Boss(World* _world) : Character(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 
+	renderLayer = 3;
+
 	box->collisionProperty = CollisionProperty(CollisionPropertyPreset::Enemy);
 	box->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
 	//box->collisionProperty.SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Block);
@@ -44,6 +46,13 @@ Boss::Boss(World* _world) : Character(_world)
 			MoveAnimationState->SliceSpriteSheet(187, 280, 0, 0, 0, 0);
 			MoveAnimationState->SetFrameDurations({ 0.06f });
 			MoveAnimationState->Trigger(true);
+
+			CastingAnimationState = abm->CreateState<AnimationState>();
+			CastingAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Casting.png");
+			CastingAnimationState->SliceSpriteSheet(149, 280, 0, 0, 0, 0);
+			CastingAnimationState->SetFrameDurations({ 1.f / 12.f });
+			CastingAnimationState->FrameResize(9);
+			CastingAnimationState->Trigger(true);
 		}
 	}
 
@@ -78,12 +87,14 @@ void Boss::Update(float _dt)
 	Math::Vector2 velocity = GetVelocity();
 	if (velocity.Length() < 10.f)
 	{
-		if (abm->GetCurrentAnimationScene() != IdleAnimationState)
+		if (abm->GetCurrentAnimationScene() != CastingAnimationState && 
+			abm->GetCurrentAnimationScene() != IdleAnimationState)
 			abm->SetState(IdleAnimationState);
 	}
 	else
 	{
-		if (abm->GetCurrentAnimationScene() != MoveAnimationState)
+		if (abm->GetCurrentAnimationScene() != CastingAnimationState && 
+			abm->GetCurrentAnimationScene() != MoveAnimationState)
 			abm->SetState(MoveAnimationState);
 	}
 }

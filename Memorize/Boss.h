@@ -20,6 +20,8 @@ public:
 
 	float elapsedTime{ 0.f };
 
+	bool casting{ false };
+
 public:
 	Boss(class World* _world);
 	virtual ~Boss();
@@ -41,10 +43,11 @@ public:
 	//Signal for UI
 	Signal<float>* OnHPChanged;
 
-private:
+public:
 	class Animator* abm;
 	class AnimationState* IdleAnimationState;
 	class AnimationState* MoveAnimationState;
+	class AnimationState* CastingAnimationState;
 
 };
 
