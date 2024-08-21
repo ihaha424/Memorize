@@ -360,7 +360,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 									Phase_Three_3->PushBackChildren({ pattern11, pattern4_1, pattern4_2, pattern4_3 });
 								}
 							}
-							Phase_Three_Selector->SetRandomWeights({ 1.f, 1.f, 100.f });
+							Phase_Three_Selector->SetRandomWeights({ 1.f });
 						}
 					}
 				}	// <- bossPhaseSelector 3
