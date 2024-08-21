@@ -33,6 +33,7 @@ private:
 	DotTween<float>* meteoPosTweenX;
 	float			 meteoPosY;
 	DotTween<float>* meteoPosTweenY;
+	float time = 2.f;
 	
 };
 

@@ -13,10 +13,7 @@
 #include "DisfellPanel.h"
 #include "BossHPPanel.h"
 #include "ManaDepletedPanel.h"
-//#include "Bat.h"
-#include "BossRazer.h"
-#include "BossChasingBomb.h"
-#include "RazerCircle.h"
+
 #include "MainLevelUIPanel.h"
 
 #include "PlayerMainUIPanel.h"
@@ -44,8 +41,8 @@ void TestLevel::Clear()
 	actorList.clear();
 }
 
-#include "BossGrowMagicCircle.h"
-#include "../D2DGameEngine/Timer.h"
+//#include "BossProjectile.h"
+//#include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
 	__super::Enter();
@@ -73,9 +70,8 @@ void TestLevel::Enter()
 		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
 		pc->OnDoingDisfell->Connect([&](int index, int command) {disfellPanel->CommandImageOff(index, command); });
 
-		//Timer::SetTimeScale(3);
-		BossGrowMagicCircle* temp = CreateActor<BossGrowMagicCircle>();
-
+		// 보스 투사체 붙히기
+		/*BossProjectile* proj1 =CreateActor<BossProjectile>();*/
 		
 		{
 			ElementsPanel* elementsPanel = GetWorld()->GetCanvas()->CreatePannel<ElementsPanel>(L"Elements");
