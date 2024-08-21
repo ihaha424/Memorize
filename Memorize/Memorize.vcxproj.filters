@@ -479,6 +479,9 @@
     <ClCompile Include="LoadingLevel.cpp">
       <Filter>Source Files\Level</Filter>
     </ClCompile>
+    <ClCompile Include="CursorUIPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -825,6 +828,9 @@
     </ClInclude>
     <ClInclude Include="LoadingLevel.h">
       <Filter>Source Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CursorUIPanel.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

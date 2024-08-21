@@ -172,6 +172,7 @@
     <ClCompile Include="ChasingWaterBall.cpp" />
     <ClCompile Include="ChasingWaterBallProjectile.cpp" />
     <ClCompile Include="CoolTime.cpp" />
+    <ClCompile Include="CursorUIPanel.cpp" />
     <ClCompile Include="DarkSphere.cpp" />
     <ClCompile Include="DarkSphereProjectile.cpp" />
     <ClCompile Include="DisfellPanel.cpp" />
@@ -282,6 +283,7 @@
     <ClInclude Include="ChasingWaterBallProjectile.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="CoolTime.h" />
+    <ClInclude Include="CursorUIPanel.h" />
     <ClInclude Include="DarkSphere.h" />
     <ClInclude Include="DarkSphereProjectile.h" />
     <ClInclude Include="DisfellEvent.h" />
