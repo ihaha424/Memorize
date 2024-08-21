@@ -26,19 +26,22 @@ void Pattern3Action::Run(float dt)
 		proj2->SetActor(L"TestResource/Reflection/PatternData/Pattern03_Actor.txt");
 		proj3->SetActor(L"TestResource/Reflection/PatternData/Pattern03_Actor.txt");
 
-		proj1->SetLocation(bossLocation.x, bossLocation.y);
-		proj2->SetLocation(bossLocation.x, bossLocation.y);
-		proj3->SetLocation(bossLocation.x, bossLocation.y);
-
 		Math::Matrix rotate1 = Math::Matrix::CreateRotationZ(Math::DegreeToRadian(20.f));
 		Math::Matrix rotate3 = Math::Matrix::CreateRotationZ(Math::DegreeToRadian(-20.f));
 
 		Math::Vector2 vel = toPlayer * 800.f;
 
-		proj1->SetVelocity(Math::Vector2::Transform(vel, rotate1));
-		proj2->SetVelocity(vel);
-		proj3->SetVelocity(Math::Vector2::Transform(vel, rotate3));
+		Math::Vector2 tempDerction1 = Math::Vector2::Transform(vel, rotate1);
+		tempDerction1.Normalize();
+		Math::Vector2 tempDerction2 = vel;
+		tempDerction2.Normalize();
+		Math::Vector2 tempDerction3 = Math::Vector2::Transform(vel, rotate3);
+		tempDerction3.Normalize();
 
+		proj1->SetPosAndDerection(bossLocation, tempDerction1);
+		proj2->SetPosAndDerection(bossLocation, tempDerction2);
+		proj3->SetPosAndDerection(bossLocation, tempDerction3);
+		
 		started = true;
 	}
 }

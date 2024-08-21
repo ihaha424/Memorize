@@ -10,6 +10,9 @@
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 
+#include "../D2DGameEngine/AnimationEffect.h"
+
+
 BossMeteo::BossMeteo(World* _world)
 	:BossSkillActor(_world)
 {
@@ -34,9 +37,9 @@ BossMeteo::BossMeteo(World* _world)
 	BossMeteoDamageEvent.componentHits.resize(1);
 
 	meteoPosTweenX = new DotTween<float>(&meteoPosX, EasingEffect::InQuart, StepAnimation::StepOnceForward);
-	meteoPosTweenX->SetDuration(2.f);
+	meteoPosTweenX->SetDuration(time);
 	meteoPosTweenY = new DotTween<float>(&meteoPosY, EasingEffect::InQuart, StepAnimation::StepOnceForward);
-	meteoPosTweenY->SetDuration(2.f);
+	meteoPosTweenY->SetDuration(time);
 }
 
 void BossMeteo::BeginPlay()
@@ -53,8 +56,8 @@ void BossMeteo::BeginPlay()
 	}
 
 	{
-		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossMeteo.png");
-		abm->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
+		abm->SetSprite(L"TestResource/Boss/Boss_Meteor/BOSS_Skill_Meteor_Start.png");
+		abm->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
 		abm->FrameResize(73);
 		abm->SetFrameDurations({ 0.05f });
 		abm->SetLoop(true);
@@ -68,11 +71,11 @@ void BossMeteo::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	skillDuration -= _dt;
+	time -= _dt;
 	meteoPosTweenX->Update(_dt);
 	meteoPosTweenY->Update(_dt);
 	abm->SetTranslation(meteoPosX, meteoPosY);
-	if (skillDuration < 0.f)
+	if (time < 0.f)
 	{
 		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
 			Circle(BossMeteoDamageEvent.origin, BossMeteoDamageEvent.radialDamageInfo.innerRadius),
@@ -85,7 +88,19 @@ void BossMeteo::Update(float _dt)
 
 bool BossMeteo::Destroy()
 {
-	/*ÆøÆÈÀÌÆåÆ® ? */
+	//BlickSource Effect
+	{
+		AnimationEffect* DestoryProjectileEffect = GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
+		DestoryProjectileEffect->SetSprite(L"TestResource/Boss/Boss_Meteor/BOSS_Skill_Meteor_Explosion.png");
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->SetFrameDurations({ 0.040f });
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->Trigger(true);
+		DestoryProjectileEffect->SetAliveTime(1.5f);
+
+		auto Pos = Rangeabm->GetComponentLocation();
+		DestoryProjectileEffect->SetLocation(Pos.x, Pos.y);
+	}
+
 	return __super::Destroy();
 }
 
