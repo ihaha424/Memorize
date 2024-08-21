@@ -19,13 +19,13 @@ void Pattern8Action::Run(float dt)
 		// TODO: 보스 투사체 붙히기
 		BossProjectile* proj1 = bt->GetWorld()->GetCurLevel()->CreateActor<BossProjectile>();
 
-		proj1->SetActor(L"TestResource/Reflection/PatternData/Pattern02_Actor.txt");
-
-		proj1->SetLocation(bossLocation.x, bossLocation.y);
+		proj1->SetActor(L"TestResource/Reflection/PatternData/Pattern08_Actor.txt");
 
 		Math::Vector2 vel = toPlayer * 1000.f;
 
-		proj1->SetVelocity(vel);
+		vel.Normalize();
+
+		proj1->SetPosAndDerection(bossLocation, vel);
 
 		started = true;
 	}

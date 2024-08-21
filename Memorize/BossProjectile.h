@@ -13,6 +13,7 @@ public:
 
 	virtual void Update(float _dt) override;
 	virtual bool Destroy() override;
+	virtual void OnBeginOverlap(Actor* other, const OverlapInfo& overlap) override;
 
 	void SetActor(std::wstring _fileName);
 
@@ -24,6 +25,7 @@ public:
 
 public:
 	class CircleComponent* circleComponent;
+	class AnimationBitmapComponent* abm;
 
 private:
 	std::shared_ptr<ReflectionResource> reflectionResource;

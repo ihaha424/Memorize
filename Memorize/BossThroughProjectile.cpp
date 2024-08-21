@@ -8,6 +8,7 @@
 #include "../D2DGameEngine/EventBus.h"
 
 #include "D2DGameEngine/World.h"
+#include "../D2DGameEngine/AnimationEffect.h"
 #include "Player.h"
 
 BossThroughProjectile::BossThroughProjectile(World* _world)
@@ -31,7 +32,8 @@ BossThroughProjectile::BossThroughProjectile(World* _world)
 	circleComponent->collisionProperty.responseContainer.SetAllChannels(CollisionResponse::Ignore);
 	circleComponent->collisionProperty.SetCollisionResponse(ECollisionChannel::Player, CollisionResponse::Block);
 	circleComponent->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Block);
-	
+	circleComponent->bShouldOverlapTest = true;
+
 	abm->AddChild(circleComponent);
 
 	DamageType radiaDamageType{
@@ -54,10 +56,10 @@ void BossThroughProjectile::BeginPlay()
 	__super::BeginPlay();
 	
 	{
-		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossThroughProjectile.png");
-		abm->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
-		abm->FrameResize(73);
-		abm->SetFrameDurations({ 0.05f });
+		abm->SetSprite(L"TestResource/Boss/ThroughProjectileEffect/Boss_ThroughProjectile.png");
+		abm->SliceSpriteSheet(240, 181, 0, 0, 0, 0);
+		abm->FrameResize(120);
+		abm->SetFrameDurations({ 0.016f });
 		abm->SetLoop(true);
 		abm->Trigger(true);
 	}
@@ -88,7 +90,7 @@ void BossThroughProjectile::Update(float _dt)
 	skillDuration -= _dt;
 	speedTween->Update(_dt);
 	mv->SetSpeed(speedVarias);
-	circleComponent->bShouldOverlapTest = true;
+
 	if (skillDuration < 0.f)
 	{
 		// 다음 FixedUpdate 틱 마지막에 오브젝트 삭제하게 만듦.
@@ -96,19 +98,25 @@ void BossThroughProjectile::Update(float _dt)
 		// 콜리션 꺼버림
 		circleComponent->SetCollisionEnabled(CollisionEnabled::NoCollision);
 		circleComponent->bGenerateOverlapEvent = false;
-
-		// 월드에서 직접 콜리션 삭제해서
-		// 다음 돌아오는 FixedUpdate 틱에서 OnEndCollision 이벤트 뿌리고
-		// 사망하게 해야됨.
-		GetWorld()->UnregisterComponentCollision(circleComponent);
-		destroyThis = true;
+		Destroy();
 	}
 }
 
 bool BossThroughProjectile::Destroy()
 {
+	//BlickSource Effect
+	{
+		AnimationEffect* DestoryProjectileEffect = GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
+		DestoryProjectileEffect->SetSprite(L"TestResource/Boss/ThroughProjectileEffect/Boss_ThroughProjectileEffect.png");
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->SliceSpriteSheet(300, 300, 0, 0, 0, 0);
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->SetFrameDurations({ 0.025f });
+		DestoryProjectileEffect->GetAnimationBitmapComponent()->Trigger(true);
+		DestoryProjectileEffect->SetAliveTime(1.f);
+		auto Pos = GetLocation();
+		DestoryProjectileEffect->SetLocation(Pos.x, Pos.y);
+	}
+
 	return __super::Destroy();
-	/*폭팔이펙트 ? */
 }
 
 void BossThroughProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& overlap)
@@ -121,8 +129,8 @@ void BossThroughProjectile::OnBeginOverlap(Actor* other, const OverlapInfo& over
 	);
 	circleComponent->SetCollisionEnabled(CollisionEnabled::NoCollision);
 	circleComponent->bGenerateOverlapEvent = false;
-	abm->Quit();	// 애니메이션도 종료
-	abm->isVisible = false;	// 애니메이션 안보이게 하기
+
+	Destroy();
 }
 
 
@@ -139,5 +147,13 @@ void BossThroughProjectile::SetPosAndDerection(Math::Vector2 _startPos, Math::Ve
 {
 	SetLocation(_startPos.x, _startPos.y);
 	mv->SetDirection(_direction);
-	LookAt(_direction);
+	
+	Math::Vector2 w = _direction;
+	Math::Vector2 v = -Right();
+
+	float x = w.y * v.x - w.x * v.y;
+	float y = w.x * v.x + w.y * v.y;
+	float rad = atan2(x, y);
+
+	Rotate(Math::RadianToDegree(rad));
 }

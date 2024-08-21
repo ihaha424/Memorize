@@ -35,9 +35,9 @@ ChasingBomb::ChasingBomb(World* _world) : BossSkillActor(_world)
 
 	chasingBomb = CreateComponent<AnimationBitmapComponent>();
 	bombTrigger->AddChild(chasingBomb);
-	chasingBomb->SetSprite(L"TestResource/Boss/ChasingBomb/ChasingBomb.png");
+	chasingBomb->SetSprite(L"TestResource/Boss/ChasingBomb/Boss_ChaseProjectile.png");
 	chasingBomb->SliceSpriteSheet(140, 254, 0, 0, 0, 0);
-	chasingBomb->FrameResize(73);
+	chasingBomb->FrameResize(61);
 	chasingBomb->SetFrameDurations({ 0.01f });
 	chasingBomb->SetLoop(true);
 	chasingBomb->Trigger(true);
@@ -55,7 +55,7 @@ ChasingBomb::ChasingBomb(World* _world) : BossSkillActor(_world)
 
 	explosionEffect = CreateComponent<AnimationBitmapComponent>();
 	bombExplosionRadius->AddChild(explosionEffect);
-	explosionEffect->SetSprite(L"TestResource/Boss/ChasingBomb/BombExplosion.png");
+	explosionEffect->SetSprite(L"TestResource/Boss/ChasingBomb/Boss_ChaseProjectileEffect.png");
 	explosionEffect->SliceSpriteSheet(150, 150, 0, 0, 0, 0);
 	explosionEffect->FrameResize(7);
 	explosionEffect->SetFrameDurations({ 0.01f });
