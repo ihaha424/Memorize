@@ -9,7 +9,7 @@
 MainLevelUIPanel::MainLevelUIPanel(World* _world) : UIPanel(_world)
 {
 	startBtn = CreateUI<UIButton>(L"StartButton");
-	startBtn->SetPosition(1920 / 2 + 300, 600);
+	startBtn->SetPosition(1920 / 2 + 470, 600);
 	startBtn->AddOnClickHandler([this]() {GetWorld()->SetNextScene(L"TestLevel"); });
 	startBtn->AddOnHoveredHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_2.png"); });
 	startBtn->AddOnPressedHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_3.png"); });
@@ -22,9 +22,27 @@ MainLevelUIPanel::MainLevelUIPanel(World* _world) : UIPanel(_world)
 
 	startImage = CreateUI<UIImage>(L"StartImage");
 	startImage->SetSprite(L"TestResource/UI/button_play_1.png");
-	startImage->SetPosition(1920 / 2 + 300, 600);
+	startImage->SetPosition(1920 / 2 + 470, 600);
 	startImage->SetZOrder(1);
 	startBtn->SetSize(startImage->GetSize().x, startImage->GetSize().y);
+
+
+	howToBtn = CreateUI<UIButton>(L"HowToButton");
+	howToBtn->SetPosition(1920 / 2 + 470, 750);
+	//howToBtn->AddOnClickHandler([this]() {GetWorld()->SetNextScene(L"TestLevel"); });
+	howToBtn->AddOnHoveredHandler([this]() { howToImage->SetSprite(L"TestResource/UI/button_howtoplay2.png"); });
+	howToBtn->AddOnPressedHandler([this]() { howToImage->SetSprite(L"TestResource/UI/button_howtoplay3.png"); });
+	howToBtn->AddOnUnHoveredHandler([this]() { howToImage->SetSprite(L"TestResource/UI/button_howtoplay.png"); });
+
+	howToBtn->AddOnHoveredHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Pointer.png"); });
+	howToBtn->AddOnPressedHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Click.png"); });
+	howToBtn->AddOnUnHoveredHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Default.png"); });
+
+	howToImage = CreateUI<UIImage>(L"HowToImage");
+	howToImage->SetSprite(L"TestResource/UI/button_howtoplay.png");
+	howToImage->SetPosition(1920 / 2 + 470, 750);
+	howToImage->SetZOrder(1);
+	howToBtn->SetSize(howToBtn->GetSize().x, howToBtn->GetSize().y);
 
 }
 
