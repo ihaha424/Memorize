@@ -17,7 +17,8 @@ void UIImage::SetSprite(std::wstring _path)
 	if (!sprite) {
 		throw std::exception("BitmapScene: image asset is not found!");
 	}
-
+	width = sprite->GetSize().width;
+	height = sprite->GetSize().height;
 }
 
 void UIImage::Render(D2DRenderer* _renderer)

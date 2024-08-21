@@ -1,10 +1,13 @@
 #pragma once
 #include "D2DGameEngine/UIPanel.h"
+#include "D2DGameEngine/DotTween.h"
 
 class DisfellPanel : public UIPanel
 {
 	std::vector<class UIImage*> disfellCommands;
+	std::vector<bool> commandsPressed;
 	int commandMaxCount = 8;
+	Math::Vector2 initialSize;
 
 	class GPlayerController* playerController;
 
@@ -19,9 +22,14 @@ class DisfellPanel : public UIPanel
 
 	bool ending = false;
 	float elapsedTime = 0.f;
+
+	std::vector<float> scaleVarias;
+	std::vector<DotTween<float>*> scaleTweens;
 public:
 	DisfellPanel(World* _world);
 	virtual ~DisfellPanel();
+
+	virtual void Update(float _dt) override;
 
 	/**
 	 * @brief index번째 커맨드 이미지를 설정합니다.
