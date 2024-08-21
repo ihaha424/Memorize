@@ -45,6 +45,7 @@ void PlayerBlinking::Enter()
 		direction.Normalize();
 		playerPos = playerPos + (direction * blinkDistance);
 	}
+	playerPos = ClampPointInDiamond(playerPos);
 	playerController->GetPlayer()->SetLocation(playerPos.x, playerPos.y);
 
 	//BlickDest Effect
@@ -72,4 +73,29 @@ void PlayerBlinking::Exit()
 {
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->GetPlayer()->box->SetCollisionEnabled(CollisionEnabled::EnableCollision);
+}
+
+Math::Vector2 PlayerBlinking::ClampPointInDiamond(Math::Vector2 point)
+{
+	// 초기 값을 설정
+	Math::Vector2 clampedPoint = point;
+
+	if (positiveSlopeUp.WhichSide(clampedPoint) == -1)
+	{
+		clampedPoint = positiveSlopeUp.NearestPoint(clampedPoint);
+	}
+	if (positiveSlopeDwon.WhichSide(clampedPoint) == 1)
+	{
+		clampedPoint = positiveSlopeDwon.NearestPoint(clampedPoint);
+	}
+	if (negativeSlopeUp.WhichSide(clampedPoint) == -1)
+	{
+		clampedPoint = negativeSlopeUp.NearestPoint(clampedPoint);
+	}
+	if (negativeSlopeDown.WhichSide(clampedPoint) == 1)
+	{
+		clampedPoint = negativeSlopeDown.NearestPoint(clampedPoint);
+	}
+
+	return clampedPoint;
 }

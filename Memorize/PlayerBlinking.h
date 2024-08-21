@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PlayerState.h"
+#include "../D2DGameEngine/Line.h"
 
 class PlayerBlinking
 	:public PlayerState
@@ -32,5 +33,12 @@ public:
 	virtual void Memorize() {};
 	virtual void Teleport() {};
 	virtual void Cancellation() {};
+
+private:
+	Math::Vector2 ClampPointInDiamond(Math::Vector2 point);
+	Line positiveSlopeUp { .start = {-3120.f,180.f}, .end = {0.f,-1780.f} };
+	Line positiveSlopeDwon { .start = {0.f,2140.f},.end = {3120.f,180.f} };
+	Line negativeSlopeUp { .start = {0.f,-1780.f},.end = {3120.f,180.f} };
+	Line negativeSlopeDown { .start = {-3120.f,180.f},.end = {0.f,2140.f} };
 };
 
