@@ -72,7 +72,7 @@ void BossGrowMagicCircle::BeginPlay()
 	}
 
 	circleComponent->InitCircleRadius(1200 / 2);
-	circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
+	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
 
@@ -91,14 +91,14 @@ void BossGrowMagicCircle::Update(float _dt)
 	}
 	if (skillDuration < 0.f)
 	{
-		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = 500.f * abm->GetWorldTransform()._11;
-		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = 500.f * abm->GetWorldTransform()._11;
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = circleComponent->GetScaledSphereRadius();
+		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = circleComponent->GetScaledSphereRadius();
 		circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
 		
 
 		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
-			circleComponent->CalculateLocalBounds().GetCircle(),
+			circleComponent->CalculateBounds(circleComponent->GetWorldTransform()).GetCircle(),
 			player->rootComponent->CalculateBounds(player->rootComponent->GetWorldTransform()).GetBox()
 		);
 		if (hitRadius)

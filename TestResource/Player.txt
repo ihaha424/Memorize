@@ -1,6 +1,0 @@
-MoveSpeed : 500
-ReflectionData : 2000
-ReflectionData1 : 3000
-ReflectionData2 : 4000
-ReflectionData2 : 4000, 200, 300, 1002, 2
-End
