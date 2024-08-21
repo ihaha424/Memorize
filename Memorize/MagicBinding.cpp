@@ -6,6 +6,10 @@
 #include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "D2DGameEngine/PolygonComponent.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+#include "Boss.h"
+
 #include "Player.h"
 
 MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
@@ -141,6 +145,14 @@ void MagicBinding::DisfellAction()
 {
 	release = true;
 	player->bondageFlag = false;
+
+	// 애니메이션 초기화
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
 }
 
 void MagicBinding::ReflectionIn()

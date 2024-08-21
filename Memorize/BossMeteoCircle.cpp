@@ -6,6 +6,10 @@
 #include "../D2DGameEngine/EventBus.h"
 #include "D2DGameEngine/RandomGenerator.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+#include "Boss.h"
+
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 #include "DisfellEvent.h"
@@ -89,6 +93,13 @@ void BossMeteoCircle::Update(float _dt)
 
 void BossMeteoCircle::DisfellAction()
 {
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
+
 	Destroy();
 }
 

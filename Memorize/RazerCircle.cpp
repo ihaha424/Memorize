@@ -10,7 +10,12 @@
 #include "D2DGameEngine/CircleComponent.h"
 #include "D2DGameEngine/ClickComponent.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+#include "Boss.h"
+
 #include "BossRazer.h"
+
 
 RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 {
@@ -250,6 +255,14 @@ void RazerCircle::DestroyThis()
 
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+
+	// 애니메이션 초기화
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	Animator* abm = boss->abm;
+	AnimationState* IdleAnimationState = boss->IdleAnimationState;
+	AnimationState* CastingAnimationState = boss->CastingAnimationState;
+	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+		abm->SetState(IdleAnimationState);
 
 	razer3->Destroy();
 	razer2->Destroy();
