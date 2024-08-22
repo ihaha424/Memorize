@@ -150,11 +150,14 @@
     <Filter Include="Source Files\Level\Main">
       <UniqueIdentifier>{c9cd93da-4e50-4606-a4ae-3719053c9c43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Level\Ending">
-      <UniqueIdentifier>{2198b1df-6fe3-4399-9377-2d40ae350ff6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Level\FadeInFadeOut">
       <UniqueIdentifier>{28120ecc-2883-44b5-832a-0b5aab71b7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level\DieEnding">
+      <UniqueIdentifier>{2198b1df-6fe3-4399-9377-2d40ae350ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level\WinEnding">
+      <UniqueIdentifier>{9554c0e9-6957-4a73-be89-37498151e90b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -513,13 +516,13 @@
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
     <ClCompile Include="Ending.cpp">
-      <Filter>Source Files\Level\Ending</Filter>
+      <Filter>Source Files\Level\DieEnding</Filter>
     </ClCompile>
     <ClCompile Include="FadeInFadeOut.cpp">
       <Filter>Source Files\Level\FadeInFadeOut</Filter>
     </ClCompile>
     <ClCompile Include="EnddingPanel.cpp">
-      <Filter>Source Files\Level\Ending</Filter>
+      <Filter>Source Files\Level\DieEnding</Filter>
     </ClCompile>
     <ClCompile Include="HowToPlayUIPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
@@ -529,6 +532,12 @@
     </ClCompile>
     <ClCompile Include="TutorialPlayer.cpp">
       <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
+    <ClCompile Include="WinEnding.cpp">
+      <Filter>Source Files\Level\WinEnding</Filter>
+    </ClCompile>
+    <ClCompile Include="WinEndingPanel.cpp">
+      <Filter>Source Files\Level\WinEnding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -933,6 +942,12 @@
     </ClInclude>
     <ClInclude Include="FadeInFadeOut.h">
       <Filter>Source Files\Level\FadeInFadeOut</Filter>
+    </ClInclude>
+    <ClInclude Include="WinEnding.h">
+      <Filter>Source Files\Level\WinEnding</Filter>
+    </ClInclude>
+    <ClInclude Include="WinEndingPanel.h">
+      <Filter>Source Files\Level\WinEnding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

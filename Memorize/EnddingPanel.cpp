@@ -12,14 +12,14 @@ EnddingPanel::EnddingPanel(World* _world)
 	
 	CutSin[0] = CreateUI<UIImage>(L"cutSin1");
 	CutSin[0]->SetPosition(0, 0);
-	CutSin[0]->SetSprite(L"TestResource/Ending/endingscene_01.png");
+	CutSin[0]->SetSprite(L"TestResource/Ending/Endingscene01.png");
 	CutSin[0]->SetZOrder(1);
 	CutSin[0]->SetOpacity(0);
 	CutSin[0]->Inactivate();
 
 	CutSin[1] = CreateUI<UIImage>(L"cutSin2");
 	CutSin[1]->SetPosition(0, 0);
-	CutSin[1]->SetSprite(L"TestResource/Ending/endingscene_02.png");
+	CutSin[1]->SetSprite(L"TestResource/Ending/Endingscene02.png");
 	CutSin[1]->SetZOrder(2);
 	CutSin[1]->SetOpacity(0);
 	CutSin[1]->Inactivate();
@@ -27,7 +27,7 @@ EnddingPanel::EnddingPanel(World* _world)
 
 	CutSin[2] = CreateUI<UIImage>(L"cutSin3");
 	CutSin[2]->SetPosition(0, 0);
-	CutSin[2]->SetSprite(L"TestResource/Ending/endingscene_03.png");
+	CutSin[2]->SetSprite(L"TestResource/Ending/Endingscene03.png");
 	CutSin[2]->SetZOrder(3);
 	CutSin[2]->SetOpacity(0);
 	CutSin[2]->Inactivate();
@@ -41,6 +41,8 @@ EnddingPanel::EnddingPanel(World* _world)
 			if (index < 2)
 			{
 				index++;
+				if(index == 3)
+					SoundManager::PlayMusic(L"TestResource/Sound/Plus/locket_Open.wav.wav");
 				ClickFlag = false;
 				alphaTween->ResetTime();
 			}
