@@ -49,12 +49,8 @@ BossThroughProjectile::BossThroughProjectile(World* _world)
 	speedTween->SetDuration(0.5f);
 	speedTween->SetStartPoint(0.f);
 	speedTween->SetEndPoint(speed);
-}
 
-void BossThroughProjectile::BeginPlay()
-{
-	__super::BeginPlay();
-	
+
 	{
 		abm->SetSprite(L"TestResource/Boss/ThroughProjectileEffect/Boss_ThroughProjectile.png");
 		abm->SliceSpriteSheet(240, 181, 0, 0, 0, 0);
@@ -67,6 +63,13 @@ void BossThroughProjectile::BeginPlay()
 	circleComponent->InitCircleRadius(150 / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
 
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+void BossThroughProjectile::BeginPlay()
+{
+	__super::BeginPlay();
+	
+	
 
 }
 

@@ -68,6 +68,11 @@ BossChaseCircle::BossChaseCircle(World* _world)
 	scaleTween->SetDuration(5.f);
 	scaleTween->SetStartPoint(0.9f);
 	scaleTween->SetEndPoint(1.5f);
+
+	circleComponent->InitCircleRadius(magicCircle->GetFrameHeight() / 2.f);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
+	circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
+
+	player = GetWorld()->FindActorByType<Player>();
 }
 
 BossChaseCircle::~BossChaseCircle()
@@ -76,10 +81,7 @@ BossChaseCircle::~BossChaseCircle()
 void BossChaseCircle::BeginPlay()
 {
 	__super::BeginPlay();
-	circleComponent->InitCircleRadius(magicCircle->GetFrameHeight() / 2.f);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
-	circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
-
-	player = GetWorld()->FindActorByType<Player>();
+	
 }
 
 void BossChaseCircle::Update(float _dt)

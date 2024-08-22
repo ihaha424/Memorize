@@ -44,14 +44,6 @@ BossMeteoCircle::BossMeteoCircle(World* _world)
 		0.5f,
 		true
 	);
-}
-
-BossMeteoCircle::~BossMeteoCircle()
-{}
-
-void BossMeteoCircle::BeginPlay()
-{
-	__super::BeginPlay();
 
 	{
 		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowMagicCircle.png");
@@ -64,6 +56,16 @@ void BossMeteoCircle::BeginPlay()
 	abm->SetScale(0.5f, 0.5f);
 
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+BossMeteoCircle::~BossMeteoCircle()
+{}
+
+void BossMeteoCircle::BeginPlay()
+{
+	__super::BeginPlay();
+
+	
 }
 
 void BossMeteoCircle::Update(float _dt)

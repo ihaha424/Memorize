@@ -52,14 +52,7 @@ BossThroughProjectileMagicCircle::BossThroughProjectileMagicCircle(World* _world
 		0.2f,
 		true
 	);
-}
 
-BossThroughProjectileMagicCircle::~BossThroughProjectileMagicCircle()
-{}
-
-void BossThroughProjectileMagicCircle::BeginPlay()
-{
-	__super::BeginPlay();
 
 	{
 		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowMagicCircle.png");
@@ -72,6 +65,16 @@ void BossThroughProjectileMagicCircle::BeginPlay()
 	abm->SetScale(0.5f, 0.5f);
 
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+BossThroughProjectileMagicCircle::~BossThroughProjectileMagicCircle()
+{}
+
+void BossThroughProjectileMagicCircle::BeginPlay()
+{
+	__super::BeginPlay();
+
+	
 }
 
 void BossThroughProjectileMagicCircle::Update(float _dt)

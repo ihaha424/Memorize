@@ -18,12 +18,6 @@ BossProjectile::BossProjectile(World* _world)
 	mv = CreateComponent<MovementComponent>();
 	rootComponent->AddChild(mv);
 
-}
-
-void BossProjectile::BeginPlay()
-{
-	__super::BeginPlay();
-
 	{
 		abm->SetSprite(L"TestResource/Boss/Projectile/Boss_Projectile.png");
 		abm->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
@@ -32,9 +26,14 @@ void BossProjectile::BeginPlay()
 		abm->Trigger(true);
 	}
 
-	circleComponent->InitCircleRadius(150 / 2);
-
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+void BossProjectile::BeginPlay()
+{
+	__super::BeginPlay();
+
+	circleComponent->InitCircleRadius(150 / 2);
 }
 
 void BossProjectile::Update(float _dt)
