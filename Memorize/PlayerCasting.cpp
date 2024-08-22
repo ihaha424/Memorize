@@ -34,6 +34,7 @@ void PlayerCasting::Enter()
 		if (skillMana == -1)
 		{
 			//playerController->FindCurSkiil()->Castring Time = playerStat.mp * 0.02f;
+			playerController->FindCurSkiil()->SetMana(playerStat.mp);
 			playerStat.mp = 0.f;
 		}
 

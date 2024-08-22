@@ -17,6 +17,7 @@ LightStream::LightStream(Actor* _owner) : RangeSkill(_owner)
 	lightStreamEffect = GetWorld()->GetCurLevel()->CreateActor<LightStreamEffect>();
 	lightStreamEffect->SetDamage(damage);
 	lightStreamEffect->SetSkillID(id);
+	mana = -1;
 
 }
 
@@ -29,7 +30,6 @@ void LightStream::UseSkill()
 	lightStreamEffect->Activate();
 	lightStreamEffect->SetSkillID(id);
 
-	mana = player->stat.mp;
 	lightStreamEffect->SetDuration(mana / 50.f);
 
 	//마우스 위치 
@@ -50,7 +50,6 @@ void LightStream::UseSkill()
 	lightStreamEffect->rootComponent->SetRotation(rotateRad * 180.f / PI);
 
 	lightStreamEffect->Initialize();
-
 	controller->FindCurSkiil()->castingTime = mana / 50.f + 1.f;
 }
 

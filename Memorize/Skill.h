@@ -55,6 +55,7 @@ public:
 	virtual void UseSkill();
 	virtual void Initialize() {};
 	const float GetMana() const { return mana; }
+	void SetMana(float _mana)  { mana = _mana; }
 	const int	GetCommandSize() const { return commandList.size(); }
 	const float	GetCastingTime() const { return castingTime; }
 
