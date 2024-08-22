@@ -1,4 +1,4 @@
-#include "BossGrowMagicCircle.h" 
+#include "ScarecrowMagicCircle.h" 
 #include "../D2DGameEngine/ReflectionResource.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/AnimationBitmapComponent.h"
@@ -8,7 +8,6 @@
 
 #include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/AnimationState.h"
-#include "Boss.h"
 
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/intersectionUtil.h"
@@ -16,11 +15,9 @@
 #include "Player.h"
 #include "Arena.h"
 
-#include "BossGrowCircle.h"
-
 #include "CreatePurificationEffect.h"
 
-BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
+ScarecrowMagicCircle::ScarecrowMagicCircle(World* _world)
 	:BossSkillActor(_world)
 {
 	ReflectionIn();
@@ -79,20 +76,20 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	CreateDisfellCommand();
 }
 
-BossGrowMagicCircle::~BossGrowMagicCircle()
+ScarecrowMagicCircle::~ScarecrowMagicCircle()
 {}
 
-void BossGrowMagicCircle::BeginPlay()
+void ScarecrowMagicCircle::BeginPlay()
 {
 	__super::BeginPlay();
 
 	//circleComponent->InitCircleRadius(1200 / 2);
 	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
-	
+
 }
 
-void BossGrowMagicCircle::Update(float _dt)
+void ScarecrowMagicCircle::Update(float _dt)
 {
 	__super::Update(_dt);
 
@@ -130,21 +127,15 @@ void BossGrowMagicCircle::Update(float _dt)
 		BossGrowMagicCircleDamageEvent.radialDamageInfo.innerRadius = 0.f;
 		BossGrowMagicCircleDamageEvent.radialDamageInfo.outerRadius = 10000.f;
 		BossGrowMagicCircleDamageEvent.componentHits[0].hitComponent = (PrimitiveComponent*)player->rootComponent;
-		
+
 		GetWorld()->FindActorByType<Arena>()->earthquake = true;
 		player->TakeDamage(damage * (rootComponent->bounds.GetBox().GetWidth() / 3261.f), BossGrowMagicCircleDamageEvent, nullptr, this);
 
 		// 애니메이션 초기화
-		Boss* boss = GetWorld()->FindActorByType<Boss>();
-		Animator* abm = boss->abm;
-		AnimationState* IdleAnimationState = boss->IdleAnimationState;
-		AnimationState* CastingAnimationState = boss->CastingAnimationState;
-		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-			abm->SetState(IdleAnimationState);
 
 		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
-		
+
 		this->abm->Trigger(false);
 		this->abm->isVisible = false;
 
@@ -153,27 +144,17 @@ void BossGrowMagicCircle::Update(float _dt)
 	}
 }
 
-bool BossGrowMagicCircle::Destroy()
+bool ScarecrowMagicCircle::Destroy()
 {
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	if (boss)
-	{
-		Animator* abm = boss->abm;
-		AnimationState* IdleAnimationState = boss->IdleAnimationState;
-		AnimationState* CastingAnimationState = boss->CastingAnimationState;
-		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-			abm->SetState(IdleAnimationState);
-	}
-
 	return __super::Destroy();
 }
 
-void BossGrowMagicCircle::DisfellOneCountAction()
+void ScarecrowMagicCircle::DisfellOneCountAction()
 {
 	abm->Scale(0.9f, 0.9f);
 }
 
-void BossGrowMagicCircle::DisfellAction()
+void ScarecrowMagicCircle::DisfellAction()
 {
 	abm->Trigger(false);
 	abm->isVisible = false;
@@ -184,30 +165,24 @@ void BossGrowMagicCircle::DisfellAction()
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 
-	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	if (boss)
-	{
-		boss->DissfellCount++;
-	}
-
 	destructing = true;
 }
 
-void BossGrowMagicCircle::DisfellFailAction()
+void ScarecrowMagicCircle::DisfellFailAction()
 {
 	disfellCommand.clear();
 	dissfellindex = 0;
 	CreateDisfellCommand();
 }
 
-void BossGrowMagicCircle::OnClicked()
+void ScarecrowMagicCircle::OnClicked()
 {
 	__super::OnClicked();
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
 
-void BossGrowMagicCircle::ReflectionIn()
+void ScarecrowMagicCircle::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/PatternData/Pattern06_Actor.txt");
 	int typeInt;
@@ -215,4 +190,4 @@ void BossGrowMagicCircle::ReflectionIn()
 	type = static_cast<BossSkillType>(typeInt);
 }
 
-void BossGrowMagicCircle::ReflectionOut() {}
+void ScarecrowMagicCircle::ReflectionOut() {}

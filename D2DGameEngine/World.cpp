@@ -6,6 +6,8 @@
 #include "Canvas.h"
 #include "PrimitiveComponent.h"
 
+#include "Timer.h"
+
 World::World() 
 {
 	canvas = new Canvas(this);
@@ -194,7 +196,7 @@ void World::Update(float _dt)
 
 	effectSystem.Update(_dt);
 
-	canvas->Update(_dt);
+	canvas->Update(Timer::GetRealTick());
 
 }
 

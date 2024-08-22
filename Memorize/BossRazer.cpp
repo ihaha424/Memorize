@@ -225,6 +225,12 @@ bool BossRazer::Destroy()
 		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
 			abm->SetState(IdleAnimationState);
 	}
+
+	for (auto& [actor, timer] : tickDamageTimerMap)
+	{
+		timer.SetFinish(true);
+	}
+
 	return __super::Destroy();
 }
 

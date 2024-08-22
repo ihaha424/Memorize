@@ -242,6 +242,7 @@
     <ClCompile Include="PlayerMainUIPanel.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="PracticeLevel.cpp" />
     <ClCompile Include="PrismReflection.cpp" />
     <ClCompile Include="PrismReflectionProjectile.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -251,6 +252,7 @@
     <ClCompile Include="RazerCircle.cpp" />
     <ClCompile Include="RightRock.cpp" />
     <ClCompile Include="Scarecrow.cpp" />
+    <ClCompile Include="ScarecrowMagicCircle.cpp" />
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
     <ClCompile Include="SetTreeCooldown.cpp" />
     <ClCompile Include="Signal.cpp" />
@@ -262,6 +264,7 @@
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="TighteningCircle.cpp" />
     <ClCompile Include="TighteningCircleEffect.cpp" />
+    <ClCompile Include="TutorialGuide.cpp" />
     <ClCompile Include="TutorialPlayer.cpp" />
     <ClCompile Include="Tutorials.cpp" />
     <ClCompile Include="TutorialTextBitmap.cpp" />
@@ -371,6 +374,7 @@
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayerStates.h" />
+    <ClInclude Include="PracticeLevel.h" />
     <ClInclude Include="PrismReflection.h" />
     <ClInclude Include="PrismReflectionProjectile.h" />
     <ClInclude Include="Projectile.h" />
@@ -381,6 +385,7 @@
     <ClInclude Include="RazerCircle.h" />
     <ClInclude Include="RightRock.h" />
     <ClInclude Include="Scarecrow.h" />
+    <ClInclude Include="ScarecrowMagicCircle.h" />
     <ClInclude Include="SetPeriodicCoolTime.h" />
     <ClInclude Include="SetTreeCooldown.h" />
     <ClInclude Include="Signal.h" />
@@ -392,6 +397,7 @@
     <ClInclude Include="TestLevel1_RenderLayer.h" />
     <ClInclude Include="TighteningCircle.h" />
     <ClInclude Include="TighteningCircleEffect.h" />
+    <ClInclude Include="TutorialGuide.h" />
     <ClInclude Include="TutorialPlayer.h" />
     <ClInclude Include="Tutorials.h" />
     <ClInclude Include="TutorialTextBitmap.h" />

@@ -4,10 +4,6 @@
 
 TutorialPlayer::TutorialPlayer(World* _world) : Player(_world)
 {
-	orbText = CreateComponent<TutorialTextBitmap>();
-	orb->AddChild(orbText);
-	orbText->SetTranslation(150, -90);
-
 }
 
 TutorialPlayer::~TutorialPlayer()
