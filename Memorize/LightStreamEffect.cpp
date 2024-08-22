@@ -3,6 +3,9 @@
 #include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/DamageEvent.h"
+#include "D2DGameEngine/World.h"
+#include "D2DGameEngine/AnimationBitmapComponent.h"
+#include "Player.h"
 
 LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 {
@@ -103,6 +106,7 @@ void LightStreamEffect::Update(float _dt)
 	if (elapsedTime >= initialTime + duration + endingTime)
 	{
 		Inactivate();
+		GetWorld()->FindActorByType<Player>()->orb->SetStatus(OS_ACTIVE);
 	}
 }
 
