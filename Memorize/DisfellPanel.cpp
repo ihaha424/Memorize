@@ -24,7 +24,8 @@ DisfellPanel::DisfellPanel(World* _world) : UIPanel(_world)
 	{
 		disfellCommands.push_back(CreateUI<UIImage>(L"DisfellCommand" + i));
 		disfellCommands[i]->Inactivate();
-		disfellCommands[i]->SetPosition(1920/2 -300 + 100 * i, 100);
+		disfellCommands[i]->SetPosition(1920/2 -250 + 70 * i, 115);
+		disfellCommands[i]->SetSize(50, 50);
 	}
 
 	initialSize = Math::Vector2(disfellCommands[0]->GetSize().x, disfellCommands[0]->GetSize().y);
