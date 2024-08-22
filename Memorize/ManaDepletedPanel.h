@@ -9,6 +9,7 @@ public:
 	ManaDepletedPanel(World* _world);
 	virtual ~ManaDepletedPanel();
 
+	virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;
 
 	class UIText* text;

@@ -55,7 +55,7 @@ struct Stat
 class Player : public Character, public IReflection
 {
 	LOG_REGISTER_OBJ(Player)
-private:
+public:
 	float minMp = 0.f;
 	float minHp = 0.f;
 	float minMaxMp = 0.f;

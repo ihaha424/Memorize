@@ -45,6 +45,7 @@ Player::Player(class World* _world) : Character(_world)
 			IdleAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerIdle.png");
 			IdleAnimationState->SliceSpriteSheet(137, 254, 0, 0, 0, 0);
 			IdleAnimationState->SetFrameDurations({ 0.1f });
+			IdleAnimationState->SetLoop(true);
 			IdleAnimationState->Trigger(true);
 			abm->Initialize(IdleAnimationState);
 			
@@ -52,6 +53,7 @@ Player::Player(class World* _world) : Character(_world)
 			MoveAnimationState->SetSprite(L"TestResource/Player/PlayerMotions/PlayerMove.png");
 			MoveAnimationState->SliceSpriteSheet(162, 254, 0, 0, 0, 0);
 			MoveAnimationState->SetFrameDurations({ 0.08f });
+			MoveAnimationState->SetLoop(true);
 			MoveAnimationState->Trigger(true);
 
 			DieAnimationState = abm->CreateState<AnimationState>();
@@ -89,9 +91,9 @@ Player::Player(class World* _world) : Character(_world)
 	manaOverloadEffect->SetStatus(OS_INACTIVE);
 
 	stat.mpRegenPerSecond = 20;
-	stat.maxMp = 100;
 
 	stat.hpRegenPerSecond = 0;
+	stat.maxMp = 150;
 }
 
 Player::~Player()
