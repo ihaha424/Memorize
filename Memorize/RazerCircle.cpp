@@ -178,11 +178,19 @@ void RazerCircle::Update(float _dt)
 bool RazerCircle::Destroy()
 {
 	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
+	if (boss)
+	{
+		Animator* abm = boss->abm;
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
+	}
+
+	for (auto& [actor, timer] : tickDamageTimerMap)
+	{
+		timer.SetFinish(true);
+	}
 
 	return __super::Destroy();
 }

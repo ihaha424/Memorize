@@ -11,7 +11,7 @@ MainLevelUIPanel::MainLevelUIPanel(World* _world) : UIPanel(_world)
 {
 	startBtn = CreateUI<UIButton>(L"StartButton");
 	startBtn->SetPosition(1920 / 2 + 470, 600);
-	startBtn->AddOnClickHandler([this]() {GetWorld()->SetNextScene(L"TestLevel"); SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_UI_Click.wav"); });
+	startBtn->AddOnClickHandler([this]() {GetWorld()->SetNextScene(L"Tutorials"); SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_UI_Click.wav"); });
 	startBtn->AddOnHoveredHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_2.png"); });
 	startBtn->AddOnPressedHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_3.png"); });
 	startBtn->AddOnUnHoveredHandler([this]() { startImage->SetSprite(L"TestResource/UI/button_play_1.png"); });

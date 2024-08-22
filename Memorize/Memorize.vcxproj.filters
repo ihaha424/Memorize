@@ -159,6 +159,9 @@
     <Filter Include="Source Files\Level\WinEnding">
       <UniqueIdentifier>{9554c0e9-6957-4a73-be89-37498151e90b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Practice">
+      <UniqueIdentifier>{12dd1f86-4f79-43d8-996d-3566c2cc61b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -532,6 +535,15 @@
     </ClCompile>
     <ClCompile Include="TutorialPlayer.cpp">
       <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialGuide.cpp">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
+    <ClCompile Include="PracticeLevel.cpp">
+      <Filter>Source Files\Level\Practice</Filter>
+    </ClCompile>
+    <ClCompile Include="ScarecrowMagicCircle.cpp">
+      <Filter>Source Files\Level\Practice</Filter>
     </ClCompile>
     <ClCompile Include="WinEnding.cpp">
       <Filter>Source Files\Level\WinEnding</Filter>
@@ -942,6 +954,15 @@
     </ClInclude>
     <ClInclude Include="FadeInFadeOut.h">
       <Filter>Source Files\Level\FadeInFadeOut</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialGuide.h">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClInclude>
+    <ClInclude Include="PracticeLevel.h">
+      <Filter>Source Files\Level\Practice</Filter>
+    </ClInclude>
+    <ClInclude Include="ScarecrowMagicCircle.h">
+      <Filter>Source Files\Level\Practice</Filter>
     </ClInclude>
     <ClInclude Include="WinEnding.h">
       <Filter>Source Files\Level\WinEnding</Filter>

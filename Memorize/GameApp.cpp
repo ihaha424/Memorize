@@ -8,6 +8,7 @@
 #include "TestLevel.h"
 #include "LoadingLevel.h"
 #include "Tutorials.h"
+#include "PracticeLevel.h"
 #include "Ending.h"
 #include "WinEnding.h"
 
@@ -33,6 +34,7 @@ void GameApp::Initialize() {
 	world->CreateLevel<LoadingLevel>(L"LoadingLevel");
 	world->CreateLevel<MainLevel>(L"MainLevel");
 	world->CreateLevel<Tutorials>(L"Tutorials");
+	world->CreateLevel<Practice>(L"PracticeLevel");
 	world->CreateLevel<TestLevel>(L"TestLevel");
 	world->CreateLevel<Ending>(L"Ending");
 	world->CreateLevel<WinEnding>(L"WinEnding");
