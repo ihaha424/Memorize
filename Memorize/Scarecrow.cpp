@@ -9,6 +9,7 @@
 #include "SkillActor.h"
 #include "BossHitEffect.h"
 #include "D2DGameEngine/RandomGenerator.h"
+#include "D2DGameEngine/AnimationBitmapComponent.h"
 
 Scarecrow::Scarecrow(World* _world) : Character(_world)
 {
@@ -31,52 +32,16 @@ Scarecrow::Scarecrow(World* _world) : Character(_world)
 
 	// 애니메이션
 	{
-		abm = CreateComponent<Animator>();
+		abm = CreateComponent<AnimationBitmapComponent>();
 		rootComponent->AddChild(abm);
-		{
-			IdleAnimationState = abm->CreateState<AnimationState>();
-			IdleAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Idle.png");
-			IdleAnimationState->SliceSpriteSheet(187, 287, 0, 0, 0, 0);
-			IdleAnimationState->SetFrameDurations({ 0.06f });
-			IdleAnimationState->Trigger(true);
-			abm->Initialize(IdleAnimationState);
+		abm->SetSprite(L"TestResource/Tutorial/dummy_monster.png");
+		abm->SliceSpriteSheet(258, 234, 0, 0, 0, 0);
+		abm->SetFrameDurations({ 1.f });
 
-			//MoveAnimationState = abm->CreateState<AnimationState>();
-			//MoveAnimationState->SetSprite(L"TestResource/Scarecrow/ScarecrowMotions/Scarecrow_Moving.png");
-			//MoveAnimationState->SliceSpriteSheet(187, 280, 0, 0, 0, 0);
-			//MoveAnimationState->SetFrameDurations({ 0.06f });
-			//MoveAnimationState->Trigger(true);
-
-			//CastingAnimationState = abm->CreateState<AnimationState>();
-			//CastingAnimationState->SetSprite(L"TestResource/Scarecrow/ScarecrowMotions/Scarecrow_Casting.png");
-			//CastingAnimationState->SliceSpriteSheet(149, 280, 0, 0, 0, 0);
-			//CastingAnimationState->SetFrameDurations({ 1.f / 12.f });
-			//CastingAnimationState->FrameResize(9);
-			//CastingAnimationState->Trigger(true);
-
-			//DieAnimationState = abm->CreateState<AnimationState>();
-			//DieAnimationState->SetSprite(L"TestResource/Scarecrow/ScarecrowMotions/Scarecrow_Dead.png");
-			//DieAnimationState->SliceSpriteSheet(250, 280, 0, 0, 0, 0);
-			//DieAnimationState->SetFrameDurations({ 1.f / 12.f });
-			//DieAnimationState->FrameResize(33);
-			//DieAnimationState->SetLoop(false);
-			//DieAnimationState->Trigger(true);
-
-			//TeleportStartAnimationState = abm->CreateState<AnimationState>();
-			//TeleportStartAnimationState->SetSprite(L"TestResource/Scarecrow/ScarecrowMotions/Scarecrow_Teleport_Start.png");
-			//TeleportStartAnimationState->SliceSpriteSheet(300, 300, 0, 0, 0, 0);
-			//TeleportStartAnimationState->SetFrameDurations({ 1.f / 12.f });
-			//TeleportStartAnimationState->Trigger(true);
-
-			//TeleportEndAnimationState = abm->CreateState<AnimationState>();
-			//TeleportEndAnimationState->SetSprite(L"TestResource/Scarecrow/ScarecrowMotions/Scarecrow_Teleport_End.png");
-			//TeleportEndAnimationState->SliceSpriteSheet(300, 300, 0, 0, 0, 0);
-			//TeleportEndAnimationState->SetFrameDurations({ 1.f / 12.f });
-			//TeleportEndAnimationState->Trigger(true);
-		}
 	}
 
 	SetScale(2.f, 2.f);
+	
 }
 
 Scarecrow::~Scarecrow()
@@ -96,33 +61,19 @@ void Scarecrow::Update(float _dt)
 		Periodic_Pattern_Cool_Time -= _dt;
 
 	//Flip
-	Math::Vector2 playerPos = GetWorld()->FindActorByType<Player>()->GetLocation();
-	playerPos = GetLocation() - playerPos;
-	if (playerPos.x < 0.f)
-		abm->SetScale(-1.f, 1.f);
-	else
-		abm->SetScale(1.f, 1.f);
+	//Math::Vector2 playerPos = GetWorld()->FindActorByType<Player>()->GetLocation();
+	//playerPos = GetLocation() - playerPos;
+	//if (playerPos.x < 0.f)
+	//	abm->SetScale(-1.f, 1.f);
+	//else
+	//	abm->SetScale(1.f, 1.f);
 
-	//Animation
-	/*if (hp > 0.f)
+	if (tweenRotate)
 	{
-		Math::Vector2 velocity = GetVelocity();
-		if (velocity.Length() < 10.f)
-		{
-			if (abm->GetCurrentAnimationScene() == MoveAnimationState)
-				abm->SetState(IdleAnimationState);
-		}
-		else
-		{
-			if (abm->GetCurrentAnimationScene() == IdleAnimationState)
-				abm->SetState(MoveAnimationState);
-		}
+		tweenRotate->Update(_dt);
+		SetRotation(rotateValue);
 	}
-	else
-	{
-		if (abm->GetCurrentAnimationScene() != DieAnimationState)
-			abm->SetState(DieAnimationState);
-	}*/
+		
 }
 
 void Scarecrow::OnHit(PrimitiveComponent* myComp, PrimitiveComponent* otherComp, bool bSelfMoved, const HitResult& hitResult)
@@ -144,4 +95,13 @@ void Scarecrow::OnTakeDamage(float damageAmount, struct DamageEvent const& damag
 		hp = 0.f;
 		//TODO 사망 시 처리 
 	}
+
+	tweenRotate = new DotTween<float>;
+	tweenRotate->SetData(&rotateValue);
+	tweenRotate->SetDuration(1);
+	tweenRotate->SetStartPoint(-2);
+	tweenRotate->SetEndPoint(2);
+	tweenRotate->SetEasingEffect(EasingEffect::Linear);
+	tweenRotate->SetStepAnimation(StepAnimation::StepOncePingPong);
+	
 }

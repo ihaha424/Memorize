@@ -3,7 +3,8 @@
 #include "Player.h"
 #include "../D2DGameEngine/ResourceManager.h"
 #include "../D2DGameEngine/SpriteResource.h"
-#include "../D2DGameEngine/BitmapComponent.h"
+#include "TutorialTextBitmap.h"
+#include "../D2DGameEngine/AnimationBitmapComponent.h"
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/Canvas.h"
 #include "GPlayerController.h"
@@ -25,6 +26,8 @@
 #include "GCameraComponent.h"
 
 #include "Cursor.h"
+#include "TutorialPlayer.h"
+
 
 Tutorials::Tutorials(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
@@ -64,7 +67,9 @@ void Tutorials::Enter()
 		//bm->SetTranslation(960, -540);
 	}
 
-	Player* player = CreateActor<Player>();
+	TutorialPlayer* player = CreateActor<TutorialPlayer>();
+
+
 
 	GPlayerController* pc = CreateActor<GPlayerController>();
 	player->SetController(pc);

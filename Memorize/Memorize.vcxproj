@@ -262,7 +262,9 @@
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="TighteningCircle.cpp" />
     <ClCompile Include="TighteningCircleEffect.cpp" />
+    <ClCompile Include="TutorialPlayer.cpp" />
     <ClCompile Include="Tutorials.cpp" />
+    <ClCompile Include="TutorialTextBitmap.cpp" />
     <ClCompile Include="WaitForDelay.cpp" />
     <ClCompile Include="WaitForDelay.h" />
     <ClCompile Include="WinMain.cpp" />
@@ -390,7 +392,9 @@
     <ClInclude Include="TestLevel1_RenderLayer.h" />
     <ClInclude Include="TighteningCircle.h" />
     <ClInclude Include="TighteningCircleEffect.h" />
+    <ClInclude Include="TutorialPlayer.h" />
     <ClInclude Include="Tutorials.h" />
+    <ClInclude Include="TutorialTextBitmap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

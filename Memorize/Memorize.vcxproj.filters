@@ -524,6 +524,12 @@
     <ClCompile Include="HowToPlayUIPanel.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialTextBitmap.cpp">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialPlayer.cpp">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -891,6 +897,27 @@
     </ClInclude>
     <ClInclude Include="CursorImage.h">
       <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatePurificationEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnddingPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ending.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeInFadeOut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HowToPlayUIPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialTextBitmap.h">
+      <Filter>Source Files\Level\Tutorials</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialPlayer.h">
+      <Filter>Source Files\Level\Tutorials</Filter>
     </ClInclude>
     <ClInclude Include="CreatePurificationEffect.h">
       <Filter>Header Files</Filter>
