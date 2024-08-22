@@ -5,6 +5,7 @@
 ManaOverloadComponent::ManaOverloadComponent(Actor* _owner) : AnimationBitmapComponent(_owner)
 {
 	SetTranslation(0, -200);
+	SetScale(0.5f, 0.5f);
 	SetSprite(L"TestResource/Player/Skill/Skill_ManaOverload.png");
 	SliceSpriteSheet(400, 350, 0, 0, 0, 0);
 	SetFrameDurations({ 10.f / (22 * 12) });

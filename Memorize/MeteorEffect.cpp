@@ -7,6 +7,7 @@
 
 MeteorEffect::MeteorEffect(World* _world) : Projectile(_world)
 {
+	anim->SetScale(1.4f, 1.4f);
 	normalState->SetSprite(L"TestResource/Player/Skill/Skill_Meteor01.png");
 	normalState->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
 	normalState->SetFrameDurations({ 3.f/96 });
