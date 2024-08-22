@@ -38,16 +38,21 @@ EnddingPanel::EnddingPanel(World* _world)
 	Btn->AddOnClickHandler([this]() {
 		if (ClickFlag)
 		{
-			ClickFlag = false;
-			alphaTween->ResetTime();
 			if (index < 2)
+			{
 				index++;
+				ClickFlag = false;
+				alphaTween->ResetTime();
+			}
 			else
 			{
 				reStartImage->Activate();
 				reStart->Activate();
 				mainMenu->Activate();
 				mainMenuImage->Activate();
+				Btn->Inactivate();
+				alphaTween->ResetTime();
+				btnActivate = true;
 			}
 		}
 		SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_UI_Click.wav");
@@ -58,7 +63,7 @@ EnddingPanel::EnddingPanel(World* _world)
 	// ReStart
 	{
 		reStart = CreateUI<UIButton>(L"reStart");
-		reStart->SetPosition(1920 / 2 + 470, 600);
+		reStart->SetPosition(-300,0);
 		reStart->AddOnClickHandler([this]() {
 			GetWorld()->SetNextScene(L"TestLevel");
 			SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_UI_Click.wav");
@@ -66,14 +71,12 @@ EnddingPanel::EnddingPanel(World* _world)
 		reStart->AddOnHoveredHandler([this]() { reStartImage->SetSprite(L"TestResource/UI/button_play_2.png"); });
 		reStart->AddOnPressedHandler([this]() { reStartImage->SetSprite(L"TestResource/UI/button_play_3.png"); });
 		reStart->AddOnUnHoveredHandler([this]() { reStartImage->SetSprite(L"TestResource/UI/button_play_1.png"); });
-		reStart->Inactivate();
 
 		reStartImage = CreateUI<UIImage>(L"StartImage");
 		reStartImage->SetSprite(L"TestResource/UI/button_play_1.png");
-		reStartImage->SetPosition(1920 / 2 + 470, 600);
+		reStartImage->SetPosition(-300, 0);
 		reStartImage->SetZOrder(4);
 		reStartImage->SetOpacity(0);
-		reStartImage->Inactivate();
 
 		reStart->SetSize(reStartImage->GetSize().x, reStartImage->GetSize().y);
 	}
@@ -81,7 +84,7 @@ EnddingPanel::EnddingPanel(World* _world)
 	//MainMenu
 	{
 		mainMenu = CreateUI<UIButton>(L"mainMenu");
-		mainMenu->SetPosition(1920 / 2 + 470, 600);
+		mainMenu->SetPosition(300,0);
 		mainMenu->AddOnClickHandler([this]() {
 			GetWorld()->SetNextScene(L"MainLevel"); 
 			SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_UI_Click.wav"); 
@@ -90,14 +93,12 @@ EnddingPanel::EnddingPanel(World* _world)
 		mainMenu->AddOnHoveredHandler([this]() { mainMenuImage->SetSprite(L"TestResource/UI/button_play_2.png"); });
 		mainMenu->AddOnPressedHandler([this]() { mainMenuImage->SetSprite(L"TestResource/UI/button_play_3.png"); });
 		mainMenu->AddOnUnHoveredHandler([this]() { mainMenuImage->SetSprite(L"TestResource/UI/button_play_1.png"); });
-		mainMenu->Inactivate();
 
 		mainMenuImage = CreateUI<UIImage>(L"StartImage");
 		mainMenuImage->SetSprite(L"TestResource/UI/button_play_1.png");
-		mainMenuImage->SetPosition(1920 / 2 + 470, 600);
+		mainMenuImage->SetPosition(300, 0);
 		mainMenuImage->SetZOrder(4);
 		mainMenuImage->SetOpacity(0);
-		mainMenuImage->Inactivate();
 
 		mainMenu->SetSize(mainMenuImage->GetSize().x, mainMenuImage->GetSize().y);
 	}
@@ -120,17 +121,30 @@ void EnddingPanel::BeginPlay()
 {
 	__super::BeginPlay();
 	Inactivate();
+	mainMenu->Inactivate();
+	mainMenuImage->Inactivate();
+	reStartImage->Inactivate();
+	reStart->Inactivate();
 }
 
 void EnddingPanel::Update(float _dt)
 {
 	__super::Update(_dt);
-	if (!alphaTween->GetIsFinish())
+	if (!btnActivate)
 	{
-		CutSin[index]->Activate();
-		CutSin[index]->SetOpacity(alpha);
-		alphaTween->Update(_dt);
+		if (!alphaTween->GetIsFinish())
+		{
+			alphaTween->Update(_dt);
+			CutSin[index]->Activate();
+			CutSin[index]->SetOpacity(alpha);
+		}
+		else
+			ClickFlag = true;
 	}
 	else
-		ClickFlag = true;
+	{
+		alphaTween->Update(_dt);
+		reStartImage->SetOpacity(alpha);
+		mainMenuImage->SetOpacity(alpha);
+	}
 }

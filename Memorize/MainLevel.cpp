@@ -66,6 +66,7 @@ void MainLevel::Enter()
 void MainLevel::Exit()
 {
 	GetWorld()->GetCanvas()->HidePanel(L"MainLevel");
+	__super::Exit();
 }
 
 void MainLevel::Clear()

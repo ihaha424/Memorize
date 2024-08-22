@@ -14,7 +14,7 @@ public:
     class DisfellPanel* disfellPanel = nullptr;
     class PlayerMainUIPanel* playerMainUI = nullptr;
     virtual void Enter() override;
-    virtual void Exit() {};
+    virtual void Exit() { __super::Exit(); };
     virtual void Clear();
 
     float timeSclaeValue{ 1.f };

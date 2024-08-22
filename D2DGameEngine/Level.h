@@ -60,7 +60,10 @@ public:
     class World* GetWorld() { return world; }
 
 	virtual void Enter() { BeginPlay(); };
-    virtual void Exit() = 0;
+	virtual void Exit() {
+		actorRenderSequence.clear();
+		actorTypeMap.clear();
+	};
     virtual void Clear() = 0;
     
     virtual void BeginPlay();

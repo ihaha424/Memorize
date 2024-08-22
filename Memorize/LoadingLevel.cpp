@@ -25,6 +25,7 @@ void LoadingLevel::Enter()
 
 void LoadingLevel::Exit()
 {
+	__super::Exit();
 }
 
 void LoadingLevel::Clear()

@@ -43,10 +43,9 @@ BossMeteo::BossMeteo(World* _world)
 
 
 	{
-		Rangeabm->SetSprite(L"TestResource/Boss/MagicCircle/BossMetemoRange.png");
-		Rangeabm->SliceSpriteSheet(250, 330, 0, 0, 0, 0);
-		Rangeabm->FrameResize(20);
-		Rangeabm->SetFrameDurations({ 0.05f });
+		Rangeabm->SetSprite(L"TestResource/Boss/Boss_Meteor/Boss_Skill_MeteorIndicator.png");
+		Rangeabm->SliceSpriteSheet(500, 500, 0, 0, 0, 0);
+		Rangeabm->SetFrameDurations({ 0.03f });
 		Rangeabm->SetLoop(true);
 		Rangeabm->Trigger(true);
 	}

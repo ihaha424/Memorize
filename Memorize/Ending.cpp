@@ -35,6 +35,7 @@ void Ending::Enter()
 
 void Ending::Exit()
 {
+	__super::Exit();
 }
 
 void Ending::Clear()

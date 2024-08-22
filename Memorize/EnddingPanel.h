@@ -27,5 +27,6 @@ private:
 	DotTween<float>* alphaTween;
 	int index{0};
 	bool ClickFlag{ true };
+	bool btnActivate{ false };
 };
 

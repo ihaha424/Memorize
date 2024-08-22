@@ -919,5 +919,20 @@
     <ClInclude Include="TutorialPlayer.h">
       <Filter>Source Files\Level\Tutorials</Filter>
     </ClInclude>
+    <ClInclude Include="CreatePurificationEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HowToPlayUIPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ending.h">
+      <Filter>Source Files\Level\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="EnddingPanel.h">
+      <Filter>Source Files\Level\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeInFadeOut.h">
+      <Filter>Source Files\Level\FadeInFadeOut</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
