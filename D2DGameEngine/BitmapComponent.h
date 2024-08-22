@@ -60,7 +60,7 @@ public:
 	}
 
 	float GetFrameHeight() const {
-		return frame.top - frame.bottom;
+		return frame.bottom - frame.top;
 	}
 
 	void SetFrame(const D2D_Point2F& ul, const D2D_Point2F& lr) {

@@ -63,7 +63,7 @@ private:
 	float minAttackSpeed = 1.f;
 	float maxAttackSpeed = 2.f;
 
-	class AnimationBitmapComponent* orb;
+	
 public:
 
 	float moveSpeed = 950;
@@ -73,6 +73,7 @@ public:
 	bool bondageFlag{ false };
 	bool dieFlag = false;
 
+	class AnimationBitmapComponent* orb;
 	class BoxComponent* collisionBox;
 	class BuffEffectComponent* buffEffect;
 	class GCameraComponent* cm;

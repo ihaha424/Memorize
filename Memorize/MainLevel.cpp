@@ -8,6 +8,8 @@
 #include "Loading.h"
 #include "LeftRock.h"
 #include "RightRock.h"
+#include "HowToPlayUIPanel.h"
+#include "D2DGameEngine/UIButton.h"
 
 
 MainLevel::MainLevel(World* _world, const std::wstring& _name)
@@ -24,6 +26,8 @@ void MainLevel::Enter()
 
 	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 	mainPanel = GetWorld()->GetCanvas()->CreatePannel<MainLevelUIPanel>(L"MainLevel");
+	howtoplayPanel = GetWorld()->GetCanvas()->CreatePannel<HowToPlayUIPanel>(L"HowToPlay");
+	GetWorld()->GetCanvas()->HidePanel(L"HowToPlay");
 
 	Actor* background = CreateActor<Actor>();
 	AnimationBitmapComponent* backgroundBm = background->CreateComponent<AnimationBitmapComponent>();
@@ -49,6 +53,13 @@ void MainLevel::Enter()
 	rightRock = CreateActor<RightRock>();
 	rightRock->SetLocation(1920 / 2 - 677 / 2 + 75, 1080 / 2 - 310);
 
+	title = CreateActor<Actor>();
+	BitmapComponent* bm = title->CreateComponent<BitmapComponent>();
+	title->rootComponent = bm;
+	bm->SetSprite(L"TestResource/Main/Title.png");
+	title->SetLocation( 400, -200);
+	title->SetTickProperties(TICK_RENDER);
+	title->renderLayer = 3;
 	__super::Enter();
 }
 

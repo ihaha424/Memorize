@@ -45,11 +45,7 @@ BossGrowCircle::BossGrowCircle(World* _world)
 
 	scaleTween = new DotTween<float>(&scaleVarias, EasingEffect::Linear, StepAnimation::StepOnceForward);
 	scaleTween->SetDuration(2.f);
-}
 
-void BossGrowCircle::BeginPlay()
-{
-	__super::BeginPlay();
 
 	{
 		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowCircle.png");
@@ -63,6 +59,13 @@ void BossGrowCircle::BeginPlay()
 	//circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+void BossGrowCircle::BeginPlay()
+{
+	__super::BeginPlay();
+
+	
 
 }
 

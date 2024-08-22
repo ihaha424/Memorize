@@ -521,6 +521,9 @@
     <ClCompile Include="EnddingPanel.cpp">
       <Filter>Source Files\Level\Ending</Filter>
     </ClCompile>
+    <ClCompile Include="HowToPlayUIPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -888,15 +891,6 @@
     </ClInclude>
     <ClInclude Include="CursorImage.h">
       <Filter>Source Files\App\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Ending.h">
-      <Filter>Source Files\Level\Ending</Filter>
-    </ClInclude>
-    <ClInclude Include="FadeInFadeOut.h">
-      <Filter>Source Files\Level\FadeInFadeOut</Filter>
-    </ClInclude>
-    <ClInclude Include="EnddingPanel.h">
-      <Filter>Source Files\Level\Ending</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

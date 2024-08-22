@@ -23,6 +23,7 @@ void PlayerBlinking::Enter()
 
 	playerController->GetPlayer()->GetComponent<MovementComponent>()->SetSpeed(0.f);
 
+
 	//BlickSource Effect
 	{
 		AnimationEffect* BlickSource = playerController->GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
@@ -58,8 +59,11 @@ void PlayerBlinking::Enter()
 		BlickDest->SetAliveTime(1.f);
 		BlickDest->SetLocation(playerPos.x, playerPos.y);
 	}
+	playerController->bElementalMaster = false;
+
 
 	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Flash.wav");
+
 }
 
 void PlayerBlinking::Update(float _dt)

@@ -34,5 +34,7 @@ private:
 	Math::Vector2 _startPos;
 	Math::Vector2 _direction;
 
+	bool bShutdownDispelChannel{ false };
+	void ShutdownDispelChannel();
 };
 

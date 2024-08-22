@@ -3,6 +3,7 @@
 class LightStream : public RangeSkill
 {
 	class LightStreamEffect* lightStreamEffect;
+	class AnimationEffect* orbEffect;
 public:
 	LightStream(Actor* _owner);
 	virtual ~LightStream();

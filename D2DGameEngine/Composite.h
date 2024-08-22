@@ -135,7 +135,6 @@ private:
 
 		for (uint i = 0; i < randomWeightsCopy.size(); ++i)
 		{
-			std::discrete_distribution<> d();
 			uint index = Random::Get<uint>(randomWeightsCopy.begin(), randomWeightsCopy.end());
 
 			randomIndexOrder[i] = index;

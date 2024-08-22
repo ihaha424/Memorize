@@ -16,6 +16,8 @@
 #include "Player.h"
 #include "Arena.h"
 
+#include "CreatePurificationEffect.h"
+
 BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	:BossSkillActor(_world)
 {
@@ -69,6 +71,10 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	BossGrowMagicCircleDamageEvent.radialDamageInfo.damageFalloff = 0.f;
 	BossGrowMagicCircleDamageEvent.componentHits.resize(1);
 
+	player = GetWorld()->FindActorByType<Player>();
+
+	disfellCommandCount = 8;
+	CreateDisfellCommand();
 }
 
 BossGrowMagicCircle::~BossGrowMagicCircle()
@@ -81,10 +87,7 @@ void BossGrowMagicCircle::BeginPlay()
 	//circleComponent->InitCircleRadius(1200 / 2);
 	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
-	player = GetWorld()->FindActorByType<Player>();
-
-	disfellCommandCount = 8;
-	CreateDisfellCommand();
+	
 }
 
 void BossGrowMagicCircle::Update(float _dt)
@@ -96,7 +99,7 @@ void BossGrowMagicCircle::Update(float _dt)
 		shockwaveScale += _dt * 1.5f;
 		shockwave->SetScale(shockwaveScale, shockwaveScale * 0.7f);
 		shockwave->SetOpacity(shockwaveOpacity / 8.f);
-		shockwaveOpacity = (std::max)(shockwaveOpacity - _dt, 0.f);
+		shockwaveOpacity = (std::max)(shockwaveOpacity - _dt * 0.01f, 0.f);
 		shockwaveTimer -= _dt;
 		if (shockwaveTimer <= 0.f)
 		{
@@ -151,11 +154,14 @@ void BossGrowMagicCircle::Update(float _dt)
 bool BossGrowMagicCircle::Destroy()
 {
 	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
+	if (boss)
+	{
+		Animator* abm = boss->abm;
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
+	}
 
 	return __super::Destroy();
 }
@@ -175,6 +181,12 @@ void BossGrowMagicCircle::DisfellAction()
 
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	if (boss)
+	{
+		boss->DissfellCount++;
+	}
 
 	destructing = true;
 }

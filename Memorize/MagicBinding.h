@@ -45,5 +45,9 @@ public:
 
 	void ReflectionIn() override;
 	void ReflectionOut() override;
+
+private:
+	bool bShutdownDispelChannel{ false };
+	void ShutdownDispelChannel();
 };
 

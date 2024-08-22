@@ -72,6 +72,11 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 	bodyChaining->SetTranslation(0.f, -80.f);
 	bodyChained->SetTranslation(0.f, -80.f);
 	
+	player = GetWorld()->FindActorByType<Player>();
+	player->bondageFlag = true;
+	Math::Vector2 playerLocation = player->GetLocation();
+	SetLocation(playerLocation.x, playerLocation.y);
+
 	disfellCommandCount = 3;
 	CreateDisfellCommand();
 }
@@ -83,10 +88,7 @@ void MagicBinding::BeginPlay()
 {
 	Super::BeginPlay();
 
-	player = GetWorld()->FindActorByType<Player>();
-	player->bondageFlag = true;
-	Math::Vector2 playerLocation = player->GetLocation();
-	SetLocation(playerLocation.x, playerLocation.y);
+	
 
 	// 
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
@@ -187,14 +189,19 @@ void MagicBinding::DisfellAction()
 
 	// 애니메이션 초기화
 	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
+	if (boss)
+	{
+		Animator* abm = boss->abm;
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
 
-	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		// 디스펠 증가
+		boss->DissfellCount++;
+	}
+	
+	ShutdownDispelChannel();
 }
 
 void MagicBinding::DisfellFailAction()
@@ -203,8 +210,7 @@ void MagicBinding::DisfellFailAction()
 	dissfellindex = 0;
 	CreateDisfellCommand();
 
-	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+	ShutdownDispelChannel();
 
 	failed = true;
 }
@@ -219,4 +225,14 @@ void MagicBinding::ReflectionIn()
 
 void MagicBinding::ReflectionOut()
 {
+}
+
+void MagicBinding::ShutdownDispelChannel()
+{
+	if (!bShutdownDispelChannel)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		bShutdownDispelChannel = true;
+	}
 }

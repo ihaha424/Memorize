@@ -40,11 +40,7 @@ BossMeteo::BossMeteo(World* _world)
 	meteoPosTweenX->SetDuration(time);
 	meteoPosTweenY = new DotTween<float>(&meteoPosY, EasingEffect::InQuart, StepAnimation::StepOnceForward);
 	meteoPosTweenY->SetDuration(time);
-}
 
-void BossMeteo::BeginPlay()
-{
-	__super::BeginPlay();
 
 	{
 		Rangeabm->SetSprite(L"TestResource/Boss/MagicCircle/BossMetemoRange.png");
@@ -65,6 +61,13 @@ void BossMeteo::BeginPlay()
 	}
 
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+void BossMeteo::BeginPlay()
+{
+	__super::BeginPlay();
+
+	
 }
 
 void BossMeteo::Update(float _dt)

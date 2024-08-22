@@ -88,12 +88,17 @@ void Boss::Update(float _dt)
 {
 	__super::Update(_dt);
 
+	std::cout << "Dispel count: " << DissfellCount << std::endl;
+
 	elapsedTime += _dt;
 
 	OnHPChanged->Emit(hp/(float)maxHp);
 
 	if (Periodic_Pattern_Cool_Time > 0.f)
 		Periodic_Pattern_Cool_Time -= _dt;
+
+	if (Phase_Pattern_Cool_Time > 0.f)
+		Phase_Pattern_Cool_Time -= _dt;
 
 	//Flip
 	Math::Vector2 playerPos = GetWorld()->FindActorByType<Player>()->GetLocation();

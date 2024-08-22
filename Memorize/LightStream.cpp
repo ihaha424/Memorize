@@ -6,6 +6,8 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/BitmapComponent.h"
+#include "D2DGameEngine/AnimationEffect.h"
+#include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "D2DGameEngine/Mouse.h"
 #include "Player.h"
 #include "MagicCircle.h"
@@ -18,6 +20,7 @@ LightStream::LightStream(Actor* _owner) : RangeSkill(_owner)
 	lightStreamEffect->SetDamage(damage);
 	lightStreamEffect->SetSkillID(id);
 	mana = -1;
+
 
 }
 
@@ -52,7 +55,22 @@ void LightStream::UseSkill()
 	lightStreamEffect->Initialize();
 
 	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_LightStream.wav");
-	controller->FindCurSkiil()->castingTime = mana / 50.f + 1.f;
+
+	//Orb Effect
+	{
+		orbEffect = controller->GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
+		orbEffect->SetSprite(L"TestResource/Player/Orb/Orb.png");
+		orbEffect->GetAnimationBitmapComponent()->SliceSpriteSheet(88, 100, 0, 0, 0, 0);
+		orbEffect->GetAnimationBitmapComponent()->SetFrameDurations({ 2.f / 13 });
+		orbEffect->GetAnimationBitmapComponent()->Trigger(true);
+		orbEffect->GetAnimationBitmapComponent()->SetOpacity(0.5f);
+		orbEffect->SetAliveTime(mana / 50.f + 1);
+		orbEffect->SetLocation(player->GetLocation().x + direction.x * 80, player->GetLocation().y + direction.y * 80);
+		orbEffect->GetAnimationBitmapComponent()->FlipX(direction.x > 0 ? true : false);
+		
+		player->orb->SetStatus(OS_INACTIVE);
+	}
+
 }
 
 void LightStream::ReflectionIn()

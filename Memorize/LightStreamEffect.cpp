@@ -3,6 +3,9 @@
 #include "D2DGameEngine/Animator.h"
 #include "D2DGameEngine/AnimationState.h"
 #include "D2DGameEngine/DamageEvent.h"
+#include "D2DGameEngine/World.h"
+#include "D2DGameEngine/AnimationBitmapComponent.h"
+#include "Player.h"
 
 LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 {
@@ -89,6 +92,7 @@ void LightStreamEffect::Update(float _dt)
 	{
 		state = State::Normal;
 		anim->SetState(normalState);	
+		GetWorld()->FindActorByType<Player>()->orb->SetStatus(OS_ACTIVE);
 	}
 	else if (elapsedTime >= initialTime + duration && state == State::Normal)
 	{

@@ -16,6 +16,15 @@ struct PatternAction : public Action
 		return patternCooldownTime;
 	}
 
+	// 페이즈 피리오딕
+	float phasePeriodicCooldown{ 0.f };
+	void SetPhasePeriodicCooldown(float _cooldownTime) {
+		phasePeriodicCooldown = _cooldownTime;
+	}
+	float GetPhasePeriodicCooldown() {
+		return phasePeriodicCooldown;
+	}
+
 	// 다음 패턴 시전 전까지의 간격
 	// 차트에서 Pattern_Time
 	float patternInterval{ 0.f };

@@ -5,11 +5,14 @@
 class MainLevel : public Level
 {
     class MainLevelUIPanel* mainPanel;
+    class HowToPlayUIPanel* howtoplayPanel;
 
     class Actor* leftRock;
     class Actor* rightRock;
     float leftRockValue = 0.f;
     float rightRockValue = 0.f;
+
+    class Actor* title;
 public:
     MainLevel(class World* _world, const std::wstring& _name);
     virtual ~MainLevel();

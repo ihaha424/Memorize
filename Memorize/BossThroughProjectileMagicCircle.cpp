@@ -15,6 +15,8 @@
 #include "DisfellEvent.h"
 #include "BossThroughProjectile.h"
 
+#include "CreatePurificationEffect.h"
+
 BossThroughProjectileMagicCircle::BossThroughProjectileMagicCircle(World* _world)
 	:BossSkillActor(_world)
 {
@@ -52,14 +54,7 @@ BossThroughProjectileMagicCircle::BossThroughProjectileMagicCircle(World* _world
 		0.2f,
 		true
 	);
-}
 
-BossThroughProjectileMagicCircle::~BossThroughProjectileMagicCircle()
-{}
-
-void BossThroughProjectileMagicCircle::BeginPlay()
-{
-	__super::BeginPlay();
 
 	{
 		abm->SetSprite(L"TestResource/Boss/MagicCircle/BossGrowMagicCircle.png");
@@ -72,6 +67,16 @@ void BossThroughProjectileMagicCircle::BeginPlay()
 	abm->SetScale(0.5f, 0.5f);
 
 	player = GetWorld()->FindActorByType<Player>();
+}
+
+BossThroughProjectileMagicCircle::~BossThroughProjectileMagicCircle()
+{}
+
+void BossThroughProjectileMagicCircle::BeginPlay()
+{
+	__super::BeginPlay();
+
+	
 }
 
 void BossThroughProjectileMagicCircle::Update(float _dt)
@@ -95,8 +100,9 @@ void BossThroughProjectileMagicCircle::Update(float _dt)
 		AnimationState* CastingAnimationState = boss->CastingAnimationState;
 		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
 			abm->SetState(IdleAnimationState);
-		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+
+		ShutdownDispelChannel();
+
 		Destroy();
 	}
 }
@@ -104,11 +110,23 @@ void BossThroughProjectileMagicCircle::Update(float _dt)
 void BossThroughProjectileMagicCircle::DisfellAction()
 {
 	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
+	if (boss)
+	{
+		Animator* abm = boss->abm;
+
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
+
+		// µð½ºÆç Áõ°¡
+		boss->DissfellCount++;
+	}
+
+	CreatePurificationEffect(GetWorld(), GetLocation(), 1.f);
+
+	ShutdownDispelChannel();
+
 	Destroy();
 }
 
@@ -147,4 +165,14 @@ void BossThroughProjectileMagicCircle::ReflectionIn()
 
 void BossThroughProjectileMagicCircle::ReflectionOut()
 {
+}
+
+void BossThroughProjectileMagicCircle::ShutdownDispelChannel()
+{
+	if (!bShutdownDispelChannel)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		bShutdownDispelChannel = true;
+	}
 }
