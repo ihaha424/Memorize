@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/IComponent.h"
 #include "../D2DGameEngine/Reflection.h"
 #include "../D2DGameEngine/ReflectionResource.h"
+#include "../D2DGameEngine/SoundManager.h"
 
 enum ESkillType
 {

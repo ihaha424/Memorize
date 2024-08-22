@@ -67,6 +67,7 @@ void BossThroughProjectile::BeginPlay()
 	circleComponent->InitCircleRadius(150 / 2);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
 
 	player = GetWorld()->FindActorByType<Player>();
+
 }
 
 void BossThroughProjectile::FixedUpdate(float _fixedRate)
@@ -115,6 +116,7 @@ bool BossThroughProjectile::Destroy()
 		auto Pos = GetLocation();
 		DestoryProjectileEffect->SetLocation(Pos.x, Pos.y);
 	}
+
 
 	return __super::Destroy();
 }

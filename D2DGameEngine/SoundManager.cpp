@@ -19,12 +19,19 @@ void SoundManager::Initialize()
 	FMOD::System_Create(&system);
 	system->init((int)SoundChnalList, FMOD_INIT_NORMAL, 0);
 
-	SetVolume(30);
+	SetVolume(0.7f);
 }
 
 int SoundManager::PlayMusic(std::wstring _key)
 {
 	int tempIndex = curIndex;
+	if (IsPlay(curIndex))
+	{
+		curIndex = (curIndex + 1) % (int)SoundChnalList;
+		if (tempIndex == curIndex)
+			return false;
+	}
+	tempIndex = curIndex;
 	channel[curIndex]->stop();
 	system->playSound(ResourceManager::LoadResource<SoundResource>(_key).get()->GetResource(), NULL, 0, &channel[curIndex]);
 	channel[curIndex]->setVolume(volume[curIndex]);
@@ -61,7 +68,9 @@ void SoundManager::SetVolume(float _volume, SoundChannel _channel)
 
 bool SoundManager::IsPlay(SoundChannel _channel)
 {
-	return false;
+	bool isPlay;
+	channel[_channel]->isPlaying(&isPlay);
+	return isPlay;
 }
 
 void SoundManager::CreateSound(std::wstring _key, bool loopcheck, FMOD::Sound*& _sound)
@@ -75,7 +84,7 @@ void SoundManager::CreateSound(std::wstring _key, bool loopcheck, FMOD::Sound*& 
 		system->createSound(tempPath.c_str(), FMOD_LOOP_OFF, 0, &_sound);
 	if(!_sound)
 	{
-		LOG_ERROR(-1, dbg::text("Sound: \"", tempPath.c_str(), "\" is nullptr.\n"));
+		LOG_WARNING(dbg::text("Sound: \"", tempPath.c_str(), "\" is nullptr.\n"));
 	}
 
 }

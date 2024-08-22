@@ -20,6 +20,8 @@ MainLevel::~MainLevel()
 
 void MainLevel::Enter()
 {
+	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_MainBGM.wav");
+
 	__super::Enter();
 	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 	mainPanel = GetWorld()->GetCanvas()->CreatePannel<MainLevelUIPanel>(L"MainLevel");

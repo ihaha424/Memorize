@@ -62,7 +62,7 @@ void ChasingWaterBall::UseSkill()
 		projectiles[i]->SetOwnerSkill(this);
 
 	}
-	
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_ChasingWaterBall01.wav");
 }
 
 void ChasingWaterBall::ReflectionIn()

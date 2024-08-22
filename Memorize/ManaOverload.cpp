@@ -29,6 +29,7 @@ void ManaOverload::UseSkill()
 	controller->bManaOverload = true;
 
 	effect->SetStatus(OS_ACTIVE);
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_ManaOverload.wav");
 }
 
 void ManaOverload::ReflectionIn()

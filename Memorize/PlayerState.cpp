@@ -67,9 +67,6 @@ void PlayerState::Attack()
 	CheckStates = playerController->AddSkillInfo(ESkillType::ST_NONE);
 	if (CheckStates)
 	{
-		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_BasicAttack01.wav", 0);
-		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerAttack01.wav", 1);
-
 		//캐스팅이 필요하지 않은 기본 공격
 		owner->SetNextState(L"PlayerAttack");
 		playerController->GetPlayer()->basicAttackTime = playerController->GetPlayer()->stat.defaultAttackSpeed;
@@ -99,6 +96,7 @@ void PlayerState::Memorize()
 		playerController->InitializeSkillInfo();
 		playerController->SwapMemorize();
 		owner->SetNextState(L"PlayerAttackReady");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_Memorize.wav");
 	}
 }
 
@@ -116,4 +114,5 @@ void PlayerState::Cancellation()
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->InitializeSkillInfo();
 	owner->SetNextState(L"PlayerIdle");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerCasting02.wav");
 }

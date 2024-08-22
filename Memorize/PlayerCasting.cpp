@@ -90,6 +90,7 @@ void PlayerCasting::Fire()
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerCasting02.wav");
 	}
 }
 
@@ -104,6 +105,7 @@ void PlayerCasting::Water()
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerCasting02.wav");
 	}
 }
 
@@ -118,6 +120,7 @@ void PlayerCasting::Light()
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerCasting02.wav");
 	}
 }
 
@@ -132,6 +135,7 @@ void PlayerCasting::Dark()
 		GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 		playerController->InitializeSkillInfo();
 		owner->SetNextState(L"PlayerIdle");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerCasting02.wav");
 	}
 }
 
@@ -149,4 +153,5 @@ void PlayerCasting::Cancellation()
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	playerController->InitializeSkillInfo();
 	owner->SetNextState(L"PlayerIdle");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerCasting02.wav");
 }

@@ -40,6 +40,8 @@ void AggressiveWaves::UseSkill()
 		waveEffects[curIndex + i]->SetRotation(SetAngles[i]);
 	}
 	curIndex = (curIndex + 4) % 8;
+
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_AggressiveWaves.wav");
 }
 
 void AggressiveWaves::ReflectionIn()

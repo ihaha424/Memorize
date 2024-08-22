@@ -47,6 +47,8 @@ void MPRecovery::UseSkill()
 	abm->Trigger(true);
 	abm->SetLoop(true);
 	player->buffEffect->SetStatus(OS_ACTIVE);
+
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_MPrecovery.wav");
 }
 
 void MPRecovery::ReflectionIn()

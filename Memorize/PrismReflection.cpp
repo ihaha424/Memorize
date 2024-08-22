@@ -58,6 +58,8 @@ void PrismReflection::UseSkill()
 		nowPj->Activate();
 		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
+
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PrismReflection01.wav");
 }
 
 void PrismReflection::ReflectionIn()

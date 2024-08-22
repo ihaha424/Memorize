@@ -48,7 +48,7 @@ void DarkSphere::UseSkill()
 
 		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
-
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_DarkSphere01.wav");
 }
 
 void DarkSphere::ReflectionIn()

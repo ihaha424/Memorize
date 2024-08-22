@@ -24,5 +24,6 @@ void Pattern11Action::Run(float dt)
 			abm->SetState(CastingAnimationState);
 
 		started = true;
+		SoundManager::PlayMusic(L"TestResource/Sound/Boss/Boss_Pattern_Activated.wav");
 	}
 }

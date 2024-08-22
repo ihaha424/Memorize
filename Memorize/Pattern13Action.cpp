@@ -24,5 +24,7 @@ void Pattern13Action::Run(float dt)
 			abm->SetState(CastingAnimationState);
 
 		started = true;
+		SoundManager::PlayMusic(L"TestResource/Sound/Boss/Boss_Pattern_Activated.wav");
+		SoundManager::PlayMusic(L"TestResource/Sound/Boss/Sound_Boss_Meteor01.wav");
 	}
 }

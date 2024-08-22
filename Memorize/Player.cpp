@@ -19,6 +19,8 @@
 #include "D2DGameEngine/DamageEvent.h"
 #include "../D2DGameEngine/CircleComponent.h"
 
+#include "../D2DGameEngine/SoundManager.h"
+
 Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
@@ -157,7 +159,10 @@ void Player::Update(float _dt)
 	else
 	{
 		if (abm->GetCurrentAnimationScene() != DieAnimationState)
+		{
+			SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerDeath.wav");
 			abm->SetState(DieAnimationState);
+		}
 	}
 
 	headEffectPos = { GetLocation().x, GetLocation().y - 230 };
