@@ -36,7 +36,7 @@ void Heal::UseSkill()
 	player->buffEffect->SetStatus(OS_ACTIVE);
 	player->StartHeadEffect(1);
 
-	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_Heal.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Heal.wav");
 }
 
 void Heal::ReflectionIn()

@@ -151,7 +151,7 @@ void ChasingWaterBallProjectile::Update(float _dt)
 	{
 		bEnding = true;
 		anim->SetState(endingState);
-		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_ChasingWaterBall02.wav");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_ChasingWaterBall02.wav");
 		mv->SetSpeed(0);
 		elapsedTime = duration + delay;
 	}

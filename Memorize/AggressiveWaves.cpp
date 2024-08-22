@@ -41,7 +41,7 @@ void AggressiveWaves::UseSkill()
 	}
 	curIndex = (curIndex + 4) % 8;
 
-	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_AggressiveWaves.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_AggressiveWaves.wav");
 }
 
 void AggressiveWaves::ReflectionIn()

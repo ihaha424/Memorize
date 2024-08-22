@@ -51,7 +51,7 @@ void LightStream::UseSkill()
 
 	controller->FindCurSkiil()->castingTime = mana / 50.f + 3.f;
 
-	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_LightStream.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_LightStream.wav");
 }
 
 void LightStream::ReflectionIn()

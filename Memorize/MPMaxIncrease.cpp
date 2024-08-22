@@ -35,7 +35,7 @@ void MPMaxIncrease::UseSkill()
 	abm->SetLoop(true);
 	player->buffEffect->SetStatus(OS_ACTIVE);
 
-	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_MPMaxIncrease.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_MPMaxIncrease.wav");
 }
 
 void MPMaxIncrease::ReflectionIn()

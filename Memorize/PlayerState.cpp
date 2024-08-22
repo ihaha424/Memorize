@@ -96,7 +96,7 @@ void PlayerState::Memorize()
 		playerController->InitializeSkillInfo();
 		playerController->SwapMemorize();
 		owner->SetNextState(L"PlayerAttackReady");
-		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_Memorize.wav");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Memorize.wav");
 	}
 }
 

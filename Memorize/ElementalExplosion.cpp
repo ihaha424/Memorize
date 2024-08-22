@@ -25,7 +25,7 @@ void ElementalExplosion::UseSkill()
 	elementalExplosionEffect->SetLocation(pos.x, pos.y);
 
 	player->StartHeadEffect(2);
-	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_ElementalExplosion01.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_ElementalExplosion01.wav");
 }
 
 void ElementalExplosion::ReflectionIn()

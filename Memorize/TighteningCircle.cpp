@@ -29,7 +29,7 @@ void TighteningCircle::UseSkill()
 	circleEffect->SetDuration(2.f);
 	circleEffect->SetDamage(damage);
 	circleEffect->Initialize();
-	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_TighteningCircle.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_TighteningCircle.wav");
 }
 
 void TighteningCircle::ReflectionIn()

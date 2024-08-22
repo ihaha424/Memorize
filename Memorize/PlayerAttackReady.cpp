@@ -28,13 +28,13 @@ void PlayerAttackReady::Memorize()
 	{
 		playerController->SwapMemorize();
 		owner->SetNextState(L"PlayerAttackReady");
-		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_Memorize.wav");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Memorize.wav");
 	}
 	else
 	{
 		playerController->SwapMemorize();
 		owner->SetNextState(L"PlayerIdle");
-		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_Memorize.wav");
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Memorize.wav");
 	}
 }
 

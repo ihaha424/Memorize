@@ -162,14 +162,14 @@ bool LoadingLevel::LoadSound()
 	*/
 
 	//	//Playerr
-	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_BasicAttack01.wav");
-	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerAttack01.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_BasicAttack01.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_PlayerAttack01.wav");
 
 	//	//PlayerSkill
-	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_DarkSphere02.wav");
-	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_ElementalExplosion02.wav");
-	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_Fireball02.wav");
-	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PrismReflection02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_DarkSphere02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_ElementalExplosion02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Fireball02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_PrismReflection02.wav");
 	// 
 
 
