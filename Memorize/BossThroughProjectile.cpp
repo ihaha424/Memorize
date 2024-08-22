@@ -73,6 +73,7 @@ void BossThroughProjectile::FixedUpdate(float _fixedRate)
 {
 	__super::FixedUpdate(_fixedRate);
 
+	circleComponent->bShouldOverlapTest = true;
 	// 콜리션 이벤트 뿌렸으니 사망 마크.
 	if (destroyThis)
 	{

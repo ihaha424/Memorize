@@ -27,7 +27,10 @@ public:
 
 public:
 	class CircleComponent* circleComponent;
-	class AnimationBitmapComponent* abm;
+	class AnimationBitmapComponent* magicCircle;
+
+	bool ignited{ false };
+	float explosionTimer{ 1.f };
 
 private:
 	RadialDamageEvent BossChaseCircleDamageEvent;
@@ -35,7 +38,6 @@ private:
 
 	float			 speedVarias = 0.f;
 	DotTween<float>* speedTween;
-
 
 	float			 scaleVarias = 0.f;
 	DotTween<float>* scaleTween;

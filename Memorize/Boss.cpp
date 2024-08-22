@@ -22,7 +22,7 @@ Boss::Boss(World* _world) : Character(_world)
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerProjectile, CollisionResponse::Overlap);
 	box->collisionProperty.SetCollisionResponse(ECollisionChannel::PlayerPattern, CollisionResponse::Overlap);
 	box->SetBoxExtent({ 187 / 2.8f, 287 / 2.4f });
-	hp = maxHp;
+	hp = maxHp * 0.2f;
 
 	OnHPChanged = new Signal<float>;
 

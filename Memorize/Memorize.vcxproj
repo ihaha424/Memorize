@@ -248,6 +248,7 @@
     <ClCompile Include="RightRock.cpp" />
     <ClCompile Include="Scarecrow.cpp" />
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
+    <ClCompile Include="SetTreeCooldown.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="SkillActor.cpp" />
@@ -370,6 +371,7 @@
     <ClInclude Include="RightRock.h" />
     <ClInclude Include="Scarecrow.h" />
     <ClInclude Include="SetPeriodicCoolTime.h" />
+    <ClInclude Include="SetTreeCooldown.h" />
     <ClInclude Include="Signal.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillActor.h" />
