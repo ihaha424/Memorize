@@ -34,7 +34,7 @@ AppWindow WinApp::App_CreateWindow(int _width, int _height, const wchar_t* _titl
 		.endSetting()
 		.createWindow();
 
-	ShowWindow(winApp->GetWindow(), SW_SHOWNORMAL);
+	ShowWindow(winApp->GetWindow(), SW_MAXIMIZE);
 	return winApp->GetWindow();
 }
 

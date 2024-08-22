@@ -21,7 +21,7 @@ void GameApp::Initialize() {
 	// 윈도우 생성
 	WinApp::App_Init();
 	// TODO: 윈도우 타이틀이랑 스타일 추가할 것.
-	WindowStyleFlags styleFlags = WS_OVERLAPPED;
+	WindowStyleFlags styleFlags = WS_POPUP | WS_SYSMENU;
 	hWindow = WinApp::App_CreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE, styleFlags);
 
 	ShowCursor(false);
