@@ -11,7 +11,7 @@ struct Stat
 	float mp;
 	float maxMp = 100.f; //MP
 	float hpRegenPerSecond; //초당 HP 회복량
-	float mpRegenPerSecond = 20; //초당 MP 회복량
+	float mpRegenPerSecond; //초당 MP 회복량
 	float skillRange; //시전 범위
 	int castingSpeed; //캐스팅 속도
 	int numProjectiles; //투사체 개수

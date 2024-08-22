@@ -87,7 +87,7 @@ Player::Player(class World* _world) : Character(_world)
 	rootComponent->AddChild(manaOverloadEffect);
 	manaOverloadEffect->SetStatus(OS_INACTIVE);
 
-	
+	stat.mpRegenPerSecond = 20;
 }
 
 Player::~Player()
@@ -121,7 +121,7 @@ void Player::Update(float _dt)
 
 	stat.maxMp = maxMaxMp;
 	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
-	//std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
+	std::cout << stat.mpRegenPerSecond << std::endl;
 
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 
