@@ -45,6 +45,7 @@ bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 		{
 			DisfellOneCountAction();
 			DisfellAction();
+			dissfellindex = 0;
 			return false;
 		}
 		DisfellOneCountAction();
@@ -54,6 +55,7 @@ bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 	{
 		controller->OnDoingDisfell->Emit(-1, 0);
 		DisfellFailAction();
+		dissfellindex = 0;
 		return false;
 	}
 }
