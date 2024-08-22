@@ -34,3 +34,8 @@ void DarkSphereProjectile::Update(float _dt)
 
 
 }
+
+void DarkSphereProjectile::Initialize()
+{
+}
+

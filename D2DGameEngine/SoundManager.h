@@ -27,6 +27,7 @@ private:
 	static FMOD::System* system;
 	static FMOD::Channel* channel[SoundChnalList];
 	static float			volume[SoundChnalList];
+	static int				curIndex;
 
 public:
 	SoundManager() {};
@@ -34,6 +35,7 @@ public:
 
 	static void Initialize();
 
+	static int PlayMusic(std::wstring _key);
 	static void PlayMusic(std::wstring _key, SoundChannel _channel);
 	static void StopMusic(SoundChannel _channel);
 	static void SetVolume(float _volume);

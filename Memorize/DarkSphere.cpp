@@ -16,6 +16,7 @@ DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles[i]->SetVelocity({ 0,0 }, 0);
 		projectiles[i]->SetDamage(damage);
 		projectiles[i]->SetDuration(projectileDuration);
+		projectiles[i]->SetSkillID(id);
 	}
 	skillDuration = projectileDuration;
 }
@@ -35,6 +36,16 @@ void DarkSphere::UseSkill()
 		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		nowPj->SetVelocity(attackDir, projectileSpeed);
 		nowPj->Activate();
+
+		Math::Vector2 w = attackDir;
+		Math::Vector2 v = nowPj->Up();
+
+		float x = w.y * v.x - w.x * v.y;
+		float y = w.x * v.x + w.y * v.y;
+		float rad = atan2(x, y);
+
+		nowPj->Rotate(Math::RadianToDegree(rad));
+
 		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
 

@@ -94,3 +94,71 @@ bool LoadingLevel::LoadImages(const wchar_t* szPath)
 		return true;
     }
 }
+
+bool LoadingLevel::LoadSound()
+{
+	//UI
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button03.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button04.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Click.wav", 0);
+
+	//Boss
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Boss_Pattern_Activated.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Laser.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Meteor01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Meteor02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Pattern02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Projectile01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Projectile02.wav", 0);
+
+	//Playerr
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_BasicAttack01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PlayerAttack01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PlayerCasting02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PlayerDeath.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PlayerDispel01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PlayerDispel03.wav", 0);
+
+	//PlayerSkill
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_AggressiveWaves.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ChasingWaterBall01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ChasingWaterBall02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_DarkSphere01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_DarkSphere02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ElementalExplosion01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ElementalExplosion02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Fireball01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Fireball02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Flash.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Heal.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_LightStream.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ManaOverload.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Memorize.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Meteor02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_MPMaxIncrease.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_MPrecovery.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PrismReflection01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PrismReflection02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Purification.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_TighteningCircle.wav", 0);
+
+
+	// BackGournd
+	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_ClearBGM.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_DeathBGM.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_GameBGM01.wav", 1);
+	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_GameBGM02.wav", 1);
+	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_GameBGM03.wav", 1);
+	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_MainBGM.wav", 1);
+
+
+
+
+
+
+
+
+	return true;
+}
