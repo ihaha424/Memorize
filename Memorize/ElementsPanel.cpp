@@ -61,10 +61,19 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 		{
 			UIImage* image = CreateUI<UIImage>(L"command"+ y + x);
 			commands[y].push_back(image);
-			image->SetPosition(120 + x * 120, -180 + 120 * y);
+			image->SetSize(50, 50);
 			image->Inactivate();
 		}
 	}
+
+	for (int i = 0; i < 6; i++)
+		commands[0][i]->SetPosition(30 + i * 60, -120);
+	for (int i = 0; i < 6; i++)
+		commands[1][i]->SetPosition(20 + 52 + i * 60, -47);
+	for (int i = 0; i < 6; i++)
+		commands[2][i]->SetPosition(20 + 52 + i * 60, 47);
+	for (int i = 0; i < 6; i++)
+		commands[3][i]->SetPosition(30 + i * 60, 120);
 
 	for (int i = 0; i < 4; i++)
 	{
