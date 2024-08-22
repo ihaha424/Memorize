@@ -69,6 +69,10 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	BossGrowMagicCircleDamageEvent.radialDamageInfo.damageFalloff = 0.f;
 	BossGrowMagicCircleDamageEvent.componentHits.resize(1);
 
+	player = GetWorld()->FindActorByType<Player>();
+
+	disfellCommandCount = 8;
+	CreateDisfellCommand();
 }
 
 BossGrowMagicCircle::~BossGrowMagicCircle()
@@ -81,10 +85,7 @@ void BossGrowMagicCircle::BeginPlay()
 	//circleComponent->InitCircleRadius(1200 / 2);
 	//circleComponent->SetStatus(EObjectStatus::OS_INACTIVE);
 
-	player = GetWorld()->FindActorByType<Player>();
-
-	disfellCommandCount = 8;
-	CreateDisfellCommand();
+	
 }
 
 void BossGrowMagicCircle::Update(float _dt)

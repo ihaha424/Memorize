@@ -50,14 +50,16 @@ Bat::Bat(World* _world) : Actor(_world)
 	};
 	batDamageEvent.SetDamageType(damageType);
 	batDamageEvent.damage = damage;
+
+	moveAnimation->Trigger(true);
+	player = GetWorld()->FindActorByType<Player>();
 }
 
 void Bat::BeginPlay()
 {
 	Super::BeginPlay();
 
-	moveAnimation->Trigger(true);
-	player = GetWorld()->FindActorByType<Player>();
+	
 }
 
 void Bat::OnTakeDamage(float damageAmount, DamageEvent const& damageEvent, Controller* eventInstigator, Actor* damageCauser)

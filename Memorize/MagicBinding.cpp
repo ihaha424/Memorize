@@ -72,6 +72,11 @@ MagicBinding::MagicBinding(World* _world) : BossSkillActor(_world)
 	bodyChaining->SetTranslation(0.f, -80.f);
 	bodyChained->SetTranslation(0.f, -80.f);
 	
+	player = GetWorld()->FindActorByType<Player>();
+	player->bondageFlag = true;
+	Math::Vector2 playerLocation = player->GetLocation();
+	SetLocation(playerLocation.x, playerLocation.y);
+
 	disfellCommandCount = 3;
 	CreateDisfellCommand();
 }
@@ -83,10 +88,7 @@ void MagicBinding::BeginPlay()
 {
 	Super::BeginPlay();
 
-	player = GetWorld()->FindActorByType<Player>();
-	player->bondageFlag = true;
-	Math::Vector2 playerLocation = player->GetLocation();
-	SetLocation(playerLocation.x, playerLocation.y);
+	
 
 	// 
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);

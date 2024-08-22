@@ -127,7 +127,6 @@ BossRazer::~BossRazer()
 void BossRazer::BeginPlay()
 {
 	Super::BeginPlay();
-	player = GetWorld()->FindActorByType<Player>();
 
 }
 
