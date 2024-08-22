@@ -53,7 +53,6 @@ void TestLevel::Clear()
 //#include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
-	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_GameBGM.wav", 0);
 
 	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 	{

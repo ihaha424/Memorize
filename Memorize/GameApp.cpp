@@ -11,6 +11,7 @@
 #include "PracticeLevel.h"
 #include "Ending.h"
 #include "WinEnding.h"
+#include "Face.h"
 
 GameApp* loadedApp{ nullptr };
 
@@ -35,6 +36,7 @@ void GameApp::Initialize() {
 	world->CreateLevel<MainLevel>(L"MainLevel");
 	world->CreateLevel<Tutorials>(L"Tutorials");
 	world->CreateLevel<Practice>(L"PracticeLevel");
+	world->CreateLevel<Face>(L"Face");
 	world->CreateLevel<TestLevel>(L"TestLevel");
 	world->CreateLevel<Ending>(L"Ending");
 	world->CreateLevel<WinEnding>(L"WinEnding");

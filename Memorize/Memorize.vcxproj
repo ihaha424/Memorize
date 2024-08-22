@@ -187,6 +187,8 @@
     <ClCompile Include="Enchant.cpp" />
     <ClCompile Include="EnddingPanel.cpp" />
     <ClCompile Include="Ending.cpp" />
+    <ClCompile Include="Face.cpp" />
+    <ClCompile Include="FaceCamera.cpp" />
     <ClCompile Include="FadeInFadeOut.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
@@ -318,6 +320,8 @@
     <ClInclude Include="Enchant.h" />
     <ClInclude Include="EnddingPanel.h" />
     <ClInclude Include="Ending.h" />
+    <ClInclude Include="Face.h" />
+    <ClInclude Include="FaceCamera.h" />
     <ClInclude Include="FadeInFadeOut.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />

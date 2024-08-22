@@ -165,6 +165,9 @@
     <Filter Include="Source Files\Level\Practice">
       <UniqueIdentifier>{12dd1f86-4f79-43d8-996d-3566c2cc61b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Face">
+      <UniqueIdentifier>{7b0eba62-b12c-4fd9-8431-753034ba5e59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -556,6 +559,12 @@
     </ClCompile>
     <ClCompile Include="LevelUpEffect.cpp">
       <Filter>Source Files\App\Effect\LevelUpEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Face.cpp">
+      <Filter>Source Files\Level\Face</Filter>
+    </ClCompile>
+    <ClCompile Include="FaceCamera.cpp">
+      <Filter>Source Files\Level\Face</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -978,6 +987,12 @@
     </ClInclude>
     <ClInclude Include="LevelUpEffect.h">
       <Filter>Source Files\App\Effect\LevelUpEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Face.h">
+      <Filter>Source Files\Level\Face</Filter>
+    </ClInclude>
+    <ClInclude Include="FaceCamera.h">
+      <Filter>Source Files\Level\Face</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
