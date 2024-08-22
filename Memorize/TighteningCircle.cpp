@@ -11,8 +11,12 @@ TighteningCircle::TighteningCircle(Actor* _owner) : RangeSkill(_owner)
 	SetID(ST_RANGE, SE_DARKNESS);
 
 	//원 효과 액터 생성
-	circleEffect = GetWorld()->GetCurLevel()->CreateActor<TighteningCircleEffect>();
-	circleEffect->SetSkillID(id);
+	for (int i = 0; i < 2; i++)
+	{
+		circleEffects[i] = GetWorld()->GetCurLevel()->CreateActor<TighteningCircleEffect>();
+		circleEffects[i]->SetSkillID(id);
+	}
+
 }
 
 TighteningCircle::~TighteningCircle()
@@ -21,15 +25,18 @@ TighteningCircle::~TighteningCircle()
 
 void TighteningCircle::UseSkill()
 {
-	circleEffect->Activate();
+	
+	circleEffects[nowUsingIndex]->Activate();
 
 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
 	attackPos = GetWorld()->ScreenToWorldPoint(attackPos);
-	circleEffect->SetLocation(attackPos.x, attackPos.y);
-	circleEffect->SetDuration(2.f);
-	circleEffect->SetDamage(damage);
-	circleEffect->Initialize();
+	circleEffects[nowUsingIndex]->SetLocation(attackPos.x, attackPos.y);
+	circleEffects[nowUsingIndex]->SetDuration(2.f);
+	circleEffects[nowUsingIndex]->SetDamage(damage);
+	circleEffects[nowUsingIndex]->Initialize();
 	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_TighteningCircle.wav");
+
+	nowUsingIndex = (nowUsingIndex + 1) % 2;
 }
 
 void TighteningCircle::ReflectionIn()

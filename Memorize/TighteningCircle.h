@@ -2,7 +2,8 @@
 #include "RangeSkill.h"
 class TighteningCircle : public RangeSkill
 {
-	class TighteningCircleEffect* circleEffect = nullptr;
+	class TighteningCircleEffect* circleEffects[2];
+	int nowUsingIndex = 0;
 public:
 	TighteningCircle(Actor* _owner);
 	virtual ~TighteningCircle();

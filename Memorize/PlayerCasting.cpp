@@ -37,8 +37,7 @@ void PlayerCasting::Enter()
 			playerController->FindCurSkiil()->SetMana(playerStat.mp);
 			playerStat.mp = 0.f;
 		}
-
-		if (playerController->bManaOverload || playerController->bElementalMaster)
+		else if (playerController->bManaOverload || playerController->bElementalMaster)
 		{
 			//마나 오버로드 상태면 mp를 사용하지 않음
 		}

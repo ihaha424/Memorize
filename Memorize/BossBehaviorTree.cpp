@@ -453,7 +453,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 		setMoveLocation->Wrap(move);
 		move->SetObserveLocationKey("MoveLocation");
 		move->SetAcceptableRadius(50.f);
-		move->SetSpeed(650.f);
+		move->SetSpeed(800.f);
 
 		return moveActionCondition;
 	}	break;
