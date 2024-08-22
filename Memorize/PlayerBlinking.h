@@ -12,7 +12,7 @@ public:
 	{}
 	virtual ~PlayerBlinking() {};
 
-	static constexpr float blinkTime = 0.5f;
+	static constexpr float blinkTime = 0.1f;
 	static constexpr float blinkDistance = 550.f;
 
 	float curtime = 0.f;

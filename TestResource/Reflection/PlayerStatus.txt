@@ -1,6 +1,6 @@
-HPmax : 100 
+HPmax : 500  
 MPmax : 100
 CurrentHP : 100
 CurrentMP : 100
-MoveSpeed(px/s) : 500
+MoveSpeed(px/s) : 600
 SkillUses : 0

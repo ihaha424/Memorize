@@ -93,10 +93,12 @@ Math::Vector2 PlayerBlinking::ClampPointInDiamond(Math::Vector2 point)
 	if (negativeSlopeUp.WhichSide(clampedPoint) == -1)
 	{
 		clampedPoint = negativeSlopeUp.NearestPoint(clampedPoint);
+		clampedPoint.x -= 30;
 	}
 	if (negativeSlopeDown.WhichSide(clampedPoint) == 1)
 	{
 		clampedPoint = negativeSlopeDown.NearestPoint(clampedPoint);
+		clampedPoint.y -= 30;
 	}
 
 	return clampedPoint;

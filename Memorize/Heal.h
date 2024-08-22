@@ -2,7 +2,7 @@
 #include "BuffSkill.h"
 class Heal : public BuffSkill
 {
-	float healHP = 20.f;
+	float healHP = 50.f;
 public:
 	Heal(Actor* _owner);
 	virtual ~Heal();
@@ -12,3 +12,4 @@ public:
 	virtual void ReflectionIn() override;
 };
 
+ 

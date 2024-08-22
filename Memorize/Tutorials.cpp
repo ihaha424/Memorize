@@ -22,6 +22,8 @@
 #include "PlayerMainUIPanel.h"
 #include "CursorUIPanel.h"
 
+#include "GCameraComponent.h"
+
 #include "Cursor.h"
 
 Tutorials::Tutorials(class World* _world, const std::wstring& _name) : Level(_world, _name)
@@ -62,16 +64,15 @@ void Tutorials::Enter()
 		//bm->SetTranslation(960, -540);
 	}
 
-	{
-		Player* player = CreateActor<Player>();
+	Player* player = CreateActor<Player>();
 
-		GPlayerController* pc = CreateActor<GPlayerController>();
-		player->SetController(pc);
-		pc->SetPlayer(player);
+	GPlayerController* pc = CreateActor<GPlayerController>();
+	player->SetController(pc);
+	pc->SetPlayer(player);
 
-		disfellPanel = GetWorld()->GetCanvas()->CreatePannel<DisfellPanel>(L"DisfellCommands");
-		pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
-		pc->OnDoingDisfell->Connect([&](int index, int command) {disfellPanel->CommandImageOff(index, command); });
+	disfellPanel = GetWorld()->GetCanvas()->CreatePannel<DisfellPanel>(L"DisfellCommands");
+	pc->OnBeginDisfell->Connect([&](int index, int command) {disfellPanel->SetCommandImage(index, command); });
+	pc->OnDoingDisfell->Connect([&](int index, int command) {disfellPanel->CommandImageOff(index, command); });
 
 		// 보스 투사체 붙히기
 		/*BossProjectile* proj1 =CreateActor<BossProjectile>();*/
@@ -90,20 +91,19 @@ void Tutorials::Enter()
 			pc->OnFlash->Connect([&]() {playerMainUI->SetFlashOn(); });
 			pc->OffFlash->Connect([&]() {playerMainUI->SetFlashOff(); });
 		}
-	}
 
 
-	{
-		Scarecrow* boss = CreateActor<Scarecrow>();
-		boss->SetLocation(500.f, 0);
-		/*BossAIController* bc = CreateActor<BossAIController>();
-		boss->SetController(bc);
-		bc->SetBoss(boss);*/
+	Scarecrow* boss = CreateActor<Scarecrow>();
+	boss->SetLocation(500.f, 0);
+	/*BossAIController* bc = CreateActor<BossAIController>();
+	boss->SetController(bc);
+	bc->SetBoss(boss);*/
 
-		bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
-		boss->OnHPChanged->Connect([&](float hp) { bossHpBar->SetValue(hp); });
-	}
-
+	bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");
+	boss->OnHPChanged->Connect([&](float hp) { bossHpBar->SetValue(hp); });
+	
+	// 플레이어 카메라에 Enermy 붙히기
+	player->GetComponent<GCameraComponent>()->SetCharacter(boss);
 
 
 	{
