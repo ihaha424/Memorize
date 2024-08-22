@@ -52,5 +52,6 @@ public:
 	class AnimationState* TeleportStartAnimationState;
 	class AnimationState* TeleportEndAnimationState;
 
+	class AnimationState* GroggyAnimationState;
 };
 

@@ -1,5 +1,8 @@
 #include "GroggyAction.h"
 
+#include "D2DGameEngine/Animator.h"
+#include "D2DGameEngine/AnimationState.h"
+
 #include "D2DGameEngine/BehaviorTree.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
@@ -9,7 +12,7 @@
 
 bool GroggyAction::IsRunning()
 {
-    return groggyTimer <= 0.f;
+    return groggyTimer > 0.f;
 }
 
 void GroggyAction::Run(float dt)
@@ -18,12 +21,21 @@ void GroggyAction::Run(float dt)
 	if (!started) {
 		// Set groggy animation true 
 
-		AnimationEffect* DestoryProjectileEffect = bt->GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
-		DestoryProjectileEffect->SetSprite(L"TestResource/Boss/Boss_Meteor/BOSS_Skill_Meteor_Explosion.png");
-		DestoryProjectileEffect->GetAnimationBitmapComponent()->SliceSpriteSheet(400, 500, 0, 0, 0, 0);
-		DestoryProjectileEffect->GetAnimationBitmapComponent()->SetFrameDurations({ 0.040f });
-		DestoryProjectileEffect->GetAnimationBitmapComponent()->Trigger(true);
-		DestoryProjectileEffect->SetAliveTime(1.5f);
+		Boss* boss = bt->GetKey<Boss*>("Boss");
+		Math::Vector2 bossLocation = boss->GetLocation();
+
+		AnimationEffect* groggyEffect = bt->GetWorld()->GetEffectSystem().CreateEffect<AnimationEffect>();
+		groggyEffect->SetSprite(L"TestResource/Boss/BossMotions/Boss_groggy.png");
+		groggyEffect->GetAnimationBitmapComponent()->SliceSpriteSheet(400, 200, 0, 0, 0, 0);
+		groggyEffect->GetAnimationBitmapComponent()->SetFrameDurations({ 1.f / 36.f });
+		groggyEffect->GetAnimationBitmapComponent()->SetLoop(true);
+		groggyEffect->GetAnimationBitmapComponent()->Trigger(true);
+		groggyEffect->SetAliveTime(8.f);
+		groggyEffect->SetLocation(bossLocation.x, bossLocation.y - 200.f);
+
+		Animator* abm = bt->GetKey<Boss*>("Boss")->abm;
+		AnimationState* GroggyAnimationState = bt->GetKey<Boss*>("Boss")->GroggyAnimationState;
+		abm->SetState(GroggyAnimationState);
 
 		started = true;
 	}
@@ -35,5 +47,9 @@ void GroggyAction::Run(float dt)
 		// 그로기 종료
 		Boss* boss = bt->GetKey<Boss*>("Boss");
 		boss->DissfellCount = 0;
+
+		Animator* abm = bt->GetKey<Boss*>("Boss")->abm;
+		AnimationState* IdleAnimationState = bt->GetKey<Boss*>("Boss")->IdleAnimationState;
+		abm->SetState(IdleAnimationState);
 	}
 }

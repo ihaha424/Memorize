@@ -4,7 +4,7 @@
 
 struct GroggyAction final : public Action
 {
-	float groggyTimer{ 6.f };
+	float groggyTimer{ 8.f };
 
 	bool IsRunning() override;
 
