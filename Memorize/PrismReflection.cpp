@@ -20,6 +20,7 @@ PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 		projectiles[i]->SetDamage(damage);
 		projectiles[i]->SetDuration(projectileDuration);
 		projectiles[i]->SetSpeed(projectileSpeed); 
+		projectiles[i]->SetSkillID(id);
 	}
 	
 	skillDuration = projectileDuration;
@@ -55,12 +56,6 @@ void PrismReflection::UseSkill()
 		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		nowPj->SetVelocity(directions[n], projectileSpeed);
 		nowPj->Activate();
-
-		//방향에 맞게 회전
-		double rotateRad = std::acos(directions[n].Dot(Math::Vector2(1.f, 0.f)));
-		if (directions[n].y < 0)
-			rotateRad *= -1;
-		nowPj->rootComponent->SetRotation(rotateRad * 180.f / PI + 180);
 		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
 }
