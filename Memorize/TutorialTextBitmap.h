@@ -11,6 +11,13 @@ public:
 
 	void SetNext() { index++; }
 
-	int index = 0;
+	int index = 1;
+
+	float timer = 0.f;
+
+	class TutorialPlayer* player;
+
+	//index 3->4
+	Math::Vector2 playerPos;
 };
 

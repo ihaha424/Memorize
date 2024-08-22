@@ -61,12 +61,12 @@ void Scarecrow::Update(float _dt)
 		Periodic_Pattern_Cool_Time -= _dt;
 
 	//Flip
-	Math::Vector2 playerPos = GetWorld()->FindActorByType<Player>()->GetLocation();
-	playerPos = GetLocation() - playerPos;
-	if (playerPos.x < 0.f)
-		abm->SetScale(-1.f, 1.f);
-	else
-		abm->SetScale(1.f, 1.f);
+	//Math::Vector2 playerPos = GetWorld()->FindActorByType<Player>()->GetLocation();
+	//playerPos = GetLocation() - playerPos;
+	//if (playerPos.x < 0.f)
+	//	abm->SetScale(-1.f, 1.f);
+	//else
+	//	abm->SetScale(1.f, 1.f);
 
 	if (tweenRotate)
 	{
