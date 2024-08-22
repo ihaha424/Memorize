@@ -3,6 +3,7 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Canvas.h"
 #include "D2DGameEngine/UIText.h"
+#include "D2DGameEngine/UIButton.h"
 #include "GPlayerController.h"
 #include "ElementalMasterComponent.h"
 #include "D2DGameEngine/ResourceManager.h"
@@ -17,6 +18,12 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 
 	SetPosition(70, 1080/2);
 
+	
+	Qicon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_Q.png")->GetResource();
+	Wicon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_W.png")->GetResource();
+	Eicon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_E.png")->GetResource();
+	Ricon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_R.png")->GetResource();
+	
 	Qbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button01.png")->GetResource();
 	Wbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button02.png")->GetResource();
 	Ebm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button03.png")->GetResource();
@@ -26,23 +33,54 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 	Ebm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button07.png")->GetResource();
 	Rbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button08.png")->GetResource();
 
+	ring = CreateUI<UIImage>(L"Ring");
+	ring->SetSprite(L"TestResource/Icon/UI_ring.png");
+	ring->SetPosition(-12, 0);
+
 	q = CreateUI<UIImage>(L"Q");
-	q->SetSprite(Qbm);
-	q->SetPosition(0, -180);
+	q->SetSprite(Qicon);
+	q->SetPosition(-30, -120);
 
 	w = CreateUI<UIImage>(L"W");
-	w->SetSprite(Wbm);
-	w->SetPosition(0, -60);
+	w->SetSprite(Wicon);
+	w->SetPosition(8, -47);
 
 	e = CreateUI<UIImage>(L"E");
-	e->SetSprite(Ebm);
-	e->SetPosition(0, 60);
+	e->SetSprite(Eicon);
+	e->SetPosition(8, 47);
 
 	r = CreateUI<UIImage>(L"R");
-	r->SetSprite(Rbm);
-	r->SetPosition(0, 180);
+	r->SetSprite(Ricon);
+	r->SetPosition(-30, 120);
 
-	
+	qBtn = CreateUI<UIButton>(L"QButton");
+	qBtn->SetPosition(-30, -120);
+	qBtn->SetSize(60, 60);
+	qBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_PROJECTILE); });
+	qBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_PROJECTILE); });
+	qBtn->SetZOrder(10);
+
+	wBtn = CreateUI<UIButton>(L"WButton");
+	wBtn->SetPosition(8, -47);
+	wBtn->SetSize(60, 60);
+	wBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_RANGE); });
+	wBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_RANGE); });
+	wBtn->SetZOrder(10);
+
+	eBtn = CreateUI<UIButton>(L"EButton");
+	eBtn->SetPosition(8, 47);
+	eBtn->SetSize(60, 60);
+	eBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_BUFF); });
+	eBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_BUFF); });
+	eBtn->SetZOrder(10);
+
+	rBtn = CreateUI<UIButton>(L"RButton");
+	rBtn->SetPosition(-30, 120);
+	rBtn->SetSize(60, 60);
+	rBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_SPECIAL); });
+	rBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_SPECIAL); });
+	rBtn->SetZOrder(10);
+
 	//이미지 배열
 	commands.resize(4);
 	for (int y = 0; y < 4; y++)
@@ -51,10 +89,19 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 		{
 			UIImage* image = CreateUI<UIImage>(L"command"+ y + x);
 			commands[y].push_back(image);
-			image->SetPosition(120 + x * 120, -180 + 120 * y);
+			image->SetSize(50, 50);
 			image->Inactivate();
 		}
 	}
+
+	for (int i = 0; i < 6; i++)
+		commands[0][i]->SetPosition(30 + i * 60, -120);
+	for (int i = 0; i < 6; i++)
+		commands[1][i]->SetPosition(20 + 52 + i * 60, -47);
+	for (int i = 0; i < 6; i++)
+		commands[2][i]->SetPosition(20 + 52 + i * 60, 47);
+	for (int i = 0; i < 6; i++)
+		commands[3][i]->SetPosition(30 + i * 60, 120);
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -97,10 +144,10 @@ void ElementsPanel::Update(float _dt)
 		if (!ending || playerController->bElementalMaster)
 		{
 			HideAllCommands();
-			q->SetSprite(Qbm);
-			w->SetSprite(Wbm);
-			e->SetSprite(Ebm);
-			r->SetSprite(Rbm);
+			q->SetSprite(Qicon);
+			w->SetSprite(Wicon);
+			e->SetSprite(Eicon);
+			r->SetSprite(Ricon);
 		}
 		return;
 	}
@@ -115,9 +162,7 @@ void ElementsPanel::Update(float _dt)
 		ending = false;
 		HideAllCommands();
 		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
-		infoTexts[curSkillType]->Activate();
-		infoTexts[curSkillType]->SetText(playerController->FindCurSkiil()->GetInfoText());
-
+		
 		//커맨드를 입력중
 		int curSkillInputCommand = playerController->GetPlayerCastingIndex();
 		for (int i = 0; i < curSkillInputCommand; i++)
@@ -137,14 +182,12 @@ void ElementsPanel::Update(float _dt)
 		if(!ending)
 		{
 			HideAllCommands();
-			q->SetSprite(Qbm);
-			w->SetSprite(Wbm);
-			e->SetSprite(Ebm);
-			r->SetSprite(Rbm);
+			q->SetSprite(Qicon);
+			w->SetSprite(Wicon);
+			e->SetSprite(Eicon);
+			r->SetSprite(Ricon);
 		}
 	}
-
-
 }
 
 void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands)
@@ -205,7 +248,6 @@ void ElementsPanel::HideAllCommands()
 {
 	for (int y = 0; y < 4; y++)
 	{
-		infoTexts[y]->Inactivate();
 		for (int x = 0; x < 6; x++)
 		{
 			commands[y][x]->Inactivate();
@@ -300,6 +342,20 @@ void ElementsPanel::SetSkillList()
 			r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster_off.png");
 		SetQWER(darkCommands);
 	}
+}
+
+void ElementsPanel::ShowSkillInfo(ESkillType curSkillType)
+{
+	ESkillElement element = playerController->GetCurSkillInfo().element;
+	if (element != SE_FIRE && element != SE_WATER && element != SE_LIGHT && element != SE_DARKNESS)
+		return;
+	infoTexts[curSkillType]->Activate();
+	infoTexts[curSkillType]->SetText(playerController->FindSkiil(element, curSkillType)->GetInfoText());
+}
+
+void ElementsPanel::HideSkillInfo(ESkillType curSkillType)
+{
+	infoTexts[curSkillType]->Inactivate();
 }
 
 std::vector<std::vector<int>> ElementsPanel::CheckSkillType()

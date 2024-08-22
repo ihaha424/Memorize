@@ -48,7 +48,7 @@ PlayerMainUIPanel::PlayerMainUIPanel(World* _world) : UIPanel(_world)
 	mpText = CreateUI<UIText>(L"MPText");
 	mpText->SetFontSize(20);
 	mpText->SetPosition(150, -5);
-	hpText->SetZOrder(4);
+	mpText->SetZOrder(4);
 }
 
 PlayerMainUIPanel::~PlayerMainUIPanel()

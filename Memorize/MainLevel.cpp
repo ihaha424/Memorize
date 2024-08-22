@@ -6,6 +6,8 @@
 #include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "CursorUIPanel.h"
 #include "Loading.h"
+#include "LeftRock.h"
+#include "RightRock.h"
 
 
 MainLevel::MainLevel(World* _world, const std::wstring& _name)
@@ -28,26 +30,23 @@ void MainLevel::Enter()
 	backgroundBm->SliceSpriteSheet(1920, 1080, 0, 0, 0, 0);
 	background->rootComponent = backgroundBm;
 	background->SetTickProperties(TICK_RENDER);
+	background->renderLayer = -1;
 
 
-	AnimationBitmapComponent* leftRocksBm = background->CreateComponent<AnimationBitmapComponent>();
-	leftRocksBm->SetSprite(L"TestResource/Main/04.png");
-	leftRocksBm->SliceSpriteSheet(322, 473, 0, 0, 0, 0);
-	backgroundBm->AddChild(leftRocksBm);
-	leftRocksBm->SetTranslation(-1920 / 2  + 35 + 322/2, -150 -35);
+	leftRock = CreateActor<LeftRock>();
+	leftRock->SetLocation(-1920 / 2  + 200, -200);
 
-
-	AnimationBitmapComponent* characterBm = background->CreateComponent<AnimationBitmapComponent>();
+	Actor* character = CreateActor<Actor>();
+	AnimationBitmapComponent* characterBm = character->CreateComponent<AnimationBitmapComponent>();
 	characterBm->SetSprite(L"TestResource/Main/02.png");
 	characterBm->SliceSpriteSheet(850, 981, 0, 0, 0, 0);
-	backgroundBm->AddChild(characterBm);
+	character->rootComponent = characterBm;
 	characterBm->SetTranslation(-1920 / 2 + 425, 88);
+	character->SetTickProperties(TICK_RENDER);
+	character->renderLayer = 3;
 
-	AnimationBitmapComponent* rightRocksBm = background->CreateComponent<AnimationBitmapComponent>();
-	rightRocksBm->SetSprite(L"TestResource/Main/03.png");
-	rightRocksBm->SliceSpriteSheet(677, 620, 0, 0, 0, 0);
-	backgroundBm->AddChild(rightRocksBm);
-	rightRocksBm->SetTranslation(1920/2 - 677 / 2 + 75, 1080/2 - 310);
+	rightRock = CreateActor<RightRock>();
+	rightRock->SetLocation(1920 / 2 - 677 / 2 + 75, 1080 / 2 - 310);
 
 
 }

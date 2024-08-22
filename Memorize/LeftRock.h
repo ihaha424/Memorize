@@ -4,8 +4,10 @@
 
 class LeftRock : public Actor
 {
-	DotTween<float>* tween;
-	float value;
+	DotTween<float>* tweenRotate;
+	DotTween<float>* tweenUpAndDown;
+	float rotateValue;
+	float updownValue;
 public:
 	LeftRock(World* _world);
 	virtual ~LeftRock();

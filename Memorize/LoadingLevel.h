@@ -19,6 +19,7 @@ public:
     virtual void Render(class D2DRenderer* _renderer) override;
 
     bool LoadImages(const wchar_t* szPath);
+    bool LoadSound();
 
 private:
     std::vector<std::shared_ptr<SpriteResource>> loadingResource;

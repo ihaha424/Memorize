@@ -6,7 +6,7 @@
 #include "../D2DGameEngine/Mouse.h"
 #include "../D2DGameEngine/World.h"
 #include "D2dGameEngine/ResourceManager.h"
-
+#include "MagicCircle.h"
 
 Fireball::Fireball(Actor* _owner) : ProjectileSkill(_owner)
 {
@@ -36,7 +36,8 @@ void Fireball::UseSkill()
 	//파이어볼 첫 위치 지정
 	Projectile* fireball = projectiles[nowUsingCount];
 	fireball->SetPlayer(player);
-	fireball->SetLocation(player->GetLocation().x, player->GetLocation().y);
+	MagicCircle* mc = player->GetComponent<MagicCircle>();
+	fireball->SetLocation(mc->GetComponentLocation().x, mc->GetComponentLocation().y);
 	fireball->SetStatus(OS_ACTIVE);
 	fireball->Initialize();
 

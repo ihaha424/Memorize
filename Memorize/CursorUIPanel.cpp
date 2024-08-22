@@ -1,13 +1,12 @@
 #include "CursorUIPanel.h"
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Mouse.h"
-#include "D2DGameEngine/UIImage.h"
+#include "CursorImage.h"
 
 CursorUIPanel::CursorUIPanel(World* _world) : UIPanel(_world)
 {
 	SetZOrder(INT_MAX);
-	cursor = CreateUI<UIImage>(L"Cursor");
-	cursor->SetSprite(L"TestResource/Cursors/Cursor_Default.png");
+	cursor = CreateUI<CursorImage>(L"Cursor");
 }
 
 CursorUIPanel::~CursorUIPanel()

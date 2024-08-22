@@ -6,6 +6,8 @@ class MainLevel : public Level
 {
     class MainLevelUIPanel* mainPanel;
 
+    class Actor* leftRock;
+    class Actor* rightRock;
     float leftRockValue = 0.f;
     float rightRockValue = 0.f;
 public:

@@ -506,6 +506,9 @@
     <ClCompile Include="SetTreeCooldown.cpp">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClCompile>
+    <ClCompile Include="CursorImage.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -873,6 +876,9 @@
     </ClInclude>
     <ClInclude Include="SetTreeCooldown.h">
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="CursorImage.h">
+      <Filter>Source Files\App\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

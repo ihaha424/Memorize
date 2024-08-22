@@ -2,9 +2,10 @@
 #include "ResourceManager.h"
 //#include <atlconv.h>
 
-FMOD::System* SoundManager::system{};
-FMOD::Channel* SoundManager::channel[SoundChnalList] = {};
+FMOD::System*	SoundManager::system{};
+FMOD::Channel*	SoundManager::channel[SoundChnalList] = {};
 float			SoundManager::volume[SoundChnalList] = {};
+int				SoundManager::curIndex = 0;
 
 SoundManager::~SoundManager()
 {
@@ -18,11 +19,17 @@ void SoundManager::Initialize()
 	FMOD::System_Create(&system);
 	system->init((int)SoundChnalList, FMOD_INIT_NORMAL, 0);
 
-
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_BasicAttack01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PlayerAttack01.wav", 0);
-
 	SetVolume(30);
+}
+
+int SoundManager::PlayMusic(std::wstring _key)
+{
+	int tempIndex = curIndex;
+	channel[curIndex]->stop();
+	system->playSound(ResourceManager::LoadResource<SoundResource>(_key).get()->GetResource(), NULL, 0, &channel[curIndex]);
+	channel[curIndex]->setVolume(volume[curIndex]);
+	curIndex = (curIndex + 1) % (int)SoundChnalList;
+	return tempIndex;
 }
 
 void SoundManager::PlayMusic(std::wstring _key, SoundChannel _channel)
