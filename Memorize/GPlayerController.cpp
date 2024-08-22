@@ -285,5 +285,6 @@ void GPlayerController::Cheat()
 {
 	GetPlayer()->stat.hpRegenPerSecond = 500.f;
 	GetPlayer()->stat.mpRegenPerSecond = 500.f;
+	GetPlayer()->stat.maxMp = 500.f;
 	Player::skillUses = 50;
 }

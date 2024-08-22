@@ -104,7 +104,7 @@ void Practice::Enter()
 		FadeInFadeOut* playerDie = GetWorld()->GetCanvas()->CreatePannel<FadeInFadeOut>(L"TestLevelFadeOut");
 		playerDie->SetFaidInOut(false);
 		playerDie->SetFinishFunction([this]()->void {
-			GetWorld()->SetNextScene(L"TestLevel");
+			GetWorld()->SetNextScene(L"Face");
 			});
 		playerDie->alphaTween->SetDuration(3.f);
 		playerDie->alphaTween->SetEasingEffect(EasingEffect::InQuart);

@@ -187,6 +187,8 @@
     <ClCompile Include="Enchant.cpp" />
     <ClCompile Include="EnddingPanel.cpp" />
     <ClCompile Include="Ending.cpp" />
+    <ClCompile Include="Face.cpp" />
+    <ClCompile Include="FaceCamera.cpp" />
     <ClCompile Include="FadeInFadeOut.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
@@ -197,6 +199,7 @@
     <ClCompile Include="Heal.cpp" />
     <ClCompile Include="HowToPlayUIPanel.cpp" />
     <ClCompile Include="LeftRock.cpp" />
+    <ClCompile Include="LevelUpEffect.cpp" />
     <ClCompile Include="LightStream.cpp" />
     <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="LoadingLevel.cpp" />
@@ -322,6 +325,8 @@
     <ClInclude Include="Enchant.h" />
     <ClInclude Include="EnddingPanel.h" />
     <ClInclude Include="Ending.h" />
+    <ClInclude Include="Face.h" />
+    <ClInclude Include="FaceCamera.h" />
     <ClInclude Include="FadeInFadeOut.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />
@@ -334,6 +339,7 @@
     <ClInclude Include="HowToPlayUIPanel.h" />
     <ClInclude Include="IBossSkill.h" />
     <ClInclude Include="LeftRock.h" />
+    <ClInclude Include="LevelUpEffect.h" />
     <ClInclude Include="LightStream.h" />
     <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="Loading.h" />

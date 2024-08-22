@@ -22,10 +22,13 @@ void PlayerCasting::Enter()
 		{
 			if (Player::skillUses >= curSkill->GetConditionCount())
 				curSkill->Unlock();
-			owner->SetNextState(L"PlayerIdle");
-			playerController->InitializeSkillInfo();
-			NoCastingState = true;
-			return;
+			else
+			{
+				owner->SetNextState(L"PlayerIdle");
+				playerController->InitializeSkillInfo();
+				NoCastingState = true;
+				return;
+			}
 		}
 
 		//if(마나 없음 -> return)

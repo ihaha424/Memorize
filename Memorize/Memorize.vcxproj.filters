@@ -159,8 +159,14 @@
     <Filter Include="Source Files\Level\WinEnding">
       <UniqueIdentifier>{9554c0e9-6957-4a73-be89-37498151e90b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Effect\LevelUpEffect">
+      <UniqueIdentifier>{2eeff70c-b9d2-4eeb-89af-02911ae9846c}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Level\Practice">
       <UniqueIdentifier>{12dd1f86-4f79-43d8-996d-3566c2cc61b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level\Face">
+      <UniqueIdentifier>{7b0eba62-b12c-4fd9-8431-753034ba5e59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -550,6 +556,15 @@
     </ClCompile>
     <ClCompile Include="WinEndingPanel.cpp">
       <Filter>Source Files\Level\WinEnding</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpEffect.cpp">
+      <Filter>Source Files\App\Effect\LevelUpEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Face.cpp">
+      <Filter>Source Files\Level\Face</Filter>
+    </ClCompile>
+    <ClCompile Include="FaceCamera.cpp">
+      <Filter>Source Files\Level\Face</Filter>
     </ClCompile>
     <ClCompile Include="Rock01.cpp">
       <Filter>Source Files\Level\Main</Filter>
@@ -984,6 +999,15 @@
     </ClInclude>
     <ClInclude Include="WinEndingPanel.h">
       <Filter>Source Files\Level\WinEnding</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpEffect.h">
+      <Filter>Source Files\App\Effect\LevelUpEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Face.h">
+      <Filter>Source Files\Level\Face</Filter>
+    </ClInclude>
+    <ClInclude Include="FaceCamera.h">
+      <Filter>Source Files\Level\Face</Filter>
     </ClInclude>
     <ClInclude Include="Rock01.h">
       <Filter>Source Files\Level\Main</Filter>
