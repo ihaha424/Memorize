@@ -37,6 +37,7 @@ void ElementalMaster::UseSkill()
 	controller->elementalMasterComponent->SetStatus(OS_ACTIVE);
 	controller->bElementalMaster = true;
 	player->buffEffect->SetStatus(OS_ACTIVE);
+	player->stat.hp = 1.f;
 }
 
 void ElementalMaster::ReflectionIn()
