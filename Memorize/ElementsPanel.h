@@ -7,12 +7,19 @@ public:
 	ElementsPanel(World* _world);
 	virtual ~ElementsPanel();
 
+	class UIImage* ring;
+
 	class UIImage* q;
 	class UIImage* w;
 	class UIImage* e;
 	class UIImage* r;
 
 	std::vector<class UIText*> infoTexts;
+
+	class ID2D1Bitmap* Qicon;
+	class ID2D1Bitmap* Wicon;
+	class ID2D1Bitmap* Eicon;
+	class ID2D1Bitmap* Ricon;
 
 	class ID2D1Bitmap* Qbm;
 	class ID2D1Bitmap* Wbm;
