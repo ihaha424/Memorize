@@ -23,7 +23,7 @@ void ManaOverloadComponent::Update(float _dt)
 
 	elapsedTime += _dt;
 
-	std::cout << elapsedTime << std::endl;
+	//std::cout << elapsedTime << std::endl;
 	if (elapsedTime > duration)
 	{
 		elapsedTime = 0.f;

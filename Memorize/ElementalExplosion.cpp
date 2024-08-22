@@ -20,6 +20,7 @@ ElementalExplosion::~ElementalExplosion()
 
 void ElementalExplosion::UseSkill()
 {
+	__super::UseSkill();
 	elementalExplosionEffect->Activate();
 	Math::Vector2 pos = player->GetLocation();
 	elementalExplosionEffect->SetLocation(pos.x, pos.y);

@@ -25,7 +25,8 @@ TighteningCircle::~TighteningCircle()
 
 void TighteningCircle::UseSkill()
 {
-	
+	__super::UseSkill();
+
 	circleEffects[nowUsingIndex]->Activate();
 
 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };

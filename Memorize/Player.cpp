@@ -122,8 +122,7 @@ void Player::Update(float _dt)
 	stat.mp += stat.mpRegenPerSecond * _dt;
 
 	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
-	std::cout << stat.mpRegenPerSecond << std::endl;
-
+	
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 
 	OnHPInfoChanged->Emit(stat.hp, stat.maxHp);
