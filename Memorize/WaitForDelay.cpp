@@ -13,5 +13,5 @@ void WaitForDelay::Run(float dt)
 {
 	Boss* boss = bt->GetKey<Boss*>("Boss");
 	if (boss->Pattern_Delay < 0.f) return;
-	boss->Pattern_Delay -= dt;
+	boss->Pattern_Delay -= dt * 1.5f;
 }
