@@ -56,6 +56,7 @@ void PrismReflection::UseSkill()
 		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
 		nowPj->SetVelocity(directions[n], projectileSpeed);
 		nowPj->Activate();
+		nowPj->Initialize();
 		nowUsingCount = (nowUsingCount + 1) % projectileCount;
 	}
 }
