@@ -3,6 +3,7 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Canvas.h"
 #include "D2DGameEngine/UIText.h"
+#include "D2DGameEngine/UIButton.h"
 #include "GPlayerController.h"
 #include "ElementalMasterComponent.h"
 #include "D2DGameEngine/ResourceManager.h"
@@ -52,7 +53,34 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 	r->SetSprite(Ricon);
 	r->SetPosition(-30, 120);
 
-	
+	qBtn = CreateUI<UIButton>(L"QButton");
+	qBtn->SetPosition(-30, -120);
+	qBtn->SetSize(60, 60);
+	qBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_PROJECTILE); });
+	qBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_PROJECTILE); });
+	qBtn->SetZOrder(10);
+
+	wBtn = CreateUI<UIButton>(L"WButton");
+	wBtn->SetPosition(8, -47);
+	wBtn->SetSize(60, 60);
+	wBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_RANGE); });
+	wBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_RANGE); });
+	wBtn->SetZOrder(10);
+
+	eBtn = CreateUI<UIButton>(L"EButton");
+	eBtn->SetPosition(8, 47);
+	eBtn->SetSize(60, 60);
+	eBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_BUFF); });
+	eBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_BUFF); });
+	eBtn->SetZOrder(10);
+
+	rBtn = CreateUI<UIButton>(L"RButton");
+	rBtn->SetPosition(-30, 120);
+	rBtn->SetSize(60, 60);
+	rBtn->AddOnHoveredHandler([=]() {ShowSkillInfo(ST_SPECIAL); });
+	rBtn->AddOnUnHoveredHandler([=]() {HideSkillInfo(ST_SPECIAL); });
+	rBtn->SetZOrder(10);
+
 	//이미지 배열
 	commands.resize(4);
 	for (int y = 0; y < 4; y++)
@@ -134,9 +162,7 @@ void ElementsPanel::Update(float _dt)
 		ending = false;
 		HideAllCommands();
 		SetQWER(CheckSkillType(), playerController->GetCurSkillInfo().type);
-		infoTexts[curSkillType]->Activate();
-		infoTexts[curSkillType]->SetText(playerController->FindCurSkiil()->GetInfoText());
-
+		
 		//커맨드를 입력중
 		int curSkillInputCommand = playerController->GetPlayerCastingIndex();
 		for (int i = 0; i < curSkillInputCommand; i++)
@@ -162,8 +188,6 @@ void ElementsPanel::Update(float _dt)
 			r->SetSprite(Ricon);
 		}
 	}
-
-
 }
 
 void ElementsPanel::SetQWER(std::vector<std::vector<int>> elementCommands)
@@ -224,7 +248,6 @@ void ElementsPanel::HideAllCommands()
 {
 	for (int y = 0; y < 4; y++)
 	{
-		infoTexts[y]->Inactivate();
 		for (int x = 0; x < 6; x++)
 		{
 			commands[y][x]->Inactivate();
@@ -319,6 +342,20 @@ void ElementsPanel::SetSkillList()
 			r->SetSprite(L"TestResource/Icon/Icon_ElementalMaster_off.png");
 		SetQWER(darkCommands);
 	}
+}
+
+void ElementsPanel::ShowSkillInfo(ESkillType curSkillType)
+{
+	ESkillElement element = playerController->GetCurSkillInfo().element;
+	if (element != SE_FIRE && element != SE_WATER && element != SE_LIGHT && element != SE_DARKNESS)
+		return;
+	infoTexts[curSkillType]->Activate();
+	infoTexts[curSkillType]->SetText(playerController->FindSkiil(element, curSkillType)->GetInfoText());
+}
+
+void ElementsPanel::HideSkillInfo(ESkillType curSkillType)
+{
+	infoTexts[curSkillType]->Inactivate();
 }
 
 std::vector<std::vector<int>> ElementsPanel::CheckSkillType()
