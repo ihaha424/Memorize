@@ -26,6 +26,7 @@
 Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
+	skillUses = 100;
 	stat.defaultDamage = 20;
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
@@ -91,7 +92,7 @@ Player::Player(class World* _world) : Character(_world)
 	stat.mpRegenPerSecond = 20;
 
 	stat.hpRegenPerSecond = 0;
-	stat.maxMp = 150;
+	stat.maxMp = 300;
 }
 
 Player::~Player()

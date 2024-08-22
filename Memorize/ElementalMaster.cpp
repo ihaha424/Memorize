@@ -6,6 +6,7 @@
 #include "ElementalMasterComponent.h"
 #include "D2DGameEngine/AnimationState.h"
 
+
 ElementalMaster::ElementalMaster(Actor* _owner) : Skill(_owner)
 {
 	SetID(ST_SPECIAL, SE_DARKNESS);
@@ -27,17 +28,17 @@ void ElementalMaster::UseSkill()
 {
 	__super::UseSkill();
 	abm = player->buffEffect;
-	abm->SetSprite(L"TestResource/Player/Skill/Skill_ElementalMaster.png");
+	abm->SetSprite(L"TestResource/Player/Skill/Skill_Effect_Darkness_4_1.png");
 	abm->SliceSpriteSheet(550, 550, 0, 0, 0, 0);
-	abm->FrameResize(97);
-	abm->SetFrameDurations({ castingTime / 97.f });
+	abm->SetFrameDurations({ castingTime / 24.f });
 	abm->Trigger(false); 
 	abm->Trigger(true);
-	abm->SetLoop(true);
 	controller->elementalMasterComponent->SetStatus(OS_ACTIVE);
 	controller->bElementalMaster = true;
 	player->buffEffect->SetStatus(OS_ACTIVE);
 	player->stat.hp = 1.f;
+
+	controller->elementalMasterComponent->Initialize(player);
 }
 
 void ElementalMaster::ReflectionIn()

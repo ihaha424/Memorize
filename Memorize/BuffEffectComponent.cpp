@@ -22,5 +22,6 @@ void BuffEffectComponent::Update(float _dt)
 		controller->EndSkill();
 		elapsedTime = 0.f;
 		SetStatus(OS_INACTIVE);
+		duration = 0.5f;
 	}
 }
