@@ -41,5 +41,9 @@ private:
 
 	float			 scaleVarias = 0.f;
 	DotTween<float>* scaleTween;
+
+
+	bool bShutdownDispelChannel{ false };
+	void ShutdownDispelChannel();
 };
 

@@ -880,5 +880,8 @@
     <ClInclude Include="CursorImage.h">
       <Filter>Source Files\App\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CreatePurificationEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

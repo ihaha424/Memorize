@@ -15,6 +15,8 @@
 #include "DisfellEvent.h"
 #include "BossMeteo.h"
 
+#include "CreatePurificationEffect.h"
+
 BossMeteoCircle::BossMeteoCircle(World* _world)
 	:BossSkillActor(_world)
 {
@@ -112,6 +114,8 @@ void BossMeteoCircle::DisfellAction()
 	AnimationState* CastingAnimationState = boss->CastingAnimationState;
 	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
 		abm->SetState(IdleAnimationState);
+
+	CreatePurificationEffect(GetWorld(), GetLocation(), 1.4f);
 
 	Destroy();
 }

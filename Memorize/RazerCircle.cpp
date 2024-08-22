@@ -16,6 +16,7 @@
 
 #include "BossRazer.h"
 
+#include "CreatePurificationEffect.h"
 
 RazerCircle::RazerCircle(World* _world) : BossSkillActor(_world)
 {
@@ -188,6 +189,8 @@ bool RazerCircle::Destroy()
 
 void RazerCircle::DisfellAction()
 {
+	CreatePurificationEffect(GetWorld(), GetLocation(), 2.f);
+
 	DestroyThis();
 }
 

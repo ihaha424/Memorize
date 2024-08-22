@@ -19,13 +19,12 @@
 #include "D2DGameEngine/World.h"
 #include "Player.h"
 
+#include "CreatePurificationEffect.h"
+
 BossChaseCircle::BossChaseCircle(World* _world)
 	:BossSkillActor(_world)
 {
 	ReflectionIn();
-	disfellCommandCount = 2;
-	CreateDisfellCommand();
-	CreateComponent<ClickComponent>();
 
 	bm->isVisible = false;
 
@@ -37,6 +36,7 @@ BossChaseCircle::BossChaseCircle(World* _world)
 	circleComponent->bGenerateOverlapEvent = false;	// Overlap 이벤트를 발생시킵니다.
 	circleComponent;	// 게임 오브젝트의 루트 컴포넌트가 충돌체 입니다.
 	circleComponent->maxSpeed = 800.f;
+	circleComponent->bShouldUpdateBounds = true;
 
 	magicCircle = CreateComponent<AnimationBitmapComponent>();
 	rootComponent->AddChild(magicCircle);
@@ -69,10 +69,14 @@ BossChaseCircle::BossChaseCircle(World* _world)
 	scaleTween->SetStartPoint(0.9f);
 	scaleTween->SetEndPoint(1.5f);
 
-	circleComponent->InitCircleRadius(magicCircle->GetFrameHeight() / 2.f);	// 반지름이 62이고 높이가 110 인 캡슐 충돌체를 초기화 합니다.
+	circleComponent->InitCircleRadius(magicCircle->GetFrameHeight() / 2.f);	// 
 	circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
+
+	disfellCommandCount = 2;
+	CreateDisfellCommand();
+	CreateComponent<ClickComponent>();
 }
 
 BossChaseCircle::~BossChaseCircle()
@@ -87,13 +91,14 @@ void BossChaseCircle::BeginPlay()
 void BossChaseCircle::Update(float _dt)
 {
 	__super::Update(_dt);
+	circleComponent->bShouldUpdateBounds = true;
+
 
 	skillDuration -= _dt;
 	if (skillDuration > 0.f)
 	{
 		if (!ignited)
 		{
-			LOG_MESSAGE(dbg::text(GetLocation().x, ", ", GetLocation().y));
 			Math::Vector2 toPlayer = player->GetLocation() - GetLocation();
 			if (toPlayer.Length() < 30.f)
 				return;
@@ -155,8 +160,7 @@ void BossChaseCircle::Update(float _dt)
 		auto Pos = GetLocation();
 		DestoryProjectileEffect->SetLocation(Pos.x, Pos.y);
 
-		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		ShutdownDispelChannel();
 
 		Destroy();
 	}
@@ -184,6 +188,10 @@ void BossChaseCircle::DisfellAction()
 	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
 		abm->SetState(IdleAnimationState);
 
+	CreatePurificationEffect(GetWorld(), GetLocation(), 1.4f);
+
+	ShutdownDispelChannel();
+
 	Destroy();
 }
 
@@ -197,6 +205,9 @@ void BossChaseCircle::DisfellFailAction()
 void BossChaseCircle::OnClicked()
 {
 	__super::OnClicked();
+
+	if (dispelTime <= 0.f) return;
+
 	EventBus::GetInstance().PushEvent<DisFellEvent>(this, false);
 	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
 }
@@ -211,4 +222,14 @@ void BossChaseCircle::ReflectionIn()
 
 void BossChaseCircle::ReflectionOut()
 {
+}
+
+void BossChaseCircle::ShutdownDispelChannel()
+{
+	if (!bShutdownDispelChannel)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		bShutdownDispelChannel = true;
+	}
 }

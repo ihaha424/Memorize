@@ -15,6 +15,8 @@
 #include "DisfellEvent.h"
 #include "BossThroughProjectile.h"
 
+#include "CreatePurificationEffect.h"
+
 BossThroughProjectileMagicCircle::BossThroughProjectileMagicCircle(World* _world)
 	:BossSkillActor(_world)
 {
@@ -112,6 +114,9 @@ void BossThroughProjectileMagicCircle::DisfellAction()
 	AnimationState* CastingAnimationState = boss->CastingAnimationState;
 	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
 		abm->SetState(IdleAnimationState);
+
+	CreatePurificationEffect(GetWorld(), GetLocation(), 1.f);
+
 	Destroy();
 }
 

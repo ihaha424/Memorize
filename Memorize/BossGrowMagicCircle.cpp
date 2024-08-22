@@ -16,6 +16,8 @@
 #include "Player.h"
 #include "Arena.h"
 
+#include "CreatePurificationEffect.h"
+
 BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 	:BossSkillActor(_world)
 {

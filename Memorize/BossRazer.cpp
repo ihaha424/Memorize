@@ -15,6 +15,7 @@
 
 #include "Player.h"
 
+#include "CreatePurificationEffect.h"
 
 BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 {
@@ -232,6 +233,8 @@ bool BossRazer::Destroy()
 
 void BossRazer::DisfellAction()
 {
+	CreatePurificationEffect(GetWorld(), GetLocation(), 0.2f);
+
 	DestroyThis();
 }
 

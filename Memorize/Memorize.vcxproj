@@ -292,6 +292,7 @@
     <ClInclude Include="ChasingWaterBallProjectile.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="CoolTime.h" />
+    <ClInclude Include="CreatePurificationEffect.h" />
     <ClInclude Include="CursorImage.h" />
     <ClInclude Include="CursorUIPanel.h" />
     <ClInclude Include="DarkSphere.h" />
