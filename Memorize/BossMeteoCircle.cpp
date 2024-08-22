@@ -87,8 +87,7 @@ void BossMeteoCircle::Update(float _dt)
 
 	if (dispelTime < 0.f)
 	{
-		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		ShutdownDispelChannel();
 		Destroy();
 	}
 }
@@ -109,13 +108,21 @@ bool BossMeteoCircle::Destroy()
 void BossMeteoCircle::DisfellAction()
 {
 	Boss* boss = GetWorld()->FindActorByType<Boss>();
-	Animator* abm = boss->abm;
-	AnimationState* IdleAnimationState = boss->IdleAnimationState;
-	AnimationState* CastingAnimationState = boss->CastingAnimationState;
-	if (abm->GetCurrentAnimationScene() == CastingAnimationState)
-		abm->SetState(IdleAnimationState);
+	if (boss)
+	{
+		Animator* abm = boss->abm;
+		AnimationState* IdleAnimationState = boss->IdleAnimationState;
+		AnimationState* CastingAnimationState = boss->CastingAnimationState;
+		if (abm->GetCurrentAnimationScene() == CastingAnimationState)
+			abm->SetState(IdleAnimationState);
+
+		// µð½ºÆç Áõ°¡
+		boss->DissfellCount++;
+	}
 
 	CreatePurificationEffect(GetWorld(), GetLocation(), 1.4f);
+
+	ShutdownDispelChannel();
 
 	Destroy();
 }
@@ -142,4 +149,14 @@ void BossMeteoCircle::ReflectionIn()
 
 void BossMeteoCircle::ReflectionOut()
 {
+}
+
+void BossMeteoCircle::ShutdownDispelChannel()
+{
+	if (!bShutdownDispelChannel)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		bShutdownDispelChannel = true;
+	}
 }

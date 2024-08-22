@@ -42,23 +42,22 @@ void BossBehaviorTree::BuildBehaviorTree()
 	boss = static_cast<BossAIController*>(GetOwner())->GetBoss();
 	SetKey<Boss*>("Boss", boss);
 	{
-		Sequence* WaitAndGo = CreateNode<Sequence>();
-		root->child = WaitAndGo;
-
-		WaitForDelay* waitForDelay = CreateNode<WaitForDelay>();
-		
 		Selector* rootSelector = CreateNode<Selector>();
-
-		WaitAndGo->PushBackChildren({ waitForDelay, rootSelector });
-
+		root->child = rootSelector;
 		{	// -> Root select 1
 			//	Groggy
 			rootSelector->PushBackChild(BuildPatternSubtree(Pattern::Groggy));
 		}
 		{	// -> Root select 2
 			// mainBehaviorSelector
+			Sequence* WaitAndGo = CreateNode<Sequence>();
+			rootSelector->PushBackChild(WaitAndGo);
+			// Wait
+			WaitForDelay* waitForDelay = CreateNode<WaitForDelay>();
+			// And Go
 			Selector* mainBehaviorSelector = CreateNode<Selector>();
-			rootSelector->PushBackChild(mainBehaviorSelector);
+			// Push back children
+			WaitAndGo->PushBackChildren({ waitForDelay, mainBehaviorSelector });
 
 			{	// -> mainBehaviorSelector 1: Periodic Patterns
 				// Main Behavior Branch
@@ -111,7 +110,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 					bossPhaseSelector->PushBackChild(BossPhase_One);
 					BossPhase_One->_successCondition = [this]() {
 						float hpPercent = (float) boss->hp / boss->maxHp;
-						return (hpPercent <= 1.f);
+						return (0.75f <= hpPercent && hpPercent <= 1.f);
 					};
 					{	// Boss Phase One
 						RandomSelector* phaseOneRandomSelector = CreateNode<RandomSelector>();
@@ -164,7 +163,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 					bossPhaseSelector->PushBackChild(BossPhase_Two);
 					BossPhase_Two->_successCondition = [this]() {
 						float hpPercent = (float)boss->hp / boss->maxHp;
-						return (hpPercent <= 0.75f);
+						return (0.25f <= hpPercent && hpPercent <= 0.75f);
 					};
 					{
 						Selector* Phase_Pattern_Select = CreateNode<Selector>();
@@ -174,12 +173,15 @@ void BossBehaviorTree::BuildBehaviorTree()
 							Condition* Phase_Two_Periodic = CreateNode<Condition>();
 							Phase_Pattern_Select->PushBackChild(Phase_Two_Periodic);
 							Phase_Two_Periodic->_successCondition = [this]() {
-								return boss->Periodic_Pattern_Cool_Time <= 0.f;
+								return boss->Phase_Pattern_Cool_Time <= 0.f;	// TODO;
 							};
 							//Pattern09
 							// Phase_Pattern_Cool_Time = Pattern19->DelayTime
+							Sequence* phasePeriodic = CreateNode<Sequence>();
 							INode* pattern09 = BuildPatternSubtree(Pattern::Pattern9);
-							Phase_Two_Periodic->Wrap(pattern09);
+							SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
+							phasePeriodic->PushBackChildren({ pattern09, _20sec });
+							Phase_Two_Periodic->Wrap(phasePeriodic);
 						}
 						{
 							// Boss Phase Two
@@ -253,63 +255,60 @@ void BossBehaviorTree::BuildBehaviorTree()
 						BossPhase_Three->Wrap(phase3PatternSelector);
 						{
 							// 3 Phase Periodic Pattern 1
-							Condition* Phase_Three_Periodic = CreateNode<Condition>();
-							phase3PatternSelector->PushBackChild(Phase_Three_Periodic);
-							Phase_Three_Periodic->_successCondition = [this]() {
-								return boss->Periodic_Pattern_Cool_Time <= 0.f;
+							Condition* phaseTreePeriodicCondition = CreateNode<Condition>();
+							phase3PatternSelector->PushBackChild(phaseTreePeriodicCondition);
+							phaseTreePeriodicCondition->_successCondition = [this]() {
+								return boss->Phase_Pattern_Cool_Time <= 0.f;		// TODO;
 							};
 							{	// 3 Phase Periodic Pattern 1
 								// Phase_Three_Periodic_Selector
-								RandomSelector* Phase_Three_Periodic_Selector = CreateNode<RandomSelector>();
-								Phase_Three_Periodic->Wrap(Phase_Three_Periodic_Selector);
+								RandomSelector* phaseThreePeriodicSelector = CreateNode<RandomSelector>();
+								phaseTreePeriodicCondition->Wrap(phaseThreePeriodicSelector);
 								{
-									{
-										Sequence* phaseTreePeriodic1 = CreateNode<Sequence>();
-										Phase_Three_Periodic_Selector->PushBackChild(phaseTreePeriodic1);
+									Sequence* phaseTreePeriodic1 = CreateNode<Sequence>();
+									phaseThreePeriodicSelector->PushBackChild(phaseTreePeriodic1);
 
-										INode* pattern12 = BuildPatternSubtree(Pattern::Pattern12);
-										phaseTreePeriodic1->PushBackChild(pattern12);
-										INode* pattern8 = BuildPatternSubtree(Pattern::Pattern8);
-										phaseTreePeriodic1->PushBackChild(pattern8);
-										SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
-										phaseTreePeriodic1->PushBackChild(_20sec);
-										SetTreeCoolTime* _1 = CreateNode<SetTreeCoolTime>(1);
-										phaseTreePeriodic1->PushBackChild(_1);
-									}
-									{
-										Sequence* phaseTreePeriodic2 = CreateNode<Sequence>();
-										Phase_Three_Periodic_Selector->PushBackChild(phaseTreePeriodic2);
+									INode* pattern12 = BuildPatternSubtree(Pattern::Pattern12);
+									phaseTreePeriodic1->PushBackChild(pattern12);
+									INode* pattern8 = BuildPatternSubtree(Pattern::Pattern8);
+									phaseTreePeriodic1->PushBackChild(pattern8);
+									SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
+									phaseTreePeriodic1->PushBackChild(_20sec);
+									SetTreeCoolTime* _1 = CreateNode<SetTreeCoolTime>(1);
+									phaseTreePeriodic1->PushBackChild(_1);
+								}
+								{
+									Sequence* phaseTreePeriodic2 = CreateNode<Sequence>();
+									phaseThreePeriodicSelector->PushBackChild(phaseTreePeriodic2);
 
-										INode* pattern12 = BuildPatternSubtree(Pattern::Pattern12);
-										phaseTreePeriodic2->PushBackChild(pattern12);
-										INode* pattern9 = BuildPatternSubtree(Pattern::Pattern9);
-										phaseTreePeriodic2->PushBackChild(pattern9);
-										SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
-										phaseTreePeriodic2->PushBackChild(_20sec);
-										SetTreeCoolTime* _0 = CreateNode<SetTreeCoolTime>(0);
-										phaseTreePeriodic2->PushBackChild(_0);
-									}
+									INode* pattern12 = BuildPatternSubtree(Pattern::Pattern12);
+									phaseTreePeriodic2->PushBackChild(pattern12);
+									INode* pattern9 = BuildPatternSubtree(Pattern::Pattern9);
+									phaseTreePeriodic2->PushBackChild(pattern9);
+									SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
+									phaseTreePeriodic2->PushBackChild(_20sec);
+									SetTreeCoolTime* _0 = CreateNode<SetTreeCoolTime>(0);
+									phaseTreePeriodic2->PushBackChild(_0);
 								}
 								{
 									// 3 Phase Periodic Pattern 2
-									Sequence* Phase_Three_2 = CreateNode<Sequence>();
-									Phase_Three_Periodic_Selector->PushBackChild(Phase_Three_2);
-									{
-										//Pattern13
-										//Pattern02
-										//Pattern02
-										//Pattern02
-										// Phase_Pattern_Cool_Time = Pattern13->DelayTime
-										INode* pattern13 = BuildPatternSubtree(Pattern::Pattern13);
-										INode* pattern02_1 = BuildPatternSubtree(Pattern::Pattern2);
-										INode* pattern02_2 = BuildPatternSubtree(Pattern::Pattern2);
-										INode* pattern02_3 = BuildPatternSubtree(Pattern::Pattern2);
-										SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
-										SetTreeCoolTime* _3 = CreateNode<SetTreeCoolTime>(3);
-										Phase_Three_2->PushBackChildren({ pattern13, pattern02_1, pattern02_2, pattern02_3, _20sec, _3 });
-									}
+									Sequence* phaseTreePeriodic3 = CreateNode<Sequence>();
+									phaseThreePeriodicSelector->PushBackChild(phaseTreePeriodic3);
+
+									//Pattern13
+									//Pattern02
+									//Pattern02
+									//Pattern02
+									// Phase_Pattern_Cool_Time = Pattern13->DelayTime
+									INode* pattern13 = BuildPatternSubtree(Pattern::Pattern13);
+									INode* pattern02_1 = BuildPatternSubtree(Pattern::Pattern2);
+									INode* pattern02_2 = BuildPatternSubtree(Pattern::Pattern2);
+									INode* pattern02_3 = BuildPatternSubtree(Pattern::Pattern2);
+									SetPeriodicCoolTime* _20sec = CreateNode<SetPeriodicCoolTime>(20.f);
+									SetTreeCoolTime* _3 = CreateNode<SetTreeCoolTime>(3);
+									phaseTreePeriodic3->PushBackChildren({ pattern13, pattern02_1, pattern02_2, pattern02_3, _20sec, _3 });
 								}
-								Phase_Three_Periodic_Selector->SetRandomWeights({ 1.f });
+								phaseThreePeriodicSelector->SetRandomWeights({ 1.f });
 							}
 						}
 						{
@@ -325,14 +324,12 @@ void BossBehaviorTree::BuildBehaviorTree()
 									//Pattern02
 									//Pattern02
 									//Wait* Pattern09.DelayTime
-									INode* pattern01_1 = BuildPatternSubtree(Pattern::Pattern1);
-									INode* pattern01_2 = BuildPatternSubtree(Pattern::Pattern1);
 									INode* pattern9 = BuildPatternSubtree(Pattern::Pattern9);
 									INode* pattern02_1 = BuildPatternSubtree(Pattern::Pattern2);
 									INode* pattern02_2 = BuildPatternSubtree(Pattern::Pattern2);
 									SetTreeCoolTime* _3 = CreateNode<SetTreeCoolTime>(3);
 									
-									Phase_Three_1->PushBackChildren({ pattern01_1, pattern01_2, pattern9, pattern02_1, pattern02_2, _3 });
+									Phase_Three_1->PushBackChildren({ pattern9, pattern02_1, pattern02_2, _3 });
 								}
 							}
 							{
@@ -375,7 +372,7 @@ void BossBehaviorTree::BuildBehaviorTree()
 					}
 				}	// <- bossPhaseSelector 3
 
-				bossPhaseSelector->SetRandomWeights({ 1.f, 2.f, 3.f });
+				bossPhaseSelector->SetRandomWeights({ 1.f, 3.f, 5.f });
 			}
 		}
 	}
@@ -393,18 +390,9 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 			Boss* boss = GetKey<Boss*>("Boss");
 			return (boss->DissfellCount >= 10);
 		};
-		{	// Groggy
-			Sequence* groggySequence = CreateNode<Sequence>();
-			groggyCondition->Wrap(groggySequence);
-			{
-				// GroggyAction
-				GroggyAction* groggyAction = CreateNode<GroggyAction>();
-				groggySequence->PushBackChild(groggyAction);
-
-				// Wait for 10
-				Wait* groggyWaitFor10Seconds = CreateNode<Wait>(5);
-				groggySequence->PushBackChild(groggyWaitFor10Seconds);
-			}
+		{	// GroggyAction
+			GroggyAction* groggyAction = CreateNode<GroggyAction>();
+			groggyCondition->Wrap(groggyAction);
 		}
 		return groggyCondition;
 	} break;
@@ -763,7 +751,7 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	} break;
 	case BossBehaviorTree::Pattern::Pattern9: {
 		Pattern9Action* pattern9Action = CreateNode<Pattern9Action>();
-		pattern9Action->SetCooldown(15.f + 5.f);
+		pattern9Action->SetPhasePeriodicCooldown(15.f + 5.f);
 		pattern9Action->SetPatternInterval(5.f);
 		pattern9Action->SetTreeCooldown(2.f);
 		return pattern9Action;
@@ -792,13 +780,13 @@ INode* BossBehaviorTree::BuildPatternSubtree(Pattern pattern)
 	} break;
 	case BossBehaviorTree::Pattern::Pattern12: {
 		Pattern12Action* pattern12Action = CreateNode<Pattern12Action>();
-		pattern12Action->SetCooldown(25.f);
+		pattern12Action->SetPhasePeriodicCooldown(25.f);
 		pattern12Action->SetPatternInterval(0.f);
 		return pattern12Action;
 	} break;
 	case BossBehaviorTree::Pattern::Pattern13: {
 		Pattern13Action* pattern13Action = CreateNode<Pattern13Action>();
-		pattern13Action->SetCooldown(20.f);
+		pattern13Action->SetPhasePeriodicCooldown(20.f);
 		pattern13Action->SetPatternInterval(1.f);
 		pattern13Action->SetTreeCooldown(3.f);
 		return pattern13Action;

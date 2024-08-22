@@ -1,6 +1,6 @@
 #include "SoundManager.h"
 #include "ResourceManager.h"
-#include <atlconv.h>
+//#include <atlconv.h>
 
 FMOD::System*	SoundManager::system{};
 FMOD::Channel*	SoundManager::channel[SoundChnalList] = {};
@@ -75,7 +75,7 @@ bool SoundManager::IsPlay(SoundChannel _channel)
 
 void SoundManager::CreateSound(std::wstring _key, bool loopcheck, FMOD::Sound*& _sound)
 {
-	std::string tempPath;
+	/*std::string tempPath;
 	USES_CONVERSION;
 	tempPath = std::string(W2A(_key.c_str()));
 	if (loopcheck)
@@ -85,6 +85,6 @@ void SoundManager::CreateSound(std::wstring _key, bool loopcheck, FMOD::Sound*& 
 	if(!_sound)
 	{
 		LOG_WARNING(dbg::text("Sound: \"", tempPath.c_str(), "\" is nullptr.\n"));
-	}
+	}*/
 
 }

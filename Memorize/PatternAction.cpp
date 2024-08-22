@@ -11,6 +11,7 @@ bool PatternAction::IsRunning()
 	{
 		elapsedTime = 0.f;
 		GetBehaviorTree()->GetKey<Boss*>("Boss")->Periodic_Pattern_Cool_Time += GetCooldown();
+		GetBehaviorTree()->GetKey<Boss*>("Boss")->Phase_Pattern_Cool_Time += GetPhasePeriodicCooldown();
 		GetBehaviorTree()->GetKey<Boss*>("Boss")->Pattern_Delay += GetTreeCooldown();
 
 		//// 애니메이션 초기화

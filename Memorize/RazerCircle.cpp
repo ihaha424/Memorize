@@ -189,6 +189,13 @@ bool RazerCircle::Destroy()
 
 void RazerCircle::DisfellAction()
 {
+	Boss* boss = GetWorld()->FindActorByType<Boss>();
+	if (boss)
+	{
+		// µð½ºÆç Áõ°¡
+		boss->DissfellCount++;
+	}
+
 	CreatePurificationEffect(GetWorld(), GetLocation(), 2.f);
 
 	DestroyThis();

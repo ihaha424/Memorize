@@ -10,5 +10,5 @@ bool SetPeriodicCoolTime::IsRunning()
 
 void SetPeriodicCoolTime::Run(float dt)
 {
-	bt->GetKey<Boss*>("Boss")->Periodic_Pattern_Cool_Time = coolTime;
+	bt->GetKey<Boss*>("Boss")->Phase_Pattern_Cool_Time = coolTime;
 }
