@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/Character.h"
 
 #include "D2DGameEngine/Debug.h"
+#include "D2DGameEngine/DotTween.h"
 #include "Signal.h"
 
 class Scarecrow : public Character
@@ -21,7 +22,8 @@ public:
 	float elapsedTime{ 0.f };
 
 	bool casting{ false };
-
+	DotTween<float>* tweenRotate;
+	float rotateValue;
 public:
 	Scarecrow(class World* _world);
 	virtual ~Scarecrow();
@@ -44,13 +46,6 @@ public:
 	Signal<float>* OnHPChanged;
 
 public:
-	class Animator* abm;
-	class AnimationState* IdleAnimationState;
-	class AnimationState* MoveAnimationState;
-	class AnimationState* CastingAnimationState;
-	class AnimationState* DieAnimationState;
-	class AnimationState* TeleportStartAnimationState;
-	class AnimationState* TeleportEndAnimationState;
-
+	class AnimationBitmapComponent* abm;
 };
 
