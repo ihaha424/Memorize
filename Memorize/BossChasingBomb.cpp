@@ -70,19 +70,18 @@ ChasingBomb::ChasingBomb(World* _world) : BossSkillActor(_world)
 	bombDamageEvent.damage = damage;
 
 	player = GetWorld()->FindActorByType<Player>();
-
-	Math::Vector2 playerLocation = player->GetLocation();
-	Math::Vector2 toPlayer = playerLocation - GetLocation();
-	toPlayer.Normalize();
-
-	SetVelocity(toPlayer * speed);
-	LookAt(toPlayer);
 }
 
 void ChasingBomb::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	Math::Vector2 playerLocation = player->GetLocation();
+	Math::Vector2 toPlayer = playerLocation - GetLocation();
+	toPlayer.Normalize();
+
+	SetVelocity(toPlayer * speed);
+	LookAt(playerLocation);
 }
 
 void ChasingBomb::FixedUpdate(float _fixedRate)
