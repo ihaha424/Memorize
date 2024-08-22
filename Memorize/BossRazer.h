@@ -60,4 +60,8 @@ public:
 	void ReflectionOut() override;
 
 	void DestroyThis();
+
+private:
+	bool bShutdownDispelChannel{ false };
+	void ShutdownDispelChannel();
 };
