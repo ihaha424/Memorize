@@ -255,6 +255,8 @@ void GPlayerController::Cancellation() { playerFSMComponent->InputKey(InputEvent
 
 void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 {
+	if (bElementalMaster)
+		return;
 	if (targetSkill == nullptr && !_event->GetBossSkillDieFlag())
 	{
 		targetSkill = _event->GetBossSkillActor();
