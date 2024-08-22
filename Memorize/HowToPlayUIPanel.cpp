@@ -4,6 +4,7 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/Canvas.h"
 #include "CursorUIPanel.h"
+#include "MainLevelUIPanel.h"
 
 HowToPlayUIPanel::HowToPlayUIPanel(World* _world) : UIPanel(_world)
 {
@@ -17,6 +18,8 @@ HowToPlayUIPanel::HowToPlayUIPanel(World* _world) : UIPanel(_world)
 	closeBtn->SetSize(88, 77);
 	closeBtn->SetPosition(1920 / 2 - 188, -1080 / 2 + 120);
 	closeBtn->AddOnClickHandler([this]() {GetWorld()->GetCanvas()->HidePanel(L"HowToPlay"); });
+	closeBtn->AddOnClickHandler([this]() {GetWorld()->GetCanvas()->GetPanel<MainLevelUIPanel>(L"MainLevel")->ShowUI(L"StartButton"); });
+	closeBtn->AddOnClickHandler([this]() {GetWorld()->GetCanvas()->GetPanel<MainLevelUIPanel>(L"MainLevel")->ShowUI(L"HowToButton"); });
 	closeBtn->Activate();
 
 

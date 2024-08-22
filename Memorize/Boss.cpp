@@ -98,7 +98,7 @@ void Boss::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	std::cout << "Dispel count: " << DissfellCount << std::endl;
+	//std::cout << "Dispel count: " << DissfellCount << std::endl;
 
 	elapsedTime += _dt;
 

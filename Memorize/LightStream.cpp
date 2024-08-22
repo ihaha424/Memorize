@@ -34,6 +34,7 @@ LightStream::~LightStream()
 
 void LightStream::UseSkill()
 {
+	__super::UseSkill();
 
 	lightStreamEffect[curIndex]->Activate();
 	lightStreamEffect[curIndex]->SetSkillID(id);

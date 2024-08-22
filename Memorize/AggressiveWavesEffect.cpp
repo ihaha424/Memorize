@@ -6,6 +6,7 @@
 
 AggressiveWavesEffect::AggressiveWavesEffect(World* _world) : Projectile(_world)
 {
+	anim->SetScale(0.6f, 0.6f);
 	normalState->SetSprite(L"TestResource/Player/Skill/Skill_AggressiveWaves.png");
 	normalState->SliceSpriteSheet(1024, 1024, 0, 0, 0, 0);
 	normalState->FrameResize(73);

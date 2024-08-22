@@ -27,6 +27,7 @@ Meteor::~Meteor()
 
 void Meteor::UseSkill()
 {
+	__super::UseSkill();
 
 	meteorEffect[nowUsingIndex]->Activate();
  	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };

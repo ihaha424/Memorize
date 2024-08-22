@@ -25,6 +25,7 @@ BasicAttack::~BasicAttack()
 void BasicAttack::UseSkill()
 {
 	__super::UseSkill();
+	Player::skillUses--;
 
 	projectiles[nowUsingCount]->Activate();
 

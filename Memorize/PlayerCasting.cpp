@@ -16,10 +16,12 @@ void PlayerCasting::Enter()
 			NoCastingState = true;
 			return;
 		}
-
+		Skill* curSkill = playerController->FindCurSkiil();
 		//스킬이 잠금해제 되지 않았으면 return 
-		if (!playerController->FindCurSkiil()->IsUnlocked())
+		if (!curSkill->IsUnlocked())
 		{
+			if (Player::skillUses >= curSkill->GetConditionCount())
+				curSkill->Unlock();
 			owner->SetNextState(L"PlayerIdle");
 			playerController->InitializeSkillInfo();
 			NoCastingState = true;

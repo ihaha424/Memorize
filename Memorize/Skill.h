@@ -59,10 +59,12 @@ public:
 	void SetMana(float _mana)  { mana = _mana; }
 	const int	GetCommandSize() const { return commandList.size(); }
 	const float	GetCastingTime() const { return castingTime; }
+	const float	GetConditionCount() const { return conditionCount; }
 
 	void SetID(ESkillType _type, ESkillElement _element) { id.type = _type; id.element = _element; }
 	ULONGLONG GetID() { return id.id; };
 	bool IsUnlocked() { return bUnlocked; }
+	void Unlock() { bUnlocked = true; }
 
 	std::wstring GetInfoText() { return text; }
 

@@ -11,6 +11,11 @@ HeadEffect::HeadEffect(World* _world) : AnimatorEffect(_world)
 void HeadEffect::SetEffect(int index)
 {
 	AnimationState* state = animatorBitMap->CreateState<AnimationState>();
+
+	if(index == 1)
+		animatorBitMap->SetScale(0.6f, 0.6f);
+	else 
+		animatorBitMap->SetScale(1.f, 1.f);
 	if (index == 0)
 	{
 		state->SetSprite(L"TestResource/Player/Skill/Skill_Memorize.png");
