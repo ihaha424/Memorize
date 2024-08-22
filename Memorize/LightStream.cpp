@@ -51,7 +51,7 @@ void LightStream::UseSkill()
 
 	lightStreamEffect->Initialize();
 
-	controller->FindCurSkiil()->castingTime = mana / 50.f + 3.f;
+	controller->FindCurSkiil()->castingTime = mana / 50.f + 1.f;
 }
 
 void LightStream::ReflectionIn()

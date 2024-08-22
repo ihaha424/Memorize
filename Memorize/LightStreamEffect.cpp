@@ -21,6 +21,7 @@ LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 	normalState->SliceSpriteSheet(1000, 290, 0, 0, 0, 0);
 	normalState->FrameResize(60);
 	normalState->SetFrameDurations({ 5.f / 60 });
+	normalState->SetLoop(true);
 
 	endingState->SetSprite(L"TestResource/Player/Skill/Skill_LightStream03.png");
 	endingState->SliceSpriteSheet(1000, 290, 0, 0, 0, 0);
