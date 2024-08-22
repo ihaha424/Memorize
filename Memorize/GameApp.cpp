@@ -38,7 +38,7 @@ void GameApp::Initialize() {
 	world->CreateLevel<TestLevel>(L"TestLevel");
 	world->CreateLevel<Ending>(L"Ending");
 	world->CreateLevel<WinEnding>(L"WinEnding");
-	world->SetNextScene(L"PracticeLevel");
+	world->SetNextScene(L"LoadingLevel");
 	world->ChangeScene();
 	world->BeginPlay();
 
