@@ -80,7 +80,7 @@ void TighteningCircleEffect::OnOverlap(Actor* other, const OverlapInfo& overlap)
 	if (damageTimer > tickInterval)
 	{
 		bool hitRadius = intersectionUtil::BoundaryCircleBoxIntersect(
-			circleComponent->CalculateLocalBounds().GetCircle(),
+			circleComponent->CalculateBounds(GetTrasnform()).GetCircle(),
 			overlap.overlapInfo.hitComponent->CalculateBounds(overlap.overlapInfo.hitComponent->GetWorldTransform()).GetBox()
 		);
 		if (!hitRadius)

@@ -1,4 +1,5 @@
 #include "PlayerFSMComponent.h"
+#include "../D2DGameEngine/SoundManager.h"
 
 PlayerFSMComponent::PlayerFSMComponent(Actor* _owner)
 	: FSMComponent(_owner)
@@ -27,15 +28,19 @@ void PlayerFSMComponent::InputKey(int _key)
 	switch (_key)
 	{
 	case InputEvent::Fire:
+		SoundManager::PlayMusic(L"TestResource/Sound/UI/Sound_UI_Button01.wav");
 		ActionState->Fire();
 		break;
 	case InputEvent::Water:
+		SoundManager::PlayMusic(L"TestResource/Sound/UI/Sound_UI_Button02.wav");
 		ActionState->Water();
 		break;
 	case InputEvent::Light:
+		SoundManager::PlayMusic(L"TestResource/Sound/UI/Sound_UI_Button03.wav");
 		ActionState->Light();
 		break;
 	case InputEvent::Dark:
+		SoundManager::PlayMusic(L"TestResource/Sound/UI/Sound_UI_Button04.wav");
 		ActionState->Dark();
 		break;
 	case InputEvent::Attack:

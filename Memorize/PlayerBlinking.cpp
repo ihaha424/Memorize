@@ -58,6 +58,8 @@ void PlayerBlinking::Enter()
 		BlickDest->SetAliveTime(1.f);
 		BlickDest->SetLocation(playerPos.x, playerPos.y);
 	}
+
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Flash.wav");
 }
 
 void PlayerBlinking::Update(float _dt)

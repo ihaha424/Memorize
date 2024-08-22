@@ -19,6 +19,7 @@ void Pattern6Action::Run(float dt)
 		AnimationState* CastingAnimationState = bt->GetKey<Boss*>("Boss")->CastingAnimationState;
 		if (abm->GetCurrentAnimationScene() != CastingAnimationState)
 			abm->SetState(CastingAnimationState);
+		SoundManager::PlayMusic(L"TestResource/Sound/Boss/Boss_Pattern_Activated.wav");
 
 		started = true;
 	}

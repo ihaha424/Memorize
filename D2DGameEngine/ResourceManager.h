@@ -40,31 +40,33 @@ public:
 	template<typename T>
 	static std::shared_ptr<T> LoadResource(const ImageTag& _tag)
 	{
-		std::shared_ptr<T> sprite = SearchResource<T>(_tag);
+		std::wstring strFilePath = resourcePath;
+		strFilePath += _tag;
+
+		std::shared_ptr<T> sprite = SearchResource<T>(strFilePath);
 		if (sprite != nullptr)
 			return sprite;
 
-		std::wstring strFilePath = resourcePath;
-		strFilePath += _tag;
 		sprite = std::make_shared<T>();
 		sprite->LoadFile(strFilePath);
-		sprite->SetKey(_tag);
-		resourceStorage.insert({ _tag, sprite });
+		sprite->SetKey(strFilePath);
+		resourceStorage.insert({ strFilePath, sprite });
 		return sprite;
 	}
 
 	static std::shared_ptr<SoundResource> LoadResource(const ImageTag& _tag, bool _loopCheck)
 	{
-		std::shared_ptr<SoundResource> sprite = SearchResource<SoundResource>(_tag);
+		std::wstring strFilePath = resourcePath;
+		strFilePath += _tag;
+
+		std::shared_ptr<SoundResource> sprite = SearchResource<SoundResource>(strFilePath);
 		if (sprite != nullptr)
 			return sprite;
 
-		std::wstring strFilePath = resourcePath;
-		strFilePath += _tag;
 		sprite = std::make_shared<SoundResource>();
 		sprite->LoadFileLoop(strFilePath, _loopCheck);
-		sprite->SetKey(_tag);
-		resourceStorage.insert({ _tag, sprite });
+		sprite->SetKey(strFilePath);
+		resourceStorage.insert({ strFilePath, sprite });
 		return sprite;
 	}
 
@@ -80,7 +82,7 @@ private:
 		if (iter->second->GetType() == T::TYPE_ID)
 			return std::static_pointer_cast<T>(iter->second);
 		else
-			LOG_ERROR(-1, "ResourceType is Diffrent.");
+			LOG_WARNING("ResourceType is Diffrent.");
 		return nullptr;
 	}
 

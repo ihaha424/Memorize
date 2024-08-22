@@ -2,6 +2,7 @@
 #include "../D2DGameEngine/IComponent.h"
 #include "../D2DGameEngine/Reflection.h"
 #include "../D2DGameEngine/ReflectionResource.h"
+#include "../D2DGameEngine/SoundManager.h"
 
 enum ESkillType
 {
@@ -55,6 +56,7 @@ public:
 	virtual void UseSkill();
 	virtual void Initialize() {};
 	const float GetMana() const { return mana; }
+	void SetMana(float _mana)  { mana = _mana; }
 	const int	GetCommandSize() const { return commandList.size(); }
 	const float	GetCastingTime() const { return castingTime; }
 

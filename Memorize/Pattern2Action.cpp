@@ -19,5 +19,6 @@ void Pattern2Action::Run(float dt)
 		circle->SetGrowLess(true);
 
 		started = true;
+		SoundManager::PlayMusic(L"TestResource/Sound/Boss/Sound_Boss_Pattern02.wav");
 	}
 }

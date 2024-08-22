@@ -60,6 +60,7 @@ void MeteorEffect::Update(float _dt)
 		box->SetStatus(OS_ACTIVE);
 		bEnding = true;
 		elapsedTime = duration + delay;
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Meteor02.wav");
 	}
 }
 

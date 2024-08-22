@@ -29,6 +29,8 @@ void Purification::UseSkill()
 	}
 	disfellSkills.clear();
 	player->StartHeadEffect(3);
+
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Purification.wav");
 }
 
 void Purification::ReflectionIn()

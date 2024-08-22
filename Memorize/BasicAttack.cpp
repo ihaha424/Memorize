@@ -39,4 +39,6 @@ void BasicAttack::UseSkill()
 	projectiles[nowUsingCount]->rootComponent->SetRotation(rotateRad * 180.f / PI + 180);
 
 	nowUsingCount = (nowUsingCount + 1) % projectileCount;
+
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_BasicAttack01.wav");
 }

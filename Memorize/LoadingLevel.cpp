@@ -18,8 +18,8 @@ void LoadingLevel::Enter()
 	__super::Enter();
 	// 가라 로딩
 	{
-		if (!LoadImages(L"../TestResource")) {}
-			//실패
+		if (!LoadSound()) {}	//실패
+		if (!LoadImages(L"../TestResource")) {}	//실패
 	}
 }
 
@@ -98,20 +98,20 @@ bool LoadingLevel::LoadImages(const wchar_t* szPath)
 bool LoadingLevel::LoadSound()
 {
 	//UI
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button03.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Button04.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_UI_Click.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/UI/Sound_UI_Button01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/UI/Sound_UI_Button02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/UI/Sound_UI_Button03.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/UI/Sound_UI_Button04.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/UI/Sound_UI_Click.mp3", 0);
 
 	//Boss
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Boss_Pattern_Activated.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Laser.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Meteor01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Meteor02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Pattern02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Projectile01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Boss_Projectile02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Boss/Boss_Pattern_Activated.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Boss/Sound_Boss_Laser.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Boss/Sound_Boss_Meteor01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Boss/Sound_Boss_Meteor02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Boss/Sound_Boss_Pattern02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Boss/Sound_Boss_Projectile01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Boss/Sound_Boss_Projectile02.wav", 0);
 
 	//Playerr
 	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_BasicAttack01.wav", 0);
@@ -122,27 +122,27 @@ bool LoadingLevel::LoadSound()
 	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PlayerDispel03.wav", 0);
 
 	//PlayerSkill
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_AggressiveWaves.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ChasingWaterBall01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ChasingWaterBall02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_DarkSphere01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_DarkSphere02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ElementalExplosion01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ElementalExplosion02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Fireball01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Fireball02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Flash.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Heal.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_LightStream.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_ManaOverload.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Memorize.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Meteor02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_MPMaxIncrease.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_MPrecovery.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PrismReflection01.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_PrismReflection02.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_Purification.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/Player/Sound_TighteningCircle.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_AggressiveWaves.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_ChasingWaterBall01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_ChasingWaterBall02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_DarkSphere01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_DarkSphere02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_ElementalExplosion01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_ElementalExplosion02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_Fireball01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_Fireball02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_Flash.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_Heal.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_LightStream.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_ManaOverload.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_Memorize.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_Meteor02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_MPMaxIncrease.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_MPrecovery.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_PrismReflection01.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_PrismReflection02.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_Purification.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Player/Skill/Sound_TighteningCircle.wav", 0);
 
 
 	// BackGournd
@@ -155,7 +155,30 @@ bool LoadingLevel::LoadSound()
 
 
 
+	//Boss
+	/*
+	SoundManager::PlayMusic(L"TestResource/Sound/Boss/Sound_Boss_Meteor02.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/Boss/Sound_Boss_Projectile02.wav");
+	*/
 
+	//	//Playerr
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_BasicAttack01.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_PlayerAttack01.wav");
+
+	//	//PlayerSkill
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_DarkSphere02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_ElementalExplosion02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Fireball02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_PrismReflection02.wav");
+	// 
+
+
+	//	// BackGournd
+	//	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_ClearBGM.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_DeathBGM.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_GameBGM01.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_GameBGM02.wav");
+	//	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_GameBGM03.wav");
 
 
 

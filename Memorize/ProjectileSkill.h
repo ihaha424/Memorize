@@ -1,5 +1,6 @@
 #pragma once
 #include "Skill.h"
+#include "../D2DGameEngine/SoundManager.h"
 class ProjectileSkill : public Skill
 {
 protected:

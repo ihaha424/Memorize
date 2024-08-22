@@ -1,6 +1,7 @@
 #pragma once
 #include "../D2DGameEngine/Actor.h"
 #include "../D2DGameEngine/Reflection.h"
+#include "D2DGameEngine/SoundManager.h"
 
 class BossSkillActor : public Actor, public IReflection
 {

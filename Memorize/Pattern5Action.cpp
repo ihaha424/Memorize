@@ -87,6 +87,8 @@ void Pattern5Action::Run(float dt)
 		castingInterval += 1.f;
 	}
 
+	if(!started)
+		SoundManager::PlayMusic(L"TestResource/Sound/Boss/Sound_Boss_Projectile01.wav");
 	started = true;
 	
 }

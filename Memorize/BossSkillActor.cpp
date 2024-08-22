@@ -43,11 +43,13 @@ bool BossSkillActor::Disfell(int _element, class GPlayerController* controller)
 	
 		if (dissfellindex == disfellCommandCount)
 		{
+			SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerDispel01.wav");
 			DisfellOneCountAction();
 			DisfellAction();
 			dissfellindex = 0;
 			return false;
 		}
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerDispel03.wav");
 		DisfellOneCountAction();
 		return true;
 	}

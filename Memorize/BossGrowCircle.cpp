@@ -63,6 +63,7 @@ void BossGrowCircle::BeginPlay()
 	//circleComponent->SetStatus(EObjectStatus::OS_ACTIVE);
 
 	player = GetWorld()->FindActorByType<Player>();
+
 }
 
 void BossGrowCircle::FixedUpdate(float _fixedRate)

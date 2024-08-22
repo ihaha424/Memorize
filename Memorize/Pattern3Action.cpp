@@ -43,5 +43,6 @@ void Pattern3Action::Run(float dt)
 		proj3->SetPosAndDerection(bossLocation, tempDerction3);
 		
 		started = true;
+		SoundManager::PlayMusic(L"TestResource/Sound/Boss/Sound_Boss_Projectile01.wav");
 	}
 }

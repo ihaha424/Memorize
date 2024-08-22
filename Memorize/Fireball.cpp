@@ -50,7 +50,7 @@ void Fireball::UseSkill()
 	if (attackDir.y < 0)
 		rotateRad *= -1;
 	fireball->rootComponent->SetRotation(rotateRad * 180.f / PI - 90);
-
+	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_Fireball01.wav");
 }
 
 void Fireball::ReflectionIn()

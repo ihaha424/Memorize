@@ -100,7 +100,6 @@ bool BossMeteo::Destroy()
 		auto Pos = Rangeabm->GetComponentLocation();
 		DestoryProjectileEffect->SetLocation(Pos.x, Pos.y);
 	}
-
 	return __super::Destroy();
 }
 

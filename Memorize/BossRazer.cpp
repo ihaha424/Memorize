@@ -15,6 +15,7 @@
 
 #include "Player.h"
 
+
 BossRazer::BossRazer(World* _world) : BossSkillActor(_world)
 {
 	renderLayer = 2;
@@ -127,6 +128,7 @@ void BossRazer::BeginPlay()
 {
 	Super::BeginPlay();
 	player = GetWorld()->FindActorByType<Player>();
+
 }
 
 void BossRazer::FixedUpdate(float _fixedRate)
