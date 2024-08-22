@@ -6,15 +6,21 @@ ManaDepletedPanel::ManaDepletedPanel(World* _world) : UIPanel(_world)
 	text = CreateUI<UIText>(L"ManaDepletedPanelText");
 	text->SetColor(D2D_Color::White);
 	text->SetWeight(FontWeight::Bold);
-	text->SetFontSize(50);
+	text->SetFontSize(40);
 	text->SetText(L"마나가 부족합니다");
-	text->SetPosition(1920/2, 1000);
+	text->SetPosition(1920/2 + 90, 900);
 	text->SetSize(500, 200);
-	Inactivate();
+
 }
 
 ManaDepletedPanel::~ManaDepletedPanel()
 {
+}
+
+void ManaDepletedPanel::BeginPlay()
+{
+	__super::BeginPlay();
+	Inactivate();
 }
 
 void ManaDepletedPanel::Update(float _dt)
