@@ -551,6 +551,21 @@
     <ClCompile Include="WinEndingPanel.cpp">
       <Filter>Source Files\Level\WinEnding</Filter>
     </ClCompile>
+    <ClCompile Include="Rock01.cpp">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock03.cpp">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock04.cpp">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock05.cpp">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -969,6 +984,21 @@
     </ClInclude>
     <ClInclude Include="WinEndingPanel.h">
       <Filter>Source Files\Level\WinEnding</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock01.h">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock03.h">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock04.h">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock05.h">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Source Files\Level\Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

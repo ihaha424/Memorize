@@ -7,6 +7,11 @@
 #include "CursorUIPanel.h"
 #include "Loading.h"
 #include "LeftRock.h"
+#include "Rock01.h"
+#include "Rock03.h"
+#include "Rock04.h"
+#include "Rock05.h"
+#include "Title.h"
 #include "RightRock.h"
 #include "HowToPlayUIPanel.h"
 #include "D2DGameEngine/UIButton.h"
@@ -37,28 +42,26 @@ void MainLevel::Enter()
 	background->SetTickProperties(TICK_RENDER);
 	background->renderLayer = -1;
 
-
 	leftRock = CreateActor<LeftRock>();
 	leftRock->SetLocation(-1920 / 2  + 200, -200);
 
-	Actor* character = CreateActor<Actor>();
-	AnimationBitmapComponent* characterBm = character->CreateComponent<AnimationBitmapComponent>();
-	characterBm->SetSprite(L"TestResource/Main/02.png");
-	characterBm->SliceSpriteSheet(850, 981, 0, 0, 0, 0);
-	character->rootComponent = characterBm;
-	characterBm->SetTranslation(-1920 / 2 + 425, 88);
-	character->SetTickProperties(TICK_RENDER);
-	character->renderLayer = 3;
+	Rock01* leftRock01 = CreateActor<Rock01>();
+	leftRock01->SetLocation(-SCREEN_WIDTH / 2 + 440, -SCREEN_HEIGHT / 2 + 80);
+
+	Rock03* leftRock03 = CreateActor<Rock03>();
+	leftRock03->SetLocation(0, SCREEN_HEIGHT / 2 - 50);
+
+	Rock04* leftRock04 = CreateActor<Rock04>();
+	leftRock04->SetLocation(-SCREEN_WIDTH / 2 + 50, 240);
+
+	Rock05* leftRock05 = CreateActor<Rock05>();
+	leftRock05->SetLocation(SCREEN_WIDTH / 2 - 80, -100);
 
 	rightRock = CreateActor<RightRock>();
 	rightRock->SetLocation(1920 / 2 - 677 / 2 + 75, 1080 / 2 - 310);
 
-	title = CreateActor<Actor>();
-	BitmapComponent* bm = title->CreateComponent<BitmapComponent>();
-	title->rootComponent = bm;
-	bm->SetSprite(L"TestResource/Main/Title.png");
-	title->SetLocation( 400, -200);
-	title->SetTickProperties(TICK_RENDER);
+	Title* title = CreateActor<Title>();
+	title->SetLocation(400, -200);
 	title->renderLayer = 3;
 	__super::Enter();
 }
