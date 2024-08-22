@@ -3,7 +3,7 @@
 class TutorialPlayer : public Player
 {
 public:
-	TutorialTextBitmap* orbText;
+	class TutorialTextBitmap* orbText;
 
 	TutorialPlayer(World* _world);
 	virtual ~TutorialPlayer();
