@@ -509,6 +509,9 @@
     <ClCompile Include="CursorImage.cpp">
       <Filter>Source Files\App\UI</Filter>
     </ClCompile>
+    <ClCompile Include="HowToPlayUIPanel.cpp">
+      <Filter>Source Files\App\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -878,6 +881,9 @@
       <Filter>Source Files\App\Boss\BossBehaviorTree\ActionNodes</Filter>
     </ClInclude>
     <ClInclude Include="CursorImage.h">
+      <Filter>Source Files\App\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="HowToPlayUIPanel.h">
       <Filter>Source Files\App\UI</Filter>
     </ClInclude>
     <ClInclude Include="CreatePurificationEffect.h">
