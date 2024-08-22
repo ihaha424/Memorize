@@ -23,9 +23,10 @@ public:
 	virtual void Update(float _dt) override;
     virtual void PostUpdate(float _dt) override;
 	virtual void Render(class D2DRenderer* _renderer) override;
+    void SetCharacter(class Character* _character);
 
 private:
-    class Character* boss;
+    class Character* character;
     float initialDistance;
     Math::Vector2 prevBossPos;
     Math::Vector2 prevPlayerPos;

@@ -39,13 +39,8 @@ void GCameraComponent::Trigger마나부족()
 void GCameraComponent::BeginPlay()
 {
 	__super::BeginPlay();
-	boss = GetOwner()->GetWorld()->FindActorByType<Boss>();
-	if (!boss)
-	{
-		boss = GetOwner()->GetWorld()->FindActorByType<Scarecrow>();
-	}
 	Math::Vector2 parentPos = parent->GetComponentLocation();
-	Math::Vector2 bossPos = boss->rootComponent->GetComponentLocation();
+	Math::Vector2 bossPos = character->rootComponent->GetComponentLocation();
 	prevBossPos = bossPos;
 	initialDistance = (parentPos - bossPos).Length();
 
@@ -84,7 +79,7 @@ void GCameraComponent::PostUpdate(float _dt)
 	//	return;
 	//}
 
-	Math::Vector2 bossPos = boss->rootComponent->GetComponentLocation();
+	Math::Vector2 bossPos = character->rootComponent->GetComponentLocation();
 
 	//if ((prevBossPos - bossPos).Length() > 100.f)
 	//{
@@ -149,4 +144,9 @@ void GCameraComponent::Render(D2DRenderer* _renderer)
 	deviceContext->PopLayer();
 	SafeRelease(&layer);
 	
+}
+
+void GCameraComponent::SetCharacter(Character* _character)
+{
+	character = _character;
 }

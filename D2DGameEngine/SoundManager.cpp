@@ -1,6 +1,6 @@
 #include "SoundManager.h"
 #include "ResourceManager.h"
-//#include <atlconv.h>
+#include <atlconv.h>
 
 FMOD::System*	SoundManager::system{};
 FMOD::Channel*	SoundManager::channel[SoundChnalList] = {};
