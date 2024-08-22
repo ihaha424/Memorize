@@ -9,6 +9,8 @@
 #include "SkillActor.h"
 #include "BossHitEffect.h"
 #include "D2DGameEngine/RandomGenerator.h"
+#include "../D2DGameEngine/Canvas.h"
+#include "FadeInFadeOut.h"
 
 Boss::Boss(World* _world) : Character(_world)
 {
@@ -96,7 +98,7 @@ void Boss::Update(float _dt)
 {
 	__super::Update(_dt);
 
-	std::cout << "Dispel count: " << DissfellCount << std::endl;
+	//std::cout << "Dispel count: " << DissfellCount << std::endl;
 
 	elapsedTime += _dt;
 
@@ -134,7 +136,16 @@ void Boss::Update(float _dt)
 	else
 	{
 		if (abm->GetCurrentAnimationScene() != DieAnimationState)
+		{
 			abm->SetState(DieAnimationState);
+			FadeInFadeOut* BossDie = GetWorld()->GetCanvas()->CreatePannel<FadeInFadeOut>(L"TestLevelFadeOut");
+			BossDie->SetFaidInOut(false);
+			BossDie->SetFinishFunction([this]()->void {
+				GetWorld()->SetNextScene(L"WinEnding");
+				});
+			BossDie->alphaTween->SetDuration(3.f);
+			BossDie->alphaTween->SetEasingEffect(EasingEffect::InQuart);
+		}
 	}
 }
 

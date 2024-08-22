@@ -3,6 +3,7 @@
 #include "D2DGameEngine/Canvas.h"
 #include "D2DGameEngine/ResourceManager.h"
 #include "D2DGameEngine/D2DRenderer.h"
+#include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "config.h"
 
 LoadingLevel::LoadingLevel(World* _world, const std::wstring& _name)
@@ -15,12 +16,15 @@ LoadingLevel::~LoadingLevel()
 
 void LoadingLevel::Enter()
 {
+	background = CreateActor<Actor>();
+	BitmapComponent* backgroundBm = background->CreateComponent<BitmapComponent>();
+	backgroundBm->SetTranslation(1920/2, 1080/2);
+	backgroundBm->SetSprite(L"TestResource/loading.png");
+	background->rootComponent = backgroundBm;
+	background->SetTickProperties(TICK_RENDER);
+	background->renderLayer = -1;
+
 	__super::Enter();
-	// 가라 로딩
-	{
-		if (!LoadSound()) {}	//실패
-		if (!LoadImages(L"../TestResource")) {}	//실패
-	}
 }
 
 void LoadingLevel::Exit()
@@ -47,7 +51,13 @@ void LoadingLevel::PreUpdate(float _dt)
 
 void LoadingLevel::Update(float _dt)
 {
-	GetWorld()->SetNextScene(L"MainLevel");
+	time -= _dt;
+	if (time < 0.f)
+	{
+		if (!LoadSound()) {}	//실패
+		if (!LoadImages(L"../TestResource")) {}	//실패
+		GetWorld()->SetNextScene(L"MainLevel");
+	}
 } 
 
 void LoadingLevel::PostUpdate(float _dt)
@@ -56,12 +66,15 @@ void LoadingLevel::PostUpdate(float _dt)
 
 void LoadingLevel::Render(D2DRenderer* _renderer)
 {
+	background->Render(_renderer);
+	
 	Math::Matrix mat = Math::Matrix::CreateTranslation(SCREEN_WIDTH, SCREEN_HEIGHT, 0.f);
 	_renderer->PushTransform(mat);
 	for (auto resource : loadingResource)
 	{
 		_renderer->DrawSprite(resource->GetResource());
 	}
+	_renderer->PopTransform();
 }
 
 bool LoadingLevel::LoadImages(const wchar_t* szPath)
@@ -149,11 +162,12 @@ bool LoadingLevel::LoadSound()
 	// BackGournd
 	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_ClearBGM.wav", 0);
 	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_DeathBGM.wav", 0);
-	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_GameBGM01.wav", 1);
-	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_GameBGM02.wav", 1);
-	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_GameBGM03.wav", 1);
+	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_GameBGM.wav", 1);
 	ResourceManager::LoadResource(L"TestResource/Sound/BG/Sound_MainBGM.wav", 1);
 
+	//Plus
+	ResourceManager::LoadResource(L"TestResource/Sound/Plus/locket_Close.wav.wav", 0);
+	ResourceManager::LoadResource(L"TestResource/Sound/Plus/locket_Open.wav.wav", 0);
 
 
 	//Boss

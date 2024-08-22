@@ -1,6 +1,6 @@
-Skill_Mana : 200
+Skill_Mana : 150
 Command : 3, 2, 1, 0, 1, 2
 Skill_Condition : 50
 Castring Time : 0.5
-Skill_Text : HP가 1이 됩니다. 이동하기 전까지 렌덤으로 투사체를 캐스팅 합니다.
+Skill_Text : HP가 1로 감소하지만, 이동하기 전까지 랜덤한 투사체 스킬이 캐스팅 됩니다.
 End

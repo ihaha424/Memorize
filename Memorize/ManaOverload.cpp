@@ -21,6 +21,7 @@ void ManaOverload::Initialize()
 	__super::Initialize();
 
 	effect = player->manaOverloadEffect;
+	mana = -1;
 }
 
 void ManaOverload::UseSkill()

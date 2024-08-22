@@ -46,7 +46,7 @@ void TestLevel::Clear()
 //#include "../D2DGameEngine/Timer.h"
 void TestLevel::Enter()
 {
-	__super::Enter();
+	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_GameBGM.wav", 0);
 
 	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 	{
@@ -108,92 +108,6 @@ void TestLevel::Enter()
 		ManaDepletedPanel* manaPanel = GetWorld()->GetCanvas()->CreatePannel< ManaDepletedPanel>(L"ManaDepleted");
 	}
 
+	__super::Enter();
 
-
-	{
-		/*TestWall* testWall = CreateActor<TestWall>();
-		testWall->SetLocation(960, -300);*/
-		/*Bat* bat = CreateActor<Bat>();
-		bat->SetLocation(-100, 100);*/
-	}
-
-	// Map vertex check
-	//{
-	//	Actor* actor = CreateActor<Actor>();
-	//	actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	//	BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-	//	bm->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack_0.png");
-	//	actor->rootComponent = bm;
-	//	actor->SetLocation(-3120, 100);
-	//	actor->renderLayer = 3;
-	//}
-	//{
-	//	Actor* actor = CreateActor<Actor>();
-	//	actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	//	BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-	//	bm->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack_0.png");
-	//	actor->rootComponent = bm;
-	//	actor->SetLocation(-3120, 260);
-	//	actor->renderLayer = 3;
-	//}
-	//{
-	//	Actor* actor = CreateActor<Actor>();
-	//	actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	//	BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-	//	bm->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack_0.png");
-	//	actor->rootComponent = bm;
-	//	actor->SetLocation(0, -1780);
-	//	actor->renderLayer = 3;
-	//}
-	//{
-	//	Actor* actor = CreateActor<Actor>();
-	//	actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	//	BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-	//	bm->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack_0.png");
-	//	actor->rootComponent = bm;
-	//	actor->SetLocation(3120, 100);
-	//	actor->renderLayer = 3;
-	//}
-	//{
-	//	Actor* actor = CreateActor<Actor>();
-	//	actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	//	BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-	//	bm->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack_0.png");
-	//	actor->rootComponent = bm;
-	//	actor->SetLocation(3120, 260);
-	//	actor->renderLayer = 3;
-	//}
-	//{
-	//	Actor* actor = CreateActor<Actor>();
-	//	actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	//	BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-	//	bm->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack_0.png");
-	//	actor->rootComponent = bm;
-	//	actor->SetLocation(0, 2140);
-	//	actor->renderLayer = 3;
-	//}
-	//{
-	//	Actor* actor = CreateActor<Actor>();
-	//	actor->SetTickProperties(TICK_UPDATE | TICK_RENDER);
-	//	BitmapComponent* bm = actor->CreateComponent<BitmapComponent>();
-	//	bm->SetSprite(L"TestResource/Boss/Bat/Attack/Bat_Attack_0.png");
-	//	actor->rootComponent = bm;
-	//	//actor->SetLocation(-3118, 0);
-	//	actor->renderLayer = 3;
-	//}
-
-	/*{
-		BossRazer* razer = CreateActor<BossRazer>();
-		razer->renderLayer = 2;
-	{
-		/*BossRazer* razer = CreateActor<BossRazer>();
-		razer->renderLayer = 2;*/
-
-		/*RazerCircle* razerCircle = CreateActor<RazerCircle>();
-		razerCircle->renderLayer = 3;*/
-
-		/*ChasingBomb* chasingBomb = CreateActor<ChasingBomb>();
-		chasingBomb->SetLocation(0.f, -400.f);
-		chasingBomb->renderLayer = 2;
-	}*/
 }

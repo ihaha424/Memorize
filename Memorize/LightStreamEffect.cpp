@@ -6,6 +6,7 @@
 #include "D2DGameEngine/World.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "Player.h"
+#include "TutorialPlayer.h"
 
 LightStreamEffect::LightStreamEffect(World* _world) : SkillActor(_world)
 {
@@ -91,8 +92,16 @@ void LightStreamEffect::Update(float _dt)
 	if (elapsedTime > initialTime && state == State::Initial)
 	{
 		state = State::Normal;
-		anim->SetState(normalState);	
-		GetWorld()->FindActorByType<Player>()->orb->SetStatus(OS_ACTIVE);
+		anim->SetState(normalState);
+		 
+		Player* player = GetWorld()->FindActorByType<Player>();
+		BitmapComponent* orbBm;
+		if (player != nullptr)
+			orbBm = player->orb;
+		else
+			orbBm = GetWorld()->FindActorByType<TutorialPlayer>()->orb;
+		orbBm->SetStatus(OS_ACTIVE);
+
 	}
 	else if (elapsedTime >= initialTime + duration && state == State::Normal)
 	{

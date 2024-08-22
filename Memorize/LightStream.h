@@ -2,7 +2,9 @@
 #include "RangeSkill.h"
 class LightStream : public RangeSkill
 {
-	class LightStreamEffect* lightStreamEffect;
+	class LightStreamEffect* lightStreamEffect[4];
+	int	curIndex = 0;
+	int maxIndex = 4;
 	class AnimationEffect* orbEffect;
 public:
 	LightStream(Actor* _owner);

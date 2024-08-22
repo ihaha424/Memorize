@@ -150,6 +150,7 @@ public:
 	void Teleport();
 	void Cancellation();
 	void DisfellEvent(const DisFellEvent* const _event);
+	void Cheat();
 };
 
 template<typename T>

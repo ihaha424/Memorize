@@ -10,6 +10,7 @@
 #include "Tutorials.h"
 #include "PracticeLevel.h"
 #include "Ending.h"
+#include "WinEnding.h"
 
 GameApp* loadedApp{ nullptr };
 
@@ -36,8 +37,8 @@ void GameApp::Initialize() {
 	world->CreateLevel<Practice>(L"PracticeLevel");
 	world->CreateLevel<TestLevel>(L"TestLevel");
 	world->CreateLevel<Ending>(L"Ending");
-	//world->SetNextScene(L"LoadingLevel");
-	world->SetNextScene(L"PracticeLevel");
+	world->CreateLevel<WinEnding>(L"WinEnding");
+	world->SetNextScene(L"LoadingLevel");
 	world->ChangeScene();
 	world->BeginPlay();
 

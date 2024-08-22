@@ -23,6 +23,7 @@ AggressiveWaves::~AggressiveWaves()
 
 void AggressiveWaves::UseSkill()
 {
+	__super::UseSkill();
 	for (int i = 0; i < 4; i++)
 	{
 		waveEffects[curIndex + i]->Activate();

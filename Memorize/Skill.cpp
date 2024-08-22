@@ -14,7 +14,7 @@ void Skill::SetPlayer(GPlayerController* _pc)
 {
 	controller = _pc;
 	player = controller->GetPlayer();
-	if (conditionCount <= player->GetSkillUses())
+	if (conditionCount <= Player::skillUses)
 	{
 		bUnlocked = true;
 	}
@@ -22,10 +22,7 @@ void Skill::SetPlayer(GPlayerController* _pc)
 
 void Skill::UseSkill()
 {
-	player->AddSkillUses();
-	if (conditionCount <= player->GetSkillUses())
-	{
-		bUnlocked = true;
-	}
+	Player::skillUses++;
+	std::cout << Player::skillUses << std::endl;
 
 }

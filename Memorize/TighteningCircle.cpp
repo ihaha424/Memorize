@@ -11,7 +11,7 @@ TighteningCircle::TighteningCircle(Actor* _owner) : RangeSkill(_owner)
 	SetID(ST_RANGE, SE_DARKNESS);
 
 	//원 효과 액터 생성
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		circleEffects[i] = GetWorld()->GetCurLevel()->CreateActor<TighteningCircleEffect>();
 		circleEffects[i]->SetSkillID(id);
@@ -25,7 +25,8 @@ TighteningCircle::~TighteningCircle()
 
 void TighteningCircle::UseSkill()
 {
-	
+	__super::UseSkill();
+
 	circleEffects[nowUsingIndex]->Activate();
 
 	Math::Vector2 attackPos = { Mouse::curMousePosition.x, Mouse::curMousePosition.y };
@@ -36,7 +37,7 @@ void TighteningCircle::UseSkill()
 	circleEffects[nowUsingIndex]->Initialize();
 	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_TighteningCircle.wav");
 
-	nowUsingIndex = (nowUsingIndex + 1) % 2;
+	nowUsingIndex = (nowUsingIndex + 1) % 3;
 }
 
 void TighteningCircle::ReflectionIn()

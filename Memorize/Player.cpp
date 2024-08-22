@@ -21,10 +21,11 @@
 
 #include "../D2DGameEngine/SoundManager.h"
 
+ int Player::skillUses = 0;
+
 Player::Player(class World* _world) : Character(_world)
 {
 	ReflectionIn();
-	skillUses = 200;
 	stat.defaultDamage = 20;
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER | TICK_POST_UPDATE);
 	renderLayer = TestLevel1_RenderLayer::Object;
@@ -89,7 +90,10 @@ Player::Player(class World* _world) : Character(_world)
 	rootComponent->AddChild(manaOverloadEffect);
 	manaOverloadEffect->SetStatus(OS_INACTIVE);
 
-	
+	stat.mpRegenPerSecond = 20;
+	stat.maxMp = 100;
+
+	stat.hpRegenPerSecond = 0;
 }
 
 Player::~Player()
@@ -120,11 +124,11 @@ void Player::Update(float _dt)
 	__super::Update(_dt);
 
 	stat.mp += stat.mpRegenPerSecond * _dt;
-
-	stat.maxMp = maxMaxMp;
 	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
-	//std::cout << "MP:" << stat.mp << ", HP:" << stat.hp << std::endl;
 
+	stat.hp += stat.hpRegenPerSecond * _dt;
+	stat.hp = std::clamp(stat.hp, minHp, stat.maxHp);
+	
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 
 	OnHPInfoChanged->Emit(stat.hp, stat.maxHp);

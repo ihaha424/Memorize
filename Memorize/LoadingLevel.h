@@ -23,4 +23,6 @@ public:
 
 private:
     std::vector<std::shared_ptr<SpriteResource>> loadingResource;
+    float time = 0.5f;
+    class Actor* background;
 };

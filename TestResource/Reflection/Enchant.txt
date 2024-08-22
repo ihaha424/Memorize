@@ -1,6 +1,6 @@
 Skill_Mana : 50
 Command : 2, 3, 1
 Skill_Condition : 5
-Castring Time : 0.5
-Skill_Text : 기본 공격의 속도와 데미지를 증가시킵니다.
+Castring Time : 0.1
+Skill_Text : 기본 공격의 데미지와 공격속도를 상승시킵니다.
 End

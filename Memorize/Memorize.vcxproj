@@ -270,6 +270,8 @@
     <ClCompile Include="TutorialTextBitmap.cpp" />
     <ClCompile Include="WaitForDelay.cpp" />
     <ClCompile Include="WaitForDelay.h" />
+    <ClCompile Include="WinEnding.cpp" />
+    <ClCompile Include="WinEndingPanel.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +403,8 @@
     <ClInclude Include="TutorialPlayer.h" />
     <ClInclude Include="Tutorials.h" />
     <ClInclude Include="TutorialTextBitmap.h" />
+    <ClInclude Include="WinEnding.h" />
+    <ClInclude Include="WinEndingPanel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

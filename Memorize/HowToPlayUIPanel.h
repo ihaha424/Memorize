@@ -8,5 +8,6 @@ class HowToPlayUIPanel : public UIPanel
 public:
 	HowToPlayUIPanel(World* _world);
 	virtual ~HowToPlayUIPanel();
+
 };
 

@@ -1,10 +1,10 @@
-Skill_Damage : 48
-Skill_Mana : 80
+Skill_Damage : 40
+Skill_Mana : 100
 Command : 0, 1, 1
 Skill_LimitLevel : 800
 Skill_Duration : 5
 Skill_Condition : 50
 Castring Time : 0.5
 Skill_Crash : 1
-Skill_Text : 적을 추적하는 5개의 수속성 구체를 소환합니다.
+Skill_Text : 적을 추적하는 5개의 물방울을 소환합니다.
 End

@@ -5,6 +5,7 @@
 ManaOverloadComponent::ManaOverloadComponent(Actor* _owner) : AnimationBitmapComponent(_owner)
 {
 	SetTranslation(0, -200);
+	SetScale(0.5f, 0.5f);
 	SetSprite(L"TestResource/Player/Skill/Skill_ManaOverload.png");
 	SliceSpriteSheet(400, 350, 0, 0, 0, 0);
 	SetFrameDurations({ 10.f / (22 * 12) });
@@ -22,7 +23,7 @@ void ManaOverloadComponent::Update(float _dt)
 
 	elapsedTime += _dt;
 
-	std::cout << elapsedTime << std::endl;
+	//std::cout << elapsedTime << std::endl;
 	if (elapsedTime > duration)
 	{
 		elapsedTime = 0.f;
