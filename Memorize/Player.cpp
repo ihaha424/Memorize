@@ -90,6 +90,8 @@ Player::Player(class World* _world) : Character(_world)
 
 	stat.mpRegenPerSecond = 20;
 	stat.maxMp = 100;
+
+	stat.hpRegenPerSecond = 0;
 }
 
 Player::~Player()
@@ -120,8 +122,10 @@ void Player::Update(float _dt)
 	__super::Update(_dt);
 
 	stat.mp += stat.mpRegenPerSecond * _dt;
-
 	stat.mp = std::clamp(stat.mp, minMp, stat.maxMp);
+
+	stat.hp += stat.hpRegenPerSecond * _dt;
+	stat.hp = std::clamp(stat.hp, minHp, stat.maxHp);
 	
 	basicAttackTime -= stat.defaultAttackSpeed * _dt ;
 
