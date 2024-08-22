@@ -33,6 +33,9 @@
 #include "D2DGameEngine/Mouse.h"
 #include "D2DGameEngine/KeyBoard.h"
 
+#include "D2DGameEngine/UIButton.h"
+#include "D2DGameEngine/UIImage.h"
+
 #include "ScarecrowMagicCircle.h"
 
 #include "FadeInFadeOut.h"
@@ -49,7 +52,7 @@ void Practice::Enter()
 {
 	__super::Enter();
 
-	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
+	auto cursor = GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 
 	Arena* arena = CreateActor<Arena>();
 
@@ -92,6 +95,37 @@ void Practice::Enter()
 
 
 	ManaDepletedPanel* manaPanel = GetWorld()->GetCanvas()->CreatePannel< ManaDepletedPanel>(L"ManaDepleted");
+
+	auto pannel = GetWorld()->GetCanvas()->CreatePannel<UIPanel>(L"StartButton");
+	UIButton* startBtn = pannel->CreateUI<UIButton>(L"StartButton");
+	startBtn->SetPosition(1920 / 2 + 650, SCREEN_HEIGHT - 150);
+	startBtn->AddOnClickHandler([this]() {
+
+		FadeInFadeOut* playerDie = GetWorld()->GetCanvas()->CreatePannel<FadeInFadeOut>(L"TestLevelFadeOut");
+		playerDie->SetFaidInOut(false);
+		playerDie->SetFinishFunction([this]()->void {
+			GetWorld()->SetNextScene(L"TestLevel");
+			});
+		playerDie->alphaTween->SetDuration(3.f);
+		playerDie->alphaTween->SetEasingEffect(EasingEffect::InQuart);
+
+		SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_UI_Click.wav"); 
+	});
+
+	UIImage* startImage = pannel->CreateUI<UIImage>(L"StartImage");
+	startImage->SetSprite(L"TestResource/UI/button_play_1.png");
+	startImage->SetPosition(1920 / 2 + 650, SCREEN_HEIGHT - 150);
+	startImage->SetZOrder(1);
+	startBtn->SetSize(startImage->GetSize().x, startImage->GetSize().y);
+
+
+	startBtn->AddOnHoveredHandler([startImage]() { startImage->SetSprite(L"TestResource/UI/button_play_2.png"); });
+	startBtn->AddOnPressedHandler([startImage]() { startImage->SetSprite(L"TestResource/UI/button_play_3.png"); });
+	startBtn->AddOnUnHoveredHandler([startImage]() { startImage->SetSprite(L"TestResource/UI/button_play_1.png"); });
+
+	startBtn->AddOnHoveredHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Pointer.png"); });
+	startBtn->AddOnPressedHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Click.png"); });
+	startBtn->AddOnUnHoveredHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Default.png"); });
 
 }
 
