@@ -33,7 +33,8 @@ public:
 	class AnimationBitmapComponent* circleBreak;
 
 	bool shockwaving{ false };
-	float shockwaveScale{ 1.2f };
+	float shockwaveScale{ 1.12f };
+	float shockwaveOpacity{ 1.f };
 	float shockwaveTimer{ 3.f };
 	class BitmapComponent* shockwave;
 private:
