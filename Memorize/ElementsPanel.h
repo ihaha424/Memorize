@@ -20,6 +20,7 @@ public:
 	class UIButton* rBtn;
 
 	std::vector<class UIText*> infoTexts;
+	std::vector<class UIImage*> textBGs;
 
 	class ID2D1Bitmap* Qicon;
 	class ID2D1Bitmap* Wicon;
