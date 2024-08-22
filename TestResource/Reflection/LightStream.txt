@@ -3,5 +3,5 @@ Command : 1, 0, 2, 2
 Skill_Condition : 20
 Castring Time : 1.0
 Skill_Crash : 0
-Skill_Text : MP를 모두 소모하여 빛기둥을 발사합니다.
+Skill_Text : 심판의 빛 [모든 MP소모]/nMP를 모두 소모하여 빛기둥을 발사합니다.
 End

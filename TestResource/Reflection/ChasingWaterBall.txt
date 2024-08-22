@@ -6,5 +6,5 @@ Skill_Duration : 5
 Skill_Condition : 50
 Castring Time : 0.5
 Skill_Crash : 1
-Skill_Text : 적을 추적하는 5개의 물방울을 소환합니다.
+Skill_Text : 환영 물결  [MP 100소모]/n적을 추적하는 5개의 물방울을 소환합니다.
 End

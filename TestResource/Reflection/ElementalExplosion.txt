@@ -3,5 +3,5 @@ Command : 3, 2, 2, 0, 0, 2
 Skill_Condition : 30
 Castring Time : 0.1
 Crash	: 1
-Skill_Text : 모든 투사체를 폭발시킵니다.
+Skill_Text : 원소 폭발  [MP 100소모]/n모든 투사체를 폭발시킵니다.
 End

@@ -6,5 +6,5 @@ Skill_Duration : 1.5
 Skill_Condition : 0
 Castring Time : 0.3
 Skill_Crash : 1
-Skill_Text : 10개의 명속성 탄환을 난사합니다
+Skill_Text : 프리즘 반사  [MP 50소모]/n10개의 빛속성 탄환을 난사합니다
 End

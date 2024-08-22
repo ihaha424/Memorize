@@ -63,8 +63,8 @@ public:
 
 	void SetID(ESkillType _type, ESkillElement _element) { id.type = _type; id.element = _element; }
 	ULONGLONG GetID() { return id.id; };
-	bool IsUnlocked() { return bUnlocked; }
-	void Unlock() { bUnlocked = true; }
+	bool IsUnlocked();
+	void Unlock();
 
 	std::wstring GetInfoText() { return text; }
 

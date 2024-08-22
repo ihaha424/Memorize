@@ -1,6 +1,10 @@
 #include "PlayerAttack.h"
 #include "GPlayerController.h"
 #include "Skill.h"
+#include "LevelUpEffect.h"
+#include "../D2DGameEngine/World.h"
+#include "D2DGameEngine/RandomGenerator.h"
+
 
 void PlayerAttack::Enter()
 {
@@ -8,6 +12,15 @@ void PlayerAttack::Enter()
 	playerController->FindCurSkiil()->UseSkill();
 	skillDelay = playerController->FindCurSkiil()->GetCastingTime();
 	playerController->bNowAttacking = true;
+
+	if (index < 12 && Player::skillUses >= LvelUp[index])
+	{
+		LevelUpEffect* bosshitEffect = playerController->GetWorld()->GetEffectSystem().CreateEffect<LevelUpEffect>();
+		bosshitEffect->SetEffect(LvelUpEffect[index]);
+		Math::Vector2 thisPos = playerController->GetPlayer()->GetLocation();
+		bosshitEffect->SetLocation(thisPos.x, thisPos.y);
+		index++;
+	}
 }
 
 void PlayerAttack::Update(float _dt)

@@ -159,6 +159,9 @@
     <Filter Include="Source Files\Level\WinEnding">
       <UniqueIdentifier>{9554c0e9-6957-4a73-be89-37498151e90b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\Effect\LevelUpEffect">
+      <UniqueIdentifier>{2eeff70c-b9d2-4eeb-89af-02911ae9846c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -538,6 +541,9 @@
     </ClCompile>
     <ClCompile Include="WinEndingPanel.cpp">
       <Filter>Source Files\Level\WinEnding</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpEffect.cpp">
+      <Filter>Source Files\App\Effect\LevelUpEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -948,6 +954,9 @@
     </ClInclude>
     <ClInclude Include="WinEndingPanel.h">
       <Filter>Source Files\Level\WinEnding</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpEffect.h">
+      <Filter>Source Files\App\Effect\LevelUpEffect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

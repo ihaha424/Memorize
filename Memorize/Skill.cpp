@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "GPlayerController.h"
 
+
 Skill::Skill(Actor* _owner) : IComponent(_owner)
 {
 }
@@ -25,4 +26,19 @@ void Skill::UseSkill()
 	Player::skillUses++;
 	std::cout << Player::skillUses << std::endl;
 
+}
+
+bool Skill::IsUnlocked()
+{
+	if (Player::skillUses >= GetConditionCount())
+		Unlock();
+	return bUnlocked;
+}
+
+void Skill::Unlock()
+{
+	if (!bUnlocked)
+	{
+		bUnlocked = true;
+	}
 }

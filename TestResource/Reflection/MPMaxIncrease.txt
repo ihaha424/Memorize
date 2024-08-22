@@ -2,5 +2,5 @@ Skill_Mana : 100
 Command : 2, 1, 1
 Skill_Condition : 10
 Castring Time : 0.1
-Skill_Text : 최대 MP를 20 증가시킵니다.
+Skill_Text : 명상 [MP 100소모]/n최대 MP를 20 증가시킵니다.
 End

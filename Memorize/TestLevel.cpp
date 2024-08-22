@@ -24,11 +24,18 @@
 
 TestLevel::TestLevel(class World* _world, const std::wstring& _name) : Level(_world, _name)
 {
-
+	timeScale = new DotTween<float>();
+	timeScale->SetData(&timeScaleValue);
+	timeScale->SetDuration(0.5f);
+	timeScale->SetEasingEffect(EasingEffect::OutBack);
+	timeScale->SetStepAnimation(StepAnimation::StepLoopPingPong);
+	timeScale->SetStartPoint(1);
+	timeScale->SetEndPoint(0);
 }
 
 TestLevel::~TestLevel()
 {
+	delete timeScale;
 }
 
 void TestLevel::Clear()

@@ -28,5 +28,9 @@ public:
 	virtual void Teleport(){};
 	virtual void Cancellation(){};
 
+	int LvelUpEffect[12]{0,2,2,3,0,2,0,3,1,1,1,3};
+	int LvelUp[12]{ 5,10,20,20,25,25,30,30,40,50,50,50 };
+	int index = 0;
+
 };
 

@@ -17,7 +17,7 @@ public:
     virtual void Exit() { __super::Exit(); };
     virtual void Clear();
 
-    float timeSclaeValue{ 1.f };
+    float timeScaleValue{ 1.f };
     DotTween<float>* timeScale;
 };
 

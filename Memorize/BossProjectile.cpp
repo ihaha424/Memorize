@@ -62,7 +62,7 @@ bool BossProjectile::Destroy()
 		auto Pos = GetLocation();
 		DestoryProjectileEffect->SetLocation(Pos.x, Pos.y);
 	}
-
+	SoundManager::PlayMusic(L"TestResource/Sound/Boss/Sound_Boss_Projectile02.wav");
 	return __super::Destroy();
 }
 

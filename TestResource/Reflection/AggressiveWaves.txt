@@ -4,5 +4,5 @@ Command : 1, 1, 2, 1
 Skill_Condition : 40
 Castring Time : 0.5
 Skill_Crash : 1
-Skill_Text : 대각선 방향으로 퍼지는 4개의 파도를 소환합니다.
+Skill_Text : 물의 사중주  [MP 60소모]/n대각선 방향으로 퍼지는 4개의 파도를 소환합니다.
 End

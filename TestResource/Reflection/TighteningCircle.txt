@@ -4,5 +4,5 @@ Command : 1, 3
 Skill_Condition : 0
 Castring Time : 0.1
 Skill_Crash : 0
-Skill_Text : 점점 좁아지는 원형의 불꽃을 소환합니다.
+Skill_Text : 바인드  [MP 20소모]/n점점 좁아지는 원형의 불꽃을 소환합니다.
 End
