@@ -2,9 +2,9 @@ Skill_Damage : 10
 Skill_Mana : 50
 Command : 0, 2
 Skill_LimitLevel : 900
-Skill_Duration : 1
+Skill_Duration : 1.5
 Skill_Condition : 0
-Castring Time : 1.4
+Castring Time : 0.3
 Skill_Crash : 1
-Skill_Text : 10개의 관통하는 빛속성 투사체를 부체꼴 형태로 발사합니다.
+Skill_Text : 10개의 명속성 탄환을 난사합니다
 End

@@ -1,6 +1,6 @@
-Skill_Mana : 110
+Skill_Mana : 150
 Command : 2, 3, 3
 Skill_Condition : 20
 Castring Time : 0.5
-Skill_Text : 캐스팅 성공 시 MP회복량을 10증가시킵니다.
+Skill_Text : MP 회복량을 상승시킵니다.
 End

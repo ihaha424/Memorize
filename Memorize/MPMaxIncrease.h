@@ -2,7 +2,7 @@
 #include "BuffSkill.h"
 class MPMaxIncrease : public BuffSkill
 {
-	float additionalMP = 10;
+	float additionalMP = 20;
 public:
 	MPMaxIncrease(Actor* _owner);
 	virtual ~MPMaxIncrease();

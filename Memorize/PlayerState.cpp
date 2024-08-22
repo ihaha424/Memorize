@@ -105,10 +105,9 @@ void PlayerState::Teleport()
 	GPlayerController* playerController = static_cast<GPlayerController*>(owner->GetOwner());
 	if (playerController->GetPlayer()->bondageFlag)
 		return;
-	else if (playerController->bManaOverload || playerController->GetPlayer()->stat.mp >= 50.f)
+	else if (playerController->GetPlayer()->stat.mp >= 50.f)
 	{
-		if(!playerController->bManaOverload)
-			playerController->GetPlayer()->stat.mp -= 50.f;
+		playerController->GetPlayer()->stat.mp -= 40.f;
 		owner->SetNextState(L"PlayerBlinking");
 	}
 }
