@@ -42,7 +42,7 @@ void GCameraComponent::BeginPlay()
 	Math::Vector2 parentPos = parent->GetComponentLocation();
 	Math::Vector2 bossPos = character->rootComponent->GetComponentLocation();
 	prevBossPos = bossPos;
-	initialDistance = (parentPos - bossPos).Length();
+	initialDistance = 700.f;
 
 }
 
