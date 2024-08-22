@@ -54,5 +54,5 @@ void MPRecovery::UseSkill()
 void MPRecovery::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/MPrecovery.txt");
-	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text);
+	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text, infoText);
 }

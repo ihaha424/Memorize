@@ -2,5 +2,6 @@ Skill_Mana : 120
 Command : 2, 3, 1, 3
 Skill_Condition : 50
 Castring Time : 0.1
-Skill_Text : 10초동안 MP소모량을 0으로 만듭니다.
+Skill_Text : 마나 폭주  [MP 120소모]
+Skill_Text2 : 10초동안 MP소모량을 0으로 만듭니다.
 End

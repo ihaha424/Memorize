@@ -2,5 +2,6 @@ Skill_Mana : 150
 Command : 2, 3, 3
 Skill_Condition : 20
 Castring Time : 0.5
-Skill_Text : MP 회복량을 상승시킵니다.
+Skill_Text : 참선 [MP 150소모]
+Skill_Text2 : MP 회복량을 상승시킵니다.
 End
