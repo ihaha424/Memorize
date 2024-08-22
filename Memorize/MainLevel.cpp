@@ -50,7 +50,13 @@ void MainLevel::Enter()
 	rightRock = CreateActor<RightRock>();
 	rightRock->SetLocation(1920 / 2 - 677 / 2 + 75, 1080 / 2 - 310);
 
-
+	title = CreateActor<Actor>();
+	BitmapComponent* bm = title->CreateComponent<BitmapComponent>();
+	title->rootComponent = bm;
+	bm->SetSprite(L"TestResource/Main/Title.png");
+	title->SetLocation( 400, -200);
+	title->SetTickProperties(TICK_RENDER);
+	title->renderLayer = 3;
 }
 
 void MainLevel::Exit()
