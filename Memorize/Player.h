@@ -9,7 +9,7 @@ struct Stat
 	float hp;
 	float maxHp; //HP
 	float mp;
-	float maxMp = 100.f; //MP
+	float maxMp; //MP
 	float hpRegenPerSecond; //초당 HP 회복량
 	float mpRegenPerSecond; //초당 MP 회복량
 	float skillRange; //시전 범위
@@ -69,7 +69,7 @@ public:
 	float moveSpeed = 950;
 	Stat stat;
 	float basicAttackTime = 1.f;
-	int skillUses;
+	static int skillUses;
 	bool bondageFlag{ false };
 	bool dieFlag = false;
 
