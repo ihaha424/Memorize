@@ -3,6 +3,7 @@
 
 class UIImage : public UIElement
 {
+protected:
 	D2D_Sprite* sprite;
 public:
 	UIImage(class World* _world);

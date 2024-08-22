@@ -2,7 +2,7 @@
 #include "D2DGameEngine\UIPanel.h"
 class CursorUIPanel : public UIPanel
 {
-	class UIImage* cursor;
+	class CursorImage* cursor;
 public:
 	CursorUIPanel(World* _world);
 	virtual ~CursorUIPanel();
