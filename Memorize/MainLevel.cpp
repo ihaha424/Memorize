@@ -5,10 +5,8 @@
 #include "D2DGameEngine/Actor.h"
 #include "D2DGameEngine/AnimationBitmapComponent.h"
 #include "CursorUIPanel.h"
-
 #include "Loading.h"
 
-#include "Cursor.h"
 
 MainLevel::MainLevel(World* _world, const std::wstring& _name)
 	: Level(_world, _name)
@@ -37,6 +35,9 @@ void MainLevel::Enter()
 	leftRocksBm->SliceSpriteSheet(322, 473, 0, 0, 0, 0);
 	backgroundBm->AddChild(leftRocksBm);
 	leftRocksBm->SetTranslation(-1920 / 2  + 35 + 322/2, -150 -35);
+	leftRockTween = new DotTween<float>;
+	leftRockTween->SetData(&leftRockValue);
+	leftRockTween->SetDuration
 
 	AnimationBitmapComponent* characterBm = background->CreateComponent<AnimationBitmapComponent>();
 	characterBm->SetSprite(L"TestResource/Main/02.png");
@@ -49,6 +50,8 @@ void MainLevel::Enter()
 	rightRocksBm->SliceSpriteSheet(677, 620, 0, 0, 0, 0);
 	backgroundBm->AddChild(rightRocksBm);
 	rightRocksBm->SetTranslation(1920/2 - 677 / 2 + 75, 1080/2 - 310);
+	rightRockTween = new DotTween<float>;
+	rightRockTween->SetData(&rightRockValue);
 
 
 }

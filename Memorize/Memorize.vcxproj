@@ -190,6 +190,7 @@
     <ClCompile Include="GPlayerController.cpp" />
     <ClCompile Include="GroggyAction.cpp" />
     <ClCompile Include="Heal.cpp" />
+    <ClCompile Include="LeftRock.cpp" />
     <ClCompile Include="LightStream.cpp" />
     <ClCompile Include="LightStreamEffect.cpp" />
     <ClCompile Include="LoadingLevel.cpp" />
@@ -242,6 +243,7 @@
     <ClCompile Include="Purification.cpp" />
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="RazerCircle.cpp" />
+    <ClCompile Include="RightRock.cpp" />
     <ClCompile Include="Scarecrow.cpp" />
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
     <ClCompile Include="Signal.cpp" />
@@ -307,6 +309,7 @@
     <ClInclude Include="GroggyAction.h" />
     <ClInclude Include="Heal.h" />
     <ClInclude Include="IBossSkill.h" />
+    <ClInclude Include="LeftRock.h" />
     <ClInclude Include="LightStream.h" />
     <ClInclude Include="LightStreamEffect.h" />
     <ClInclude Include="Loading.h" />
@@ -362,6 +365,7 @@
     <ClInclude Include="RangeSkill.h" />
     <ClInclude Include="BossRazer.h" />
     <ClInclude Include="RazerCircle.h" />
+    <ClInclude Include="RightRock.h" />
     <ClInclude Include="Scarecrow.h" />
     <ClInclude Include="SetPeriodicCoolTime.h" />
     <ClInclude Include="Signal.h" />

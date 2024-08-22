@@ -147,6 +147,9 @@
     <Filter Include="Source Files\Level\Tutorials">
       <UniqueIdentifier>{8521074e-ecd9-4729-8f6e-21b8e4bcfb5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Main">
+      <UniqueIdentifier>{c9cd93da-4e50-4606-a4ae-3719053c9c43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp">
@@ -473,9 +476,6 @@
     <ClCompile Include="TestLevel.cpp">
       <Filter>Source Files\Level</Filter>
     </ClCompile>
-    <ClCompile Include="MainLevel.cpp">
-      <Filter>Source Files\Level</Filter>
-    </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
       <Filter>Source Files\App\Utils</Filter>
     </ClCompile>
@@ -493,6 +493,15 @@
     </ClCompile>
     <ClCompile Include="Scarecrow.cpp">
       <Filter>Source Files\Level\Tutorials</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLevel.cpp">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftRock.cpp">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="RightRock.cpp">
+      <Filter>Source Files\Level\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -829,9 +838,6 @@
     <ClInclude Include="TestLevel.h">
       <Filter>Source Files\Level</Filter>
     </ClInclude>
-    <ClInclude Include="MainLevel.h">
-      <Filter>Source Files\Level</Filter>
-    </ClInclude>
     <ClInclude Include="Loading.h">
       <Filter>Source Files\Level</Filter>
     </ClInclude>
@@ -852,6 +858,15 @@
     </ClInclude>
     <ClInclude Include="Scarecrow.h">
       <Filter>Source Files\Level\Tutorials</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLevel.h">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftRock.h">
+      <Filter>Source Files\Level\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="RightRock.h">
+      <Filter>Source Files\Level\Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
