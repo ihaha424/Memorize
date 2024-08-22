@@ -30,7 +30,7 @@ MainLevelUIPanel::MainLevelUIPanel(World* _world) : UIPanel(_world)
 
 	howToBtn = CreateUI<UIButton>(L"HowToButton");
 	howToBtn->SetPosition(1920 / 2 + 470, 750);
-	//howToBtn->AddOnClickHandler([this]() {GetWorld()->SetNextScene(L"TestLevel"); });
+	howToBtn->AddOnClickHandler([this]() {GetWorld()->GetCanvas()->ShowPanel(L"HowToPlay"); });
 	howToBtn->AddOnHoveredHandler([this]() { howToImage->SetSprite(L"TestResource/UI/button_howtoplay2.png"); });
 	howToBtn->AddOnPressedHandler([this]() { howToImage->SetSprite(L"TestResource/UI/button_howtoplay3.png"); });
 	howToBtn->AddOnUnHoveredHandler([this]() { howToImage->SetSprite(L"TestResource/UI/button_howtoplay.png"); });
@@ -44,6 +44,11 @@ MainLevelUIPanel::MainLevelUIPanel(World* _world) : UIPanel(_world)
 	howToImage->SetPosition(1920 / 2 + 470, 750);
 	howToImage->SetZOrder(1);
 	howToBtn->SetSize(howToImage->GetSize().x, howToImage->GetSize().y);
+
+
+	howToBtn->AddOnClickHandler([this]() {HideUI(L"StartButton"); HideUI(L"HowToButton"); });
+	startBtn->AddOnClickHandler([this]() { HideUI(L"StartButton"); HideUI(L"HowToButton"); });
+
 
 }
 

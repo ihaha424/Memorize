@@ -5,6 +5,7 @@
 class MainLevel : public Level
 {
     class MainLevelUIPanel* mainPanel;
+    class HowToPlayUIPanel* howtoplayPanel;
 
     class Actor* leftRock;
     class Actor* rightRock;

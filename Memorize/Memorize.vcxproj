@@ -193,6 +193,7 @@
     <ClCompile Include="GPlayerController.cpp" />
     <ClCompile Include="GroggyAction.cpp" />
     <ClCompile Include="Heal.cpp" />
+    <ClCompile Include="HowToPlayUIPanel.cpp" />
     <ClCompile Include="LeftRock.cpp" />
     <ClCompile Include="LightStream.cpp" />
     <ClCompile Include="LightStreamEffect.cpp" />
@@ -313,6 +314,7 @@
     <ClInclude Include="GPlayerController.h" />
     <ClInclude Include="GroggyAction.h" />
     <ClInclude Include="Heal.h" />
+    <ClInclude Include="HowToPlayUIPanel.h" />
     <ClInclude Include="IBossSkill.h" />
     <ClInclude Include="LeftRock.h" />
     <ClInclude Include="LightStream.h" />
