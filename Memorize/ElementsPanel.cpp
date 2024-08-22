@@ -17,6 +17,12 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 
 	SetPosition(70, 1080/2);
 
+	
+	Qicon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_Q.png")->GetResource();
+	Wicon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_W.png")->GetResource();
+	Eicon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_E.png")->GetResource();
+	Ricon = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/Icon/Icon_R.png")->GetResource();
+	
 	Qbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button01.png")->GetResource();
 	Wbm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button02.png")->GetResource();
 	Ebm = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button03.png")->GetResource();
@@ -26,21 +32,25 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 	Ebm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button07.png")->GetResource();
 	Rbm_off = ResourceManager::GetInstance().LoadResource<SpriteResource>(L"TestResource/UI/Button08.png")->GetResource();
 
+	ring = CreateUI<UIImage>(L"Ring");
+	ring->SetSprite(L"TestResource/Icon/UI_ring.png");
+	ring->SetPosition(-12, 0);
+
 	q = CreateUI<UIImage>(L"Q");
-	q->SetSprite(Qbm);
-	q->SetPosition(0, -180);
+	q->SetSprite(Qicon);
+	q->SetPosition(-30, -120);
 
 	w = CreateUI<UIImage>(L"W");
-	w->SetSprite(Wbm);
-	w->SetPosition(0, -60);
+	w->SetSprite(Wicon);
+	w->SetPosition(8, -47);
 
 	e = CreateUI<UIImage>(L"E");
-	e->SetSprite(Ebm);
-	e->SetPosition(0, 60);
+	e->SetSprite(Eicon);
+	e->SetPosition(8, 47);
 
 	r = CreateUI<UIImage>(L"R");
-	r->SetSprite(Rbm);
-	r->SetPosition(0, 180);
+	r->SetSprite(Ricon);
+	r->SetPosition(-30, 120);
 
 	
 	//이미지 배열
@@ -97,10 +107,10 @@ void ElementsPanel::Update(float _dt)
 		if (!ending || playerController->bElementalMaster)
 		{
 			HideAllCommands();
-			q->SetSprite(Qbm);
-			w->SetSprite(Wbm);
-			e->SetSprite(Ebm);
-			r->SetSprite(Rbm);
+			q->SetSprite(Qicon);
+			w->SetSprite(Wicon);
+			e->SetSprite(Eicon);
+			r->SetSprite(Ricon);
 		}
 		return;
 	}
@@ -137,10 +147,10 @@ void ElementsPanel::Update(float _dt)
 		if(!ending)
 		{
 			HideAllCommands();
-			q->SetSprite(Qbm);
-			w->SetSprite(Wbm);
-			e->SetSprite(Ebm);
-			r->SetSprite(Rbm);
+			q->SetSprite(Qicon);
+			w->SetSprite(Wicon);
+			e->SetSprite(Eicon);
+			r->SetSprite(Ricon);
 		}
 	}
 
