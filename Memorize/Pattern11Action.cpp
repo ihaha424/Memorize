@@ -14,8 +14,8 @@ void Pattern11Action::Run(float dt)
 	if (!started)
 	{
 		BossChaseCircle* actor = bt->GetWorld()->GetCurLevel()->CreateActor<BossChaseCircle>();
-		Math::Vector2 playerLocation = bt->GetKey<Player*>("Player")->GetLocation();
-		actor->SetLocation(playerLocation.x, playerLocation.y);
+		Math::Vector2 bossLocation = bt->GetKey<Boss*>("Boss")->GetLocation();
+		actor->SetLocation(bossLocation.x, bossLocation.y);
 
 		// 캐스팅 애니메이션 발동
 		Animator* abm = bt->GetKey<Boss*>("Boss")->abm;
