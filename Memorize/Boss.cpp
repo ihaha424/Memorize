@@ -73,9 +73,17 @@ Boss::Boss(World* _world) : Character(_world)
 			TeleportEndAnimationState->SliceSpriteSheet(300, 300, 0, 0, 0, 0);
 			TeleportEndAnimationState->SetFrameDurations({ 1.f / 12.f });
 			TeleportEndAnimationState->Trigger(true);
+
+			GroggyAnimationState = abm->CreateState<AnimationState>();
+			GroggyAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Dead.png");
+			GroggyAnimationState->SliceSpriteSheet(250, 280, 0, 0, 0, 0);
+			GroggyAnimationState->SetFrameDurations({ 1.f / 12.f });
+			GroggyAnimationState->FrameResize(13);
+			GroggyAnimationState->SetLoop(false);
+			GroggyAnimationState->Trigger(true);
 		}
 	}
-
+	DissfellCount = 9;
 	SetScale(2.f, 2.f);
 }
 
