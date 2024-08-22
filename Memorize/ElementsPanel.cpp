@@ -106,14 +106,26 @@ ElementsPanel::ElementsPanel(World* _world) : UIPanel(_world)
 	for (int i = 0; i < 4; i++)
 	{
 		infoTexts.push_back(CreateUI<UIText>(L"infoText_" + i));
-		infoTexts[i]->SetColor(D2D_Color::Black);
-		infoTexts[i]->SetFontSize(15);
-		infoTexts[i]->SetSize(500, 100);
-		infoTexts[i]->SetPosition(250, -100 + 120 * i);
+		infoTexts[i]->SetColor(D2D_Color::White);
+		infoTexts[i]->SetFontSize(20);
+		infoTexts[i]->SetSize(360, 110);
 		infoTexts[i]->SetWeight(FontWeight::Bold);
 		infoTexts[i]->Inactivate();
+
+		textBGs.push_back(CreateUI<UIImage>(L"infoTextBackground_" + i));
+		textBGs[i]->SetSprite(L"TestResource/UI/UI_skillexplanationBG.png");
+		textBGs[i]->Inactivate();
 	}
 
+	infoTexts[0]->SetPosition(-30 + 200 + 5, -120 - 100 + 10);
+	infoTexts[1]->SetPosition(8 + 200 + 5, -47 - 100 + 10);
+	infoTexts[2]->SetPosition(8 + 200 + 5, 47 - 100 + 10);
+	infoTexts[3]->SetPosition(-30 + 200 + 5, 120 - 100 + 10);
+
+	textBGs[0]->SetPosition(-30 + 200, -120 - 100);
+	textBGs[1]->SetPosition(8 + 200, -47 - 100);
+	textBGs[2]->SetPosition(8 + 200, 47 - 100);
+	textBGs[3]->SetPosition(-30 + 200, 120 - 100);
 }
 
 ElementsPanel::~ElementsPanel()
@@ -350,12 +362,14 @@ void ElementsPanel::ShowSkillInfo(ESkillType curSkillType)
 	if (element != SE_FIRE && element != SE_WATER && element != SE_LIGHT && element != SE_DARKNESS)
 		return;
 	infoTexts[curSkillType]->Activate();
+	textBGs[curSkillType]->Activate();
 	infoTexts[curSkillType]->SetText(playerController->FindSkiil(element, curSkillType)->GetInfoText());
 }
 
 void ElementsPanel::HideSkillInfo(ESkillType curSkillType)
 {
 	infoTexts[curSkillType]->Inactivate();
+	textBGs[curSkillType]->Inactivate();
 }
 
 std::vector<std::vector<int>> ElementsPanel::CheckSkillType()
