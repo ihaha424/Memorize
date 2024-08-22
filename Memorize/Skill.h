@@ -41,6 +41,7 @@ protected:
 	bool bCrash;
 	std::vector<BYTE>	commandList{};
 	std::wstring text;
+	std::wstring infoText;
 public:
 	float skillDuration = 2.f;
 	float castingTime = 0.f;
@@ -67,6 +68,7 @@ public:
 	void Unlock() { bUnlocked = true; }
 
 	std::wstring GetInfoText() { return text; }
+	std::wstring GetInfoText2() { return infoText; }
 
 	void SetCommandList(std::vector<BYTE>& _commandList) {
 		_commandList.resize(commandList.size());

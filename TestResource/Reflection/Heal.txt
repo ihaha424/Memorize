@@ -2,5 +2,6 @@ Skill_Mana : 100
 Command : 3, 2
 Skill_Condition : 0
 Castring Time : 0.5
-Skill_Text : HP를 50 회복시킵니다.
+Skill_Text : 힐  [MP 100소모]
+Skill_Text2 : HP를 50 회복시킵니다.
 End

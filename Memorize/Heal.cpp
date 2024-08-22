@@ -42,5 +42,5 @@ void Heal::UseSkill()
 void Heal::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/Heal.txt");
-	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text);
+	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text, infoText);
 }

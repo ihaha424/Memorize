@@ -84,5 +84,5 @@ void LightStream::UseSkill()
 void LightStream::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/LightStream.txt");
-	reflectionResource->ParsingFile(0, damage, commandList, conditionCount, castingTime, bCrash, text);
+	reflectionResource->ParsingFile(0, damage, commandList, conditionCount, castingTime, bCrash, text, infoText);
 }

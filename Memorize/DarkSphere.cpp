@@ -57,5 +57,5 @@ void DarkSphere::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/DarkSphere.txt");
 	reflectionResource->ParsingFile(0, damage, mana, commandList, projectileSpeed,
-		projectileDuration, conditionCount, castingTime, bCrash, text);
+		projectileDuration, conditionCount, castingTime, bCrash, text, infoText);
 }

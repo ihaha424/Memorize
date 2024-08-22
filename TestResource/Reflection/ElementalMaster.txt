@@ -2,5 +2,6 @@ Skill_Mana : 150
 Command : 3, 2, 1, 0, 1, 2
 Skill_Condition : 50
 Castring Time : 0.5
-Skill_Text : HP가 1로 감소하지만, 이동하기 전까지 랜덤한 투사체 스킬이 캐스팅 됩니다.
+Skill_Text : 힘의 대가  [MP 150소모]
+Skill_Text2 : HP가 1로 감소하지만, 이동하기 전까지 랜덤한 투사체 스킬이 캐스팅 됩니다.
 End

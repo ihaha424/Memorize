@@ -6,5 +6,6 @@ Skill_Duration : 2
 Skill_Condition : 0
 Castring Time : 0.1
 Skill_Crash : 1
-Skill_Text : 클릭한 방향으로 파이어볼을 발사합니다
+Skill_Text : 파이어볼  [MP 40소모]
+Skill_Text2 : 클릭한 방향으로 파이어볼을 발사합니다
 End
