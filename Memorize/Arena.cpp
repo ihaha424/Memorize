@@ -3,13 +3,14 @@
 #include "D2DGameEngine/BitmapComponent.h"
 #include "D2DGameEngine/PolygonComponent.h"
 
+
 Arena::Arena(World* _world) : Actor(_world)
 {
 	SetTickProperties(TICK_PHYSICS | TICK_UPDATE | TICK_RENDER);
 
 	renderLayer = 0;
 
-	BitmapComponent* arena = CreateComponent<BitmapComponent>();
+	arena = CreateComponent<BitmapComponent>();
 	arena->SetSprite(L"TestResource/BackGround_Map.png");
 	rootComponent = arena;
 
@@ -66,5 +67,79 @@ Arena::Arena(World* _world) : Actor(_world)
 	ulWall->InitPolygon({ ulWallVertex0, ulWallVertex1, ulWallVertex2, ulWallVertex3 });
 	ulWall->collisionProperty = CollisionProperty(CollisionPropertyPreset::BlockAll);
 	ulWall->bGenerateOverlapEvent = false;
+
+
+
+}
+
+void Arena::Update(float _dt)
+{
+	if (earthquake)
+	{
+		turbulance += _dt * 500.f;
+		shockwaveScale += _dt;
+		earthquakeTimer -= _dt;
+		if (earthquakeTimer <= 0.f)
+		{
+			earthquakeTimer = 3.f;
+			shockwaveScale = 0.f;
+			turbulance = 500.f;
+			earthquake = false;
+		}
+	}
+}
+
+void Arena::Render(D2DRenderer* _renderer)
+{
+	if (earthquake)
+	{
+		_renderer->PushTransform(arena->GetWorldTransform());
+
+		float halfWidth = arena->GetSpriteWidth() / 2.f;
+		float halfHeight = arena->GetSpriteHeight() / 2.f;
+
+#ifndef NDEBUG
+		D2D_RectF dest{
+			.left = -halfWidth,
+			.top = -halfHeight,
+			.right = halfWidth,
+			.bottom = halfHeight
+		};
+
+		_renderer->DrawBorder(
+			{ dest.left, dest.top },
+			{ dest.right, dest.bottom },
+			D2D_Color::Green
+		);
+#endif
+
+		ID2D1DeviceContext* dc = _renderer->GetDC();
+		ComPtr<ID2D1Effect> displacementEffect;
+		dc->CreateEffect(CLSID_D2D1DisplacementMap, &displacementEffect);
+		displacementEffect->SetInput(0, arena->GetSprite()->GetResource());
+		displacementEffect->SetValue(D2D1_DISPLACEMENTMAP_PROP_SCALE, 10.f);
+
+		ComPtr<ID2D1Effect> turbulenceEffect;
+		dc->CreateEffect(CLSID_D2D1Turbulence, &turbulenceEffect);
+		turbulenceEffect->SetValue(D2D1_TURBULENCE_PROP_SIZE, D2D1_VECTOR_2F{ arena->GetSpriteWidth(), arena->GetSpriteHeight() });
+		turbulenceEffect->SetValue(
+			D2D1_TURBULENCE_PROP_BASE_FREQUENCY, 
+			D2D1_VECTOR_2F{ 
+				1.f / ((uint)turbulance + 1U), 
+				1.f / ((uint)turbulance + 1U) 
+			}
+		);
+		//turbulenceEffect->SetValue(D2D1_TURBULENCE_PROP_SEED, (uint)turbulance);
+		//turbulenceEffect->SetValue(D2D1_TURBULENCE_PROP_NUM_OCTAVES, );
+		displacementEffect->SetInputEffect(1, turbulenceEffect.Get());
+
+		dc->DrawImage(displacementEffect.Get(), D2D1_POINT_2F{ -halfWidth , -halfHeight });
+
+		_renderer->PopTransform();
+	}
+	else
+	{
+		arena->Render(_renderer);
+	}
 
 }

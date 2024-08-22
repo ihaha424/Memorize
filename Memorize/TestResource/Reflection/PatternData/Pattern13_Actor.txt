@@ -1,5 +1,0 @@
-Pattern_Dispel : 1
-Pattern_DispelTime : 6
-Pattern_SkillDuration : 5
-Pattern_Damage : 25
-End

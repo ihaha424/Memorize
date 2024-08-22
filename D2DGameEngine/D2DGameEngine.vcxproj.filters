@@ -177,6 +177,9 @@
     <Filter Include="Source Files\GameEngine\EffectSystem\AnimatorEffect">
       <UniqueIdentifier>{8cd15f07-7a10-43db-b5c4-ae845067a2e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameEngine\SoundSystem\fmod">
+      <UniqueIdentifier>{3a864930-e140-40d5-ba88-b12c919368d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -416,9 +419,6 @@
     <ClInclude Include="SpriteResource.h">
       <Filter>Source Files\GameEngine\ResourceManager\Resource\SpriteResource</Filter>
     </ClInclude>
-    <ClInclude Include="SoundSystem.h">
-      <Filter>Source Files\GameEngine\SoundSystem</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClInclude>
@@ -526,6 +526,33 @@
     </ClInclude>
     <ClInclude Include="Ellipse.h">
       <Filter>Source Files\GameEngine\Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Source Files\GameEngine\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod.h">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod.hpp">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_codec.h">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_common.h">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_dsp.h">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_dsp_effects.h">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_errors.h">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_output.h">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -688,9 +715,6 @@
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files\GameEngine\GameFramework\Object</Filter>
     </ClCompile>
-    <ClCompile Include="SoundSystem.cpp">
-      <Filter>Source Files\GameEngine\SoundSystem</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\GameEngine\ResourceManager</Filter>
     </ClCompile>
@@ -760,6 +784,9 @@
     <ClCompile Include="AnimatorEffect.cpp">
       <Filter>Source Files\GameEngine\EffectSystem\AnimatorEffect</Filter>
     </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Source Files\GameEngine\SoundSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="디버그_사용법.md">
@@ -771,10 +798,27 @@
     <None Include="데미지_사용법.md">
       <Filter>Resource</Filter>
     </None>
+    <None Include="fmod.cs">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </None>
+    <None Include="fmod.dll">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </None>
+    <None Include="fmod_dsp.cs">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </None>
+    <None Include="fmod_errors.cs">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="CollisionFigure.png">
       <Filter>Resource</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="fmod_vc.lib">
+      <Filter>Source Files\GameEngine\SoundSystem\fmod</Filter>
+    </Library>
   </ItemGroup>
 </Project>
