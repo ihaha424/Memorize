@@ -14,12 +14,22 @@ UIPanel::~UIPanel()
 	}
 }
 
+void UIPanel::BeginPlay()
+{
+	__super::BeginPlay();
+	for (auto ui : uiList)
+	{
+		if (ui->GetStatus() == OS_AWAKE)
+			ui->BeginPlay();
+	}
+}
+
 void UIPanel::Update(float _dt)
 {
 	for (auto ui : uiList)
 	{
-		ui->Update(_dt);
-
+		if (ui->GetStatus() == OS_ACTIVE)
+			ui->Update(_dt);
 	}
 	uiList.sort([](UIElement* u1, UIElement* u2)
 		{return u1->GetZOrder() < u2->GetZOrder(); });

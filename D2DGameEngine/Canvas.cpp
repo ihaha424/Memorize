@@ -17,6 +17,16 @@ Canvas::~Canvas()
 }
 
 
+void Canvas::BeginPlay()
+{
+	__super::BeginPlay();
+	for (auto panel : panelList)
+	{
+		if (panel->GetStatus() == OS_AWAKE)
+			panel->BeginPlay();
+	}
+}
+
 void Canvas::Update(float _dt)
 {
 	for (auto panel : panelList)

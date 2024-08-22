@@ -185,7 +185,9 @@
     <ClCompile Include="ElementalMasterComponent.cpp" />
     <ClCompile Include="ElementsPanel.cpp" />
     <ClCompile Include="Enchant.cpp" />
+    <ClCompile Include="EnddingPanel.cpp" />
     <ClCompile Include="Ending.cpp" />
+    <ClCompile Include="FadeInFadeOut.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="FireballProjectile.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -306,7 +308,9 @@
     <ClInclude Include="ElementalMasterComponent.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="Enchant.h" />
+    <ClInclude Include="EnddingPanel.h" />
     <ClInclude Include="Ending.h" />
+    <ClInclude Include="FadeInFadeOut.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="FireballProjectile.h" />
     <ClInclude Include="GameApp.h" />

@@ -25,6 +25,7 @@ public:
 	virtual void Render(class D2DRenderer* _renderer) override;
     void SetCharacter(class Character* _character);
 
+    bool  dieFlag{ false };
 private:
     class Character* character;
     float initialDistance;
@@ -35,7 +36,8 @@ private:
 	float cameraScale{ 1.f };
     bool  isMove{ false };
 
-    //DotTween<Math::Vector2>
+    float       cameraZoom;
+    DotTween<float>* cameraZoomDotTween;
 
 
     static constexpr float camerScaleRatio = 0.3f;

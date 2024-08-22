@@ -22,9 +22,8 @@ MainLevel::~MainLevel()
 
 void MainLevel::Enter()
 {
-	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_MainBGM.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_MainBGM.wav", 0);
 
-	__super::Enter();
 	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 	mainPanel = GetWorld()->GetCanvas()->CreatePannel<MainLevelUIPanel>(L"MainLevel");
 	howtoplayPanel = GetWorld()->GetCanvas()->CreatePannel<HowToPlayUIPanel>(L"HowToPlay");
@@ -61,6 +60,7 @@ void MainLevel::Enter()
 	title->SetLocation( 400, -200);
 	title->SetTickProperties(TICK_RENDER);
 	title->renderLayer = 3;
+	__super::Enter();
 }
 
 void MainLevel::Exit()
