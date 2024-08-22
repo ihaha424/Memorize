@@ -37,7 +37,7 @@ void UIImage::Render(D2DRenderer* _renderer)
 		width / 2,
 		height / 2 };
 
-	_renderer->DrawSprite(sprite, DestRect, {0, 0, sprite->GetSize().width, sprite->GetSize().height});
+	_renderer->DrawSprite(sprite, DestRect, {0, 0, sprite->GetSize().width, sprite->GetSize().height}, opacity);
 
 	_renderer->PopTransform();
 }

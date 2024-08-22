@@ -71,6 +71,7 @@ public:
 	float basicAttackTime = 1.f;
 	int skillUses;
 	bool bondageFlag{ false };
+	bool dieFlag = false;
 
 	class BoxComponent* collisionBox;
 	class BuffEffectComponent* buffEffect;

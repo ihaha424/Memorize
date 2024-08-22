@@ -20,9 +20,8 @@ MainLevel::~MainLevel()
 
 void MainLevel::Enter()
 {
-	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_MainBGM.wav");
+	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_MainBGM.wav", 0);
 
-	__super::Enter();
 	GetWorld()->GetCanvas()->CreatePannel<CursorUIPanel>(L"Cursor");
 	mainPanel = GetWorld()->GetCanvas()->CreatePannel<MainLevelUIPanel>(L"MainLevel");
 
@@ -50,7 +49,7 @@ void MainLevel::Enter()
 	rightRock = CreateActor<RightRock>();
 	rightRock->SetLocation(1920 / 2 - 677 / 2 + 75, 1080 / 2 - 310);
 
-
+	__super::Enter();
 }
 
 void MainLevel::Exit()

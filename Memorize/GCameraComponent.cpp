@@ -8,6 +8,9 @@
 
 #include "D2DGameEngine/D2DRenderer.h"
 
+#include "../D2DGameEngine/Canvas.h"
+#include "FadeInFadeOut.h"
+
 
 GCameraComponent::GCameraComponent(Actor* _owner) : CameraComponent(_owner)
 {
@@ -31,7 +34,7 @@ void GCameraComponent::Trigger피격()
 	}
 }
 
-void GCameraComponent::Trigger마나부족()
+void GCameraComponent::Trigger마나부족() 
 {
 	// 마나부족->Trigger(true);
 }
@@ -44,6 +47,12 @@ void GCameraComponent::BeginPlay()
 	prevBossPos = bossPos;
 	initialDistance = 700.f;
 
+
+	
+	cameraZoomDotTween = new DotTween<float>(&cameraZoom, EasingEffect::OutQuart, StepAnimation::StepOnceForward);
+	cameraZoomDotTween->SetDuration(5.f);
+	cameraZoomDotTween->SetStartPoint(S._11);
+	cameraZoomDotTween->SetEndPoint(0.3f);
 }
 
 void GCameraComponent::Update(float _dt)
@@ -66,6 +75,27 @@ void GCameraComponent::PostUpdate(float _dt)
 {
 	CameraComponent::PostUpdate(_dt);
 
+	if (dieFlag)
+	{
+		cameraZoomDotTween->Update(_dt);
+		SetScale(cameraZoom, cameraZoom);
+		SetTranslation(0, 0);
+		if (cameraZoomDotTween->GetIsFinish())
+		{
+			//페이드 아웃
+			{
+				FadeInFadeOut* playerDie = GetWorld()->GetCanvas()->CreatePannel<FadeInFadeOut>(L"TestLevelFadeOut");
+				playerDie->SetFaidInOut(false);
+				playerDie->SetFinishFunction([this]()->void {
+					GetWorld()->SetNextScene(L"Ending");
+					});
+				playerDie->alphaTween->SetDuration(3.f);
+				playerDie->alphaTween->SetEasingEffect(EasingEffect::InQuart);
+			}
+		}
+		return;
+	}
+
 	Math::Vector2 parentPos = parent->GetComponentLocation();
 
 	//if (isMove)
@@ -76,7 +106,7 @@ void GCameraComponent::PostUpdate(float _dt)
 	//	Translate(destinationCameraPos * moveSpeed * _dt);
 	//	if (moveSecond < 0.f)
 	//		isMove = false;
-	//	return;
+	//	return; 
 	//}
 
 	Math::Vector2 bossPos = character->rootComponent->GetComponentLocation();

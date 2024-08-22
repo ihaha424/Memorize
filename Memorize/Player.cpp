@@ -162,7 +162,10 @@ void Player::Update(float _dt)
 		{
 			SoundManager::PlayMusic(L"TestResource/Sound/Player/Sound_PlayerDeath.wav");
 			abm->SetState(DieAnimationState);
+			dieFlag = true;
+			cm->dieFlag = true;
 		}
+		SetVelocity({ 0, 0 });
 	}
 
 	headEffectPos = { GetLocation().x, GetLocation().y - 230 };

@@ -53,6 +53,8 @@ public:
 		ui = nullptr;
 	}
 
+
+	virtual void BeginPlay() override;
 	virtual void Update(float _dt) override;
 	virtual void Render(class D2DRenderer* _renderer) override;
 };

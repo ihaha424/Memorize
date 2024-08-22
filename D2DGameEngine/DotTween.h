@@ -31,6 +31,9 @@ public:
 	void	SetEasingEffect(EasingEffect	_easingEffect)	{ function = EasingFunction[_easingEffect]; }
 	void	SetStepAnimation(StepAnimation	_stepAnimation)	{ type = _stepAnimation; }
 
+	void	ResetTime() { curTime = 0.f; }
+	bool	GetIsFinish() { return (curTime > duration); }
+
 	void	Update(const float& _deltaTime)
 	{
 		(this->*StepAnimationfunction[type])(_deltaTime);
@@ -89,12 +92,12 @@ private:
 	}
 	void LoopForward(const float& _DeltaTime)
 	{
-		if (curTime > duration)
-			curTime -= duration;
 		float CurStepTime;
 		T CurStep;
 
 		curTime += _DeltaTime;
+		if (curTime > duration)
+			curTime -= duration;
 		CurStepTime = curTime / duration;
 		CurStep = endPoint - startPoint;
 
@@ -102,12 +105,12 @@ private:
 	}
 	void LoopBack(const float& _DeltaTime)
 	{
-		if (curTime > duration)
-			curTime -= duration;
 		float CurStepTime;
 		T CurStep;
 
 		curTime += _DeltaTime;
+		if (curTime > duration)
+			curTime -= duration;
 		CurStepTime = 1.f - (curTime / duration);
 		CurStep = endPoint - startPoint;
 
@@ -115,12 +118,12 @@ private:
 	}
 	void LoopPingPong(const float& _DeltaTime)
 	{
-		if (curTime > duration)
-			curTime -= duration;
 		float CurStepTime;
 		T CurStep;
 
 		curTime += _DeltaTime;
+		if (curTime > duration)
+			curTime -= duration;
 		CurStepTime = (curTime < (duration / 2))
 			? curTime / (duration / 2)
 			: 1.f - ((curTime - duration / 2) / (duration / 2));
