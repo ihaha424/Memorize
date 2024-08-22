@@ -1,6 +1,6 @@
 Skill_Mana : 50
 Command : 3, 2
 Skill_Condition : 0
-Castring Time : 0.5
+Castring Time : 0
 Skill_Text : HP를 20 회복시킵니다.
 End

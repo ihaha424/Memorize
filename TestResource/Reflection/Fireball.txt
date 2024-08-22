@@ -4,7 +4,7 @@ Command : 0, 0
 Skill_LimitLevel : 500
 Skill_Duration : 2
 Skill_Condition : 0
-Castring Time : 0.5
+Castring Time : 0
 Skill_Crash : 1
 Skill_Text : 클릭 위치로 파이어볼을 발사합니다.
 End
