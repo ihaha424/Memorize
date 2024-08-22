@@ -11,6 +11,7 @@
 #include "D2DGameEngine/Mouse.h"
 #include "Player.h"
 #include "MagicCircle.h"
+#include "TutorialPlayer.h"
 
 LightStream::LightStream(Actor* _owner) : RangeSkill(_owner)
 {
@@ -68,7 +69,7 @@ void LightStream::UseSkill()
 		orbEffect->SetLocation(player->GetLocation().x + direction.x * 80, player->GetLocation().y + direction.y * 80);
 		orbEffect->GetAnimationBitmapComponent()->FlipX(direction.x > 0 ? true : false);
 		
-		player->orb->SetStatus(OS_INACTIVE);
+		player->orb->SetStatus(OS_ACTIVE);
 	}
 
 }
