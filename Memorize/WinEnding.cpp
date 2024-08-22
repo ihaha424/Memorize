@@ -1,10 +1,11 @@
 #include "WinEnding.h"
 #include "../D2DGameEngine/SoundManager.h"
 #include "FadeInFadeOut.h"
-#include "EnddingPanel.h"
+#include "WinEndingPanel.h"
 #include "../D2DGameEngine/World.h"
 #include "../D2DGameEngine/Canvas.h"
 #include "CursorUIPanel.h"
+
 
 WinEnding::WinEnding(World* _world, const std::wstring& _name)
 	: Level(_world, _name)
@@ -17,7 +18,7 @@ void WinEnding::Enter()
 {
 	SoundManager::PlayMusic(L"TestResource/Sound/BG/Sound_ClearBGM.wav", 0);
 
-	EnddingPanel* cutCin = GetWorld()->GetCanvas()->CreatePannel<EnddingPanel>(L"EnddingCutsinPanel");
+	WinEndingPanel* cutCin = GetWorld()->GetCanvas()->CreatePannel<WinEndingPanel>(L"EnddingCutsinPanel");
 
 	FadeInFadeOut* playerDie = GetWorld()->GetCanvas()->CreatePannel<FadeInFadeOut>(L"EnddingFadein");
 	playerDie->alphaTween->SetDuration(5.f);

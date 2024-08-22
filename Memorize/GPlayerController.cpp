@@ -47,6 +47,8 @@ GPlayerController::~GPlayerController()
 	inputComponent->DeleteCommand(this, DIK_SPACE, InputState::KeyDown, KeyBoardInput);
 	inputComponent->DeleteCommand(this, DIK_ESCAPE, InputState::KeyDown, KeyBoardInput);
 
+	inputComponent->DeleteCommand(this, { DIK_A, DIK_S, DIK_D }, InputState::KeyDown, KeyBoardInput);
+
 	inputComponent->DeleteCommand(this, 0, InputState::KeyDown, MouseInput);
 	inputComponent->DeleteCommand(this, 1, InputState::KeyDown, MouseInput);
 
@@ -67,6 +69,8 @@ void GPlayerController::SetupInputComponent()
 	inputComponent->ActionBinding(this, DIK_TAB, &GPlayerController::Memorize, InputState::KeyDown, KeyBoardInput);
 	inputComponent->ActionBinding(this, DIK_SPACE, &GPlayerController::Teleport, InputState::KeyDown, KeyBoardInput);
 	inputComponent->ActionBinding(this, DIK_ESCAPE, &GPlayerController::Cancellation, InputState::KeyDown, KeyBoardInput);
+
+	inputComponent->ActionBinding(this, { DIK_A, DIK_S, DIK_D}, &GPlayerController::Cheat, InputState::KeyDown, KeyBoardInput);
 	
 	inputComponent->ActionBinding(this, 0, &GPlayerController::Attack, InputState::KeyDown, MouseInput);
 	inputComponent->ActionBinding(this, 1, &GPlayerController::Move, InputState::KeyDown, MouseInput);
@@ -275,4 +279,11 @@ void GPlayerController::DisfellEvent(const DisFellEvent* const _event)
 			playerFSMComponent->SetNextState(L"PlayerIdle");
 		}
 	}
+}
+
+void GPlayerController::Cheat()
+{
+	GetPlayer()->stat.hpRegenPerSecond = 500.f;
+	GetPlayer()->stat.mpRegenPerSecond = 500.f;
+	Player::skillUses = 50;
 }
