@@ -55,5 +55,5 @@ void Meteor::UseSkill()
 void Meteor::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/Meteor.txt");
-	reflectionResource->ParsingFile(0, damage, mana, commandList, conditionCount, castingTime, bCrash, text);
+	reflectionResource->ParsingFile(0, damage, mana, commandList, conditionCount, castingTime, bCrash, text, infoText);
 }

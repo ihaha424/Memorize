@@ -41,5 +41,5 @@ void MPMaxIncrease::UseSkill()
 void MPMaxIncrease::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/MPMaxIncrease.txt");
-	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text);
+	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text, infoText);
 }

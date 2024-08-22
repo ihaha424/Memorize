@@ -254,6 +254,10 @@
     <ClCompile Include="RangeSkill.cpp" />
     <ClCompile Include="RazerCircle.cpp" />
     <ClCompile Include="RightRock.cpp" />
+    <ClCompile Include="Rock01.cpp" />
+    <ClCompile Include="Rock03.cpp" />
+    <ClCompile Include="Rock04.cpp" />
+    <ClCompile Include="Rock05.cpp" />
     <ClCompile Include="Scarecrow.cpp" />
     <ClCompile Include="ScarecrowMagicCircle.cpp" />
     <ClCompile Include="SetPeriodicCoolTime.cpp" />
@@ -267,6 +271,7 @@
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="TighteningCircle.cpp" />
     <ClCompile Include="TighteningCircleEffect.cpp" />
+    <ClCompile Include="Title.cpp" />
     <ClCompile Include="TutorialGuide.cpp" />
     <ClCompile Include="TutorialPlayer.cpp" />
     <ClCompile Include="Tutorials.cpp" />
@@ -392,6 +397,10 @@
     <ClInclude Include="BossRazer.h" />
     <ClInclude Include="RazerCircle.h" />
     <ClInclude Include="RightRock.h" />
+    <ClInclude Include="Rock01.h" />
+    <ClInclude Include="Rock03.h" />
+    <ClInclude Include="Rock04.h" />
+    <ClInclude Include="Rock05.h" />
     <ClInclude Include="Scarecrow.h" />
     <ClInclude Include="ScarecrowMagicCircle.h" />
     <ClInclude Include="SetPeriodicCoolTime.h" />
@@ -405,6 +414,7 @@
     <ClInclude Include="TestLevel1_RenderLayer.h" />
     <ClInclude Include="TighteningCircle.h" />
     <ClInclude Include="TighteningCircleEffect.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="TutorialGuide.h" />
     <ClInclude Include="TutorialPlayer.h" />
     <ClInclude Include="Tutorials.h" />

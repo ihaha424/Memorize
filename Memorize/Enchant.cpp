@@ -40,5 +40,5 @@ void Enchant::UseSkill()
 void Enchant::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/Enchant.txt");
-	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text);
+	reflectionResource->ParsingFile(0, mana, commandList, conditionCount, castingTime, text, infoText);
 }

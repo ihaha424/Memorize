@@ -48,6 +48,6 @@ void AggressiveWaves::UseSkill()
 void AggressiveWaves::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/AggressiveWaves.txt");
-	reflectionResource->ParsingFile(0, damage, mana, commandList, conditionCount, castingTime, bCrash, text);
+	reflectionResource->ParsingFile(0, damage, mana, commandList, conditionCount, castingTime, bCrash, text, infoText);
 }
 

@@ -43,5 +43,5 @@ void TighteningCircle::UseSkill()
 void TighteningCircle::ReflectionIn()
 {
 	std::shared_ptr<ReflectionResource> reflectionResource = ResourceManager::LoadResource<ReflectionResource>(L"TestResource/Reflection/TighteningCircle.txt");
-	reflectionResource->ParsingFile(0, damage, mana, commandList, conditionCount, castingTime, bCrash, text);
+	reflectionResource->ParsingFile(0, damage, mana, commandList, conditionCount, castingTime, bCrash, text, infoText);
 }

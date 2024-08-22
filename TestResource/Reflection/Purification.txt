@@ -2,5 +2,6 @@ Skill_Mana : 150
 Command : 3, 2, 2, 1, 2, 2
 Skill_Condition : 25
 Castring Time : 0.1
-Skill_Text : 정화  [MP 150소모]/n디스펠 가능한 모든 마법진을 디스펠합니다.
+Skill_Text : 정화  [MP 150소모]
+Skill_Text2 : 디스펠 가능한 모든 마법진을 디스펠합니다.
 End

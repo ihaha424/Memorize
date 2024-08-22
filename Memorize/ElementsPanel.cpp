@@ -363,7 +363,8 @@ void ElementsPanel::ShowSkillInfo(ESkillType curSkillType)
 		return;
 	infoTexts[curSkillType]->Activate();
 	textBGs[curSkillType]->Activate();
-	infoTexts[curSkillType]->SetText(playerController->FindSkiil(element, curSkillType)->GetInfoText());
+	infoTexts[curSkillType]->SetText(playerController->FindSkiil(element, curSkillType)->GetInfoText()
+	+ L"\n" + playerController->FindSkiil(element, curSkillType)->GetInfoText2());
 }
 
 void ElementsPanel::HideSkillInfo(ESkillType curSkillType)

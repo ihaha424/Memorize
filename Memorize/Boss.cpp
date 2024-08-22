@@ -40,6 +40,7 @@ Boss::Boss(World* _world) : Character(_world)
 			IdleAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Idle.png");
 			IdleAnimationState->SliceSpriteSheet(187, 287, 0, 0, 0, 0);
 			IdleAnimationState->SetFrameDurations({ 0.06f });
+			IdleAnimationState->SetLoop(true);
 			IdleAnimationState->Trigger(true);
 			abm->Initialize(IdleAnimationState);
 
@@ -47,6 +48,7 @@ Boss::Boss(World* _world) : Character(_world)
 			MoveAnimationState->SetSprite(L"TestResource/Boss/BossMotions/Boss_Moving.png");
 			MoveAnimationState->SliceSpriteSheet(187, 280, 0, 0, 0, 0);
 			MoveAnimationState->SetFrameDurations({ 0.06f });
+			MoveAnimationState->SetLoop(true);
 			MoveAnimationState->Trigger(true);
 
 			CastingAnimationState = abm->CreateState<AnimationState>();
@@ -54,6 +56,7 @@ Boss::Boss(World* _world) : Character(_world)
 			CastingAnimationState->SliceSpriteSheet(149, 280, 0, 0, 0, 0);
 			CastingAnimationState->SetFrameDurations({ 1.f / 12.f });
 			CastingAnimationState->FrameResize(9);
+			CastingAnimationState->SetLoop(true);
 			CastingAnimationState->Trigger(true);
 
 			DieAnimationState = abm->CreateState<AnimationState>();
