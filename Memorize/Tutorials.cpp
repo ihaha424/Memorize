@@ -65,7 +65,7 @@ void Tutorials::Enter()
 	Arena* arena = CreateActor<Arena>();
 
 	player = CreateActor<TutorialPlayer>();
-
+	player->renderLayer = 3;
 	player->SetLocation(-200.f, 0.f);
 
 	playerController = CreateActor<GPlayerController>();
@@ -91,6 +91,7 @@ void Tutorials::Enter()
 
 
 	Scarecrow* boss = CreateActor<Scarecrow>();
+	boss->renderLayer = 2;
 	boss->SetLocation(500.f, 0);
 
 	bossHpBar = GetWorld()->GetCanvas()->CreatePannel<BossHPPanel>(L"BossHPBar");

@@ -6,6 +6,7 @@ class Practice : public Level
 	using Super = Level;
 
 	class Player* player;
+	class Scarecrow* boss;
 	class GPlayerController* playerController;
 
 	class ElementsPanel* elementsPanel;

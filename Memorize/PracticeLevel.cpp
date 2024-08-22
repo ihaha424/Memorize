@@ -83,7 +83,7 @@ void Practice::Enter()
 	playerController->OffFlash->Connect([&]() {playerMainUI->SetFlashOff(); });
 
 
-	Scarecrow* boss = CreateActor<Scarecrow>();
+	boss = CreateActor<Scarecrow>();
 	boss->SetLocation(500.f, 0);
 	boss->renderLayer = 2;
 
@@ -127,6 +127,8 @@ void Practice::Enter()
 	startBtn->AddOnPressedHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Click.png"); });
 	startBtn->AddOnUnHoveredHandler([=]() { cursor->SetCursorImage(L"TestResource/Cursors/Cursor_Default.png"); });
 
+	startBtn->AddOnClickHandler([pannel]() { pannel->HideUI(L"StartButton"); });
+
 }
 
 void Practice::Clear()
@@ -154,4 +156,5 @@ void Practice::Update(float _dt)
 
 	player->stat.hp = player->stat.maxHp;
 	player->stat.mp = player->stat.maxMp;
+	boss->hp = boss->maxHp;
 }
