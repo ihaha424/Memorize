@@ -92,6 +92,7 @@ void LightStreamEffect::Update(float _dt)
 	{
 		state = State::Normal;
 		anim->SetState(normalState);	
+		GetWorld()->FindActorByType<Player>()->orb->SetStatus(OS_ACTIVE);
 	}
 	else if (elapsedTime >= initialTime + duration && state == State::Normal)
 	{
@@ -106,7 +107,6 @@ void LightStreamEffect::Update(float _dt)
 	if (elapsedTime >= initialTime + duration + endingTime)
 	{
 		Inactivate();
-		GetWorld()->FindActorByType<Player>()->orb->SetStatus(OS_ACTIVE);
 	}
 }
 
