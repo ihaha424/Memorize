@@ -5,6 +5,7 @@
 #include "MovementComponent.h"
 #include "Player.h"
 #include "D2dGameEngine/ResourceManager.h"
+#include "MagicCircle.h"
 
 PrismReflection::PrismReflection(Actor* _owner) : ProjectileSkill(_owner)
 {
@@ -53,7 +54,8 @@ void PrismReflection::UseSkill()
 		int n = Random::Get<int>(8);
 		Projectile* nowPj = projectiles[nowUsingCount];
 		nowPj->SetDelay(0.1f * i);
-		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
+		MagicCircle* mc = player->GetComponent<MagicCircle>();
+		nowPj->SetLocation(mc->GetComponentLocation().x, mc->GetComponentLocation().y);
 		nowPj->SetVelocity(directions[n], projectileSpeed);
 		nowPj->Activate();
 		nowPj->Initialize();
