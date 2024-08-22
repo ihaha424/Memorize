@@ -89,7 +89,7 @@ Player::Player(class World* _world) : Character(_world)
 	manaOverloadEffect->SetStatus(OS_INACTIVE);
 
 	stat.mpRegenPerSecond = 20;
-	stat.maxMp = 100;
+	stat.maxMp = 150;
 }
 
 Player::~Player()
