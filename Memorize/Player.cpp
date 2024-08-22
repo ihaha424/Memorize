@@ -202,6 +202,7 @@ float Player::InternalTakeDamage(float damageAmount, DamageEvent const& damageEv
 
 void Player::OnTakeDamage(float damageAmount, struct DamageEvent const& damageEvent, class Controller* eventInstigator, Actor* damageCauser)
 {
+	OBJ_INFO(dbg::text("TakenDamage: ", damageAmount));
 	// 피격
 	cm->Trigger피격();
 

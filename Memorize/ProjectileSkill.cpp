@@ -32,7 +32,6 @@ void ProjectileSkill::UseSkill()
 	bEnd = false;
 	if (projectiles.size() > 0)
 	{
-		projectiles[nowUsingCount]->Initialize();
 		projectiles[nowUsingCount]->SetSkillID(id);
 		projectiles[nowUsingCount]->SetOwnerSkill(this);
 	}

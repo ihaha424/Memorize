@@ -28,7 +28,7 @@ void BasicAttack::UseSkill()
 
 	projectiles[nowUsingCount]->Activate();
 
-	projectiles[nowUsingCount]->SetLocation(player->GetLocation().x, player->GetLocation().y);
+	projectiles[nowUsingCount]->SetLocation(player->GetLocation().x + attackDir.x * 100, player->GetLocation().y + attackDir.y * 100);
 	projectiles[nowUsingCount]->SetVelocity(attackDir, projectileSpeed);
 	projectiles[nowUsingCount]->SetDamage(player->stat.defaultDamage);
 

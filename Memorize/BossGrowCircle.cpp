@@ -93,18 +93,22 @@ void BossGrowCircle::Update(float _dt)
 	bool res = ellipse.CheckIntersectWithBox(player->collisionBox->bounds.GetBox());
 	if (res)
 	{
-		auto f = [this]() {
-			BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = radius * scaleVarias;
-			BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = radius * scaleVarias;
-			player->TakeDamage(
-				damage,
-				BossGrowCircleDamageEvent,
-				nullptr,
-				this
-			);
-			};
-		f();
-		tickDamageTimerMap.insert({ player, TakeDamageTimer(f, tickInterval, true) });
+		auto it = tickDamageTimerMap.find(player);
+		if (it == tickDamageTimerMap.end())
+		{
+			auto f = [this]() {
+				BossGrowCircleDamageEvent.radialDamageInfo.innerRadius = radius * scaleVarias;
+				BossGrowCircleDamageEvent.radialDamageInfo.outerRadius = radius * scaleVarias;
+				player->TakeDamage(
+					damage,
+					BossGrowCircleDamageEvent,
+					nullptr,
+					this
+				);
+				};
+			f();
+			tickDamageTimerMap.insert({ player, TakeDamageTimer(f, tickInterval, true) });
+		}
 	}
 	else
 	{

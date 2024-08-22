@@ -8,6 +8,7 @@
 #include "D2DGameEngine/BitmapComponent.h"
 #include "D2DGameEngine/Mouse.h"
 #include "Player.h"
+#include "MagicCircle.h"
 
 LightStream::LightStream(Actor* _owner) : RangeSkill(_owner)
 {
@@ -16,6 +17,7 @@ LightStream::LightStream(Actor* _owner) : RangeSkill(_owner)
 	lightStreamEffect = GetWorld()->GetCurLevel()->CreateActor<LightStreamEffect>();
 	lightStreamEffect->SetDamage(damage);
 	lightStreamEffect->SetSkillID(id);
+	mana = -1;
 
 }
 
@@ -28,7 +30,6 @@ void LightStream::UseSkill()
 	lightStreamEffect->Activate();
 	lightStreamEffect->SetSkillID(id);
 
-	mana = player->stat.mp;
 	lightStreamEffect->SetDuration(mana / 50.f);
 
 	//마우스 위치 
@@ -40,7 +41,8 @@ void LightStream::UseSkill()
 
 	//플레이어에서 마우스 방향으로 위치 조정
 	float halfLength = 500.f;
-	lightStreamEffect->SetLocation(player->GetLocation().x + direction.x * halfLength, player->GetLocation().y + direction.y * halfLength);
+	MagicCircle* mc = player->GetComponent<MagicCircle>();
+	lightStreamEffect->SetLocation(mc->GetComponentLocation().x + direction.x * halfLength, mc->GetComponentLocation().y + direction.y * halfLength);
 	
 	//방향에 맞게 회전
 	float rotateRad = std::acos(direction.Dot(Math::Vector2(1.f, 0.f)));
@@ -49,9 +51,8 @@ void LightStream::UseSkill()
 
 	lightStreamEffect->Initialize();
 
-	controller->FindCurSkiil()->castingTime = mana / 50.f + 3.f;
-
 	SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_LightStream.wav");
+	controller->FindCurSkiil()->castingTime = mana / 50.f + 1.f;
 }
 
 void LightStream::ReflectionIn()

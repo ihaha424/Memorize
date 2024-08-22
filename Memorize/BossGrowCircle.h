@@ -38,7 +38,7 @@ public:
 
 private:
 	float				startSkill = 1.f;
-	float				tickInterval = 0.4f;
+	float				tickInterval = 1.f;
 	float				radius = 500.f;
 	bool				isReverse{ false };
 

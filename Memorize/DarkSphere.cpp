@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "DarkSphereProjectile.h"
 #include "D2dGameEngine/ResourceManager.h"
+#include "MagicCircle.h"
 
 DarkSphere::DarkSphere(Actor* _owner) : ProjectileSkill(_owner)
 {
@@ -33,7 +34,8 @@ void DarkSphere::UseSkill()
 		Projectile* nowPj = projectiles[nowUsingCount];
 		nowPj->Initialize();
 		nowPj->SetDelay(0.2f * i);
-		nowPj->SetLocation(player->GetLocation().x, player->GetLocation().y);
+		MagicCircle* mc = player->GetComponent<MagicCircle>();
+		nowPj->SetLocation(mc->GetComponentLocation().x, mc->GetComponentLocation().y);
 		nowPj->SetVelocity(attackDir, projectileSpeed);
 		nowPj->Activate();
 

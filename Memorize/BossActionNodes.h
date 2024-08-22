@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SetPeriodicCoolTime.h"
+#include "SetTreeCooldown.h"
 #include "WaitForDelay.h"
 #include "GroggyAction.h"
 #include "TeleportAction.h"
