@@ -10,7 +10,7 @@ class Arena : public Actor
 {
 public:
 	float earthquakeTimer{ 5.f };
-	bool earthquake{ true };
+	bool earthquake{ false };
 	
 	float shockwaveScale{ 0.f };
 	float turbulance{ 500.f };

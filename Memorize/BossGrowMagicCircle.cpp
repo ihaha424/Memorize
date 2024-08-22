@@ -45,7 +45,7 @@ BossGrowMagicCircle::BossGrowMagicCircle(World* _world)
 
 	shockwave = CreateComponent<BitmapComponent>();
 	rootComponent->AddChild(shockwave);
-	shockwave->SetSprite(L"TestResource/Boss/Shockwave.png");
+	shockwave->SetSprite(L"TestResource/Boss/MagicCircleShockwave.png");
 	shockwave->isVisible = false;
 
 	CreateComponent<ClickComponent>();
@@ -95,7 +95,8 @@ void BossGrowMagicCircle::Update(float _dt)
 	{
 		shockwaveScale += _dt * 1.5f;
 		shockwave->SetScale(shockwaveScale, shockwaveScale * 0.7f);
-		shockwave->SetOpacity(shockwaveTimer / 9.f);
+		shockwave->SetOpacity(shockwaveOpacity / 8.f);
+		shockwaveOpacity = (std::max)(shockwaveOpacity - _dt, 0.f);
 		shockwaveTimer -= _dt;
 		if (shockwaveTimer <= 0.f)
 		{

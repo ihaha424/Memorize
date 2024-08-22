@@ -170,8 +170,7 @@ void RazerCircle::Update(float _dt)
 	dispelTime -= _dt;
 	if (dispelTime <= 0.f)
 	{
-		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		ShutdownDispelChannel();
 	}
 }
 
@@ -268,8 +267,7 @@ void RazerCircle::DestroyThis()
 	//GetWorld()->UnregisterComponentCollision(circle);
 	//destroyThis = true;
 
-	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+	ShutdownDispelChannel();
 
 	// 애니메이션 초기화
 	Boss* boss = GetWorld()->FindActorByType<Boss>();
@@ -283,4 +281,14 @@ void RazerCircle::DestroyThis()
 	razer2->Destroy();
 	razer1->Destroy();
 	Destroy();
+}
+
+void RazerCircle::ShutdownDispelChannel()
+{
+	if (!bShutdownDispelChannel)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		bShutdownDispelChannel = true;
+	}
 }

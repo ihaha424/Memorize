@@ -149,8 +149,7 @@ void BossRazer::Update(float _dt)
 	dispelTime -= _dt;
 	if (dispelTime <= 0.f)
 	{
-		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		ShutdownDispelChannel();
 	}
 
 	if (startShuttingDown)
@@ -301,12 +300,21 @@ void BossRazer::ReflectionOut() {}
 
 void BossRazer::DestroyThis()
 {
-	EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
-	EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+	ShutdownDispelChannel();
 	if (rootComponent->parent)
 	{
 		rootComponent->parent->RemoveChild(rootComponent);
 		rootComponent->parent = nullptr;
 	}
 	destroyThis = true;
+}
+
+void BossRazer::ShutdownDispelChannel()
+{
+	if (!bShutdownDispelChannel)
+	{
+		EventBus::GetInstance().PushEvent<DisFellEvent>(this, true);
+		EventBus::GetInstance().DispatchEvent<DisFellEvent>();
+		bShutdownDispelChannel = true;
+	}
 }

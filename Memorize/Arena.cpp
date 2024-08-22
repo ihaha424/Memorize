@@ -117,7 +117,7 @@ void Arena::Render(D2DRenderer* _renderer)
 		ComPtr<ID2D1Effect> displacementEffect;
 		dc->CreateEffect(CLSID_D2D1DisplacementMap, &displacementEffect);
 		displacementEffect->SetInput(0, arena->GetSprite()->GetResource());
-		displacementEffect->SetValue(D2D1_DISPLACEMENTMAP_PROP_SCALE, 10.f);
+		displacementEffect->SetValue(D2D1_DISPLACEMENTMAP_PROP_SCALE, 50.f);
 
 		ComPtr<ID2D1Effect> turbulenceEffect;
 		dc->CreateEffect(CLSID_D2D1Turbulence, &turbulenceEffect);
