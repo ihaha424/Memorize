@@ -4,7 +4,7 @@
 
 class WinEnding : public Level
 {
-    class WinEndingUIPanel* mainPanel;
+    class WinEndingPanel* mainPanel;
 
 public:
     WinEnding(class World* _world, const std::wstring& _name);

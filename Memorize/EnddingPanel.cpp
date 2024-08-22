@@ -92,12 +92,12 @@ EnddingPanel::EnddingPanel(World* _world)
 			SoundManager::PlayMusic(L"TestResource/Sound/Player/Skill/Sound_UI_Click.wav"); 
 			}
 		);
-		mainMenu->AddOnHoveredHandler([this]() { mainMenuImage->SetSprite(L"TestResource/UI/button_play_2.png"); });
-		mainMenu->AddOnPressedHandler([this]() { mainMenuImage->SetSprite(L"TestResource/UI/button_play_3.png"); });
-		mainMenu->AddOnUnHoveredHandler([this]() { mainMenuImage->SetSprite(L"TestResource/UI/button_play_1.png"); });
+		mainMenu->AddOnHoveredHandler([this]() { mainMenuImage->SetSprite(L"TestResource/Ending/Ending_d_giveup_mouseover.png"); });
+		mainMenu->AddOnPressedHandler([this]() { mainMenuImage->SetSprite(L"TestResource/Ending/Ending_d_giveup_pushed.png"); });
+		mainMenu->AddOnUnHoveredHandler([this]() { mainMenuImage->SetSprite(L"TestResource/Ending/Ending_d_giveup_normal.png"); });
 
 		mainMenuImage = CreateUI<UIImage>(L"StartImage");
-		mainMenuImage->SetSprite(L"TestResource/UI/button_play_1.png");
+		mainMenuImage->SetSprite(L"TestResource/Ending/Ending_d_giveup_normal.png");
 		mainMenuImage->SetPosition(300, 0);
 		mainMenuImage->SetZOrder(4);
 		mainMenuImage->SetOpacity(0);
