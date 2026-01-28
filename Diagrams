@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.6" pages="2">
   <diagram name="PlayerFSM" id="o7Wm59TPUCndxaIZYoIg">
-    <mxGraphModel dx="1960" dy="2755" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1568" dy="2204" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -151,22 +151,25 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5Ax_Jddvv1fqPCc19BWR-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d6b656;fillColor=#fff2cc;" value="&lt;font style=&quot;font-size: 40px;&quot;&gt;Input&lt;/font&gt;" vertex="1">
-          <mxGeometry height="90" width="145" x="335" y="1280" as="geometry" />
+          <mxGeometry height="90" width="145" x="90" y="1590" as="geometry" />
         </mxCell>
         <mxCell id="5Ax_Jddvv1fqPCc19BWR-5" edge="1" parent="1" source="5Ax_Jddvv1fqPCc19BWR-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#09555B;fontColor=#1A1A1A;" target="5Ax_Jddvv1fqPCc19BWR-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5Ax_Jddvv1fqPCc19BWR-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d6b656;fillColor=#fff2cc;" value="&lt;font style=&quot;font-size: 40px;&quot;&gt;Player Controller&lt;/font&gt;" vertex="1">
-          <mxGeometry height="90" width="230" x="541" y="1280" as="geometry" />
+          <mxGeometry height="90" width="230" x="275" y="1590" as="geometry" />
         </mxCell>
         <mxCell id="5Ax_Jddvv1fqPCc19BWR-8" edge="1" parent="1" source="5Ax_Jddvv1fqPCc19BWR-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#09555B;fontColor=#1A1A1A;" target="5Ax_Jddvv1fqPCc19BWR-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5Ax_Jddvv1fqPCc19BWR-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d6b656;fillColor=#fff2cc;" value="&lt;font style=&quot;font-size: 40px;&quot;&gt;FSMComponet&lt;/font&gt;" vertex="1">
-          <mxGeometry height="90" width="299" x="830.5" y="1280" as="geometry" />
+          <mxGeometry height="90" width="299" x="666" y="1590" as="geometry" />
         </mxCell>
         <mxCell id="5Ax_Jddvv1fqPCc19BWR-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d6b656;fillColor=#fff2cc;" value="&lt;font style=&quot;font-size: 40px;&quot;&gt;FSMState&lt;/font&gt;" vertex="1">
-          <mxGeometry height="90" width="210" x="1200" y="1280" as="geometry" />
+          <mxGeometry height="90" width="210" x="1005" y="1590" as="geometry" />
+        </mxCell>
+        <mxCell id="5Ax_Jddvv1fqPCc19BWR-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;플레이어 입력 이벤트&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="133" x="520" y="1660" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
