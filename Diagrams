@@ -174,11 +174,14 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="7DGg3hLCD1sBVAwgnroV" name="페이지-2">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="7DGg3hLCD1sBVAwgnroV" name="Skill">
+    <mxGraphModel dx="784" dy="1102" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="hm1NFLoynAp73wbUrjen-1" parent="1" style="text;whiteSpace=wrap;fontColor=#1A1A1A;" value="스킬의 종류는 크게 4가지로 Buff, Projectile, Range, Special가 있고 속성또한 4가지로 FIRE, WATER, LIGHT, DARKNESS가 있어&#xa;    플레이어의 상태를 영구 또는 시간만큼 강화 시켜주는 &quot;Buff&quot; 계열&#xa;        불: 공격력과 공격속도를 영구적으로 강화 시켜주는 &quot;Enchant&quot;&#xa;        물: 지속시간동안 마나를 무제한으로 늘려주는 &quot;ManaOverload&quot;&#xa;        빛: 최대 마나량을 증가 시켜주는 &quot;MPMaxIncrease&quot;&#xa;        어둠: 마나 회복량을 늘려주는 &quot;MPRecovery&quot;&#xa;    발사체를 발사하는 &quot;Projectile&quot; 계열 (기본 공격도 여기에 추가됨)&#xa;        불: 일직선으로 불을 발사하여 충돌 또는 위치 도달시 폭팔하는 &quot;FireBall&quot;&#xa;        물: N개의 보스 유도 물구슬을 발사하는 &quot;ChasingWaterBall&quot;&#xa;        빛: N개의 빛발사체를 M의 각도 안에서 무작위로 발사하는 &quot;PrismReflection&quot;&#xa;        어둠: 일직선으로 N개의 어둠발사체를 발사하는 &quot;DarkSphere&quot;&#xa;    범위 기반 스킬인 &quot;Range&quot; 계열&#xa;        불: 하늘에서 천천히 떨어서 떨어진 후 폭팔하여 범위 피해를 주는 &quot;Meteor&quot;&#xa;        물: 플레이어를 중심으로 사방으로 N개의 범위 발사체를 발사하는 &quot;AggressiveWaves&quot;&#xa;        빛: 사용 마나에 비레하여 지속되는 레이져를 설치하는 &quot;LightStream&quot;&#xa;        어둠: 원을 소환하고 원의 크기가 점점 줄어 들면서 원둘례에 맞으면 대미지를 주는 &quot;TighteningCircle&quot;&#xa;    특수한 효과를 지니고 있는 &quot;Special&quot; 계열&#xa;        불: 적의 모든 투사체를 증발 시켜서 없애버리는 &quot;ElementalExplosion&quot;&#xa;        물: 체력을 회복시키는 &quot;Heal&quot;&#xa;        빛: 디스펠 가능한 적의 공격을 제거시키는 &quot;Purification&quot;&#xa;        어둠: 사용자의 체력을 1로 만들고, 움직이면 해제되지만 움직이기 전까지 공격을 하면 모든 투사체 공격을 랜덤으로 발동시키는 &quot;ElementalMaster&quot;" vertex="1">
+          <mxGeometry height="370" width="560" x="50" y="110" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
